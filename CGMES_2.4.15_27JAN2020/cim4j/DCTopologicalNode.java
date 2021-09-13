@@ -20,13 +20,18 @@ DC bus.
 */
 public class DCTopologicalNode extends IdentifiedObject
 {
-	private BaseClass[] DCTopologicalNode_attributes;
+	private BaseClass[] DCTopologicalNode_class_attributes;
+	private BaseClass[] DCTopologicalNode_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum DCTopologicalNode_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -35,27 +40,47 @@ public class DCTopologicalNode extends IdentifiedObject
 		};
 	}
 
+	private enum DCTopologicalNode_class_attributes_enum {
+		DCTopologicalIsland,
+		DCTerminals,
+		DCEquipmentContainer,
+		DCNodes,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 		
 	
 	public DCTopologicalNode() {
-		DCTopologicalNode_attributes = new BaseClass[DCTopologicalNode_primitive_builder.values().length];
+		DCTopologicalNode_primitive_attributes = new BaseClass[DCTopologicalNode_primitive_builder.values().length];
+		DCTopologicalNode_class_attributes = new BaseClass[DCTopologicalNode_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(DCTopologicalNode_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(DCTopologicalNode_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			DCTopologicalNode_attributes[attrEnum.ordinal()] = value;
+			DCTopologicalNode_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(DCTopologicalNode_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//DCTopologicalNode_ATTR_ENUM attrEnum = DCTopologicalNode_ATTR_BC_ENUM.valueOf(attrName);
+			DCTopologicalNode_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			DCTopologicalNode_class_attributes_enum attrEnum = DCTopologicalNode_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated DCTopologicalNode, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -64,10 +89,11 @@ public class DCTopologicalNode extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			DCTopologicalNode_primitive_builder attrEnum = DCTopologicalNode_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated DCTopologicalNode, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -75,13 +101,26 @@ public class DCTopologicalNode extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (DCTopologicalNode_primitive_builder attrEnum: DCTopologicalNode_primitive_builder.values()) {
-			BaseClass bc = DCTopologicalNode_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (DCTopologicalNode_primitive_builder attrEnum: DCTopologicalNode_primitive_builder.values()) {
+				BaseClass bc = DCTopologicalNode_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCTopologicalNode." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (DCTopologicalNode_class_attributes_enum attrEnum: DCTopologicalNode_class_attributes_enum.values()) {
+				BaseClass bc = DCTopologicalNode_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCTopologicalNode." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(DCTopologicalNode) RDFID: " + rdfid;
 		}
 		return result;
 	}

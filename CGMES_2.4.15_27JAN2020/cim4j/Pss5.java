@@ -20,95 +20,100 @@ Italian PSS - Detailed PSS.
 */
 public class Pss5 extends PowerSystemStabilizerDynamics
 {
-	private BaseClass[] Pss5_attributes;
+	private BaseClass[] Pss5_class_attributes;
+	private BaseClass[] Pss5_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum Pss5_primitive_builder implements PrimitiveBuilder {
-			kpe(){
+		kpe(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kf(){
+		kf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			isfreq(){
+		isfreq(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			kpss(){
+		kpss(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ctw2(){
+		ctw2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			tw1(){
+		tw1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tw2(){
+		tw2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl1(){
+		tl1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl2(){
+		tl2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl3(){
+		tl3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl4(){
+		tl4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vsmn(){
+		vsmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vsmx(){
+		vsmx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tpe(){
+		tpe(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			pmm(){
+		pmm(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			deadband(){
+		deadband(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vadat(){
+		vadat(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -118,6 +123,27 @@ public class Pss5 extends PowerSystemStabilizerDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum Pss5_class_attributes_enum {
+		kpe,
+		kf,
+		isfreq,
+		kpss,
+		ctw2,
+		tw1,
+		tw2,
+		tl1,
+		tl2,
+		tl3,
+		tl4,
+		vsmn,
+		vsmx,
+		tpe,
+		pmm,
+		deadband,
+		vadat,
+			LAST_ENUM;
 	}
 
 		
@@ -139,21 +165,33 @@ public class Pss5 extends PowerSystemStabilizerDynamics
 		
 	
 	public Pss5() {
-		Pss5_attributes = new BaseClass[Pss5_primitive_builder.values().length];
+		Pss5_primitive_attributes = new BaseClass[Pss5_primitive_builder.values().length];
+		Pss5_class_attributes = new BaseClass[Pss5_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(Pss5_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(Pss5_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			Pss5_attributes[attrEnum.ordinal()] = value;
+			Pss5_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(Pss5_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//Pss5_ATTR_ENUM attrEnum = Pss5_ATTR_BC_ENUM.valueOf(attrName);
+			Pss5_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			Pss5_class_attributes_enum attrEnum = Pss5_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated Pss5, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -162,10 +200,11 @@ public class Pss5 extends PowerSystemStabilizerDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			Pss5_primitive_builder attrEnum = Pss5_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated Pss5, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -173,13 +212,26 @@ public class Pss5 extends PowerSystemStabilizerDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (Pss5_primitive_builder attrEnum: Pss5_primitive_builder.values()) {
-			BaseClass bc = Pss5_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (Pss5_primitive_builder attrEnum: Pss5_primitive_builder.values()) {
+				BaseClass bc = Pss5_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Pss5." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (Pss5_class_attributes_enum attrEnum: Pss5_class_attributes_enum.values()) {
+				BaseClass bc = Pss5_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Pss5." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(Pss5) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -18,25 +18,30 @@ The non-linear phase tap changer describes the non-linear behavior of a phase ta
 */
 public class PhaseTapChangerNonLinear extends PhaseTapChanger
 {
-	private BaseClass[] PhaseTapChangerNonLinear_attributes;
+	private BaseClass[] PhaseTapChangerNonLinear_class_attributes;
+	private BaseClass[] PhaseTapChangerNonLinear_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum PhaseTapChangerNonLinear_primitive_builder implements PrimitiveBuilder {
-			voltageStepIncrement(){
+		voltageStepIncrement(){
 			public BaseClass construct (java.lang.String value) {
 				return new PerCent(value);
 			}
 		},
-			xMax(){
+		xMax(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			xMin(){
+		xMin(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
@@ -48,26 +53,45 @@ public class PhaseTapChangerNonLinear extends PhaseTapChanger
 		};
 	}
 
+	private enum PhaseTapChangerNonLinear_class_attributes_enum {
+		voltageStepIncrement,
+		xMax,
+		xMin,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public PhaseTapChangerNonLinear() {
-		PhaseTapChangerNonLinear_attributes = new BaseClass[PhaseTapChangerNonLinear_primitive_builder.values().length];
+		PhaseTapChangerNonLinear_primitive_attributes = new BaseClass[PhaseTapChangerNonLinear_primitive_builder.values().length];
+		PhaseTapChangerNonLinear_class_attributes = new BaseClass[PhaseTapChangerNonLinear_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PhaseTapChangerNonLinear_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(PhaseTapChangerNonLinear_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			PhaseTapChangerNonLinear_attributes[attrEnum.ordinal()] = value;
+			PhaseTapChangerNonLinear_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(PhaseTapChangerNonLinear_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//PhaseTapChangerNonLinear_ATTR_ENUM attrEnum = PhaseTapChangerNonLinear_ATTR_BC_ENUM.valueOf(attrName);
+			PhaseTapChangerNonLinear_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			PhaseTapChangerNonLinear_class_attributes_enum attrEnum = PhaseTapChangerNonLinear_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated PhaseTapChangerNonLinear, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,10 +100,11 @@ public class PhaseTapChangerNonLinear extends PhaseTapChanger
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PhaseTapChangerNonLinear_primitive_builder attrEnum = PhaseTapChangerNonLinear_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated PhaseTapChangerNonLinear, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -87,13 +112,26 @@ public class PhaseTapChangerNonLinear extends PhaseTapChanger
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (PhaseTapChangerNonLinear_primitive_builder attrEnum: PhaseTapChangerNonLinear_primitive_builder.values()) {
-			BaseClass bc = PhaseTapChangerNonLinear_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (PhaseTapChangerNonLinear_primitive_builder attrEnum: PhaseTapChangerNonLinear_primitive_builder.values()) {
+				BaseClass bc = PhaseTapChangerNonLinear_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PhaseTapChangerNonLinear." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (PhaseTapChangerNonLinear_class_attributes_enum attrEnum: PhaseTapChangerNonLinear_class_attributes_enum.values()) {
+				BaseClass bc = PhaseTapChangerNonLinear_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PhaseTapChangerNonLinear." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(PhaseTapChangerNonLinear) RDFID: " + rdfid;
 		}
 		return result;
 	}

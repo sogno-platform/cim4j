@@ -37,30 +37,35 @@ Supports definition of one or more parameters of several different datatypes for
 */
 public class ProprietaryParameterDynamics extends BaseClass
 {
-	private BaseClass[] ProprietaryParameterDynamics_attributes;
+	private BaseClass[] ProprietaryParameterDynamics_class_attributes;
+	private BaseClass[] ProprietaryParameterDynamics_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ProprietaryParameterDynamics_primitive_builder implements PrimitiveBuilder {
-			parameterNumber(){
+		parameterNumber(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			booleanParameterValue(){
+		booleanParameterValue(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			integerParameterValue(){
+		integerParameterValue(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			floatParameterValue(){
+		floatParameterValue(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -70,6 +75,32 @@ public class ProprietaryParameterDynamics extends BaseClass
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ProprietaryParameterDynamics_class_attributes_enum {
+		WindPlantUserDefined,
+		WindType1or2UserDefined,
+		WindType3or4UserDefined,
+		SynchronousMachineUserDefined,
+		AsynchronousMachineUserDefined,
+		TurbineGovernorUserDefined,
+		TurbineLoadControllerUserDefined,
+		MechanicalLoadUserDefined,
+		ExcitationSystemUserDefined,
+		OverexcitationLimiterUserDefined,
+		UnderexcitationLimiterUserDefined,
+		PowerSystemStabilizerUserDefined,
+		DiscontinuousExcitationControlUserDefined,
+		PFVArControllerType1UserDefined,
+		VoltageAdjusterUserDefined,
+		PFVArControllerType2UserDefined,
+		VoltageCompensatorUserDefined,
+		LoadUserDefined,
+		parameterNumber,
+		booleanParameterValue,
+		integerParameterValue,
+		floatParameterValue,
+			LAST_ENUM;
 	}
 
 		
@@ -96,21 +127,33 @@ public class ProprietaryParameterDynamics extends BaseClass
 		
 	
 	public ProprietaryParameterDynamics() {
-		ProprietaryParameterDynamics_attributes = new BaseClass[ProprietaryParameterDynamics_primitive_builder.values().length];
+		ProprietaryParameterDynamics_primitive_attributes = new BaseClass[ProprietaryParameterDynamics_primitive_builder.values().length];
+		ProprietaryParameterDynamics_class_attributes = new BaseClass[ProprietaryParameterDynamics_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ProprietaryParameterDynamics_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ProprietaryParameterDynamics_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ProprietaryParameterDynamics_attributes[attrEnum.ordinal()] = value;
+			ProprietaryParameterDynamics_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ProprietaryParameterDynamics_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ProprietaryParameterDynamics_ATTR_ENUM attrEnum = ProprietaryParameterDynamics_ATTR_BC_ENUM.valueOf(attrName);
+			ProprietaryParameterDynamics_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ProprietaryParameterDynamics_class_attributes_enum attrEnum = ProprietaryParameterDynamics_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ProprietaryParameterDynamics, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -119,10 +162,11 @@ public class ProprietaryParameterDynamics extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ProprietaryParameterDynamics_primitive_builder attrEnum = ProprietaryParameterDynamics_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ProprietaryParameterDynamics, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -130,13 +174,26 @@ public class ProprietaryParameterDynamics extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ProprietaryParameterDynamics_primitive_builder attrEnum: ProprietaryParameterDynamics_primitive_builder.values()) {
-			BaseClass bc = ProprietaryParameterDynamics_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ProprietaryParameterDynamics_primitive_builder attrEnum: ProprietaryParameterDynamics_primitive_builder.values()) {
+				BaseClass bc = ProprietaryParameterDynamics_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ProprietaryParameterDynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ProprietaryParameterDynamics_class_attributes_enum attrEnum: ProprietaryParameterDynamics_class_attributes_enum.values()) {
+				BaseClass bc = ProprietaryParameterDynamics_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ProprietaryParameterDynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ProprietaryParameterDynamics) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -25,45 +25,50 @@ For a detailed substation model a topological node is a set of connectivity node
 */
 public class TopologicalNode extends IdentifiedObject
 {
-	private BaseClass[] TopologicalNode_attributes;
+	private BaseClass[] TopologicalNode_class_attributes;
+	private BaseClass[] TopologicalNode_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum TopologicalNode_primitive_builder implements PrimitiveBuilder {
-			boundaryPoint(){
+		boundaryPoint(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			fromEndIsoCode(){
+		fromEndIsoCode(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			fromEndName(){
+		fromEndName(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			fromEndNameTso(){
+		fromEndNameTso(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			toEndIsoCode(){
+		toEndIsoCode(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			toEndName(){
+		toEndName(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			toEndNameTso(){
+		toEndNameTso(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
@@ -73,6 +78,26 @@ public class TopologicalNode extends IdentifiedObject
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum TopologicalNode_class_attributes_enum {
+		SvInjection,
+		SvVoltage,
+		AngleRefTopologicalIsland,
+		TopologicalIsland,
+		BaseVoltage,
+		ConnectivityNodes,
+		ConnectivityNodeContainer,
+		ReportingGroup,
+		Terminal,
+		boundaryPoint,
+		fromEndIsoCode,
+		fromEndName,
+		fromEndNameTso,
+		toEndIsoCode,
+		toEndName,
+		toEndNameTso,
+			LAST_ENUM;
 	}
 
 		
@@ -93,21 +118,33 @@ public class TopologicalNode extends IdentifiedObject
 		
 	
 	public TopologicalNode() {
-		TopologicalNode_attributes = new BaseClass[TopologicalNode_primitive_builder.values().length];
+		TopologicalNode_primitive_attributes = new BaseClass[TopologicalNode_primitive_builder.values().length];
+		TopologicalNode_class_attributes = new BaseClass[TopologicalNode_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(TopologicalNode_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(TopologicalNode_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			TopologicalNode_attributes[attrEnum.ordinal()] = value;
+			TopologicalNode_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(TopologicalNode_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//TopologicalNode_ATTR_ENUM attrEnum = TopologicalNode_ATTR_BC_ENUM.valueOf(attrName);
+			TopologicalNode_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			TopologicalNode_class_attributes_enum attrEnum = TopologicalNode_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated TopologicalNode, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -116,10 +153,11 @@ public class TopologicalNode extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			TopologicalNode_primitive_builder attrEnum = TopologicalNode_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated TopologicalNode, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -127,13 +165,26 @@ public class TopologicalNode extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (TopologicalNode_primitive_builder attrEnum: TopologicalNode_primitive_builder.values()) {
-			BaseClass bc = TopologicalNode_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (TopologicalNode_primitive_builder attrEnum: TopologicalNode_primitive_builder.values()) {
+				BaseClass bc = TopologicalNode_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    TopologicalNode." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (TopologicalNode_class_attributes_enum attrEnum: TopologicalNode_class_attributes_enum.values()) {
+				BaseClass bc = TopologicalNode_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    TopologicalNode." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(TopologicalNode) RDFID: " + rdfid;
 		}
 		return result;
 	}

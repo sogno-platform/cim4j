@@ -21,30 +21,35 @@ Control is used for supervisory/device control. It represents control outputs th
 */
 public class Control extends IdentifiedObject
 {
-	private BaseClass[] Control_attributes;
+	private BaseClass[] Control_class_attributes;
+	private BaseClass[] Control_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum Control_primitive_builder implements PrimitiveBuilder {
-			controlType(){
+		controlType(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			operationInProgress(){
+		operationInProgress(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			unitMultiplier(){
+		unitMultiplier(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitMultiplier(value);
 			}
 		},
-			unitSymbol(){
+		unitSymbol(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
@@ -56,6 +61,16 @@ public class Control extends IdentifiedObject
 		};
 	}
 
+	private enum Control_class_attributes_enum {
+		controlType,
+		operationInProgress,
+		timeStamp,
+		unitMultiplier,
+		unitSymbol,
+		PowerSystemResource,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -64,21 +79,33 @@ public class Control extends IdentifiedObject
 		
 	
 	public Control() {
-		Control_attributes = new BaseClass[Control_primitive_builder.values().length];
+		Control_primitive_attributes = new BaseClass[Control_primitive_builder.values().length];
+		Control_class_attributes = new BaseClass[Control_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(Control_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(Control_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			Control_attributes[attrEnum.ordinal()] = value;
+			Control_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(Control_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//Control_ATTR_ENUM attrEnum = Control_ATTR_BC_ENUM.valueOf(attrName);
+			Control_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			Control_class_attributes_enum attrEnum = Control_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated Control, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -87,10 +114,11 @@ public class Control extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			Control_primitive_builder attrEnum = Control_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated Control, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -98,13 +126,26 @@ public class Control extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (Control_primitive_builder attrEnum: Control_primitive_builder.values()) {
-			BaseClass bc = Control_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (Control_primitive_builder attrEnum: Control_primitive_builder.values()) {
+				BaseClass bc = Control_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Control." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (Control_class_attributes_enum attrEnum: Control_class_attributes_enum.values()) {
+				BaseClass bc = Control_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Control." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(Control) RDFID: " + rdfid;
 		}
 		return result;
 	}

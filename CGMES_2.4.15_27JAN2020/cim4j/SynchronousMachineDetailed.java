@@ -19,35 +19,40 @@ All synchronous machine detailed types use a subset of the same data parameters 
 */
 public class SynchronousMachineDetailed extends SynchronousMachineDynamics
 {
-	private BaseClass[] SynchronousMachineDetailed_attributes;
+	private BaseClass[] SynchronousMachineDetailed_class_attributes;
+	private BaseClass[] SynchronousMachineDetailed_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum SynchronousMachineDetailed_primitive_builder implements PrimitiveBuilder {
-			saturationFactorQAxis(){
+		saturationFactorQAxis(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			saturationFactor120QAxis(){
+		saturationFactor120QAxis(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			efdBaseRatio(){
+		efdBaseRatio(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ifdBaseType(){
+		ifdBaseType(){
 			public BaseClass construct (java.lang.String value) {
 				return new IfdBaseKind(value);
 			}
 		},
-			ifdBaseValue(){
+		ifdBaseValue(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
@@ -59,6 +64,15 @@ public class SynchronousMachineDetailed extends SynchronousMachineDynamics
 		};
 	}
 
+	private enum SynchronousMachineDetailed_class_attributes_enum {
+		saturationFactorQAxis,
+		saturationFactor120QAxis,
+		efdBaseRatio,
+		ifdBaseType,
+		ifdBaseValue,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -66,21 +80,33 @@ public class SynchronousMachineDetailed extends SynchronousMachineDynamics
 		
 	
 	public SynchronousMachineDetailed() {
-		SynchronousMachineDetailed_attributes = new BaseClass[SynchronousMachineDetailed_primitive_builder.values().length];
+		SynchronousMachineDetailed_primitive_attributes = new BaseClass[SynchronousMachineDetailed_primitive_builder.values().length];
+		SynchronousMachineDetailed_class_attributes = new BaseClass[SynchronousMachineDetailed_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(SynchronousMachineDetailed_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(SynchronousMachineDetailed_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			SynchronousMachineDetailed_attributes[attrEnum.ordinal()] = value;
+			SynchronousMachineDetailed_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(SynchronousMachineDetailed_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//SynchronousMachineDetailed_ATTR_ENUM attrEnum = SynchronousMachineDetailed_ATTR_BC_ENUM.valueOf(attrName);
+			SynchronousMachineDetailed_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			SynchronousMachineDetailed_class_attributes_enum attrEnum = SynchronousMachineDetailed_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated SynchronousMachineDetailed, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -89,10 +115,11 @@ public class SynchronousMachineDetailed extends SynchronousMachineDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			SynchronousMachineDetailed_primitive_builder attrEnum = SynchronousMachineDetailed_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated SynchronousMachineDetailed, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -100,13 +127,26 @@ public class SynchronousMachineDetailed extends SynchronousMachineDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (SynchronousMachineDetailed_primitive_builder attrEnum: SynchronousMachineDetailed_primitive_builder.values()) {
-			BaseClass bc = SynchronousMachineDetailed_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (SynchronousMachineDetailed_primitive_builder attrEnum: SynchronousMachineDetailed_primitive_builder.values()) {
+				BaseClass bc = SynchronousMachineDetailed_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SynchronousMachineDetailed." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (SynchronousMachineDetailed_class_attributes_enum attrEnum: SynchronousMachineDetailed_class_attributes_enum.values()) {
+				BaseClass bc = SynchronousMachineDetailed_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SynchronousMachineDetailed." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(SynchronousMachineDetailed) RDFID: " + rdfid;
 		}
 		return result;
 	}

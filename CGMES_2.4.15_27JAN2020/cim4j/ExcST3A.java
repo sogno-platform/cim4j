@@ -19,110 +19,115 @@ Modified IEEE ST3A static excitation system with added speed multiplier.
 */
 public class ExcST3A extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcST3A_attributes;
+	private BaseClass[] ExcST3A_class_attributes;
+	private BaseClass[] ExcST3A_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcST3A_primitive_builder implements PrimitiveBuilder {
-			vimax(){
+		vimax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vimin(){
+		vimin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kj(){
+		kj(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tb(){
+		tb(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tc(){
+		tc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			efdmax(){
+		efdmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			km(){
+		km(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tm(){
+		tm(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kg(){
+		kg(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kp(){
+		kp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			thetap(){
+		thetap(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
 		},
-			ki(){
+		ki(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kc(){
+		kc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xl(){
+		xl(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vbmax(){
+		vbmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vgmax(){
+		vgmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ks(){
+		ks(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ks1(){
+		ks1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -132,6 +137,30 @@ public class ExcST3A extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcST3A_class_attributes_enum {
+		vimax,
+		vimin,
+		kj,
+		tb,
+		tc,
+		efdmax,
+		km,
+		tm,
+		vrmax,
+		vrmin,
+		kg,
+		kp,
+		thetap,
+		ki,
+		kc,
+		xl,
+		vbmax,
+		vgmax,
+		ks,
+		ks1,
+			LAST_ENUM;
 	}
 
 		
@@ -156,21 +185,33 @@ public class ExcST3A extends ExcitationSystemDynamics
 		
 	
 	public ExcST3A() {
-		ExcST3A_attributes = new BaseClass[ExcST3A_primitive_builder.values().length];
+		ExcST3A_primitive_attributes = new BaseClass[ExcST3A_primitive_builder.values().length];
+		ExcST3A_class_attributes = new BaseClass[ExcST3A_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcST3A_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcST3A_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcST3A_attributes[attrEnum.ordinal()] = value;
+			ExcST3A_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcST3A_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcST3A_ATTR_ENUM attrEnum = ExcST3A_ATTR_BC_ENUM.valueOf(attrName);
+			ExcST3A_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcST3A_class_attributes_enum attrEnum = ExcST3A_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcST3A, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -179,10 +220,11 @@ public class ExcST3A extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcST3A_primitive_builder attrEnum = ExcST3A_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcST3A, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -190,13 +232,26 @@ public class ExcST3A extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcST3A_primitive_builder attrEnum: ExcST3A_primitive_builder.values()) {
-			BaseClass bc = ExcST3A_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcST3A_primitive_builder attrEnum: ExcST3A_primitive_builder.values()) {
+				BaseClass bc = ExcST3A_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcST3A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcST3A_class_attributes_enum attrEnum: ExcST3A_class_attributes_enum.values()) {
+				BaseClass bc = ExcST3A_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcST3A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcST3A) RDFID: " + rdfid;
 		}
 		return result;
 	}

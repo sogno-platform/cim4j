@@ -19,25 +19,30 @@ Time point for a schedule where the time between the consecutive points is const
 */
 public class RegularTimePoint extends BaseClass
 {
-	private BaseClass[] RegularTimePoint_attributes;
+	private BaseClass[] RegularTimePoint_class_attributes;
+	private BaseClass[] RegularTimePoint_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum RegularTimePoint_primitive_builder implements PrimitiveBuilder {
-			sequenceNumber(){
+		sequenceNumber(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			value1(){
+		value1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			value2(){
+		value2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -49,27 +54,47 @@ public class RegularTimePoint extends BaseClass
 		};
 	}
 
+	private enum RegularTimePoint_class_attributes_enum {
+		IntervalSchedule,
+		sequenceNumber,
+		value1,
+		value2,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 		
 	
 	public RegularTimePoint() {
-		RegularTimePoint_attributes = new BaseClass[RegularTimePoint_primitive_builder.values().length];
+		RegularTimePoint_primitive_attributes = new BaseClass[RegularTimePoint_primitive_builder.values().length];
+		RegularTimePoint_class_attributes = new BaseClass[RegularTimePoint_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(RegularTimePoint_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(RegularTimePoint_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			RegularTimePoint_attributes[attrEnum.ordinal()] = value;
+			RegularTimePoint_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(RegularTimePoint_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//RegularTimePoint_ATTR_ENUM attrEnum = RegularTimePoint_ATTR_BC_ENUM.valueOf(attrName);
+			RegularTimePoint_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			RegularTimePoint_class_attributes_enum attrEnum = RegularTimePoint_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated RegularTimePoint, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -78,10 +103,11 @@ public class RegularTimePoint extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			RegularTimePoint_primitive_builder attrEnum = RegularTimePoint_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated RegularTimePoint, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -89,13 +115,26 @@ public class RegularTimePoint extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (RegularTimePoint_primitive_builder attrEnum: RegularTimePoint_primitive_builder.values()) {
-			BaseClass bc = RegularTimePoint_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (RegularTimePoint_primitive_builder attrEnum: RegularTimePoint_primitive_builder.values()) {
+				BaseClass bc = RegularTimePoint_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    RegularTimePoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (RegularTimePoint_class_attributes_enum attrEnum: RegularTimePoint_class_attributes_enum.values()) {
+				BaseClass bc = RegularTimePoint_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    RegularTimePoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(RegularTimePoint) RDFID: " + rdfid;
 		}
 		return result;
 	}

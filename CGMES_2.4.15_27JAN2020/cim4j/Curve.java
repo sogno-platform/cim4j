@@ -19,30 +19,35 @@ A multi-purpose curve or functional relationship between an independent variable
 */
 public class Curve extends IdentifiedObject
 {
-	private BaseClass[] Curve_attributes;
+	private BaseClass[] Curve_class_attributes;
+	private BaseClass[] Curve_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum Curve_primitive_builder implements PrimitiveBuilder {
-			curveStyle(){
+		curveStyle(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurveStyle(value);
 			}
 		},
-			xUnit(){
+		xUnit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
 		},
-			y1Unit(){
+		y1Unit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
 		},
-			y2Unit(){
+		y2Unit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
@@ -54,6 +59,15 @@ public class Curve extends IdentifiedObject
 		};
 	}
 
+	private enum Curve_class_attributes_enum {
+		curveStyle,
+		xUnit,
+		y1Unit,
+		y2Unit,
+		CurveDatas,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -61,21 +75,33 @@ public class Curve extends IdentifiedObject
 		
 	
 	public Curve() {
-		Curve_attributes = new BaseClass[Curve_primitive_builder.values().length];
+		Curve_primitive_attributes = new BaseClass[Curve_primitive_builder.values().length];
+		Curve_class_attributes = new BaseClass[Curve_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(Curve_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(Curve_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			Curve_attributes[attrEnum.ordinal()] = value;
+			Curve_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(Curve_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//Curve_ATTR_ENUM attrEnum = Curve_ATTR_BC_ENUM.valueOf(attrName);
+			Curve_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			Curve_class_attributes_enum attrEnum = Curve_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated Curve, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -84,10 +110,11 @@ public class Curve extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			Curve_primitive_builder attrEnum = Curve_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated Curve, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -95,13 +122,26 @@ public class Curve extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (Curve_primitive_builder attrEnum: Curve_primitive_builder.values()) {
-			BaseClass bc = Curve_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (Curve_primitive_builder attrEnum: Curve_primitive_builder.values()) {
+				BaseClass bc = Curve_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Curve." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (Curve_class_attributes_enum attrEnum: Curve_class_attributes_enum.values()) {
+				BaseClass bc = Curve_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Curve." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(Curve) RDFID: " + rdfid;
 		}
 		return result;
 	}

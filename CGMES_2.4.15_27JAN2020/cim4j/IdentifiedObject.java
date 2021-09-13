@@ -17,35 +17,40 @@ This is a root class to provide common identification for all classes needing id
 */
 public class IdentifiedObject extends BaseClass
 {
-	private BaseClass[] IdentifiedObject_attributes;
+	private BaseClass[] IdentifiedObject_class_attributes;
+	private BaseClass[] IdentifiedObject_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum IdentifiedObject_primitive_builder implements PrimitiveBuilder {
-			mRID(){
+		mRID(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			name(){
+		name(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			description(){
+		description(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			energyIdentCodeEic(){
+		energyIdentCodeEic(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			shortName(){
+		shortName(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
@@ -57,6 +62,16 @@ public class IdentifiedObject extends BaseClass
 		};
 	}
 
+	private enum IdentifiedObject_class_attributes_enum {
+		DiagramObjects,
+		mRID,
+		name,
+		description,
+		energyIdentCodeEic,
+		shortName,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -65,21 +80,33 @@ public class IdentifiedObject extends BaseClass
 		
 	
 	public IdentifiedObject() {
-		IdentifiedObject_attributes = new BaseClass[IdentifiedObject_primitive_builder.values().length];
+		IdentifiedObject_primitive_attributes = new BaseClass[IdentifiedObject_primitive_builder.values().length];
+		IdentifiedObject_class_attributes = new BaseClass[IdentifiedObject_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(IdentifiedObject_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(IdentifiedObject_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			IdentifiedObject_attributes[attrEnum.ordinal()] = value;
+			IdentifiedObject_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(IdentifiedObject_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//IdentifiedObject_ATTR_ENUM attrEnum = IdentifiedObject_ATTR_BC_ENUM.valueOf(attrName);
+			IdentifiedObject_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			IdentifiedObject_class_attributes_enum attrEnum = IdentifiedObject_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated IdentifiedObject, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -88,10 +115,11 @@ public class IdentifiedObject extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			IdentifiedObject_primitive_builder attrEnum = IdentifiedObject_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated IdentifiedObject, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -99,13 +127,26 @@ public class IdentifiedObject extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (IdentifiedObject_primitive_builder attrEnum: IdentifiedObject_primitive_builder.values()) {
-			BaseClass bc = IdentifiedObject_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (IdentifiedObject_primitive_builder attrEnum: IdentifiedObject_primitive_builder.values()) {
+				BaseClass bc = IdentifiedObject_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    IdentifiedObject." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (IdentifiedObject_class_attributes_enum attrEnum: IdentifiedObject_class_attributes_enum.values()) {
+				BaseClass bc = IdentifiedObject_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    IdentifiedObject." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(IdentifiedObject) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -17,15 +17,20 @@ A wind driven generating unit.  May be used to represent a single turbine or an 
 */
 public class WindGeneratingUnit extends GeneratingUnit
 {
-	private BaseClass[] WindGeneratingUnit_attributes;
+	private BaseClass[] WindGeneratingUnit_class_attributes;
+	private BaseClass[] WindGeneratingUnit_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum WindGeneratingUnit_primitive_builder implements PrimitiveBuilder {
-			windGenUnitType(){
+		windGenUnitType(){
 			public BaseClass construct (java.lang.String value) {
 				return new WindGenUnitKind(value);
 			}
@@ -37,24 +42,41 @@ public class WindGeneratingUnit extends GeneratingUnit
 		};
 	}
 
+	private enum WindGeneratingUnit_class_attributes_enum {
+		windGenUnitType,
+			LAST_ENUM;
+	}
+
 		
 	
 	public WindGeneratingUnit() {
-		WindGeneratingUnit_attributes = new BaseClass[WindGeneratingUnit_primitive_builder.values().length];
+		WindGeneratingUnit_primitive_attributes = new BaseClass[WindGeneratingUnit_primitive_builder.values().length];
+		WindGeneratingUnit_class_attributes = new BaseClass[WindGeneratingUnit_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(WindGeneratingUnit_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(WindGeneratingUnit_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			WindGeneratingUnit_attributes[attrEnum.ordinal()] = value;
+			WindGeneratingUnit_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(WindGeneratingUnit_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//WindGeneratingUnit_ATTR_ENUM attrEnum = WindGeneratingUnit_ATTR_BC_ENUM.valueOf(attrName);
+			WindGeneratingUnit_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			WindGeneratingUnit_class_attributes_enum attrEnum = WindGeneratingUnit_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated WindGeneratingUnit, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -63,10 +85,11 @@ public class WindGeneratingUnit extends GeneratingUnit
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			WindGeneratingUnit_primitive_builder attrEnum = WindGeneratingUnit_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated WindGeneratingUnit, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -74,13 +97,26 @@ public class WindGeneratingUnit extends GeneratingUnit
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (WindGeneratingUnit_primitive_builder attrEnum: WindGeneratingUnit_primitive_builder.values()) {
-			BaseClass bc = WindGeneratingUnit_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (WindGeneratingUnit_primitive_builder attrEnum: WindGeneratingUnit_primitive_builder.values()) {
+				BaseClass bc = WindGeneratingUnit_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindGeneratingUnit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (WindGeneratingUnit_class_attributes_enum attrEnum: WindGeneratingUnit_class_attributes_enum.values()) {
+				BaseClass bc = WindGeneratingUnit_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindGeneratingUnit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(WindGeneratingUnit) RDFID: " + rdfid;
 		}
 		return result;
 	}

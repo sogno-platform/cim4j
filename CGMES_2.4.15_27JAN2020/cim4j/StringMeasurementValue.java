@@ -17,15 +17,20 @@ StringMeasurementValue represents a measurement value of type string.
 */
 public class StringMeasurementValue extends MeasurementValue
 {
-	private BaseClass[] StringMeasurementValue_attributes;
+	private BaseClass[] StringMeasurementValue_class_attributes;
+	private BaseClass[] StringMeasurementValue_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum StringMeasurementValue_primitive_builder implements PrimitiveBuilder {
-			value(){
+		value(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
@@ -37,25 +42,43 @@ public class StringMeasurementValue extends MeasurementValue
 		};
 	}
 
+	private enum StringMeasurementValue_class_attributes_enum {
+		StringMeasurement,
+		value,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public StringMeasurementValue() {
-		StringMeasurementValue_attributes = new BaseClass[StringMeasurementValue_primitive_builder.values().length];
+		StringMeasurementValue_primitive_attributes = new BaseClass[StringMeasurementValue_primitive_builder.values().length];
+		StringMeasurementValue_class_attributes = new BaseClass[StringMeasurementValue_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(StringMeasurementValue_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(StringMeasurementValue_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			StringMeasurementValue_attributes[attrEnum.ordinal()] = value;
+			StringMeasurementValue_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(StringMeasurementValue_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//StringMeasurementValue_ATTR_ENUM attrEnum = StringMeasurementValue_ATTR_BC_ENUM.valueOf(attrName);
+			StringMeasurementValue_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			StringMeasurementValue_class_attributes_enum attrEnum = StringMeasurementValue_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated StringMeasurementValue, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -64,10 +87,11 @@ public class StringMeasurementValue extends MeasurementValue
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			StringMeasurementValue_primitive_builder attrEnum = StringMeasurementValue_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated StringMeasurementValue, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -75,13 +99,26 @@ public class StringMeasurementValue extends MeasurementValue
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (StringMeasurementValue_primitive_builder attrEnum: StringMeasurementValue_primitive_builder.values()) {
-			BaseClass bc = StringMeasurementValue_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (StringMeasurementValue_primitive_builder attrEnum: StringMeasurementValue_primitive_builder.values()) {
+				BaseClass bc = StringMeasurementValue_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    StringMeasurementValue." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (StringMeasurementValue_class_attributes_enum attrEnum: StringMeasurementValue_class_attributes_enum.values()) {
+				BaseClass bc = StringMeasurementValue_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    StringMeasurementValue." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(StringMeasurementValue) RDFID: " + rdfid;
 		}
 		return result;
 	}

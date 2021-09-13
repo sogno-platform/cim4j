@@ -17,13 +17,18 @@ This is used for grouping diagram object points from different diagram objects t
 */
 public class DiagramObjectGluePoint extends BaseClass
 {
-	private BaseClass[] DiagramObjectGluePoint_attributes;
+	private BaseClass[] DiagramObjectGluePoint_class_attributes;
+	private BaseClass[] DiagramObjectGluePoint_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum DiagramObjectGluePoint_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class DiagramObjectGluePoint extends BaseClass
 		};
 	}
 
+	private enum DiagramObjectGluePoint_class_attributes_enum {
+		DiagramObjectPoints,
+			LAST_ENUM;
+	}
+
 		
 	
 	public DiagramObjectGluePoint() {
-		DiagramObjectGluePoint_attributes = new BaseClass[DiagramObjectGluePoint_primitive_builder.values().length];
+		DiagramObjectGluePoint_primitive_attributes = new BaseClass[DiagramObjectGluePoint_primitive_builder.values().length];
+		DiagramObjectGluePoint_class_attributes = new BaseClass[DiagramObjectGluePoint_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(DiagramObjectGluePoint_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(DiagramObjectGluePoint_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			DiagramObjectGluePoint_attributes[attrEnum.ordinal()] = value;
+			DiagramObjectGluePoint_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(DiagramObjectGluePoint_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//DiagramObjectGluePoint_ATTR_ENUM attrEnum = DiagramObjectGluePoint_ATTR_BC_ENUM.valueOf(attrName);
+			DiagramObjectGluePoint_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			DiagramObjectGluePoint_class_attributes_enum attrEnum = DiagramObjectGluePoint_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated DiagramObjectGluePoint, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class DiagramObjectGluePoint extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			DiagramObjectGluePoint_primitive_builder attrEnum = DiagramObjectGluePoint_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated DiagramObjectGluePoint, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class DiagramObjectGluePoint extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (DiagramObjectGluePoint_primitive_builder attrEnum: DiagramObjectGluePoint_primitive_builder.values()) {
-			BaseClass bc = DiagramObjectGluePoint_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (DiagramObjectGluePoint_primitive_builder attrEnum: DiagramObjectGluePoint_primitive_builder.values()) {
+				BaseClass bc = DiagramObjectGluePoint_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DiagramObjectGluePoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (DiagramObjectGluePoint_class_attributes_enum attrEnum: DiagramObjectGluePoint_class_attributes_enum.values()) {
+				BaseClass bc = DiagramObjectGluePoint_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DiagramObjectGluePoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(DiagramObjectGluePoint) RDFID: " + rdfid;
 		}
 		return result;
 	}

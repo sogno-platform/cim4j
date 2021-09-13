@@ -17,13 +17,18 @@ Voltage adjuster function block whose behaviour is described by reference to a s
 */
 public class VoltageAdjusterDynamics extends DynamicsFunctionBlock
 {
-	private BaseClass[] VoltageAdjusterDynamics_attributes;
+	private BaseClass[] VoltageAdjusterDynamics_class_attributes;
+	private BaseClass[] VoltageAdjusterDynamics_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum VoltageAdjusterDynamics_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class VoltageAdjusterDynamics extends DynamicsFunctionBlock
 		};
 	}
 
+	private enum VoltageAdjusterDynamics_class_attributes_enum {
+		PFVArControllerType1Dynamics,
+			LAST_ENUM;
+	}
+
 		
 	
 	public VoltageAdjusterDynamics() {
-		VoltageAdjusterDynamics_attributes = new BaseClass[VoltageAdjusterDynamics_primitive_builder.values().length];
+		VoltageAdjusterDynamics_primitive_attributes = new BaseClass[VoltageAdjusterDynamics_primitive_builder.values().length];
+		VoltageAdjusterDynamics_class_attributes = new BaseClass[VoltageAdjusterDynamics_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(VoltageAdjusterDynamics_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(VoltageAdjusterDynamics_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			VoltageAdjusterDynamics_attributes[attrEnum.ordinal()] = value;
+			VoltageAdjusterDynamics_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(VoltageAdjusterDynamics_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//VoltageAdjusterDynamics_ATTR_ENUM attrEnum = VoltageAdjusterDynamics_ATTR_BC_ENUM.valueOf(attrName);
+			VoltageAdjusterDynamics_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			VoltageAdjusterDynamics_class_attributes_enum attrEnum = VoltageAdjusterDynamics_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated VoltageAdjusterDynamics, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class VoltageAdjusterDynamics extends DynamicsFunctionBlock
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			VoltageAdjusterDynamics_primitive_builder attrEnum = VoltageAdjusterDynamics_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated VoltageAdjusterDynamics, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class VoltageAdjusterDynamics extends DynamicsFunctionBlock
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (VoltageAdjusterDynamics_primitive_builder attrEnum: VoltageAdjusterDynamics_primitive_builder.values()) {
-			BaseClass bc = VoltageAdjusterDynamics_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (VoltageAdjusterDynamics_primitive_builder attrEnum: VoltageAdjusterDynamics_primitive_builder.values()) {
+				BaseClass bc = VoltageAdjusterDynamics_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VoltageAdjusterDynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (VoltageAdjusterDynamics_class_attributes_enum attrEnum: VoltageAdjusterDynamics_class_attributes_enum.values()) {
+				BaseClass bc = VoltageAdjusterDynamics_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VoltageAdjusterDynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(VoltageAdjusterDynamics) RDFID: " + rdfid;
 		}
 		return result;
 	}

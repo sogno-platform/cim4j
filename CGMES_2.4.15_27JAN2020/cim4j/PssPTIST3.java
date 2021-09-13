@@ -20,180 +20,185 @@ PTI Microprocessor-Based Stabilizer type 3.
 */
 public class PssPTIST3 extends PowerSystemStabilizerDynamics
 {
-	private BaseClass[] PssPTIST3_attributes;
+	private BaseClass[] PssPTIST3_class_attributes;
+	private BaseClass[] PssPTIST3_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum PssPTIST3_primitive_builder implements PrimitiveBuilder {
-			m(){
+		m(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tf(){
+		tf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tp(){
+		tp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t1(){
+		t1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t2(){
+		t2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t3(){
+		t3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t4(){
+		t4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			k(){
+		k(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			dtf(){
+		dtf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			dtc(){
+		dtc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			dtp(){
+		dtp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t5(){
+		t5(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t6(){
+		t6(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			a0(){
+		a0(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			a1(){
+		a1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			a2(){
+		a2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			b0(){
+		b0(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			b1(){
+		b1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			b2(){
+		b2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			a3(){
+		a3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			a4(){
+		a4(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			a5(){
+		a5(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			b3(){
+		b3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			b4(){
+		b4(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			b5(){
+		b5(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			athres(){
+		athres(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			dl(){
+		dl(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			al(){
+		al(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			lthres(){
+		lthres(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmin(){
+		pmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			isw(){
+		isw(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			nav(){
+		nav(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ncl(){
+		ncl(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ncr(){
+		ncr(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -203,6 +208,44 @@ public class PssPTIST3 extends PowerSystemStabilizerDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum PssPTIST3_class_attributes_enum {
+		m,
+		tf,
+		tp,
+		t1,
+		t2,
+		t3,
+		t4,
+		k,
+		dtf,
+		dtc,
+		dtp,
+		t5,
+		t6,
+		a0,
+		a1,
+		a2,
+		b0,
+		b1,
+		b2,
+		a3,
+		a4,
+		a5,
+		b3,
+		b4,
+		b5,
+		athres,
+		dl,
+		al,
+		lthres,
+		pmin,
+		isw,
+		nav,
+		ncl,
+		ncr,
+			LAST_ENUM;
 	}
 
 		
@@ -241,21 +284,33 @@ public class PssPTIST3 extends PowerSystemStabilizerDynamics
 		
 	
 	public PssPTIST3() {
-		PssPTIST3_attributes = new BaseClass[PssPTIST3_primitive_builder.values().length];
+		PssPTIST3_primitive_attributes = new BaseClass[PssPTIST3_primitive_builder.values().length];
+		PssPTIST3_class_attributes = new BaseClass[PssPTIST3_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PssPTIST3_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(PssPTIST3_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			PssPTIST3_attributes[attrEnum.ordinal()] = value;
+			PssPTIST3_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(PssPTIST3_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//PssPTIST3_ATTR_ENUM attrEnum = PssPTIST3_ATTR_BC_ENUM.valueOf(attrName);
+			PssPTIST3_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			PssPTIST3_class_attributes_enum attrEnum = PssPTIST3_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated PssPTIST3, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -264,10 +319,11 @@ public class PssPTIST3 extends PowerSystemStabilizerDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PssPTIST3_primitive_builder attrEnum = PssPTIST3_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated PssPTIST3, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -275,13 +331,26 @@ public class PssPTIST3 extends PowerSystemStabilizerDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (PssPTIST3_primitive_builder attrEnum: PssPTIST3_primitive_builder.values()) {
-			BaseClass bc = PssPTIST3_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (PssPTIST3_primitive_builder attrEnum: PssPTIST3_primitive_builder.values()) {
+				BaseClass bc = PssPTIST3_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PssPTIST3." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (PssPTIST3_class_attributes_enum attrEnum: PssPTIST3_class_attributes_enum.values()) {
+				BaseClass bc = PssPTIST3_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PssPTIST3." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(PssPTIST3) RDFID: " + rdfid;
 		}
 		return result;
 	}

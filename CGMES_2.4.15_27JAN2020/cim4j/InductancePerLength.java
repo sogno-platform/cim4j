@@ -19,30 +19,35 @@ Inductance per unit of length.
 */
 public class InductancePerLength extends BaseClass
 {
-	private BaseClass[] InductancePerLength_attributes;
+	private BaseClass[] InductancePerLength_class_attributes;
+	private BaseClass[] InductancePerLength_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum InductancePerLength_primitive_builder implements PrimitiveBuilder {
-			unit(){
+		unit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
 		},
-			multiplier(){
+		multiplier(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitMultiplier(value);
 			}
 		},
-			denominatorUnit(){
+		denominatorUnit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
 		},
-			denominatorMultiplier(){
+		denominatorMultiplier(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitMultiplier(value);
 			}
@@ -54,6 +59,15 @@ public class InductancePerLength extends BaseClass
 		};
 	}
 
+	private enum InductancePerLength_class_attributes_enum {
+		value,
+		unit,
+		multiplier,
+		denominatorUnit,
+		denominatorMultiplier,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -61,21 +75,33 @@ public class InductancePerLength extends BaseClass
 		
 	
 	public InductancePerLength() {
-		InductancePerLength_attributes = new BaseClass[InductancePerLength_primitive_builder.values().length];
+		InductancePerLength_primitive_attributes = new BaseClass[InductancePerLength_primitive_builder.values().length];
+		InductancePerLength_class_attributes = new BaseClass[InductancePerLength_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(InductancePerLength_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(InductancePerLength_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			InductancePerLength_attributes[attrEnum.ordinal()] = value;
+			InductancePerLength_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(InductancePerLength_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//InductancePerLength_ATTR_ENUM attrEnum = InductancePerLength_ATTR_BC_ENUM.valueOf(attrName);
+			InductancePerLength_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			InductancePerLength_class_attributes_enum attrEnum = InductancePerLength_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated InductancePerLength, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -84,10 +110,11 @@ public class InductancePerLength extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			InductancePerLength_primitive_builder attrEnum = InductancePerLength_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated InductancePerLength, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -95,13 +122,26 @@ public class InductancePerLength extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (InductancePerLength_primitive_builder attrEnum: InductancePerLength_primitive_builder.values()) {
-			BaseClass bc = InductancePerLength_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (InductancePerLength_primitive_builder attrEnum: InductancePerLength_primitive_builder.values()) {
+				BaseClass bc = InductancePerLength_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    InductancePerLength." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (InductancePerLength_class_attributes_enum attrEnum: InductancePerLength_class_attributes_enum.values()) {
+				BaseClass bc = InductancePerLength_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    InductancePerLength." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(InductancePerLength) RDFID: " + rdfid;
 		}
 		return result;
 	}

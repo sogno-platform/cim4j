@@ -21,175 +21,180 @@ Woodward Gas turbine governor model.
 */
 public class GovGASTWD extends TurbineGovernorDynamics
 {
-	private BaseClass[] GovGASTWD_attributes;
+	private BaseClass[] GovGASTWD_class_attributes;
+	private BaseClass[] GovGASTWD_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GovGASTWD_primitive_builder implements PrimitiveBuilder {
-			mwbase(){
+		mwbase(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			kdroop(){
+		kdroop(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kp(){
+		kp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ki(){
+		ki(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kd(){
+		kd(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			etd(){
+		etd(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tcd(){
+		tcd(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			trate(){
+		trate(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			t(){
+		t(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tmax(){
+		tmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tmin(){
+		tmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ecr(){
+		ecr(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			k3(){
+		k3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			a(){
+		a(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			b(){
+		b(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			c(){
+		c(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			tf(){
+		tf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kf(){
+		kf(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			k5(){
+		k5(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			k4(){
+		k4(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			t3(){
+		t3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t4(){
+		t4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tt(){
+		tt(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t5(){
+		t5(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			af1(){
+		af1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			bf1(){
+		bf1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			af2(){
+		af2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			bf2(){
+		bf2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			cf2(){
+		cf2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tr(){
+		tr(){
 			public BaseClass construct (java.lang.String value) {
 				return new Temperature(value);
 			}
 		},
-			k6(){
+		k6(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tc(){
+		tc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Temperature(value);
 			}
 		},
-			td(){
+		td(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
@@ -199,6 +204,43 @@ public class GovGASTWD extends TurbineGovernorDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GovGASTWD_class_attributes_enum {
+		mwbase,
+		kdroop,
+		kp,
+		ki,
+		kd,
+		etd,
+		tcd,
+		trate,
+		t,
+		tmax,
+		tmin,
+		ecr,
+		k3,
+		a,
+		b,
+		c,
+		tf,
+		kf,
+		k5,
+		k4,
+		t3,
+		t4,
+		tt,
+		t5,
+		af1,
+		bf1,
+		af2,
+		bf2,
+		cf2,
+		tr,
+		k6,
+		tc,
+		td,
+			LAST_ENUM;
 	}
 
 		
@@ -236,21 +278,33 @@ public class GovGASTWD extends TurbineGovernorDynamics
 		
 	
 	public GovGASTWD() {
-		GovGASTWD_attributes = new BaseClass[GovGASTWD_primitive_builder.values().length];
+		GovGASTWD_primitive_attributes = new BaseClass[GovGASTWD_primitive_builder.values().length];
+		GovGASTWD_class_attributes = new BaseClass[GovGASTWD_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovGASTWD_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GovGASTWD_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GovGASTWD_attributes[attrEnum.ordinal()] = value;
+			GovGASTWD_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GovGASTWD_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GovGASTWD_ATTR_ENUM attrEnum = GovGASTWD_ATTR_BC_ENUM.valueOf(attrName);
+			GovGASTWD_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GovGASTWD_class_attributes_enum attrEnum = GovGASTWD_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GovGASTWD, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -259,10 +313,11 @@ public class GovGASTWD extends TurbineGovernorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovGASTWD_primitive_builder attrEnum = GovGASTWD_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GovGASTWD, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -270,13 +325,26 @@ public class GovGASTWD extends TurbineGovernorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GovGASTWD_primitive_builder attrEnum: GovGASTWD_primitive_builder.values()) {
-			BaseClass bc = GovGASTWD_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GovGASTWD_primitive_builder attrEnum: GovGASTWD_primitive_builder.values()) {
+				BaseClass bc = GovGASTWD_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovGASTWD." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GovGASTWD_class_attributes_enum attrEnum: GovGASTWD_class_attributes_enum.values()) {
+				BaseClass bc = GovGASTWD_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovGASTWD." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GovGASTWD) RDFID: " + rdfid;
 		}
 		return result;
 	}

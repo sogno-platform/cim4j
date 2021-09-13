@@ -20,75 +20,80 @@ Aggregate induction motor load. This model  is used to represent a fraction of a
 */
 public class LoadMotor extends IdentifiedObject
 {
-	private BaseClass[] LoadMotor_attributes;
+	private BaseClass[] LoadMotor_class_attributes;
+	private BaseClass[] LoadMotor_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum LoadMotor_primitive_builder implements PrimitiveBuilder {
-			pfrac(){
+		pfrac(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			lfac(){
+		lfac(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ls(){
+		ls(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			lp(){
+		lp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			lpp(){
+		lpp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ra(){
+		ra(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tpo(){
+		tpo(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tppo(){
+		tppo(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			h(){
+		h(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			d(){
+		d(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			vt(){
+		vt(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tv(){
+		tv(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tbkr(){
+		tbkr(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
@@ -98,6 +103,24 @@ public class LoadMotor extends IdentifiedObject
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum LoadMotor_class_attributes_enum {
+		LoadAggregate,
+		pfrac,
+		lfac,
+		ls,
+		lp,
+		lpp,
+		ra,
+		tpo,
+		tppo,
+		h,
+		d,
+		vt,
+		tv,
+		tbkr,
+			LAST_ENUM;
 	}
 
 		
@@ -116,21 +139,33 @@ public class LoadMotor extends IdentifiedObject
 		
 	
 	public LoadMotor() {
-		LoadMotor_attributes = new BaseClass[LoadMotor_primitive_builder.values().length];
+		LoadMotor_primitive_attributes = new BaseClass[LoadMotor_primitive_builder.values().length];
+		LoadMotor_class_attributes = new BaseClass[LoadMotor_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(LoadMotor_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(LoadMotor_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			LoadMotor_attributes[attrEnum.ordinal()] = value;
+			LoadMotor_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(LoadMotor_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//LoadMotor_ATTR_ENUM attrEnum = LoadMotor_ATTR_BC_ENUM.valueOf(attrName);
+			LoadMotor_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			LoadMotor_class_attributes_enum attrEnum = LoadMotor_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated LoadMotor, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -139,10 +174,11 @@ public class LoadMotor extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			LoadMotor_primitive_builder attrEnum = LoadMotor_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated LoadMotor, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -150,13 +186,26 @@ public class LoadMotor extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (LoadMotor_primitive_builder attrEnum: LoadMotor_primitive_builder.values()) {
-			BaseClass bc = LoadMotor_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (LoadMotor_primitive_builder attrEnum: LoadMotor_primitive_builder.values()) {
+				BaseClass bc = LoadMotor_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadMotor." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (LoadMotor_class_attributes_enum attrEnum: LoadMotor_class_attributes_enum.values()) {
+				BaseClass bc = LoadMotor_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadMotor." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(LoadMotor) RDFID: " + rdfid;
 		}
 		return result;
 	}

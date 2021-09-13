@@ -19,70 +19,75 @@ The class represents IEEE Std 421.5-2005 type PSS1A power system stabilizer mode
 */
 public class PssIEEE1A extends PowerSystemStabilizerDynamics
 {
-	private BaseClass[] PssIEEE1A_attributes;
+	private BaseClass[] PssIEEE1A_class_attributes;
+	private BaseClass[] PssIEEE1A_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum PssIEEE1A_primitive_builder implements PrimitiveBuilder {
-			inputSignalType(){
+		inputSignalType(){
 			public BaseClass construct (java.lang.String value) {
 				return new InputSignalKind(value);
 			}
 		},
-			a1(){
+		a1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			a2(){
+		a2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			t1(){
+		t1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t2(){
+		t2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t3(){
+		t3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t4(){
+		t4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t5(){
+		t5(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t6(){
+		t6(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ks(){
+		ks(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -92,6 +97,22 @@ public class PssIEEE1A extends PowerSystemStabilizerDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum PssIEEE1A_class_attributes_enum {
+		inputSignalType,
+		a1,
+		a2,
+		t1,
+		t2,
+		t3,
+		t4,
+		t5,
+		t6,
+		ks,
+		vrmax,
+		vrmin,
+			LAST_ENUM;
 	}
 
 		
@@ -108,21 +129,33 @@ public class PssIEEE1A extends PowerSystemStabilizerDynamics
 		
 	
 	public PssIEEE1A() {
-		PssIEEE1A_attributes = new BaseClass[PssIEEE1A_primitive_builder.values().length];
+		PssIEEE1A_primitive_attributes = new BaseClass[PssIEEE1A_primitive_builder.values().length];
+		PssIEEE1A_class_attributes = new BaseClass[PssIEEE1A_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PssIEEE1A_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(PssIEEE1A_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			PssIEEE1A_attributes[attrEnum.ordinal()] = value;
+			PssIEEE1A_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(PssIEEE1A_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//PssIEEE1A_ATTR_ENUM attrEnum = PssIEEE1A_ATTR_BC_ENUM.valueOf(attrName);
+			PssIEEE1A_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			PssIEEE1A_class_attributes_enum attrEnum = PssIEEE1A_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated PssIEEE1A, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -131,10 +164,11 @@ public class PssIEEE1A extends PowerSystemStabilizerDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PssIEEE1A_primitive_builder attrEnum = PssIEEE1A_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated PssIEEE1A, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -142,13 +176,26 @@ public class PssIEEE1A extends PowerSystemStabilizerDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (PssIEEE1A_primitive_builder attrEnum: PssIEEE1A_primitive_builder.values()) {
-			BaseClass bc = PssIEEE1A_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (PssIEEE1A_primitive_builder attrEnum: PssIEEE1A_primitive_builder.values()) {
+				BaseClass bc = PssIEEE1A_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PssIEEE1A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (PssIEEE1A_class_attributes_enum attrEnum: PssIEEE1A_class_attributes_enum.values()) {
+				BaseClass bc = PssIEEE1A_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PssIEEE1A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(PssIEEE1A) RDFID: " + rdfid;
 		}
 		return result;
 	}

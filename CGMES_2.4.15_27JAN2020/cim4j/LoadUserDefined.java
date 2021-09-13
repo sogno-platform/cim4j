@@ -18,15 +18,20 @@ Load whose dynamic behaviour is described by a user-defined model.
 */
 public class LoadUserDefined extends LoadDynamics
 {
-	private BaseClass[] LoadUserDefined_attributes;
+	private BaseClass[] LoadUserDefined_class_attributes;
+	private BaseClass[] LoadUserDefined_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum LoadUserDefined_primitive_builder implements PrimitiveBuilder {
-			proprietary(){
+		proprietary(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -38,25 +43,43 @@ public class LoadUserDefined extends LoadDynamics
 		};
 	}
 
+	private enum LoadUserDefined_class_attributes_enum {
+		proprietary,
+		ProprietaryParameterDynamics,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public LoadUserDefined() {
-		LoadUserDefined_attributes = new BaseClass[LoadUserDefined_primitive_builder.values().length];
+		LoadUserDefined_primitive_attributes = new BaseClass[LoadUserDefined_primitive_builder.values().length];
+		LoadUserDefined_class_attributes = new BaseClass[LoadUserDefined_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(LoadUserDefined_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(LoadUserDefined_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			LoadUserDefined_attributes[attrEnum.ordinal()] = value;
+			LoadUserDefined_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(LoadUserDefined_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//LoadUserDefined_ATTR_ENUM attrEnum = LoadUserDefined_ATTR_BC_ENUM.valueOf(attrName);
+			LoadUserDefined_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			LoadUserDefined_class_attributes_enum attrEnum = LoadUserDefined_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated LoadUserDefined, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -65,10 +88,11 @@ public class LoadUserDefined extends LoadDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			LoadUserDefined_primitive_builder attrEnum = LoadUserDefined_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated LoadUserDefined, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,13 +100,26 @@ public class LoadUserDefined extends LoadDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (LoadUserDefined_primitive_builder attrEnum: LoadUserDefined_primitive_builder.values()) {
-			BaseClass bc = LoadUserDefined_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (LoadUserDefined_primitive_builder attrEnum: LoadUserDefined_primitive_builder.values()) {
+				BaseClass bc = LoadUserDefined_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadUserDefined." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (LoadUserDefined_class_attributes_enum attrEnum: LoadUserDefined_class_attributes_enum.values()) {
+				BaseClass bc = LoadUserDefined_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadUserDefined." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(LoadUserDefined) RDFID: " + rdfid;
 		}
 		return result;
 	}

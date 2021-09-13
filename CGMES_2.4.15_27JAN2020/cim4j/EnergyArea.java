@@ -17,13 +17,18 @@ Describes an area having energy production or consumption.  Specializations are 
 */
 public class EnergyArea extends IdentifiedObject
 {
-	private BaseClass[] EnergyArea_attributes;
+	private BaseClass[] EnergyArea_class_attributes;
+	private BaseClass[] EnergyArea_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum EnergyArea_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class EnergyArea extends IdentifiedObject
 		};
 	}
 
+	private enum EnergyArea_class_attributes_enum {
+		ControlArea,
+			LAST_ENUM;
+	}
+
 		
 	
 	public EnergyArea() {
-		EnergyArea_attributes = new BaseClass[EnergyArea_primitive_builder.values().length];
+		EnergyArea_primitive_attributes = new BaseClass[EnergyArea_primitive_builder.values().length];
+		EnergyArea_class_attributes = new BaseClass[EnergyArea_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(EnergyArea_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(EnergyArea_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			EnergyArea_attributes[attrEnum.ordinal()] = value;
+			EnergyArea_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(EnergyArea_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//EnergyArea_ATTR_ENUM attrEnum = EnergyArea_ATTR_BC_ENUM.valueOf(attrName);
+			EnergyArea_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			EnergyArea_class_attributes_enum attrEnum = EnergyArea_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated EnergyArea, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class EnergyArea extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			EnergyArea_primitive_builder attrEnum = EnergyArea_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated EnergyArea, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class EnergyArea extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (EnergyArea_primitive_builder attrEnum: EnergyArea_primitive_builder.values()) {
-			BaseClass bc = EnergyArea_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (EnergyArea_primitive_builder attrEnum: EnergyArea_primitive_builder.values()) {
+				BaseClass bc = EnergyArea_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EnergyArea." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (EnergyArea_class_attributes_enum attrEnum: EnergyArea_class_attributes_enum.values()) {
+				BaseClass bc = EnergyArea_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EnergyArea." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(EnergyArea) RDFID: " + rdfid;
 		}
 		return result;
 	}

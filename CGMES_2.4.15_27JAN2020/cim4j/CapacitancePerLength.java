@@ -19,30 +19,35 @@ Capacitance per unit of length.
 */
 public class CapacitancePerLength extends BaseClass
 {
-	private BaseClass[] CapacitancePerLength_attributes;
+	private BaseClass[] CapacitancePerLength_class_attributes;
+	private BaseClass[] CapacitancePerLength_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum CapacitancePerLength_primitive_builder implements PrimitiveBuilder {
-			unit(){
+		unit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
 		},
-			multiplier(){
+		multiplier(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitMultiplier(value);
 			}
 		},
-			denominatorUnit(){
+		denominatorUnit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
 		},
-			denominatorMultiplier(){
+		denominatorMultiplier(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitMultiplier(value);
 			}
@@ -54,6 +59,15 @@ public class CapacitancePerLength extends BaseClass
 		};
 	}
 
+	private enum CapacitancePerLength_class_attributes_enum {
+		value,
+		unit,
+		multiplier,
+		denominatorUnit,
+		denominatorMultiplier,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -61,21 +75,33 @@ public class CapacitancePerLength extends BaseClass
 		
 	
 	public CapacitancePerLength() {
-		CapacitancePerLength_attributes = new BaseClass[CapacitancePerLength_primitive_builder.values().length];
+		CapacitancePerLength_primitive_attributes = new BaseClass[CapacitancePerLength_primitive_builder.values().length];
+		CapacitancePerLength_class_attributes = new BaseClass[CapacitancePerLength_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(CapacitancePerLength_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(CapacitancePerLength_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			CapacitancePerLength_attributes[attrEnum.ordinal()] = value;
+			CapacitancePerLength_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(CapacitancePerLength_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//CapacitancePerLength_ATTR_ENUM attrEnum = CapacitancePerLength_ATTR_BC_ENUM.valueOf(attrName);
+			CapacitancePerLength_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			CapacitancePerLength_class_attributes_enum attrEnum = CapacitancePerLength_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated CapacitancePerLength, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -84,10 +110,11 @@ public class CapacitancePerLength extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			CapacitancePerLength_primitive_builder attrEnum = CapacitancePerLength_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated CapacitancePerLength, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -95,13 +122,26 @@ public class CapacitancePerLength extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (CapacitancePerLength_primitive_builder attrEnum: CapacitancePerLength_primitive_builder.values()) {
-			BaseClass bc = CapacitancePerLength_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (CapacitancePerLength_primitive_builder attrEnum: CapacitancePerLength_primitive_builder.values()) {
+				BaseClass bc = CapacitancePerLength_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    CapacitancePerLength." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (CapacitancePerLength_class_attributes_enum attrEnum: CapacitancePerLength_class_attributes_enum.values()) {
+				BaseClass bc = CapacitancePerLength_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    CapacitancePerLength." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(CapacitancePerLength) RDFID: " + rdfid;
 		}
 		return result;
 	}

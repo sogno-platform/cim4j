@@ -19,13 +19,18 @@ DC nodes are points where terminals of DC conducting equipment are connected tog
 */
 public class DCNode extends IdentifiedObject
 {
-	private BaseClass[] DCNode_attributes;
+	private BaseClass[] DCNode_class_attributes;
+	private BaseClass[] DCNode_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum DCNode_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -34,26 +39,45 @@ public class DCNode extends IdentifiedObject
 		};
 	}
 
+	private enum DCNode_class_attributes_enum {
+		DCTerminals,
+		DCEquipmentContainer,
+		DCTopologicalNode,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public DCNode() {
-		DCNode_attributes = new BaseClass[DCNode_primitive_builder.values().length];
+		DCNode_primitive_attributes = new BaseClass[DCNode_primitive_builder.values().length];
+		DCNode_class_attributes = new BaseClass[DCNode_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(DCNode_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(DCNode_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			DCNode_attributes[attrEnum.ordinal()] = value;
+			DCNode_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(DCNode_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//DCNode_ATTR_ENUM attrEnum = DCNode_ATTR_BC_ENUM.valueOf(attrName);
+			DCNode_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			DCNode_class_attributes_enum attrEnum = DCNode_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated DCNode, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -62,10 +86,11 @@ public class DCNode extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			DCNode_primitive_builder attrEnum = DCNode_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated DCNode, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -73,13 +98,26 @@ public class DCNode extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (DCNode_primitive_builder attrEnum: DCNode_primitive_builder.values()) {
-			BaseClass bc = DCNode_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (DCNode_primitive_builder attrEnum: DCNode_primitive_builder.values()) {
+				BaseClass bc = DCNode_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCNode." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (DCNode_class_attributes_enum attrEnum: DCNode_class_attributes_enum.values()) {
+				BaseClass bc = DCNode_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCNode." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(DCNode) RDFID: " + rdfid;
 		}
 		return result;
 	}

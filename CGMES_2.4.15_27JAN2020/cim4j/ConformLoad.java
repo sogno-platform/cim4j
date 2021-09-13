@@ -17,13 +17,18 @@ ConformLoad represent loads that follow a daily load change pattern where the pa
 */
 public class ConformLoad extends EnergyConsumer
 {
-	private BaseClass[] ConformLoad_attributes;
+	private BaseClass[] ConformLoad_class_attributes;
+	private BaseClass[] ConformLoad_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ConformLoad_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class ConformLoad extends EnergyConsumer
 		};
 	}
 
+	private enum ConformLoad_class_attributes_enum {
+		LoadGroup,
+			LAST_ENUM;
+	}
+
 		
 	
 	public ConformLoad() {
-		ConformLoad_attributes = new BaseClass[ConformLoad_primitive_builder.values().length];
+		ConformLoad_primitive_attributes = new BaseClass[ConformLoad_primitive_builder.values().length];
+		ConformLoad_class_attributes = new BaseClass[ConformLoad_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ConformLoad_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ConformLoad_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ConformLoad_attributes[attrEnum.ordinal()] = value;
+			ConformLoad_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ConformLoad_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ConformLoad_ATTR_ENUM attrEnum = ConformLoad_ATTR_BC_ENUM.valueOf(attrName);
+			ConformLoad_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ConformLoad_class_attributes_enum attrEnum = ConformLoad_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ConformLoad, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class ConformLoad extends EnergyConsumer
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ConformLoad_primitive_builder attrEnum = ConformLoad_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ConformLoad, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class ConformLoad extends EnergyConsumer
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ConformLoad_primitive_builder attrEnum: ConformLoad_primitive_builder.values()) {
-			BaseClass bc = ConformLoad_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ConformLoad_primitive_builder attrEnum: ConformLoad_primitive_builder.values()) {
+				BaseClass bc = ConformLoad_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ConformLoad." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ConformLoad_class_attributes_enum attrEnum: ConformLoad_class_attributes_enum.values()) {
+				BaseClass bc = ConformLoad_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ConformLoad." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ConformLoad) RDFID: " + rdfid;
 		}
 		return result;
 	}

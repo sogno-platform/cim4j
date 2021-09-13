@@ -19,190 +19,195 @@ General Purpose Rotating Excitation System Model.  This model can be used to rep
 */
 public class ExcREXS extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcREXS_attributes;
+	private BaseClass[] ExcREXS_class_attributes;
+	private BaseClass[] ExcREXS_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcREXS_primitive_builder implements PrimitiveBuilder {
-			e1(){
+		e1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			e2(){
+		e2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fbf(){
+		fbf(){
 			public BaseClass construct (java.lang.String value) {
 				return new ExcREXSFeedbackSignalKind(value);
 			}
 		},
-			flimf(){
+		flimf(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kc(){
+		kc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kd(){
+		kd(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ke(){
+		ke(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kefd(){
+		kefd(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kf(){
+		kf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kh(){
+		kh(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kii(){
+		kii(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kip(){
+		kip(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ks(){
+		ks(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kvi(){
+		kvi(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kvp(){
+		kvp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kvphz(){
+		kvphz(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			nvphz(){
+		nvphz(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			se1(){
+		se1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			se2(){
+		se2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ta(){
+		ta(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tb1(){
+		tb1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tb2(){
+		tb2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tc1(){
+		tc1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tc2(){
+		tc2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tf(){
+		tf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tf1(){
+		tf1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tf2(){
+		tf2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tp(){
+		tp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vcmax(){
+		vcmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vfmax(){
+		vfmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vfmin(){
+		vfmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vimax(){
+		vimax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xc(){
+		xc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -212,6 +217,46 @@ public class ExcREXS extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcREXS_class_attributes_enum {
+		e1,
+		e2,
+		fbf,
+		flimf,
+		kc,
+		kd,
+		ke,
+		kefd,
+		kf,
+		kh,
+		kii,
+		kip,
+		ks,
+		kvi,
+		kvp,
+		kvphz,
+		nvphz,
+		se1,
+		se2,
+		ta,
+		tb1,
+		tb2,
+		tc1,
+		tc2,
+		te,
+		tf,
+		tf1,
+		tf2,
+		tp,
+		vcmax,
+		vfmax,
+		vfmin,
+		vimax,
+		vrmax,
+		vrmin,
+		xc,
+			LAST_ENUM;
 	}
 
 		
@@ -252,21 +297,33 @@ public class ExcREXS extends ExcitationSystemDynamics
 		
 	
 	public ExcREXS() {
-		ExcREXS_attributes = new BaseClass[ExcREXS_primitive_builder.values().length];
+		ExcREXS_primitive_attributes = new BaseClass[ExcREXS_primitive_builder.values().length];
+		ExcREXS_class_attributes = new BaseClass[ExcREXS_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcREXS_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcREXS_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcREXS_attributes[attrEnum.ordinal()] = value;
+			ExcREXS_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcREXS_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcREXS_ATTR_ENUM attrEnum = ExcREXS_ATTR_BC_ENUM.valueOf(attrName);
+			ExcREXS_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcREXS_class_attributes_enum attrEnum = ExcREXS_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcREXS, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -275,10 +332,11 @@ public class ExcREXS extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcREXS_primitive_builder attrEnum = ExcREXS_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcREXS, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -286,13 +344,26 @@ public class ExcREXS extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcREXS_primitive_builder attrEnum: ExcREXS_primitive_builder.values()) {
-			BaseClass bc = ExcREXS_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcREXS_primitive_builder attrEnum: ExcREXS_primitive_builder.values()) {
+				BaseClass bc = ExcREXS_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcREXS." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcREXS_class_attributes_enum attrEnum: ExcREXS_class_attributes_enum.values()) {
+				BaseClass bc = ExcREXS_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcREXS." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcREXS) RDFID: " + rdfid;
 		}
 		return result;
 	}

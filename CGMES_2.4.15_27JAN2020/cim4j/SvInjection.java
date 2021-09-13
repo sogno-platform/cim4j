@@ -19,20 +19,25 @@ The SvInjection is reporting the calculated bus injection minus the sum of the t
 */
 public class SvInjection extends BaseClass
 {
-	private BaseClass[] SvInjection_attributes;
+	private BaseClass[] SvInjection_class_attributes;
+	private BaseClass[] SvInjection_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum SvInjection_primitive_builder implements PrimitiveBuilder {
-			pInjection(){
+		pInjection(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			qInjection(){
+		qInjection(){
 			public BaseClass construct (java.lang.String value) {
 				return new ReactivePower(value);
 			}
@@ -44,26 +49,45 @@ public class SvInjection extends BaseClass
 		};
 	}
 
+	private enum SvInjection_class_attributes_enum {
+		pInjection,
+		qInjection,
+		TopologicalNode,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public SvInjection() {
-		SvInjection_attributes = new BaseClass[SvInjection_primitive_builder.values().length];
+		SvInjection_primitive_attributes = new BaseClass[SvInjection_primitive_builder.values().length];
+		SvInjection_class_attributes = new BaseClass[SvInjection_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(SvInjection_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(SvInjection_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			SvInjection_attributes[attrEnum.ordinal()] = value;
+			SvInjection_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(SvInjection_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//SvInjection_ATTR_ENUM attrEnum = SvInjection_ATTR_BC_ENUM.valueOf(attrName);
+			SvInjection_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			SvInjection_class_attributes_enum attrEnum = SvInjection_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated SvInjection, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -72,10 +96,11 @@ public class SvInjection extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			SvInjection_primitive_builder attrEnum = SvInjection_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated SvInjection, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -83,13 +108,26 @@ public class SvInjection extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (SvInjection_primitive_builder attrEnum: SvInjection_primitive_builder.values()) {
-			BaseClass bc = SvInjection_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (SvInjection_primitive_builder attrEnum: SvInjection_primitive_builder.values()) {
+				BaseClass bc = SvInjection_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SvInjection." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (SvInjection_class_attributes_enum attrEnum: SvInjection_class_attributes_enum.values()) {
+				BaseClass bc = SvInjection_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SvInjection." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(SvInjection) RDFID: " + rdfid;
 		}
 		return result;
 	}

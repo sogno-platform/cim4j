@@ -17,13 +17,18 @@ A modeling construct to provide a root class for containing equipment.
 */
 public class EquipmentContainer extends ConnectivityNodeContainer
 {
-	private BaseClass[] EquipmentContainer_attributes;
+	private BaseClass[] EquipmentContainer_class_attributes;
+	private BaseClass[] EquipmentContainer_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum EquipmentContainer_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class EquipmentContainer extends ConnectivityNodeContainer
 		};
 	}
 
+	private enum EquipmentContainer_class_attributes_enum {
+		Equipments,
+			LAST_ENUM;
+	}
+
 		
 	
 	public EquipmentContainer() {
-		EquipmentContainer_attributes = new BaseClass[EquipmentContainer_primitive_builder.values().length];
+		EquipmentContainer_primitive_attributes = new BaseClass[EquipmentContainer_primitive_builder.values().length];
+		EquipmentContainer_class_attributes = new BaseClass[EquipmentContainer_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(EquipmentContainer_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(EquipmentContainer_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			EquipmentContainer_attributes[attrEnum.ordinal()] = value;
+			EquipmentContainer_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(EquipmentContainer_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//EquipmentContainer_ATTR_ENUM attrEnum = EquipmentContainer_ATTR_BC_ENUM.valueOf(attrName);
+			EquipmentContainer_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			EquipmentContainer_class_attributes_enum attrEnum = EquipmentContainer_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated EquipmentContainer, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class EquipmentContainer extends ConnectivityNodeContainer
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			EquipmentContainer_primitive_builder attrEnum = EquipmentContainer_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated EquipmentContainer, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class EquipmentContainer extends ConnectivityNodeContainer
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (EquipmentContainer_primitive_builder attrEnum: EquipmentContainer_primitive_builder.values()) {
-			BaseClass bc = EquipmentContainer_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (EquipmentContainer_primitive_builder attrEnum: EquipmentContainer_primitive_builder.values()) {
+				BaseClass bc = EquipmentContainer_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EquipmentContainer." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (EquipmentContainer_class_attributes_enum attrEnum: EquipmentContainer_class_attributes_enum.values()) {
+				BaseClass bc = EquipmentContainer_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EquipmentContainer." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(EquipmentContainer) RDFID: " + rdfid;
 		}
 		return result;
 	}

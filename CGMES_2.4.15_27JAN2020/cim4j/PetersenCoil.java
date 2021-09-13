@@ -20,45 +20,50 @@ A tunable impedance device normally used to offset line charging during single l
 */
 public class PetersenCoil extends EarthFaultCompensator
 {
-	private BaseClass[] PetersenCoil_attributes;
+	private BaseClass[] PetersenCoil_class_attributes;
+	private BaseClass[] PetersenCoil_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum PetersenCoil_primitive_builder implements PrimitiveBuilder {
-			mode(){
+		mode(){
 			public BaseClass construct (java.lang.String value) {
 				return new PetersenCoilModeKind(value);
 			}
 		},
-			nominalU(){
+		nominalU(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			offsetCurrent(){
+		offsetCurrent(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
 		},
-			positionCurrent(){
+		positionCurrent(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
 		},
-			xGroundMax(){
+		xGroundMax(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			xGroundMin(){
+		xGroundMin(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			xGroundNominal(){
+		xGroundNominal(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
@@ -70,6 +75,17 @@ public class PetersenCoil extends EarthFaultCompensator
 		};
 	}
 
+	private enum PetersenCoil_class_attributes_enum {
+		mode,
+		nominalU,
+		offsetCurrent,
+		positionCurrent,
+		xGroundMax,
+		xGroundMin,
+		xGroundNominal,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -79,21 +95,33 @@ public class PetersenCoil extends EarthFaultCompensator
 		
 	
 	public PetersenCoil() {
-		PetersenCoil_attributes = new BaseClass[PetersenCoil_primitive_builder.values().length];
+		PetersenCoil_primitive_attributes = new BaseClass[PetersenCoil_primitive_builder.values().length];
+		PetersenCoil_class_attributes = new BaseClass[PetersenCoil_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PetersenCoil_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(PetersenCoil_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			PetersenCoil_attributes[attrEnum.ordinal()] = value;
+			PetersenCoil_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(PetersenCoil_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//PetersenCoil_ATTR_ENUM attrEnum = PetersenCoil_ATTR_BC_ENUM.valueOf(attrName);
+			PetersenCoil_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			PetersenCoil_class_attributes_enum attrEnum = PetersenCoil_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated PetersenCoil, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -102,10 +130,11 @@ public class PetersenCoil extends EarthFaultCompensator
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PetersenCoil_primitive_builder attrEnum = PetersenCoil_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated PetersenCoil, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -113,13 +142,26 @@ public class PetersenCoil extends EarthFaultCompensator
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (PetersenCoil_primitive_builder attrEnum: PetersenCoil_primitive_builder.values()) {
-			BaseClass bc = PetersenCoil_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (PetersenCoil_primitive_builder attrEnum: PetersenCoil_primitive_builder.values()) {
+				BaseClass bc = PetersenCoil_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PetersenCoil." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (PetersenCoil_class_attributes_enum attrEnum: PetersenCoil_class_attributes_enum.values()) {
+				BaseClass bc = PetersenCoil_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PetersenCoil." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(PetersenCoil) RDFID: " + rdfid;
 		}
 		return result;
 	}

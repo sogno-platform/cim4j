@@ -19,30 +19,35 @@ Resistance (real part of impedance) per unit of length.
 */
 public class ResistancePerLength extends BaseClass
 {
-	private BaseClass[] ResistancePerLength_attributes;
+	private BaseClass[] ResistancePerLength_class_attributes;
+	private BaseClass[] ResistancePerLength_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ResistancePerLength_primitive_builder implements PrimitiveBuilder {
-			unit(){
+		unit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
 		},
-			multiplier(){
+		multiplier(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitMultiplier(value);
 			}
 		},
-			denominatorUnit(){
+		denominatorUnit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
 		},
-			denominatorMultiplier(){
+		denominatorMultiplier(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitMultiplier(value);
 			}
@@ -54,6 +59,15 @@ public class ResistancePerLength extends BaseClass
 		};
 	}
 
+	private enum ResistancePerLength_class_attributes_enum {
+		value,
+		unit,
+		multiplier,
+		denominatorUnit,
+		denominatorMultiplier,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -61,21 +75,33 @@ public class ResistancePerLength extends BaseClass
 		
 	
 	public ResistancePerLength() {
-		ResistancePerLength_attributes = new BaseClass[ResistancePerLength_primitive_builder.values().length];
+		ResistancePerLength_primitive_attributes = new BaseClass[ResistancePerLength_primitive_builder.values().length];
+		ResistancePerLength_class_attributes = new BaseClass[ResistancePerLength_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ResistancePerLength_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ResistancePerLength_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ResistancePerLength_attributes[attrEnum.ordinal()] = value;
+			ResistancePerLength_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ResistancePerLength_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ResistancePerLength_ATTR_ENUM attrEnum = ResistancePerLength_ATTR_BC_ENUM.valueOf(attrName);
+			ResistancePerLength_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ResistancePerLength_class_attributes_enum attrEnum = ResistancePerLength_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ResistancePerLength, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -84,10 +110,11 @@ public class ResistancePerLength extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ResistancePerLength_primitive_builder attrEnum = ResistancePerLength_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ResistancePerLength, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -95,13 +122,26 @@ public class ResistancePerLength extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ResistancePerLength_primitive_builder attrEnum: ResistancePerLength_primitive_builder.values()) {
-			BaseClass bc = ResistancePerLength_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ResistancePerLength_primitive_builder attrEnum: ResistancePerLength_primitive_builder.values()) {
+				BaseClass bc = ResistancePerLength_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ResistancePerLength." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ResistancePerLength_class_attributes_enum attrEnum: ResistancePerLength_class_attributes_enum.values()) {
+				BaseClass bc = ResistancePerLength_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ResistancePerLength." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ResistancePerLength) RDFID: " + rdfid;
 		}
 		return result;
 	}

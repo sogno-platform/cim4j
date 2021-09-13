@@ -19,35 +19,40 @@ The linearised aerodynamic model.    Reference: IEC Standard 614000-27-1 Section
 */
 public class WindAeroLinearIEC extends IdentifiedObject
 {
-	private BaseClass[] WindAeroLinearIEC_attributes;
+	private BaseClass[] WindAeroLinearIEC_class_attributes;
+	private BaseClass[] WindAeroLinearIEC_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum WindAeroLinearIEC_primitive_builder implements PrimitiveBuilder {
-			dpomega(){
+		dpomega(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			dptheta(){
+		dptheta(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			omegazero(){
+		omegazero(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pavail(){
+		pavail(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			thetazero(){
+		thetazero(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
@@ -59,6 +64,16 @@ public class WindAeroLinearIEC extends IdentifiedObject
 		};
 	}
 
+	private enum WindAeroLinearIEC_class_attributes_enum {
+		dpomega,
+		dptheta,
+		omegazero,
+		pavail,
+		thetazero,
+		WindGenTurbineType3IEC,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -67,21 +82,33 @@ public class WindAeroLinearIEC extends IdentifiedObject
 		
 	
 	public WindAeroLinearIEC() {
-		WindAeroLinearIEC_attributes = new BaseClass[WindAeroLinearIEC_primitive_builder.values().length];
+		WindAeroLinearIEC_primitive_attributes = new BaseClass[WindAeroLinearIEC_primitive_builder.values().length];
+		WindAeroLinearIEC_class_attributes = new BaseClass[WindAeroLinearIEC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(WindAeroLinearIEC_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(WindAeroLinearIEC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			WindAeroLinearIEC_attributes[attrEnum.ordinal()] = value;
+			WindAeroLinearIEC_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(WindAeroLinearIEC_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//WindAeroLinearIEC_ATTR_ENUM attrEnum = WindAeroLinearIEC_ATTR_BC_ENUM.valueOf(attrName);
+			WindAeroLinearIEC_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			WindAeroLinearIEC_class_attributes_enum attrEnum = WindAeroLinearIEC_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated WindAeroLinearIEC, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -90,10 +117,11 @@ public class WindAeroLinearIEC extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			WindAeroLinearIEC_primitive_builder attrEnum = WindAeroLinearIEC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated WindAeroLinearIEC, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -101,13 +129,26 @@ public class WindAeroLinearIEC extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (WindAeroLinearIEC_primitive_builder attrEnum: WindAeroLinearIEC_primitive_builder.values()) {
-			BaseClass bc = WindAeroLinearIEC_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (WindAeroLinearIEC_primitive_builder attrEnum: WindAeroLinearIEC_primitive_builder.values()) {
+				BaseClass bc = WindAeroLinearIEC_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindAeroLinearIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (WindAeroLinearIEC_class_attributes_enum attrEnum: WindAeroLinearIEC_class_attributes_enum.values()) {
+				BaseClass bc = WindAeroLinearIEC_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindAeroLinearIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(WindAeroLinearIEC) RDFID: " + rdfid;
 		}
 		return result;
 	}

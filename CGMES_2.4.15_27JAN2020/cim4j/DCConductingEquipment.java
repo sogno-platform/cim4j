@@ -17,13 +17,18 @@ The parts of the DC power system that are designed to carry current or that are 
 */
 public class DCConductingEquipment extends Equipment
 {
-	private BaseClass[] DCConductingEquipment_attributes;
+	private BaseClass[] DCConductingEquipment_class_attributes;
+	private BaseClass[] DCConductingEquipment_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum DCConductingEquipment_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class DCConductingEquipment extends Equipment
 		};
 	}
 
+	private enum DCConductingEquipment_class_attributes_enum {
+		DCTerminals,
+			LAST_ENUM;
+	}
+
 		
 	
 	public DCConductingEquipment() {
-		DCConductingEquipment_attributes = new BaseClass[DCConductingEquipment_primitive_builder.values().length];
+		DCConductingEquipment_primitive_attributes = new BaseClass[DCConductingEquipment_primitive_builder.values().length];
+		DCConductingEquipment_class_attributes = new BaseClass[DCConductingEquipment_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(DCConductingEquipment_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(DCConductingEquipment_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			DCConductingEquipment_attributes[attrEnum.ordinal()] = value;
+			DCConductingEquipment_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(DCConductingEquipment_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//DCConductingEquipment_ATTR_ENUM attrEnum = DCConductingEquipment_ATTR_BC_ENUM.valueOf(attrName);
+			DCConductingEquipment_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			DCConductingEquipment_class_attributes_enum attrEnum = DCConductingEquipment_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated DCConductingEquipment, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class DCConductingEquipment extends Equipment
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			DCConductingEquipment_primitive_builder attrEnum = DCConductingEquipment_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated DCConductingEquipment, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class DCConductingEquipment extends Equipment
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (DCConductingEquipment_primitive_builder attrEnum: DCConductingEquipment_primitive_builder.values()) {
-			BaseClass bc = DCConductingEquipment_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (DCConductingEquipment_primitive_builder attrEnum: DCConductingEquipment_primitive_builder.values()) {
+				BaseClass bc = DCConductingEquipment_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCConductingEquipment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (DCConductingEquipment_class_attributes_enum attrEnum: DCConductingEquipment_class_attributes_enum.values()) {
+				BaseClass bc = DCConductingEquipment_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCConductingEquipment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(DCConductingEquipment) RDFID: " + rdfid;
 		}
 		return result;
 	}

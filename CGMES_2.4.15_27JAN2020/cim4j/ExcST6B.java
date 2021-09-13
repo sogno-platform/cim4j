@@ -20,125 +20,130 @@ Modified IEEE ST6B static excitation system with PID controller and optional inn
 */
 public class ExcST6B extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcST6B_attributes;
+	private BaseClass[] ExcST6B_class_attributes;
+	private BaseClass[] ExcST6B_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcST6B_primitive_builder implements PrimitiveBuilder {
-			ilr(){
+		ilr(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			k1(){
+		k1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			kcl(){
+		kcl(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kff(){
+		kff(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kg(){
+		kg(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kia(){
+		kia(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			klr(){
+		klr(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			km(){
+		km(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kpa(){
+		kpa(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kvd(){
+		kvd(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			oelin(){
+		oelin(){
 			public BaseClass construct (java.lang.String value) {
 				return new ExcST6BOELselectorKind(value);
 			}
 		},
-			tg(){
+		tg(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ts(){
+		ts(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tvd(){
+		tvd(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vamax(){
+		vamax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vamin(){
+		vamin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vilim(){
+		vilim(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			vimax(){
+		vimax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vimin(){
+		vimin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vmult(){
+		vmult(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xc(){
+		xc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -148,6 +153,33 @@ public class ExcST6B extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcST6B_class_attributes_enum {
+		ilr,
+		k1,
+		kcl,
+		kff,
+		kg,
+		kia,
+		klr,
+		km,
+		kpa,
+		kvd,
+		oelin,
+		tg,
+		ts,
+		tvd,
+		vamax,
+		vamin,
+		vilim,
+		vimax,
+		vimin,
+		vmult,
+		vrmax,
+		vrmin,
+		xc,
+			LAST_ENUM;
 	}
 
 		
@@ -175,21 +207,33 @@ public class ExcST6B extends ExcitationSystemDynamics
 		
 	
 	public ExcST6B() {
-		ExcST6B_attributes = new BaseClass[ExcST6B_primitive_builder.values().length];
+		ExcST6B_primitive_attributes = new BaseClass[ExcST6B_primitive_builder.values().length];
+		ExcST6B_class_attributes = new BaseClass[ExcST6B_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcST6B_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcST6B_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcST6B_attributes[attrEnum.ordinal()] = value;
+			ExcST6B_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcST6B_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcST6B_ATTR_ENUM attrEnum = ExcST6B_ATTR_BC_ENUM.valueOf(attrName);
+			ExcST6B_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcST6B_class_attributes_enum attrEnum = ExcST6B_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcST6B, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -198,10 +242,11 @@ public class ExcST6B extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcST6B_primitive_builder attrEnum = ExcST6B_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcST6B, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -209,13 +254,26 @@ public class ExcST6B extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcST6B_primitive_builder attrEnum: ExcST6B_primitive_builder.values()) {
-			BaseClass bc = ExcST6B_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcST6B_primitive_builder attrEnum: ExcST6B_primitive_builder.values()) {
+				BaseClass bc = ExcST6B_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcST6B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcST6B_class_attributes_enum attrEnum: ExcST6B_class_attributes_enum.values()) {
+				BaseClass bc = ExcST6B_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcST6B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcST6B) RDFID: " + rdfid;
 		}
 		return result;
 	}

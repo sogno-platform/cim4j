@@ -17,13 +17,18 @@ The class is the third level in a hierarchical structure for grouping of loads f
 */
 public class LoadGroup extends IdentifiedObject
 {
-	private BaseClass[] LoadGroup_attributes;
+	private BaseClass[] LoadGroup_class_attributes;
+	private BaseClass[] LoadGroup_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum LoadGroup_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class LoadGroup extends IdentifiedObject
 		};
 	}
 
+	private enum LoadGroup_class_attributes_enum {
+		SubLoadArea,
+			LAST_ENUM;
+	}
+
 		
 	
 	public LoadGroup() {
-		LoadGroup_attributes = new BaseClass[LoadGroup_primitive_builder.values().length];
+		LoadGroup_primitive_attributes = new BaseClass[LoadGroup_primitive_builder.values().length];
+		LoadGroup_class_attributes = new BaseClass[LoadGroup_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(LoadGroup_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(LoadGroup_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			LoadGroup_attributes[attrEnum.ordinal()] = value;
+			LoadGroup_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(LoadGroup_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//LoadGroup_ATTR_ENUM attrEnum = LoadGroup_ATTR_BC_ENUM.valueOf(attrName);
+			LoadGroup_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			LoadGroup_class_attributes_enum attrEnum = LoadGroup_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated LoadGroup, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class LoadGroup extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			LoadGroup_primitive_builder attrEnum = LoadGroup_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated LoadGroup, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class LoadGroup extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (LoadGroup_primitive_builder attrEnum: LoadGroup_primitive_builder.values()) {
-			BaseClass bc = LoadGroup_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (LoadGroup_primitive_builder attrEnum: LoadGroup_primitive_builder.values()) {
+				BaseClass bc = LoadGroup_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadGroup." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (LoadGroup_class_attributes_enum attrEnum: LoadGroup_class_attributes_enum.values()) {
+				BaseClass bc = LoadGroup_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadGroup." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(LoadGroup) RDFID: " + rdfid;
 		}
 		return result;
 	}

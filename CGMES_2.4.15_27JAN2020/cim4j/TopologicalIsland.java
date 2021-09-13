@@ -17,13 +17,18 @@ An electrically connected subset of the network. Topological islands can change 
 */
 public class TopologicalIsland extends IdentifiedObject
 {
-	private BaseClass[] TopologicalIsland_attributes;
+	private BaseClass[] TopologicalIsland_class_attributes;
+	private BaseClass[] TopologicalIsland_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum TopologicalIsland_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,25 +37,43 @@ public class TopologicalIsland extends IdentifiedObject
 		};
 	}
 
+	private enum TopologicalIsland_class_attributes_enum {
+		AngleRefTopologicalNode,
+		TopologicalNodes,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public TopologicalIsland() {
-		TopologicalIsland_attributes = new BaseClass[TopologicalIsland_primitive_builder.values().length];
+		TopologicalIsland_primitive_attributes = new BaseClass[TopologicalIsland_primitive_builder.values().length];
+		TopologicalIsland_class_attributes = new BaseClass[TopologicalIsland_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(TopologicalIsland_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(TopologicalIsland_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			TopologicalIsland_attributes[attrEnum.ordinal()] = value;
+			TopologicalIsland_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(TopologicalIsland_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//TopologicalIsland_ATTR_ENUM attrEnum = TopologicalIsland_ATTR_BC_ENUM.valueOf(attrName);
+			TopologicalIsland_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			TopologicalIsland_class_attributes_enum attrEnum = TopologicalIsland_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated TopologicalIsland, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -59,10 +82,11 @@ public class TopologicalIsland extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			TopologicalIsland_primitive_builder attrEnum = TopologicalIsland_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated TopologicalIsland, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -70,13 +94,26 @@ public class TopologicalIsland extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (TopologicalIsland_primitive_builder attrEnum: TopologicalIsland_primitive_builder.values()) {
-			BaseClass bc = TopologicalIsland_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (TopologicalIsland_primitive_builder attrEnum: TopologicalIsland_primitive_builder.values()) {
+				BaseClass bc = TopologicalIsland_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    TopologicalIsland." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (TopologicalIsland_class_attributes_enum attrEnum: TopologicalIsland_class_attributes_enum.values()) {
+				BaseClass bc = TopologicalIsland_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    TopologicalIsland." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(TopologicalIsland) RDFID: " + rdfid;
 		}
 		return result;
 	}

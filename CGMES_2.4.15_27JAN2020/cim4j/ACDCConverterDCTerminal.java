@@ -18,15 +18,20 @@ A DC electrical connection point at the AC/DC converter. The AC/DC converter is 
 */
 public class ACDCConverterDCTerminal extends DCBaseTerminal
 {
-	private BaseClass[] ACDCConverterDCTerminal_attributes;
+	private BaseClass[] ACDCConverterDCTerminal_class_attributes;
+	private BaseClass[] ACDCConverterDCTerminal_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ACDCConverterDCTerminal_primitive_builder implements PrimitiveBuilder {
-			polarity(){
+		polarity(){
 			public BaseClass construct (java.lang.String value) {
 				return new DCPolarityKind(value);
 			}
@@ -38,25 +43,43 @@ public class ACDCConverterDCTerminal extends DCBaseTerminal
 		};
 	}
 
+	private enum ACDCConverterDCTerminal_class_attributes_enum {
+		DCConductingEquipment,
+		polarity,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public ACDCConverterDCTerminal() {
-		ACDCConverterDCTerminal_attributes = new BaseClass[ACDCConverterDCTerminal_primitive_builder.values().length];
+		ACDCConverterDCTerminal_primitive_attributes = new BaseClass[ACDCConverterDCTerminal_primitive_builder.values().length];
+		ACDCConverterDCTerminal_class_attributes = new BaseClass[ACDCConverterDCTerminal_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ACDCConverterDCTerminal_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ACDCConverterDCTerminal_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ACDCConverterDCTerminal_attributes[attrEnum.ordinal()] = value;
+			ACDCConverterDCTerminal_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ACDCConverterDCTerminal_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ACDCConverterDCTerminal_ATTR_ENUM attrEnum = ACDCConverterDCTerminal_ATTR_BC_ENUM.valueOf(attrName);
+			ACDCConverterDCTerminal_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ACDCConverterDCTerminal_class_attributes_enum attrEnum = ACDCConverterDCTerminal_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ACDCConverterDCTerminal, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -65,10 +88,11 @@ public class ACDCConverterDCTerminal extends DCBaseTerminal
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ACDCConverterDCTerminal_primitive_builder attrEnum = ACDCConverterDCTerminal_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ACDCConverterDCTerminal, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,13 +100,26 @@ public class ACDCConverterDCTerminal extends DCBaseTerminal
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ACDCConverterDCTerminal_primitive_builder attrEnum: ACDCConverterDCTerminal_primitive_builder.values()) {
-			BaseClass bc = ACDCConverterDCTerminal_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ACDCConverterDCTerminal_primitive_builder attrEnum: ACDCConverterDCTerminal_primitive_builder.values()) {
+				BaseClass bc = ACDCConverterDCTerminal_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ACDCConverterDCTerminal." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ACDCConverterDCTerminal_class_attributes_enum attrEnum: ACDCConverterDCTerminal_class_attributes_enum.values()) {
+				BaseClass bc = ACDCConverterDCTerminal_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ACDCConverterDCTerminal." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ACDCConverterDCTerminal) RDFID: " + rdfid;
 		}
 		return result;
 	}

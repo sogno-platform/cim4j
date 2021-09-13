@@ -18,13 +18,18 @@ A group of loads conforming to an allocation pattern.
 */
 public class ConformLoadGroup extends LoadGroup
 {
-	private BaseClass[] ConformLoadGroup_attributes;
+	private BaseClass[] ConformLoadGroup_class_attributes;
+	private BaseClass[] ConformLoadGroup_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ConformLoadGroup_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -33,25 +38,43 @@ public class ConformLoadGroup extends LoadGroup
 		};
 	}
 
+	private enum ConformLoadGroup_class_attributes_enum {
+		EnergyConsumers,
+		ConformLoadSchedules,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public ConformLoadGroup() {
-		ConformLoadGroup_attributes = new BaseClass[ConformLoadGroup_primitive_builder.values().length];
+		ConformLoadGroup_primitive_attributes = new BaseClass[ConformLoadGroup_primitive_builder.values().length];
+		ConformLoadGroup_class_attributes = new BaseClass[ConformLoadGroup_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ConformLoadGroup_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ConformLoadGroup_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ConformLoadGroup_attributes[attrEnum.ordinal()] = value;
+			ConformLoadGroup_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ConformLoadGroup_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ConformLoadGroup_ATTR_ENUM attrEnum = ConformLoadGroup_ATTR_BC_ENUM.valueOf(attrName);
+			ConformLoadGroup_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ConformLoadGroup_class_attributes_enum attrEnum = ConformLoadGroup_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ConformLoadGroup, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -60,10 +83,11 @@ public class ConformLoadGroup extends LoadGroup
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ConformLoadGroup_primitive_builder attrEnum = ConformLoadGroup_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ConformLoadGroup, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -71,13 +95,26 @@ public class ConformLoadGroup extends LoadGroup
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ConformLoadGroup_primitive_builder attrEnum: ConformLoadGroup_primitive_builder.values()) {
-			BaseClass bc = ConformLoadGroup_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ConformLoadGroup_primitive_builder attrEnum: ConformLoadGroup_primitive_builder.values()) {
+				BaseClass bc = ConformLoadGroup_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ConformLoadGroup." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ConformLoadGroup_class_attributes_enum attrEnum: ConformLoadGroup_class_attributes_enum.values()) {
+				BaseClass bc = ConformLoadGroup_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ConformLoadGroup." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ConformLoadGroup) RDFID: " + rdfid;
 		}
 		return result;
 	}

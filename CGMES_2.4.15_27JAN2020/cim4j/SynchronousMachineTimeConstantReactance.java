@@ -21,80 +21,85 @@ Synchronous machine detailed modelling types are defined by the combination of t
 */
 public class SynchronousMachineTimeConstantReactance extends SynchronousMachineDetailed
 {
-	private BaseClass[] SynchronousMachineTimeConstantReactance_attributes;
+	private BaseClass[] SynchronousMachineTimeConstantReactance_class_attributes;
+	private BaseClass[] SynchronousMachineTimeConstantReactance_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum SynchronousMachineTimeConstantReactance_primitive_builder implements PrimitiveBuilder {
-			rotorType(){
+		rotorType(){
 			public BaseClass construct (java.lang.String value) {
 				return new RotorKind(value);
 			}
 		},
-			modelType(){
+		modelType(){
 			public BaseClass construct (java.lang.String value) {
 				return new SynchronousMachineModelKind(value);
 			}
 		},
-			ks(){
+		ks(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			xDirectSync(){
+		xDirectSync(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xDirectTrans(){
+		xDirectTrans(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xDirectSubtrans(){
+		xDirectSubtrans(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xQuadSync(){
+		xQuadSync(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xQuadTrans(){
+		xQuadTrans(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xQuadSubtrans(){
+		xQuadSubtrans(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tpdo(){
+		tpdo(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tppdo(){
+		tppdo(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tpqo(){
+		tpqo(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tppqo(){
+		tppqo(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tc(){
+		tc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
@@ -104,6 +109,24 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum SynchronousMachineTimeConstantReactance_class_attributes_enum {
+		rotorType,
+		modelType,
+		ks,
+		xDirectSync,
+		xDirectTrans,
+		xDirectSubtrans,
+		xQuadSync,
+		xQuadTrans,
+		xQuadSubtrans,
+		tpdo,
+		tppdo,
+		tpqo,
+		tppqo,
+		tc,
+			LAST_ENUM;
 	}
 
 		
@@ -122,21 +145,33 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
 		
 	
 	public SynchronousMachineTimeConstantReactance() {
-		SynchronousMachineTimeConstantReactance_attributes = new BaseClass[SynchronousMachineTimeConstantReactance_primitive_builder.values().length];
+		SynchronousMachineTimeConstantReactance_primitive_attributes = new BaseClass[SynchronousMachineTimeConstantReactance_primitive_builder.values().length];
+		SynchronousMachineTimeConstantReactance_class_attributes = new BaseClass[SynchronousMachineTimeConstantReactance_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(SynchronousMachineTimeConstantReactance_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(SynchronousMachineTimeConstantReactance_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			SynchronousMachineTimeConstantReactance_attributes[attrEnum.ordinal()] = value;
+			SynchronousMachineTimeConstantReactance_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(SynchronousMachineTimeConstantReactance_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//SynchronousMachineTimeConstantReactance_ATTR_ENUM attrEnum = SynchronousMachineTimeConstantReactance_ATTR_BC_ENUM.valueOf(attrName);
+			SynchronousMachineTimeConstantReactance_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			SynchronousMachineTimeConstantReactance_class_attributes_enum attrEnum = SynchronousMachineTimeConstantReactance_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated SynchronousMachineTimeConstantReactance, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -145,10 +180,11 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			SynchronousMachineTimeConstantReactance_primitive_builder attrEnum = SynchronousMachineTimeConstantReactance_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated SynchronousMachineTimeConstantReactance, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -156,13 +192,26 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (SynchronousMachineTimeConstantReactance_primitive_builder attrEnum: SynchronousMachineTimeConstantReactance_primitive_builder.values()) {
-			BaseClass bc = SynchronousMachineTimeConstantReactance_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (SynchronousMachineTimeConstantReactance_primitive_builder attrEnum: SynchronousMachineTimeConstantReactance_primitive_builder.values()) {
+				BaseClass bc = SynchronousMachineTimeConstantReactance_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SynchronousMachineTimeConstantReactance." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (SynchronousMachineTimeConstantReactance_class_attributes_enum attrEnum: SynchronousMachineTimeConstantReactance_class_attributes_enum.values()) {
+				BaseClass bc = SynchronousMachineTimeConstantReactance_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SynchronousMachineTimeConstantReactance." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(SynchronousMachineTimeConstantReactance) RDFID: " + rdfid;
 		}
 		return result;
 	}

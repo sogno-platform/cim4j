@@ -19,60 +19,65 @@ Simplified Excitation System Model.
 */
 public class ExcSEXS extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcSEXS_attributes;
+	private BaseClass[] ExcSEXS_class_attributes;
+	private BaseClass[] ExcSEXS_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcSEXS_primitive_builder implements PrimitiveBuilder {
-			tatb(){
+		tatb(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			tb(){
+		tb(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			k(){
+		k(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			emin(){
+		emin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			emax(){
+		emax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kc(){
+		kc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tc(){
+		tc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			efdmin(){
+		efdmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			efdmax(){
+		efdmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -82,6 +87,20 @@ public class ExcSEXS extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcSEXS_class_attributes_enum {
+		tatb,
+		tb,
+		k,
+		te,
+		emin,
+		emax,
+		kc,
+		tc,
+		efdmin,
+		efdmax,
+			LAST_ENUM;
 	}
 
 		
@@ -96,21 +115,33 @@ public class ExcSEXS extends ExcitationSystemDynamics
 		
 	
 	public ExcSEXS() {
-		ExcSEXS_attributes = new BaseClass[ExcSEXS_primitive_builder.values().length];
+		ExcSEXS_primitive_attributes = new BaseClass[ExcSEXS_primitive_builder.values().length];
+		ExcSEXS_class_attributes = new BaseClass[ExcSEXS_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcSEXS_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcSEXS_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcSEXS_attributes[attrEnum.ordinal()] = value;
+			ExcSEXS_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcSEXS_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcSEXS_ATTR_ENUM attrEnum = ExcSEXS_ATTR_BC_ENUM.valueOf(attrName);
+			ExcSEXS_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcSEXS_class_attributes_enum attrEnum = ExcSEXS_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcSEXS, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -119,10 +150,11 @@ public class ExcSEXS extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcSEXS_primitive_builder attrEnum = ExcSEXS_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcSEXS, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -130,13 +162,26 @@ public class ExcSEXS extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcSEXS_primitive_builder attrEnum: ExcSEXS_primitive_builder.values()) {
-			BaseClass bc = ExcSEXS_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcSEXS_primitive_builder attrEnum: ExcSEXS_primitive_builder.values()) {
+				BaseClass bc = ExcSEXS_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcSEXS." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcSEXS_class_attributes_enum attrEnum: ExcSEXS_class_attributes_enum.values()) {
+				BaseClass bc = ExcSEXS_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcSEXS." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcSEXS) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -24,95 +24,100 @@ This class represents external network and it is used for IEC 60909 calculations
 */
 public class ExternalNetworkInjection extends RegulatingCondEq
 {
-	private BaseClass[] ExternalNetworkInjection_attributes;
+	private BaseClass[] ExternalNetworkInjection_class_attributes;
+	private BaseClass[] ExternalNetworkInjection_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExternalNetworkInjection_primitive_builder implements PrimitiveBuilder {
-			maxP(){
+		maxP(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			maxQ(){
+		maxQ(){
 			public BaseClass construct (java.lang.String value) {
 				return new ReactivePower(value);
 			}
 		},
-			minP(){
+		minP(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			minQ(){
+		minQ(){
 			public BaseClass construct (java.lang.String value) {
 				return new ReactivePower(value);
 			}
 		},
-			ikSecond(){
+		ikSecond(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			maxInitialSymShCCurrent(){
+		maxInitialSymShCCurrent(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
 		},
-			maxR0ToX0Ratio(){
+		maxR0ToX0Ratio(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			maxR1ToX1Ratio(){
+		maxR1ToX1Ratio(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			maxZ0ToZ1Ratio(){
+		maxZ0ToZ1Ratio(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			minInitialSymShCCurrent(){
+		minInitialSymShCCurrent(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
 		},
-			minR0ToX0Ratio(){
+		minR0ToX0Ratio(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			minR1ToX1Ratio(){
+		minR1ToX1Ratio(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			minZ0ToZ1Ratio(){
+		minZ0ToZ1Ratio(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			voltageFactor(){
+		voltageFactor(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			referencePriority(){
+		referencePriority(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			p(){
+		p(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			q(){
+		q(){
 			public BaseClass construct (java.lang.String value) {
 				return new ReactivePower(value);
 			}
@@ -122,6 +127,28 @@ public class ExternalNetworkInjection extends RegulatingCondEq
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExternalNetworkInjection_class_attributes_enum {
+		governorSCD,
+		maxP,
+		maxQ,
+		minP,
+		minQ,
+		ikSecond,
+		maxInitialSymShCCurrent,
+		maxR0ToX0Ratio,
+		maxR1ToX1Ratio,
+		maxZ0ToZ1Ratio,
+		minInitialSymShCCurrent,
+		minR0ToX0Ratio,
+		minR1ToX1Ratio,
+		minZ0ToZ1Ratio,
+		voltageFactor,
+		referencePriority,
+		p,
+		q,
+			LAST_ENUM;
 	}
 
 		
@@ -144,21 +171,33 @@ public class ExternalNetworkInjection extends RegulatingCondEq
 		
 	
 	public ExternalNetworkInjection() {
-		ExternalNetworkInjection_attributes = new BaseClass[ExternalNetworkInjection_primitive_builder.values().length];
+		ExternalNetworkInjection_primitive_attributes = new BaseClass[ExternalNetworkInjection_primitive_builder.values().length];
+		ExternalNetworkInjection_class_attributes = new BaseClass[ExternalNetworkInjection_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExternalNetworkInjection_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExternalNetworkInjection_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExternalNetworkInjection_attributes[attrEnum.ordinal()] = value;
+			ExternalNetworkInjection_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExternalNetworkInjection_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExternalNetworkInjection_ATTR_ENUM attrEnum = ExternalNetworkInjection_ATTR_BC_ENUM.valueOf(attrName);
+			ExternalNetworkInjection_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExternalNetworkInjection_class_attributes_enum attrEnum = ExternalNetworkInjection_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExternalNetworkInjection, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -167,10 +206,11 @@ public class ExternalNetworkInjection extends RegulatingCondEq
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExternalNetworkInjection_primitive_builder attrEnum = ExternalNetworkInjection_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExternalNetworkInjection, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -178,13 +218,26 @@ public class ExternalNetworkInjection extends RegulatingCondEq
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExternalNetworkInjection_primitive_builder attrEnum: ExternalNetworkInjection_primitive_builder.values()) {
-			BaseClass bc = ExternalNetworkInjection_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExternalNetworkInjection_primitive_builder attrEnum: ExternalNetworkInjection_primitive_builder.values()) {
+				BaseClass bc = ExternalNetworkInjection_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExternalNetworkInjection." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExternalNetworkInjection_class_attributes_enum attrEnum: ExternalNetworkInjection_class_attributes_enum.values()) {
+				BaseClass bc = ExternalNetworkInjection_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExternalNetworkInjection." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExternalNetworkInjection) RDFID: " + rdfid;
 		}
 		return result;
 	}

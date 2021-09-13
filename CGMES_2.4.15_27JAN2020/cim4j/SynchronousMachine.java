@@ -30,115 +30,120 @@ An electromechanical device that operates with shaft rotating synchronously with
 */
 public class SynchronousMachine extends RotatingMachine
 {
-	private BaseClass[] SynchronousMachine_attributes;
+	private BaseClass[] SynchronousMachine_class_attributes;
+	private BaseClass[] SynchronousMachine_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum SynchronousMachine_primitive_builder implements PrimitiveBuilder {
-			maxQ(){
+		maxQ(){
 			public BaseClass construct (java.lang.String value) {
 				return new ReactivePower(value);
 			}
 		},
-			minQ(){
+		minQ(){
 			public BaseClass construct (java.lang.String value) {
 				return new ReactivePower(value);
 			}
 		},
-			qPercent(){
+		qPercent(){
 			public BaseClass construct (java.lang.String value) {
 				return new PerCent(value);
 			}
 		},
-			type(){
+		type(){
 			public BaseClass construct (java.lang.String value) {
 				return new SynchronousMachineKind(value);
 			}
 		},
-			earthing(){
+		earthing(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			earthingStarPointR(){
+		earthingStarPointR(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			earthingStarPointX(){
+		earthingStarPointX(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			ikk(){
+		ikk(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
 		},
-			mu(){
+		mu(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			r0(){
+		r0(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			r2(){
+		r2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			satDirectSubtransX(){
+		satDirectSubtransX(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			satDirectSyncX(){
+		satDirectSyncX(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			satDirectTransX(){
+		satDirectTransX(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			shortCircuitRotorType(){
+		shortCircuitRotorType(){
 			public BaseClass construct (java.lang.String value) {
 				return new ShortCircuitRotorKind(value);
 			}
 		},
-			voltageRegulationRange(){
+		voltageRegulationRange(){
 			public BaseClass construct (java.lang.String value) {
 				return new PerCent(value);
 			}
 		},
-			r(){
+		r(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			x0(){
+		x0(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			x2(){
+		x2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			operatingMode(){
+		operatingMode(){
 			public BaseClass construct (java.lang.String value) {
 				return new SynchronousMachineOperatingMode(value);
 			}
 		},
-			referencePriority(){
+		referencePriority(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
@@ -148,6 +153,33 @@ public class SynchronousMachine extends RotatingMachine
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum SynchronousMachine_class_attributes_enum {
+		InitialReactiveCapabilityCurve,
+		maxQ,
+		minQ,
+		qPercent,
+		type,
+		earthing,
+		earthingStarPointR,
+		earthingStarPointX,
+		ikk,
+		mu,
+		r0,
+		r2,
+		satDirectSubtransX,
+		satDirectSyncX,
+		satDirectTransX,
+		shortCircuitRotorType,
+		voltageRegulationRange,
+		r,
+		x0,
+		x2,
+		operatingMode,
+		referencePriority,
+		SynchronousMachineDynamics,
+			LAST_ENUM;
 	}
 
 		
@@ -175,21 +207,33 @@ public class SynchronousMachine extends RotatingMachine
 		
 	
 	public SynchronousMachine() {
-		SynchronousMachine_attributes = new BaseClass[SynchronousMachine_primitive_builder.values().length];
+		SynchronousMachine_primitive_attributes = new BaseClass[SynchronousMachine_primitive_builder.values().length];
+		SynchronousMachine_class_attributes = new BaseClass[SynchronousMachine_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(SynchronousMachine_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(SynchronousMachine_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			SynchronousMachine_attributes[attrEnum.ordinal()] = value;
+			SynchronousMachine_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(SynchronousMachine_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//SynchronousMachine_ATTR_ENUM attrEnum = SynchronousMachine_ATTR_BC_ENUM.valueOf(attrName);
+			SynchronousMachine_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			SynchronousMachine_class_attributes_enum attrEnum = SynchronousMachine_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated SynchronousMachine, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -198,10 +242,11 @@ public class SynchronousMachine extends RotatingMachine
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			SynchronousMachine_primitive_builder attrEnum = SynchronousMachine_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated SynchronousMachine, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -209,13 +254,26 @@ public class SynchronousMachine extends RotatingMachine
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (SynchronousMachine_primitive_builder attrEnum: SynchronousMachine_primitive_builder.values()) {
-			BaseClass bc = SynchronousMachine_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (SynchronousMachine_primitive_builder attrEnum: SynchronousMachine_primitive_builder.values()) {
+				BaseClass bc = SynchronousMachine_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SynchronousMachine." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (SynchronousMachine_class_attributes_enum attrEnum: SynchronousMachine_class_attributes_enum.values()) {
+				BaseClass bc = SynchronousMachine_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SynchronousMachine." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(SynchronousMachine) RDFID: " + rdfid;
 		}
 		return result;
 	}

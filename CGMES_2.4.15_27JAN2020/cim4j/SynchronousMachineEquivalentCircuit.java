@@ -17,65 +17,70 @@ The electrical equations for all variations of the synchronous models are based 
 */
 public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetailed
 {
-	private BaseClass[] SynchronousMachineEquivalentCircuit_attributes;
+	private BaseClass[] SynchronousMachineEquivalentCircuit_class_attributes;
+	private BaseClass[] SynchronousMachineEquivalentCircuit_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum SynchronousMachineEquivalentCircuit_primitive_builder implements PrimitiveBuilder {
-			xad(){
+		xad(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			rfd(){
+		rfd(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xfd(){
+		xfd(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			r1d(){
+		r1d(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			x1d(){
+		x1d(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xf1d(){
+		xf1d(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xaq(){
+		xaq(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			r1q(){
+		r1q(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			x1q(){
+		x1q(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			r2q(){
+		r2q(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			x2q(){
+		x2q(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -85,6 +90,21 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum SynchronousMachineEquivalentCircuit_class_attributes_enum {
+		xad,
+		rfd,
+		xfd,
+		r1d,
+		x1d,
+		xf1d,
+		xaq,
+		r1q,
+		x1q,
+		r2q,
+		x2q,
+			LAST_ENUM;
 	}
 
 		
@@ -100,21 +120,33 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
 		
 	
 	public SynchronousMachineEquivalentCircuit() {
-		SynchronousMachineEquivalentCircuit_attributes = new BaseClass[SynchronousMachineEquivalentCircuit_primitive_builder.values().length];
+		SynchronousMachineEquivalentCircuit_primitive_attributes = new BaseClass[SynchronousMachineEquivalentCircuit_primitive_builder.values().length];
+		SynchronousMachineEquivalentCircuit_class_attributes = new BaseClass[SynchronousMachineEquivalentCircuit_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(SynchronousMachineEquivalentCircuit_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(SynchronousMachineEquivalentCircuit_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			SynchronousMachineEquivalentCircuit_attributes[attrEnum.ordinal()] = value;
+			SynchronousMachineEquivalentCircuit_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(SynchronousMachineEquivalentCircuit_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//SynchronousMachineEquivalentCircuit_ATTR_ENUM attrEnum = SynchronousMachineEquivalentCircuit_ATTR_BC_ENUM.valueOf(attrName);
+			SynchronousMachineEquivalentCircuit_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			SynchronousMachineEquivalentCircuit_class_attributes_enum attrEnum = SynchronousMachineEquivalentCircuit_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated SynchronousMachineEquivalentCircuit, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -123,10 +155,11 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			SynchronousMachineEquivalentCircuit_primitive_builder attrEnum = SynchronousMachineEquivalentCircuit_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated SynchronousMachineEquivalentCircuit, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -134,13 +167,26 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (SynchronousMachineEquivalentCircuit_primitive_builder attrEnum: SynchronousMachineEquivalentCircuit_primitive_builder.values()) {
-			BaseClass bc = SynchronousMachineEquivalentCircuit_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (SynchronousMachineEquivalentCircuit_primitive_builder attrEnum: SynchronousMachineEquivalentCircuit_primitive_builder.values()) {
+				BaseClass bc = SynchronousMachineEquivalentCircuit_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SynchronousMachineEquivalentCircuit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (SynchronousMachineEquivalentCircuit_class_attributes_enum attrEnum: SynchronousMachineEquivalentCircuit_class_attributes_enum.values()) {
+				BaseClass bc = SynchronousMachineEquivalentCircuit_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SynchronousMachineEquivalentCircuit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(SynchronousMachineEquivalentCircuit) RDFID: " + rdfid;
 		}
 		return result;
 	}

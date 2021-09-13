@@ -17,35 +17,40 @@ The electrical equations of all variations of the asynchronous model are based o
 */
 public class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDynamics
 {
-	private BaseClass[] AsynchronousMachineEquivalentCircuit_attributes;
+	private BaseClass[] AsynchronousMachineEquivalentCircuit_class_attributes;
+	private BaseClass[] AsynchronousMachineEquivalentCircuit_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum AsynchronousMachineEquivalentCircuit_primitive_builder implements PrimitiveBuilder {
-			xm(){
+		xm(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			rr1(){
+		rr1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xlr1(){
+		xlr1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			rr2(){
+		rr2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xlr2(){
+		xlr2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -57,6 +62,15 @@ public class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDyn
 		};
 	}
 
+	private enum AsynchronousMachineEquivalentCircuit_class_attributes_enum {
+		xm,
+		rr1,
+		xlr1,
+		rr2,
+		xlr2,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -64,21 +78,33 @@ public class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDyn
 		
 	
 	public AsynchronousMachineEquivalentCircuit() {
-		AsynchronousMachineEquivalentCircuit_attributes = new BaseClass[AsynchronousMachineEquivalentCircuit_primitive_builder.values().length];
+		AsynchronousMachineEquivalentCircuit_primitive_attributes = new BaseClass[AsynchronousMachineEquivalentCircuit_primitive_builder.values().length];
+		AsynchronousMachineEquivalentCircuit_class_attributes = new BaseClass[AsynchronousMachineEquivalentCircuit_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(AsynchronousMachineEquivalentCircuit_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(AsynchronousMachineEquivalentCircuit_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			AsynchronousMachineEquivalentCircuit_attributes[attrEnum.ordinal()] = value;
+			AsynchronousMachineEquivalentCircuit_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(AsynchronousMachineEquivalentCircuit_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//AsynchronousMachineEquivalentCircuit_ATTR_ENUM attrEnum = AsynchronousMachineEquivalentCircuit_ATTR_BC_ENUM.valueOf(attrName);
+			AsynchronousMachineEquivalentCircuit_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			AsynchronousMachineEquivalentCircuit_class_attributes_enum attrEnum = AsynchronousMachineEquivalentCircuit_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated AsynchronousMachineEquivalentCircuit, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -87,10 +113,11 @@ public class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDyn
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			AsynchronousMachineEquivalentCircuit_primitive_builder attrEnum = AsynchronousMachineEquivalentCircuit_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated AsynchronousMachineEquivalentCircuit, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -98,13 +125,26 @@ public class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDyn
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (AsynchronousMachineEquivalentCircuit_primitive_builder attrEnum: AsynchronousMachineEquivalentCircuit_primitive_builder.values()) {
-			BaseClass bc = AsynchronousMachineEquivalentCircuit_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (AsynchronousMachineEquivalentCircuit_primitive_builder attrEnum: AsynchronousMachineEquivalentCircuit_primitive_builder.values()) {
+				BaseClass bc = AsynchronousMachineEquivalentCircuit_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    AsynchronousMachineEquivalentCircuit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (AsynchronousMachineEquivalentCircuit_class_attributes_enum attrEnum: AsynchronousMachineEquivalentCircuit_class_attributes_enum.values()) {
+				BaseClass bc = AsynchronousMachineEquivalentCircuit_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    AsynchronousMachineEquivalentCircuit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(AsynchronousMachineEquivalentCircuit) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -20,50 +20,55 @@ Simple excitation system model representing generic characteristics of many exci
 */
 public class ExcSCRX extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcSCRX_attributes;
+	private BaseClass[] ExcSCRX_class_attributes;
+	private BaseClass[] ExcSCRX_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcSCRX_primitive_builder implements PrimitiveBuilder {
-			tatb(){
+		tatb(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			tb(){
+		tb(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			k(){
+		k(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			emin(){
+		emin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			emax(){
+		emax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			cswitch(){
+		cswitch(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			rcrfd(){
+		rcrfd(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -73,6 +78,18 @@ public class ExcSCRX extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcSCRX_class_attributes_enum {
+		tatb,
+		tb,
+		k,
+		te,
+		emin,
+		emax,
+		cswitch,
+		rcrfd,
+			LAST_ENUM;
 	}
 
 		
@@ -85,21 +102,33 @@ public class ExcSCRX extends ExcitationSystemDynamics
 		
 	
 	public ExcSCRX() {
-		ExcSCRX_attributes = new BaseClass[ExcSCRX_primitive_builder.values().length];
+		ExcSCRX_primitive_attributes = new BaseClass[ExcSCRX_primitive_builder.values().length];
+		ExcSCRX_class_attributes = new BaseClass[ExcSCRX_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcSCRX_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcSCRX_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcSCRX_attributes[attrEnum.ordinal()] = value;
+			ExcSCRX_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcSCRX_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcSCRX_ATTR_ENUM attrEnum = ExcSCRX_ATTR_BC_ENUM.valueOf(attrName);
+			ExcSCRX_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcSCRX_class_attributes_enum attrEnum = ExcSCRX_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcSCRX, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -108,10 +137,11 @@ public class ExcSCRX extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcSCRX_primitive_builder attrEnum = ExcSCRX_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcSCRX, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -119,13 +149,26 @@ public class ExcSCRX extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcSCRX_primitive_builder attrEnum: ExcSCRX_primitive_builder.values()) {
-			BaseClass bc = ExcSCRX_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcSCRX_primitive_builder attrEnum: ExcSCRX_primitive_builder.values()) {
+				BaseClass bc = ExcSCRX_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcSCRX." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcSCRX_class_attributes_enum attrEnum: ExcSCRX_class_attributes_enum.values()) {
+				BaseClass bc = ExcSCRX_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcSCRX." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcSCRX) RDFID: " + rdfid;
 		}
 		return result;
 	}

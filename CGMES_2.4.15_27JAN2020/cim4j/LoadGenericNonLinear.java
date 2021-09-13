@@ -19,55 +19,60 @@ These load models (known also as generic non-linear dynamic (GNLD) load models) 
 */
 public class LoadGenericNonLinear extends LoadDynamics
 {
-	private BaseClass[] LoadGenericNonLinear_attributes;
+	private BaseClass[] LoadGenericNonLinear_class_attributes;
+	private BaseClass[] LoadGenericNonLinear_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum LoadGenericNonLinear_primitive_builder implements PrimitiveBuilder {
-			genericNonLinearLoadModelType(){
+		genericNonLinearLoadModelType(){
 			public BaseClass construct (java.lang.String value) {
 				return new GenericNonLinearLoadModelKind(value);
 			}
 		},
-			pt(){
+		pt(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			qt(){
+		qt(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			tp(){
+		tp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tq(){
+		tq(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ls(){
+		ls(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			lt(){
+		lt(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			bs(){
+		bs(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			bt(){
+		bt(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -77,6 +82,19 @@ public class LoadGenericNonLinear extends LoadDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum LoadGenericNonLinear_class_attributes_enum {
+		genericNonLinearLoadModelType,
+		pt,
+		qt,
+		tp,
+		tq,
+		ls,
+		lt,
+		bs,
+		bt,
+			LAST_ENUM;
 	}
 
 		
@@ -90,21 +108,33 @@ public class LoadGenericNonLinear extends LoadDynamics
 		
 	
 	public LoadGenericNonLinear() {
-		LoadGenericNonLinear_attributes = new BaseClass[LoadGenericNonLinear_primitive_builder.values().length];
+		LoadGenericNonLinear_primitive_attributes = new BaseClass[LoadGenericNonLinear_primitive_builder.values().length];
+		LoadGenericNonLinear_class_attributes = new BaseClass[LoadGenericNonLinear_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(LoadGenericNonLinear_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(LoadGenericNonLinear_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			LoadGenericNonLinear_attributes[attrEnum.ordinal()] = value;
+			LoadGenericNonLinear_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(LoadGenericNonLinear_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//LoadGenericNonLinear_ATTR_ENUM attrEnum = LoadGenericNonLinear_ATTR_BC_ENUM.valueOf(attrName);
+			LoadGenericNonLinear_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			LoadGenericNonLinear_class_attributes_enum attrEnum = LoadGenericNonLinear_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated LoadGenericNonLinear, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -113,10 +143,11 @@ public class LoadGenericNonLinear extends LoadDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			LoadGenericNonLinear_primitive_builder attrEnum = LoadGenericNonLinear_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated LoadGenericNonLinear, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -124,13 +155,26 @@ public class LoadGenericNonLinear extends LoadDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (LoadGenericNonLinear_primitive_builder attrEnum: LoadGenericNonLinear_primitive_builder.values()) {
-			BaseClass bc = LoadGenericNonLinear_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (LoadGenericNonLinear_primitive_builder attrEnum: LoadGenericNonLinear_primitive_builder.values()) {
+				BaseClass bc = LoadGenericNonLinear_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadGenericNonLinear." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (LoadGenericNonLinear_class_attributes_enum attrEnum: LoadGenericNonLinear_class_attributes_enum.values()) {
+				BaseClass bc = LoadGenericNonLinear_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadGenericNonLinear." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(LoadGenericNonLinear) RDFID: " + rdfid;
 		}
 		return result;
 	}

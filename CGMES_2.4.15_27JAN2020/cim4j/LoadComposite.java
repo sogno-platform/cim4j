@@ -18,65 +18,70 @@ This models combines static load and induction motor load effects. The dynamics 
 */
 public class LoadComposite extends LoadDynamics
 {
-	private BaseClass[] LoadComposite_attributes;
+	private BaseClass[] LoadComposite_class_attributes;
+	private BaseClass[] LoadComposite_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum LoadComposite_primitive_builder implements PrimitiveBuilder {
-			epvs(){
+		epvs(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			epfs(){
+		epfs(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			eqvs(){
+		eqvs(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			eqfs(){
+		eqfs(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			epvd(){
+		epvd(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			epfd(){
+		epfd(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			eqvd(){
+		eqvd(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			eqfd(){
+		eqfd(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			lfrac(){
+		lfrac(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			h(){
+		h(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			pfrac(){
+		pfrac(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -86,6 +91,21 @@ public class LoadComposite extends LoadDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum LoadComposite_class_attributes_enum {
+		epvs,
+		epfs,
+		eqvs,
+		eqfs,
+		epvd,
+		epfd,
+		eqvd,
+		eqfd,
+		lfrac,
+		h,
+		pfrac,
+			LAST_ENUM;
 	}
 
 		
@@ -101,21 +121,33 @@ public class LoadComposite extends LoadDynamics
 		
 	
 	public LoadComposite() {
-		LoadComposite_attributes = new BaseClass[LoadComposite_primitive_builder.values().length];
+		LoadComposite_primitive_attributes = new BaseClass[LoadComposite_primitive_builder.values().length];
+		LoadComposite_class_attributes = new BaseClass[LoadComposite_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(LoadComposite_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(LoadComposite_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			LoadComposite_attributes[attrEnum.ordinal()] = value;
+			LoadComposite_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(LoadComposite_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//LoadComposite_ATTR_ENUM attrEnum = LoadComposite_ATTR_BC_ENUM.valueOf(attrName);
+			LoadComposite_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			LoadComposite_class_attributes_enum attrEnum = LoadComposite_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated LoadComposite, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -124,10 +156,11 @@ public class LoadComposite extends LoadDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			LoadComposite_primitive_builder attrEnum = LoadComposite_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated LoadComposite, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -135,13 +168,26 @@ public class LoadComposite extends LoadDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (LoadComposite_primitive_builder attrEnum: LoadComposite_primitive_builder.values()) {
-			BaseClass bc = LoadComposite_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (LoadComposite_primitive_builder attrEnum: LoadComposite_primitive_builder.values()) {
+				BaseClass bc = LoadComposite_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadComposite." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (LoadComposite_class_attributes_enum attrEnum: LoadComposite_class_attributes_enum.values()) {
+				BaseClass bc = LoadComposite_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadComposite." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(LoadComposite) RDFID: " + rdfid;
 		}
 		return result;
 	}

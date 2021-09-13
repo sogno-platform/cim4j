@@ -19,100 +19,105 @@ Dual input Power System Stabilizer, based on IEEE type 2, with modified output l
 */
 public class PssWECC extends PowerSystemStabilizerDynamics
 {
-	private BaseClass[] PssWECC_attributes;
+	private BaseClass[] PssWECC_class_attributes;
+	private BaseClass[] PssWECC_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum PssWECC_primitive_builder implements PrimitiveBuilder {
-			inputSignal1Type(){
+		inputSignal1Type(){
 			public BaseClass construct (java.lang.String value) {
 				return new InputSignalKind(value);
 			}
 		},
-			inputSignal2Type(){
+		inputSignal2Type(){
 			public BaseClass construct (java.lang.String value) {
 				return new InputSignalKind(value);
 			}
 		},
-			k1(){
+		k1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			t1(){
+		t1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			k2(){
+		k2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			t2(){
+		t2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t3(){
+		t3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t4(){
+		t4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t5(){
+		t5(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t6(){
+		t6(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t7(){
+		t7(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t8(){
+		t8(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t10(){
+		t10(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t9(){
+		t9(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vsmax(){
+		vsmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vsmin(){
+		vsmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vcu(){
+		vcu(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vcl(){
+		vcl(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -122,6 +127,28 @@ public class PssWECC extends PowerSystemStabilizerDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum PssWECC_class_attributes_enum {
+		inputSignal1Type,
+		inputSignal2Type,
+		k1,
+		t1,
+		k2,
+		t2,
+		t3,
+		t4,
+		t5,
+		t6,
+		t7,
+		t8,
+		t10,
+		t9,
+		vsmax,
+		vsmin,
+		vcu,
+		vcl,
+			LAST_ENUM;
 	}
 
 		
@@ -144,21 +171,33 @@ public class PssWECC extends PowerSystemStabilizerDynamics
 		
 	
 	public PssWECC() {
-		PssWECC_attributes = new BaseClass[PssWECC_primitive_builder.values().length];
+		PssWECC_primitive_attributes = new BaseClass[PssWECC_primitive_builder.values().length];
+		PssWECC_class_attributes = new BaseClass[PssWECC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PssWECC_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(PssWECC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			PssWECC_attributes[attrEnum.ordinal()] = value;
+			PssWECC_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(PssWECC_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//PssWECC_ATTR_ENUM attrEnum = PssWECC_ATTR_BC_ENUM.valueOf(attrName);
+			PssWECC_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			PssWECC_class_attributes_enum attrEnum = PssWECC_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated PssWECC, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -167,10 +206,11 @@ public class PssWECC extends PowerSystemStabilizerDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PssWECC_primitive_builder attrEnum = PssWECC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated PssWECC, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -178,13 +218,26 @@ public class PssWECC extends PowerSystemStabilizerDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (PssWECC_primitive_builder attrEnum: PssWECC_primitive_builder.values()) {
-			BaseClass bc = PssWECC_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (PssWECC_primitive_builder attrEnum: PssWECC_primitive_builder.values()) {
+				BaseClass bc = PssWECC_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PssWECC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (PssWECC_class_attributes_enum attrEnum: PssWECC_class_attributes_enum.values()) {
+				BaseClass bc = PssWECC_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PssWECC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(PssWECC) RDFID: " + rdfid;
 		}
 		return result;
 	}

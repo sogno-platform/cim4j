@@ -19,85 +19,90 @@ Modified IEEE ST2A static excitation system - another lead-lag block added to ma
 */
 public class ExcST2A extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcST2A_attributes;
+	private BaseClass[] ExcST2A_class_attributes;
+	private BaseClass[] ExcST2A_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcST2A_primitive_builder implements PrimitiveBuilder {
-			ka(){
+		ka(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ta(){
+		ta(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ke(){
+		ke(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kf(){
+		kf(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tf(){
+		tf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kp(){
+		kp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ki(){
+		ki(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kc(){
+		kc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			efdmax(){
+		efdmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			uelin(){
+		uelin(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			tb(){
+		tb(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tc(){
+		tc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
@@ -107,6 +112,25 @@ public class ExcST2A extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcST2A_class_attributes_enum {
+		ka,
+		ta,
+		vrmax,
+		vrmin,
+		ke,
+		te,
+		kf,
+		tf,
+		kp,
+		ki,
+		kc,
+		efdmax,
+		uelin,
+		tb,
+		tc,
+			LAST_ENUM;
 	}
 
 		
@@ -126,21 +150,33 @@ public class ExcST2A extends ExcitationSystemDynamics
 		
 	
 	public ExcST2A() {
-		ExcST2A_attributes = new BaseClass[ExcST2A_primitive_builder.values().length];
+		ExcST2A_primitive_attributes = new BaseClass[ExcST2A_primitive_builder.values().length];
+		ExcST2A_class_attributes = new BaseClass[ExcST2A_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcST2A_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcST2A_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcST2A_attributes[attrEnum.ordinal()] = value;
+			ExcST2A_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcST2A_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcST2A_ATTR_ENUM attrEnum = ExcST2A_ATTR_BC_ENUM.valueOf(attrName);
+			ExcST2A_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcST2A_class_attributes_enum attrEnum = ExcST2A_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcST2A, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -149,10 +185,11 @@ public class ExcST2A extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcST2A_primitive_builder attrEnum = ExcST2A_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcST2A, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -160,13 +197,26 @@ public class ExcST2A extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcST2A_primitive_builder attrEnum: ExcST2A_primitive_builder.values()) {
-			BaseClass bc = ExcST2A_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcST2A_primitive_builder attrEnum: ExcST2A_primitive_builder.values()) {
+				BaseClass bc = ExcST2A_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcST2A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcST2A_class_attributes_enum attrEnum: ExcST2A_class_attributes_enum.values()) {
+				BaseClass bc = ExcST2A_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcST2A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcST2A) RDFID: " + rdfid;
 		}
 		return result;
 	}

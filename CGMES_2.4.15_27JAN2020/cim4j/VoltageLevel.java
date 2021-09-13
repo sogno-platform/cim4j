@@ -20,20 +20,25 @@ A collection of equipment at one common system voltage forming a switchgear. The
 */
 public class VoltageLevel extends EquipmentContainer
 {
-	private BaseClass[] VoltageLevel_attributes;
+	private BaseClass[] VoltageLevel_class_attributes;
+	private BaseClass[] VoltageLevel_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum VoltageLevel_primitive_builder implements PrimitiveBuilder {
-			highVoltageLimit(){
+		highVoltageLimit(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			lowVoltageLimit(){
+		lowVoltageLimit(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
@@ -45,6 +50,15 @@ public class VoltageLevel extends EquipmentContainer
 		};
 	}
 
+	private enum VoltageLevel_class_attributes_enum {
+		BaseVoltage,
+		Substation,
+		highVoltageLimit,
+		lowVoltageLimit,
+		Bays,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -52,21 +66,33 @@ public class VoltageLevel extends EquipmentContainer
 		
 	
 	public VoltageLevel() {
-		VoltageLevel_attributes = new BaseClass[VoltageLevel_primitive_builder.values().length];
+		VoltageLevel_primitive_attributes = new BaseClass[VoltageLevel_primitive_builder.values().length];
+		VoltageLevel_class_attributes = new BaseClass[VoltageLevel_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(VoltageLevel_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(VoltageLevel_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			VoltageLevel_attributes[attrEnum.ordinal()] = value;
+			VoltageLevel_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(VoltageLevel_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//VoltageLevel_ATTR_ENUM attrEnum = VoltageLevel_ATTR_BC_ENUM.valueOf(attrName);
+			VoltageLevel_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			VoltageLevel_class_attributes_enum attrEnum = VoltageLevel_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated VoltageLevel, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -75,10 +101,11 @@ public class VoltageLevel extends EquipmentContainer
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			VoltageLevel_primitive_builder attrEnum = VoltageLevel_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated VoltageLevel, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -86,13 +113,26 @@ public class VoltageLevel extends EquipmentContainer
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (VoltageLevel_primitive_builder attrEnum: VoltageLevel_primitive_builder.values()) {
-			BaseClass bc = VoltageLevel_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (VoltageLevel_primitive_builder attrEnum: VoltageLevel_primitive_builder.values()) {
+				BaseClass bc = VoltageLevel_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VoltageLevel." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (VoltageLevel_class_attributes_enum attrEnum: VoltageLevel_class_attributes_enum.values()) {
+				BaseClass bc = VoltageLevel_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VoltageLevel." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(VoltageLevel) RDFID: " + rdfid;
 		}
 		return result;
 	}

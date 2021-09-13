@@ -26,90 +26,95 @@ A unit with valves for three phases, together with unit control equipment, essen
 */
 public class ACDCConverter extends ConductingEquipment
 {
-	private BaseClass[] ACDCConverter_attributes;
+	private BaseClass[] ACDCConverter_class_attributes;
+	private BaseClass[] ACDCConverter_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ACDCConverter_primitive_builder implements PrimitiveBuilder {
-			baseS(){
+		baseS(){
 			public BaseClass construct (java.lang.String value) {
 				return new ApparentPower(value);
 			}
 		},
-			idleLoss(){
+		idleLoss(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			maxUdc(){
+		maxUdc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			minUdc(){
+		minUdc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			numberOfValves(){
+		numberOfValves(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			ratedUdc(){
+		ratedUdc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			resistiveLoss(){
+		resistiveLoss(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			valveU0(){
+		valveU0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			p(){
+		p(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			q(){
+		q(){
 			public BaseClass construct (java.lang.String value) {
 				return new ReactivePower(value);
 			}
 		},
-			targetPpcc(){
+		targetPpcc(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			targetUdc(){
+		targetUdc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			idc(){
+		idc(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
 		},
-			poleLossP(){
+		poleLossP(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			uc(){
+		uc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			udc(){
+		udc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
@@ -119,6 +124,29 @@ public class ACDCConverter extends ConductingEquipment
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ACDCConverter_class_attributes_enum {
+		baseS,
+		idleLoss,
+		maxUdc,
+		minUdc,
+		numberOfValves,
+		ratedUdc,
+		resistiveLoss,
+		switchingLoss,
+		valveU0,
+		DCTerminals,
+		PccTerminal,
+		p,
+		q,
+		targetPpcc,
+		targetUdc,
+		idc,
+		poleLossP,
+		uc,
+		udc,
+			LAST_ENUM;
 	}
 
 		
@@ -142,21 +170,33 @@ public class ACDCConverter extends ConductingEquipment
 		
 	
 	public ACDCConverter() {
-		ACDCConverter_attributes = new BaseClass[ACDCConverter_primitive_builder.values().length];
+		ACDCConverter_primitive_attributes = new BaseClass[ACDCConverter_primitive_builder.values().length];
+		ACDCConverter_class_attributes = new BaseClass[ACDCConverter_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ACDCConverter_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ACDCConverter_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ACDCConverter_attributes[attrEnum.ordinal()] = value;
+			ACDCConverter_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ACDCConverter_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ACDCConverter_ATTR_ENUM attrEnum = ACDCConverter_ATTR_BC_ENUM.valueOf(attrName);
+			ACDCConverter_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ACDCConverter_class_attributes_enum attrEnum = ACDCConverter_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ACDCConverter, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -165,10 +205,11 @@ public class ACDCConverter extends ConductingEquipment
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ACDCConverter_primitive_builder attrEnum = ACDCConverter_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ACDCConverter, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -176,13 +217,26 @@ public class ACDCConverter extends ConductingEquipment
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ACDCConverter_primitive_builder attrEnum: ACDCConverter_primitive_builder.values()) {
-			BaseClass bc = ACDCConverter_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ACDCConverter_primitive_builder attrEnum: ACDCConverter_primitive_builder.values()) {
+				BaseClass bc = ACDCConverter_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ACDCConverter." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ACDCConverter_class_attributes_enum attrEnum: ACDCConverter_class_attributes_enum.values()) {
+				BaseClass bc = ACDCConverter_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ACDCConverter." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ACDCConverter) RDFID: " + rdfid;
 		}
 		return result;
 	}

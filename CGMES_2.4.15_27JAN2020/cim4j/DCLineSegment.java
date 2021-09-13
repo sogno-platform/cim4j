@@ -21,30 +21,35 @@ A wire or combination of wires not insulated from one another, with consistent e
 */
 public class DCLineSegment extends DCConductingEquipment
 {
-	private BaseClass[] DCLineSegment_attributes;
+	private BaseClass[] DCLineSegment_class_attributes;
+	private BaseClass[] DCLineSegment_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum DCLineSegment_primitive_builder implements PrimitiveBuilder {
-			capacitance(){
+		capacitance(){
 			public BaseClass construct (java.lang.String value) {
 				return new Capacitance(value);
 			}
 		},
-			inductance(){
+		inductance(){
 			public BaseClass construct (java.lang.String value) {
 				return new Inductance(value);
 			}
 		},
-			resistance(){
+		resistance(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			length(){
+		length(){
 			public BaseClass construct (java.lang.String value) {
 				return new Length(value);
 			}
@@ -56,6 +61,15 @@ public class DCLineSegment extends DCConductingEquipment
 		};
 	}
 
+	private enum DCLineSegment_class_attributes_enum {
+		capacitance,
+		inductance,
+		resistance,
+		length,
+		PerLengthParameter,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -63,21 +77,33 @@ public class DCLineSegment extends DCConductingEquipment
 		
 	
 	public DCLineSegment() {
-		DCLineSegment_attributes = new BaseClass[DCLineSegment_primitive_builder.values().length];
+		DCLineSegment_primitive_attributes = new BaseClass[DCLineSegment_primitive_builder.values().length];
+		DCLineSegment_class_attributes = new BaseClass[DCLineSegment_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(DCLineSegment_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(DCLineSegment_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			DCLineSegment_attributes[attrEnum.ordinal()] = value;
+			DCLineSegment_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(DCLineSegment_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//DCLineSegment_ATTR_ENUM attrEnum = DCLineSegment_ATTR_BC_ENUM.valueOf(attrName);
+			DCLineSegment_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			DCLineSegment_class_attributes_enum attrEnum = DCLineSegment_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated DCLineSegment, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -86,10 +112,11 @@ public class DCLineSegment extends DCConductingEquipment
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			DCLineSegment_primitive_builder attrEnum = DCLineSegment_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated DCLineSegment, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -97,13 +124,26 @@ public class DCLineSegment extends DCConductingEquipment
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (DCLineSegment_primitive_builder attrEnum: DCLineSegment_primitive_builder.values()) {
-			BaseClass bc = DCLineSegment_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (DCLineSegment_primitive_builder attrEnum: DCLineSegment_primitive_builder.values()) {
+				BaseClass bc = DCLineSegment_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCLineSegment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (DCLineSegment_class_attributes_enum attrEnum: DCLineSegment_class_attributes_enum.values()) {
+				BaseClass bc = DCLineSegment_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCLineSegment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(DCLineSegment) RDFID: " + rdfid;
 		}
 		return result;
 	}

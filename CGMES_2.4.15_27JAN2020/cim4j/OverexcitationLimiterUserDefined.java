@@ -18,15 +18,20 @@ Overexcitation limiter system function block whose dynamic behaviour is describe
 */
 public class OverexcitationLimiterUserDefined extends OverexcitationLimiterDynamics
 {
-	private BaseClass[] OverexcitationLimiterUserDefined_attributes;
+	private BaseClass[] OverexcitationLimiterUserDefined_class_attributes;
+	private BaseClass[] OverexcitationLimiterUserDefined_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum OverexcitationLimiterUserDefined_primitive_builder implements PrimitiveBuilder {
-			proprietary(){
+		proprietary(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -38,25 +43,43 @@ public class OverexcitationLimiterUserDefined extends OverexcitationLimiterDynam
 		};
 	}
 
+	private enum OverexcitationLimiterUserDefined_class_attributes_enum {
+		proprietary,
+		ProprietaryParameterDynamics,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public OverexcitationLimiterUserDefined() {
-		OverexcitationLimiterUserDefined_attributes = new BaseClass[OverexcitationLimiterUserDefined_primitive_builder.values().length];
+		OverexcitationLimiterUserDefined_primitive_attributes = new BaseClass[OverexcitationLimiterUserDefined_primitive_builder.values().length];
+		OverexcitationLimiterUserDefined_class_attributes = new BaseClass[OverexcitationLimiterUserDefined_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(OverexcitationLimiterUserDefined_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(OverexcitationLimiterUserDefined_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			OverexcitationLimiterUserDefined_attributes[attrEnum.ordinal()] = value;
+			OverexcitationLimiterUserDefined_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(OverexcitationLimiterUserDefined_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//OverexcitationLimiterUserDefined_ATTR_ENUM attrEnum = OverexcitationLimiterUserDefined_ATTR_BC_ENUM.valueOf(attrName);
+			OverexcitationLimiterUserDefined_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			OverexcitationLimiterUserDefined_class_attributes_enum attrEnum = OverexcitationLimiterUserDefined_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated OverexcitationLimiterUserDefined, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -65,10 +88,11 @@ public class OverexcitationLimiterUserDefined extends OverexcitationLimiterDynam
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			OverexcitationLimiterUserDefined_primitive_builder attrEnum = OverexcitationLimiterUserDefined_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated OverexcitationLimiterUserDefined, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,13 +100,26 @@ public class OverexcitationLimiterUserDefined extends OverexcitationLimiterDynam
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (OverexcitationLimiterUserDefined_primitive_builder attrEnum: OverexcitationLimiterUserDefined_primitive_builder.values()) {
-			BaseClass bc = OverexcitationLimiterUserDefined_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (OverexcitationLimiterUserDefined_primitive_builder attrEnum: OverexcitationLimiterUserDefined_primitive_builder.values()) {
+				BaseClass bc = OverexcitationLimiterUserDefined_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    OverexcitationLimiterUserDefined." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (OverexcitationLimiterUserDefined_class_attributes_enum attrEnum: OverexcitationLimiterUserDefined_class_attributes_enum.values()) {
+				BaseClass bc = OverexcitationLimiterUserDefined_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    OverexcitationLimiterUserDefined." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(OverexcitationLimiterUserDefined) RDFID: " + rdfid;
 		}
 		return result;
 	}

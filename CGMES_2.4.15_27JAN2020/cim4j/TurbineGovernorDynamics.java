@@ -19,13 +19,18 @@ Turbine-governor function block whose behavior is described by reference to a st
 */
 public class TurbineGovernorDynamics extends DynamicsFunctionBlock
 {
-	private BaseClass[] TurbineGovernorDynamics_attributes;
+	private BaseClass[] TurbineGovernorDynamics_class_attributes;
+	private BaseClass[] TurbineGovernorDynamics_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum TurbineGovernorDynamics_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -34,26 +39,45 @@ public class TurbineGovernorDynamics extends DynamicsFunctionBlock
 		};
 	}
 
+	private enum TurbineGovernorDynamics_class_attributes_enum {
+		SynchronousMachineDynamics,
+		AsynchronousMachineDynamics,
+		TurbineLoadControllerDynamics,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public TurbineGovernorDynamics() {
-		TurbineGovernorDynamics_attributes = new BaseClass[TurbineGovernorDynamics_primitive_builder.values().length];
+		TurbineGovernorDynamics_primitive_attributes = new BaseClass[TurbineGovernorDynamics_primitive_builder.values().length];
+		TurbineGovernorDynamics_class_attributes = new BaseClass[TurbineGovernorDynamics_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(TurbineGovernorDynamics_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(TurbineGovernorDynamics_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			TurbineGovernorDynamics_attributes[attrEnum.ordinal()] = value;
+			TurbineGovernorDynamics_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(TurbineGovernorDynamics_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//TurbineGovernorDynamics_ATTR_ENUM attrEnum = TurbineGovernorDynamics_ATTR_BC_ENUM.valueOf(attrName);
+			TurbineGovernorDynamics_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			TurbineGovernorDynamics_class_attributes_enum attrEnum = TurbineGovernorDynamics_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated TurbineGovernorDynamics, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -62,10 +86,11 @@ public class TurbineGovernorDynamics extends DynamicsFunctionBlock
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			TurbineGovernorDynamics_primitive_builder attrEnum = TurbineGovernorDynamics_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated TurbineGovernorDynamics, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -73,13 +98,26 @@ public class TurbineGovernorDynamics extends DynamicsFunctionBlock
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (TurbineGovernorDynamics_primitive_builder attrEnum: TurbineGovernorDynamics_primitive_builder.values()) {
-			BaseClass bc = TurbineGovernorDynamics_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (TurbineGovernorDynamics_primitive_builder attrEnum: TurbineGovernorDynamics_primitive_builder.values()) {
+				BaseClass bc = TurbineGovernorDynamics_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    TurbineGovernorDynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (TurbineGovernorDynamics_class_attributes_enum attrEnum: TurbineGovernorDynamics_class_attributes_enum.values()) {
+				BaseClass bc = TurbineGovernorDynamics_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    TurbineGovernorDynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(TurbineGovernorDynamics) RDFID: " + rdfid;
 		}
 		return result;
 	}

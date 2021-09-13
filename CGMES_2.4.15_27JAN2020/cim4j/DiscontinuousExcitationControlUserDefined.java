@@ -18,15 +18,20 @@ Discontinuous excitation control function block whose dynamic behaviour is descr
 */
 public class DiscontinuousExcitationControlUserDefined extends DiscontinuousExcitationControlDynamics
 {
-	private BaseClass[] DiscontinuousExcitationControlUserDefined_attributes;
+	private BaseClass[] DiscontinuousExcitationControlUserDefined_class_attributes;
+	private BaseClass[] DiscontinuousExcitationControlUserDefined_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum DiscontinuousExcitationControlUserDefined_primitive_builder implements PrimitiveBuilder {
-			proprietary(){
+		proprietary(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -38,25 +43,43 @@ public class DiscontinuousExcitationControlUserDefined extends DiscontinuousExci
 		};
 	}
 
+	private enum DiscontinuousExcitationControlUserDefined_class_attributes_enum {
+		proprietary,
+		ProprietaryParameterDynamics,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public DiscontinuousExcitationControlUserDefined() {
-		DiscontinuousExcitationControlUserDefined_attributes = new BaseClass[DiscontinuousExcitationControlUserDefined_primitive_builder.values().length];
+		DiscontinuousExcitationControlUserDefined_primitive_attributes = new BaseClass[DiscontinuousExcitationControlUserDefined_primitive_builder.values().length];
+		DiscontinuousExcitationControlUserDefined_class_attributes = new BaseClass[DiscontinuousExcitationControlUserDefined_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(DiscontinuousExcitationControlUserDefined_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(DiscontinuousExcitationControlUserDefined_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			DiscontinuousExcitationControlUserDefined_attributes[attrEnum.ordinal()] = value;
+			DiscontinuousExcitationControlUserDefined_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(DiscontinuousExcitationControlUserDefined_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//DiscontinuousExcitationControlUserDefined_ATTR_ENUM attrEnum = DiscontinuousExcitationControlUserDefined_ATTR_BC_ENUM.valueOf(attrName);
+			DiscontinuousExcitationControlUserDefined_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			DiscontinuousExcitationControlUserDefined_class_attributes_enum attrEnum = DiscontinuousExcitationControlUserDefined_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated DiscontinuousExcitationControlUserDefined, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -65,10 +88,11 @@ public class DiscontinuousExcitationControlUserDefined extends DiscontinuousExci
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			DiscontinuousExcitationControlUserDefined_primitive_builder attrEnum = DiscontinuousExcitationControlUserDefined_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated DiscontinuousExcitationControlUserDefined, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,13 +100,26 @@ public class DiscontinuousExcitationControlUserDefined extends DiscontinuousExci
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (DiscontinuousExcitationControlUserDefined_primitive_builder attrEnum: DiscontinuousExcitationControlUserDefined_primitive_builder.values()) {
-			BaseClass bc = DiscontinuousExcitationControlUserDefined_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (DiscontinuousExcitationControlUserDefined_primitive_builder attrEnum: DiscontinuousExcitationControlUserDefined_primitive_builder.values()) {
+				BaseClass bc = DiscontinuousExcitationControlUserDefined_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DiscontinuousExcitationControlUserDefined." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (DiscontinuousExcitationControlUserDefined_class_attributes_enum attrEnum: DiscontinuousExcitationControlUserDefined_class_attributes_enum.values()) {
+				BaseClass bc = DiscontinuousExcitationControlUserDefined_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DiscontinuousExcitationControlUserDefined." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(DiscontinuousExcitationControlUserDefined) RDFID: " + rdfid;
 		}
 		return result;
 	}

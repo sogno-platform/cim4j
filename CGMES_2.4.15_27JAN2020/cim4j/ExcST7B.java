@@ -20,90 +20,95 @@ Modified IEEE ST7B static excitation system without stator current limiter (SCL)
 */
 public class ExcST7B extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcST7B_attributes;
+	private BaseClass[] ExcST7B_class_attributes;
+	private BaseClass[] ExcST7B_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcST7B_primitive_builder implements PrimitiveBuilder {
-			kh(){
+		kh(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kia(){
+		kia(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kl(){
+		kl(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kpa(){
+		kpa(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			oelin(){
+		oelin(){
 			public BaseClass construct (java.lang.String value) {
 				return new ExcST7BOELselectorKind(value);
 			}
 		},
-			tb(){
+		tb(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tc(){
+		tc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tf(){
+		tf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tg(){
+		tg(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tia(){
+		tia(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ts(){
+		ts(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			uelin(){
+		uelin(){
 			public BaseClass construct (java.lang.String value) {
 				return new ExcST7BUELselectorKind(value);
 			}
 		},
-			vmax(){
+		vmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vmin(){
+		vmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -113,6 +118,26 @@ public class ExcST7B extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcST7B_class_attributes_enum {
+		kh,
+		kia,
+		kl,
+		kpa,
+		oelin,
+		tb,
+		tc,
+		tf,
+		tg,
+		tia,
+		ts,
+		uelin,
+		vmax,
+		vmin,
+		vrmax,
+		vrmin,
+			LAST_ENUM;
 	}
 
 		
@@ -133,21 +158,33 @@ public class ExcST7B extends ExcitationSystemDynamics
 		
 	
 	public ExcST7B() {
-		ExcST7B_attributes = new BaseClass[ExcST7B_primitive_builder.values().length];
+		ExcST7B_primitive_attributes = new BaseClass[ExcST7B_primitive_builder.values().length];
+		ExcST7B_class_attributes = new BaseClass[ExcST7B_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcST7B_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcST7B_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcST7B_attributes[attrEnum.ordinal()] = value;
+			ExcST7B_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcST7B_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcST7B_ATTR_ENUM attrEnum = ExcST7B_ATTR_BC_ENUM.valueOf(attrName);
+			ExcST7B_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcST7B_class_attributes_enum attrEnum = ExcST7B_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcST7B, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -156,10 +193,11 @@ public class ExcST7B extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcST7B_primitive_builder attrEnum = ExcST7B_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcST7B, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -167,13 +205,26 @@ public class ExcST7B extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcST7B_primitive_builder attrEnum: ExcST7B_primitive_builder.values()) {
-			BaseClass bc = ExcST7B_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcST7B_primitive_builder attrEnum: ExcST7B_primitive_builder.values()) {
+				BaseClass bc = ExcST7B_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcST7B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcST7B_class_attributes_enum attrEnum: ExcST7B_class_attributes_enum.values()) {
+				BaseClass bc = ExcST7B_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcST7B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcST7B) RDFID: " + rdfid;
 		}
 		return result;
 	}

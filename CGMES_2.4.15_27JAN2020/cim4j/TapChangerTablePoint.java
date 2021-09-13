@@ -19,40 +19,45 @@ import cim4j.Integer;
 */
 public class TapChangerTablePoint extends BaseClass
 {
-	private BaseClass[] TapChangerTablePoint_attributes;
+	private BaseClass[] TapChangerTablePoint_class_attributes;
+	private BaseClass[] TapChangerTablePoint_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum TapChangerTablePoint_primitive_builder implements PrimitiveBuilder {
-			b(){
+		b(){
 			public BaseClass construct (java.lang.String value) {
 				return new PerCent(value);
 			}
 		},
-			g(){
+		g(){
 			public BaseClass construct (java.lang.String value) {
 				return new PerCent(value);
 			}
 		},
-			r(){
+		r(){
 			public BaseClass construct (java.lang.String value) {
 				return new PerCent(value);
 			}
 		},
-			ratio(){
+		ratio(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			step(){
+		step(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			x(){
+		x(){
 			public BaseClass construct (java.lang.String value) {
 				return new PerCent(value);
 			}
@@ -64,6 +69,16 @@ public class TapChangerTablePoint extends BaseClass
 		};
 	}
 
+	private enum TapChangerTablePoint_class_attributes_enum {
+		b,
+		g,
+		r,
+		ratio,
+		step,
+		x,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -72,21 +87,33 @@ public class TapChangerTablePoint extends BaseClass
 		
 	
 	public TapChangerTablePoint() {
-		TapChangerTablePoint_attributes = new BaseClass[TapChangerTablePoint_primitive_builder.values().length];
+		TapChangerTablePoint_primitive_attributes = new BaseClass[TapChangerTablePoint_primitive_builder.values().length];
+		TapChangerTablePoint_class_attributes = new BaseClass[TapChangerTablePoint_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(TapChangerTablePoint_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(TapChangerTablePoint_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			TapChangerTablePoint_attributes[attrEnum.ordinal()] = value;
+			TapChangerTablePoint_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(TapChangerTablePoint_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//TapChangerTablePoint_ATTR_ENUM attrEnum = TapChangerTablePoint_ATTR_BC_ENUM.valueOf(attrName);
+			TapChangerTablePoint_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			TapChangerTablePoint_class_attributes_enum attrEnum = TapChangerTablePoint_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated TapChangerTablePoint, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -95,10 +122,11 @@ public class TapChangerTablePoint extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			TapChangerTablePoint_primitive_builder attrEnum = TapChangerTablePoint_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated TapChangerTablePoint, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -106,13 +134,26 @@ public class TapChangerTablePoint extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (TapChangerTablePoint_primitive_builder attrEnum: TapChangerTablePoint_primitive_builder.values()) {
-			BaseClass bc = TapChangerTablePoint_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (TapChangerTablePoint_primitive_builder attrEnum: TapChangerTablePoint_primitive_builder.values()) {
+				BaseClass bc = TapChangerTablePoint_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    TapChangerTablePoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (TapChangerTablePoint_class_attributes_enum attrEnum: TapChangerTablePoint_class_attributes_enum.values()) {
+				BaseClass bc = TapChangerTablePoint_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    TapChangerTablePoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(TapChangerTablePoint) RDFID: " + rdfid;
 		}
 		return result;
 	}

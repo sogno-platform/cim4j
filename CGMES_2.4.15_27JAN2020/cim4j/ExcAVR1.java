@@ -19,70 +19,75 @@ Italian excitation system corresponding to IEEE (1968) Type 1 Model. It represen
 */
 public class ExcAVR1 extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcAVR1_attributes;
+	private BaseClass[] ExcAVR1_class_attributes;
+	private BaseClass[] ExcAVR1_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcAVR1_primitive_builder implements PrimitiveBuilder {
-			ka(){
+		ka(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			vrmn(){
+		vrmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmx(){
+		vrmx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ta(){
+		ta(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tb(){
+		tb(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			e1(){
+		e1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			se1(){
+		se1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			e2(){
+		e2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			se2(){
+		se2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kf(){
+		kf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			tf(){
+		tf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
@@ -92,6 +97,22 @@ public class ExcAVR1 extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcAVR1_class_attributes_enum {
+		ka,
+		vrmn,
+		vrmx,
+		ta,
+		tb,
+		te,
+		e1,
+		se1,
+		e2,
+		se2,
+		kf,
+		tf,
+			LAST_ENUM;
 	}
 
 		
@@ -108,21 +129,33 @@ public class ExcAVR1 extends ExcitationSystemDynamics
 		
 	
 	public ExcAVR1() {
-		ExcAVR1_attributes = new BaseClass[ExcAVR1_primitive_builder.values().length];
+		ExcAVR1_primitive_attributes = new BaseClass[ExcAVR1_primitive_builder.values().length];
+		ExcAVR1_class_attributes = new BaseClass[ExcAVR1_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcAVR1_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcAVR1_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcAVR1_attributes[attrEnum.ordinal()] = value;
+			ExcAVR1_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcAVR1_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcAVR1_ATTR_ENUM attrEnum = ExcAVR1_ATTR_BC_ENUM.valueOf(attrName);
+			ExcAVR1_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcAVR1_class_attributes_enum attrEnum = ExcAVR1_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcAVR1, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -131,10 +164,11 @@ public class ExcAVR1 extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcAVR1_primitive_builder attrEnum = ExcAVR1_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcAVR1, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -142,13 +176,26 @@ public class ExcAVR1 extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcAVR1_primitive_builder attrEnum: ExcAVR1_primitive_builder.values()) {
-			BaseClass bc = ExcAVR1_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcAVR1_primitive_builder attrEnum: ExcAVR1_primitive_builder.values()) {
+				BaseClass bc = ExcAVR1_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcAVR1." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcAVR1_class_attributes_enum attrEnum: ExcAVR1_class_attributes_enum.values()) {
+				BaseClass bc = ExcAVR1_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcAVR1." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcAVR1) RDFID: " + rdfid;
 		}
 		return result;
 	}

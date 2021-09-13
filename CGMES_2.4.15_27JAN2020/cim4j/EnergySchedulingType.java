@@ -17,13 +17,18 @@ Used to define the type of generation for scheduling purposes.
 */
 public class EnergySchedulingType extends IdentifiedObject
 {
-	private BaseClass[] EnergySchedulingType_attributes;
+	private BaseClass[] EnergySchedulingType_class_attributes;
+	private BaseClass[] EnergySchedulingType_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum EnergySchedulingType_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class EnergySchedulingType extends IdentifiedObject
 		};
 	}
 
+	private enum EnergySchedulingType_class_attributes_enum {
+		EnergySource,
+			LAST_ENUM;
+	}
+
 		
 	
 	public EnergySchedulingType() {
-		EnergySchedulingType_attributes = new BaseClass[EnergySchedulingType_primitive_builder.values().length];
+		EnergySchedulingType_primitive_attributes = new BaseClass[EnergySchedulingType_primitive_builder.values().length];
+		EnergySchedulingType_class_attributes = new BaseClass[EnergySchedulingType_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(EnergySchedulingType_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(EnergySchedulingType_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			EnergySchedulingType_attributes[attrEnum.ordinal()] = value;
+			EnergySchedulingType_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(EnergySchedulingType_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//EnergySchedulingType_ATTR_ENUM attrEnum = EnergySchedulingType_ATTR_BC_ENUM.valueOf(attrName);
+			EnergySchedulingType_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			EnergySchedulingType_class_attributes_enum attrEnum = EnergySchedulingType_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated EnergySchedulingType, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class EnergySchedulingType extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			EnergySchedulingType_primitive_builder attrEnum = EnergySchedulingType_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated EnergySchedulingType, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class EnergySchedulingType extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (EnergySchedulingType_primitive_builder attrEnum: EnergySchedulingType_primitive_builder.values()) {
-			BaseClass bc = EnergySchedulingType_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (EnergySchedulingType_primitive_builder attrEnum: EnergySchedulingType_primitive_builder.values()) {
+				BaseClass bc = EnergySchedulingType_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EnergySchedulingType." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (EnergySchedulingType_class_attributes_enum attrEnum: EnergySchedulingType_class_attributes_enum.values()) {
+				BaseClass bc = EnergySchedulingType_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EnergySchedulingType." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(EnergySchedulingType) RDFID: " + rdfid;
 		}
 		return result;
 	}

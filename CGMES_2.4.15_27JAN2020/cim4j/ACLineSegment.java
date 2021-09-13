@@ -21,55 +21,60 @@ A wire or combination of wires, with consistent electrical characteristics, buil
 */
 public class ACLineSegment extends Conductor
 {
-	private BaseClass[] ACLineSegment_attributes;
+	private BaseClass[] ACLineSegment_class_attributes;
+	private BaseClass[] ACLineSegment_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ACLineSegment_primitive_builder implements PrimitiveBuilder {
-			bch(){
+		bch(){
 			public BaseClass construct (java.lang.String value) {
 				return new Susceptance(value);
 			}
 		},
-			gch(){
+		gch(){
 			public BaseClass construct (java.lang.String value) {
 				return new Conductance(value);
 			}
 		},
-			r(){
+		r(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			x(){
+		x(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			b0ch(){
+		b0ch(){
 			public BaseClass construct (java.lang.String value) {
 				return new Susceptance(value);
 			}
 		},
-			g0ch(){
+		g0ch(){
 			public BaseClass construct (java.lang.String value) {
 				return new Conductance(value);
 			}
 		},
-			r0(){
+		r0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			shortCircuitEndTemperature(){
+		shortCircuitEndTemperature(){
 			public BaseClass construct (java.lang.String value) {
 				return new Temperature(value);
 			}
 		},
-			x0(){
+		x0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
@@ -79,6 +84,19 @@ public class ACLineSegment extends Conductor
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ACLineSegment_class_attributes_enum {
+		bch,
+		gch,
+		r,
+		x,
+		b0ch,
+		g0ch,
+		r0,
+		shortCircuitEndTemperature,
+		x0,
+			LAST_ENUM;
 	}
 
 		
@@ -92,21 +110,33 @@ public class ACLineSegment extends Conductor
 		
 	
 	public ACLineSegment() {
-		ACLineSegment_attributes = new BaseClass[ACLineSegment_primitive_builder.values().length];
+		ACLineSegment_primitive_attributes = new BaseClass[ACLineSegment_primitive_builder.values().length];
+		ACLineSegment_class_attributes = new BaseClass[ACLineSegment_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ACLineSegment_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ACLineSegment_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ACLineSegment_attributes[attrEnum.ordinal()] = value;
+			ACLineSegment_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ACLineSegment_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ACLineSegment_ATTR_ENUM attrEnum = ACLineSegment_ATTR_BC_ENUM.valueOf(attrName);
+			ACLineSegment_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ACLineSegment_class_attributes_enum attrEnum = ACLineSegment_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ACLineSegment, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -115,10 +145,11 @@ public class ACLineSegment extends Conductor
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ACLineSegment_primitive_builder attrEnum = ACLineSegment_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ACLineSegment, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -126,13 +157,26 @@ public class ACLineSegment extends Conductor
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ACLineSegment_primitive_builder attrEnum: ACLineSegment_primitive_builder.values()) {
-			BaseClass bc = ACLineSegment_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ACLineSegment_primitive_builder attrEnum: ACLineSegment_primitive_builder.values()) {
+				BaseClass bc = ACLineSegment_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ACLineSegment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ACLineSegment_class_attributes_enum attrEnum: ACLineSegment_class_attributes_enum.values()) {
+				BaseClass bc = ACLineSegment_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ACLineSegment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ACLineSegment) RDFID: " + rdfid;
 		}
 		return result;
 	}

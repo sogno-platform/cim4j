@@ -18,35 +18,40 @@ The parameters used for models expressed in time constant reactance form include
 */
 public class AsynchronousMachineTimeConstantReactance extends AsynchronousMachineDynamics
 {
-	private BaseClass[] AsynchronousMachineTimeConstantReactance_attributes;
+	private BaseClass[] AsynchronousMachineTimeConstantReactance_class_attributes;
+	private BaseClass[] AsynchronousMachineTimeConstantReactance_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum AsynchronousMachineTimeConstantReactance_primitive_builder implements PrimitiveBuilder {
-			xs(){
+		xs(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xp(){
+		xp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xpp(){
+		xpp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tpo(){
+		tpo(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tppo(){
+		tppo(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
@@ -58,6 +63,15 @@ public class AsynchronousMachineTimeConstantReactance extends AsynchronousMachin
 		};
 	}
 
+	private enum AsynchronousMachineTimeConstantReactance_class_attributes_enum {
+		xs,
+		xp,
+		xpp,
+		tpo,
+		tppo,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -65,21 +79,33 @@ public class AsynchronousMachineTimeConstantReactance extends AsynchronousMachin
 		
 	
 	public AsynchronousMachineTimeConstantReactance() {
-		AsynchronousMachineTimeConstantReactance_attributes = new BaseClass[AsynchronousMachineTimeConstantReactance_primitive_builder.values().length];
+		AsynchronousMachineTimeConstantReactance_primitive_attributes = new BaseClass[AsynchronousMachineTimeConstantReactance_primitive_builder.values().length];
+		AsynchronousMachineTimeConstantReactance_class_attributes = new BaseClass[AsynchronousMachineTimeConstantReactance_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(AsynchronousMachineTimeConstantReactance_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(AsynchronousMachineTimeConstantReactance_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			AsynchronousMachineTimeConstantReactance_attributes[attrEnum.ordinal()] = value;
+			AsynchronousMachineTimeConstantReactance_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(AsynchronousMachineTimeConstantReactance_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//AsynchronousMachineTimeConstantReactance_ATTR_ENUM attrEnum = AsynchronousMachineTimeConstantReactance_ATTR_BC_ENUM.valueOf(attrName);
+			AsynchronousMachineTimeConstantReactance_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			AsynchronousMachineTimeConstantReactance_class_attributes_enum attrEnum = AsynchronousMachineTimeConstantReactance_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated AsynchronousMachineTimeConstantReactance, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -88,10 +114,11 @@ public class AsynchronousMachineTimeConstantReactance extends AsynchronousMachin
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			AsynchronousMachineTimeConstantReactance_primitive_builder attrEnum = AsynchronousMachineTimeConstantReactance_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated AsynchronousMachineTimeConstantReactance, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -99,13 +126,26 @@ public class AsynchronousMachineTimeConstantReactance extends AsynchronousMachin
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (AsynchronousMachineTimeConstantReactance_primitive_builder attrEnum: AsynchronousMachineTimeConstantReactance_primitive_builder.values()) {
-			BaseClass bc = AsynchronousMachineTimeConstantReactance_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (AsynchronousMachineTimeConstantReactance_primitive_builder attrEnum: AsynchronousMachineTimeConstantReactance_primitive_builder.values()) {
+				BaseClass bc = AsynchronousMachineTimeConstantReactance_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    AsynchronousMachineTimeConstantReactance." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (AsynchronousMachineTimeConstantReactance_class_attributes_enum attrEnum: AsynchronousMachineTimeConstantReactance_class_attributes_enum.values()) {
+				BaseClass bc = AsynchronousMachineTimeConstantReactance_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    AsynchronousMachineTimeConstantReactance." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(AsynchronousMachineTimeConstantReactance) RDFID: " + rdfid;
 		}
 		return result;
 	}

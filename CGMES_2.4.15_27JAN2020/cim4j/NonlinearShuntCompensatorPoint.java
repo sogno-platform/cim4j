@@ -20,35 +20,40 @@ A non linear shunt compensator bank or section admittance value.
 */
 public class NonlinearShuntCompensatorPoint extends BaseClass
 {
-	private BaseClass[] NonlinearShuntCompensatorPoint_attributes;
+	private BaseClass[] NonlinearShuntCompensatorPoint_class_attributes;
+	private BaseClass[] NonlinearShuntCompensatorPoint_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum NonlinearShuntCompensatorPoint_primitive_builder implements PrimitiveBuilder {
-			b(){
+		b(){
 			public BaseClass construct (java.lang.String value) {
 				return new Susceptance(value);
 			}
 		},
-			g(){
+		g(){
 			public BaseClass construct (java.lang.String value) {
 				return new Conductance(value);
 			}
 		},
-			sectionNumber(){
+		sectionNumber(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			b0(){
+		b0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Susceptance(value);
 			}
 		},
-			g0(){
+		g0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Conductance(value);
 			}
@@ -60,6 +65,16 @@ public class NonlinearShuntCompensatorPoint extends BaseClass
 		};
 	}
 
+	private enum NonlinearShuntCompensatorPoint_class_attributes_enum {
+		NonlinearShuntCompensator,
+		b,
+		g,
+		sectionNumber,
+		b0,
+		g0,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -68,21 +83,33 @@ public class NonlinearShuntCompensatorPoint extends BaseClass
 		
 	
 	public NonlinearShuntCompensatorPoint() {
-		NonlinearShuntCompensatorPoint_attributes = new BaseClass[NonlinearShuntCompensatorPoint_primitive_builder.values().length];
+		NonlinearShuntCompensatorPoint_primitive_attributes = new BaseClass[NonlinearShuntCompensatorPoint_primitive_builder.values().length];
+		NonlinearShuntCompensatorPoint_class_attributes = new BaseClass[NonlinearShuntCompensatorPoint_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(NonlinearShuntCompensatorPoint_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(NonlinearShuntCompensatorPoint_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			NonlinearShuntCompensatorPoint_attributes[attrEnum.ordinal()] = value;
+			NonlinearShuntCompensatorPoint_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(NonlinearShuntCompensatorPoint_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//NonlinearShuntCompensatorPoint_ATTR_ENUM attrEnum = NonlinearShuntCompensatorPoint_ATTR_BC_ENUM.valueOf(attrName);
+			NonlinearShuntCompensatorPoint_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			NonlinearShuntCompensatorPoint_class_attributes_enum attrEnum = NonlinearShuntCompensatorPoint_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated NonlinearShuntCompensatorPoint, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -91,10 +118,11 @@ public class NonlinearShuntCompensatorPoint extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			NonlinearShuntCompensatorPoint_primitive_builder attrEnum = NonlinearShuntCompensatorPoint_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated NonlinearShuntCompensatorPoint, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -102,13 +130,26 @@ public class NonlinearShuntCompensatorPoint extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (NonlinearShuntCompensatorPoint_primitive_builder attrEnum: NonlinearShuntCompensatorPoint_primitive_builder.values()) {
-			BaseClass bc = NonlinearShuntCompensatorPoint_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (NonlinearShuntCompensatorPoint_primitive_builder attrEnum: NonlinearShuntCompensatorPoint_primitive_builder.values()) {
+				BaseClass bc = NonlinearShuntCompensatorPoint_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    NonlinearShuntCompensatorPoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (NonlinearShuntCompensatorPoint_class_attributes_enum attrEnum: NonlinearShuntCompensatorPoint_class_attributes_enum.values()) {
+				BaseClass bc = NonlinearShuntCompensatorPoint_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    NonlinearShuntCompensatorPoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(NonlinearShuntCompensatorPoint) RDFID: " + rdfid;
 		}
 		return result;
 	}

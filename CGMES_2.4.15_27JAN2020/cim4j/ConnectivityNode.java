@@ -20,45 +20,50 @@ Connectivity nodes are points where terminals of AC conducting equipment are con
 */
 public class ConnectivityNode extends IdentifiedObject
 {
-	private BaseClass[] ConnectivityNode_attributes;
+	private BaseClass[] ConnectivityNode_class_attributes;
+	private BaseClass[] ConnectivityNode_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ConnectivityNode_primitive_builder implements PrimitiveBuilder {
-			boundaryPoint(){
+		boundaryPoint(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			fromEndIsoCode(){
+		fromEndIsoCode(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			fromEndName(){
+		fromEndName(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			fromEndNameTso(){
+		fromEndNameTso(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			toEndIsoCode(){
+		toEndIsoCode(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			toEndName(){
+		toEndName(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			toEndNameTso(){
+		toEndNameTso(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
@@ -68,6 +73,20 @@ public class ConnectivityNode extends IdentifiedObject
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ConnectivityNode_class_attributes_enum {
+		Terminals,
+		ConnectivityNodeContainer,
+		TopologicalNode,
+		boundaryPoint,
+		fromEndIsoCode,
+		fromEndName,
+		fromEndNameTso,
+		toEndIsoCode,
+		toEndName,
+		toEndNameTso,
+			LAST_ENUM;
 	}
 
 		
@@ -82,21 +101,33 @@ public class ConnectivityNode extends IdentifiedObject
 		
 	
 	public ConnectivityNode() {
-		ConnectivityNode_attributes = new BaseClass[ConnectivityNode_primitive_builder.values().length];
+		ConnectivityNode_primitive_attributes = new BaseClass[ConnectivityNode_primitive_builder.values().length];
+		ConnectivityNode_class_attributes = new BaseClass[ConnectivityNode_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ConnectivityNode_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ConnectivityNode_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ConnectivityNode_attributes[attrEnum.ordinal()] = value;
+			ConnectivityNode_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ConnectivityNode_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ConnectivityNode_ATTR_ENUM attrEnum = ConnectivityNode_ATTR_BC_ENUM.valueOf(attrName);
+			ConnectivityNode_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ConnectivityNode_class_attributes_enum attrEnum = ConnectivityNode_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ConnectivityNode, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -105,10 +136,11 @@ public class ConnectivityNode extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ConnectivityNode_primitive_builder attrEnum = ConnectivityNode_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ConnectivityNode, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -116,13 +148,26 @@ public class ConnectivityNode extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ConnectivityNode_primitive_builder attrEnum: ConnectivityNode_primitive_builder.values()) {
-			BaseClass bc = ConnectivityNode_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ConnectivityNode_primitive_builder attrEnum: ConnectivityNode_primitive_builder.values()) {
+				BaseClass bc = ConnectivityNode_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ConnectivityNode." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ConnectivityNode_class_attributes_enum attrEnum: ConnectivityNode_class_attributes_enum.values()) {
+				BaseClass bc = ConnectivityNode_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ConnectivityNode." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ConnectivityNode) RDFID: " + rdfid;
 		}
 		return result;
 	}

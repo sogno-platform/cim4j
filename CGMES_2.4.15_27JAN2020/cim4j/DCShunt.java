@@ -19,25 +19,30 @@ A shunt device within the DC system, typically used for filtering.  Needed for t
 */
 public class DCShunt extends DCConductingEquipment
 {
-	private BaseClass[] DCShunt_attributes;
+	private BaseClass[] DCShunt_class_attributes;
+	private BaseClass[] DCShunt_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum DCShunt_primitive_builder implements PrimitiveBuilder {
-			capacitance(){
+		capacitance(){
 			public BaseClass construct (java.lang.String value) {
 				return new Capacitance(value);
 			}
 		},
-			resistance(){
+		resistance(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			ratedUdc(){
+		ratedUdc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
@@ -49,26 +54,45 @@ public class DCShunt extends DCConductingEquipment
 		};
 	}
 
+	private enum DCShunt_class_attributes_enum {
+		capacitance,
+		resistance,
+		ratedUdc,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public DCShunt() {
-		DCShunt_attributes = new BaseClass[DCShunt_primitive_builder.values().length];
+		DCShunt_primitive_attributes = new BaseClass[DCShunt_primitive_builder.values().length];
+		DCShunt_class_attributes = new BaseClass[DCShunt_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(DCShunt_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(DCShunt_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			DCShunt_attributes[attrEnum.ordinal()] = value;
+			DCShunt_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(DCShunt_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//DCShunt_ATTR_ENUM attrEnum = DCShunt_ATTR_BC_ENUM.valueOf(attrName);
+			DCShunt_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			DCShunt_class_attributes_enum attrEnum = DCShunt_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated DCShunt, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -77,10 +101,11 @@ public class DCShunt extends DCConductingEquipment
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			DCShunt_primitive_builder attrEnum = DCShunt_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated DCShunt, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -88,13 +113,26 @@ public class DCShunt extends DCConductingEquipment
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (DCShunt_primitive_builder attrEnum: DCShunt_primitive_builder.values()) {
-			BaseClass bc = DCShunt_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (DCShunt_primitive_builder attrEnum: DCShunt_primitive_builder.values()) {
+				BaseClass bc = DCShunt_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCShunt." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (DCShunt_class_attributes_enum attrEnum: DCShunt_class_attributes_enum.values()) {
+				BaseClass bc = DCShunt_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCShunt." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(DCShunt) RDFID: " + rdfid;
 		}
 		return result;
 	}

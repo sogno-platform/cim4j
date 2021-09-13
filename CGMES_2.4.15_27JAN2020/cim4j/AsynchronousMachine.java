@@ -25,55 +25,60 @@ A rotating machine whose shaft rotates asynchronously with the electrical field.
 */
 public class AsynchronousMachine extends RotatingMachine
 {
-	private BaseClass[] AsynchronousMachine_attributes;
+	private BaseClass[] AsynchronousMachine_class_attributes;
+	private BaseClass[] AsynchronousMachine_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum AsynchronousMachine_primitive_builder implements PrimitiveBuilder {
-			nominalFrequency(){
+		nominalFrequency(){
 			public BaseClass construct (java.lang.String value) {
 				return new Frequency(value);
 			}
 		},
-			converterFedDrive(){
+		converterFedDrive(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			efficiency(){
+		efficiency(){
 			public BaseClass construct (java.lang.String value) {
 				return new PerCent(value);
 			}
 		},
-			iaIrRatio(){
+		iaIrRatio(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			polePairNumber(){
+		polePairNumber(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			ratedMechanicalPower(){
+		ratedMechanicalPower(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			reversible(){
+		reversible(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			rxLockedRotorRatio(){
+		rxLockedRotorRatio(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			asynchronousMachineType(){
+		asynchronousMachineType(){
 			public BaseClass construct (java.lang.String value) {
 				return new AsynchronousMachineKind(value);
 			}
@@ -83,6 +88,21 @@ public class AsynchronousMachine extends RotatingMachine
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum AsynchronousMachine_class_attributes_enum {
+		nominalFrequency,
+		nominalSpeed,
+		converterFedDrive,
+		efficiency,
+		iaIrRatio,
+		polePairNumber,
+		ratedMechanicalPower,
+		reversible,
+		rxLockedRotorRatio,
+		asynchronousMachineType,
+		AsynchronousMachineDynamics,
+			LAST_ENUM;
 	}
 
 		
@@ -98,21 +118,33 @@ public class AsynchronousMachine extends RotatingMachine
 		
 	
 	public AsynchronousMachine() {
-		AsynchronousMachine_attributes = new BaseClass[AsynchronousMachine_primitive_builder.values().length];
+		AsynchronousMachine_primitive_attributes = new BaseClass[AsynchronousMachine_primitive_builder.values().length];
+		AsynchronousMachine_class_attributes = new BaseClass[AsynchronousMachine_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(AsynchronousMachine_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(AsynchronousMachine_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			AsynchronousMachine_attributes[attrEnum.ordinal()] = value;
+			AsynchronousMachine_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(AsynchronousMachine_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//AsynchronousMachine_ATTR_ENUM attrEnum = AsynchronousMachine_ATTR_BC_ENUM.valueOf(attrName);
+			AsynchronousMachine_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			AsynchronousMachine_class_attributes_enum attrEnum = AsynchronousMachine_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated AsynchronousMachine, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -121,10 +153,11 @@ public class AsynchronousMachine extends RotatingMachine
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			AsynchronousMachine_primitive_builder attrEnum = AsynchronousMachine_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated AsynchronousMachine, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -132,13 +165,26 @@ public class AsynchronousMachine extends RotatingMachine
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (AsynchronousMachine_primitive_builder attrEnum: AsynchronousMachine_primitive_builder.values()) {
-			BaseClass bc = AsynchronousMachine_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (AsynchronousMachine_primitive_builder attrEnum: AsynchronousMachine_primitive_builder.values()) {
+				BaseClass bc = AsynchronousMachine_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    AsynchronousMachine." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (AsynchronousMachine_class_attributes_enum attrEnum: AsynchronousMachine_class_attributes_enum.values()) {
+				BaseClass bc = AsynchronousMachine_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    AsynchronousMachine." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(AsynchronousMachine) RDFID: " + rdfid;
 		}
 		return result;
 	}

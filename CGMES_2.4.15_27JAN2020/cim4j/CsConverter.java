@@ -20,80 +20,85 @@ DC side of the current source converter (CSC).
 */
 public class CsConverter extends ACDCConverter
 {
-	private BaseClass[] CsConverter_attributes;
+	private BaseClass[] CsConverter_class_attributes;
+	private BaseClass[] CsConverter_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum CsConverter_primitive_builder implements PrimitiveBuilder {
-			maxAlpha(){
+		maxAlpha(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
 		},
-			maxGamma(){
+		maxGamma(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
 		},
-			maxIdc(){
+		maxIdc(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
 		},
-			minAlpha(){
+		minAlpha(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
 		},
-			minGamma(){
+		minGamma(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
 		},
-			minIdc(){
+		minIdc(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
 		},
-			ratedIdc(){
+		ratedIdc(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
 		},
-			operatingMode(){
+		operatingMode(){
 			public BaseClass construct (java.lang.String value) {
 				return new CsOperatingModeKind(value);
 			}
 		},
-			pPccControl(){
+		pPccControl(){
 			public BaseClass construct (java.lang.String value) {
 				return new CsPpccControlKind(value);
 			}
 		},
-			targetAlpha(){
+		targetAlpha(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
 		},
-			targetGamma(){
+		targetGamma(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
 		},
-			targetIdc(){
+		targetIdc(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
 		},
-			alpha(){
+		alpha(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
 		},
-			gamma(){
+		gamma(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
@@ -103,6 +108,24 @@ public class CsConverter extends ACDCConverter
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum CsConverter_class_attributes_enum {
+		maxAlpha,
+		maxGamma,
+		maxIdc,
+		minAlpha,
+		minGamma,
+		minIdc,
+		ratedIdc,
+		operatingMode,
+		pPccControl,
+		targetAlpha,
+		targetGamma,
+		targetIdc,
+		alpha,
+		gamma,
+			LAST_ENUM;
 	}
 
 		
@@ -121,21 +144,33 @@ public class CsConverter extends ACDCConverter
 		
 	
 	public CsConverter() {
-		CsConverter_attributes = new BaseClass[CsConverter_primitive_builder.values().length];
+		CsConverter_primitive_attributes = new BaseClass[CsConverter_primitive_builder.values().length];
+		CsConverter_class_attributes = new BaseClass[CsConverter_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(CsConverter_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(CsConverter_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			CsConverter_attributes[attrEnum.ordinal()] = value;
+			CsConverter_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(CsConverter_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//CsConverter_ATTR_ENUM attrEnum = CsConverter_ATTR_BC_ENUM.valueOf(attrName);
+			CsConverter_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			CsConverter_class_attributes_enum attrEnum = CsConverter_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated CsConverter, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -144,10 +179,11 @@ public class CsConverter extends ACDCConverter
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			CsConverter_primitive_builder attrEnum = CsConverter_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated CsConverter, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -155,13 +191,26 @@ public class CsConverter extends ACDCConverter
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (CsConverter_primitive_builder attrEnum: CsConverter_primitive_builder.values()) {
-			BaseClass bc = CsConverter_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (CsConverter_primitive_builder attrEnum: CsConverter_primitive_builder.values()) {
+				BaseClass bc = CsConverter_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    CsConverter." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (CsConverter_class_attributes_enum attrEnum: CsConverter_class_attributes_enum.values()) {
+				BaseClass bc = CsConverter_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    CsConverter." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(CsConverter) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -19,95 +19,100 @@ General static load model representing the sensitivity of the real and reactive 
 */
 public class LoadStatic extends IdentifiedObject
 {
-	private BaseClass[] LoadStatic_attributes;
+	private BaseClass[] LoadStatic_class_attributes;
+	private BaseClass[] LoadStatic_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum LoadStatic_primitive_builder implements PrimitiveBuilder {
-			staticLoadModelType(){
+		staticLoadModelType(){
 			public BaseClass construct (java.lang.String value) {
 				return new StaticLoadModelKind(value);
 			}
 		},
-			kp1(){
+		kp1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kp2(){
+		kp2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kp3(){
+		kp3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kp4(){
+		kp4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ep1(){
+		ep1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ep2(){
+		ep2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ep3(){
+		ep3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kpf(){
+		kpf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kq1(){
+		kq1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kq2(){
+		kq2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kq3(){
+		kq3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kq4(){
+		kq4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			eq1(){
+		eq1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			eq2(){
+		eq2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			eq3(){
+		eq3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kqf(){
+		kqf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -117,6 +122,28 @@ public class LoadStatic extends IdentifiedObject
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum LoadStatic_class_attributes_enum {
+		LoadAggregate,
+		staticLoadModelType,
+		kp1,
+		kp2,
+		kp3,
+		kp4,
+		ep1,
+		ep2,
+		ep3,
+		kpf,
+		kq1,
+		kq2,
+		kq3,
+		kq4,
+		eq1,
+		eq2,
+		eq3,
+		kqf,
+			LAST_ENUM;
 	}
 
 		
@@ -139,21 +166,33 @@ public class LoadStatic extends IdentifiedObject
 		
 	
 	public LoadStatic() {
-		LoadStatic_attributes = new BaseClass[LoadStatic_primitive_builder.values().length];
+		LoadStatic_primitive_attributes = new BaseClass[LoadStatic_primitive_builder.values().length];
+		LoadStatic_class_attributes = new BaseClass[LoadStatic_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(LoadStatic_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(LoadStatic_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			LoadStatic_attributes[attrEnum.ordinal()] = value;
+			LoadStatic_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(LoadStatic_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//LoadStatic_ATTR_ENUM attrEnum = LoadStatic_ATTR_BC_ENUM.valueOf(attrName);
+			LoadStatic_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			LoadStatic_class_attributes_enum attrEnum = LoadStatic_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated LoadStatic, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -162,10 +201,11 @@ public class LoadStatic extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			LoadStatic_primitive_builder attrEnum = LoadStatic_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated LoadStatic, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -173,13 +213,26 @@ public class LoadStatic extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (LoadStatic_primitive_builder attrEnum: LoadStatic_primitive_builder.values()) {
-			BaseClass bc = LoadStatic_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (LoadStatic_primitive_builder attrEnum: LoadStatic_primitive_builder.values()) {
+				BaseClass bc = LoadStatic_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadStatic." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (LoadStatic_class_attributes_enum attrEnum: LoadStatic_class_attributes_enum.values()) {
+				BaseClass bc = LoadStatic_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadStatic." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(LoadStatic) RDFID: " + rdfid;
 		}
 		return result;
 	}

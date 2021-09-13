@@ -27,65 +27,70 @@ DC side of the voltage source converter (VSC).
 */
 public class VsConverter extends ACDCConverter
 {
-	private BaseClass[] VsConverter_attributes;
+	private BaseClass[] VsConverter_class_attributes;
+	private BaseClass[] VsConverter_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum VsConverter_primitive_builder implements PrimitiveBuilder {
-			maxModulationIndex(){
+		maxModulationIndex(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			maxValveCurrent(){
+		maxValveCurrent(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
 		},
-			droop(){
+		droop(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			droopCompensation(){
+		droopCompensation(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			pPccControl(){
+		pPccControl(){
 			public BaseClass construct (java.lang.String value) {
 				return new VsPpccControlKind(value);
 			}
 		},
-			qPccControl(){
+		qPccControl(){
 			public BaseClass construct (java.lang.String value) {
 				return new VsQpccControlKind(value);
 			}
 		},
-			qShare(){
+		qShare(){
 			public BaseClass construct (java.lang.String value) {
 				return new PerCent(value);
 			}
 		},
-			targetQpcc(){
+		targetQpcc(){
 			public BaseClass construct (java.lang.String value) {
 				return new ReactivePower(value);
 			}
 		},
-			targetUpcc(){
+		targetUpcc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			delta(){
+		delta(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
 		},
-			uf(){
+		uf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
@@ -95,6 +100,22 @@ public class VsConverter extends ACDCConverter
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum VsConverter_class_attributes_enum {
+		CapabilityCurve,
+		maxModulationIndex,
+		maxValveCurrent,
+		droop,
+		droopCompensation,
+		pPccControl,
+		qPccControl,
+		qShare,
+		targetQpcc,
+		targetUpcc,
+		delta,
+		uf,
+			LAST_ENUM;
 	}
 
 		
@@ -111,21 +132,33 @@ public class VsConverter extends ACDCConverter
 		
 	
 	public VsConverter() {
-		VsConverter_attributes = new BaseClass[VsConverter_primitive_builder.values().length];
+		VsConverter_primitive_attributes = new BaseClass[VsConverter_primitive_builder.values().length];
+		VsConverter_class_attributes = new BaseClass[VsConverter_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(VsConverter_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(VsConverter_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			VsConverter_attributes[attrEnum.ordinal()] = value;
+			VsConverter_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(VsConverter_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//VsConverter_ATTR_ENUM attrEnum = VsConverter_ATTR_BC_ENUM.valueOf(attrName);
+			VsConverter_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			VsConverter_class_attributes_enum attrEnum = VsConverter_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated VsConverter, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -134,10 +167,11 @@ public class VsConverter extends ACDCConverter
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			VsConverter_primitive_builder attrEnum = VsConverter_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated VsConverter, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -145,13 +179,26 @@ public class VsConverter extends ACDCConverter
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (VsConverter_primitive_builder attrEnum: VsConverter_primitive_builder.values()) {
-			BaseClass bc = VsConverter_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (VsConverter_primitive_builder attrEnum: VsConverter_primitive_builder.values()) {
+				BaseClass bc = VsConverter_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VsConverter." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (VsConverter_class_attributes_enum attrEnum: VsConverter_class_attributes_enum.values()) {
+				BaseClass bc = VsConverter_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VsConverter." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(VsConverter) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -24,65 +24,70 @@ A generic equivalent for an energy supplier on a transmission or distribution vo
 */
 public class EnergySource extends ConductingEquipment
 {
-	private BaseClass[] EnergySource_attributes;
+	private BaseClass[] EnergySource_class_attributes;
+	private BaseClass[] EnergySource_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum EnergySource_primitive_builder implements PrimitiveBuilder {
-			nominalVoltage(){
+		nominalVoltage(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			r(){
+		r(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			r0(){
+		r0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			rn(){
+		rn(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			voltageAngle(){
+		voltageAngle(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleRadians(value);
 			}
 		},
-			voltageMagnitude(){
+		voltageMagnitude(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			x(){
+		x(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			x0(){
+		x0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			xn(){
+		xn(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			activePower(){
+		activePower(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			reactivePower(){
+		reactivePower(){
 			public BaseClass construct (java.lang.String value) {
 				return new ReactivePower(value);
 			}
@@ -92,6 +97,23 @@ public class EnergySource extends ConductingEquipment
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum EnergySource_class_attributes_enum {
+		EnergySchedulingType,
+		nominalVoltage,
+		r,
+		r0,
+		rn,
+		voltageAngle,
+		voltageMagnitude,
+		x,
+		x0,
+		xn,
+		activePower,
+		reactivePower,
+		WindTurbineType3or4Dynamics,
+			LAST_ENUM;
 	}
 
 		
@@ -109,21 +131,33 @@ public class EnergySource extends ConductingEquipment
 		
 	
 	public EnergySource() {
-		EnergySource_attributes = new BaseClass[EnergySource_primitive_builder.values().length];
+		EnergySource_primitive_attributes = new BaseClass[EnergySource_primitive_builder.values().length];
+		EnergySource_class_attributes = new BaseClass[EnergySource_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(EnergySource_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(EnergySource_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			EnergySource_attributes[attrEnum.ordinal()] = value;
+			EnergySource_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(EnergySource_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//EnergySource_ATTR_ENUM attrEnum = EnergySource_ATTR_BC_ENUM.valueOf(attrName);
+			EnergySource_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			EnergySource_class_attributes_enum attrEnum = EnergySource_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated EnergySource, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -132,10 +166,11 @@ public class EnergySource extends ConductingEquipment
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			EnergySource_primitive_builder attrEnum = EnergySource_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated EnergySource, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -143,13 +178,26 @@ public class EnergySource extends ConductingEquipment
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (EnergySource_primitive_builder attrEnum: EnergySource_primitive_builder.values()) {
-			BaseClass bc = EnergySource_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (EnergySource_primitive_builder attrEnum: EnergySource_primitive_builder.values()) {
+				BaseClass bc = EnergySource_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EnergySource." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (EnergySource_class_attributes_enum attrEnum: EnergySource_class_attributes_enum.values()) {
+				BaseClass bc = EnergySource_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EnergySource." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(EnergySource) RDFID: " + rdfid;
 		}
 		return result;
 	}

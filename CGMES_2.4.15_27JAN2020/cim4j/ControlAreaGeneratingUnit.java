@@ -18,13 +18,18 @@ A control area generating unit. This class is needed so that alternate control a
 */
 public class ControlAreaGeneratingUnit extends IdentifiedObject
 {
-	private BaseClass[] ControlAreaGeneratingUnit_attributes;
+	private BaseClass[] ControlAreaGeneratingUnit_class_attributes;
+	private BaseClass[] ControlAreaGeneratingUnit_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ControlAreaGeneratingUnit_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -33,25 +38,43 @@ public class ControlAreaGeneratingUnit extends IdentifiedObject
 		};
 	}
 
+	private enum ControlAreaGeneratingUnit_class_attributes_enum {
+		GeneratingUnit,
+		ControlArea,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public ControlAreaGeneratingUnit() {
-		ControlAreaGeneratingUnit_attributes = new BaseClass[ControlAreaGeneratingUnit_primitive_builder.values().length];
+		ControlAreaGeneratingUnit_primitive_attributes = new BaseClass[ControlAreaGeneratingUnit_primitive_builder.values().length];
+		ControlAreaGeneratingUnit_class_attributes = new BaseClass[ControlAreaGeneratingUnit_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ControlAreaGeneratingUnit_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ControlAreaGeneratingUnit_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ControlAreaGeneratingUnit_attributes[attrEnum.ordinal()] = value;
+			ControlAreaGeneratingUnit_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ControlAreaGeneratingUnit_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ControlAreaGeneratingUnit_ATTR_ENUM attrEnum = ControlAreaGeneratingUnit_ATTR_BC_ENUM.valueOf(attrName);
+			ControlAreaGeneratingUnit_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ControlAreaGeneratingUnit_class_attributes_enum attrEnum = ControlAreaGeneratingUnit_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ControlAreaGeneratingUnit, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -60,10 +83,11 @@ public class ControlAreaGeneratingUnit extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ControlAreaGeneratingUnit_primitive_builder attrEnum = ControlAreaGeneratingUnit_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ControlAreaGeneratingUnit, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -71,13 +95,26 @@ public class ControlAreaGeneratingUnit extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ControlAreaGeneratingUnit_primitive_builder attrEnum: ControlAreaGeneratingUnit_primitive_builder.values()) {
-			BaseClass bc = ControlAreaGeneratingUnit_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ControlAreaGeneratingUnit_primitive_builder attrEnum: ControlAreaGeneratingUnit_primitive_builder.values()) {
+				BaseClass bc = ControlAreaGeneratingUnit_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ControlAreaGeneratingUnit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ControlAreaGeneratingUnit_class_attributes_enum attrEnum: ControlAreaGeneratingUnit_class_attributes_enum.values()) {
+				BaseClass bc = ControlAreaGeneratingUnit_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ControlAreaGeneratingUnit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ControlAreaGeneratingUnit) RDFID: " + rdfid;
 		}
 		return result;
 	}

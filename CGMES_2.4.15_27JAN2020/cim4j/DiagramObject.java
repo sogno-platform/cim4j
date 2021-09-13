@@ -25,35 +25,40 @@ An object that defines one or more points in a given space. This object can be a
 */
 public class DiagramObject extends IdentifiedObject
 {
-	private BaseClass[] DiagramObject_attributes;
+	private BaseClass[] DiagramObject_class_attributes;
+	private BaseClass[] DiagramObject_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum DiagramObject_primitive_builder implements PrimitiveBuilder {
-			drawingOrder(){
+		drawingOrder(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			isPolygon(){
+		isPolygon(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			offsetX(){
+		offsetX(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			offsetY(){
+		offsetY(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			rotation(){
+		rotation(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
@@ -63,6 +68,20 @@ public class DiagramObject extends IdentifiedObject
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum DiagramObject_class_attributes_enum {
+		Diagram,
+		drawingOrder,
+		isPolygon,
+		offsetX,
+		offsetY,
+		rotation,
+		IdentifiedObject,
+		DiagramObjectPoints,
+		VisibilityLayers,
+		DiagramObjectStyle,
+			LAST_ENUM;
 	}
 
 		
@@ -77,21 +96,33 @@ public class DiagramObject extends IdentifiedObject
 		
 	
 	public DiagramObject() {
-		DiagramObject_attributes = new BaseClass[DiagramObject_primitive_builder.values().length];
+		DiagramObject_primitive_attributes = new BaseClass[DiagramObject_primitive_builder.values().length];
+		DiagramObject_class_attributes = new BaseClass[DiagramObject_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(DiagramObject_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(DiagramObject_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			DiagramObject_attributes[attrEnum.ordinal()] = value;
+			DiagramObject_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(DiagramObject_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//DiagramObject_ATTR_ENUM attrEnum = DiagramObject_ATTR_BC_ENUM.valueOf(attrName);
+			DiagramObject_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			DiagramObject_class_attributes_enum attrEnum = DiagramObject_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated DiagramObject, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -100,10 +131,11 @@ public class DiagramObject extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			DiagramObject_primitive_builder attrEnum = DiagramObject_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated DiagramObject, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -111,13 +143,26 @@ public class DiagramObject extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (DiagramObject_primitive_builder attrEnum: DiagramObject_primitive_builder.values()) {
-			BaseClass bc = DiagramObject_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (DiagramObject_primitive_builder attrEnum: DiagramObject_primitive_builder.values()) {
+				BaseClass bc = DiagramObject_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DiagramObject." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (DiagramObject_class_attributes_enum attrEnum: DiagramObject_class_attributes_enum.values()) {
+				BaseClass bc = DiagramObject_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DiagramObject." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(DiagramObject) RDFID: " + rdfid;
 		}
 		return result;
 	}

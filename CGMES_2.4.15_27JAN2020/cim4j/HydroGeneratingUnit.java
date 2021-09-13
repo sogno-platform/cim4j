@@ -18,15 +18,20 @@ A generating unit whose prime mover is a hydraulic turbine (e.g., Francis, Pelto
 */
 public class HydroGeneratingUnit extends GeneratingUnit
 {
-	private BaseClass[] HydroGeneratingUnit_attributes;
+	private BaseClass[] HydroGeneratingUnit_class_attributes;
+	private BaseClass[] HydroGeneratingUnit_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum HydroGeneratingUnit_primitive_builder implements PrimitiveBuilder {
-			energyConversionCapability(){
+		energyConversionCapability(){
 			public BaseClass construct (java.lang.String value) {
 				return new HydroEnergyConversionKind(value);
 			}
@@ -38,25 +43,43 @@ public class HydroGeneratingUnit extends GeneratingUnit
 		};
 	}
 
+	private enum HydroGeneratingUnit_class_attributes_enum {
+		energyConversionCapability,
+		HydroPowerPlant,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public HydroGeneratingUnit() {
-		HydroGeneratingUnit_attributes = new BaseClass[HydroGeneratingUnit_primitive_builder.values().length];
+		HydroGeneratingUnit_primitive_attributes = new BaseClass[HydroGeneratingUnit_primitive_builder.values().length];
+		HydroGeneratingUnit_class_attributes = new BaseClass[HydroGeneratingUnit_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(HydroGeneratingUnit_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(HydroGeneratingUnit_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			HydroGeneratingUnit_attributes[attrEnum.ordinal()] = value;
+			HydroGeneratingUnit_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(HydroGeneratingUnit_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//HydroGeneratingUnit_ATTR_ENUM attrEnum = HydroGeneratingUnit_ATTR_BC_ENUM.valueOf(attrName);
+			HydroGeneratingUnit_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			HydroGeneratingUnit_class_attributes_enum attrEnum = HydroGeneratingUnit_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated HydroGeneratingUnit, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -65,10 +88,11 @@ public class HydroGeneratingUnit extends GeneratingUnit
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			HydroGeneratingUnit_primitive_builder attrEnum = HydroGeneratingUnit_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated HydroGeneratingUnit, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,13 +100,26 @@ public class HydroGeneratingUnit extends GeneratingUnit
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (HydroGeneratingUnit_primitive_builder attrEnum: HydroGeneratingUnit_primitive_builder.values()) {
-			BaseClass bc = HydroGeneratingUnit_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (HydroGeneratingUnit_primitive_builder attrEnum: HydroGeneratingUnit_primitive_builder.values()) {
+				BaseClass bc = HydroGeneratingUnit_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    HydroGeneratingUnit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (HydroGeneratingUnit_class_attributes_enum attrEnum: HydroGeneratingUnit_class_attributes_enum.values()) {
+				BaseClass bc = HydroGeneratingUnit_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    HydroGeneratingUnit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(HydroGeneratingUnit) RDFID: " + rdfid;
 		}
 		return result;
 	}

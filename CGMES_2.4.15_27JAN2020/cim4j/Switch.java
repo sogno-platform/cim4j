@@ -19,30 +19,35 @@ A generic device designed to close, or open, or both, one or more electric circu
 */
 public class Switch extends ConductingEquipment
 {
-	private BaseClass[] Switch_attributes;
+	private BaseClass[] Switch_class_attributes;
+	private BaseClass[] Switch_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum Switch_primitive_builder implements PrimitiveBuilder {
-			normalOpen(){
+		normalOpen(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			ratedCurrent(){
+		ratedCurrent(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
 		},
-			retained(){
+		retained(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			open(){
+		open(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -54,6 +59,15 @@ public class Switch extends ConductingEquipment
 		};
 	}
 
+	private enum Switch_class_attributes_enum {
+		normalOpen,
+		ratedCurrent,
+		retained,
+		SwitchSchedules,
+		open,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -61,21 +75,33 @@ public class Switch extends ConductingEquipment
 		
 	
 	public Switch() {
-		Switch_attributes = new BaseClass[Switch_primitive_builder.values().length];
+		Switch_primitive_attributes = new BaseClass[Switch_primitive_builder.values().length];
+		Switch_class_attributes = new BaseClass[Switch_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(Switch_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(Switch_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			Switch_attributes[attrEnum.ordinal()] = value;
+			Switch_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(Switch_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//Switch_ATTR_ENUM attrEnum = Switch_ATTR_BC_ENUM.valueOf(attrName);
+			Switch_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			Switch_class_attributes_enum attrEnum = Switch_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated Switch, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -84,10 +110,11 @@ public class Switch extends ConductingEquipment
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			Switch_primitive_builder attrEnum = Switch_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated Switch, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -95,13 +122,26 @@ public class Switch extends ConductingEquipment
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (Switch_primitive_builder attrEnum: Switch_primitive_builder.values()) {
-			BaseClass bc = Switch_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (Switch_primitive_builder attrEnum: Switch_primitive_builder.values()) {
+				BaseClass bc = Switch_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Switch." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (Switch_class_attributes_enum attrEnum: Switch_class_attributes_enum.values()) {
+				BaseClass bc = Switch_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Switch." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(Switch) RDFID: " + rdfid;
 		}
 		return result;
 	}

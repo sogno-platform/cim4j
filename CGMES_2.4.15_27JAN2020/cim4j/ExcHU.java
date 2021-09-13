@@ -19,70 +19,75 @@ Hungarian Excitation System Model, with built-in voltage transducer.
 */
 public class ExcHU extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcHU_attributes;
+	private BaseClass[] ExcHU_class_attributes;
+	private BaseClass[] ExcHU_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcHU_primitive_builder implements PrimitiveBuilder {
-			tr(){
+		tr(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			imin(){
+		imin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			imax(){
+		imax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ae(){
+		ae(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			emin(){
+		emin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			emax(){
+		emax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ki(){
+		ki(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ai(){
+		ai(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ti(){
+		ti(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			atr(){
+		atr(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ke(){
+		ke(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -92,6 +97,22 @@ public class ExcHU extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcHU_class_attributes_enum {
+		tr,
+		te,
+		imin,
+		imax,
+		ae,
+		emin,
+		emax,
+		ki,
+		ai,
+		ti,
+		atr,
+		ke,
+			LAST_ENUM;
 	}
 
 		
@@ -108,21 +129,33 @@ public class ExcHU extends ExcitationSystemDynamics
 		
 	
 	public ExcHU() {
-		ExcHU_attributes = new BaseClass[ExcHU_primitive_builder.values().length];
+		ExcHU_primitive_attributes = new BaseClass[ExcHU_primitive_builder.values().length];
+		ExcHU_class_attributes = new BaseClass[ExcHU_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcHU_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcHU_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcHU_attributes[attrEnum.ordinal()] = value;
+			ExcHU_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcHU_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcHU_ATTR_ENUM attrEnum = ExcHU_ATTR_BC_ENUM.valueOf(attrName);
+			ExcHU_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcHU_class_attributes_enum attrEnum = ExcHU_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcHU, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -131,10 +164,11 @@ public class ExcHU extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcHU_primitive_builder attrEnum = ExcHU_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcHU, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -142,13 +176,26 @@ public class ExcHU extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcHU_primitive_builder attrEnum: ExcHU_primitive_builder.values()) {
-			BaseClass bc = ExcHU_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcHU_primitive_builder attrEnum: ExcHU_primitive_builder.values()) {
+				BaseClass bc = ExcHU_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcHU." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcHU_class_attributes_enum attrEnum: ExcHU_class_attributes_enum.values()) {
+				BaseClass bc = ExcHU_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcHU." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcHU) RDFID: " + rdfid;
 		}
 		return result;
 	}

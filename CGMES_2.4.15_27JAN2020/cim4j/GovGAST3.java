@@ -20,115 +20,120 @@ Generic turbogas with acceleration and temperature controller.
 */
 public class GovGAST3 extends TurbineGovernorDynamics
 {
-	private BaseClass[] GovGAST3_attributes;
+	private BaseClass[] GovGAST3_class_attributes;
+	private BaseClass[] GovGAST3_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GovGAST3_primitive_builder implements PrimitiveBuilder {
-			bp(){
+		bp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tg(){
+		tg(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			rcmx(){
+		rcmx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			rcmn(){
+		rcmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ky(){
+		ky(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ty(){
+		ty(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tac(){
+		tac(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kac(){
+		kac(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			tc(){
+		tc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			bca(){
+		bca(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kca(){
+		kca(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			dtc(){
+		dtc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Temperature(value);
 			}
 		},
-			ka(){
+		ka(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tsi(){
+		tsi(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ksi(){
+		ksi(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ttc(){
+		ttc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tfen(){
+		tfen(){
 			public BaseClass construct (java.lang.String value) {
 				return new Temperature(value);
 			}
 		},
-			td(){
+		td(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tt(){
+		tt(){
 			public BaseClass construct (java.lang.String value) {
 				return new Temperature(value);
 			}
 		},
-			mxef(){
+		mxef(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			mnef(){
+		mnef(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -138,6 +143,31 @@ public class GovGAST3 extends TurbineGovernorDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GovGAST3_class_attributes_enum {
+		bp,
+		tg,
+		rcmx,
+		rcmn,
+		ky,
+		ty,
+		tac,
+		kac,
+		tc,
+		bca,
+		kca,
+		dtc,
+		ka,
+		tsi,
+		ksi,
+		ttc,
+		tfen,
+		td,
+		tt,
+		mxef,
+		mnef,
+			LAST_ENUM;
 	}
 
 		
@@ -163,21 +193,33 @@ public class GovGAST3 extends TurbineGovernorDynamics
 		
 	
 	public GovGAST3() {
-		GovGAST3_attributes = new BaseClass[GovGAST3_primitive_builder.values().length];
+		GovGAST3_primitive_attributes = new BaseClass[GovGAST3_primitive_builder.values().length];
+		GovGAST3_class_attributes = new BaseClass[GovGAST3_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovGAST3_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GovGAST3_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GovGAST3_attributes[attrEnum.ordinal()] = value;
+			GovGAST3_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GovGAST3_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GovGAST3_ATTR_ENUM attrEnum = GovGAST3_ATTR_BC_ENUM.valueOf(attrName);
+			GovGAST3_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GovGAST3_class_attributes_enum attrEnum = GovGAST3_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GovGAST3, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -186,10 +228,11 @@ public class GovGAST3 extends TurbineGovernorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovGAST3_primitive_builder attrEnum = GovGAST3_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GovGAST3, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -197,13 +240,26 @@ public class GovGAST3 extends TurbineGovernorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GovGAST3_primitive_builder attrEnum: GovGAST3_primitive_builder.values()) {
-			BaseClass bc = GovGAST3_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GovGAST3_primitive_builder attrEnum: GovGAST3_primitive_builder.values()) {
+				BaseClass bc = GovGAST3_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovGAST3." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GovGAST3_class_attributes_enum attrEnum: GovGAST3_class_attributes_enum.values()) {
+				BaseClass bc = GovGAST3_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovGAST3." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GovGAST3) RDFID: " + rdfid;
 		}
 		return result;
 	}

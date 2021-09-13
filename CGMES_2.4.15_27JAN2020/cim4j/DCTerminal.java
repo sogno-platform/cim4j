@@ -17,13 +17,18 @@ An electrical connection point to generic DC conducting equipment.
 */
 public class DCTerminal extends DCBaseTerminal
 {
-	private BaseClass[] DCTerminal_attributes;
+	private BaseClass[] DCTerminal_class_attributes;
+	private BaseClass[] DCTerminal_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum DCTerminal_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class DCTerminal extends DCBaseTerminal
 		};
 	}
 
+	private enum DCTerminal_class_attributes_enum {
+		DCConductingEquipment,
+			LAST_ENUM;
+	}
+
 		
 	
 	public DCTerminal() {
-		DCTerminal_attributes = new BaseClass[DCTerminal_primitive_builder.values().length];
+		DCTerminal_primitive_attributes = new BaseClass[DCTerminal_primitive_builder.values().length];
+		DCTerminal_class_attributes = new BaseClass[DCTerminal_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(DCTerminal_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(DCTerminal_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			DCTerminal_attributes[attrEnum.ordinal()] = value;
+			DCTerminal_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(DCTerminal_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//DCTerminal_ATTR_ENUM attrEnum = DCTerminal_ATTR_BC_ENUM.valueOf(attrName);
+			DCTerminal_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			DCTerminal_class_attributes_enum attrEnum = DCTerminal_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated DCTerminal, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class DCTerminal extends DCBaseTerminal
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			DCTerminal_primitive_builder attrEnum = DCTerminal_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated DCTerminal, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class DCTerminal extends DCBaseTerminal
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (DCTerminal_primitive_builder attrEnum: DCTerminal_primitive_builder.values()) {
-			BaseClass bc = DCTerminal_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (DCTerminal_primitive_builder attrEnum: DCTerminal_primitive_builder.values()) {
+				BaseClass bc = DCTerminal_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCTerminal." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (DCTerminal_class_attributes_enum attrEnum: DCTerminal_class_attributes_enum.values()) {
+				BaseClass bc = DCTerminal_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCTerminal." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(DCTerminal) RDFID: " + rdfid;
 		}
 		return result;
 	}

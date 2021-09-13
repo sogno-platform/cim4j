@@ -18,13 +18,18 @@ Wind turbine IEC Type 4A.  Reference: IEC Standard 61400-27-1, section 6.5.5.3.
 */
 public class WindTurbineType4bIEC extends WindGenType4IEC
 {
-	private BaseClass[] WindTurbineType4bIEC_attributes;
+	private BaseClass[] WindTurbineType4bIEC_class_attributes;
+	private BaseClass[] WindTurbineType4bIEC_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum WindTurbineType4bIEC_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -33,25 +38,43 @@ public class WindTurbineType4bIEC extends WindGenType4IEC
 		};
 	}
 
+	private enum WindTurbineType4bIEC_class_attributes_enum {
+		WindContPType4bIEC,
+		WindMechIEC,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public WindTurbineType4bIEC() {
-		WindTurbineType4bIEC_attributes = new BaseClass[WindTurbineType4bIEC_primitive_builder.values().length];
+		WindTurbineType4bIEC_primitive_attributes = new BaseClass[WindTurbineType4bIEC_primitive_builder.values().length];
+		WindTurbineType4bIEC_class_attributes = new BaseClass[WindTurbineType4bIEC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(WindTurbineType4bIEC_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(WindTurbineType4bIEC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			WindTurbineType4bIEC_attributes[attrEnum.ordinal()] = value;
+			WindTurbineType4bIEC_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(WindTurbineType4bIEC_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//WindTurbineType4bIEC_ATTR_ENUM attrEnum = WindTurbineType4bIEC_ATTR_BC_ENUM.valueOf(attrName);
+			WindTurbineType4bIEC_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			WindTurbineType4bIEC_class_attributes_enum attrEnum = WindTurbineType4bIEC_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated WindTurbineType4bIEC, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -60,10 +83,11 @@ public class WindTurbineType4bIEC extends WindGenType4IEC
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			WindTurbineType4bIEC_primitive_builder attrEnum = WindTurbineType4bIEC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated WindTurbineType4bIEC, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -71,13 +95,26 @@ public class WindTurbineType4bIEC extends WindGenType4IEC
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (WindTurbineType4bIEC_primitive_builder attrEnum: WindTurbineType4bIEC_primitive_builder.values()) {
-			BaseClass bc = WindTurbineType4bIEC_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (WindTurbineType4bIEC_primitive_builder attrEnum: WindTurbineType4bIEC_primitive_builder.values()) {
+				BaseClass bc = WindTurbineType4bIEC_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindTurbineType4bIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (WindTurbineType4bIEC_class_attributes_enum attrEnum: WindTurbineType4bIEC_class_attributes_enum.values()) {
+				BaseClass bc = WindTurbineType4bIEC_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindTurbineType4bIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(WindTurbineType4bIEC) RDFID: " + rdfid;
 		}
 		return result;
 	}

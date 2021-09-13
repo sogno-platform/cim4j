@@ -19,15 +19,20 @@ AccumulatorValue represents an accumulated (counted) MeasurementValue.
 */
 public class AccumulatorValue extends MeasurementValue
 {
-	private BaseClass[] AccumulatorValue_attributes;
+	private BaseClass[] AccumulatorValue_class_attributes;
+	private BaseClass[] AccumulatorValue_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum AccumulatorValue_primitive_builder implements PrimitiveBuilder {
-			value(){
+		value(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
@@ -39,26 +44,45 @@ public class AccumulatorValue extends MeasurementValue
 		};
 	}
 
+	private enum AccumulatorValue_class_attributes_enum {
+		Accumulator,
+		AccumulatorReset,
+		value,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public AccumulatorValue() {
-		AccumulatorValue_attributes = new BaseClass[AccumulatorValue_primitive_builder.values().length];
+		AccumulatorValue_primitive_attributes = new BaseClass[AccumulatorValue_primitive_builder.values().length];
+		AccumulatorValue_class_attributes = new BaseClass[AccumulatorValue_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(AccumulatorValue_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(AccumulatorValue_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			AccumulatorValue_attributes[attrEnum.ordinal()] = value;
+			AccumulatorValue_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(AccumulatorValue_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//AccumulatorValue_ATTR_ENUM attrEnum = AccumulatorValue_ATTR_BC_ENUM.valueOf(attrName);
+			AccumulatorValue_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			AccumulatorValue_class_attributes_enum attrEnum = AccumulatorValue_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated AccumulatorValue, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -67,10 +91,11 @@ public class AccumulatorValue extends MeasurementValue
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			AccumulatorValue_primitive_builder attrEnum = AccumulatorValue_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated AccumulatorValue, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -78,13 +103,26 @@ public class AccumulatorValue extends MeasurementValue
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (AccumulatorValue_primitive_builder attrEnum: AccumulatorValue_primitive_builder.values()) {
-			BaseClass bc = AccumulatorValue_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (AccumulatorValue_primitive_builder attrEnum: AccumulatorValue_primitive_builder.values()) {
+				BaseClass bc = AccumulatorValue_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    AccumulatorValue." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (AccumulatorValue_class_attributes_enum attrEnum: AccumulatorValue_class_attributes_enum.values()) {
+				BaseClass bc = AccumulatorValue_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    AccumulatorValue." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(AccumulatorValue) RDFID: " + rdfid;
 		}
 		return result;
 	}

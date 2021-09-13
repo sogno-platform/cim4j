@@ -18,13 +18,18 @@ Parent class supporting relationships to wind turbines Type 1 and 2 and their co
 */
 public class WindTurbineType1or2Dynamics extends DynamicsFunctionBlock
 {
-	private BaseClass[] WindTurbineType1or2Dynamics_attributes;
+	private BaseClass[] WindTurbineType1or2Dynamics_class_attributes;
+	private BaseClass[] WindTurbineType1or2Dynamics_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum WindTurbineType1or2Dynamics_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -33,25 +38,43 @@ public class WindTurbineType1or2Dynamics extends DynamicsFunctionBlock
 		};
 	}
 
+	private enum WindTurbineType1or2Dynamics_class_attributes_enum {
+		RemoteInputSignal,
+		AsynchronousMachineDynamics,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public WindTurbineType1or2Dynamics() {
-		WindTurbineType1or2Dynamics_attributes = new BaseClass[WindTurbineType1or2Dynamics_primitive_builder.values().length];
+		WindTurbineType1or2Dynamics_primitive_attributes = new BaseClass[WindTurbineType1or2Dynamics_primitive_builder.values().length];
+		WindTurbineType1or2Dynamics_class_attributes = new BaseClass[WindTurbineType1or2Dynamics_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(WindTurbineType1or2Dynamics_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(WindTurbineType1or2Dynamics_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			WindTurbineType1or2Dynamics_attributes[attrEnum.ordinal()] = value;
+			WindTurbineType1or2Dynamics_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(WindTurbineType1or2Dynamics_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//WindTurbineType1or2Dynamics_ATTR_ENUM attrEnum = WindTurbineType1or2Dynamics_ATTR_BC_ENUM.valueOf(attrName);
+			WindTurbineType1or2Dynamics_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			WindTurbineType1or2Dynamics_class_attributes_enum attrEnum = WindTurbineType1or2Dynamics_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated WindTurbineType1or2Dynamics, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -60,10 +83,11 @@ public class WindTurbineType1or2Dynamics extends DynamicsFunctionBlock
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			WindTurbineType1or2Dynamics_primitive_builder attrEnum = WindTurbineType1or2Dynamics_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated WindTurbineType1or2Dynamics, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -71,13 +95,26 @@ public class WindTurbineType1or2Dynamics extends DynamicsFunctionBlock
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (WindTurbineType1or2Dynamics_primitive_builder attrEnum: WindTurbineType1or2Dynamics_primitive_builder.values()) {
-			BaseClass bc = WindTurbineType1or2Dynamics_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (WindTurbineType1or2Dynamics_primitive_builder attrEnum: WindTurbineType1or2Dynamics_primitive_builder.values()) {
+				BaseClass bc = WindTurbineType1or2Dynamics_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindTurbineType1or2Dynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (WindTurbineType1or2Dynamics_class_attributes_enum attrEnum: WindTurbineType1or2Dynamics_class_attributes_enum.values()) {
+				BaseClass bc = WindTurbineType1or2Dynamics_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindTurbineType1or2Dynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(WindTurbineType1or2Dynamics) RDFID: " + rdfid;
 		}
 		return result;
 	}

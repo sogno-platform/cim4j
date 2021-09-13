@@ -18,90 +18,95 @@ The class represents equivalent branches.
 */
 public class EquivalentBranch extends EquivalentEquipment
 {
-	private BaseClass[] EquivalentBranch_attributes;
+	private BaseClass[] EquivalentBranch_class_attributes;
+	private BaseClass[] EquivalentBranch_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum EquivalentBranch_primitive_builder implements PrimitiveBuilder {
-			r(){
+		r(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			r21(){
+		r21(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			x(){
+		x(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			x21(){
+		x21(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			negativeR12(){
+		negativeR12(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			negativeR21(){
+		negativeR21(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			negativeX12(){
+		negativeX12(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			negativeX21(){
+		negativeX21(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			positiveR12(){
+		positiveR12(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			positiveR21(){
+		positiveR21(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			positiveX12(){
+		positiveX12(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			positiveX21(){
+		positiveX21(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			zeroR12(){
+		zeroR12(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			zeroR21(){
+		zeroR21(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			zeroX12(){
+		zeroX12(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			zeroX21(){
+		zeroX21(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
@@ -111,6 +116,26 @@ public class EquivalentBranch extends EquivalentEquipment
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum EquivalentBranch_class_attributes_enum {
+		r,
+		r21,
+		x,
+		x21,
+		negativeR12,
+		negativeR21,
+		negativeX12,
+		negativeX21,
+		positiveR12,
+		positiveR21,
+		positiveX12,
+		positiveX21,
+		zeroR12,
+		zeroR21,
+		zeroX12,
+		zeroX21,
+			LAST_ENUM;
 	}
 
 		
@@ -131,21 +156,33 @@ public class EquivalentBranch extends EquivalentEquipment
 		
 	
 	public EquivalentBranch() {
-		EquivalentBranch_attributes = new BaseClass[EquivalentBranch_primitive_builder.values().length];
+		EquivalentBranch_primitive_attributes = new BaseClass[EquivalentBranch_primitive_builder.values().length];
+		EquivalentBranch_class_attributes = new BaseClass[EquivalentBranch_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(EquivalentBranch_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(EquivalentBranch_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			EquivalentBranch_attributes[attrEnum.ordinal()] = value;
+			EquivalentBranch_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(EquivalentBranch_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//EquivalentBranch_ATTR_ENUM attrEnum = EquivalentBranch_ATTR_BC_ENUM.valueOf(attrName);
+			EquivalentBranch_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			EquivalentBranch_class_attributes_enum attrEnum = EquivalentBranch_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated EquivalentBranch, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -154,10 +191,11 @@ public class EquivalentBranch extends EquivalentEquipment
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			EquivalentBranch_primitive_builder attrEnum = EquivalentBranch_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated EquivalentBranch, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -165,13 +203,26 @@ public class EquivalentBranch extends EquivalentEquipment
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (EquivalentBranch_primitive_builder attrEnum: EquivalentBranch_primitive_builder.values()) {
-			BaseClass bc = EquivalentBranch_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (EquivalentBranch_primitive_builder attrEnum: EquivalentBranch_primitive_builder.values()) {
+				BaseClass bc = EquivalentBranch_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EquivalentBranch." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (EquivalentBranch_class_attributes_enum attrEnum: EquivalentBranch_class_attributes_enum.values()) {
+				BaseClass bc = EquivalentBranch_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EquivalentBranch." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(EquivalentBranch) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -39,7 +39,7 @@ public class Length extends BaseClass
 	public boolean initialized = false;
 
 	public java.lang.String debugName = "Length";
-	
+
 	public java.lang.String debugString() {
 		return debugName;
 	}
@@ -60,8 +60,8 @@ public class Length extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
-		return Double.toString(value);
+	public java.lang.String toString(boolean b) {
+		return "Float: (" + Double.toString(value) + ")";
 	}
 };
 

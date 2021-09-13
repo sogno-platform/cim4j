@@ -19,95 +19,100 @@ Cross compound turbine governor model.
 */
 public class GovSteamCC extends TurbineGovernorDynamics
 {
-	private BaseClass[] GovSteamCC_attributes;
+	private BaseClass[] GovSteamCC_class_attributes;
+	private BaseClass[] GovSteamCC_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GovSteamCC_primitive_builder implements PrimitiveBuilder {
-			mwbase(){
+		mwbase(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			pmaxhp(){
+		pmaxhp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			rhp(){
+		rhp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			t1hp(){
+		t1hp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t3hp(){
+		t3hp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t4hp(){
+		t4hp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t5hp(){
+		t5hp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			fhp(){
+		fhp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			dhp(){
+		dhp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmaxlp(){
+		pmaxlp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			rlp(){
+		rlp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			t1lp(){
+		t1lp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t3lp(){
+		t3lp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t4lp(){
+		t4lp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t5lp(){
+		t5lp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			flp(){
+		flp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			dlp(){
+		dlp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -117,6 +122,27 @@ public class GovSteamCC extends TurbineGovernorDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GovSteamCC_class_attributes_enum {
+		mwbase,
+		pmaxhp,
+		rhp,
+		t1hp,
+		t3hp,
+		t4hp,
+		t5hp,
+		fhp,
+		dhp,
+		pmaxlp,
+		rlp,
+		t1lp,
+		t3lp,
+		t4lp,
+		t5lp,
+		flp,
+		dlp,
+			LAST_ENUM;
 	}
 
 		
@@ -138,21 +164,33 @@ public class GovSteamCC extends TurbineGovernorDynamics
 		
 	
 	public GovSteamCC() {
-		GovSteamCC_attributes = new BaseClass[GovSteamCC_primitive_builder.values().length];
+		GovSteamCC_primitive_attributes = new BaseClass[GovSteamCC_primitive_builder.values().length];
+		GovSteamCC_class_attributes = new BaseClass[GovSteamCC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovSteamCC_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GovSteamCC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GovSteamCC_attributes[attrEnum.ordinal()] = value;
+			GovSteamCC_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GovSteamCC_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GovSteamCC_ATTR_ENUM attrEnum = GovSteamCC_ATTR_BC_ENUM.valueOf(attrName);
+			GovSteamCC_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GovSteamCC_class_attributes_enum attrEnum = GovSteamCC_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GovSteamCC, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -161,10 +199,11 @@ public class GovSteamCC extends TurbineGovernorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovSteamCC_primitive_builder attrEnum = GovSteamCC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GovSteamCC, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -172,13 +211,26 @@ public class GovSteamCC extends TurbineGovernorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GovSteamCC_primitive_builder attrEnum: GovSteamCC_primitive_builder.values()) {
-			BaseClass bc = GovSteamCC_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GovSteamCC_primitive_builder attrEnum: GovSteamCC_primitive_builder.values()) {
+				BaseClass bc = GovSteamCC_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovSteamCC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GovSteamCC_class_attributes_enum attrEnum: GovSteamCC_class_attributes_enum.values()) {
+				BaseClass bc = GovSteamCC_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovSteamCC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GovSteamCC) RDFID: " + rdfid;
 		}
 		return result;
 	}

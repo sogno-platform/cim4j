@@ -18,20 +18,25 @@ The class represents IEEE Type DEC3A model. In some systems, the stabilizer outp
 */
 public class DiscExcContIEEEDEC3A extends DiscontinuousExcitationControlDynamics
 {
-	private BaseClass[] DiscExcContIEEEDEC3A_attributes;
+	private BaseClass[] DiscExcContIEEEDEC3A_class_attributes;
+	private BaseClass[] DiscExcContIEEEDEC3A_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum DiscExcContIEEEDEC3A_primitive_builder implements PrimitiveBuilder {
-			vtmin(){
+		vtmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tdr(){
+		tdr(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
@@ -43,25 +48,43 @@ public class DiscExcContIEEEDEC3A extends DiscontinuousExcitationControlDynamics
 		};
 	}
 
+	private enum DiscExcContIEEEDEC3A_class_attributes_enum {
+		vtmin,
+		tdr,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public DiscExcContIEEEDEC3A() {
-		DiscExcContIEEEDEC3A_attributes = new BaseClass[DiscExcContIEEEDEC3A_primitive_builder.values().length];
+		DiscExcContIEEEDEC3A_primitive_attributes = new BaseClass[DiscExcContIEEEDEC3A_primitive_builder.values().length];
+		DiscExcContIEEEDEC3A_class_attributes = new BaseClass[DiscExcContIEEEDEC3A_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(DiscExcContIEEEDEC3A_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(DiscExcContIEEEDEC3A_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			DiscExcContIEEEDEC3A_attributes[attrEnum.ordinal()] = value;
+			DiscExcContIEEEDEC3A_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(DiscExcContIEEEDEC3A_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//DiscExcContIEEEDEC3A_ATTR_ENUM attrEnum = DiscExcContIEEEDEC3A_ATTR_BC_ENUM.valueOf(attrName);
+			DiscExcContIEEEDEC3A_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			DiscExcContIEEEDEC3A_class_attributes_enum attrEnum = DiscExcContIEEEDEC3A_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated DiscExcContIEEEDEC3A, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -70,10 +93,11 @@ public class DiscExcContIEEEDEC3A extends DiscontinuousExcitationControlDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			DiscExcContIEEEDEC3A_primitive_builder attrEnum = DiscExcContIEEEDEC3A_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated DiscExcContIEEEDEC3A, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -81,13 +105,26 @@ public class DiscExcContIEEEDEC3A extends DiscontinuousExcitationControlDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (DiscExcContIEEEDEC3A_primitive_builder attrEnum: DiscExcContIEEEDEC3A_primitive_builder.values()) {
-			BaseClass bc = DiscExcContIEEEDEC3A_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (DiscExcContIEEEDEC3A_primitive_builder attrEnum: DiscExcContIEEEDEC3A_primitive_builder.values()) {
+				BaseClass bc = DiscExcContIEEEDEC3A_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DiscExcContIEEEDEC3A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (DiscExcContIEEEDEC3A_class_attributes_enum attrEnum: DiscExcContIEEEDEC3A_class_attributes_enum.values()) {
+				BaseClass bc = DiscExcContIEEEDEC3A_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DiscExcContIEEEDEC3A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(DiscExcContIEEEDEC3A) RDFID: " + rdfid;
 		}
 		return result;
 	}

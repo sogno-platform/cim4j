@@ -17,13 +17,18 @@ A class that represents an external meshed network that has been reduced to an e
 */
 public class EquivalentNetwork extends ConnectivityNodeContainer
 {
-	private BaseClass[] EquivalentNetwork_attributes;
+	private BaseClass[] EquivalentNetwork_class_attributes;
+	private BaseClass[] EquivalentNetwork_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum EquivalentNetwork_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class EquivalentNetwork extends ConnectivityNodeContainer
 		};
 	}
 
+	private enum EquivalentNetwork_class_attributes_enum {
+		EquivalentEquipments,
+			LAST_ENUM;
+	}
+
 		
 	
 	public EquivalentNetwork() {
-		EquivalentNetwork_attributes = new BaseClass[EquivalentNetwork_primitive_builder.values().length];
+		EquivalentNetwork_primitive_attributes = new BaseClass[EquivalentNetwork_primitive_builder.values().length];
+		EquivalentNetwork_class_attributes = new BaseClass[EquivalentNetwork_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(EquivalentNetwork_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(EquivalentNetwork_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			EquivalentNetwork_attributes[attrEnum.ordinal()] = value;
+			EquivalentNetwork_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(EquivalentNetwork_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//EquivalentNetwork_ATTR_ENUM attrEnum = EquivalentNetwork_ATTR_BC_ENUM.valueOf(attrName);
+			EquivalentNetwork_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			EquivalentNetwork_class_attributes_enum attrEnum = EquivalentNetwork_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated EquivalentNetwork, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class EquivalentNetwork extends ConnectivityNodeContainer
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			EquivalentNetwork_primitive_builder attrEnum = EquivalentNetwork_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated EquivalentNetwork, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class EquivalentNetwork extends ConnectivityNodeContainer
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (EquivalentNetwork_primitive_builder attrEnum: EquivalentNetwork_primitive_builder.values()) {
-			BaseClass bc = EquivalentNetwork_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (EquivalentNetwork_primitive_builder attrEnum: EquivalentNetwork_primitive_builder.values()) {
+				BaseClass bc = EquivalentNetwork_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EquivalentNetwork." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (EquivalentNetwork_class_attributes_enum attrEnum: EquivalentNetwork_class_attributes_enum.values()) {
+				BaseClass bc = EquivalentNetwork_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EquivalentNetwork." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(EquivalentNetwork) RDFID: " + rdfid;
 		}
 		return result;
 	}

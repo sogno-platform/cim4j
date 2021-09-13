@@ -18,15 +18,20 @@ State variable for the number of sections in service for a shunt compensator.
 */
 public class SvShuntCompensatorSections extends BaseClass
 {
-	private BaseClass[] SvShuntCompensatorSections_attributes;
+	private BaseClass[] SvShuntCompensatorSections_class_attributes;
+	private BaseClass[] SvShuntCompensatorSections_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum SvShuntCompensatorSections_primitive_builder implements PrimitiveBuilder {
-			sections(){
+		sections(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -38,25 +43,43 @@ public class SvShuntCompensatorSections extends BaseClass
 		};
 	}
 
+	private enum SvShuntCompensatorSections_class_attributes_enum {
+		sections,
+		ShuntCompensator,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public SvShuntCompensatorSections() {
-		SvShuntCompensatorSections_attributes = new BaseClass[SvShuntCompensatorSections_primitive_builder.values().length];
+		SvShuntCompensatorSections_primitive_attributes = new BaseClass[SvShuntCompensatorSections_primitive_builder.values().length];
+		SvShuntCompensatorSections_class_attributes = new BaseClass[SvShuntCompensatorSections_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(SvShuntCompensatorSections_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(SvShuntCompensatorSections_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			SvShuntCompensatorSections_attributes[attrEnum.ordinal()] = value;
+			SvShuntCompensatorSections_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(SvShuntCompensatorSections_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//SvShuntCompensatorSections_ATTR_ENUM attrEnum = SvShuntCompensatorSections_ATTR_BC_ENUM.valueOf(attrName);
+			SvShuntCompensatorSections_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			SvShuntCompensatorSections_class_attributes_enum attrEnum = SvShuntCompensatorSections_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated SvShuntCompensatorSections, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -65,10 +88,11 @@ public class SvShuntCompensatorSections extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			SvShuntCompensatorSections_primitive_builder attrEnum = SvShuntCompensatorSections_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated SvShuntCompensatorSections, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,13 +100,26 @@ public class SvShuntCompensatorSections extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (SvShuntCompensatorSections_primitive_builder attrEnum: SvShuntCompensatorSections_primitive_builder.values()) {
-			BaseClass bc = SvShuntCompensatorSections_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (SvShuntCompensatorSections_primitive_builder attrEnum: SvShuntCompensatorSections_primitive_builder.values()) {
+				BaseClass bc = SvShuntCompensatorSections_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SvShuntCompensatorSections." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (SvShuntCompensatorSections_class_attributes_enum attrEnum: SvShuntCompensatorSections_class_attributes_enum.values()) {
+				BaseClass bc = SvShuntCompensatorSections_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SvShuntCompensatorSections." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(SvShuntCompensatorSections) RDFID: " + rdfid;
 		}
 		return result;
 	}

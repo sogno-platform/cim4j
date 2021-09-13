@@ -16,13 +16,18 @@ A mechanical switching device capable of making, carrying, and breaking currents
 */
 public class Breaker extends ProtectedSwitch
 {
-	private BaseClass[] Breaker_attributes;
+	private BaseClass[] Breaker_class_attributes;
+	private BaseClass[] Breaker_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum Breaker_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -31,23 +36,39 @@ public class Breaker extends ProtectedSwitch
 		};
 	}
 
-	
-	public Breaker() {
-		Breaker_attributes = new BaseClass[Breaker_primitive_builder.values().length];
+	private enum Breaker_class_attributes_enum {
+			LAST_ENUM;
 	}
 
-	public void updateAttributeInArray(Breaker_primitive_builder attrEnum, BaseClass value) {
+	
+	public Breaker() {
+		Breaker_primitive_attributes = new BaseClass[Breaker_primitive_builder.values().length];
+		Breaker_class_attributes = new BaseClass[Breaker_class_attributes_enum.values().length];
+	}
+
+	public void updateAttributeInArray(Breaker_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			Breaker_attributes[attrEnum.ordinal()] = value;
+			Breaker_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(Breaker_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//Breaker_ATTR_ENUM attrEnum = Breaker_ATTR_BC_ENUM.valueOf(attrName);
+			Breaker_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			Breaker_class_attributes_enum attrEnum = Breaker_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated Breaker, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -56,10 +77,11 @@ public class Breaker extends ProtectedSwitch
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			Breaker_primitive_builder attrEnum = Breaker_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated Breaker, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -67,13 +89,26 @@ public class Breaker extends ProtectedSwitch
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (Breaker_primitive_builder attrEnum: Breaker_primitive_builder.values()) {
-			BaseClass bc = Breaker_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (Breaker_primitive_builder attrEnum: Breaker_primitive_builder.values()) {
+				BaseClass bc = Breaker_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Breaker." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (Breaker_class_attributes_enum attrEnum: Breaker_class_attributes_enum.values()) {
+				BaseClass bc = Breaker_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Breaker." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(Breaker) RDFID: " + rdfid;
 		}
 		return result;
 	}

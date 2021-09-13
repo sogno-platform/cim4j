@@ -19,265 +19,270 @@ Detailed electro-hydraulic governor for steam unit.
 */
 public class GovSteamFV4 extends TurbineGovernorDynamics
 {
-	private BaseClass[] GovSteamFV4_attributes;
+	private BaseClass[] GovSteamFV4_class_attributes;
+	private BaseClass[] GovSteamFV4_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GovSteamFV4_primitive_builder implements PrimitiveBuilder {
-			kf1(){
+		kf1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kf3(){
+		kf3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			lps(){
+		lps(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			lpi(){
+		lpi(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			mxef(){
+		mxef(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			mnef(){
+		mnef(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			crmx(){
+		crmx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			crmn(){
+		crmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kpt(){
+		kpt(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kit(){
+		kit(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			rvgmx(){
+		rvgmx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			rvgmn(){
+		rvgmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			svmx(){
+		svmx(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			svmn(){
+		svmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			srmx(){
+		srmx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			srmn(){
+		srmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kpp(){
+		kpp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kip(){
+		kip(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			rsmimx(){
+		rsmimx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			rsmimn(){
+		rsmimn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kmp1(){
+		kmp1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kmp2(){
+		kmp2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			srsmp(){
+		srsmp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ta(){
+		ta(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tc(){
+		tc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ty(){
+		ty(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			yhpmx(){
+		yhpmx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			yhpmn(){
+		yhpmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tam(){
+		tam(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tcm(){
+		tcm(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ympmx(){
+		ympmx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ympmn(){
+		ympmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			y(){
+		y(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			thp(){
+		thp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			trh(){
+		trh(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tmp(){
+		tmp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			khp(){
+		khp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pr1(){
+		pr1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pr2(){
+		pr2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			psmn(){
+		psmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kpc(){
+		kpc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kic(){
+		kic(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kdc(){
+		kdc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tdc(){
+		tdc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			cpsmx(){
+		cpsmx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			cpsmn(){
+		cpsmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			krc(){
+		krc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tf1(){
+		tf1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tf2(){
+		tf2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tv(){
+		tv(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ksh(){
+		ksh(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -287,6 +292,61 @@ public class GovSteamFV4 extends TurbineGovernorDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GovSteamFV4_class_attributes_enum {
+		kf1,
+		kf3,
+		lps,
+		lpi,
+		mxef,
+		mnef,
+		crmx,
+		crmn,
+		kpt,
+		kit,
+		rvgmx,
+		rvgmn,
+		svmx,
+		svmn,
+		srmx,
+		srmn,
+		kpp,
+		kip,
+		rsmimx,
+		rsmimn,
+		kmp1,
+		kmp2,
+		srsmp,
+		ta,
+		tc,
+		ty,
+		yhpmx,
+		yhpmn,
+		tam,
+		tcm,
+		ympmx,
+		ympmn,
+		y,
+		thp,
+		trh,
+		tmp,
+		khp,
+		pr1,
+		pr2,
+		psmn,
+		kpc,
+		kic,
+		kdc,
+		tdc,
+		cpsmx,
+		cpsmn,
+		krc,
+		tf1,
+		tf2,
+		tv,
+		ksh,
+			LAST_ENUM;
 	}
 
 		
@@ -342,21 +402,33 @@ public class GovSteamFV4 extends TurbineGovernorDynamics
 		
 	
 	public GovSteamFV4() {
-		GovSteamFV4_attributes = new BaseClass[GovSteamFV4_primitive_builder.values().length];
+		GovSteamFV4_primitive_attributes = new BaseClass[GovSteamFV4_primitive_builder.values().length];
+		GovSteamFV4_class_attributes = new BaseClass[GovSteamFV4_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovSteamFV4_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GovSteamFV4_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GovSteamFV4_attributes[attrEnum.ordinal()] = value;
+			GovSteamFV4_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GovSteamFV4_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GovSteamFV4_ATTR_ENUM attrEnum = GovSteamFV4_ATTR_BC_ENUM.valueOf(attrName);
+			GovSteamFV4_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GovSteamFV4_class_attributes_enum attrEnum = GovSteamFV4_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GovSteamFV4, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -365,10 +437,11 @@ public class GovSteamFV4 extends TurbineGovernorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovSteamFV4_primitive_builder attrEnum = GovSteamFV4_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GovSteamFV4, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -376,13 +449,26 @@ public class GovSteamFV4 extends TurbineGovernorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GovSteamFV4_primitive_builder attrEnum: GovSteamFV4_primitive_builder.values()) {
-			BaseClass bc = GovSteamFV4_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GovSteamFV4_primitive_builder attrEnum: GovSteamFV4_primitive_builder.values()) {
+				BaseClass bc = GovSteamFV4_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovSteamFV4." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GovSteamFV4_class_attributes_enum attrEnum: GovSteamFV4_class_attributes_enum.values()) {
+				BaseClass bc = GovSteamFV4_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovSteamFV4." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GovSteamFV4) RDFID: " + rdfid;
 		}
 		return result;
 	}

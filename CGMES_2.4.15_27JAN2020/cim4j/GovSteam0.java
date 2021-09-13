@@ -19,50 +19,55 @@ A simplified steam turbine governor model.
 */
 public class GovSteam0 extends TurbineGovernorDynamics
 {
-	private BaseClass[] GovSteam0_attributes;
+	private BaseClass[] GovSteam0_class_attributes;
+	private BaseClass[] GovSteam0_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GovSteam0_primitive_builder implements PrimitiveBuilder {
-			mwbase(){
+		mwbase(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			r(){
+		r(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			t1(){
+		t1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vmax(){
+		vmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vmin(){
+		vmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			t2(){
+		t2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t3(){
+		t3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			dt(){
+		dt(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -72,6 +77,18 @@ public class GovSteam0 extends TurbineGovernorDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GovSteam0_class_attributes_enum {
+		mwbase,
+		r,
+		t1,
+		vmax,
+		vmin,
+		t2,
+		t3,
+		dt,
+			LAST_ENUM;
 	}
 
 		
@@ -84,21 +101,33 @@ public class GovSteam0 extends TurbineGovernorDynamics
 		
 	
 	public GovSteam0() {
-		GovSteam0_attributes = new BaseClass[GovSteam0_primitive_builder.values().length];
+		GovSteam0_primitive_attributes = new BaseClass[GovSteam0_primitive_builder.values().length];
+		GovSteam0_class_attributes = new BaseClass[GovSteam0_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovSteam0_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GovSteam0_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GovSteam0_attributes[attrEnum.ordinal()] = value;
+			GovSteam0_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GovSteam0_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GovSteam0_ATTR_ENUM attrEnum = GovSteam0_ATTR_BC_ENUM.valueOf(attrName);
+			GovSteam0_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GovSteam0_class_attributes_enum attrEnum = GovSteam0_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GovSteam0, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -107,10 +136,11 @@ public class GovSteam0 extends TurbineGovernorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovSteam0_primitive_builder attrEnum = GovSteam0_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GovSteam0, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -118,13 +148,26 @@ public class GovSteam0 extends TurbineGovernorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GovSteam0_primitive_builder attrEnum: GovSteam0_primitive_builder.values()) {
-			BaseClass bc = GovSteam0_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GovSteam0_primitive_builder attrEnum: GovSteam0_primitive_builder.values()) {
+				BaseClass bc = GovSteam0_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovSteam0." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GovSteam0_class_attributes_enum attrEnum: GovSteam0_class_attributes_enum.values()) {
+				BaseClass bc = GovSteam0_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovSteam0." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GovSteam0) RDFID: " + rdfid;
 		}
 		return result;
 	}

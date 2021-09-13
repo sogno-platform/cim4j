@@ -18,15 +18,20 @@ Wind Type 3 or Type 4 function block whose dynamic behaviour is described by
 */
 public class WindType3or4UserDefined extends WindTurbineType3or4Dynamics
 {
-	private BaseClass[] WindType3or4UserDefined_attributes;
+	private BaseClass[] WindType3or4UserDefined_class_attributes;
+	private BaseClass[] WindType3or4UserDefined_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum WindType3or4UserDefined_primitive_builder implements PrimitiveBuilder {
-			proprietary(){
+		proprietary(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -38,25 +43,43 @@ public class WindType3or4UserDefined extends WindTurbineType3or4Dynamics
 		};
 	}
 
+	private enum WindType3or4UserDefined_class_attributes_enum {
+		proprietary,
+		ProprietaryParameterDynamics,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public WindType3or4UserDefined() {
-		WindType3or4UserDefined_attributes = new BaseClass[WindType3or4UserDefined_primitive_builder.values().length];
+		WindType3or4UserDefined_primitive_attributes = new BaseClass[WindType3or4UserDefined_primitive_builder.values().length];
+		WindType3or4UserDefined_class_attributes = new BaseClass[WindType3or4UserDefined_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(WindType3or4UserDefined_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(WindType3or4UserDefined_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			WindType3or4UserDefined_attributes[attrEnum.ordinal()] = value;
+			WindType3or4UserDefined_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(WindType3or4UserDefined_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//WindType3or4UserDefined_ATTR_ENUM attrEnum = WindType3or4UserDefined_ATTR_BC_ENUM.valueOf(attrName);
+			WindType3or4UserDefined_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			WindType3or4UserDefined_class_attributes_enum attrEnum = WindType3or4UserDefined_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated WindType3or4UserDefined, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -65,10 +88,11 @@ public class WindType3or4UserDefined extends WindTurbineType3or4Dynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			WindType3or4UserDefined_primitive_builder attrEnum = WindType3or4UserDefined_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated WindType3or4UserDefined, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,13 +100,26 @@ public class WindType3or4UserDefined extends WindTurbineType3or4Dynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (WindType3or4UserDefined_primitive_builder attrEnum: WindType3or4UserDefined_primitive_builder.values()) {
-			BaseClass bc = WindType3or4UserDefined_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (WindType3or4UserDefined_primitive_builder attrEnum: WindType3or4UserDefined_primitive_builder.values()) {
+				BaseClass bc = WindType3or4UserDefined_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindType3or4UserDefined." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (WindType3or4UserDefined_class_attributes_enum attrEnum: WindType3or4UserDefined_class_attributes_enum.values()) {
+				BaseClass bc = WindType3or4UserDefined_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindType3or4UserDefined." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(WindType3or4UserDefined) RDFID: " + rdfid;
 		}
 		return result;
 	}

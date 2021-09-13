@@ -20,80 +20,85 @@ Italian excitation system. It represents static field voltage or excitation curr
 */
 public class ExcANS extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcANS_attributes;
+	private BaseClass[] ExcANS_class_attributes;
+	private BaseClass[] ExcANS_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcANS_primitive_builder implements PrimitiveBuilder {
-			k3(){
+		k3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			k2(){
+		k2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kce(){
+		kce(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			t3(){
+		t3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t2(){
+		t2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t1(){
+		t1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			blint(){
+		blint(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			kvfif(){
+		kvfif(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			ifmn(){
+		ifmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ifmx(){
+		ifmx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmn(){
+		vrmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmx(){
+		vrmx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			krvecc(){
+		krvecc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			tb(){
+		tb(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
@@ -103,6 +108,24 @@ public class ExcANS extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcANS_class_attributes_enum {
+		k3,
+		k2,
+		kce,
+		t3,
+		t2,
+		t1,
+		blint,
+		kvfif,
+		ifmn,
+		ifmx,
+		vrmn,
+		vrmx,
+		krvecc,
+		tb,
+			LAST_ENUM;
 	}
 
 		
@@ -121,21 +144,33 @@ public class ExcANS extends ExcitationSystemDynamics
 		
 	
 	public ExcANS() {
-		ExcANS_attributes = new BaseClass[ExcANS_primitive_builder.values().length];
+		ExcANS_primitive_attributes = new BaseClass[ExcANS_primitive_builder.values().length];
+		ExcANS_class_attributes = new BaseClass[ExcANS_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcANS_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcANS_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcANS_attributes[attrEnum.ordinal()] = value;
+			ExcANS_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcANS_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcANS_ATTR_ENUM attrEnum = ExcANS_ATTR_BC_ENUM.valueOf(attrName);
+			ExcANS_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcANS_class_attributes_enum attrEnum = ExcANS_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcANS, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -144,10 +179,11 @@ public class ExcANS extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcANS_primitive_builder attrEnum = ExcANS_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcANS, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -155,13 +191,26 @@ public class ExcANS extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcANS_primitive_builder attrEnum: ExcANS_primitive_builder.values()) {
-			BaseClass bc = ExcANS_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcANS_primitive_builder attrEnum: ExcANS_primitive_builder.values()) {
+				BaseClass bc = ExcANS_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcANS." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcANS_class_attributes_enum attrEnum: ExcANS_class_attributes_enum.values()) {
+				BaseClass bc = ExcANS_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcANS." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcANS) RDFID: " + rdfid;
 		}
 		return result;
 	}

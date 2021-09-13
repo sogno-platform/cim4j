@@ -18,13 +18,18 @@ A value associated with a specific kind of limit.  The sub class value attribute
 */
 public class OperationalLimit extends IdentifiedObject
 {
-	private BaseClass[] OperationalLimit_attributes;
+	private BaseClass[] OperationalLimit_class_attributes;
+	private BaseClass[] OperationalLimit_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum OperationalLimit_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -33,25 +38,43 @@ public class OperationalLimit extends IdentifiedObject
 		};
 	}
 
+	private enum OperationalLimit_class_attributes_enum {
+		OperationalLimitSet,
+		OperationalLimitType,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public OperationalLimit() {
-		OperationalLimit_attributes = new BaseClass[OperationalLimit_primitive_builder.values().length];
+		OperationalLimit_primitive_attributes = new BaseClass[OperationalLimit_primitive_builder.values().length];
+		OperationalLimit_class_attributes = new BaseClass[OperationalLimit_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(OperationalLimit_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(OperationalLimit_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			OperationalLimit_attributes[attrEnum.ordinal()] = value;
+			OperationalLimit_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(OperationalLimit_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//OperationalLimit_ATTR_ENUM attrEnum = OperationalLimit_ATTR_BC_ENUM.valueOf(attrName);
+			OperationalLimit_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			OperationalLimit_class_attributes_enum attrEnum = OperationalLimit_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated OperationalLimit, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -60,10 +83,11 @@ public class OperationalLimit extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			OperationalLimit_primitive_builder attrEnum = OperationalLimit_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated OperationalLimit, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -71,13 +95,26 @@ public class OperationalLimit extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (OperationalLimit_primitive_builder attrEnum: OperationalLimit_primitive_builder.values()) {
-			BaseClass bc = OperationalLimit_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (OperationalLimit_primitive_builder attrEnum: OperationalLimit_primitive_builder.values()) {
+				BaseClass bc = OperationalLimit_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    OperationalLimit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (OperationalLimit_class_attributes_enum attrEnum: OperationalLimit_class_attributes_enum.values()) {
+				BaseClass bc = OperationalLimit_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    OperationalLimit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(OperationalLimit) RDFID: " + rdfid;
 		}
 		return result;
 	}

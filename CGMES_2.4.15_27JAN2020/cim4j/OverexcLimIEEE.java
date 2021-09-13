@@ -18,40 +18,45 @@ The over excitation limiter model is intended to represent the significant featu
 */
 public class OverexcLimIEEE extends OverexcitationLimiterDynamics
 {
-	private BaseClass[] OverexcLimIEEE_attributes;
+	private BaseClass[] OverexcLimIEEE_class_attributes;
+	private BaseClass[] OverexcLimIEEE_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum OverexcLimIEEE_primitive_builder implements PrimitiveBuilder {
-			itfpu(){
+		itfpu(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ifdmax(){
+		ifdmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ifdlim(){
+		ifdlim(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			hyst(){
+		hyst(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kcd(){
+		kcd(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kramp(){
+		kramp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -63,6 +68,16 @@ public class OverexcLimIEEE extends OverexcitationLimiterDynamics
 		};
 	}
 
+	private enum OverexcLimIEEE_class_attributes_enum {
+		itfpu,
+		ifdmax,
+		ifdlim,
+		hyst,
+		kcd,
+		kramp,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -71,21 +86,33 @@ public class OverexcLimIEEE extends OverexcitationLimiterDynamics
 		
 	
 	public OverexcLimIEEE() {
-		OverexcLimIEEE_attributes = new BaseClass[OverexcLimIEEE_primitive_builder.values().length];
+		OverexcLimIEEE_primitive_attributes = new BaseClass[OverexcLimIEEE_primitive_builder.values().length];
+		OverexcLimIEEE_class_attributes = new BaseClass[OverexcLimIEEE_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(OverexcLimIEEE_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(OverexcLimIEEE_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			OverexcLimIEEE_attributes[attrEnum.ordinal()] = value;
+			OverexcLimIEEE_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(OverexcLimIEEE_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//OverexcLimIEEE_ATTR_ENUM attrEnum = OverexcLimIEEE_ATTR_BC_ENUM.valueOf(attrName);
+			OverexcLimIEEE_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			OverexcLimIEEE_class_attributes_enum attrEnum = OverexcLimIEEE_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated OverexcLimIEEE, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -94,10 +121,11 @@ public class OverexcLimIEEE extends OverexcitationLimiterDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			OverexcLimIEEE_primitive_builder attrEnum = OverexcLimIEEE_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated OverexcLimIEEE, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -105,13 +133,26 @@ public class OverexcLimIEEE extends OverexcitationLimiterDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (OverexcLimIEEE_primitive_builder attrEnum: OverexcLimIEEE_primitive_builder.values()) {
-			BaseClass bc = OverexcLimIEEE_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (OverexcLimIEEE_primitive_builder attrEnum: OverexcLimIEEE_primitive_builder.values()) {
+				BaseClass bc = OverexcLimIEEE_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    OverexcLimIEEE." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (OverexcLimIEEE_class_attributes_enum attrEnum: OverexcLimIEEE_class_attributes_enum.values()) {
+				BaseClass bc = OverexcLimIEEE_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    OverexcLimIEEE." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(OverexcLimIEEE) RDFID: " + rdfid;
 		}
 		return result;
 	}

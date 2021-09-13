@@ -20,105 +20,110 @@ The class represents IEEE Std 421.5-2005 type DC4B model. These excitation syste
 */
 public class ExcIEEEDC4B extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcIEEEDC4B_attributes;
+	private BaseClass[] ExcIEEEDC4B_class_attributes;
+	private BaseClass[] ExcIEEEDC4B_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcIEEEDC4B_primitive_builder implements PrimitiveBuilder {
-			ka(){
+		ka(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ta(){
+		ta(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kp(){
+		kp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ki(){
+		ki(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kd(){
+		kd(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			td(){
+		td(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ke(){
+		ke(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kf(){
+		kf(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tf(){
+		tf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			efd1(){
+		efd1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			seefd1(){
+		seefd1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			efd2(){
+		efd2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			seefd2(){
+		seefd2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			vemin(){
+		vemin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			oelin(){
+		oelin(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			uelin(){
+		uelin(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -128,6 +133,29 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcIEEEDC4B_class_attributes_enum {
+		ka,
+		ta,
+		kp,
+		ki,
+		kd,
+		td,
+		vrmax,
+		vrmin,
+		ke,
+		te,
+		kf,
+		tf,
+		efd1,
+		seefd1,
+		efd2,
+		seefd2,
+		vemin,
+		oelin,
+		uelin,
+			LAST_ENUM;
 	}
 
 		
@@ -151,21 +179,33 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics
 		
 	
 	public ExcIEEEDC4B() {
-		ExcIEEEDC4B_attributes = new BaseClass[ExcIEEEDC4B_primitive_builder.values().length];
+		ExcIEEEDC4B_primitive_attributes = new BaseClass[ExcIEEEDC4B_primitive_builder.values().length];
+		ExcIEEEDC4B_class_attributes = new BaseClass[ExcIEEEDC4B_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcIEEEDC4B_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcIEEEDC4B_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcIEEEDC4B_attributes[attrEnum.ordinal()] = value;
+			ExcIEEEDC4B_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcIEEEDC4B_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcIEEEDC4B_ATTR_ENUM attrEnum = ExcIEEEDC4B_ATTR_BC_ENUM.valueOf(attrName);
+			ExcIEEEDC4B_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcIEEEDC4B_class_attributes_enum attrEnum = ExcIEEEDC4B_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcIEEEDC4B, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -174,10 +214,11 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcIEEEDC4B_primitive_builder attrEnum = ExcIEEEDC4B_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcIEEEDC4B, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -185,13 +226,26 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcIEEEDC4B_primitive_builder attrEnum: ExcIEEEDC4B_primitive_builder.values()) {
-			BaseClass bc = ExcIEEEDC4B_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcIEEEDC4B_primitive_builder attrEnum: ExcIEEEDC4B_primitive_builder.values()) {
+				BaseClass bc = ExcIEEEDC4B_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcIEEEDC4B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcIEEEDC4B_class_attributes_enum attrEnum: ExcIEEEDC4B_class_attributes_enum.values()) {
+				BaseClass bc = ExcIEEEDC4B_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcIEEEDC4B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcIEEEDC4B) RDFID: " + rdfid;
 		}
 		return result;
 	}

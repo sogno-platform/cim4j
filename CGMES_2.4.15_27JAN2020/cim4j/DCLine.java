@@ -17,13 +17,18 @@ Overhead lines and/or cables connecting two or more HVDC substations.
 */
 public class DCLine extends DCEquipmentContainer
 {
-	private BaseClass[] DCLine_attributes;
+	private BaseClass[] DCLine_class_attributes;
+	private BaseClass[] DCLine_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum DCLine_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class DCLine extends DCEquipmentContainer
 		};
 	}
 
+	private enum DCLine_class_attributes_enum {
+		Region,
+			LAST_ENUM;
+	}
+
 		
 	
 	public DCLine() {
-		DCLine_attributes = new BaseClass[DCLine_primitive_builder.values().length];
+		DCLine_primitive_attributes = new BaseClass[DCLine_primitive_builder.values().length];
+		DCLine_class_attributes = new BaseClass[DCLine_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(DCLine_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(DCLine_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			DCLine_attributes[attrEnum.ordinal()] = value;
+			DCLine_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(DCLine_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//DCLine_ATTR_ENUM attrEnum = DCLine_ATTR_BC_ENUM.valueOf(attrName);
+			DCLine_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			DCLine_class_attributes_enum attrEnum = DCLine_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated DCLine, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class DCLine extends DCEquipmentContainer
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			DCLine_primitive_builder attrEnum = DCLine_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated DCLine, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class DCLine extends DCEquipmentContainer
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (DCLine_primitive_builder attrEnum: DCLine_primitive_builder.values()) {
-			BaseClass bc = DCLine_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (DCLine_primitive_builder attrEnum: DCLine_primitive_builder.values()) {
+				BaseClass bc = DCLine_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCLine." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (DCLine_class_attributes_enum attrEnum: DCLine_class_attributes_enum.values()) {
+				BaseClass bc = DCLine_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCLine." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(DCLine) RDFID: " + rdfid;
 		}
 		return result;
 	}

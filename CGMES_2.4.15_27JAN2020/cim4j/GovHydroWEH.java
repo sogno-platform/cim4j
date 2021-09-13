@@ -21,265 +21,270 @@ Woodward Electric Hydro Governor Model.
 */
 public class GovHydroWEH extends TurbineGovernorDynamics
 {
-	private BaseClass[] GovHydroWEH_attributes;
+	private BaseClass[] GovHydroWEH_class_attributes;
+	private BaseClass[] GovHydroWEH_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GovHydroWEH_primitive_builder implements PrimitiveBuilder {
-			mwbase(){
+		mwbase(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			rpg(){
+		rpg(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			rpp(){
+		rpp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			tpe(){
+		tpe(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kp(){
+		kp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ki(){
+		ki(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kd(){
+		kd(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			td(){
+		td(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tp(){
+		tp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tdv(){
+		tdv(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tg(){
+		tg(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			gtmxop(){
+		gtmxop(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gtmxcl(){
+		gtmxcl(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gmax(){
+		gmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gmin(){
+		gmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			dturb(){
+		dturb(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tw(){
+		tw(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			db(){
+		db(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			dpv(){
+		dpv(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			dicn(){
+		dicn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			feedbackSignal(){
+		feedbackSignal(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			gv1(){
+		gv1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv2(){
+		gv2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv3(){
+		gv3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv4(){
+		gv4(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv5(){
+		gv5(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fl1(){
+		fl1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fl2(){
+		fl2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fl3(){
+		fl3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fl4(){
+		fl4(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fl5(){
+		fl5(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fp1(){
+		fp1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fp2(){
+		fp2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fp3(){
+		fp3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fp4(){
+		fp4(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fp5(){
+		fp5(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fp6(){
+		fp6(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fp7(){
+		fp7(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fp8(){
+		fp8(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fp9(){
+		fp9(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			fp10(){
+		fp10(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmss1(){
+		pmss1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmss2(){
+		pmss2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmss3(){
+		pmss3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmss4(){
+		pmss4(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmss5(){
+		pmss5(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmss6(){
+		pmss6(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmss7(){
+		pmss7(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmss8(){
+		pmss8(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmss9(){
+		pmss9(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmss10(){
+		pmss10(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -289,6 +294,61 @@ public class GovHydroWEH extends TurbineGovernorDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GovHydroWEH_class_attributes_enum {
+		mwbase,
+		rpg,
+		rpp,
+		tpe,
+		kp,
+		ki,
+		kd,
+		td,
+		tp,
+		tdv,
+		tg,
+		gtmxop,
+		gtmxcl,
+		gmax,
+		gmin,
+		dturb,
+		tw,
+		db,
+		dpv,
+		dicn,
+		feedbackSignal,
+		gv1,
+		gv2,
+		gv3,
+		gv4,
+		gv5,
+		fl1,
+		fl2,
+		fl3,
+		fl4,
+		fl5,
+		fp1,
+		fp2,
+		fp3,
+		fp4,
+		fp5,
+		fp6,
+		fp7,
+		fp8,
+		fp9,
+		fp10,
+		pmss1,
+		pmss2,
+		pmss3,
+		pmss4,
+		pmss5,
+		pmss6,
+		pmss7,
+		pmss8,
+		pmss9,
+		pmss10,
+			LAST_ENUM;
 	}
 
 		
@@ -344,21 +404,33 @@ public class GovHydroWEH extends TurbineGovernorDynamics
 		
 	
 	public GovHydroWEH() {
-		GovHydroWEH_attributes = new BaseClass[GovHydroWEH_primitive_builder.values().length];
+		GovHydroWEH_primitive_attributes = new BaseClass[GovHydroWEH_primitive_builder.values().length];
+		GovHydroWEH_class_attributes = new BaseClass[GovHydroWEH_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovHydroWEH_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GovHydroWEH_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GovHydroWEH_attributes[attrEnum.ordinal()] = value;
+			GovHydroWEH_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GovHydroWEH_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GovHydroWEH_ATTR_ENUM attrEnum = GovHydroWEH_ATTR_BC_ENUM.valueOf(attrName);
+			GovHydroWEH_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GovHydroWEH_class_attributes_enum attrEnum = GovHydroWEH_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GovHydroWEH, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -367,10 +439,11 @@ public class GovHydroWEH extends TurbineGovernorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovHydroWEH_primitive_builder attrEnum = GovHydroWEH_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GovHydroWEH, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -378,13 +451,26 @@ public class GovHydroWEH extends TurbineGovernorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GovHydroWEH_primitive_builder attrEnum: GovHydroWEH_primitive_builder.values()) {
-			BaseClass bc = GovHydroWEH_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GovHydroWEH_primitive_builder attrEnum: GovHydroWEH_primitive_builder.values()) {
+				BaseClass bc = GovHydroWEH_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovHydroWEH." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GovHydroWEH_class_attributes_enum attrEnum: GovHydroWEH_class_attributes_enum.values()) {
+				BaseClass bc = GovHydroWEH_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovHydroWEH." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GovHydroWEH) RDFID: " + rdfid;
 		}
 		return result;
 	}

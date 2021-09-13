@@ -20,105 +20,110 @@ Modified IEEE ST4B static excitation system with maximum inner loop feedback gai
 */
 public class ExcST4B extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcST4B_attributes;
+	private BaseClass[] ExcST4B_class_attributes;
+	private BaseClass[] ExcST4B_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcST4B_primitive_builder implements PrimitiveBuilder {
-			kpr(){
+		kpr(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kir(){
+		kir(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ta(){
+		ta(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kpm(){
+		kpm(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kim(){
+		kim(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vmmax(){
+		vmmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vmmin(){
+		vmmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kg(){
+		kg(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kp(){
+		kp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			thetap(){
+		thetap(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
 		},
-			ki(){
+		ki(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kc(){
+		kc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xl(){
+		xl(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vbmax(){
+		vbmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vgmax(){
+		vgmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			uel(){
+		uel(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			lvgate(){
+		lvgate(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -128,6 +133,29 @@ public class ExcST4B extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcST4B_class_attributes_enum {
+		kpr,
+		kir,
+		ta,
+		vrmax,
+		vrmin,
+		kpm,
+		kim,
+		vmmax,
+		vmmin,
+		kg,
+		kp,
+		thetap,
+		ki,
+		kc,
+		xl,
+		vbmax,
+		vgmax,
+		uel,
+		lvgate,
+			LAST_ENUM;
 	}
 
 		
@@ -151,21 +179,33 @@ public class ExcST4B extends ExcitationSystemDynamics
 		
 	
 	public ExcST4B() {
-		ExcST4B_attributes = new BaseClass[ExcST4B_primitive_builder.values().length];
+		ExcST4B_primitive_attributes = new BaseClass[ExcST4B_primitive_builder.values().length];
+		ExcST4B_class_attributes = new BaseClass[ExcST4B_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcST4B_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcST4B_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcST4B_attributes[attrEnum.ordinal()] = value;
+			ExcST4B_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcST4B_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcST4B_ATTR_ENUM attrEnum = ExcST4B_ATTR_BC_ENUM.valueOf(attrName);
+			ExcST4B_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcST4B_class_attributes_enum attrEnum = ExcST4B_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcST4B, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -174,10 +214,11 @@ public class ExcST4B extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcST4B_primitive_builder attrEnum = ExcST4B_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcST4B, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -185,13 +226,26 @@ public class ExcST4B extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcST4B_primitive_builder attrEnum: ExcST4B_primitive_builder.values()) {
-			BaseClass bc = ExcST4B_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcST4B_primitive_builder attrEnum: ExcST4B_primitive_builder.values()) {
+				BaseClass bc = ExcST4B_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcST4B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcST4B_class_attributes_enum attrEnum: ExcST4B_class_attributes_enum.values()) {
+				BaseClass bc = ExcST4B_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcST4B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcST4B) RDFID: " + rdfid;
 		}
 		return result;
 	}

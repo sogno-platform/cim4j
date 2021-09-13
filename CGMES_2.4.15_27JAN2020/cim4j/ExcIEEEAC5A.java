@@ -19,80 +19,85 @@ The class represents IEEE Std 421.5-2005 type AC5A model. The model represents a
 */
 public class ExcIEEEAC5A extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcIEEEAC5A_attributes;
+	private BaseClass[] ExcIEEEAC5A_class_attributes;
+	private BaseClass[] ExcIEEEAC5A_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcIEEEAC5A_primitive_builder implements PrimitiveBuilder {
-			ka(){
+		ka(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ta(){
+		ta(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ke(){
+		ke(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kf(){
+		kf(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tf1(){
+		tf1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tf2(){
+		tf2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tf3(){
+		tf3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			efd1(){
+		efd1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			seefd1(){
+		seefd1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			efd2(){
+		efd2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			seefd2(){
+		seefd2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -102,6 +107,24 @@ public class ExcIEEEAC5A extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcIEEEAC5A_class_attributes_enum {
+		ka,
+		ta,
+		vrmax,
+		vrmin,
+		ke,
+		te,
+		kf,
+		tf1,
+		tf2,
+		tf3,
+		efd1,
+		seefd1,
+		efd2,
+		seefd2,
+			LAST_ENUM;
 	}
 
 		
@@ -120,21 +143,33 @@ public class ExcIEEEAC5A extends ExcitationSystemDynamics
 		
 	
 	public ExcIEEEAC5A() {
-		ExcIEEEAC5A_attributes = new BaseClass[ExcIEEEAC5A_primitive_builder.values().length];
+		ExcIEEEAC5A_primitive_attributes = new BaseClass[ExcIEEEAC5A_primitive_builder.values().length];
+		ExcIEEEAC5A_class_attributes = new BaseClass[ExcIEEEAC5A_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcIEEEAC5A_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcIEEEAC5A_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcIEEEAC5A_attributes[attrEnum.ordinal()] = value;
+			ExcIEEEAC5A_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcIEEEAC5A_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcIEEEAC5A_ATTR_ENUM attrEnum = ExcIEEEAC5A_ATTR_BC_ENUM.valueOf(attrName);
+			ExcIEEEAC5A_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcIEEEAC5A_class_attributes_enum attrEnum = ExcIEEEAC5A_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcIEEEAC5A, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -143,10 +178,11 @@ public class ExcIEEEAC5A extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcIEEEAC5A_primitive_builder attrEnum = ExcIEEEAC5A_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcIEEEAC5A, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -154,13 +190,26 @@ public class ExcIEEEAC5A extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcIEEEAC5A_primitive_builder attrEnum: ExcIEEEAC5A_primitive_builder.values()) {
-			BaseClass bc = ExcIEEEAC5A_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcIEEEAC5A_primitive_builder attrEnum: ExcIEEEAC5A_primitive_builder.values()) {
+				BaseClass bc = ExcIEEEAC5A_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcIEEEAC5A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcIEEEAC5A_class_attributes_enum attrEnum: ExcIEEEAC5A_class_attributes_enum.values()) {
+				BaseClass bc = ExcIEEEAC5A_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcIEEEAC5A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcIEEEAC5A) RDFID: " + rdfid;
 		}
 		return result;
 	}

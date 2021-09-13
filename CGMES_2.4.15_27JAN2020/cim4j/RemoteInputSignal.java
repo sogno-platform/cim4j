@@ -26,15 +26,20 @@ Supports connection to a terminal associated with a remote bus from which an inp
 */
 public class RemoteInputSignal extends IdentifiedObject
 {
-	private BaseClass[] RemoteInputSignal_attributes;
+	private BaseClass[] RemoteInputSignal_class_attributes;
+	private BaseClass[] RemoteInputSignal_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum RemoteInputSignal_primitive_builder implements PrimitiveBuilder {
-			remoteSignalType(){
+		remoteSignalType(){
 			public BaseClass construct (java.lang.String value) {
 				return new RemoteSignalKind(value);
 			}
@@ -44,6 +49,20 @@ public class RemoteInputSignal extends IdentifiedObject
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum RemoteInputSignal_class_attributes_enum {
+		Terminal,
+		remoteSignalType,
+		PFVArControllerType1Dynamics,
+		UnderexcitationLimiterDynamics,
+		WindTurbineType1or2Dynamics,
+		VoltageCompensatorDynamics,
+		PowerSystemStabilizerDynamics,
+		DiscontinuousExcitationControlDynamics,
+		WindTurbineType3or4Dynamics,
+		WindPlantDynamics,
+			LAST_ENUM;
 	}
 
 		
@@ -58,21 +77,33 @@ public class RemoteInputSignal extends IdentifiedObject
 		
 	
 	public RemoteInputSignal() {
-		RemoteInputSignal_attributes = new BaseClass[RemoteInputSignal_primitive_builder.values().length];
+		RemoteInputSignal_primitive_attributes = new BaseClass[RemoteInputSignal_primitive_builder.values().length];
+		RemoteInputSignal_class_attributes = new BaseClass[RemoteInputSignal_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(RemoteInputSignal_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(RemoteInputSignal_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			RemoteInputSignal_attributes[attrEnum.ordinal()] = value;
+			RemoteInputSignal_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(RemoteInputSignal_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//RemoteInputSignal_ATTR_ENUM attrEnum = RemoteInputSignal_ATTR_BC_ENUM.valueOf(attrName);
+			RemoteInputSignal_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			RemoteInputSignal_class_attributes_enum attrEnum = RemoteInputSignal_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated RemoteInputSignal, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -81,10 +112,11 @@ public class RemoteInputSignal extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			RemoteInputSignal_primitive_builder attrEnum = RemoteInputSignal_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated RemoteInputSignal, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -92,13 +124,26 @@ public class RemoteInputSignal extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (RemoteInputSignal_primitive_builder attrEnum: RemoteInputSignal_primitive_builder.values()) {
-			BaseClass bc = RemoteInputSignal_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (RemoteInputSignal_primitive_builder attrEnum: RemoteInputSignal_primitive_builder.values()) {
+				BaseClass bc = RemoteInputSignal_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    RemoteInputSignal." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (RemoteInputSignal_class_attributes_enum attrEnum: RemoteInputSignal_class_attributes_enum.values()) {
+				BaseClass bc = RemoteInputSignal_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    RemoteInputSignal." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(RemoteInputSignal) RDFID: " + rdfid;
 		}
 		return result;
 	}

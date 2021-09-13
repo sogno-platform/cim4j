@@ -18,20 +18,25 @@ The class represents equivalent shunts.
 */
 public class EquivalentShunt extends EquivalentEquipment
 {
-	private BaseClass[] EquivalentShunt_attributes;
+	private BaseClass[] EquivalentShunt_class_attributes;
+	private BaseClass[] EquivalentShunt_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum EquivalentShunt_primitive_builder implements PrimitiveBuilder {
-			b(){
+		b(){
 			public BaseClass construct (java.lang.String value) {
 				return new Susceptance(value);
 			}
 		},
-			g(){
+		g(){
 			public BaseClass construct (java.lang.String value) {
 				return new Conductance(value);
 			}
@@ -43,25 +48,43 @@ public class EquivalentShunt extends EquivalentEquipment
 		};
 	}
 
+	private enum EquivalentShunt_class_attributes_enum {
+		b,
+		g,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public EquivalentShunt() {
-		EquivalentShunt_attributes = new BaseClass[EquivalentShunt_primitive_builder.values().length];
+		EquivalentShunt_primitive_attributes = new BaseClass[EquivalentShunt_primitive_builder.values().length];
+		EquivalentShunt_class_attributes = new BaseClass[EquivalentShunt_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(EquivalentShunt_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(EquivalentShunt_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			EquivalentShunt_attributes[attrEnum.ordinal()] = value;
+			EquivalentShunt_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(EquivalentShunt_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//EquivalentShunt_ATTR_ENUM attrEnum = EquivalentShunt_ATTR_BC_ENUM.valueOf(attrName);
+			EquivalentShunt_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			EquivalentShunt_class_attributes_enum attrEnum = EquivalentShunt_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated EquivalentShunt, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -70,10 +93,11 @@ public class EquivalentShunt extends EquivalentEquipment
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			EquivalentShunt_primitive_builder attrEnum = EquivalentShunt_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated EquivalentShunt, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -81,13 +105,26 @@ public class EquivalentShunt extends EquivalentEquipment
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (EquivalentShunt_primitive_builder attrEnum: EquivalentShunt_primitive_builder.values()) {
-			BaseClass bc = EquivalentShunt_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (EquivalentShunt_primitive_builder attrEnum: EquivalentShunt_primitive_builder.values()) {
+				BaseClass bc = EquivalentShunt_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EquivalentShunt." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (EquivalentShunt_class_attributes_enum attrEnum: EquivalentShunt_class_attributes_enum.values()) {
+				BaseClass bc = EquivalentShunt_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    EquivalentShunt." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(EquivalentShunt) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -18,30 +18,35 @@ Set of spatial coordinates that determine a point, defined in the coordinate sys
 */
 public class PositionPoint extends BaseClass
 {
-	private BaseClass[] PositionPoint_attributes;
+	private BaseClass[] PositionPoint_class_attributes;
+	private BaseClass[] PositionPoint_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum PositionPoint_primitive_builder implements PrimitiveBuilder {
-			sequenceNumber(){
+		sequenceNumber(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			xPosition(){
+		xPosition(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			yPosition(){
+		yPosition(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
 		},
-			zPosition(){
+		zPosition(){
 			public BaseClass construct (java.lang.String value) {
 				return new String(value);
 			}
@@ -53,6 +58,15 @@ public class PositionPoint extends BaseClass
 		};
 	}
 
+	private enum PositionPoint_class_attributes_enum {
+		Location,
+		sequenceNumber,
+		xPosition,
+		yPosition,
+		zPosition,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -60,21 +74,33 @@ public class PositionPoint extends BaseClass
 		
 	
 	public PositionPoint() {
-		PositionPoint_attributes = new BaseClass[PositionPoint_primitive_builder.values().length];
+		PositionPoint_primitive_attributes = new BaseClass[PositionPoint_primitive_builder.values().length];
+		PositionPoint_class_attributes = new BaseClass[PositionPoint_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PositionPoint_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(PositionPoint_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			PositionPoint_attributes[attrEnum.ordinal()] = value;
+			PositionPoint_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(PositionPoint_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//PositionPoint_ATTR_ENUM attrEnum = PositionPoint_ATTR_BC_ENUM.valueOf(attrName);
+			PositionPoint_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			PositionPoint_class_attributes_enum attrEnum = PositionPoint_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated PositionPoint, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -83,10 +109,11 @@ public class PositionPoint extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PositionPoint_primitive_builder attrEnum = PositionPoint_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated PositionPoint, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -94,13 +121,26 @@ public class PositionPoint extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (PositionPoint_primitive_builder attrEnum: PositionPoint_primitive_builder.values()) {
-			BaseClass bc = PositionPoint_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (PositionPoint_primitive_builder attrEnum: PositionPoint_primitive_builder.values()) {
+				BaseClass bc = PositionPoint_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PositionPoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (PositionPoint_class_attributes_enum attrEnum: PositionPoint_class_attributes_enum.values()) {
+				BaseClass bc = PositionPoint_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PositionPoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(PositionPoint) RDFID: " + rdfid;
 		}
 		return result;
 	}

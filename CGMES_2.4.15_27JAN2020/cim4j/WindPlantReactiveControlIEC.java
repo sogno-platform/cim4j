@@ -21,75 +21,80 @@ Simplified plant voltage and reactive power control model for use with type 3 an
 */
 public class WindPlantReactiveControlIEC extends IdentifiedObject
 {
-	private BaseClass[] WindPlantReactiveControlIEC_attributes;
+	private BaseClass[] WindPlantReactiveControlIEC_class_attributes;
+	private BaseClass[] WindPlantReactiveControlIEC_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum WindPlantReactiveControlIEC_primitive_builder implements PrimitiveBuilder {
-			kiwpx(){
+		kiwpx(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kpwpx(){
+		kpwpx(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kwpqu(){
+		kwpqu(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			mwppf(){
+		mwppf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			mwpu(){
+		mwpu(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			twppfilt(){
+		twppfilt(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			twpqfilt(){
+		twpqfilt(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			twpufilt(){
+		twpufilt(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			txft(){
+		txft(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			txfv(){
+		txfv(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			uwpqdip(){
+		uwpqdip(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xrefmax(){
+		xrefmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xrefmin(){
+		xrefmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -99,6 +104,24 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum WindPlantReactiveControlIEC_class_attributes_enum {
+		WindPlantIEC,
+		kiwpx,
+		kpwpx,
+		kwpqu,
+		mwppf,
+		mwpu,
+		twppfilt,
+		twpqfilt,
+		twpufilt,
+		txft,
+		txfv,
+		uwpqdip,
+		xrefmax,
+		xrefmin,
+			LAST_ENUM;
 	}
 
 		
@@ -117,21 +140,33 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject
 		
 	
 	public WindPlantReactiveControlIEC() {
-		WindPlantReactiveControlIEC_attributes = new BaseClass[WindPlantReactiveControlIEC_primitive_builder.values().length];
+		WindPlantReactiveControlIEC_primitive_attributes = new BaseClass[WindPlantReactiveControlIEC_primitive_builder.values().length];
+		WindPlantReactiveControlIEC_class_attributes = new BaseClass[WindPlantReactiveControlIEC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(WindPlantReactiveControlIEC_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(WindPlantReactiveControlIEC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			WindPlantReactiveControlIEC_attributes[attrEnum.ordinal()] = value;
+			WindPlantReactiveControlIEC_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(WindPlantReactiveControlIEC_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//WindPlantReactiveControlIEC_ATTR_ENUM attrEnum = WindPlantReactiveControlIEC_ATTR_BC_ENUM.valueOf(attrName);
+			WindPlantReactiveControlIEC_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			WindPlantReactiveControlIEC_class_attributes_enum attrEnum = WindPlantReactiveControlIEC_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated WindPlantReactiveControlIEC, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -140,10 +175,11 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			WindPlantReactiveControlIEC_primitive_builder attrEnum = WindPlantReactiveControlIEC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated WindPlantReactiveControlIEC, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -151,13 +187,26 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (WindPlantReactiveControlIEC_primitive_builder attrEnum: WindPlantReactiveControlIEC_primitive_builder.values()) {
-			BaseClass bc = WindPlantReactiveControlIEC_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (WindPlantReactiveControlIEC_primitive_builder attrEnum: WindPlantReactiveControlIEC_primitive_builder.values()) {
+				BaseClass bc = WindPlantReactiveControlIEC_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindPlantReactiveControlIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (WindPlantReactiveControlIEC_class_attributes_enum attrEnum: WindPlantReactiveControlIEC_class_attributes_enum.values()) {
+				BaseClass bc = WindPlantReactiveControlIEC_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindPlantReactiveControlIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(WindPlantReactiveControlIEC) RDFID: " + rdfid;
 		}
 		return result;
 	}

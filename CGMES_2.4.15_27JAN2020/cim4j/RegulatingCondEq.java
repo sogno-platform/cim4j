@@ -18,15 +18,20 @@ A type of conducting equipment that can regulate a quantity (i.e. voltage or flo
 */
 public class RegulatingCondEq extends ConductingEquipment
 {
-	private BaseClass[] RegulatingCondEq_attributes;
+	private BaseClass[] RegulatingCondEq_class_attributes;
+	private BaseClass[] RegulatingCondEq_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum RegulatingCondEq_primitive_builder implements PrimitiveBuilder {
-			controlEnabled(){
+		controlEnabled(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -38,25 +43,43 @@ public class RegulatingCondEq extends ConductingEquipment
 		};
 	}
 
+	private enum RegulatingCondEq_class_attributes_enum {
+		RegulatingControl,
+		controlEnabled,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public RegulatingCondEq() {
-		RegulatingCondEq_attributes = new BaseClass[RegulatingCondEq_primitive_builder.values().length];
+		RegulatingCondEq_primitive_attributes = new BaseClass[RegulatingCondEq_primitive_builder.values().length];
+		RegulatingCondEq_class_attributes = new BaseClass[RegulatingCondEq_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(RegulatingCondEq_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(RegulatingCondEq_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			RegulatingCondEq_attributes[attrEnum.ordinal()] = value;
+			RegulatingCondEq_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(RegulatingCondEq_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//RegulatingCondEq_ATTR_ENUM attrEnum = RegulatingCondEq_ATTR_BC_ENUM.valueOf(attrName);
+			RegulatingCondEq_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			RegulatingCondEq_class_attributes_enum attrEnum = RegulatingCondEq_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated RegulatingCondEq, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -65,10 +88,11 @@ public class RegulatingCondEq extends ConductingEquipment
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			RegulatingCondEq_primitive_builder attrEnum = RegulatingCondEq_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated RegulatingCondEq, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,13 +100,26 @@ public class RegulatingCondEq extends ConductingEquipment
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (RegulatingCondEq_primitive_builder attrEnum: RegulatingCondEq_primitive_builder.values()) {
-			BaseClass bc = RegulatingCondEq_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (RegulatingCondEq_primitive_builder attrEnum: RegulatingCondEq_primitive_builder.values()) {
+				BaseClass bc = RegulatingCondEq_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    RegulatingCondEq." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (RegulatingCondEq_class_attributes_enum attrEnum: RegulatingCondEq_class_attributes_enum.values()) {
+				BaseClass bc = RegulatingCondEq_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    RegulatingCondEq." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(RegulatingCondEq) RDFID: " + rdfid;
 		}
 		return result;
 	}

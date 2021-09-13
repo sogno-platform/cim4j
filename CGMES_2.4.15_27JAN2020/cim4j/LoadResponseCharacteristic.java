@@ -19,65 +19,70 @@ Models the characteristic response of the load demand due to changes in system c
 */
 public class LoadResponseCharacteristic extends IdentifiedObject
 {
-	private BaseClass[] LoadResponseCharacteristic_attributes;
+	private BaseClass[] LoadResponseCharacteristic_class_attributes;
+	private BaseClass[] LoadResponseCharacteristic_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum LoadResponseCharacteristic_primitive_builder implements PrimitiveBuilder {
-			exponentModel(){
+		exponentModel(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			pConstantCurrent(){
+		pConstantCurrent(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			pConstantImpedance(){
+		pConstantImpedance(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			pConstantPower(){
+		pConstantPower(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			pFrequencyExponent(){
+		pFrequencyExponent(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			pVoltageExponent(){
+		pVoltageExponent(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			qConstantCurrent(){
+		qConstantCurrent(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			qConstantImpedance(){
+		qConstantImpedance(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			qConstantPower(){
+		qConstantPower(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			qFrequencyExponent(){
+		qFrequencyExponent(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			qVoltageExponent(){
+		qVoltageExponent(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -87,6 +92,22 @@ public class LoadResponseCharacteristic extends IdentifiedObject
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum LoadResponseCharacteristic_class_attributes_enum {
+		EnergyConsumer,
+		exponentModel,
+		pConstantCurrent,
+		pConstantImpedance,
+		pConstantPower,
+		pFrequencyExponent,
+		pVoltageExponent,
+		qConstantCurrent,
+		qConstantImpedance,
+		qConstantPower,
+		qFrequencyExponent,
+		qVoltageExponent,
+			LAST_ENUM;
 	}
 
 		
@@ -103,21 +124,33 @@ public class LoadResponseCharacteristic extends IdentifiedObject
 		
 	
 	public LoadResponseCharacteristic() {
-		LoadResponseCharacteristic_attributes = new BaseClass[LoadResponseCharacteristic_primitive_builder.values().length];
+		LoadResponseCharacteristic_primitive_attributes = new BaseClass[LoadResponseCharacteristic_primitive_builder.values().length];
+		LoadResponseCharacteristic_class_attributes = new BaseClass[LoadResponseCharacteristic_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(LoadResponseCharacteristic_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(LoadResponseCharacteristic_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			LoadResponseCharacteristic_attributes[attrEnum.ordinal()] = value;
+			LoadResponseCharacteristic_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(LoadResponseCharacteristic_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//LoadResponseCharacteristic_ATTR_ENUM attrEnum = LoadResponseCharacteristic_ATTR_BC_ENUM.valueOf(attrName);
+			LoadResponseCharacteristic_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			LoadResponseCharacteristic_class_attributes_enum attrEnum = LoadResponseCharacteristic_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated LoadResponseCharacteristic, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -126,10 +159,11 @@ public class LoadResponseCharacteristic extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			LoadResponseCharacteristic_primitive_builder attrEnum = LoadResponseCharacteristic_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated LoadResponseCharacteristic, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -137,13 +171,26 @@ public class LoadResponseCharacteristic extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (LoadResponseCharacteristic_primitive_builder attrEnum: LoadResponseCharacteristic_primitive_builder.values()) {
-			BaseClass bc = LoadResponseCharacteristic_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (LoadResponseCharacteristic_primitive_builder attrEnum: LoadResponseCharacteristic_primitive_builder.values()) {
+				BaseClass bc = LoadResponseCharacteristic_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadResponseCharacteristic." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (LoadResponseCharacteristic_class_attributes_enum attrEnum: LoadResponseCharacteristic_class_attributes_enum.values()) {
+				BaseClass bc = LoadResponseCharacteristic_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadResponseCharacteristic." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(LoadResponseCharacteristic) RDFID: " + rdfid;
 		}
 		return result;
 	}

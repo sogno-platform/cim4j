@@ -24,90 +24,95 @@ A single or set of synchronous machines for converting mechanical power into alt
 */
 public class GeneratingUnit extends Equipment
 {
-	private BaseClass[] GeneratingUnit_attributes;
+	private BaseClass[] GeneratingUnit_class_attributes;
+	private BaseClass[] GeneratingUnit_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GeneratingUnit_primitive_builder implements PrimitiveBuilder {
-			genControlSource(){
+		genControlSource(){
 			public BaseClass construct (java.lang.String value) {
 				return new GeneratorControlSource(value);
 			}
 		},
-			governorSCD(){
+		governorSCD(){
 			public BaseClass construct (java.lang.String value) {
 				return new PerCent(value);
 			}
 		},
-			initialP(){
+		initialP(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			longPF(){
+		longPF(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			maximumAllowableSpinningReserve(){
+		maximumAllowableSpinningReserve(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			maxOperatingP(){
+		maxOperatingP(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			minOperatingP(){
+		minOperatingP(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			nominalP(){
+		nominalP(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			ratedGrossMaxP(){
+		ratedGrossMaxP(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			ratedGrossMinP(){
+		ratedGrossMinP(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			ratedNetMaxP(){
+		ratedNetMaxP(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			shortPF(){
+		shortPF(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			startupCost(){
+		startupCost(){
 			public BaseClass construct (java.lang.String value) {
 				return new Money(value);
 			}
 		},
-			variableCost(){
+		variableCost(){
 			public BaseClass construct (java.lang.String value) {
 				return new Money(value);
 			}
 		},
-			totalEfficiency(){
+		totalEfficiency(){
 			public BaseClass construct (java.lang.String value) {
 				return new PerCent(value);
 			}
 		},
-			normalPF(){
+		normalPF(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -117,6 +122,29 @@ public class GeneratingUnit extends Equipment
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GeneratingUnit_class_attributes_enum {
+		genControlSource,
+		governorSCD,
+		initialP,
+		longPF,
+		maximumAllowableSpinningReserve,
+		maxOperatingP,
+		minOperatingP,
+		nominalP,
+		ratedGrossMaxP,
+		ratedGrossMinP,
+		ratedNetMaxP,
+		shortPF,
+		startupCost,
+		variableCost,
+		totalEfficiency,
+		ControlAreaGeneratingUnit,
+		RotatingMachine,
+		GrossToNetActivePowerCurves,
+		normalPF,
+			LAST_ENUM;
 	}
 
 		
@@ -140,21 +168,33 @@ public class GeneratingUnit extends Equipment
 		
 	
 	public GeneratingUnit() {
-		GeneratingUnit_attributes = new BaseClass[GeneratingUnit_primitive_builder.values().length];
+		GeneratingUnit_primitive_attributes = new BaseClass[GeneratingUnit_primitive_builder.values().length];
+		GeneratingUnit_class_attributes = new BaseClass[GeneratingUnit_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GeneratingUnit_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GeneratingUnit_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GeneratingUnit_attributes[attrEnum.ordinal()] = value;
+			GeneratingUnit_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GeneratingUnit_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GeneratingUnit_ATTR_ENUM attrEnum = GeneratingUnit_ATTR_BC_ENUM.valueOf(attrName);
+			GeneratingUnit_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GeneratingUnit_class_attributes_enum attrEnum = GeneratingUnit_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GeneratingUnit, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -163,10 +203,11 @@ public class GeneratingUnit extends Equipment
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GeneratingUnit_primitive_builder attrEnum = GeneratingUnit_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GeneratingUnit, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -174,13 +215,26 @@ public class GeneratingUnit extends Equipment
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GeneratingUnit_primitive_builder attrEnum: GeneratingUnit_primitive_builder.values()) {
-			BaseClass bc = GeneratingUnit_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GeneratingUnit_primitive_builder attrEnum: GeneratingUnit_primitive_builder.values()) {
+				BaseClass bc = GeneratingUnit_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GeneratingUnit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GeneratingUnit_class_attributes_enum attrEnum: GeneratingUnit_class_attributes_enum.values()) {
+				BaseClass bc = GeneratingUnit_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GeneratingUnit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GeneratingUnit) RDFID: " + rdfid;
 		}
 		return result;
 	}

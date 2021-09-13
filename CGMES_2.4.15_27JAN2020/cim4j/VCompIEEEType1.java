@@ -18,25 +18,30 @@ Reference: IEEE Standard 421.5-2005 Section 4.
 */
 public class VCompIEEEType1 extends VoltageCompensatorDynamics
 {
-	private BaseClass[] VCompIEEEType1_attributes;
+	private BaseClass[] VCompIEEEType1_class_attributes;
+	private BaseClass[] VCompIEEEType1_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum VCompIEEEType1_primitive_builder implements PrimitiveBuilder {
-			rc(){
+		rc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			xc(){
+		xc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tr(){
+		tr(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
@@ -48,26 +53,45 @@ public class VCompIEEEType1 extends VoltageCompensatorDynamics
 		};
 	}
 
+	private enum VCompIEEEType1_class_attributes_enum {
+		rc,
+		xc,
+		tr,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public VCompIEEEType1() {
-		VCompIEEEType1_attributes = new BaseClass[VCompIEEEType1_primitive_builder.values().length];
+		VCompIEEEType1_primitive_attributes = new BaseClass[VCompIEEEType1_primitive_builder.values().length];
+		VCompIEEEType1_class_attributes = new BaseClass[VCompIEEEType1_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(VCompIEEEType1_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(VCompIEEEType1_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			VCompIEEEType1_attributes[attrEnum.ordinal()] = value;
+			VCompIEEEType1_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(VCompIEEEType1_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//VCompIEEEType1_ATTR_ENUM attrEnum = VCompIEEEType1_ATTR_BC_ENUM.valueOf(attrName);
+			VCompIEEEType1_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			VCompIEEEType1_class_attributes_enum attrEnum = VCompIEEEType1_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated VCompIEEEType1, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,10 +100,11 @@ public class VCompIEEEType1 extends VoltageCompensatorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			VCompIEEEType1_primitive_builder attrEnum = VCompIEEEType1_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated VCompIEEEType1, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -87,13 +112,26 @@ public class VCompIEEEType1 extends VoltageCompensatorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (VCompIEEEType1_primitive_builder attrEnum: VCompIEEEType1_primitive_builder.values()) {
-			BaseClass bc = VCompIEEEType1_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (VCompIEEEType1_primitive_builder attrEnum: VCompIEEEType1_primitive_builder.values()) {
+				BaseClass bc = VCompIEEEType1_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VCompIEEEType1." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (VCompIEEEType1_class_attributes_enum attrEnum: VCompIEEEType1_class_attributes_enum.values()) {
+				BaseClass bc = VCompIEEEType1_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VCompIEEEType1." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(VCompIEEEType1) RDFID: " + rdfid;
 		}
 		return result;
 	}

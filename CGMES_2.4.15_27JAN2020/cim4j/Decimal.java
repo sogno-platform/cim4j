@@ -16,13 +16,18 @@ Decimal is the base-10 notational system for representing real numbers.
 */
 public class Decimal extends BaseClass
 {
-	private BaseClass[] Decimal_attributes;
+	private BaseClass[] Decimal_class_attributes;
+	private BaseClass[] Decimal_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum Decimal_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -31,23 +36,39 @@ public class Decimal extends BaseClass
 		};
 	}
 
-	
-	public Decimal() {
-		Decimal_attributes = new BaseClass[Decimal_primitive_builder.values().length];
+	private enum Decimal_class_attributes_enum {
+			LAST_ENUM;
 	}
 
-	public void updateAttributeInArray(Decimal_primitive_builder attrEnum, BaseClass value) {
+	
+	public Decimal() {
+		Decimal_primitive_attributes = new BaseClass[Decimal_primitive_builder.values().length];
+		Decimal_class_attributes = new BaseClass[Decimal_class_attributes_enum.values().length];
+	}
+
+	public void updateAttributeInArray(Decimal_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			Decimal_attributes[attrEnum.ordinal()] = value;
+			Decimal_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(Decimal_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//Decimal_ATTR_ENUM attrEnum = Decimal_ATTR_BC_ENUM.valueOf(attrName);
+			Decimal_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			Decimal_class_attributes_enum attrEnum = Decimal_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated Decimal, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -56,10 +77,11 @@ public class Decimal extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			Decimal_primitive_builder attrEnum = Decimal_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated Decimal, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -67,13 +89,26 @@ public class Decimal extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (Decimal_primitive_builder attrEnum: Decimal_primitive_builder.values()) {
-			BaseClass bc = Decimal_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (Decimal_primitive_builder attrEnum: Decimal_primitive_builder.values()) {
+				BaseClass bc = Decimal_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Decimal." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (Decimal_class_attributes_enum attrEnum: Decimal_class_attributes_enum.values()) {
+				BaseClass bc = Decimal_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Decimal." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(Decimal) RDFID: " + rdfid;
 		}
 		return result;
 	}

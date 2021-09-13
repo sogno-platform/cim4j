@@ -20,85 +20,90 @@ Italian PSS - three input PSS (speed, frequency, power).
 */
 public class Pss1 extends PowerSystemStabilizerDynamics
 {
-	private BaseClass[] Pss1_attributes;
+	private BaseClass[] Pss1_class_attributes;
+	private BaseClass[] Pss1_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum Pss1_primitive_builder implements PrimitiveBuilder {
-			kw(){
+		kw(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kf(){
+		kf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kpe(){
+		kpe(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			pmin(){
+		pmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ks(){
+		ks(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			vsmn(){
+		vsmn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vsmx(){
+		vsmx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tpe(){
+		tpe(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t5(){
+		t5(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t6(){
+		t6(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t7(){
+		t7(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t8(){
+		t8(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t9(){
+		t9(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t10(){
+		t10(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vadat(){
+		vadat(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -108,6 +113,25 @@ public class Pss1 extends PowerSystemStabilizerDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum Pss1_class_attributes_enum {
+		kw,
+		kf,
+		kpe,
+		pmin,
+		ks,
+		vsmn,
+		vsmx,
+		tpe,
+		t5,
+		t6,
+		t7,
+		t8,
+		t9,
+		t10,
+		vadat,
+			LAST_ENUM;
 	}
 
 		
@@ -127,21 +151,33 @@ public class Pss1 extends PowerSystemStabilizerDynamics
 		
 	
 	public Pss1() {
-		Pss1_attributes = new BaseClass[Pss1_primitive_builder.values().length];
+		Pss1_primitive_attributes = new BaseClass[Pss1_primitive_builder.values().length];
+		Pss1_class_attributes = new BaseClass[Pss1_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(Pss1_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(Pss1_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			Pss1_attributes[attrEnum.ordinal()] = value;
+			Pss1_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(Pss1_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//Pss1_ATTR_ENUM attrEnum = Pss1_ATTR_BC_ENUM.valueOf(attrName);
+			Pss1_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			Pss1_class_attributes_enum attrEnum = Pss1_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated Pss1, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -150,10 +186,11 @@ public class Pss1 extends PowerSystemStabilizerDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			Pss1_primitive_builder attrEnum = Pss1_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated Pss1, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -161,13 +198,26 @@ public class Pss1 extends PowerSystemStabilizerDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (Pss1_primitive_builder attrEnum: Pss1_primitive_builder.values()) {
-			BaseClass bc = Pss1_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (Pss1_primitive_builder attrEnum: Pss1_primitive_builder.values()) {
+				BaseClass bc = Pss1_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Pss1." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (Pss1_class_attributes_enum attrEnum: Pss1_class_attributes_enum.values()) {
+				BaseClass bc = Pss1_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Pss1." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(Pss1) RDFID: " + rdfid;
 		}
 		return result;
 	}

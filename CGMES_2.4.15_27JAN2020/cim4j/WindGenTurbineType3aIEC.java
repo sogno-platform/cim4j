@@ -19,25 +19,30 @@ IEC Type 3A generator set model.  Reference: IEC Standard 61400-27-1 Section 6.6
 */
 public class WindGenTurbineType3aIEC extends WindGenTurbineType3IEC
 {
-	private BaseClass[] WindGenTurbineType3aIEC_attributes;
+	private BaseClass[] WindGenTurbineType3aIEC_class_attributes;
+	private BaseClass[] WindGenTurbineType3aIEC_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum WindGenTurbineType3aIEC_primitive_builder implements PrimitiveBuilder {
-			kpc(){
+		kpc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			xs(){
+		xs(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tic(){
+		tic(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
@@ -49,26 +54,45 @@ public class WindGenTurbineType3aIEC extends WindGenTurbineType3IEC
 		};
 	}
 
+	private enum WindGenTurbineType3aIEC_class_attributes_enum {
+		kpc,
+		xs,
+		tic,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public WindGenTurbineType3aIEC() {
-		WindGenTurbineType3aIEC_attributes = new BaseClass[WindGenTurbineType3aIEC_primitive_builder.values().length];
+		WindGenTurbineType3aIEC_primitive_attributes = new BaseClass[WindGenTurbineType3aIEC_primitive_builder.values().length];
+		WindGenTurbineType3aIEC_class_attributes = new BaseClass[WindGenTurbineType3aIEC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(WindGenTurbineType3aIEC_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(WindGenTurbineType3aIEC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			WindGenTurbineType3aIEC_attributes[attrEnum.ordinal()] = value;
+			WindGenTurbineType3aIEC_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(WindGenTurbineType3aIEC_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//WindGenTurbineType3aIEC_ATTR_ENUM attrEnum = WindGenTurbineType3aIEC_ATTR_BC_ENUM.valueOf(attrName);
+			WindGenTurbineType3aIEC_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			WindGenTurbineType3aIEC_class_attributes_enum attrEnum = WindGenTurbineType3aIEC_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated WindGenTurbineType3aIEC, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -77,10 +101,11 @@ public class WindGenTurbineType3aIEC extends WindGenTurbineType3IEC
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			WindGenTurbineType3aIEC_primitive_builder attrEnum = WindGenTurbineType3aIEC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated WindGenTurbineType3aIEC, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -88,13 +113,26 @@ public class WindGenTurbineType3aIEC extends WindGenTurbineType3IEC
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (WindGenTurbineType3aIEC_primitive_builder attrEnum: WindGenTurbineType3aIEC_primitive_builder.values()) {
-			BaseClass bc = WindGenTurbineType3aIEC_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (WindGenTurbineType3aIEC_primitive_builder attrEnum: WindGenTurbineType3aIEC_primitive_builder.values()) {
+				BaseClass bc = WindGenTurbineType3aIEC_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindGenTurbineType3aIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (WindGenTurbineType3aIEC_class_attributes_enum attrEnum: WindGenTurbineType3aIEC_class_attributes_enum.values()) {
+				BaseClass bc = WindGenTurbineType3aIEC_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindGenTurbineType3aIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(WindGenTurbineType3aIEC) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -18,65 +18,70 @@ PSS Slovakian type - three inputs.
 */
 public class PssSK extends PowerSystemStabilizerDynamics
 {
-	private BaseClass[] PssSK_attributes;
+	private BaseClass[] PssSK_class_attributes;
+	private BaseClass[] PssSK_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum PssSK_primitive_builder implements PrimitiveBuilder {
-			k1(){
+		k1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			k2(){
+		k2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			k3(){
+		k3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			t1(){
+		t1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t2(){
+		t2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t3(){
+		t3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t4(){
+		t4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t5(){
+		t5(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t6(){
+		t6(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vsmax(){
+		vsmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vsmin(){
+		vsmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -86,6 +91,21 @@ public class PssSK extends PowerSystemStabilizerDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum PssSK_class_attributes_enum {
+		k1,
+		k2,
+		k3,
+		t1,
+		t2,
+		t3,
+		t4,
+		t5,
+		t6,
+		vsmax,
+		vsmin,
+			LAST_ENUM;
 	}
 
 		
@@ -101,21 +121,33 @@ public class PssSK extends PowerSystemStabilizerDynamics
 		
 	
 	public PssSK() {
-		PssSK_attributes = new BaseClass[PssSK_primitive_builder.values().length];
+		PssSK_primitive_attributes = new BaseClass[PssSK_primitive_builder.values().length];
+		PssSK_class_attributes = new BaseClass[PssSK_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PssSK_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(PssSK_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			PssSK_attributes[attrEnum.ordinal()] = value;
+			PssSK_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(PssSK_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//PssSK_ATTR_ENUM attrEnum = PssSK_ATTR_BC_ENUM.valueOf(attrName);
+			PssSK_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			PssSK_class_attributes_enum attrEnum = PssSK_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated PssSK, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -124,10 +156,11 @@ public class PssSK extends PowerSystemStabilizerDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PssSK_primitive_builder attrEnum = PssSK_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated PssSK, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -135,13 +168,26 @@ public class PssSK extends PowerSystemStabilizerDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (PssSK_primitive_builder attrEnum: PssSK_primitive_builder.values()) {
-			BaseClass bc = PssSK_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (PssSK_primitive_builder attrEnum: PssSK_primitive_builder.values()) {
+				BaseClass bc = PssSK_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PssSK." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (PssSK_class_attributes_enum attrEnum: PssSK_class_attributes_enum.values()) {
+				BaseClass bc = PssSK_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PssSK." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(PssSK) RDFID: " + rdfid;
 		}
 		return result;
 	}

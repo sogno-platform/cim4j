@@ -19,50 +19,55 @@ IEEE Simplified Hydro Governor-Turbine Model.  Used for Mechanical-Hydraulic and
 */
 public class GovHydroIEEE0 extends TurbineGovernorDynamics
 {
-	private BaseClass[] GovHydroIEEE0_attributes;
+	private BaseClass[] GovHydroIEEE0_class_attributes;
+	private BaseClass[] GovHydroIEEE0_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GovHydroIEEE0_primitive_builder implements PrimitiveBuilder {
-			mwbase(){
+		mwbase(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			k(){
+		k(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			t1(){
+		t1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t2(){
+		t2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t3(){
+		t3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t4(){
+		t4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			pmax(){
+		pmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmin(){
+		pmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -72,6 +77,18 @@ public class GovHydroIEEE0 extends TurbineGovernorDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GovHydroIEEE0_class_attributes_enum {
+		mwbase,
+		k,
+		t1,
+		t2,
+		t3,
+		t4,
+		pmax,
+		pmin,
+			LAST_ENUM;
 	}
 
 		
@@ -84,21 +101,33 @@ public class GovHydroIEEE0 extends TurbineGovernorDynamics
 		
 	
 	public GovHydroIEEE0() {
-		GovHydroIEEE0_attributes = new BaseClass[GovHydroIEEE0_primitive_builder.values().length];
+		GovHydroIEEE0_primitive_attributes = new BaseClass[GovHydroIEEE0_primitive_builder.values().length];
+		GovHydroIEEE0_class_attributes = new BaseClass[GovHydroIEEE0_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovHydroIEEE0_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GovHydroIEEE0_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GovHydroIEEE0_attributes[attrEnum.ordinal()] = value;
+			GovHydroIEEE0_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GovHydroIEEE0_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GovHydroIEEE0_ATTR_ENUM attrEnum = GovHydroIEEE0_ATTR_BC_ENUM.valueOf(attrName);
+			GovHydroIEEE0_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GovHydroIEEE0_class_attributes_enum attrEnum = GovHydroIEEE0_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GovHydroIEEE0, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -107,10 +136,11 @@ public class GovHydroIEEE0 extends TurbineGovernorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovHydroIEEE0_primitive_builder attrEnum = GovHydroIEEE0_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GovHydroIEEE0, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -118,13 +148,26 @@ public class GovHydroIEEE0 extends TurbineGovernorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GovHydroIEEE0_primitive_builder attrEnum: GovHydroIEEE0_primitive_builder.values()) {
-			BaseClass bc = GovHydroIEEE0_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GovHydroIEEE0_primitive_builder attrEnum: GovHydroIEEE0_primitive_builder.values()) {
+				BaseClass bc = GovHydroIEEE0_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovHydroIEEE0." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GovHydroIEEE0_class_attributes_enum attrEnum: GovHydroIEEE0_class_attributes_enum.values()) {
+				BaseClass bc = GovHydroIEEE0_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovHydroIEEE0." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GovHydroIEEE0) RDFID: " + rdfid;
 		}
 		return result;
 	}

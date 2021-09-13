@@ -18,125 +18,130 @@ Proportional/Integral Regulator Excitation System Model.  This model can be used
 */
 public class ExcPIC extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcPIC_attributes;
+	private BaseClass[] ExcPIC_class_attributes;
+	private BaseClass[] ExcPIC_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcPIC_primitive_builder implements PrimitiveBuilder {
-			ka(){
+		ka(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ta1(){
+		ta1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vr1(){
+		vr1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vr2(){
+		vr2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ta2(){
+		ta2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ta3(){
+		ta3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ta4(){
+		ta4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kf(){
+		kf(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tf1(){
+		tf1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tf2(){
+		tf2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			efdmax(){
+		efdmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			efdmin(){
+		efdmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ke(){
+		ke(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			e1(){
+		e1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			se1(){
+		se1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			e2(){
+		e2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			se2(){
+		se2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kp(){
+		kp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ki(){
+		ki(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kc(){
+		kc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -146,6 +151,33 @@ public class ExcPIC extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcPIC_class_attributes_enum {
+		ka,
+		ta1,
+		vr1,
+		vr2,
+		ta2,
+		ta3,
+		ta4,
+		vrmax,
+		vrmin,
+		kf,
+		tf1,
+		tf2,
+		efdmax,
+		efdmin,
+		ke,
+		te,
+		e1,
+		se1,
+		e2,
+		se2,
+		kp,
+		ki,
+		kc,
+			LAST_ENUM;
 	}
 
 		
@@ -173,21 +205,33 @@ public class ExcPIC extends ExcitationSystemDynamics
 		
 	
 	public ExcPIC() {
-		ExcPIC_attributes = new BaseClass[ExcPIC_primitive_builder.values().length];
+		ExcPIC_primitive_attributes = new BaseClass[ExcPIC_primitive_builder.values().length];
+		ExcPIC_class_attributes = new BaseClass[ExcPIC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcPIC_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcPIC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcPIC_attributes[attrEnum.ordinal()] = value;
+			ExcPIC_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcPIC_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcPIC_ATTR_ENUM attrEnum = ExcPIC_ATTR_BC_ENUM.valueOf(attrName);
+			ExcPIC_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcPIC_class_attributes_enum attrEnum = ExcPIC_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcPIC, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -196,10 +240,11 @@ public class ExcPIC extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcPIC_primitive_builder attrEnum = ExcPIC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcPIC, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -207,13 +252,26 @@ public class ExcPIC extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcPIC_primitive_builder attrEnum: ExcPIC_primitive_builder.values()) {
-			BaseClass bc = ExcPIC_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcPIC_primitive_builder attrEnum: ExcPIC_primitive_builder.values()) {
+				BaseClass bc = ExcPIC_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcPIC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcPIC_class_attributes_enum attrEnum: ExcPIC_class_attributes_enum.values()) {
+				BaseClass bc = ExcPIC_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcPIC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcPIC) RDFID: " + rdfid;
 		}
 		return result;
 	}

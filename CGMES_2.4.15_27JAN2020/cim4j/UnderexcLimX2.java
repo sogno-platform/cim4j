@@ -18,45 +18,50 @@ import cim4j.Seconds;
 */
 public class UnderexcLimX2 extends UnderexcitationLimiterDynamics
 {
-	private BaseClass[] UnderexcLimX2_attributes;
+	private BaseClass[] UnderexcLimX2_class_attributes;
+	private BaseClass[] UnderexcLimX2_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum UnderexcLimX2_primitive_builder implements PrimitiveBuilder {
-			kf2(){
+		kf2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tf2(){
+		tf2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			km(){
+		km(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tm(){
+		tm(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			melmax(){
+		melmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			qo(){
+		qo(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			r(){
+		r(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -68,6 +73,17 @@ public class UnderexcLimX2 extends UnderexcitationLimiterDynamics
 		};
 	}
 
+	private enum UnderexcLimX2_class_attributes_enum {
+		kf2,
+		tf2,
+		km,
+		tm,
+		melmax,
+		qo,
+		r,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -77,21 +93,33 @@ public class UnderexcLimX2 extends UnderexcitationLimiterDynamics
 		
 	
 	public UnderexcLimX2() {
-		UnderexcLimX2_attributes = new BaseClass[UnderexcLimX2_primitive_builder.values().length];
+		UnderexcLimX2_primitive_attributes = new BaseClass[UnderexcLimX2_primitive_builder.values().length];
+		UnderexcLimX2_class_attributes = new BaseClass[UnderexcLimX2_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(UnderexcLimX2_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(UnderexcLimX2_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			UnderexcLimX2_attributes[attrEnum.ordinal()] = value;
+			UnderexcLimX2_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(UnderexcLimX2_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//UnderexcLimX2_ATTR_ENUM attrEnum = UnderexcLimX2_ATTR_BC_ENUM.valueOf(attrName);
+			UnderexcLimX2_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			UnderexcLimX2_class_attributes_enum attrEnum = UnderexcLimX2_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated UnderexcLimX2, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -100,10 +128,11 @@ public class UnderexcLimX2 extends UnderexcitationLimiterDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			UnderexcLimX2_primitive_builder attrEnum = UnderexcLimX2_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated UnderexcLimX2, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -111,13 +140,26 @@ public class UnderexcLimX2 extends UnderexcitationLimiterDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (UnderexcLimX2_primitive_builder attrEnum: UnderexcLimX2_primitive_builder.values()) {
-			BaseClass bc = UnderexcLimX2_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (UnderexcLimX2_primitive_builder attrEnum: UnderexcLimX2_primitive_builder.values()) {
+				BaseClass bc = UnderexcLimX2_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    UnderexcLimX2." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (UnderexcLimX2_class_attributes_enum attrEnum: UnderexcLimX2_class_attributes_enum.values()) {
+				BaseClass bc = UnderexcLimX2_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    UnderexcLimX2." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(UnderexcLimX2) RDFID: " + rdfid;
 		}
 		return result;
 	}

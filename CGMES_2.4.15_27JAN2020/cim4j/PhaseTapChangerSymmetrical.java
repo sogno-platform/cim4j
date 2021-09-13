@@ -16,13 +16,18 @@ Describes a symmetrical phase shifting transformer tap model in which the second
 */
 public class PhaseTapChangerSymmetrical extends PhaseTapChangerNonLinear
 {
-	private BaseClass[] PhaseTapChangerSymmetrical_attributes;
+	private BaseClass[] PhaseTapChangerSymmetrical_class_attributes;
+	private BaseClass[] PhaseTapChangerSymmetrical_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum PhaseTapChangerSymmetrical_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -31,23 +36,39 @@ public class PhaseTapChangerSymmetrical extends PhaseTapChangerNonLinear
 		};
 	}
 
-	
-	public PhaseTapChangerSymmetrical() {
-		PhaseTapChangerSymmetrical_attributes = new BaseClass[PhaseTapChangerSymmetrical_primitive_builder.values().length];
+	private enum PhaseTapChangerSymmetrical_class_attributes_enum {
+			LAST_ENUM;
 	}
 
-	public void updateAttributeInArray(PhaseTapChangerSymmetrical_primitive_builder attrEnum, BaseClass value) {
+	
+	public PhaseTapChangerSymmetrical() {
+		PhaseTapChangerSymmetrical_primitive_attributes = new BaseClass[PhaseTapChangerSymmetrical_primitive_builder.values().length];
+		PhaseTapChangerSymmetrical_class_attributes = new BaseClass[PhaseTapChangerSymmetrical_class_attributes_enum.values().length];
+	}
+
+	public void updateAttributeInArray(PhaseTapChangerSymmetrical_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			PhaseTapChangerSymmetrical_attributes[attrEnum.ordinal()] = value;
+			PhaseTapChangerSymmetrical_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(PhaseTapChangerSymmetrical_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//PhaseTapChangerSymmetrical_ATTR_ENUM attrEnum = PhaseTapChangerSymmetrical_ATTR_BC_ENUM.valueOf(attrName);
+			PhaseTapChangerSymmetrical_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			PhaseTapChangerSymmetrical_class_attributes_enum attrEnum = PhaseTapChangerSymmetrical_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated PhaseTapChangerSymmetrical, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -56,10 +77,11 @@ public class PhaseTapChangerSymmetrical extends PhaseTapChangerNonLinear
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PhaseTapChangerSymmetrical_primitive_builder attrEnum = PhaseTapChangerSymmetrical_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated PhaseTapChangerSymmetrical, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -67,13 +89,26 @@ public class PhaseTapChangerSymmetrical extends PhaseTapChangerNonLinear
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (PhaseTapChangerSymmetrical_primitive_builder attrEnum: PhaseTapChangerSymmetrical_primitive_builder.values()) {
-			BaseClass bc = PhaseTapChangerSymmetrical_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (PhaseTapChangerSymmetrical_primitive_builder attrEnum: PhaseTapChangerSymmetrical_primitive_builder.values()) {
+				BaseClass bc = PhaseTapChangerSymmetrical_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PhaseTapChangerSymmetrical." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (PhaseTapChangerSymmetrical_class_attributes_enum attrEnum: PhaseTapChangerSymmetrical_class_attributes_enum.values()) {
+				BaseClass bc = PhaseTapChangerSymmetrical_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PhaseTapChangerSymmetrical." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(PhaseTapChangerSymmetrical) RDFID: " + rdfid;
 		}
 		return result;
 	}

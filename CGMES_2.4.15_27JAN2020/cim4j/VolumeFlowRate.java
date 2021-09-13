@@ -19,30 +19,35 @@ Volume per time.
 */
 public class VolumeFlowRate extends BaseClass
 {
-	private BaseClass[] VolumeFlowRate_attributes;
+	private BaseClass[] VolumeFlowRate_class_attributes;
+	private BaseClass[] VolumeFlowRate_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum VolumeFlowRate_primitive_builder implements PrimitiveBuilder {
-			denominatorMultiplier(){
+		denominatorMultiplier(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitMultiplier(value);
 			}
 		},
-			denominatorUnit(){
+		denominatorUnit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
 		},
-			multiplier(){
+		multiplier(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitMultiplier(value);
 			}
 		},
-			unit(){
+		unit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
@@ -54,6 +59,15 @@ public class VolumeFlowRate extends BaseClass
 		};
 	}
 
+	private enum VolumeFlowRate_class_attributes_enum {
+		denominatorMultiplier,
+		denominatorUnit,
+		multiplier,
+		unit,
+		value,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -61,21 +75,33 @@ public class VolumeFlowRate extends BaseClass
 		
 	
 	public VolumeFlowRate() {
-		VolumeFlowRate_attributes = new BaseClass[VolumeFlowRate_primitive_builder.values().length];
+		VolumeFlowRate_primitive_attributes = new BaseClass[VolumeFlowRate_primitive_builder.values().length];
+		VolumeFlowRate_class_attributes = new BaseClass[VolumeFlowRate_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(VolumeFlowRate_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(VolumeFlowRate_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			VolumeFlowRate_attributes[attrEnum.ordinal()] = value;
+			VolumeFlowRate_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(VolumeFlowRate_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//VolumeFlowRate_ATTR_ENUM attrEnum = VolumeFlowRate_ATTR_BC_ENUM.valueOf(attrName);
+			VolumeFlowRate_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			VolumeFlowRate_class_attributes_enum attrEnum = VolumeFlowRate_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated VolumeFlowRate, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -84,10 +110,11 @@ public class VolumeFlowRate extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			VolumeFlowRate_primitive_builder attrEnum = VolumeFlowRate_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated VolumeFlowRate, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -95,13 +122,26 @@ public class VolumeFlowRate extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (VolumeFlowRate_primitive_builder attrEnum: VolumeFlowRate_primitive_builder.values()) {
-			BaseClass bc = VolumeFlowRate_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (VolumeFlowRate_primitive_builder attrEnum: VolumeFlowRate_primitive_builder.values()) {
+				BaseClass bc = VolumeFlowRate_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VolumeFlowRate." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (VolumeFlowRate_class_attributes_enum attrEnum: VolumeFlowRate_class_attributes_enum.values()) {
+				BaseClass bc = VolumeFlowRate_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VolumeFlowRate." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(VolumeFlowRate) RDFID: " + rdfid;
 		}
 		return result;
 	}

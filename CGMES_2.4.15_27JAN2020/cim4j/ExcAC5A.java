@@ -19,100 +19,105 @@ Modified IEEE AC5A alternator-supplied rectifier excitation system with differen
 */
 public class ExcAC5A extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcAC5A_attributes;
+	private BaseClass[] ExcAC5A_class_attributes;
+	private BaseClass[] ExcAC5A_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcAC5A_primitive_builder implements PrimitiveBuilder {
-			ka(){
+		ka(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ks(){
+		ks(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tb(){
+		tb(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tc(){
+		tc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ta(){
+		ta(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ke(){
+		ke(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kf(){
+		kf(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tf1(){
+		tf1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tf2(){
+		tf2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tf3(){
+		tf3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			efd1(){
+		efd1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			seefd1(){
+		seefd1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			efd2(){
+		efd2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			seefd2(){
+		seefd2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			a(){
+		a(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -122,6 +127,28 @@ public class ExcAC5A extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcAC5A_class_attributes_enum {
+		ka,
+		ks,
+		tb,
+		tc,
+		ta,
+		vrmax,
+		vrmin,
+		ke,
+		te,
+		kf,
+		tf1,
+		tf2,
+		tf3,
+		efd1,
+		seefd1,
+		efd2,
+		seefd2,
+		a,
+			LAST_ENUM;
 	}
 
 		
@@ -144,21 +171,33 @@ public class ExcAC5A extends ExcitationSystemDynamics
 		
 	
 	public ExcAC5A() {
-		ExcAC5A_attributes = new BaseClass[ExcAC5A_primitive_builder.values().length];
+		ExcAC5A_primitive_attributes = new BaseClass[ExcAC5A_primitive_builder.values().length];
+		ExcAC5A_class_attributes = new BaseClass[ExcAC5A_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcAC5A_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcAC5A_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcAC5A_attributes[attrEnum.ordinal()] = value;
+			ExcAC5A_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcAC5A_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcAC5A_ATTR_ENUM attrEnum = ExcAC5A_ATTR_BC_ENUM.valueOf(attrName);
+			ExcAC5A_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcAC5A_class_attributes_enum attrEnum = ExcAC5A_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcAC5A, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -167,10 +206,11 @@ public class ExcAC5A extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcAC5A_primitive_builder attrEnum = ExcAC5A_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcAC5A, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -178,13 +218,26 @@ public class ExcAC5A extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcAC5A_primitive_builder attrEnum: ExcAC5A_primitive_builder.values()) {
-			BaseClass bc = ExcAC5A_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcAC5A_primitive_builder attrEnum: ExcAC5A_primitive_builder.values()) {
+				BaseClass bc = ExcAC5A_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcAC5A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcAC5A_class_attributes_enum attrEnum: ExcAC5A_class_attributes_enum.values()) {
+				BaseClass bc = ExcAC5A_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcAC5A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcAC5A) RDFID: " + rdfid;
 		}
 		return result;
 	}

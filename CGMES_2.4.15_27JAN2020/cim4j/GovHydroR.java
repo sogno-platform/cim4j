@@ -22,220 +22,225 @@ Fourth order lead-lag governor and hydro turbine.
 */
 public class GovHydroR extends TurbineGovernorDynamics
 {
-	private BaseClass[] GovHydroR_attributes;
+	private BaseClass[] GovHydroR_class_attributes;
+	private BaseClass[] GovHydroR_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GovHydroR_primitive_builder implements PrimitiveBuilder {
-			mwbase(){
+		mwbase(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			pmax(){
+		pmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmin(){
+		pmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			r(){
+		r(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			td(){
+		td(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t1(){
+		t1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t2(){
+		t2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t3(){
+		t3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t4(){
+		t4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t5(){
+		t5(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t6(){
+		t6(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t7(){
+		t7(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			t8(){
+		t8(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tp(){
+		tp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			velop(){
+		velop(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			velcl(){
+		velcl(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ki(){
+		ki(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kg(){
+		kg(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gmax(){
+		gmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gmin(){
+		gmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tt(){
+		tt(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			inputSignal(){
+		inputSignal(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			db1(){
+		db1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Frequency(value);
 			}
 		},
-			eps(){
+		eps(){
 			public BaseClass construct (java.lang.String value) {
 				return new Frequency(value);
 			}
 		},
-			db2(){
+		db2(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			tw(){
+		tw(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			at(){
+		at(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			dturb(){
+		dturb(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			qnl(){
+		qnl(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			h0(){
+		h0(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv1(){
+		gv1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pgv1(){
+		pgv1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv2(){
+		gv2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pgv2(){
+		pgv2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv3(){
+		gv3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pgv3(){
+		pgv3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv4(){
+		gv4(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pgv4(){
+		pgv4(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv5(){
+		gv5(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pgv5(){
+		pgv5(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv6(){
+		gv6(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pgv6(){
+		pgv6(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -245,6 +250,52 @@ public class GovHydroR extends TurbineGovernorDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GovHydroR_class_attributes_enum {
+		mwbase,
+		pmax,
+		pmin,
+		r,
+		td,
+		t1,
+		t2,
+		t3,
+		t4,
+		t5,
+		t6,
+		t7,
+		t8,
+		tp,
+		velop,
+		velcl,
+		ki,
+		kg,
+		gmax,
+		gmin,
+		tt,
+		inputSignal,
+		db1,
+		eps,
+		db2,
+		tw,
+		at,
+		dturb,
+		qnl,
+		h0,
+		gv1,
+		pgv1,
+		gv2,
+		pgv2,
+		gv3,
+		pgv3,
+		gv4,
+		pgv4,
+		gv5,
+		pgv5,
+		gv6,
+		pgv6,
+			LAST_ENUM;
 	}
 
 		
@@ -291,21 +342,33 @@ public class GovHydroR extends TurbineGovernorDynamics
 		
 	
 	public GovHydroR() {
-		GovHydroR_attributes = new BaseClass[GovHydroR_primitive_builder.values().length];
+		GovHydroR_primitive_attributes = new BaseClass[GovHydroR_primitive_builder.values().length];
+		GovHydroR_class_attributes = new BaseClass[GovHydroR_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovHydroR_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GovHydroR_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GovHydroR_attributes[attrEnum.ordinal()] = value;
+			GovHydroR_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GovHydroR_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GovHydroR_ATTR_ENUM attrEnum = GovHydroR_ATTR_BC_ENUM.valueOf(attrName);
+			GovHydroR_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GovHydroR_class_attributes_enum attrEnum = GovHydroR_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GovHydroR, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -314,10 +377,11 @@ public class GovHydroR extends TurbineGovernorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovHydroR_primitive_builder attrEnum = GovHydroR_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GovHydroR, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -325,13 +389,26 @@ public class GovHydroR extends TurbineGovernorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GovHydroR_primitive_builder attrEnum: GovHydroR_primitive_builder.values()) {
-			BaseClass bc = GovHydroR_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GovHydroR_primitive_builder attrEnum: GovHydroR_primitive_builder.values()) {
+				BaseClass bc = GovHydroR_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovHydroR." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GovHydroR_class_attributes_enum attrEnum: GovHydroR_class_attributes_enum.values()) {
+				BaseClass bc = GovHydroR_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovHydroR." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GovHydroR) RDFID: " + rdfid;
 		}
 		return result;
 	}

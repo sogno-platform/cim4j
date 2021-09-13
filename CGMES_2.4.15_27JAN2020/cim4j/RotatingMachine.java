@@ -23,35 +23,40 @@ A rotating machine which may be used as a generator or motor.
 */
 public class RotatingMachine extends RegulatingCondEq
 {
-	private BaseClass[] RotatingMachine_attributes;
+	private BaseClass[] RotatingMachine_class_attributes;
+	private BaseClass[] RotatingMachine_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum RotatingMachine_primitive_builder implements PrimitiveBuilder {
-			ratedPowerFactor(){
+		ratedPowerFactor(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ratedS(){
+		ratedS(){
 			public BaseClass construct (java.lang.String value) {
 				return new ApparentPower(value);
 			}
 		},
-			ratedU(){
+		ratedU(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			p(){
+		p(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			q(){
+		q(){
 			public BaseClass construct (java.lang.String value) {
 				return new ReactivePower(value);
 			}
@@ -63,6 +68,17 @@ public class RotatingMachine extends RegulatingCondEq
 		};
 	}
 
+	private enum RotatingMachine_class_attributes_enum {
+		GeneratingUnit,
+		HydroPump,
+		ratedPowerFactor,
+		ratedS,
+		ratedU,
+		p,
+		q,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -72,21 +88,33 @@ public class RotatingMachine extends RegulatingCondEq
 		
 	
 	public RotatingMachine() {
-		RotatingMachine_attributes = new BaseClass[RotatingMachine_primitive_builder.values().length];
+		RotatingMachine_primitive_attributes = new BaseClass[RotatingMachine_primitive_builder.values().length];
+		RotatingMachine_class_attributes = new BaseClass[RotatingMachine_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(RotatingMachine_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(RotatingMachine_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			RotatingMachine_attributes[attrEnum.ordinal()] = value;
+			RotatingMachine_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(RotatingMachine_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//RotatingMachine_ATTR_ENUM attrEnum = RotatingMachine_ATTR_BC_ENUM.valueOf(attrName);
+			RotatingMachine_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			RotatingMachine_class_attributes_enum attrEnum = RotatingMachine_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated RotatingMachine, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -95,10 +123,11 @@ public class RotatingMachine extends RegulatingCondEq
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			RotatingMachine_primitive_builder attrEnum = RotatingMachine_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated RotatingMachine, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -106,13 +135,26 @@ public class RotatingMachine extends RegulatingCondEq
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (RotatingMachine_primitive_builder attrEnum: RotatingMachine_primitive_builder.values()) {
-			BaseClass bc = RotatingMachine_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (RotatingMachine_primitive_builder attrEnum: RotatingMachine_primitive_builder.values()) {
+				BaseClass bc = RotatingMachine_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    RotatingMachine." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (RotatingMachine_class_attributes_enum attrEnum: RotatingMachine_class_attributes_enum.values()) {
+				BaseClass bc = RotatingMachine_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    RotatingMachine." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(RotatingMachine) RDFID: " + rdfid;
 		}
 		return result;
 	}

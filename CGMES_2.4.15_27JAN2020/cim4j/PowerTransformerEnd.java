@@ -25,70 +25,75 @@ A PowerTransformerEnd is associated with each Terminal of a PowerTransformer. Th
 */
 public class PowerTransformerEnd extends TransformerEnd
 {
-	private BaseClass[] PowerTransformerEnd_attributes;
+	private BaseClass[] PowerTransformerEnd_class_attributes;
+	private BaseClass[] PowerTransformerEnd_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum PowerTransformerEnd_primitive_builder implements PrimitiveBuilder {
-			b(){
+		b(){
 			public BaseClass construct (java.lang.String value) {
 				return new Susceptance(value);
 			}
 		},
-			connectionKind(){
+		connectionKind(){
 			public BaseClass construct (java.lang.String value) {
 				return new WindingConnection(value);
 			}
 		},
-			ratedS(){
+		ratedS(){
 			public BaseClass construct (java.lang.String value) {
 				return new ApparentPower(value);
 			}
 		},
-			g(){
+		g(){
 			public BaseClass construct (java.lang.String value) {
 				return new Conductance(value);
 			}
 		},
-			ratedU(){
+		ratedU(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			r(){
+		r(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			x(){
+		x(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			b0(){
+		b0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Susceptance(value);
 			}
 		},
-			phaseAngleClock(){
+		phaseAngleClock(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			g0(){
+		g0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Conductance(value);
 			}
 		},
-			r0(){
+		r0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			x0(){
+		x0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
@@ -98,6 +103,23 @@ public class PowerTransformerEnd extends TransformerEnd
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum PowerTransformerEnd_class_attributes_enum {
+		PowerTransformer,
+		b,
+		connectionKind,
+		ratedS,
+		g,
+		ratedU,
+		r,
+		x,
+		b0,
+		phaseAngleClock,
+		g0,
+		r0,
+		x0,
+			LAST_ENUM;
 	}
 
 		
@@ -115,21 +137,33 @@ public class PowerTransformerEnd extends TransformerEnd
 		
 	
 	public PowerTransformerEnd() {
-		PowerTransformerEnd_attributes = new BaseClass[PowerTransformerEnd_primitive_builder.values().length];
+		PowerTransformerEnd_primitive_attributes = new BaseClass[PowerTransformerEnd_primitive_builder.values().length];
+		PowerTransformerEnd_class_attributes = new BaseClass[PowerTransformerEnd_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PowerTransformerEnd_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(PowerTransformerEnd_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			PowerTransformerEnd_attributes[attrEnum.ordinal()] = value;
+			PowerTransformerEnd_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(PowerTransformerEnd_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//PowerTransformerEnd_ATTR_ENUM attrEnum = PowerTransformerEnd_ATTR_BC_ENUM.valueOf(attrName);
+			PowerTransformerEnd_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			PowerTransformerEnd_class_attributes_enum attrEnum = PowerTransformerEnd_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated PowerTransformerEnd, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -138,10 +172,11 @@ public class PowerTransformerEnd extends TransformerEnd
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PowerTransformerEnd_primitive_builder attrEnum = PowerTransformerEnd_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated PowerTransformerEnd, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -149,13 +184,26 @@ public class PowerTransformerEnd extends TransformerEnd
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (PowerTransformerEnd_primitive_builder attrEnum: PowerTransformerEnd_primitive_builder.values()) {
-			BaseClass bc = PowerTransformerEnd_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (PowerTransformerEnd_primitive_builder attrEnum: PowerTransformerEnd_primitive_builder.values()) {
+				BaseClass bc = PowerTransformerEnd_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PowerTransformerEnd." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (PowerTransformerEnd_class_attributes_enum attrEnum: PowerTransformerEnd_class_attributes_enum.values()) {
+				BaseClass bc = PowerTransformerEnd_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PowerTransformerEnd." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(PowerTransformerEnd) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -21,35 +21,40 @@ A facility for providing variable and controllable shunt reactive power. The SVC
 */
 public class StaticVarCompensator extends RegulatingCondEq
 {
-	private BaseClass[] StaticVarCompensator_attributes;
+	private BaseClass[] StaticVarCompensator_class_attributes;
+	private BaseClass[] StaticVarCompensator_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum StaticVarCompensator_primitive_builder implements PrimitiveBuilder {
-			capacitiveRating(){
+		capacitiveRating(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			inductiveRating(){
+		inductiveRating(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			sVCControlMode(){
+		sVCControlMode(){
 			public BaseClass construct (java.lang.String value) {
 				return new SVCControlMode(value);
 			}
 		},
-			voltageSetPoint(){
+		voltageSetPoint(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			q(){
+		q(){
 			public BaseClass construct (java.lang.String value) {
 				return new ReactivePower(value);
 			}
@@ -61,6 +66,16 @@ public class StaticVarCompensator extends RegulatingCondEq
 		};
 	}
 
+	private enum StaticVarCompensator_class_attributes_enum {
+		capacitiveRating,
+		inductiveRating,
+		slope,
+		sVCControlMode,
+		voltageSetPoint,
+		q,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -69,21 +84,33 @@ public class StaticVarCompensator extends RegulatingCondEq
 		
 	
 	public StaticVarCompensator() {
-		StaticVarCompensator_attributes = new BaseClass[StaticVarCompensator_primitive_builder.values().length];
+		StaticVarCompensator_primitive_attributes = new BaseClass[StaticVarCompensator_primitive_builder.values().length];
+		StaticVarCompensator_class_attributes = new BaseClass[StaticVarCompensator_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(StaticVarCompensator_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(StaticVarCompensator_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			StaticVarCompensator_attributes[attrEnum.ordinal()] = value;
+			StaticVarCompensator_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(StaticVarCompensator_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//StaticVarCompensator_ATTR_ENUM attrEnum = StaticVarCompensator_ATTR_BC_ENUM.valueOf(attrName);
+			StaticVarCompensator_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			StaticVarCompensator_class_attributes_enum attrEnum = StaticVarCompensator_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated StaticVarCompensator, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -92,10 +119,11 @@ public class StaticVarCompensator extends RegulatingCondEq
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			StaticVarCompensator_primitive_builder attrEnum = StaticVarCompensator_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated StaticVarCompensator, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -103,13 +131,26 @@ public class StaticVarCompensator extends RegulatingCondEq
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (StaticVarCompensator_primitive_builder attrEnum: StaticVarCompensator_primitive_builder.values()) {
-			BaseClass bc = StaticVarCompensator_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (StaticVarCompensator_primitive_builder attrEnum: StaticVarCompensator_primitive_builder.values()) {
+				BaseClass bc = StaticVarCompensator_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    StaticVarCompensator." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (StaticVarCompensator_class_attributes_enum attrEnum: StaticVarCompensator_class_attributes_enum.values()) {
+				BaseClass bc = StaticVarCompensator_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    StaticVarCompensator." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(StaticVarCompensator) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -17,13 +17,18 @@ Load whose behaviour is described by reference to a standard model   A standard 
 */
 public class LoadDynamics extends IdentifiedObject
 {
-	private BaseClass[] LoadDynamics_attributes;
+	private BaseClass[] LoadDynamics_class_attributes;
+	private BaseClass[] LoadDynamics_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum LoadDynamics_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class LoadDynamics extends IdentifiedObject
 		};
 	}
 
+	private enum LoadDynamics_class_attributes_enum {
+		EnergyConsumer,
+			LAST_ENUM;
+	}
+
 		
 	
 	public LoadDynamics() {
-		LoadDynamics_attributes = new BaseClass[LoadDynamics_primitive_builder.values().length];
+		LoadDynamics_primitive_attributes = new BaseClass[LoadDynamics_primitive_builder.values().length];
+		LoadDynamics_class_attributes = new BaseClass[LoadDynamics_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(LoadDynamics_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(LoadDynamics_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			LoadDynamics_attributes[attrEnum.ordinal()] = value;
+			LoadDynamics_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(LoadDynamics_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//LoadDynamics_ATTR_ENUM attrEnum = LoadDynamics_ATTR_BC_ENUM.valueOf(attrName);
+			LoadDynamics_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			LoadDynamics_class_attributes_enum attrEnum = LoadDynamics_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated LoadDynamics, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class LoadDynamics extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			LoadDynamics_primitive_builder attrEnum = LoadDynamics_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated LoadDynamics, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class LoadDynamics extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (LoadDynamics_primitive_builder attrEnum: LoadDynamics_primitive_builder.values()) {
-			BaseClass bc = LoadDynamics_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (LoadDynamics_primitive_builder attrEnum: LoadDynamics_primitive_builder.values()) {
+				BaseClass bc = LoadDynamics_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadDynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (LoadDynamics_class_attributes_enum attrEnum: LoadDynamics_class_attributes_enum.values()) {
+				BaseClass bc = LoadDynamics_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    LoadDynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(LoadDynamics) RDFID: " + rdfid;
 		}
 		return result;
 	}

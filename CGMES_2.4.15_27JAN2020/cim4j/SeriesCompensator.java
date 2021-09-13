@@ -21,45 +21,50 @@ A Series Compensator is a series capacitor or reactor or an AC transmission line
 */
 public class SeriesCompensator extends ConductingEquipment
 {
-	private BaseClass[] SeriesCompensator_attributes;
+	private BaseClass[] SeriesCompensator_class_attributes;
+	private BaseClass[] SeriesCompensator_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum SeriesCompensator_primitive_builder implements PrimitiveBuilder {
-			r(){
+		r(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			x(){
+		x(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			varistorPresent(){
+		varistorPresent(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			varistorRatedCurrent(){
+		varistorRatedCurrent(){
 			public BaseClass construct (java.lang.String value) {
 				return new CurrentFlow(value);
 			}
 		},
-			varistorVoltageThreshold(){
+		varistorVoltageThreshold(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			r0(){
+		r0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			x0(){
+		x0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
@@ -71,6 +76,17 @@ public class SeriesCompensator extends ConductingEquipment
 		};
 	}
 
+	private enum SeriesCompensator_class_attributes_enum {
+		r,
+		x,
+		varistorPresent,
+		varistorRatedCurrent,
+		varistorVoltageThreshold,
+		r0,
+		x0,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -80,21 +96,33 @@ public class SeriesCompensator extends ConductingEquipment
 		
 	
 	public SeriesCompensator() {
-		SeriesCompensator_attributes = new BaseClass[SeriesCompensator_primitive_builder.values().length];
+		SeriesCompensator_primitive_attributes = new BaseClass[SeriesCompensator_primitive_builder.values().length];
+		SeriesCompensator_class_attributes = new BaseClass[SeriesCompensator_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(SeriesCompensator_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(SeriesCompensator_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			SeriesCompensator_attributes[attrEnum.ordinal()] = value;
+			SeriesCompensator_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(SeriesCompensator_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//SeriesCompensator_ATTR_ENUM attrEnum = SeriesCompensator_ATTR_BC_ENUM.valueOf(attrName);
+			SeriesCompensator_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			SeriesCompensator_class_attributes_enum attrEnum = SeriesCompensator_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated SeriesCompensator, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -103,10 +131,11 @@ public class SeriesCompensator extends ConductingEquipment
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			SeriesCompensator_primitive_builder attrEnum = SeriesCompensator_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated SeriesCompensator, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -114,13 +143,26 @@ public class SeriesCompensator extends ConductingEquipment
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (SeriesCompensator_primitive_builder attrEnum: SeriesCompensator_primitive_builder.values()) {
-			BaseClass bc = SeriesCompensator_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (SeriesCompensator_primitive_builder attrEnum: SeriesCompensator_primitive_builder.values()) {
+				BaseClass bc = SeriesCompensator_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SeriesCompensator." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (SeriesCompensator_class_attributes_enum attrEnum: SeriesCompensator_class_attributes_enum.values()) {
+				BaseClass bc = SeriesCompensator_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SeriesCompensator." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(SeriesCompensator) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -18,65 +18,70 @@ Generic turbogas.
 */
 public class GovGAST4 extends TurbineGovernorDynamics
 {
-	private BaseClass[] GovGAST4_attributes;
+	private BaseClass[] GovGAST4_class_attributes;
+	private BaseClass[] GovGAST4_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GovGAST4_primitive_builder implements PrimitiveBuilder {
-			bp(){
+		bp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tv(){
+		tv(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ta(){
+		ta(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tc(){
+		tc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tcm(){
+		tcm(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ktm(){
+		ktm(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tm(){
+		tm(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			rymx(){
+		rymx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			rymn(){
+		rymn(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			mxef(){
+		mxef(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			mnef(){
+		mnef(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -86,6 +91,21 @@ public class GovGAST4 extends TurbineGovernorDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GovGAST4_class_attributes_enum {
+		bp,
+		tv,
+		ta,
+		tc,
+		tcm,
+		ktm,
+		tm,
+		rymx,
+		rymn,
+		mxef,
+		mnef,
+			LAST_ENUM;
 	}
 
 		
@@ -101,21 +121,33 @@ public class GovGAST4 extends TurbineGovernorDynamics
 		
 	
 	public GovGAST4() {
-		GovGAST4_attributes = new BaseClass[GovGAST4_primitive_builder.values().length];
+		GovGAST4_primitive_attributes = new BaseClass[GovGAST4_primitive_builder.values().length];
+		GovGAST4_class_attributes = new BaseClass[GovGAST4_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovGAST4_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GovGAST4_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GovGAST4_attributes[attrEnum.ordinal()] = value;
+			GovGAST4_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GovGAST4_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GovGAST4_ATTR_ENUM attrEnum = GovGAST4_ATTR_BC_ENUM.valueOf(attrName);
+			GovGAST4_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GovGAST4_class_attributes_enum attrEnum = GovGAST4_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GovGAST4, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -124,10 +156,11 @@ public class GovGAST4 extends TurbineGovernorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovGAST4_primitive_builder attrEnum = GovGAST4_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GovGAST4, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -135,13 +168,26 @@ public class GovGAST4 extends TurbineGovernorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GovGAST4_primitive_builder attrEnum: GovGAST4_primitive_builder.values()) {
-			BaseClass bc = GovGAST4_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GovGAST4_primitive_builder attrEnum: GovGAST4_primitive_builder.values()) {
+				BaseClass bc = GovGAST4_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovGAST4." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GovGAST4_class_attributes_enum attrEnum: GovGAST4_class_attributes_enum.values()) {
+				BaseClass bc = GovGAST4_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovGAST4." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GovGAST4) RDFID: " + rdfid;
 		}
 		return result;
 	}

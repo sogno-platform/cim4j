@@ -27,15 +27,20 @@ An AC electrical connection point to a piece of conducting equipment. Terminals 
 */
 public class Terminal extends ACDCTerminal
 {
-	private BaseClass[] Terminal_attributes;
+	private BaseClass[] Terminal_class_attributes;
+	private BaseClass[] Terminal_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum Terminal_primitive_builder implements PrimitiveBuilder {
-			phases(){
+		phases(){
 			public BaseClass construct (java.lang.String value) {
 				return new PhaseCode(value);
 			}
@@ -45,6 +50,22 @@ public class Terminal extends ACDCTerminal
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum Terminal_class_attributes_enum {
+		ConverterDCSides,
+		ConductingEquipment,
+		phases,
+		RegulatingControl,
+		TieFlow,
+		TransformerEnd,
+		ConnectivityNode,
+		HasFirstMutualCoupling,
+		HasSecondMutualCoupling,
+		SvPowerFlow,
+		RemoteInputSignal,
+		TopologicalNode,
+			LAST_ENUM;
 	}
 
 		
@@ -61,21 +82,33 @@ public class Terminal extends ACDCTerminal
 		
 	
 	public Terminal() {
-		Terminal_attributes = new BaseClass[Terminal_primitive_builder.values().length];
+		Terminal_primitive_attributes = new BaseClass[Terminal_primitive_builder.values().length];
+		Terminal_class_attributes = new BaseClass[Terminal_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(Terminal_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(Terminal_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			Terminal_attributes[attrEnum.ordinal()] = value;
+			Terminal_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(Terminal_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//Terminal_ATTR_ENUM attrEnum = Terminal_ATTR_BC_ENUM.valueOf(attrName);
+			Terminal_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			Terminal_class_attributes_enum attrEnum = Terminal_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated Terminal, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -84,10 +117,11 @@ public class Terminal extends ACDCTerminal
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			Terminal_primitive_builder attrEnum = Terminal_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated Terminal, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -95,13 +129,26 @@ public class Terminal extends ACDCTerminal
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (Terminal_primitive_builder attrEnum: Terminal_primitive_builder.values()) {
-			BaseClass bc = Terminal_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (Terminal_primitive_builder attrEnum: Terminal_primitive_builder.values()) {
+				BaseClass bc = Terminal_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Terminal." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (Terminal_class_attributes_enum attrEnum: Terminal_class_attributes_enum.values()) {
+				BaseClass bc = Terminal_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Terminal." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(Terminal) RDFID: " + rdfid;
 		}
 		return result;
 	}

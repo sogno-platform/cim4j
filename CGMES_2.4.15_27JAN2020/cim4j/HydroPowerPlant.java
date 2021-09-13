@@ -19,15 +19,20 @@ A hydro power station which can generate or pump. When generating, the generator
 */
 public class HydroPowerPlant extends PowerSystemResource
 {
-	private BaseClass[] HydroPowerPlant_attributes;
+	private BaseClass[] HydroPowerPlant_class_attributes;
+	private BaseClass[] HydroPowerPlant_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum HydroPowerPlant_primitive_builder implements PrimitiveBuilder {
-			hydroPlantStorageType(){
+		hydroPlantStorageType(){
 			public BaseClass construct (java.lang.String value) {
 				return new HydroPlantStorageKind(value);
 			}
@@ -39,26 +44,45 @@ public class HydroPowerPlant extends PowerSystemResource
 		};
 	}
 
+	private enum HydroPowerPlant_class_attributes_enum {
+		HydroGeneratingUnits,
+		hydroPlantStorageType,
+		HydroPumps,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public HydroPowerPlant() {
-		HydroPowerPlant_attributes = new BaseClass[HydroPowerPlant_primitive_builder.values().length];
+		HydroPowerPlant_primitive_attributes = new BaseClass[HydroPowerPlant_primitive_builder.values().length];
+		HydroPowerPlant_class_attributes = new BaseClass[HydroPowerPlant_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(HydroPowerPlant_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(HydroPowerPlant_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			HydroPowerPlant_attributes[attrEnum.ordinal()] = value;
+			HydroPowerPlant_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(HydroPowerPlant_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//HydroPowerPlant_ATTR_ENUM attrEnum = HydroPowerPlant_ATTR_BC_ENUM.valueOf(attrName);
+			HydroPowerPlant_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			HydroPowerPlant_class_attributes_enum attrEnum = HydroPowerPlant_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated HydroPowerPlant, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -67,10 +91,11 @@ public class HydroPowerPlant extends PowerSystemResource
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			HydroPowerPlant_primitive_builder attrEnum = HydroPowerPlant_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated HydroPowerPlant, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -78,13 +103,26 @@ public class HydroPowerPlant extends PowerSystemResource
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (HydroPowerPlant_primitive_builder attrEnum: HydroPowerPlant_primitive_builder.values()) {
-			BaseClass bc = HydroPowerPlant_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (HydroPowerPlant_primitive_builder attrEnum: HydroPowerPlant_primitive_builder.values()) {
+				BaseClass bc = HydroPowerPlant_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    HydroPowerPlant." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (HydroPowerPlant_class_attributes_enum attrEnum: HydroPowerPlant_class_attributes_enum.values()) {
+				BaseClass bc = HydroPowerPlant_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    HydroPowerPlant." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(HydroPowerPlant) RDFID: " + rdfid;
 		}
 		return result;
 	}

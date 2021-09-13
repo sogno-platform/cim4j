@@ -20,90 +20,95 @@ This is modified IEEE DC3A direct current commutator exciters with speed input, 
 */
 public class ExcDC3A extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcDC3A_attributes;
+	private BaseClass[] ExcDC3A_class_attributes;
+	private BaseClass[] ExcDC3A_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcDC3A_primitive_builder implements PrimitiveBuilder {
-			trh(){
+		trh(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ks(){
+		ks(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kr(){
+		kr(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kv(){
+		kv(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ke(){
+		ke(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			efd1(){
+		efd1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			seefd1(){
+		seefd1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			efd2(){
+		efd2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			seefd2(){
+		seefd2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			exclim(){
+		exclim(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			edfmax(){
+		edfmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			efdmin(){
+		efdmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			efdlim(){
+		efdlim(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -113,6 +118,26 @@ public class ExcDC3A extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcDC3A_class_attributes_enum {
+		trh,
+		ks,
+		kr,
+		kv,
+		vrmax,
+		vrmin,
+		te,
+		ke,
+		efd1,
+		seefd1,
+		efd2,
+		seefd2,
+		exclim,
+		edfmax,
+		efdmin,
+		efdlim,
+			LAST_ENUM;
 	}
 
 		
@@ -133,21 +158,33 @@ public class ExcDC3A extends ExcitationSystemDynamics
 		
 	
 	public ExcDC3A() {
-		ExcDC3A_attributes = new BaseClass[ExcDC3A_primitive_builder.values().length];
+		ExcDC3A_primitive_attributes = new BaseClass[ExcDC3A_primitive_builder.values().length];
+		ExcDC3A_class_attributes = new BaseClass[ExcDC3A_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcDC3A_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcDC3A_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcDC3A_attributes[attrEnum.ordinal()] = value;
+			ExcDC3A_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcDC3A_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcDC3A_ATTR_ENUM attrEnum = ExcDC3A_ATTR_BC_ENUM.valueOf(attrName);
+			ExcDC3A_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcDC3A_class_attributes_enum attrEnum = ExcDC3A_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcDC3A, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -156,10 +193,11 @@ public class ExcDC3A extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcDC3A_primitive_builder attrEnum = ExcDC3A_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcDC3A, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -167,13 +205,26 @@ public class ExcDC3A extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcDC3A_primitive_builder attrEnum: ExcDC3A_primitive_builder.values()) {
-			BaseClass bc = ExcDC3A_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcDC3A_primitive_builder attrEnum: ExcDC3A_primitive_builder.values()) {
+				BaseClass bc = ExcDC3A_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcDC3A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcDC3A_class_attributes_enum attrEnum: ExcDC3A_class_attributes_enum.values()) {
+				BaseClass bc = ExcDC3A_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcDC3A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcDC3A) RDFID: " + rdfid;
 		}
 		return result;
 	}

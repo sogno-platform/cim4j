@@ -18,15 +18,20 @@ Limit values for Accumulator measurements.
 */
 public class AccumulatorLimit extends Limit
 {
-	private BaseClass[] AccumulatorLimit_attributes;
+	private BaseClass[] AccumulatorLimit_class_attributes;
+	private BaseClass[] AccumulatorLimit_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum AccumulatorLimit_primitive_builder implements PrimitiveBuilder {
-			value(){
+		value(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
@@ -38,25 +43,43 @@ public class AccumulatorLimit extends Limit
 		};
 	}
 
+	private enum AccumulatorLimit_class_attributes_enum {
+		value,
+		LimitSet,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public AccumulatorLimit() {
-		AccumulatorLimit_attributes = new BaseClass[AccumulatorLimit_primitive_builder.values().length];
+		AccumulatorLimit_primitive_attributes = new BaseClass[AccumulatorLimit_primitive_builder.values().length];
+		AccumulatorLimit_class_attributes = new BaseClass[AccumulatorLimit_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(AccumulatorLimit_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(AccumulatorLimit_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			AccumulatorLimit_attributes[attrEnum.ordinal()] = value;
+			AccumulatorLimit_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(AccumulatorLimit_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//AccumulatorLimit_ATTR_ENUM attrEnum = AccumulatorLimit_ATTR_BC_ENUM.valueOf(attrName);
+			AccumulatorLimit_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			AccumulatorLimit_class_attributes_enum attrEnum = AccumulatorLimit_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated AccumulatorLimit, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -65,10 +88,11 @@ public class AccumulatorLimit extends Limit
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			AccumulatorLimit_primitive_builder attrEnum = AccumulatorLimit_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated AccumulatorLimit, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,13 +100,26 @@ public class AccumulatorLimit extends Limit
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (AccumulatorLimit_primitive_builder attrEnum: AccumulatorLimit_primitive_builder.values()) {
-			BaseClass bc = AccumulatorLimit_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (AccumulatorLimit_primitive_builder attrEnum: AccumulatorLimit_primitive_builder.values()) {
+				BaseClass bc = AccumulatorLimit_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    AccumulatorLimit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (AccumulatorLimit_class_attributes_enum attrEnum: AccumulatorLimit_class_attributes_enum.values()) {
+				BaseClass bc = AccumulatorLimit_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    AccumulatorLimit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(AccumulatorLimit) RDFID: " + rdfid;
 		}
 		return result;
 	}

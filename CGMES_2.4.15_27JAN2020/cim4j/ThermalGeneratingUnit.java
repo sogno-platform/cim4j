@@ -17,13 +17,18 @@ A generating unit whose prime mover could be a steam turbine, combustion turbine
 */
 public class ThermalGeneratingUnit extends GeneratingUnit
 {
-	private BaseClass[] ThermalGeneratingUnit_attributes;
+	private BaseClass[] ThermalGeneratingUnit_class_attributes;
+	private BaseClass[] ThermalGeneratingUnit_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ThermalGeneratingUnit_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class ThermalGeneratingUnit extends GeneratingUnit
 		};
 	}
 
+	private enum ThermalGeneratingUnit_class_attributes_enum {
+		FossilFuels,
+			LAST_ENUM;
+	}
+
 		
 	
 	public ThermalGeneratingUnit() {
-		ThermalGeneratingUnit_attributes = new BaseClass[ThermalGeneratingUnit_primitive_builder.values().length];
+		ThermalGeneratingUnit_primitive_attributes = new BaseClass[ThermalGeneratingUnit_primitive_builder.values().length];
+		ThermalGeneratingUnit_class_attributes = new BaseClass[ThermalGeneratingUnit_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ThermalGeneratingUnit_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ThermalGeneratingUnit_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ThermalGeneratingUnit_attributes[attrEnum.ordinal()] = value;
+			ThermalGeneratingUnit_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ThermalGeneratingUnit_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ThermalGeneratingUnit_ATTR_ENUM attrEnum = ThermalGeneratingUnit_ATTR_BC_ENUM.valueOf(attrName);
+			ThermalGeneratingUnit_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ThermalGeneratingUnit_class_attributes_enum attrEnum = ThermalGeneratingUnit_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ThermalGeneratingUnit, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class ThermalGeneratingUnit extends GeneratingUnit
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ThermalGeneratingUnit_primitive_builder attrEnum = ThermalGeneratingUnit_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ThermalGeneratingUnit, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class ThermalGeneratingUnit extends GeneratingUnit
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ThermalGeneratingUnit_primitive_builder attrEnum: ThermalGeneratingUnit_primitive_builder.values()) {
-			BaseClass bc = ThermalGeneratingUnit_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ThermalGeneratingUnit_primitive_builder attrEnum: ThermalGeneratingUnit_primitive_builder.values()) {
+				BaseClass bc = ThermalGeneratingUnit_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ThermalGeneratingUnit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ThermalGeneratingUnit_class_attributes_enum attrEnum: ThermalGeneratingUnit_class_attributes_enum.values()) {
+				BaseClass bc = ThermalGeneratingUnit_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ThermalGeneratingUnit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ThermalGeneratingUnit) RDFID: " + rdfid;
 		}
 		return result;
 	}

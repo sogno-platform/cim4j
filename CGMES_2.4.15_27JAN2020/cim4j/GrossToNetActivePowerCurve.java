@@ -17,13 +17,18 @@ Relationship between the generating unit's gross active power output on the X-ax
 */
 public class GrossToNetActivePowerCurve extends Curve
 {
-	private BaseClass[] GrossToNetActivePowerCurve_attributes;
+	private BaseClass[] GrossToNetActivePowerCurve_class_attributes;
+	private BaseClass[] GrossToNetActivePowerCurve_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GrossToNetActivePowerCurve_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class GrossToNetActivePowerCurve extends Curve
 		};
 	}
 
+	private enum GrossToNetActivePowerCurve_class_attributes_enum {
+		GeneratingUnit,
+			LAST_ENUM;
+	}
+
 		
 	
 	public GrossToNetActivePowerCurve() {
-		GrossToNetActivePowerCurve_attributes = new BaseClass[GrossToNetActivePowerCurve_primitive_builder.values().length];
+		GrossToNetActivePowerCurve_primitive_attributes = new BaseClass[GrossToNetActivePowerCurve_primitive_builder.values().length];
+		GrossToNetActivePowerCurve_class_attributes = new BaseClass[GrossToNetActivePowerCurve_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GrossToNetActivePowerCurve_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GrossToNetActivePowerCurve_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GrossToNetActivePowerCurve_attributes[attrEnum.ordinal()] = value;
+			GrossToNetActivePowerCurve_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GrossToNetActivePowerCurve_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GrossToNetActivePowerCurve_ATTR_ENUM attrEnum = GrossToNetActivePowerCurve_ATTR_BC_ENUM.valueOf(attrName);
+			GrossToNetActivePowerCurve_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GrossToNetActivePowerCurve_class_attributes_enum attrEnum = GrossToNetActivePowerCurve_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GrossToNetActivePowerCurve, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class GrossToNetActivePowerCurve extends Curve
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GrossToNetActivePowerCurve_primitive_builder attrEnum = GrossToNetActivePowerCurve_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GrossToNetActivePowerCurve, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class GrossToNetActivePowerCurve extends Curve
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GrossToNetActivePowerCurve_primitive_builder attrEnum: GrossToNetActivePowerCurve_primitive_builder.values()) {
-			BaseClass bc = GrossToNetActivePowerCurve_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GrossToNetActivePowerCurve_primitive_builder attrEnum: GrossToNetActivePowerCurve_primitive_builder.values()) {
+				BaseClass bc = GrossToNetActivePowerCurve_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GrossToNetActivePowerCurve." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GrossToNetActivePowerCurve_class_attributes_enum attrEnum: GrossToNetActivePowerCurve_class_attributes_enum.values()) {
+				BaseClass bc = GrossToNetActivePowerCurve_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GrossToNetActivePowerCurve." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GrossToNetActivePowerCurve) RDFID: " + rdfid;
 		}
 		return result;
 	}

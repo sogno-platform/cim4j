@@ -21,20 +21,25 @@ An electrical connection point (AC or DC) to a piece of conducting equipment. Te
 */
 public class ACDCTerminal extends IdentifiedObject
 {
-	private BaseClass[] ACDCTerminal_attributes;
+	private BaseClass[] ACDCTerminal_class_attributes;
+	private BaseClass[] ACDCTerminal_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ACDCTerminal_primitive_builder implements PrimitiveBuilder {
-			sequenceNumber(){
+		sequenceNumber(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			connected(){
+		connected(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -46,6 +51,15 @@ public class ACDCTerminal extends IdentifiedObject
 		};
 	}
 
+	private enum ACDCTerminal_class_attributes_enum {
+		BusNameMarker,
+		sequenceNumber,
+		OperationalLimitSet,
+		Measurements,
+		connected,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -53,21 +67,33 @@ public class ACDCTerminal extends IdentifiedObject
 		
 	
 	public ACDCTerminal() {
-		ACDCTerminal_attributes = new BaseClass[ACDCTerminal_primitive_builder.values().length];
+		ACDCTerminal_primitive_attributes = new BaseClass[ACDCTerminal_primitive_builder.values().length];
+		ACDCTerminal_class_attributes = new BaseClass[ACDCTerminal_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ACDCTerminal_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ACDCTerminal_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ACDCTerminal_attributes[attrEnum.ordinal()] = value;
+			ACDCTerminal_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ACDCTerminal_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ACDCTerminal_ATTR_ENUM attrEnum = ACDCTerminal_ATTR_BC_ENUM.valueOf(attrName);
+			ACDCTerminal_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ACDCTerminal_class_attributes_enum attrEnum = ACDCTerminal_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ACDCTerminal, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,10 +102,11 @@ public class ACDCTerminal extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ACDCTerminal_primitive_builder attrEnum = ACDCTerminal_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ACDCTerminal, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -87,13 +114,26 @@ public class ACDCTerminal extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ACDCTerminal_primitive_builder attrEnum: ACDCTerminal_primitive_builder.values()) {
-			BaseClass bc = ACDCTerminal_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ACDCTerminal_primitive_builder attrEnum: ACDCTerminal_primitive_builder.values()) {
+				BaseClass bc = ACDCTerminal_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ACDCTerminal." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ACDCTerminal_class_attributes_enum attrEnum: ACDCTerminal_class_attributes_enum.values()) {
+				BaseClass bc = ACDCTerminal_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ACDCTerminal." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ACDCTerminal) RDFID: " + rdfid;
 		}
 		return result;
 	}

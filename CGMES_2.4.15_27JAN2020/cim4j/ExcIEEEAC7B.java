@@ -19,140 +19,145 @@ The class represents IEEE Std 421.5-2005 type AC7B model. The model represents e
 */
 public class ExcIEEEAC7B extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcIEEEAC7B_attributes;
+	private BaseClass[] ExcIEEEAC7B_class_attributes;
+	private BaseClass[] ExcIEEEAC7B_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcIEEEAC7B_primitive_builder implements PrimitiveBuilder {
-			kpr(){
+		kpr(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kir(){
+		kir(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kdr(){
+		kdr(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tdr(){
+		tdr(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kpa(){
+		kpa(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kia(){
+		kia(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vamax(){
+		vamax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vamin(){
+		vamin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kp(){
+		kp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kl(){
+		kl(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vfemax(){
+		vfemax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vemin(){
+		vemin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ke(){
+		ke(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kc(){
+		kc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kd(){
+		kd(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kf1(){
+		kf1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kf2(){
+		kf2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kf3(){
+		kf3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tf(){
+		tf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ve1(){
+		ve1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			seve1(){
+		seve1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			ve2(){
+		ve2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			seve2(){
+		seve2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -162,6 +167,36 @@ public class ExcIEEEAC7B extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcIEEEAC7B_class_attributes_enum {
+		kpr,
+		kir,
+		kdr,
+		tdr,
+		vrmax,
+		vrmin,
+		kpa,
+		kia,
+		vamax,
+		vamin,
+		kp,
+		kl,
+		te,
+		vfemax,
+		vemin,
+		ke,
+		kc,
+		kd,
+		kf1,
+		kf2,
+		kf3,
+		tf,
+		ve1,
+		seve1,
+		ve2,
+		seve2,
+			LAST_ENUM;
 	}
 
 		
@@ -192,21 +227,33 @@ public class ExcIEEEAC7B extends ExcitationSystemDynamics
 		
 	
 	public ExcIEEEAC7B() {
-		ExcIEEEAC7B_attributes = new BaseClass[ExcIEEEAC7B_primitive_builder.values().length];
+		ExcIEEEAC7B_primitive_attributes = new BaseClass[ExcIEEEAC7B_primitive_builder.values().length];
+		ExcIEEEAC7B_class_attributes = new BaseClass[ExcIEEEAC7B_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcIEEEAC7B_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcIEEEAC7B_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcIEEEAC7B_attributes[attrEnum.ordinal()] = value;
+			ExcIEEEAC7B_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcIEEEAC7B_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcIEEEAC7B_ATTR_ENUM attrEnum = ExcIEEEAC7B_ATTR_BC_ENUM.valueOf(attrName);
+			ExcIEEEAC7B_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcIEEEAC7B_class_attributes_enum attrEnum = ExcIEEEAC7B_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcIEEEAC7B, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -215,10 +262,11 @@ public class ExcIEEEAC7B extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcIEEEAC7B_primitive_builder attrEnum = ExcIEEEAC7B_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcIEEEAC7B, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -226,13 +274,26 @@ public class ExcIEEEAC7B extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcIEEEAC7B_primitive_builder attrEnum: ExcIEEEAC7B_primitive_builder.values()) {
-			BaseClass bc = ExcIEEEAC7B_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcIEEEAC7B_primitive_builder attrEnum: ExcIEEEAC7B_primitive_builder.values()) {
+				BaseClass bc = ExcIEEEAC7B_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcIEEEAC7B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcIEEEAC7B_class_attributes_enum attrEnum: ExcIEEEAC7B_class_attributes_enum.values()) {
+				BaseClass bc = ExcIEEEAC7B_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcIEEEAC7B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcIEEEAC7B) RDFID: " + rdfid;
 		}
 		return result;
 	}

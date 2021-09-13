@@ -24,145 +24,150 @@ Detailed hydro unit - Pelton model.  This model can be used to represent the dyn
 */
 public class GovHydroPelton extends TurbineGovernorDynamics
 {
-	private BaseClass[] GovHydroPelton_attributes;
+	private BaseClass[] GovHydroPelton_class_attributes;
+	private BaseClass[] GovHydroPelton_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GovHydroPelton_primitive_builder implements PrimitiveBuilder {
-			av0(){
+		av0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Area(value);
 			}
 		},
-			av1(){
+		av1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Area(value);
 			}
 		},
-			bp(){
+		bp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			db1(){
+		db1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Frequency(value);
 			}
 		},
-			db2(){
+		db2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Frequency(value);
 			}
 		},
-			h1(){
+		h1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Length(value);
 			}
 		},
-			h2(){
+		h2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Length(value);
 			}
 		},
-			hn(){
+		hn(){
 			public BaseClass construct (java.lang.String value) {
 				return new Length(value);
 			}
 		},
-			kc(){
+		kc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kg(){
+		kg(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			qc0(){
+		qc0(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			simplifiedPelton(){
+		simplifiedPelton(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			staticCompensating(){
+		staticCompensating(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			ta(){
+		ta(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ts(){
+		ts(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tv(){
+		tv(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			twnc(){
+		twnc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			twng(){
+		twng(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tx(){
+		tx(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			va(){
+		va(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			valvmax(){
+		valvmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			valvmin(){
+		valvmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vav(){
+		vav(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vc(){
+		vc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			vcv(){
+		vcv(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			waterTunnelSurgeChamberSimulation(){
+		waterTunnelSurgeChamberSimulation(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			zsfc(){
+		zsfc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Length(value);
 			}
@@ -172,6 +177,38 @@ public class GovHydroPelton extends TurbineGovernorDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GovHydroPelton_class_attributes_enum {
+		av0,
+		av1,
+		bp,
+		db1,
+		db2,
+		h1,
+		h2,
+		hn,
+		kc,
+		kg,
+		qc0,
+		qn,
+		simplifiedPelton,
+		staticCompensating,
+		ta,
+		ts,
+		tv,
+		twnc,
+		twng,
+		tx,
+		va,
+		valvmax,
+		valvmin,
+		vav,
+		vc,
+		vcv,
+		waterTunnelSurgeChamberSimulation,
+		zsfc,
+			LAST_ENUM;
 	}
 
 		
@@ -204,21 +241,33 @@ public class GovHydroPelton extends TurbineGovernorDynamics
 		
 	
 	public GovHydroPelton() {
-		GovHydroPelton_attributes = new BaseClass[GovHydroPelton_primitive_builder.values().length];
+		GovHydroPelton_primitive_attributes = new BaseClass[GovHydroPelton_primitive_builder.values().length];
+		GovHydroPelton_class_attributes = new BaseClass[GovHydroPelton_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovHydroPelton_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GovHydroPelton_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GovHydroPelton_attributes[attrEnum.ordinal()] = value;
+			GovHydroPelton_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GovHydroPelton_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GovHydroPelton_ATTR_ENUM attrEnum = GovHydroPelton_ATTR_BC_ENUM.valueOf(attrName);
+			GovHydroPelton_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GovHydroPelton_class_attributes_enum attrEnum = GovHydroPelton_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GovHydroPelton, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -227,10 +276,11 @@ public class GovHydroPelton extends TurbineGovernorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovHydroPelton_primitive_builder attrEnum = GovHydroPelton_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GovHydroPelton, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -238,13 +288,26 @@ public class GovHydroPelton extends TurbineGovernorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GovHydroPelton_primitive_builder attrEnum: GovHydroPelton_primitive_builder.values()) {
-			BaseClass bc = GovHydroPelton_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GovHydroPelton_primitive_builder attrEnum: GovHydroPelton_primitive_builder.values()) {
+				BaseClass bc = GovHydroPelton_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovHydroPelton." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GovHydroPelton_class_attributes_enum attrEnum: GovHydroPelton_class_attributes_enum.values()) {
+				BaseClass bc = GovHydroPelton_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovHydroPelton." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GovHydroPelton) RDFID: " + rdfid;
 		}
 		return result;
 	}

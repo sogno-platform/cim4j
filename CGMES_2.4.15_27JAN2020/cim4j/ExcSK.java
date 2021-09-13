@@ -20,170 +20,175 @@ Slovakian Excitation System Model.  UEL and secondary voltage control are includ
 */
 public class ExcSK extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcSK_attributes;
+	private BaseClass[] ExcSK_class_attributes;
+	private BaseClass[] ExcSK_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcSK_primitive_builder implements PrimitiveBuilder {
-			efdmax(){
+		efdmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			efdmin(){
+		efdmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			emax(){
+		emax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			emin(){
+		emin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			k(){
+		k(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			k1(){
+		k1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			k2(){
+		k2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kc(){
+		kc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kce(){
+		kce(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kd(){
+		kd(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kgob(){
+		kgob(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kp(){
+		kp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kqi(){
+		kqi(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kqob(){
+		kqob(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kqp(){
+		kqp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			nq(){
+		nq(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			qconoff(){
+		qconoff(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			qz(){
+		qz(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			remote(){
+		remote(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			sbase(){
+		sbase(){
 			public BaseClass construct (java.lang.String value) {
 				return new ApparentPower(value);
 			}
 		},
-			tc(){
+		tc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ti(){
+		ti(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tp(){
+		tp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tr(){
+		tr(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			uimax(){
+		uimax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			uimin(){
+		uimin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			urmax(){
+		urmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			urmin(){
+		urmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vtmax(){
+		vtmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vtmin(){
+		vtmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			yp(){
+		yp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -193,6 +198,42 @@ public class ExcSK extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcSK_class_attributes_enum {
+		efdmax,
+		efdmin,
+		emax,
+		emin,
+		k,
+		k1,
+		k2,
+		kc,
+		kce,
+		kd,
+		kgob,
+		kp,
+		kqi,
+		kqob,
+		kqp,
+		nq,
+		qconoff,
+		qz,
+		remote,
+		sbase,
+		tc,
+		te,
+		ti,
+		tp,
+		tr,
+		uimax,
+		uimin,
+		urmax,
+		urmin,
+		vtmax,
+		vtmin,
+		yp,
+			LAST_ENUM;
 	}
 
 		
@@ -229,21 +270,33 @@ public class ExcSK extends ExcitationSystemDynamics
 		
 	
 	public ExcSK() {
-		ExcSK_attributes = new BaseClass[ExcSK_primitive_builder.values().length];
+		ExcSK_primitive_attributes = new BaseClass[ExcSK_primitive_builder.values().length];
+		ExcSK_class_attributes = new BaseClass[ExcSK_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcSK_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcSK_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcSK_attributes[attrEnum.ordinal()] = value;
+			ExcSK_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcSK_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcSK_ATTR_ENUM attrEnum = ExcSK_ATTR_BC_ENUM.valueOf(attrName);
+			ExcSK_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcSK_class_attributes_enum attrEnum = ExcSK_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcSK, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -252,10 +305,11 @@ public class ExcSK extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcSK_primitive_builder attrEnum = ExcSK_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcSK, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -263,13 +317,26 @@ public class ExcSK extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcSK_primitive_builder attrEnum: ExcSK_primitive_builder.values()) {
-			BaseClass bc = ExcSK_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcSK_primitive_builder attrEnum: ExcSK_primitive_builder.values()) {
+				BaseClass bc = ExcSK_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcSK." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcSK_class_attributes_enum attrEnum: ExcSK_class_attributes_enum.values()) {
+				BaseClass bc = ExcSK_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcSK." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcSK) RDFID: " + rdfid;
 		}
 		return result;
 	}

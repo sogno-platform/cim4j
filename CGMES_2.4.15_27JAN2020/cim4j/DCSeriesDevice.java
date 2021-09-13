@@ -19,25 +19,30 @@ A series device within the DC system, typically a reactor used for filtering or 
 */
 public class DCSeriesDevice extends DCConductingEquipment
 {
-	private BaseClass[] DCSeriesDevice_attributes;
+	private BaseClass[] DCSeriesDevice_class_attributes;
+	private BaseClass[] DCSeriesDevice_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum DCSeriesDevice_primitive_builder implements PrimitiveBuilder {
-			inductance(){
+		inductance(){
 			public BaseClass construct (java.lang.String value) {
 				return new Inductance(value);
 			}
 		},
-			resistance(){
+		resistance(){
 			public BaseClass construct (java.lang.String value) {
 				return new Resistance(value);
 			}
 		},
-			ratedUdc(){
+		ratedUdc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
@@ -49,26 +54,45 @@ public class DCSeriesDevice extends DCConductingEquipment
 		};
 	}
 
+	private enum DCSeriesDevice_class_attributes_enum {
+		inductance,
+		resistance,
+		ratedUdc,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public DCSeriesDevice() {
-		DCSeriesDevice_attributes = new BaseClass[DCSeriesDevice_primitive_builder.values().length];
+		DCSeriesDevice_primitive_attributes = new BaseClass[DCSeriesDevice_primitive_builder.values().length];
+		DCSeriesDevice_class_attributes = new BaseClass[DCSeriesDevice_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(DCSeriesDevice_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(DCSeriesDevice_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			DCSeriesDevice_attributes[attrEnum.ordinal()] = value;
+			DCSeriesDevice_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(DCSeriesDevice_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//DCSeriesDevice_ATTR_ENUM attrEnum = DCSeriesDevice_ATTR_BC_ENUM.valueOf(attrName);
+			DCSeriesDevice_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			DCSeriesDevice_class_attributes_enum attrEnum = DCSeriesDevice_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated DCSeriesDevice, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -77,10 +101,11 @@ public class DCSeriesDevice extends DCConductingEquipment
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			DCSeriesDevice_primitive_builder attrEnum = DCSeriesDevice_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated DCSeriesDevice, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -88,13 +113,26 @@ public class DCSeriesDevice extends DCConductingEquipment
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (DCSeriesDevice_primitive_builder attrEnum: DCSeriesDevice_primitive_builder.values()) {
-			BaseClass bc = DCSeriesDevice_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (DCSeriesDevice_primitive_builder attrEnum: DCSeriesDevice_primitive_builder.values()) {
+				BaseClass bc = DCSeriesDevice_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCSeriesDevice." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (DCSeriesDevice_class_attributes_enum attrEnum: DCSeriesDevice_class_attributes_enum.values()) {
+				BaseClass bc = DCSeriesDevice_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DCSeriesDevice." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(DCSeriesDevice) RDFID: " + rdfid;
 		}
 		return result;
 	}

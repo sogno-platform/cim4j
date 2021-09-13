@@ -17,20 +17,25 @@ An analog control that issue a set point value.
 */
 public class SetPoint extends AnalogControl
 {
-	private BaseClass[] SetPoint_attributes;
+	private BaseClass[] SetPoint_class_attributes;
+	private BaseClass[] SetPoint_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum SetPoint_primitive_builder implements PrimitiveBuilder {
-			normalValue(){
+		normalValue(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			value(){
+		value(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -42,25 +47,43 @@ public class SetPoint extends AnalogControl
 		};
 	}
 
+	private enum SetPoint_class_attributes_enum {
+		normalValue,
+		value,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public SetPoint() {
-		SetPoint_attributes = new BaseClass[SetPoint_primitive_builder.values().length];
+		SetPoint_primitive_attributes = new BaseClass[SetPoint_primitive_builder.values().length];
+		SetPoint_class_attributes = new BaseClass[SetPoint_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(SetPoint_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(SetPoint_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			SetPoint_attributes[attrEnum.ordinal()] = value;
+			SetPoint_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(SetPoint_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//SetPoint_ATTR_ENUM attrEnum = SetPoint_ATTR_BC_ENUM.valueOf(attrName);
+			SetPoint_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			SetPoint_class_attributes_enum attrEnum = SetPoint_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated SetPoint, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,10 +92,11 @@ public class SetPoint extends AnalogControl
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			SetPoint_primitive_builder attrEnum = SetPoint_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated SetPoint, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -80,13 +104,26 @@ public class SetPoint extends AnalogControl
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (SetPoint_primitive_builder attrEnum: SetPoint_primitive_builder.values()) {
-			BaseClass bc = SetPoint_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (SetPoint_primitive_builder attrEnum: SetPoint_primitive_builder.values()) {
+				BaseClass bc = SetPoint_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SetPoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (SetPoint_class_attributes_enum attrEnum: SetPoint_class_attributes_enum.values()) {
+				BaseClass bc = SetPoint_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SetPoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(SetPoint) RDFID: " + rdfid;
 		}
 		return result;
 	}

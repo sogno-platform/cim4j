@@ -18,25 +18,30 @@ Describes a tap changer with a linear relation between the tap step and the phas
 */
 public class PhaseTapChangerLinear extends PhaseTapChanger
 {
-	private BaseClass[] PhaseTapChangerLinear_attributes;
+	private BaseClass[] PhaseTapChangerLinear_class_attributes;
+	private BaseClass[] PhaseTapChangerLinear_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum PhaseTapChangerLinear_primitive_builder implements PrimitiveBuilder {
-			stepPhaseShiftIncrement(){
+		stepPhaseShiftIncrement(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
 		},
-			xMax(){
+		xMax(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
 		},
-			xMin(){
+		xMin(){
 			public BaseClass construct (java.lang.String value) {
 				return new Reactance(value);
 			}
@@ -48,26 +53,45 @@ public class PhaseTapChangerLinear extends PhaseTapChanger
 		};
 	}
 
+	private enum PhaseTapChangerLinear_class_attributes_enum {
+		stepPhaseShiftIncrement,
+		xMax,
+		xMin,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public PhaseTapChangerLinear() {
-		PhaseTapChangerLinear_attributes = new BaseClass[PhaseTapChangerLinear_primitive_builder.values().length];
+		PhaseTapChangerLinear_primitive_attributes = new BaseClass[PhaseTapChangerLinear_primitive_builder.values().length];
+		PhaseTapChangerLinear_class_attributes = new BaseClass[PhaseTapChangerLinear_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PhaseTapChangerLinear_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(PhaseTapChangerLinear_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			PhaseTapChangerLinear_attributes[attrEnum.ordinal()] = value;
+			PhaseTapChangerLinear_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(PhaseTapChangerLinear_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//PhaseTapChangerLinear_ATTR_ENUM attrEnum = PhaseTapChangerLinear_ATTR_BC_ENUM.valueOf(attrName);
+			PhaseTapChangerLinear_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			PhaseTapChangerLinear_class_attributes_enum attrEnum = PhaseTapChangerLinear_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated PhaseTapChangerLinear, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,10 +100,11 @@ public class PhaseTapChangerLinear extends PhaseTapChanger
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PhaseTapChangerLinear_primitive_builder attrEnum = PhaseTapChangerLinear_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated PhaseTapChangerLinear, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -87,13 +112,26 @@ public class PhaseTapChangerLinear extends PhaseTapChanger
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (PhaseTapChangerLinear_primitive_builder attrEnum: PhaseTapChangerLinear_primitive_builder.values()) {
-			BaseClass bc = PhaseTapChangerLinear_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (PhaseTapChangerLinear_primitive_builder attrEnum: PhaseTapChangerLinear_primitive_builder.values()) {
+				BaseClass bc = PhaseTapChangerLinear_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PhaseTapChangerLinear." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (PhaseTapChangerLinear_class_attributes_enum attrEnum: PhaseTapChangerLinear_class_attributes_enum.values()) {
+				BaseClass bc = PhaseTapChangerLinear_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PhaseTapChangerLinear." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(PhaseTapChangerLinear) RDFID: " + rdfid;
 		}
 		return result;
 	}

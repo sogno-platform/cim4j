@@ -20,185 +20,190 @@ Simplified model  of boiler and steam turbine with PID governor.
 */
 public class GovSteamEU extends TurbineGovernorDynamics
 {
-	private BaseClass[] GovSteamEU_attributes;
+	private BaseClass[] GovSteamEU_class_attributes;
+	private BaseClass[] GovSteamEU_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GovSteamEU_primitive_builder implements PrimitiveBuilder {
-			mwbase(){
+		mwbase(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			tp(){
+		tp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ke(){
+		ke(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tip(){
+		tip(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tdp(){
+		tdp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tfp(){
+		tfp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tf(){
+		tf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kfcor(){
+		kfcor(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			db1(){
+		db1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			wfmax(){
+		wfmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			wfmin(){
+		wfmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmax(){
+		pmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ten(){
+		ten(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tw(){
+		tw(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kwcor(){
+		kwcor(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			db2(){
+		db2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			wwmax(){
+		wwmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			wwmin(){
+		wwmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			wmax1(){
+		wmax1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			wmax2(){
+		wmax2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tvhp(){
+		tvhp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			cho(){
+		cho(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			chc(){
+		chc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			hhpmax(){
+		hhpmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tvip(){
+		tvip(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			cio(){
+		cio(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			cic(){
+		cic(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			simx(){
+		simx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			thp(){
+		thp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			trh(){
+		trh(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tlp(){
+		tlp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			prhmax(){
+		prhmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			khp(){
+		khp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			klp(){
+		klp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tb(){
+		tb(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
@@ -208,6 +213,45 @@ public class GovSteamEU extends TurbineGovernorDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GovSteamEU_class_attributes_enum {
+		mwbase,
+		tp,
+		ke,
+		tip,
+		tdp,
+		tfp,
+		tf,
+		kfcor,
+		db1,
+		wfmax,
+		wfmin,
+		pmax,
+		ten,
+		tw,
+		kwcor,
+		db2,
+		wwmax,
+		wwmin,
+		wmax1,
+		wmax2,
+		tvhp,
+		cho,
+		chc,
+		hhpmax,
+		tvip,
+		cio,
+		cic,
+		simx,
+		thp,
+		trh,
+		tlp,
+		prhmax,
+		khp,
+		klp,
+		tb,
+			LAST_ENUM;
 	}
 
 		
@@ -247,21 +291,33 @@ public class GovSteamEU extends TurbineGovernorDynamics
 		
 	
 	public GovSteamEU() {
-		GovSteamEU_attributes = new BaseClass[GovSteamEU_primitive_builder.values().length];
+		GovSteamEU_primitive_attributes = new BaseClass[GovSteamEU_primitive_builder.values().length];
+		GovSteamEU_class_attributes = new BaseClass[GovSteamEU_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovSteamEU_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GovSteamEU_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GovSteamEU_attributes[attrEnum.ordinal()] = value;
+			GovSteamEU_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GovSteamEU_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GovSteamEU_ATTR_ENUM attrEnum = GovSteamEU_ATTR_BC_ENUM.valueOf(attrName);
+			GovSteamEU_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GovSteamEU_class_attributes_enum attrEnum = GovSteamEU_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GovSteamEU, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -270,10 +326,11 @@ public class GovSteamEU extends TurbineGovernorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovSteamEU_primitive_builder attrEnum = GovSteamEU_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GovSteamEU, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -281,13 +338,26 @@ public class GovSteamEU extends TurbineGovernorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GovSteamEU_primitive_builder attrEnum: GovSteamEU_primitive_builder.values()) {
-			BaseClass bc = GovSteamEU_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GovSteamEU_primitive_builder attrEnum: GovSteamEU_primitive_builder.values()) {
+				BaseClass bc = GovSteamEU_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovSteamEU." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GovSteamEU_class_attributes_enum attrEnum: GovSteamEU_class_attributes_enum.values()) {
+				BaseClass bc = GovSteamEU_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovSteamEU." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GovSteamEU) RDFID: " + rdfid;
 		}
 		return result;
 	}

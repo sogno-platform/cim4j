@@ -19,345 +19,350 @@ The class represents IEEE Std 421.5-2005 type PSS2B power system stabilizer mode
 */
 public class PssIEEE4B extends PowerSystemStabilizerDynamics
 {
-	private BaseClass[] PssIEEE4B_attributes;
+	private BaseClass[] PssIEEE4B_class_attributes;
+	private BaseClass[] PssIEEE4B_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum PssIEEE4B_primitive_builder implements PrimitiveBuilder {
-			bwh1(){
+		bwh1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			bwh2(){
+		bwh2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			bwl1(){
+		bwl1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			bwl2(){
+		bwl2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kh(){
+		kh(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kh1(){
+		kh1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kh11(){
+		kh11(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kh17(){
+		kh17(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kh2(){
+		kh2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ki(){
+		ki(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ki1(){
+		ki1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ki11(){
+		ki11(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ki17(){
+		ki17(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ki2(){
+		ki2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kl(){
+		kl(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kl1(){
+		kl1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kl11(){
+		kl11(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kl17(){
+		kl17(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kl2(){
+		kl2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			omeganh1(){
+		omeganh1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			omeganh2(){
+		omeganh2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			omeganl1(){
+		omeganl1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			omeganl2(){
+		omeganl2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			th1(){
+		th1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			th10(){
+		th10(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			th11(){
+		th11(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			th12(){
+		th12(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			th2(){
+		th2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			th3(){
+		th3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			th4(){
+		th4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			th5(){
+		th5(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			th6(){
+		th6(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			th7(){
+		th7(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			th8(){
+		th8(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			th9(){
+		th9(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ti1(){
+		ti1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ti10(){
+		ti10(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ti11(){
+		ti11(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ti12(){
+		ti12(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ti2(){
+		ti2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ti3(){
+		ti3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ti4(){
+		ti4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ti5(){
+		ti5(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ti6(){
+		ti6(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ti7(){
+		ti7(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ti8(){
+		ti8(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ti9(){
+		ti9(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl1(){
+		tl1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl10(){
+		tl10(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl11(){
+		tl11(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl12(){
+		tl12(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl2(){
+		tl2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl3(){
+		tl3(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl4(){
+		tl4(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl5(){
+		tl5(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl6(){
+		tl6(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl7(){
+		tl7(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl8(){
+		tl8(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tl9(){
+		tl9(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vhmax(){
+		vhmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vhmin(){
+		vhmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vimax(){
+		vimax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vimin(){
+		vimin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vlmax(){
+		vlmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vlmin(){
+		vlmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vstmax(){
+		vstmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vstmin(){
+		vstmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -367,6 +372,77 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum PssIEEE4B_class_attributes_enum {
+		bwh1,
+		bwh2,
+		bwl1,
+		bwl2,
+		kh,
+		kh1,
+		kh11,
+		kh17,
+		kh2,
+		ki,
+		ki1,
+		ki11,
+		ki17,
+		ki2,
+		kl,
+		kl1,
+		kl11,
+		kl17,
+		kl2,
+		omeganh1,
+		omeganh2,
+		omeganl1,
+		omeganl2,
+		th1,
+		th10,
+		th11,
+		th12,
+		th2,
+		th3,
+		th4,
+		th5,
+		th6,
+		th7,
+		th8,
+		th9,
+		ti1,
+		ti10,
+		ti11,
+		ti12,
+		ti2,
+		ti3,
+		ti4,
+		ti5,
+		ti6,
+		ti7,
+		ti8,
+		ti9,
+		tl1,
+		tl10,
+		tl11,
+		tl12,
+		tl2,
+		tl3,
+		tl4,
+		tl5,
+		tl6,
+		tl7,
+		tl8,
+		tl9,
+		vhmax,
+		vhmin,
+		vimax,
+		vimin,
+		vlmax,
+		vlmin,
+		vstmax,
+		vstmin,
+			LAST_ENUM;
 	}
 
 		
@@ -438,21 +514,33 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics
 		
 	
 	public PssIEEE4B() {
-		PssIEEE4B_attributes = new BaseClass[PssIEEE4B_primitive_builder.values().length];
+		PssIEEE4B_primitive_attributes = new BaseClass[PssIEEE4B_primitive_builder.values().length];
+		PssIEEE4B_class_attributes = new BaseClass[PssIEEE4B_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PssIEEE4B_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(PssIEEE4B_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			PssIEEE4B_attributes[attrEnum.ordinal()] = value;
+			PssIEEE4B_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(PssIEEE4B_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//PssIEEE4B_ATTR_ENUM attrEnum = PssIEEE4B_ATTR_BC_ENUM.valueOf(attrName);
+			PssIEEE4B_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			PssIEEE4B_class_attributes_enum attrEnum = PssIEEE4B_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated PssIEEE4B, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -461,10 +549,11 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PssIEEE4B_primitive_builder attrEnum = PssIEEE4B_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated PssIEEE4B, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -472,13 +561,26 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (PssIEEE4B_primitive_builder attrEnum: PssIEEE4B_primitive_builder.values()) {
-			BaseClass bc = PssIEEE4B_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (PssIEEE4B_primitive_builder attrEnum: PssIEEE4B_primitive_builder.values()) {
+				BaseClass bc = PssIEEE4B_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PssIEEE4B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (PssIEEE4B_class_attributes_enum attrEnum: PssIEEE4B_class_attributes_enum.values()) {
+				BaseClass bc = PssIEEE4B_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PssIEEE4B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(PssIEEE4B) RDFID: " + rdfid;
 		}
 		return result;
 	}

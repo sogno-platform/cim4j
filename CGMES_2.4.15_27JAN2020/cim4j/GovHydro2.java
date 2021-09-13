@@ -21,155 +21,160 @@ IEEE hydro turbine governor model represents plants with straightforward penstoc
 */
 public class GovHydro2 extends TurbineGovernorDynamics
 {
-	private BaseClass[] GovHydro2_attributes;
+	private BaseClass[] GovHydro2_class_attributes;
+	private BaseClass[] GovHydro2_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GovHydro2_primitive_builder implements PrimitiveBuilder {
-			mwbase(){
+		mwbase(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			tg(){
+		tg(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tp(){
+		tp(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			uo(){
+		uo(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			uc(){
+		uc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			pmax(){
+		pmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pmin(){
+		pmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			rperm(){
+		rperm(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			rtemp(){
+		rtemp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tr(){
+		tr(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tw(){
+		tw(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kturb(){
+		kturb(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			aturb(){
+		aturb(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			bturb(){
+		bturb(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			db1(){
+		db1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Frequency(value);
 			}
 		},
-			eps(){
+		eps(){
 			public BaseClass construct (java.lang.String value) {
 				return new Frequency(value);
 			}
 		},
-			db2(){
+		db2(){
 			public BaseClass construct (java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-			gv1(){
+		gv1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pgv1(){
+		pgv1(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv2(){
+		gv2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pgv2(){
+		pgv2(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv3(){
+		gv3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pgv3(){
+		pgv3(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv4(){
+		gv4(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pgv4(){
+		pgv4(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv5(){
+		gv5(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pgv5(){
+		pgv5(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			gv6(){
+		gv6(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			pgv6(){
+		pgv6(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
@@ -179,6 +184,39 @@ public class GovHydro2 extends TurbineGovernorDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GovHydro2_class_attributes_enum {
+		mwbase,
+		tg,
+		tp,
+		uo,
+		uc,
+		pmax,
+		pmin,
+		rperm,
+		rtemp,
+		tr,
+		tw,
+		kturb,
+		aturb,
+		bturb,
+		db1,
+		eps,
+		db2,
+		gv1,
+		pgv1,
+		gv2,
+		pgv2,
+		gv3,
+		pgv3,
+		gv4,
+		pgv4,
+		gv5,
+		pgv5,
+		gv6,
+		pgv6,
+			LAST_ENUM;
 	}
 
 		
@@ -212,21 +250,33 @@ public class GovHydro2 extends TurbineGovernorDynamics
 		
 	
 	public GovHydro2() {
-		GovHydro2_attributes = new BaseClass[GovHydro2_primitive_builder.values().length];
+		GovHydro2_primitive_attributes = new BaseClass[GovHydro2_primitive_builder.values().length];
+		GovHydro2_class_attributes = new BaseClass[GovHydro2_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovHydro2_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GovHydro2_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GovHydro2_attributes[attrEnum.ordinal()] = value;
+			GovHydro2_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GovHydro2_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GovHydro2_ATTR_ENUM attrEnum = GovHydro2_ATTR_BC_ENUM.valueOf(attrName);
+			GovHydro2_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GovHydro2_class_attributes_enum attrEnum = GovHydro2_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GovHydro2, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -235,10 +285,11 @@ public class GovHydro2 extends TurbineGovernorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovHydro2_primitive_builder attrEnum = GovHydro2_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GovHydro2, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -246,13 +297,26 @@ public class GovHydro2 extends TurbineGovernorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GovHydro2_primitive_builder attrEnum: GovHydro2_primitive_builder.values()) {
-			BaseClass bc = GovHydro2_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GovHydro2_primitive_builder attrEnum: GovHydro2_primitive_builder.values()) {
+				BaseClass bc = GovHydro2_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovHydro2." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GovHydro2_class_attributes_enum attrEnum: GovHydro2_class_attributes_enum.values()) {
+				BaseClass bc = GovHydro2_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovHydro2." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GovHydro2) RDFID: " + rdfid;
 		}
 		return result;
 	}

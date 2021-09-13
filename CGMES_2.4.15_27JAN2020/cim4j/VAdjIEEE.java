@@ -19,40 +19,45 @@ The class represents IEEE Voltage Adjuster which is used to represent the voltag
 */
 public class VAdjIEEE extends VoltageAdjusterDynamics
 {
-	private BaseClass[] VAdjIEEE_attributes;
+	private BaseClass[] VAdjIEEE_class_attributes;
+	private BaseClass[] VAdjIEEE_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum VAdjIEEE_primitive_builder implements PrimitiveBuilder {
-			vadjf(){
+		vadjf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			adjslew(){
+		adjslew(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			vadjmax(){
+		vadjmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vadjmin(){
+		vadjmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			taon(){
+		taon(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			taoff(){
+		taoff(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
@@ -64,6 +69,16 @@ public class VAdjIEEE extends VoltageAdjusterDynamics
 		};
 	}
 
+	private enum VAdjIEEE_class_attributes_enum {
+		vadjf,
+		adjslew,
+		vadjmax,
+		vadjmin,
+		taon,
+		taoff,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -72,21 +87,33 @@ public class VAdjIEEE extends VoltageAdjusterDynamics
 		
 	
 	public VAdjIEEE() {
-		VAdjIEEE_attributes = new BaseClass[VAdjIEEE_primitive_builder.values().length];
+		VAdjIEEE_primitive_attributes = new BaseClass[VAdjIEEE_primitive_builder.values().length];
+		VAdjIEEE_class_attributes = new BaseClass[VAdjIEEE_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(VAdjIEEE_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(VAdjIEEE_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			VAdjIEEE_attributes[attrEnum.ordinal()] = value;
+			VAdjIEEE_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(VAdjIEEE_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//VAdjIEEE_ATTR_ENUM attrEnum = VAdjIEEE_ATTR_BC_ENUM.valueOf(attrName);
+			VAdjIEEE_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			VAdjIEEE_class_attributes_enum attrEnum = VAdjIEEE_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated VAdjIEEE, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -95,10 +122,11 @@ public class VAdjIEEE extends VoltageAdjusterDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			VAdjIEEE_primitive_builder attrEnum = VAdjIEEE_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated VAdjIEEE, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -106,13 +134,26 @@ public class VAdjIEEE extends VoltageAdjusterDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (VAdjIEEE_primitive_builder attrEnum: VAdjIEEE_primitive_builder.values()) {
-			BaseClass bc = VAdjIEEE_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (VAdjIEEE_primitive_builder attrEnum: VAdjIEEE_primitive_builder.values()) {
+				BaseClass bc = VAdjIEEE_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VAdjIEEE." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (VAdjIEEE_class_attributes_enum attrEnum: VAdjIEEE_class_attributes_enum.values()) {
+				BaseClass bc = VAdjIEEE_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VAdjIEEE." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(VAdjIEEE) RDFID: " + rdfid;
 		}
 		return result;
 	}

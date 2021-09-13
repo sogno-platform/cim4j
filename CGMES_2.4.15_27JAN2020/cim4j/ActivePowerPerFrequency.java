@@ -19,30 +19,35 @@ Active power variation with frequency.
 */
 public class ActivePowerPerFrequency extends BaseClass
 {
-	private BaseClass[] ActivePowerPerFrequency_attributes;
+	private BaseClass[] ActivePowerPerFrequency_class_attributes;
+	private BaseClass[] ActivePowerPerFrequency_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ActivePowerPerFrequency_primitive_builder implements PrimitiveBuilder {
-			denominatorMultiplier(){
+		denominatorMultiplier(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitMultiplier(value);
 			}
 		},
-			denominatorUnit(){
+		denominatorUnit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
 		},
-			multiplier(){
+		multiplier(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitMultiplier(value);
 			}
 		},
-			unit(){
+		unit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
@@ -54,6 +59,15 @@ public class ActivePowerPerFrequency extends BaseClass
 		};
 	}
 
+	private enum ActivePowerPerFrequency_class_attributes_enum {
+		denominatorMultiplier,
+		denominatorUnit,
+		multiplier,
+		unit,
+		value,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -61,21 +75,33 @@ public class ActivePowerPerFrequency extends BaseClass
 		
 	
 	public ActivePowerPerFrequency() {
-		ActivePowerPerFrequency_attributes = new BaseClass[ActivePowerPerFrequency_primitive_builder.values().length];
+		ActivePowerPerFrequency_primitive_attributes = new BaseClass[ActivePowerPerFrequency_primitive_builder.values().length];
+		ActivePowerPerFrequency_class_attributes = new BaseClass[ActivePowerPerFrequency_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ActivePowerPerFrequency_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ActivePowerPerFrequency_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ActivePowerPerFrequency_attributes[attrEnum.ordinal()] = value;
+			ActivePowerPerFrequency_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ActivePowerPerFrequency_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ActivePowerPerFrequency_ATTR_ENUM attrEnum = ActivePowerPerFrequency_ATTR_BC_ENUM.valueOf(attrName);
+			ActivePowerPerFrequency_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ActivePowerPerFrequency_class_attributes_enum attrEnum = ActivePowerPerFrequency_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ActivePowerPerFrequency, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -84,10 +110,11 @@ public class ActivePowerPerFrequency extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ActivePowerPerFrequency_primitive_builder attrEnum = ActivePowerPerFrequency_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ActivePowerPerFrequency, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -95,13 +122,26 @@ public class ActivePowerPerFrequency extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ActivePowerPerFrequency_primitive_builder attrEnum: ActivePowerPerFrequency_primitive_builder.values()) {
-			BaseClass bc = ActivePowerPerFrequency_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ActivePowerPerFrequency_primitive_builder attrEnum: ActivePowerPerFrequency_primitive_builder.values()) {
+				BaseClass bc = ActivePowerPerFrequency_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ActivePowerPerFrequency." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ActivePowerPerFrequency_class_attributes_enum attrEnum: ActivePowerPerFrequency_class_attributes_enum.values()) {
+				BaseClass bc = ActivePowerPerFrequency_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ActivePowerPerFrequency." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ActivePowerPerFrequency) RDFID: " + rdfid;
 		}
 		return result;
 	}

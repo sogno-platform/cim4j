@@ -20,20 +20,25 @@ A tap changer that changes the voltage ratio impacting the voltage magnitude but
 */
 public class RatioTapChanger extends TapChanger
 {
-	private BaseClass[] RatioTapChanger_attributes;
+	private BaseClass[] RatioTapChanger_class_attributes;
+	private BaseClass[] RatioTapChanger_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum RatioTapChanger_primitive_builder implements PrimitiveBuilder {
-			tculControlMode(){
+		tculControlMode(){
 			public BaseClass construct (java.lang.String value) {
 				return new TransformerControlMode(value);
 			}
 		},
-			stepVoltageIncrement(){
+		stepVoltageIncrement(){
 			public BaseClass construct (java.lang.String value) {
 				return new PerCent(value);
 			}
@@ -45,27 +50,47 @@ public class RatioTapChanger extends TapChanger
 		};
 	}
 
+	private enum RatioTapChanger_class_attributes_enum {
+		tculControlMode,
+		stepVoltageIncrement,
+		RatioTapChangerTable,
+		TransformerEnd,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 		
 	
 	public RatioTapChanger() {
-		RatioTapChanger_attributes = new BaseClass[RatioTapChanger_primitive_builder.values().length];
+		RatioTapChanger_primitive_attributes = new BaseClass[RatioTapChanger_primitive_builder.values().length];
+		RatioTapChanger_class_attributes = new BaseClass[RatioTapChanger_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(RatioTapChanger_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(RatioTapChanger_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			RatioTapChanger_attributes[attrEnum.ordinal()] = value;
+			RatioTapChanger_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(RatioTapChanger_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//RatioTapChanger_ATTR_ENUM attrEnum = RatioTapChanger_ATTR_BC_ENUM.valueOf(attrName);
+			RatioTapChanger_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			RatioTapChanger_class_attributes_enum attrEnum = RatioTapChanger_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated RatioTapChanger, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -74,10 +99,11 @@ public class RatioTapChanger extends TapChanger
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			RatioTapChanger_primitive_builder attrEnum = RatioTapChanger_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated RatioTapChanger, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -85,13 +111,26 @@ public class RatioTapChanger extends TapChanger
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (RatioTapChanger_primitive_builder attrEnum: RatioTapChanger_primitive_builder.values()) {
-			BaseClass bc = RatioTapChanger_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (RatioTapChanger_primitive_builder attrEnum: RatioTapChanger_primitive_builder.values()) {
+				BaseClass bc = RatioTapChanger_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    RatioTapChanger." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (RatioTapChanger_class_attributes_enum attrEnum: RatioTapChanger_class_attributes_enum.values()) {
+				BaseClass bc = RatioTapChanger_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    RatioTapChanger." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(RatioTapChanger) RDFID: " + rdfid;
 		}
 		return result;
 	}

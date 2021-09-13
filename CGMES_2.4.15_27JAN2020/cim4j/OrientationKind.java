@@ -63,8 +63,8 @@ public class OrientationKind extends BaseClass
 		return debugName;
 	}
 
-	public java.lang.String toString() {
-		return "";
+	public java.lang.String toString(boolean b) {
+		return "Enum (" + value.toString() + ")";
 	}
 };
 

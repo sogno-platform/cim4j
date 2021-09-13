@@ -25,140 +25,145 @@ Detailed hydro unit - Francis model.  This model can be used to represent three 
 */
 public class GovHydroFrancis extends TurbineGovernorDynamics
 {
-	private BaseClass[] GovHydroFrancis_attributes;
+	private BaseClass[] GovHydroFrancis_class_attributes;
+	private BaseClass[] GovHydroFrancis_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum GovHydroFrancis_primitive_builder implements PrimitiveBuilder {
-			am(){
+		am(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			av0(){
+		av0(){
 			public BaseClass construct (java.lang.String value) {
 				return new Area(value);
 			}
 		},
-			av1(){
+		av1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Area(value);
 			}
 		},
-			bp(){
+		bp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			db1(){
+		db1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Frequency(value);
 			}
 		},
-			etamax(){
+		etamax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			governorControl(){
+		governorControl(){
 			public BaseClass construct (java.lang.String value) {
 				return new FrancisGovernorControlKind(value);
 			}
 		},
-			h1(){
+		h1(){
 			public BaseClass construct (java.lang.String value) {
 				return new Length(value);
 			}
 		},
-			h2(){
+		h2(){
 			public BaseClass construct (java.lang.String value) {
 				return new Length(value);
 			}
 		},
-			hn(){
+		hn(){
 			public BaseClass construct (java.lang.String value) {
 				return new Length(value);
 			}
 		},
-			kc(){
+		kc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kg(){
+		kg(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kt(){
+		kt(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			qc0(){
+		qc0(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ta(){
+		ta(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			td(){
+		td(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			ts(){
+		ts(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			twnc(){
+		twnc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			twng(){
+		twng(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			tx(){
+		tx(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			va(){
+		va(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			valvmax(){
+		valvmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			valvmin(){
+		valvmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vc(){
+		vc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			waterTunnelSurgeChamberSimulation(){
+		waterTunnelSurgeChamberSimulation(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			zsfc(){
+		zsfc(){
 			public BaseClass construct (java.lang.String value) {
 				return new Length(value);
 			}
@@ -168,6 +173,37 @@ public class GovHydroFrancis extends TurbineGovernorDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum GovHydroFrancis_class_attributes_enum {
+		am,
+		av0,
+		av1,
+		bp,
+		db1,
+		etamax,
+		governorControl,
+		h1,
+		h2,
+		hn,
+		kc,
+		kg,
+		kt,
+		qc0,
+		qn,
+		ta,
+		td,
+		ts,
+		twnc,
+		twng,
+		tx,
+		va,
+		valvmax,
+		valvmin,
+		vc,
+		waterTunnelSurgeChamberSimulation,
+		zsfc,
+			LAST_ENUM;
 	}
 
 		
@@ -199,21 +235,33 @@ public class GovHydroFrancis extends TurbineGovernorDynamics
 		
 	
 	public GovHydroFrancis() {
-		GovHydroFrancis_attributes = new BaseClass[GovHydroFrancis_primitive_builder.values().length];
+		GovHydroFrancis_primitive_attributes = new BaseClass[GovHydroFrancis_primitive_builder.values().length];
+		GovHydroFrancis_class_attributes = new BaseClass[GovHydroFrancis_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovHydroFrancis_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(GovHydroFrancis_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			GovHydroFrancis_attributes[attrEnum.ordinal()] = value;
+			GovHydroFrancis_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(GovHydroFrancis_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//GovHydroFrancis_ATTR_ENUM attrEnum = GovHydroFrancis_ATTR_BC_ENUM.valueOf(attrName);
+			GovHydroFrancis_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			GovHydroFrancis_class_attributes_enum attrEnum = GovHydroFrancis_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated GovHydroFrancis, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -222,10 +270,11 @@ public class GovHydroFrancis extends TurbineGovernorDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovHydroFrancis_primitive_builder attrEnum = GovHydroFrancis_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated GovHydroFrancis, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -233,13 +282,26 @@ public class GovHydroFrancis extends TurbineGovernorDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (GovHydroFrancis_primitive_builder attrEnum: GovHydroFrancis_primitive_builder.values()) {
-			BaseClass bc = GovHydroFrancis_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (GovHydroFrancis_primitive_builder attrEnum: GovHydroFrancis_primitive_builder.values()) {
+				BaseClass bc = GovHydroFrancis_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovHydroFrancis." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (GovHydroFrancis_class_attributes_enum attrEnum: GovHydroFrancis_class_attributes_enum.values()) {
+				BaseClass bc = GovHydroFrancis_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    GovHydroFrancis." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(GovHydroFrancis) RDFID: " + rdfid;
 		}
 		return result;
 	}

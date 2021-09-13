@@ -24,45 +24,50 @@ A shunt capacitor or reactor or switchable bank of shunt capacitors or reactors.
 */
 public class ShuntCompensator extends RegulatingCondEq
 {
-	private BaseClass[] ShuntCompensator_attributes;
+	private BaseClass[] ShuntCompensator_class_attributes;
+	private BaseClass[] ShuntCompensator_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ShuntCompensator_primitive_builder implements PrimitiveBuilder {
-			aVRDelay(){
+		aVRDelay(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			grounded(){
+		grounded(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			maximumSections(){
+		maximumSections(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			nomU(){
+		nomU(){
 			public BaseClass construct (java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-			normalSections(){
+		normalSections(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			switchOnCount(){
+		switchOnCount(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
 		},
-			sections(){
+		sections(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
@@ -72,6 +77,20 @@ public class ShuntCompensator extends RegulatingCondEq
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ShuntCompensator_class_attributes_enum {
+		aVRDelay,
+		grounded,
+		maximumSections,
+		nomU,
+		normalSections,
+		switchOnCount,
+		switchOnDate,
+		voltageSensitivity,
+		sections,
+		SvShuntCompensatorSections,
+			LAST_ENUM;
 	}
 
 		
@@ -86,21 +105,33 @@ public class ShuntCompensator extends RegulatingCondEq
 		
 	
 	public ShuntCompensator() {
-		ShuntCompensator_attributes = new BaseClass[ShuntCompensator_primitive_builder.values().length];
+		ShuntCompensator_primitive_attributes = new BaseClass[ShuntCompensator_primitive_builder.values().length];
+		ShuntCompensator_class_attributes = new BaseClass[ShuntCompensator_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ShuntCompensator_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ShuntCompensator_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ShuntCompensator_attributes[attrEnum.ordinal()] = value;
+			ShuntCompensator_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ShuntCompensator_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ShuntCompensator_ATTR_ENUM attrEnum = ShuntCompensator_ATTR_BC_ENUM.valueOf(attrName);
+			ShuntCompensator_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ShuntCompensator_class_attributes_enum attrEnum = ShuntCompensator_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ShuntCompensator, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -109,10 +140,11 @@ public class ShuntCompensator extends RegulatingCondEq
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ShuntCompensator_primitive_builder attrEnum = ShuntCompensator_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ShuntCompensator, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -120,13 +152,26 @@ public class ShuntCompensator extends RegulatingCondEq
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ShuntCompensator_primitive_builder attrEnum: ShuntCompensator_primitive_builder.values()) {
-			BaseClass bc = ShuntCompensator_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ShuntCompensator_primitive_builder attrEnum: ShuntCompensator_primitive_builder.values()) {
+				BaseClass bc = ShuntCompensator_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ShuntCompensator." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ShuntCompensator_class_attributes_enum attrEnum: ShuntCompensator_class_attributes_enum.values()) {
+				BaseClass bc = ShuntCompensator_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ShuntCompensator." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ShuntCompensator) RDFID: " + rdfid;
 		}
 		return result;
 	}

@@ -18,15 +18,20 @@ Describes each tap step in the phase tap changer tabular curve.
 */
 public class PhaseTapChangerTablePoint extends TapChangerTablePoint
 {
-	private BaseClass[] PhaseTapChangerTablePoint_attributes;
+	private BaseClass[] PhaseTapChangerTablePoint_class_attributes;
+	private BaseClass[] PhaseTapChangerTablePoint_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum PhaseTapChangerTablePoint_primitive_builder implements PrimitiveBuilder {
-			angle(){
+		angle(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
@@ -38,25 +43,43 @@ public class PhaseTapChangerTablePoint extends TapChangerTablePoint
 		};
 	}
 
+	private enum PhaseTapChangerTablePoint_class_attributes_enum {
+		PhaseTapChangerTable,
+		angle,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public PhaseTapChangerTablePoint() {
-		PhaseTapChangerTablePoint_attributes = new BaseClass[PhaseTapChangerTablePoint_primitive_builder.values().length];
+		PhaseTapChangerTablePoint_primitive_attributes = new BaseClass[PhaseTapChangerTablePoint_primitive_builder.values().length];
+		PhaseTapChangerTablePoint_class_attributes = new BaseClass[PhaseTapChangerTablePoint_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PhaseTapChangerTablePoint_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(PhaseTapChangerTablePoint_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			PhaseTapChangerTablePoint_attributes[attrEnum.ordinal()] = value;
+			PhaseTapChangerTablePoint_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(PhaseTapChangerTablePoint_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//PhaseTapChangerTablePoint_ATTR_ENUM attrEnum = PhaseTapChangerTablePoint_ATTR_BC_ENUM.valueOf(attrName);
+			PhaseTapChangerTablePoint_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			PhaseTapChangerTablePoint_class_attributes_enum attrEnum = PhaseTapChangerTablePoint_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated PhaseTapChangerTablePoint, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -65,10 +88,11 @@ public class PhaseTapChangerTablePoint extends TapChangerTablePoint
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PhaseTapChangerTablePoint_primitive_builder attrEnum = PhaseTapChangerTablePoint_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated PhaseTapChangerTablePoint, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -76,13 +100,26 @@ public class PhaseTapChangerTablePoint extends TapChangerTablePoint
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (PhaseTapChangerTablePoint_primitive_builder attrEnum: PhaseTapChangerTablePoint_primitive_builder.values()) {
-			BaseClass bc = PhaseTapChangerTablePoint_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (PhaseTapChangerTablePoint_primitive_builder attrEnum: PhaseTapChangerTablePoint_primitive_builder.values()) {
+				BaseClass bc = PhaseTapChangerTablePoint_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PhaseTapChangerTablePoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (PhaseTapChangerTablePoint_class_attributes_enum attrEnum: PhaseTapChangerTablePoint_class_attributes_enum.values()) {
+				BaseClass bc = PhaseTapChangerTablePoint_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PhaseTapChangerTablePoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(PhaseTapChangerTablePoint) RDFID: " + rdfid;
 		}
 		return result;
 	}

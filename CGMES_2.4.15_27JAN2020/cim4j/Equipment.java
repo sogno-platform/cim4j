@@ -19,15 +19,20 @@ The parts of a power system that are physical devices, electronic or mechanical.
 */
 public class Equipment extends PowerSystemResource
 {
-	private BaseClass[] Equipment_attributes;
+	private BaseClass[] Equipment_class_attributes;
+	private BaseClass[] Equipment_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum Equipment_primitive_builder implements PrimitiveBuilder {
-			aggregate(){
+		aggregate(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -39,26 +44,45 @@ public class Equipment extends PowerSystemResource
 		};
 	}
 
+	private enum Equipment_class_attributes_enum {
+		aggregate,
+		EquipmentContainer,
+		OperationalLimitSet,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public Equipment() {
-		Equipment_attributes = new BaseClass[Equipment_primitive_builder.values().length];
+		Equipment_primitive_attributes = new BaseClass[Equipment_primitive_builder.values().length];
+		Equipment_class_attributes = new BaseClass[Equipment_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(Equipment_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(Equipment_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			Equipment_attributes[attrEnum.ordinal()] = value;
+			Equipment_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(Equipment_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//Equipment_ATTR_ENUM attrEnum = Equipment_ATTR_BC_ENUM.valueOf(attrName);
+			Equipment_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			Equipment_class_attributes_enum attrEnum = Equipment_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated Equipment, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -67,10 +91,11 @@ public class Equipment extends PowerSystemResource
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			Equipment_primitive_builder attrEnum = Equipment_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated Equipment, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -78,13 +103,26 @@ public class Equipment extends PowerSystemResource
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (Equipment_primitive_builder attrEnum: Equipment_primitive_builder.values()) {
-			BaseClass bc = Equipment_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (Equipment_primitive_builder attrEnum: Equipment_primitive_builder.values()) {
+				BaseClass bc = Equipment_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Equipment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (Equipment_class_attributes_enum attrEnum: Equipment_class_attributes_enum.values()) {
+				BaseClass bc = Equipment_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    Equipment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(Equipment) RDFID: " + rdfid;
 		}
 		return result;
 	}

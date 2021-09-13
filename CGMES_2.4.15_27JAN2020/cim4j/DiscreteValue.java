@@ -19,15 +19,20 @@ DiscreteValue represents a discrete MeasurementValue.
 */
 public class DiscreteValue extends MeasurementValue
 {
-	private BaseClass[] DiscreteValue_attributes;
+	private BaseClass[] DiscreteValue_class_attributes;
+	private BaseClass[] DiscreteValue_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum DiscreteValue_primitive_builder implements PrimitiveBuilder {
-			value(){
+		value(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
@@ -39,26 +44,45 @@ public class DiscreteValue extends MeasurementValue
 		};
 	}
 
+	private enum DiscreteValue_class_attributes_enum {
+		Command,
+		Discrete,
+		value,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public DiscreteValue() {
-		DiscreteValue_attributes = new BaseClass[DiscreteValue_primitive_builder.values().length];
+		DiscreteValue_primitive_attributes = new BaseClass[DiscreteValue_primitive_builder.values().length];
+		DiscreteValue_class_attributes = new BaseClass[DiscreteValue_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(DiscreteValue_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(DiscreteValue_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			DiscreteValue_attributes[attrEnum.ordinal()] = value;
+			DiscreteValue_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(DiscreteValue_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//DiscreteValue_ATTR_ENUM attrEnum = DiscreteValue_ATTR_BC_ENUM.valueOf(attrName);
+			DiscreteValue_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			DiscreteValue_class_attributes_enum attrEnum = DiscreteValue_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated DiscreteValue, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -67,10 +91,11 @@ public class DiscreteValue extends MeasurementValue
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			DiscreteValue_primitive_builder attrEnum = DiscreteValue_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated DiscreteValue, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -78,13 +103,26 @@ public class DiscreteValue extends MeasurementValue
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (DiscreteValue_primitive_builder attrEnum: DiscreteValue_primitive_builder.values()) {
-			BaseClass bc = DiscreteValue_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (DiscreteValue_primitive_builder attrEnum: DiscreteValue_primitive_builder.values()) {
+				BaseClass bc = DiscreteValue_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DiscreteValue." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (DiscreteValue_class_attributes_enum attrEnum: DiscreteValue_class_attributes_enum.values()) {
+				BaseClass bc = DiscreteValue_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    DiscreteValue." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(DiscreteValue) RDFID: " + rdfid;
 		}
 		return result;
 	}

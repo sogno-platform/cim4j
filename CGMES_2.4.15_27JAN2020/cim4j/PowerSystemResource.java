@@ -19,13 +19,18 @@ A power system resource can be an item of equipment such as a switch, an equipme
 */
 public class PowerSystemResource extends IdentifiedObject
 {
-	private BaseClass[] PowerSystemResource_attributes;
+	private BaseClass[] PowerSystemResource_class_attributes;
+	private BaseClass[] PowerSystemResource_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum PowerSystemResource_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -34,26 +39,45 @@ public class PowerSystemResource extends IdentifiedObject
 		};
 	}
 
+	private enum PowerSystemResource_class_attributes_enum {
+		Controls,
+		Measurements,
+		Location,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public PowerSystemResource() {
-		PowerSystemResource_attributes = new BaseClass[PowerSystemResource_primitive_builder.values().length];
+		PowerSystemResource_primitive_attributes = new BaseClass[PowerSystemResource_primitive_builder.values().length];
+		PowerSystemResource_class_attributes = new BaseClass[PowerSystemResource_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PowerSystemResource_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(PowerSystemResource_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			PowerSystemResource_attributes[attrEnum.ordinal()] = value;
+			PowerSystemResource_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(PowerSystemResource_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//PowerSystemResource_ATTR_ENUM attrEnum = PowerSystemResource_ATTR_BC_ENUM.valueOf(attrName);
+			PowerSystemResource_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			PowerSystemResource_class_attributes_enum attrEnum = PowerSystemResource_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated PowerSystemResource, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -62,10 +86,11 @@ public class PowerSystemResource extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PowerSystemResource_primitive_builder attrEnum = PowerSystemResource_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated PowerSystemResource, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -73,13 +98,26 @@ public class PowerSystemResource extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (PowerSystemResource_primitive_builder attrEnum: PowerSystemResource_primitive_builder.values()) {
-			BaseClass bc = PowerSystemResource_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (PowerSystemResource_primitive_builder attrEnum: PowerSystemResource_primitive_builder.values()) {
+				BaseClass bc = PowerSystemResource_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PowerSystemResource." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (PowerSystemResource_class_attributes_enum attrEnum: PowerSystemResource_class_attributes_enum.values()) {
+				BaseClass bc = PowerSystemResource_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    PowerSystemResource." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(PowerSystemResource) RDFID: " + rdfid;
 		}
 		return result;
 	}

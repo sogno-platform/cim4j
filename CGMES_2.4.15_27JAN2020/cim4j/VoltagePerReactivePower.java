@@ -19,30 +19,35 @@ Voltage variation with reactive power.
 */
 public class VoltagePerReactivePower extends BaseClass
 {
-	private BaseClass[] VoltagePerReactivePower_attributes;
+	private BaseClass[] VoltagePerReactivePower_class_attributes;
+	private BaseClass[] VoltagePerReactivePower_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum VoltagePerReactivePower_primitive_builder implements PrimitiveBuilder {
-			unit(){
+		unit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
 		},
-			denominatorMultiplier(){
+		denominatorMultiplier(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitMultiplier(value);
 			}
 		},
-			multiplier(){
+		multiplier(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitMultiplier(value);
 			}
 		},
-			denominatorUnit(){
+		denominatorUnit(){
 			public BaseClass construct (java.lang.String value) {
 				return new UnitSymbol(value);
 			}
@@ -54,6 +59,15 @@ public class VoltagePerReactivePower extends BaseClass
 		};
 	}
 
+	private enum VoltagePerReactivePower_class_attributes_enum {
+		value,
+		unit,
+		denominatorMultiplier,
+		multiplier,
+		denominatorUnit,
+			LAST_ENUM;
+	}
+
 		
 		
 		
@@ -61,21 +75,33 @@ public class VoltagePerReactivePower extends BaseClass
 		
 	
 	public VoltagePerReactivePower() {
-		VoltagePerReactivePower_attributes = new BaseClass[VoltagePerReactivePower_primitive_builder.values().length];
+		VoltagePerReactivePower_primitive_attributes = new BaseClass[VoltagePerReactivePower_primitive_builder.values().length];
+		VoltagePerReactivePower_class_attributes = new BaseClass[VoltagePerReactivePower_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(VoltagePerReactivePower_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(VoltagePerReactivePower_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			VoltagePerReactivePower_attributes[attrEnum.ordinal()] = value;
+			VoltagePerReactivePower_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(VoltagePerReactivePower_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//VoltagePerReactivePower_ATTR_ENUM attrEnum = VoltagePerReactivePower_ATTR_BC_ENUM.valueOf(attrName);
+			VoltagePerReactivePower_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			VoltagePerReactivePower_class_attributes_enum attrEnum = VoltagePerReactivePower_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated VoltagePerReactivePower, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -84,10 +110,11 @@ public class VoltagePerReactivePower extends BaseClass
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			VoltagePerReactivePower_primitive_builder attrEnum = VoltagePerReactivePower_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated VoltagePerReactivePower, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -95,13 +122,26 @@ public class VoltagePerReactivePower extends BaseClass
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (VoltagePerReactivePower_primitive_builder attrEnum: VoltagePerReactivePower_primitive_builder.values()) {
-			BaseClass bc = VoltagePerReactivePower_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (VoltagePerReactivePower_primitive_builder attrEnum: VoltagePerReactivePower_primitive_builder.values()) {
+				BaseClass bc = VoltagePerReactivePower_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VoltagePerReactivePower." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (VoltagePerReactivePower_class_attributes_enum attrEnum: VoltagePerReactivePower_class_attributes_enum.values()) {
+				BaseClass bc = VoltagePerReactivePower_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    VoltagePerReactivePower." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(VoltagePerReactivePower) RDFID: " + rdfid;
 		}
 		return result;
 	}

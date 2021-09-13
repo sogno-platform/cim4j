@@ -19,15 +19,20 @@ Used to apply user standard names to topology buses. Typically used for "bus/bra
 */
 public class BusNameMarker extends IdentifiedObject
 {
-	private BaseClass[] BusNameMarker_attributes;
+	private BaseClass[] BusNameMarker_class_attributes;
+	private BaseClass[] BusNameMarker_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum BusNameMarker_primitive_builder implements PrimitiveBuilder {
-			priority(){
+		priority(){
 			public BaseClass construct (java.lang.String value) {
 				return new Integer(value);
 			}
@@ -39,26 +44,45 @@ public class BusNameMarker extends IdentifiedObject
 		};
 	}
 
+	private enum BusNameMarker_class_attributes_enum {
+		priority,
+		ReportingGroup,
+		Terminal,
+			LAST_ENUM;
+	}
+
 		
 		
 		
 	
 	public BusNameMarker() {
-		BusNameMarker_attributes = new BaseClass[BusNameMarker_primitive_builder.values().length];
+		BusNameMarker_primitive_attributes = new BaseClass[BusNameMarker_primitive_builder.values().length];
+		BusNameMarker_class_attributes = new BaseClass[BusNameMarker_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(BusNameMarker_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(BusNameMarker_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			BusNameMarker_attributes[attrEnum.ordinal()] = value;
+			BusNameMarker_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(BusNameMarker_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//BusNameMarker_ATTR_ENUM attrEnum = BusNameMarker_ATTR_BC_ENUM.valueOf(attrName);
+			BusNameMarker_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			BusNameMarker_class_attributes_enum attrEnum = BusNameMarker_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated BusNameMarker, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -67,10 +91,11 @@ public class BusNameMarker extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			BusNameMarker_primitive_builder attrEnum = BusNameMarker_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated BusNameMarker, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -78,13 +103,26 @@ public class BusNameMarker extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (BusNameMarker_primitive_builder attrEnum: BusNameMarker_primitive_builder.values()) {
-			BaseClass bc = BusNameMarker_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (BusNameMarker_primitive_builder attrEnum: BusNameMarker_primitive_builder.values()) {
+				BaseClass bc = BusNameMarker_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    BusNameMarker." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (BusNameMarker_class_attributes_enum attrEnum: BusNameMarker_class_attributes_enum.values()) {
+				BaseClass bc = BusNameMarker_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    BusNameMarker." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(BusNameMarker) RDFID: " + rdfid;
 		}
 		return result;
 	}

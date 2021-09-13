@@ -17,13 +17,18 @@ Describes behavior specific to tap changers, e.g. how the voltage at the end of 
 */
 public class TapChangerControl extends RegulatingControl
 {
-	private BaseClass[] TapChangerControl_attributes;
+	private BaseClass[] TapChangerControl_class_attributes;
+	private BaseClass[] TapChangerControl_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum TapChangerControl_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -32,24 +37,41 @@ public class TapChangerControl extends RegulatingControl
 		};
 	}
 
+	private enum TapChangerControl_class_attributes_enum {
+		TapChanger,
+			LAST_ENUM;
+	}
+
 		
 	
 	public TapChangerControl() {
-		TapChangerControl_attributes = new BaseClass[TapChangerControl_primitive_builder.values().length];
+		TapChangerControl_primitive_attributes = new BaseClass[TapChangerControl_primitive_builder.values().length];
+		TapChangerControl_class_attributes = new BaseClass[TapChangerControl_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(TapChangerControl_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(TapChangerControl_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			TapChangerControl_attributes[attrEnum.ordinal()] = value;
+			TapChangerControl_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(TapChangerControl_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//TapChangerControl_ATTR_ENUM attrEnum = TapChangerControl_ATTR_BC_ENUM.valueOf(attrName);
+			TapChangerControl_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			TapChangerControl_class_attributes_enum attrEnum = TapChangerControl_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated TapChangerControl, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -58,10 +80,11 @@ public class TapChangerControl extends RegulatingControl
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			TapChangerControl_primitive_builder attrEnum = TapChangerControl_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated TapChangerControl, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -69,13 +92,26 @@ public class TapChangerControl extends RegulatingControl
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (TapChangerControl_primitive_builder attrEnum: TapChangerControl_primitive_builder.values()) {
-			BaseClass bc = TapChangerControl_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (TapChangerControl_primitive_builder attrEnum: TapChangerControl_primitive_builder.values()) {
+				BaseClass bc = TapChangerControl_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    TapChangerControl." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (TapChangerControl_class_attributes_enum attrEnum: TapChangerControl_class_attributes_enum.values()) {
+				BaseClass bc = TapChangerControl_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    TapChangerControl." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(TapChangerControl) RDFID: " + rdfid;
 		}
 		return result;
 	}

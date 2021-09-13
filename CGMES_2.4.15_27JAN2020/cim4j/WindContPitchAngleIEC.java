@@ -21,60 +21,65 @@ Pitch angle control model.  Reference: IEC Standard 61400-27-1 Section 6.6.5.8.
 */
 public class WindContPitchAngleIEC extends IdentifiedObject
 {
-	private BaseClass[] WindContPitchAngleIEC_attributes;
+	private BaseClass[] WindContPitchAngleIEC_class_attributes;
+	private BaseClass[] WindContPitchAngleIEC_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum WindContPitchAngleIEC_primitive_builder implements PrimitiveBuilder {
-			dthetamax(){
+		dthetamax(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			dthetamin(){
+		dthetamin(){
 			public BaseClass construct (java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			kic(){
+		kic(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kiomega(){
+		kiomega(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kpc(){
+		kpc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kpomega(){
+		kpomega(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kpx(){
+		kpx(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			thetamax(){
+		thetamax(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
 		},
-			thetamin(){
+		thetamin(){
 			public BaseClass construct (java.lang.String value) {
 				return new AngleDegrees(value);
 			}
 		},
-			ttheta(){
+		ttheta(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
@@ -84,6 +89,21 @@ public class WindContPitchAngleIEC extends IdentifiedObject
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum WindContPitchAngleIEC_class_attributes_enum {
+		dthetamax,
+		dthetamin,
+		kic,
+		kiomega,
+		kpc,
+		kpomega,
+		kpx,
+		thetamax,
+		thetamin,
+		ttheta,
+		WindGenTurbineType3IEC,
+			LAST_ENUM;
 	}
 
 		
@@ -99,21 +119,33 @@ public class WindContPitchAngleIEC extends IdentifiedObject
 		
 	
 	public WindContPitchAngleIEC() {
-		WindContPitchAngleIEC_attributes = new BaseClass[WindContPitchAngleIEC_primitive_builder.values().length];
+		WindContPitchAngleIEC_primitive_attributes = new BaseClass[WindContPitchAngleIEC_primitive_builder.values().length];
+		WindContPitchAngleIEC_class_attributes = new BaseClass[WindContPitchAngleIEC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(WindContPitchAngleIEC_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(WindContPitchAngleIEC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			WindContPitchAngleIEC_attributes[attrEnum.ordinal()] = value;
+			WindContPitchAngleIEC_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(WindContPitchAngleIEC_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//WindContPitchAngleIEC_ATTR_ENUM attrEnum = WindContPitchAngleIEC_ATTR_BC_ENUM.valueOf(attrName);
+			WindContPitchAngleIEC_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			WindContPitchAngleIEC_class_attributes_enum attrEnum = WindContPitchAngleIEC_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated WindContPitchAngleIEC, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -122,10 +154,11 @@ public class WindContPitchAngleIEC extends IdentifiedObject
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			WindContPitchAngleIEC_primitive_builder attrEnum = WindContPitchAngleIEC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated WindContPitchAngleIEC, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -133,13 +166,26 @@ public class WindContPitchAngleIEC extends IdentifiedObject
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (WindContPitchAngleIEC_primitive_builder attrEnum: WindContPitchAngleIEC_primitive_builder.values()) {
-			BaseClass bc = WindContPitchAngleIEC_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (WindContPitchAngleIEC_primitive_builder attrEnum: WindContPitchAngleIEC_primitive_builder.values()) {
+				BaseClass bc = WindContPitchAngleIEC_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindContPitchAngleIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (WindContPitchAngleIEC_class_attributes_enum attrEnum: WindContPitchAngleIEC_class_attributes_enum.values()) {
+				BaseClass bc = WindContPitchAngleIEC_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    WindContPitchAngleIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(WindContPitchAngleIEC) RDFID: " + rdfid;
 		}
 		return result;
 	}

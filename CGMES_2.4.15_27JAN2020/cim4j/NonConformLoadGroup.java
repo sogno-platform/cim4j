@@ -18,13 +18,18 @@ Loads that do not follow a daily and seasonal load variation pattern.
 */
 public class NonConformLoadGroup extends LoadGroup
 {
-	private BaseClass[] NonConformLoadGroup_attributes;
+	private BaseClass[] NonConformLoadGroup_class_attributes;
+	private BaseClass[] NonConformLoadGroup_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum NonConformLoadGroup_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -33,25 +38,43 @@ public class NonConformLoadGroup extends LoadGroup
 		};
 	}
 
+	private enum NonConformLoadGroup_class_attributes_enum {
+		EnergyConsumers,
+		NonConformLoadSchedules,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public NonConformLoadGroup() {
-		NonConformLoadGroup_attributes = new BaseClass[NonConformLoadGroup_primitive_builder.values().length];
+		NonConformLoadGroup_primitive_attributes = new BaseClass[NonConformLoadGroup_primitive_builder.values().length];
+		NonConformLoadGroup_class_attributes = new BaseClass[NonConformLoadGroup_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(NonConformLoadGroup_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(NonConformLoadGroup_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			NonConformLoadGroup_attributes[attrEnum.ordinal()] = value;
+			NonConformLoadGroup_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(NonConformLoadGroup_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//NonConformLoadGroup_ATTR_ENUM attrEnum = NonConformLoadGroup_ATTR_BC_ENUM.valueOf(attrName);
+			NonConformLoadGroup_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			NonConformLoadGroup_class_attributes_enum attrEnum = NonConformLoadGroup_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated NonConformLoadGroup, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -60,10 +83,11 @@ public class NonConformLoadGroup extends LoadGroup
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			NonConformLoadGroup_primitive_builder attrEnum = NonConformLoadGroup_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated NonConformLoadGroup, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -71,13 +95,26 @@ public class NonConformLoadGroup extends LoadGroup
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (NonConformLoadGroup_primitive_builder attrEnum: NonConformLoadGroup_primitive_builder.values()) {
-			BaseClass bc = NonConformLoadGroup_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (NonConformLoadGroup_primitive_builder attrEnum: NonConformLoadGroup_primitive_builder.values()) {
+				BaseClass bc = NonConformLoadGroup_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    NonConformLoadGroup." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (NonConformLoadGroup_class_attributes_enum attrEnum: NonConformLoadGroup_class_attributes_enum.values()) {
+				BaseClass bc = NonConformLoadGroup_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    NonConformLoadGroup." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(NonConformLoadGroup) RDFID: " + rdfid;
 		}
 		return result;
 	}

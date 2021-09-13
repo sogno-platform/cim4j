@@ -18,13 +18,18 @@ A time schedule covering a 24 hour period, with curve data for a specific type o
 */
 public class SeasonDayTypeSchedule extends RegularIntervalSchedule
 {
-	private BaseClass[] SeasonDayTypeSchedule_attributes;
+	private BaseClass[] SeasonDayTypeSchedule_class_attributes;
+	private BaseClass[] SeasonDayTypeSchedule_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum SeasonDayTypeSchedule_primitive_builder implements PrimitiveBuilder {
 			LAST_ENUM() {
 			public BaseClass construct (java.lang.String value) {
@@ -33,25 +38,43 @@ public class SeasonDayTypeSchedule extends RegularIntervalSchedule
 		};
 	}
 
+	private enum SeasonDayTypeSchedule_class_attributes_enum {
+		DayType,
+		Season,
+			LAST_ENUM;
+	}
+
 		
 		
 	
 	public SeasonDayTypeSchedule() {
-		SeasonDayTypeSchedule_attributes = new BaseClass[SeasonDayTypeSchedule_primitive_builder.values().length];
+		SeasonDayTypeSchedule_primitive_attributes = new BaseClass[SeasonDayTypeSchedule_primitive_builder.values().length];
+		SeasonDayTypeSchedule_class_attributes = new BaseClass[SeasonDayTypeSchedule_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(SeasonDayTypeSchedule_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(SeasonDayTypeSchedule_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			SeasonDayTypeSchedule_attributes[attrEnum.ordinal()] = value;
+			SeasonDayTypeSchedule_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(SeasonDayTypeSchedule_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//SeasonDayTypeSchedule_ATTR_ENUM attrEnum = SeasonDayTypeSchedule_ATTR_BC_ENUM.valueOf(attrName);
+			SeasonDayTypeSchedule_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			SeasonDayTypeSchedule_class_attributes_enum attrEnum = SeasonDayTypeSchedule_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated SeasonDayTypeSchedule, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -60,10 +83,11 @@ public class SeasonDayTypeSchedule extends RegularIntervalSchedule
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			SeasonDayTypeSchedule_primitive_builder attrEnum = SeasonDayTypeSchedule_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated SeasonDayTypeSchedule, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -71,13 +95,26 @@ public class SeasonDayTypeSchedule extends RegularIntervalSchedule
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (SeasonDayTypeSchedule_primitive_builder attrEnum: SeasonDayTypeSchedule_primitive_builder.values()) {
-			BaseClass bc = SeasonDayTypeSchedule_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (SeasonDayTypeSchedule_primitive_builder attrEnum: SeasonDayTypeSchedule_primitive_builder.values()) {
+				BaseClass bc = SeasonDayTypeSchedule_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SeasonDayTypeSchedule." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (SeasonDayTypeSchedule_class_attributes_enum attrEnum: SeasonDayTypeSchedule_class_attributes_enum.values()) {
+				BaseClass bc = SeasonDayTypeSchedule_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    SeasonDayTypeSchedule." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(SeasonDayTypeSchedule) RDFID: " + rdfid;
 		}
 		return result;
 	}

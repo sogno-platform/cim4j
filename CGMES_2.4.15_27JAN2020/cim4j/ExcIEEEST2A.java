@@ -19,75 +19,80 @@ The class represents IEEE Std 421.5-2005 type ST2A model. Some static systems ut
 */
 public class ExcIEEEST2A extends ExcitationSystemDynamics
 {
-	private BaseClass[] ExcIEEEST2A_attributes;
+	private BaseClass[] ExcIEEEST2A_class_attributes;
+	private BaseClass[] ExcIEEEST2A_primitive_attributes;
+	private java.lang.String rdfid;
+
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
 
 	private abstract interface PrimitiveBuilder {
 		public abstract BaseClass construct(java.lang.String value);
 	};
 
-	// TODO: lambda would read more nicely in this generated code
 	private enum ExcIEEEST2A_primitive_builder implements PrimitiveBuilder {
-			ka(){
+		ka(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ta(){
+		ta(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			vrmax(){
+		vrmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			vrmin(){
+		vrmin(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ke(){
+		ke(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			te(){
+		te(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kf(){
+		kf(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			tf(){
+		tf(){
 			public BaseClass construct (java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			kp(){
+		kp(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			ki(){
+		ki(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			kc(){
+		kc(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			efdmax(){
+		efdmax(){
 			public BaseClass construct (java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			uelin(){
+		uelin(){
 			public BaseClass construct (java.lang.String value) {
 				return new Boolean(value);
 			}
@@ -97,6 +102,23 @@ public class ExcIEEEST2A extends ExcitationSystemDynamics
 				return new cim4j.Integer("0");
 			}
 		};
+	}
+
+	private enum ExcIEEEST2A_class_attributes_enum {
+		ka,
+		ta,
+		vrmax,
+		vrmin,
+		ke,
+		te,
+		kf,
+		tf,
+		kp,
+		ki,
+		kc,
+		efdmax,
+		uelin,
+			LAST_ENUM;
 	}
 
 		
@@ -114,21 +136,33 @@ public class ExcIEEEST2A extends ExcitationSystemDynamics
 		
 	
 	public ExcIEEEST2A() {
-		ExcIEEEST2A_attributes = new BaseClass[ExcIEEEST2A_primitive_builder.values().length];
+		ExcIEEEST2A_primitive_attributes = new BaseClass[ExcIEEEST2A_primitive_builder.values().length];
+		ExcIEEEST2A_class_attributes = new BaseClass[ExcIEEEST2A_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcIEEEST2A_primitive_builder attrEnum, BaseClass value) {
+	public void updateAttributeInArray(ExcIEEEST2A_class_attributes_enum attrEnum, BaseClass value) {
 		try {
-			ExcIEEEST2A_attributes[attrEnum.ordinal()] = value;
+			ExcIEEEST2A_class_attributes[attrEnum.ordinal()] = value;
 		}
 		catch (ArrayIndexOutOfBoundsException aoobe) {
 			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
- 	public void setAttribute(java.lang.String attrName, BaseClass value) {
+	public void updateAttributeInArray(ExcIEEEST2A_primitive_builder attrEnum, BaseClass value) {
 		try {
-			//ExcIEEEST2A_ATTR_ENUM attrEnum = ExcIEEEST2A_ATTR_BC_ENUM.valueOf(attrName);
+			ExcIEEEST2A_primitive_attributes[attrEnum.ordinal()] = value;
+		}
+		catch (ArrayIndexOutOfBoundsException aoobe) {
+			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		}
+	}
+
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		try {
+			ExcIEEEST2A_class_attributes_enum attrEnum = ExcIEEEST2A_class_attributes_enum.valueOf(attrName);
+			updateAttributeInArray(attrEnum, value);
+			System.out.println("Updated ExcIEEEST2A, setting " + attrName);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -137,10 +171,11 @@ public class ExcIEEEST2A extends ExcitationSystemDynamics
 	}
 
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
- 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcIEEEST2A_primitive_builder attrEnum = ExcIEEEST2A_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
+			System.out.println("Updated ExcIEEEST2A, setting " + attrName  + " to: "  + value);
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -148,13 +183,26 @@ public class ExcIEEEST2A extends ExcitationSystemDynamics
 		}
 	}
 
-	public java.lang.String toString() {
+	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		for (ExcIEEEST2A_primitive_builder attrEnum: ExcIEEEST2A_primitive_builder.values()) {
-			BaseClass bc = ExcIEEEST2A_attributes[attrEnum.ordinal()];
-			if (bc != null) {
-				result += attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString() + System.lineSeparator();
+		java.lang.String indent = "";
+		if (topClass) {
+			for (ExcIEEEST2A_primitive_builder attrEnum: ExcIEEEST2A_primitive_builder.values()) {
+				BaseClass bc = ExcIEEEST2A_primitive_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcIEEEST2A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
 			}
+			for (ExcIEEEST2A_class_attributes_enum attrEnum: ExcIEEEST2A_class_attributes_enum.values()) {
+				BaseClass bc = ExcIEEEST2A_class_attributes[attrEnum.ordinal()];
+				if (bc != null) {
+					result += "    ExcIEEEST2A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+				}
+			}
+			result += super.toString(true);
+		}
+		else {
+			result += "(ExcIEEEST2A) RDFID: " + rdfid;
 		}
 		return result;
 	}

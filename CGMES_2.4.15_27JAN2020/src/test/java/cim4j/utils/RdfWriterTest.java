@@ -293,6 +293,43 @@ class RdfWriterTest {
     }
 
     @Test
+    @Order(190)
+    void testWrite007() {
+        var cimData = RdfReader.read(getPath("rdf/test007.xml"));
+        assertEquals(4, cimData.size());
+
+        assertTrue(cimData.containsKey("VoltageLevel.96"));
+        assertTrue(cimData.containsKey("VoltageLevel.97"));
+        assertTrue(cimData.containsKey("VoltageLevel.98"));
+        assertTrue(cimData.containsKey("BaseVoltage.20"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(15, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:VoltageLevel rdf:ID=\"VoltageLevel.96\">", lines[2]);
+        assertEquals("    <cim:VoltageLevel.BaseVoltage rdf:resource=\"#BaseVoltage.20\"/>", lines[3]);
+        assertEquals("  </cim:VoltageLevel>", lines[4]);
+        assertEquals("  <cim:VoltageLevel rdf:ID=\"VoltageLevel.97\">", lines[5]);
+        assertEquals("    <cim:VoltageLevel.BaseVoltage rdf:resource=\"#BaseVoltage.20\"/>", lines[6]);
+        assertEquals("  </cim:VoltageLevel>", lines[7]);
+        assertEquals("  <cim:BaseVoltage rdf:ID=\"BaseVoltage.20\">", lines[8]);
+        assertEquals("    <cim:BaseVoltage.nominalVoltage>20.0</cim:BaseVoltage.nominalVoltage>", lines[9]);
+        assertEquals("  </cim:BaseVoltage>", lines[10]);
+        assertEquals("  <cim:VoltageLevel rdf:ID=\"VoltageLevel.98\">", lines[11]);
+        assertEquals("    <cim:VoltageLevel.BaseVoltage rdf:resource=\"#BaseVoltage.20\"/>", lines[12]);
+        assertEquals("  </cim:VoltageLevel>", lines[13]);
+        assertEquals("</rdf:RDF>", lines[14]);
+    }
+
+    @Test
     @Order(900)
     void testWriteCimData() {
         var rdfWriter = new RdfWriter();

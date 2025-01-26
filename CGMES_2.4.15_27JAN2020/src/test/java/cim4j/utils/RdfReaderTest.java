@@ -275,6 +275,35 @@ class RdfReaderTest {
         }
     }
 
+    @Test
+    @Order(170)
+    void testRead007() {
+        var cimData = RdfReader.read(getPath("rdf/test007.xml"));
+        assertEquals(4, cimData.size());
+
+        assertTrue(cimData.containsKey("VoltageLevel.96"));
+        assertTrue(cimData.containsKey("VoltageLevel.97"));
+        assertTrue(cimData.containsKey("VoltageLevel.98"));
+        assertTrue(cimData.containsKey("BaseVoltage.20"));
+
+        var voltageLevel = cimData.get("VoltageLevel.96");
+        assertNotNull(voltageLevel);
+
+        var baseVoltage = voltageLevel.getAttribute("BaseVoltage");
+        assertNotNull(baseVoltage);
+        assertEquals(BaseVoltage.class, baseVoltage.getClass());
+        assertEquals("BaseVoltage.20", baseVoltage.getRdfid());
+        assertEquals(baseVoltage, cimData.get("BaseVoltage.20"));
+
+        voltageLevel = cimData.get("VoltageLevel.97");
+        assertNotNull(voltageLevel);
+        assertEquals(baseVoltage, voltageLevel.getAttribute("BaseVoltage"));
+
+        voltageLevel = cimData.get("VoltageLevel.98");
+        assertNotNull(voltageLevel);
+        assertEquals(baseVoltage, voltageLevel.getAttribute("BaseVoltage"));
+    }
+
     private String getPath(String aResource) {
         var url = getClass().getClassLoader().getResource(aResource);
         assertNotNull(url);

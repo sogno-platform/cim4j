@@ -26,6 +26,9 @@ class RdfWriterTest {
     private static final String RDF = CimConstants.NAMESPACES_MAP.get("rdf");
     private static final String CIM = CimConstants.NAMESPACES_MAP.get("cim");
     private static final String RDF_HEADER = "<rdf:RDF xmlns:cim=\"" + CIM + "\"" + " xmlns:rdf=\"" + RDF + "\">";
+    private static final String ENTSOE_EU = CimConstants.CIM_VERSION.equals("cgmes_v3_0_0") ? "eu" : "entsoe";
+    private static final String RDF_HEADER_EU = "<rdf:RDF xmlns:cim=\"" + CIM + "\" xmlns:" + ENTSOE_EU + "=\""
+            + CimConstants.NAMESPACES_MAP.get(ENTSOE_EU) + "\" xmlns:rdf=\"" + RDF + "\">";
 
     @Test
     @Order(100)
@@ -62,7 +65,7 @@ class RdfWriterTest {
 
     @Test
     @Order(130)
-    void testConvertCimData001() {
+    void testWrite001() {
         var cimData = RdfReader.read(getPath("rdf/test001.xml"));
         assertEquals(2, cimData.size());
 
@@ -92,7 +95,7 @@ class RdfWriterTest {
 
     @Test
     @Order(140)
-    void testConvertCimData002() {
+    void testWrite002() {
         var cimData = RdfReader.read(getPath("rdf/test002.xml"));
         assertEquals(4, cimData.size());
 
@@ -125,7 +128,7 @@ class RdfWriterTest {
 
     @Test
     @Order(150)
-    void testConvertCimData003() {
+    void testWrite003() {
         var cimData = RdfReader.read(getPath("rdf/test003.xml"));
         assertEquals(2, cimData.size());
 
@@ -150,6 +153,143 @@ class RdfWriterTest {
         assertEquals("    <cim:Terminal.TopologicalNode rdf:resource=\"#N0\"/>", lines[6]);
         assertEquals("  </cim:Terminal>", lines[7]);
         assertEquals("</rdf:RDF>", lines[8]);
+    }
+
+    @Test
+    @Order(160)
+    void testWrite004() {
+        var cimData = RdfReader.read(getPath("rdf/test004.xml"));
+        assertEquals(1, cimData.size());
+
+        assertTrue(cimData.containsKey("BaseVoltage.20"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(7, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER_EU, lines[1]);
+        assertEquals("  <cim:BaseVoltage rdf:ID=\"BaseVoltage.20\">", lines[2]);
+        assertEquals("    <cim:BaseVoltage.nominalVoltage>20.0</cim:BaseVoltage.nominalVoltage>", lines[3]);
+        assertEquals("    <" + ENTSOE_EU + ":IdentifiedObject.shortName>20</" + ENTSOE_EU
+                + ":IdentifiedObject.shortName>", lines[4]);
+        assertEquals("  </cim:BaseVoltage>", lines[5]);
+        assertEquals("</rdf:RDF>", lines[6]);
+    }
+
+    @Test
+    @Order(170)
+    void testWrite005() {
+        if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_13")) {
+            // There is no class or list attribute in cgmes_v2_4_13 with entsoe namespace
+        } else if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_15")) {
+            var cimData = RdfReader.read(getPath("rdf/test005_CGMES2.xml"));
+            assertEquals(2, cimData.size());
+
+            assertTrue(cimData.containsKey("ES"));
+            assertTrue(cimData.containsKey("EST"));
+
+            var rdfWriter = new RdfWriter();
+            rdfWriter.addCimData(cimData);
+
+            var stringWriter = new StringWriter();
+            rdfWriter.write(stringWriter);
+            String result = stringWriter.toString();
+
+            var lines = result.lines().toArray();
+            assertEquals(9, lines.length);
+            assertEquals(XML_HEADER, lines[0]);
+            assertEquals(RDF_HEADER_EU, lines[1]);
+            assertEquals("  <cim:EnergySource rdf:ID=\"ES\">", lines[2]);
+            assertEquals("    <entsoe:EnergySource.EnergySchedulingType rdf:resource=\"#EST\"/>", lines[3]);
+            assertEquals("  </cim:EnergySource>", lines[4]);
+            assertEquals("  <entsoe:EnergySchedulingType rdf:ID=\"EST\">", lines[5]);
+            assertEquals("    <cim:IdentifiedObject.name>EST</cim:IdentifiedObject.name>", lines[6]);
+            assertEquals("  </entsoe:EnergySchedulingType>", lines[7]);
+            assertEquals("</rdf:RDF>", lines[8]);
+        } else if (CimConstants.CIM_VERSION.equals("cgmes_v3_0_0")) {
+            var cimData = RdfReader.read(getPath("rdf/test005_CGMES3.xml"));
+            assertEquals(2, cimData.size());
+
+            assertTrue(cimData.containsKey("N0"));
+            assertTrue(cimData.containsKey("N0_BP"));
+
+            var rdfWriter = new RdfWriter();
+            rdfWriter.addCimData(cimData);
+
+            var stringWriter = new StringWriter();
+            rdfWriter.write(stringWriter);
+            String result = stringWriter.toString();
+
+            var lines = result.lines().toArray();
+            assertEquals(9, lines.length);
+            assertEquals(XML_HEADER, lines[0]);
+            assertEquals(RDF_HEADER_EU, lines[1]);
+            assertEquals("  <cim:ConnectivityNode rdf:ID=\"N0\">", lines[2]);
+            assertEquals("    <cim:IdentifiedObject.name>N0</cim:IdentifiedObject.name>", lines[3]);
+            assertEquals("  </cim:ConnectivityNode>", lines[4]);
+            assertEquals("  <eu:BoundaryPoint rdf:ID=\"N0_BP\">", lines[5]);
+            assertEquals("    <eu:BoundaryPoint.ConnectivityNode rdf:resource=\"#N0\"/>", lines[6]);
+            assertEquals("  </eu:BoundaryPoint>", lines[7]);
+            assertEquals("</rdf:RDF>", lines[8]);
+        }
+    }
+
+    @Test
+    @Order(180)
+    void testWrite006() {
+        if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_13") || CimConstants.CIM_VERSION.equals("cgmes_v2_4_15")) {
+            var cimData = RdfReader.read(getPath("rdf/test006_CGMES2.xml"));
+            assertEquals(2, cimData.size());
+
+            assertTrue(cimData.containsKey("OLT"));
+
+            var rdfWriter = new RdfWriter();
+            rdfWriter.addCimData(cimData);
+
+            var stringWriter = new StringWriter();
+            rdfWriter.write(stringWriter);
+            String result = stringWriter.toString();
+
+            var lines = result.lines().toArray();
+            assertEquals(7, lines.length);
+            assertEquals(XML_HEADER, lines[0]);
+            assertEquals(RDF_HEADER_EU, lines[1]);
+            assertEquals("  <cim:OperationalLimitType rdf:ID=\"OLT\">", lines[2]);
+            assertEquals("    <entsoe:OperationalLimitType.limitType rdf:resource=\""
+                    + CimConstants.NAMESPACES_MAP.get("entsoe") + "LimitTypeKind.highVoltage\"/>", lines[3]);
+            assertEquals("    <cim:IdentifiedObject.name>High Voltage</cim:IdentifiedObject.name>", lines[4]);
+            assertEquals("  </cim:OperationalLimitType>", lines[5]);
+            assertEquals("</rdf:RDF>", lines[6]);
+        } else if (CimConstants.CIM_VERSION.equals("cgmes_v3_0_0")) {
+            var cimData = RdfReader.read(getPath("rdf/test006_CGMES3.xml"));
+            assertEquals(2, cimData.size());
+
+            assertTrue(cimData.containsKey("OLT"));
+
+            var rdfWriter = new RdfWriter();
+            rdfWriter.addCimData(cimData);
+
+            var stringWriter = new StringWriter();
+            rdfWriter.write(stringWriter);
+            String result = stringWriter.toString();
+
+            var lines = result.lines().toArray();
+            assertEquals(7, lines.length);
+            assertEquals(XML_HEADER, lines[0]);
+            assertEquals(RDF_HEADER_EU, lines[1]);
+            assertEquals("  <cim:OperationalLimitType rdf:ID=\"OLT\">", lines[2]);
+            assertEquals("    <eu:OperationalLimitType.kind rdf:resource=\""
+                    + CimConstants.NAMESPACES_MAP.get("eu") + "LimitKind.highVoltage\"/>", lines[3]);
+            assertEquals("    <cim:IdentifiedObject.name>High Voltage</cim:IdentifiedObject.name>", lines[4]);
+            assertEquals("  </cim:OperationalLimitType>", lines[5]);
+            assertEquals("</rdf:RDF>", lines[6]);
+        }
     }
 
     @Test

@@ -16,7 +16,12 @@ import org.junit.jupiter.api.TestMethodOrder;
 import cim4j.Analog;
 import cim4j.AnalogValue;
 import cim4j.BaseVoltage;
+import cim4j.CimConstants;
+import cim4j.ConnectivityNode;
+import cim4j.EnergySchedulingType;
+import cim4j.EnergySource;
 import cim4j.Logging;
+import cim4j.OperationalLimitType;
 import cim4j.Terminal;
 import cim4j.TopologicalNode;
 import cim4j.Voltage;
@@ -148,6 +153,126 @@ class RdfReaderTest {
         attributeNames = topologicalNode.getAttributeNames();
         assertTrue(attributeNames.contains("name"));
         assertEquals("N0", topologicalNode.getAttribute("name").toString(false));
+    }
+
+    @Test
+    @Order(140)
+    void testRead004() {
+        var cimData = RdfReader.read(getPath("rdf/test004.xml"));
+        assertEquals(1, cimData.size());
+
+        assertTrue(cimData.containsKey("BaseVoltage.20"));
+
+        var baseVoltage = cimData.get("BaseVoltage.20");
+        assertNotNull(baseVoltage);
+        assertEquals(BaseVoltage.class, baseVoltage.getClass());
+        assertEquals("BaseVoltage.20", baseVoltage.getRdfid());
+
+        var attributeNames = baseVoltage.getAttributeNames();
+        assertTrue(attributeNames.contains("shortName"));
+        assertEquals("20", baseVoltage.getAttribute("shortName").toString(false));
+    }
+
+    @Test
+    @Order(150)
+    void testRead005() {
+        if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_13") || CimConstants.CIM_VERSION.equals("cgmes_v2_4_15")) {
+            var cimData = RdfReader.read(getPath("rdf/test005_CGMES2.xml"));
+            assertEquals(2, cimData.size());
+
+            assertTrue(cimData.containsKey("ES"));
+            assertTrue(cimData.containsKey("EST"));
+
+            var energySource = cimData.get("ES");
+            assertNotNull(energySource);
+            assertEquals(EnergySource.class, energySource.getClass());
+            assertEquals("ES", energySource.getRdfid());
+
+            var attributeNames = energySource.getAttributeNames();
+            assertTrue(attributeNames.contains("EnergySchedulingType"));
+
+            var energySchedulingType = energySource.getAttribute("EnergySchedulingType");
+            assertNotNull(energySchedulingType);
+            assertEquals(EnergySchedulingType.class, energySchedulingType.getClass());
+            assertEquals("EST", energySchedulingType.getRdfid());
+            assertEquals(energySchedulingType, cimData.get("EST"));
+
+            attributeNames = energySchedulingType.getAttributeNames();
+            assertTrue(attributeNames.contains("name"));
+            assertEquals("EST", energySchedulingType.getAttribute("name").toString(false));
+        } else if (CimConstants.CIM_VERSION.equals("cgmes_v3_0_0")) {
+            var cimData = RdfReader.read(getPath("rdf/test005_CGMES3.xml"));
+            assertEquals(2, cimData.size());
+
+            assertTrue(cimData.containsKey("N0"));
+            assertTrue(cimData.containsKey("N0_BP"));
+
+            var boundaryPoint = cimData.get("N0_BP");
+            assertNotNull(boundaryPoint);
+            assertEquals("BoundaryPoint", boundaryPoint.debugString());
+            assertEquals("N0_BP", boundaryPoint.getRdfid());
+
+            var attributeNames = boundaryPoint.getAttributeNames();
+            assertTrue(attributeNames.contains("ConnectivityNode"));
+
+            var connectivityNode = boundaryPoint.getAttribute("ConnectivityNode");
+            assertNotNull(connectivityNode);
+            assertEquals(ConnectivityNode.class, connectivityNode.getClass());
+            assertEquals("N0", connectivityNode.getRdfid());
+            assertEquals(connectivityNode, cimData.get("N0"));
+
+            attributeNames = connectivityNode.getAttributeNames();
+            assertTrue(attributeNames.contains("name"));
+            assertEquals("N0", connectivityNode.getAttribute("name").toString(false));
+        }
+    }
+
+    @Test
+    @Order(160)
+    void testRead006() {
+        if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_13") || CimConstants.CIM_VERSION.equals("cgmes_v2_4_15")) {
+            var cimData = RdfReader.read(getPath("rdf/test006_CGMES2.xml"));
+            assertEquals(2, cimData.size());
+
+            assertTrue(cimData.containsKey("OLT"));
+
+            var operationalLimitType = cimData.get("OLT");
+            assertNotNull(operationalLimitType);
+            assertEquals(OperationalLimitType.class, operationalLimitType.getClass());
+            assertEquals("OLT", operationalLimitType.getRdfid());
+
+            var attributeNames = operationalLimitType.getAttributeNames();
+            assertTrue(attributeNames.contains("name"));
+            assertTrue(attributeNames.contains("limitType"));
+            assertEquals("High Voltage", operationalLimitType.getAttribute("name").toString(false));
+
+            var limitType = operationalLimitType.getAttribute("limitType");
+            assertNotNull(limitType);
+            String[] parts = limitType.getRdfid().split("#");
+            assertEquals(2, parts.length);
+            assertEquals("LimitTypeKind.highVoltage", parts[1]);
+        } else if (CimConstants.CIM_VERSION.equals("cgmes_v3_0_0")) {
+            var cimData = RdfReader.read(getPath("rdf/test006_CGMES3.xml"));
+            assertEquals(2, cimData.size());
+
+            assertTrue(cimData.containsKey("OLT"));
+
+            var operationalLimitType = cimData.get("OLT");
+            assertNotNull(operationalLimitType);
+            assertEquals(OperationalLimitType.class, operationalLimitType.getClass());
+            assertEquals("OLT", operationalLimitType.getRdfid());
+
+            var attributeNames = operationalLimitType.getAttributeNames();
+            assertTrue(attributeNames.contains("name"));
+            assertTrue(attributeNames.contains("kind"));
+            assertEquals("High Voltage", operationalLimitType.getAttribute("name").toString(false));
+
+            var kind = operationalLimitType.getAttribute("kind");
+            assertNotNull(kind);
+            String[] parts = kind.getRdfid().split("#");
+            assertEquals(2, parts.length);
+            assertEquals("LimitKind.highVoltage", parts[1]);
+        }
     }
 
     private String getPath(String aResource) {

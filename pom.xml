@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.lfenergy.sogno</groupId>
+    <artifactId>cim4j-parent</artifactId>
+    <version>0.1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Java classes for CIM / CGMES</name>
+    <url>https://github.com/sogno-platform/cim4j</url>
+
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <modules>
+        <module>CGMES_2.4.15_27JAN2020</module>
+    </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub sogno-platform Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/sogno-platform/cim4j/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- Use cim4j as library downloaded from GitHub Maven Packages repository     -->
+    <!-- Personal access token with read:packages is needed to use GitHub Packages -->
+    <!-- (generated on the developer settings page and added to settings.xml)      -->
+    <!--
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/sogno-platform/cim4j/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    -->
+</project>

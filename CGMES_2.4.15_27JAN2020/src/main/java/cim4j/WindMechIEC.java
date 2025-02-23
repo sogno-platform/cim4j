@@ -1,169 +1,215 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.IdentifiedObject;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * Two mass model.  Reference: IEC Standard 61400-27-1 Section 6.6.2.1.
+ */
+public class WindMechIEC extends IdentifiedObject {
 
-import cim4j.PU;
-import cim4j.Seconds;
+	private static final Logging LOG = Logging.getLogger(WindMechIEC.class);
 
-
-import cim4j.WindGenTurbineType3IEC;
-import cim4j.WindTurbineType4bIEC;
-import cim4j.WindTurbineType1or2IEC;
-
-/*
-Two mass model.  Reference: IEC Standard 61400-27-1 Section 6.6.2.1.
-*/
-public class WindMechIEC extends IdentifiedObject
-{
 	private BaseClass[] WindMechIEC_class_attributes;
 	private BaseClass[] WindMechIEC_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new WindMechIEC().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum WindMechIEC_primitive_builder implements PrimitiveBuilder {
-		cdrt(){
-			public BaseClass construct (java.lang.String value) {
+		cdrt() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		hgen(){
-			public BaseClass construct (java.lang.String value) {
+		hgen() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		hwtr(){
-			public BaseClass construct (java.lang.String value) {
+		hwtr() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		kdrt(){
-			public BaseClass construct (java.lang.String value) {
+		kdrt() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		};
+		}
 	}
 
 	private enum WindMechIEC_class_attributes_enum {
 		WindGenTurbineType3IEC,
+		WindTurbineType1or2IEC,
+		WindTurbineType4bIEC,
 		cdrt,
 		hgen,
 		hwtr,
 		kdrt,
-		WindTurbineType4bIEC,
-		WindTurbineType1or2IEC,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-	
 	public WindMechIEC() {
 		WindMechIEC_primitive_attributes = new BaseClass[WindMechIEC_primitive_builder.values().length];
 		WindMechIEC_class_attributes = new BaseClass[WindMechIEC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(WindMechIEC_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new WindMechIEC();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(WindMechIEC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			WindMechIEC_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(WindMechIEC_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(WindMechIEC_primitive_builder attrEnum, BaseClass value) {
 		try {
 			WindMechIEC_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			WindMechIEC_class_attributes_enum attrEnum = WindMechIEC_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated WindMechIEC, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated WindMechIEC, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			WindMechIEC_primitive_builder attrEnum = WindMechIEC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated WindMechIEC, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated WindMechIEC, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			WindMechIEC_primitive_builder attrEnum = WindMechIEC_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = WindMechIEC_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			WindMechIEC_class_attributes_enum attrEnum = WindMechIEC_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = WindMechIEC_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : WindMechIEC_primitive_builder.values()) {
+			if (enumValue != WindMechIEC_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "WindMechIEC." + enumValue.name());
+			}
+		}
+		for (var enumValue : WindMechIEC_class_attributes_enum.values()) {
+			if (enumValue != WindMechIEC_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "WindMechIEC." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (WindMechIEC_primitive_builder attrEnum: WindMechIEC_primitive_builder.values()) {
+			for (WindMechIEC_primitive_builder attrEnum : WindMechIEC_primitive_builder.values()) {
 				BaseClass bc = WindMechIEC_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    WindMechIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (WindMechIEC_class_attributes_enum attrEnum: WindMechIEC_class_attributes_enum.values()) {
+			for (WindMechIEC_class_attributes_enum attrEnum : WindMechIEC_class_attributes_enum.values()) {
 				BaseClass bc = WindMechIEC_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    WindMechIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(WindMechIEC) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "WindMechIEC";
+	private final java.lang.String debugName = "WindMechIEC";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new WindMechIEC();
-        }
-};
+}

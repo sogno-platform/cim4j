@@ -1,121 +1,110 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.EquivalentEquipment;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * This class represents equivalent injections (generation or load).  Voltage regulation is allowed only at the point of connection.
+ */
+public class EquivalentInjection extends EquivalentEquipment {
 
-import cim4j.ActivePower;
-import cim4j.ReactivePower;
-import cim4j.Boolean;
-import cim4j.Resistance;
-import cim4j.Reactance;
-import cim4j.Voltage;
+	private static final Logging LOG = Logging.getLogger(EquivalentInjection.class);
 
-
-import cim4j.ReactiveCapabilityCurve;
-
-/*
-This class represents equivalent injections (generation or load).  Voltage regulation is allowed only at the point of connection.
-*/
-public class EquivalentInjection extends EquivalentEquipment
-{
 	private BaseClass[] EquivalentInjection_class_attributes;
 	private BaseClass[] EquivalentInjection_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new EquivalentInjection().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum EquivalentInjection_primitive_builder implements PrimitiveBuilder {
-		maxP(){
-			public BaseClass construct (java.lang.String value) {
+		maxP() {
+			public BaseClass construct(java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-		maxQ(){
-			public BaseClass construct (java.lang.String value) {
+		maxQ() {
+			public BaseClass construct(java.lang.String value) {
 				return new ReactivePower(value);
 			}
 		},
-		minP(){
-			public BaseClass construct (java.lang.String value) {
+		minP() {
+			public BaseClass construct(java.lang.String value) {
 				return new ActivePower(value);
 			}
 		},
-		minQ(){
-			public BaseClass construct (java.lang.String value) {
+		minQ() {
+			public BaseClass construct(java.lang.String value) {
 				return new ReactivePower(value);
 			}
 		},
-		regulationCapability(){
-			public BaseClass construct (java.lang.String value) {
+		p() {
+			public BaseClass construct(java.lang.String value) {
+				return new ActivePower(value);
+			}
+		},
+		q() {
+			public BaseClass construct(java.lang.String value) {
+				return new ReactivePower(value);
+			}
+		},
+		r() {
+			public BaseClass construct(java.lang.String value) {
+				return new Resistance(value);
+			}
+		},
+		r0() {
+			public BaseClass construct(java.lang.String value) {
+				return new Resistance(value);
+			}
+		},
+		r2() {
+			public BaseClass construct(java.lang.String value) {
+				return new Resistance(value);
+			}
+		},
+		regulationCapability() {
+			public BaseClass construct(java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-		r(){
-			public BaseClass construct (java.lang.String value) {
-				return new Resistance(value);
-			}
-		},
-		r0(){
-			public BaseClass construct (java.lang.String value) {
-				return new Resistance(value);
-			}
-		},
-		r2(){
-			public BaseClass construct (java.lang.String value) {
-				return new Resistance(value);
-			}
-		},
-		x(){
-			public BaseClass construct (java.lang.String value) {
-				return new Reactance(value);
-			}
-		},
-		x0(){
-			public BaseClass construct (java.lang.String value) {
-				return new Reactance(value);
-			}
-		},
-		x2(){
-			public BaseClass construct (java.lang.String value) {
-				return new Reactance(value);
-			}
-		},
-		regulationStatus(){
-			public BaseClass construct (java.lang.String value) {
+		regulationStatus() {
+			public BaseClass construct(java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-		regulationTarget(){
-			public BaseClass construct (java.lang.String value) {
+		regulationTarget() {
+			public BaseClass construct(java.lang.String value) {
 				return new Voltage(value);
 			}
 		},
-		p(){
-			public BaseClass construct (java.lang.String value) {
-				return new ActivePower(value);
+		x() {
+			public BaseClass construct(java.lang.String value) {
+				return new Reactance(value);
 			}
 		},
-		q(){
-			public BaseClass construct (java.lang.String value) {
-				return new ReactivePower(value);
+		x0() {
+			public BaseClass construct(java.lang.String value) {
+				return new Reactance(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		x2() {
+			public BaseClass construct(java.lang.String value) {
+				return new Reactance(value);
 			}
-		};
+		},
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
+			}
+		}
 	}
 
 	private enum EquivalentInjection_class_attributes_enum {
@@ -124,121 +113,167 @@ public class EquivalentInjection extends EquivalentEquipment
 		maxQ,
 		minP,
 		minQ,
-		regulationCapability,
+		p,
+		q,
 		r,
 		r0,
 		r2,
+		regulationCapability,
+		regulationStatus,
+		regulationTarget,
 		x,
 		x0,
 		x2,
-		regulationStatus,
-		regulationTarget,
-		p,
-		q,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	public EquivalentInjection() {
 		EquivalentInjection_primitive_attributes = new BaseClass[EquivalentInjection_primitive_builder.values().length];
 		EquivalentInjection_class_attributes = new BaseClass[EquivalentInjection_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(EquivalentInjection_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new EquivalentInjection();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(EquivalentInjection_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			EquivalentInjection_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(EquivalentInjection_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(EquivalentInjection_primitive_builder attrEnum, BaseClass value) {
 		try {
 			EquivalentInjection_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			EquivalentInjection_class_attributes_enum attrEnum = EquivalentInjection_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated EquivalentInjection, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated EquivalentInjection, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			EquivalentInjection_primitive_builder attrEnum = EquivalentInjection_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated EquivalentInjection, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated EquivalentInjection, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			EquivalentInjection_primitive_builder attrEnum = EquivalentInjection_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = EquivalentInjection_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			EquivalentInjection_class_attributes_enum attrEnum = EquivalentInjection_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = EquivalentInjection_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : EquivalentInjection_primitive_builder.values()) {
+			if (enumValue != EquivalentInjection_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "EquivalentInjection." + enumValue.name());
+			}
+		}
+		for (var enumValue : EquivalentInjection_class_attributes_enum.values()) {
+			if (enumValue != EquivalentInjection_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "EquivalentInjection." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (EquivalentInjection_primitive_builder attrEnum: EquivalentInjection_primitive_builder.values()) {
+			for (EquivalentInjection_primitive_builder attrEnum : EquivalentInjection_primitive_builder.values()) {
 				BaseClass bc = EquivalentInjection_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    EquivalentInjection." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (EquivalentInjection_class_attributes_enum attrEnum: EquivalentInjection_class_attributes_enum.values()) {
+			for (EquivalentInjection_class_attributes_enum attrEnum : EquivalentInjection_class_attributes_enum.values()) {
 				BaseClass bc = EquivalentInjection_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    EquivalentInjection." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(EquivalentInjection) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "EquivalentInjection";
+	private final java.lang.String debugName = "EquivalentInjection";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new EquivalentInjection();
-        }
-};
+}

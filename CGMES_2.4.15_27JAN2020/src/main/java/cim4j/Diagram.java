@@ -1,173 +1,220 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.IdentifiedObject;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * The diagram being exchanged.  The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation.
+ */
+public class Diagram extends IdentifiedObject {
 
-import cim4j.OrientationKind;
-import cim4j.Simple_Float;
+	private static final Logging LOG = Logging.getLogger(Diagram.class);
 
-
-import cim4j.DiagramStyle;
-import cim4j.DiagramObject;
-
-/*
-The diagram being exchanged.  The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation.
-*/
-public class Diagram extends IdentifiedObject
-{
 	private BaseClass[] Diagram_class_attributes;
 	private BaseClass[] Diagram_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new Diagram().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum Diagram_primitive_builder implements PrimitiveBuilder {
-		orientation(){
-			public BaseClass construct (java.lang.String value) {
+		orientation() {
+			public BaseClass construct(java.lang.String value) {
 				return new OrientationKind(value);
 			}
 		},
-		x1InitialView(){
-			public BaseClass construct (java.lang.String value) {
+		x1InitialView() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		x2InitialView(){
-			public BaseClass construct (java.lang.String value) {
+		x2InitialView() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		y1InitialView(){
-			public BaseClass construct (java.lang.String value) {
+		y1InitialView() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		y2InitialView(){
-			public BaseClass construct (java.lang.String value) {
+		y2InitialView() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		};
+		}
 	}
 
 	private enum Diagram_class_attributes_enum {
+		DiagramElements,
 		DiagramStyle,
 		orientation,
 		x1InitialView,
 		x2InitialView,
 		y1InitialView,
 		y2InitialView,
-		DiagramElements,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-	
 	public Diagram() {
 		Diagram_primitive_attributes = new BaseClass[Diagram_primitive_builder.values().length];
 		Diagram_class_attributes = new BaseClass[Diagram_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(Diagram_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new Diagram();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(Diagram_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			Diagram_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(Diagram_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(Diagram_primitive_builder attrEnum, BaseClass value) {
 		try {
 			Diagram_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			Diagram_class_attributes_enum attrEnum = Diagram_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated Diagram, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated Diagram, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			Diagram_primitive_builder attrEnum = Diagram_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated Diagram, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated Diagram, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			Diagram_primitive_builder attrEnum = Diagram_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = Diagram_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			Diagram_class_attributes_enum attrEnum = Diagram_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = Diagram_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : Diagram_primitive_builder.values()) {
+			if (enumValue != Diagram_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "Diagram." + enumValue.name());
+			}
+		}
+		for (var enumValue : Diagram_class_attributes_enum.values()) {
+			if (enumValue != Diagram_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "Diagram." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (Diagram_primitive_builder attrEnum: Diagram_primitive_builder.values()) {
+			for (Diagram_primitive_builder attrEnum : Diagram_primitive_builder.values()) {
 				BaseClass bc = Diagram_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    Diagram." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (Diagram_class_attributes_enum attrEnum: Diagram_class_attributes_enum.values()) {
+			for (Diagram_class_attributes_enum attrEnum : Diagram_class_attributes_enum.values()) {
 				BaseClass bc = Diagram_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    Diagram." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(Diagram) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "Diagram";
+	private final java.lang.String debugName = "Diagram";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new Diagram();
-        }
-};
+}

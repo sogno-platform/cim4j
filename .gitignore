@@ -19,3 +19,8 @@
 *.tar.gz
 *.rar
 
+# VS Code
+.vscode/
+
+# Maven
+**/target/

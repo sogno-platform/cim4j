@@ -23,7 +23,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Cim4j</mainClass>
+                            <mainClass>cim4j.main.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

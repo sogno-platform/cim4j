@@ -1,93 +1,85 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.IdentifiedObject;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * Pitch control emulator model.  Reference: IEC Standard 61400-27-1 Section 6.6.5.1.
+ */
+public class WindPitchContEmulIEC extends IdentifiedObject {
 
-import cim4j.Simple_Float;
-import cim4j.PU;
-import cim4j.Seconds;
+	private static final Logging LOG = Logging.getLogger(WindPitchContEmulIEC.class);
 
-
-import cim4j.WindGenTurbineType2IEC;
-
-/*
-Pitch control emulator model.  Reference: IEC Standard 61400-27-1 Section 6.6.5.1.
-*/
-public class WindPitchContEmulIEC extends IdentifiedObject
-{
 	private BaseClass[] WindPitchContEmulIEC_class_attributes;
 	private BaseClass[] WindPitchContEmulIEC_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new WindPitchContEmulIEC().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum WindPitchContEmulIEC_primitive_builder implements PrimitiveBuilder {
-		kdroop(){
-			public BaseClass construct (java.lang.String value) {
+		kdroop() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		kipce(){
-			public BaseClass construct (java.lang.String value) {
+		kipce() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		komegaaero(){
-			public BaseClass construct (java.lang.String value) {
+		komegaaero() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		kppce(){
-			public BaseClass construct (java.lang.String value) {
+		kppce() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		omegaref(){
-			public BaseClass construct (java.lang.String value) {
+		omegaref() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		pimax(){
-			public BaseClass construct (java.lang.String value) {
+		pimax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		pimin(){
-			public BaseClass construct (java.lang.String value) {
+		pimin() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		t1(){
-			public BaseClass construct (java.lang.String value) {
+		t1() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		t2(){
-			public BaseClass construct (java.lang.String value) {
+		t2() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		tpe(){
-			public BaseClass construct (java.lang.String value) {
+		tpe() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		};
+		}
 	}
 
 	private enum WindPitchContEmulIEC_class_attributes_enum {
@@ -102,105 +94,156 @@ public class WindPitchContEmulIEC extends IdentifiedObject
 		t1,
 		t2,
 		tpe,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	public WindPitchContEmulIEC() {
 		WindPitchContEmulIEC_primitive_attributes = new BaseClass[WindPitchContEmulIEC_primitive_builder.values().length];
 		WindPitchContEmulIEC_class_attributes = new BaseClass[WindPitchContEmulIEC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(WindPitchContEmulIEC_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new WindPitchContEmulIEC();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(WindPitchContEmulIEC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			WindPitchContEmulIEC_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(WindPitchContEmulIEC_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(WindPitchContEmulIEC_primitive_builder attrEnum, BaseClass value) {
 		try {
 			WindPitchContEmulIEC_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			WindPitchContEmulIEC_class_attributes_enum attrEnum = WindPitchContEmulIEC_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated WindPitchContEmulIEC, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated WindPitchContEmulIEC, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			WindPitchContEmulIEC_primitive_builder attrEnum = WindPitchContEmulIEC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated WindPitchContEmulIEC, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated WindPitchContEmulIEC, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			WindPitchContEmulIEC_primitive_builder attrEnum = WindPitchContEmulIEC_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = WindPitchContEmulIEC_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			WindPitchContEmulIEC_class_attributes_enum attrEnum = WindPitchContEmulIEC_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = WindPitchContEmulIEC_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : WindPitchContEmulIEC_primitive_builder.values()) {
+			if (enumValue != WindPitchContEmulIEC_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "WindPitchContEmulIEC." + enumValue.name());
+			}
+		}
+		for (var enumValue : WindPitchContEmulIEC_class_attributes_enum.values()) {
+			if (enumValue != WindPitchContEmulIEC_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "WindPitchContEmulIEC." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (WindPitchContEmulIEC_primitive_builder attrEnum: WindPitchContEmulIEC_primitive_builder.values()) {
+			for (WindPitchContEmulIEC_primitive_builder attrEnum : WindPitchContEmulIEC_primitive_builder.values()) {
 				BaseClass bc = WindPitchContEmulIEC_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    WindPitchContEmulIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (WindPitchContEmulIEC_class_attributes_enum attrEnum: WindPitchContEmulIEC_class_attributes_enum.values()) {
+			for (WindPitchContEmulIEC_class_attributes_enum attrEnum : WindPitchContEmulIEC_class_attributes_enum.values()) {
 				BaseClass bc = WindPitchContEmulIEC_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    WindPitchContEmulIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(WindPitchContEmulIEC) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "WindPitchContEmulIEC";
+	private final java.lang.String debugName = "WindPitchContEmulIEC";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new WindPitchContEmulIEC();
-        }
-};
+}

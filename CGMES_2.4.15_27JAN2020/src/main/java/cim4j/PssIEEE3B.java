@@ -1,149 +1,133 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.PowerSystemStabilizerDynamics;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * The class represents IEEE Std 421.5-2005 type PSS3B power system stabilizer model. The PSS model PSS3B has dual inputs of electrical power and rotor angular frequency deviation. The signals are used to derive an equivalent mechanical power signal.  Reference: IEEE 3B 421.5-2005 Section 8.3.
+ */
+public class PssIEEE3B extends PowerSystemStabilizerDynamics {
 
-import cim4j.InputSignalKind;
-import cim4j.Seconds;
-import cim4j.PU;
+	private static final Logging LOG = Logging.getLogger(PssIEEE3B.class);
 
-
-
-/*
-The class represents IEEE Std 421.5-2005 type PSS3B power system stabilizer model. The PSS model PSS3B has dual inputs of electrical power and rotor angular frequency deviation. The signals are used to derive an equivalent mechanical power signal.  Reference: IEEE 3B 421.5-2005 Section 8.3.
-*/
-public class PssIEEE3B extends PowerSystemStabilizerDynamics
-{
 	private BaseClass[] PssIEEE3B_class_attributes;
 	private BaseClass[] PssIEEE3B_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new PssIEEE3B().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum PssIEEE3B_primitive_builder implements PrimitiveBuilder {
-		inputSignal1Type(){
-			public BaseClass construct (java.lang.String value) {
+		a1() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		a2() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		a3() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		a4() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		a5() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		a6() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		a7() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		a8() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		inputSignal1Type() {
+			public BaseClass construct(java.lang.String value) {
 				return new InputSignalKind(value);
 			}
 		},
-		inputSignal2Type(){
-			public BaseClass construct (java.lang.String value) {
+		inputSignal2Type() {
+			public BaseClass construct(java.lang.String value) {
 				return new InputSignalKind(value);
 			}
 		},
-		t1(){
-			public BaseClass construct (java.lang.String value) {
+		ks1() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		ks2() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		t1() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		t2(){
-			public BaseClass construct (java.lang.String value) {
+		t2() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		tw1(){
-			public BaseClass construct (java.lang.String value) {
+		tw1() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		tw2(){
-			public BaseClass construct (java.lang.String value) {
+		tw2() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		tw3(){
-			public BaseClass construct (java.lang.String value) {
+		tw3() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		ks1(){
-			public BaseClass construct (java.lang.String value) {
+		vstmax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		ks2(){
-			public BaseClass construct (java.lang.String value) {
+		vstmin() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		a1(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		},
-		a2(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		a3(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		a4(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		a5(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		a6(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		a7(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		a8(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		vstmax(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		vstmin(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
-			}
-		};
+		}
 	}
 
 	private enum PssIEEE3B_class_attributes_enum {
-		inputSignal1Type,
-		inputSignal2Type,
-		t1,
-		t2,
-		tw1,
-		tw2,
-		tw3,
-		ks1,
-		ks2,
 		a1,
 		a2,
 		a3,
@@ -152,115 +136,167 @@ public class PssIEEE3B extends PowerSystemStabilizerDynamics
 		a6,
 		a7,
 		a8,
+		inputSignal1Type,
+		inputSignal2Type,
+		ks1,
+		ks2,
+		t1,
+		t2,
+		tw1,
+		tw2,
+		tw3,
 		vstmax,
 		vstmin,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	public PssIEEE3B() {
 		PssIEEE3B_primitive_attributes = new BaseClass[PssIEEE3B_primitive_builder.values().length];
 		PssIEEE3B_class_attributes = new BaseClass[PssIEEE3B_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PssIEEE3B_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new PssIEEE3B();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(PssIEEE3B_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			PssIEEE3B_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(PssIEEE3B_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(PssIEEE3B_primitive_builder attrEnum, BaseClass value) {
 		try {
 			PssIEEE3B_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			PssIEEE3B_class_attributes_enum attrEnum = PssIEEE3B_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated PssIEEE3B, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated PssIEEE3B, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PssIEEE3B_primitive_builder attrEnum = PssIEEE3B_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated PssIEEE3B, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated PssIEEE3B, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			PssIEEE3B_primitive_builder attrEnum = PssIEEE3B_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = PssIEEE3B_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			PssIEEE3B_class_attributes_enum attrEnum = PssIEEE3B_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = PssIEEE3B_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : PssIEEE3B_primitive_builder.values()) {
+			if (enumValue != PssIEEE3B_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "PssIEEE3B." + enumValue.name());
+			}
+		}
+		for (var enumValue : PssIEEE3B_class_attributes_enum.values()) {
+			if (enumValue != PssIEEE3B_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "PssIEEE3B." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (PssIEEE3B_primitive_builder attrEnum: PssIEEE3B_primitive_builder.values()) {
+			for (PssIEEE3B_primitive_builder attrEnum : PssIEEE3B_primitive_builder.values()) {
 				BaseClass bc = PssIEEE3B_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    PssIEEE3B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (PssIEEE3B_class_attributes_enum attrEnum: PssIEEE3B_class_attributes_enum.values()) {
+			for (PssIEEE3B_class_attributes_enum attrEnum : PssIEEE3B_class_attributes_enum.values()) {
 				BaseClass bc = PssIEEE3B_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    PssIEEE3B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(PssIEEE3B) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "PssIEEE3B";
+	private final java.lang.String debugName = "PssIEEE3B";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new PssIEEE3B();
-        }
-};
+}

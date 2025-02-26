@@ -1,78 +1,92 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+/**
+ * Polarity for DC circuits.
+ */
+public class DCPolarityKind extends BaseClass {
 
-/*
-Polarity for DC circuits.
-*/
-public class DCPolarityKind extends BaseClass
-{
-	private enum DCPolarityKind_ENUM
-	{
-			/**
+	private static final Logging LOG = Logging.getLogger(DCPolarityKind.class);
+
+	private enum DCPolarityKind_ENUM {
+		/**
 		 * Positive pole.
 		 */
 		positive,
-			/**
+		/**
 		 * Middle pole, potentially grounded.
 		 */
 		middle,
-			/**
+		/**
 		 * Negative pole.
 		 */
 		negative,
-			MAX_DCPolarityKind_ENUM;
+		MAX_DCPolarityKind_ENUM
 	}
 
 	private DCPolarityKind_ENUM value;
 
-	public BaseClass construct() {
-		return new DCPolarityKind();
-        }
+	private boolean initialized = false;
 
-	public DCPolarityKind() {}
+	public DCPolarityKind() {
+	}
 
 	public DCPolarityKind(java.lang.String s) {
 		setValue(s);
-        }
+	}
 
+	@Override
+	public BaseClass construct() {
+		return new DCPolarityKind();
+	}
+
+	@Override
+	public boolean isPrimitive() {
+		return true;
+	}
+
+	@Override
+	public boolean isInitialized() {
+		return initialized;
+	}
+
+	@Override
 	public void setValue(java.lang.String s) {
-		try
-		{
+		try {
 			value = DCPolarityKind_ENUM.valueOf(s.trim());
+			initialized = true;
+		} catch (IllegalArgumentException iae) {
+			LOG.error("IllegalArgumentException: " + iae.getMessage());
 		}
-		catch (IllegalArgumentException iae)
-		{
-			System.out.println("NumberFormatException: " + iae.getMessage());
-		}
-        }
-
-	public void setAttribute(java.lang.String a, java.lang.String s) {
-		try
-		{
-			value = DCPolarityKind_ENUM.valueOf(s.trim());
-		}
-		catch (IllegalArgumentException iae)
-		{
-			System.out.println("NumberFormatException: " + iae.getMessage());
-		}
-        }
-
-	public void setAttribute(java.lang.String attributeName, BaseClass value) {
-		throw new IllegalArgumentException("ENUM cannot set attribute: " + attributeName);
 	}
 
-	private java.lang.String debugName = "DCPolarityKind";
-
-	public java.lang.String debugString(){
-		return debugName;
+	@Override
+	public Object getValue() {
+		return value.toString();
 	}
 
-	public java.lang.String toString(boolean b) {
+	@Override
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
+	}
+
+	@Override
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+		throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
+	}
+
+	@Override
+	public java.lang.String toString(boolean topClass) {
 		return "Enum (" + value.toString() + ")";
 	}
-};
 
+	private final java.lang.String debugName = "DCPolarityKind";
+
+	@Override
+	public java.lang.String debugString() {
+		return debugName;
+	}
+}

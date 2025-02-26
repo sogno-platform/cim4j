@@ -1,209 +1,254 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.LoadDynamics;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * This models combines static load and induction motor load effects. The dynamics of the motor are simplified by linearizing the induction machine equations.
+ */
+public class LoadComposite extends LoadDynamics {
 
-import cim4j.Simple_Float;
-import cim4j.Seconds;
+	private static final Logging LOG = Logging.getLogger(LoadComposite.class);
 
-
-
-/*
-This models combines static load and induction motor load effects. The dynamics of the motor are simplified by linearizing the induction machine equations.
-*/
-public class LoadComposite extends LoadDynamics
-{
 	private BaseClass[] LoadComposite_class_attributes;
 	private BaseClass[] LoadComposite_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new LoadComposite().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum LoadComposite_primitive_builder implements PrimitiveBuilder {
-		epvs(){
-			public BaseClass construct (java.lang.String value) {
+		epfd() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		epfs(){
-			public BaseClass construct (java.lang.String value) {
+		epfs() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		eqvs(){
-			public BaseClass construct (java.lang.String value) {
+		epvd() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		eqfs(){
-			public BaseClass construct (java.lang.String value) {
+		epvs() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		epvd(){
-			public BaseClass construct (java.lang.String value) {
+		eqfd() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		epfd(){
-			public BaseClass construct (java.lang.String value) {
+		eqfs() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		eqvd(){
-			public BaseClass construct (java.lang.String value) {
+		eqvd() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		eqfd(){
-			public BaseClass construct (java.lang.String value) {
+		eqvs() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		lfrac(){
-			public BaseClass construct (java.lang.String value) {
-				return new Simple_Float(value);
-			}
-		},
-		h(){
-			public BaseClass construct (java.lang.String value) {
+		h() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		pfrac(){
-			public BaseClass construct (java.lang.String value) {
+		lfrac() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		pfrac() {
+			public BaseClass construct(java.lang.String value) {
+				return new Simple_Float(value);
 			}
-		};
+		},
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
+			}
+		}
 	}
 
 	private enum LoadComposite_class_attributes_enum {
-		epvs,
-		epfs,
-		eqvs,
-		eqfs,
-		epvd,
 		epfd,
-		eqvd,
+		epfs,
+		epvd,
+		epvs,
 		eqfd,
-		lfrac,
+		eqfs,
+		eqvd,
+		eqvs,
 		h,
+		lfrac,
 		pfrac,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	public LoadComposite() {
 		LoadComposite_primitive_attributes = new BaseClass[LoadComposite_primitive_builder.values().length];
 		LoadComposite_class_attributes = new BaseClass[LoadComposite_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(LoadComposite_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new LoadComposite();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(LoadComposite_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			LoadComposite_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(LoadComposite_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(LoadComposite_primitive_builder attrEnum, BaseClass value) {
 		try {
 			LoadComposite_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			LoadComposite_class_attributes_enum attrEnum = LoadComposite_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated LoadComposite, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated LoadComposite, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			LoadComposite_primitive_builder attrEnum = LoadComposite_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated LoadComposite, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated LoadComposite, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			LoadComposite_primitive_builder attrEnum = LoadComposite_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = LoadComposite_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			LoadComposite_class_attributes_enum attrEnum = LoadComposite_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = LoadComposite_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : LoadComposite_primitive_builder.values()) {
+			if (enumValue != LoadComposite_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "LoadComposite." + enumValue.name());
+			}
+		}
+		for (var enumValue : LoadComposite_class_attributes_enum.values()) {
+			if (enumValue != LoadComposite_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "LoadComposite." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (LoadComposite_primitive_builder attrEnum: LoadComposite_primitive_builder.values()) {
+			for (LoadComposite_primitive_builder attrEnum : LoadComposite_primitive_builder.values()) {
 				BaseClass bc = LoadComposite_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    LoadComposite." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (LoadComposite_class_attributes_enum attrEnum: LoadComposite_class_attributes_enum.values()) {
+			for (LoadComposite_class_attributes_enum attrEnum : LoadComposite_class_attributes_enum.values()) {
 				BaseClass bc = LoadComposite_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    LoadComposite." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(LoadComposite) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "LoadComposite";
+	private final java.lang.String debugName = "LoadComposite";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new LoadComposite();
-        }
-};
+}

@@ -1,178 +1,170 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.ExcitationSystemDynamics;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * Modified IEEE AC8B alternator-supplied rectifier excitation system with speed input and input limiter.
+ */
+public class ExcAC8B extends ExcitationSystemDynamics {
 
-import cim4j.Boolean;
-import cim4j.PU;
-import cim4j.Simple_Float;
-import cim4j.Seconds;
+	private static final Logging LOG = Logging.getLogger(ExcAC8B.class);
 
-
-
-/*
-Modified IEEE AC8B alternator-supplied rectifier excitation system with speed input and input limiter.
-*/
-public class ExcAC8B extends ExcitationSystemDynamics
-{
 	private BaseClass[] ExcAC8B_class_attributes;
 	private BaseClass[] ExcAC8B_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new ExcAC8B().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum ExcAC8B_primitive_builder implements PrimitiveBuilder {
-		inlim(){
-			public BaseClass construct (java.lang.String value) {
+		inlim() {
+			public BaseClass construct(java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-		ka(){
-			public BaseClass construct (java.lang.String value) {
+		ka() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		kc(){
-			public BaseClass construct (java.lang.String value) {
+		kc() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		kd(){
-			public BaseClass construct (java.lang.String value) {
+		kd() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		kdr(){
-			public BaseClass construct (java.lang.String value) {
+		kdr() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		ke(){
-			public BaseClass construct (java.lang.String value) {
+		ke() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		kir(){
-			public BaseClass construct (java.lang.String value) {
+		kir() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		kpr(){
-			public BaseClass construct (java.lang.String value) {
+		kpr() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		ks(){
-			public BaseClass construct (java.lang.String value) {
+		ks() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		pidlim(){
-			public BaseClass construct (java.lang.String value) {
+		pidlim() {
+			public BaseClass construct(java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-		seve1(){
-			public BaseClass construct (java.lang.String value) {
+		seve1() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		seve2(){
-			public BaseClass construct (java.lang.String value) {
+		seve2() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		ta(){
-			public BaseClass construct (java.lang.String value) {
+		ta() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		tdr(){
-			public BaseClass construct (java.lang.String value) {
+		tdr() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		te(){
-			public BaseClass construct (java.lang.String value) {
+		te() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		telim(){
-			public BaseClass construct (java.lang.String value) {
+		telim() {
+			public BaseClass construct(java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-		ve1(){
-			public BaseClass construct (java.lang.String value) {
+		ve1() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		ve2(){
-			public BaseClass construct (java.lang.String value) {
+		ve2() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		vemin(){
-			public BaseClass construct (java.lang.String value) {
+		vemin() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		vfemax(){
-			public BaseClass construct (java.lang.String value) {
+		vfemax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		vimax(){
-			public BaseClass construct (java.lang.String value) {
+		vimax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		vimin(){
-			public BaseClass construct (java.lang.String value) {
+		vimin() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		vpidmax(){
-			public BaseClass construct (java.lang.String value) {
+		vpidmax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		vpidmin(){
-			public BaseClass construct (java.lang.String value) {
+		vpidmin() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		vrmax(){
-			public BaseClass construct (java.lang.String value) {
+		vrmax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		vrmin(){
-			public BaseClass construct (java.lang.String value) {
+		vrmin() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		vtmult(){
-			public BaseClass construct (java.lang.String value) {
+		vtmult() {
+			public BaseClass construct(java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		};
+		}
 	}
 
 	private enum ExcAC8B_class_attributes_enum {
@@ -203,121 +195,156 @@ public class ExcAC8B extends ExcitationSystemDynamics
 		vrmax,
 		vrmin,
 		vtmult,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	public ExcAC8B() {
 		ExcAC8B_primitive_attributes = new BaseClass[ExcAC8B_primitive_builder.values().length];
 		ExcAC8B_class_attributes = new BaseClass[ExcAC8B_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcAC8B_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new ExcAC8B();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(ExcAC8B_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			ExcAC8B_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(ExcAC8B_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(ExcAC8B_primitive_builder attrEnum, BaseClass value) {
 		try {
 			ExcAC8B_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			ExcAC8B_class_attributes_enum attrEnum = ExcAC8B_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated ExcAC8B, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated ExcAC8B, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcAC8B_primitive_builder attrEnum = ExcAC8B_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated ExcAC8B, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated ExcAC8B, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			ExcAC8B_primitive_builder attrEnum = ExcAC8B_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = ExcAC8B_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			ExcAC8B_class_attributes_enum attrEnum = ExcAC8B_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = ExcAC8B_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : ExcAC8B_primitive_builder.values()) {
+			if (enumValue != ExcAC8B_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "ExcAC8B." + enumValue.name());
+			}
+		}
+		for (var enumValue : ExcAC8B_class_attributes_enum.values()) {
+			if (enumValue != ExcAC8B_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "ExcAC8B." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (ExcAC8B_primitive_builder attrEnum: ExcAC8B_primitive_builder.values()) {
+			for (ExcAC8B_primitive_builder attrEnum : ExcAC8B_primitive_builder.values()) {
 				BaseClass bc = ExcAC8B_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    ExcAC8B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (ExcAC8B_class_attributes_enum attrEnum: ExcAC8B_class_attributes_enum.values()) {
+			for (ExcAC8B_class_attributes_enum attrEnum : ExcAC8B_class_attributes_enum.values()) {
 				BaseClass bc = ExcAC8B_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    ExcAC8B." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(ExcAC8B) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "ExcAC8B";
+	private final java.lang.String debugName = "ExcAC8B";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new ExcAC8B();
-        }
-};
+}

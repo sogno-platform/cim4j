@@ -1,159 +1,212 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.OverexcitationLimiterDynamics;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * Different from LimIEEEOEL, LimOEL2 has a fixed pickup threshold and reduces the excitation set-point by mean of non-windup integral regulator. Irated is the rated machine excitation current (calculated from nameplate conditions: V, P, CosPhi).
+ */
+public class OverexcLim2 extends OverexcitationLimiterDynamics {
 
-import cim4j.PU;
+	private static final Logging LOG = Logging.getLogger(OverexcLim2.class);
 
-
-
-/*
-Different from LimIEEEOEL, LimOEL2 has a fixed pickup threshold and reduces the excitation set-point by mean of non-windup integral regulator. Irated is the rated machine excitation current (calculated from nameplate conditions: V, P, CosPhi).
-*/
-public class OverexcLim2 extends OverexcitationLimiterDynamics
-{
 	private BaseClass[] OverexcLim2_class_attributes;
 	private BaseClass[] OverexcLim2_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new OverexcLim2().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum OverexcLim2_primitive_builder implements PrimitiveBuilder {
-		koi(){
-			public BaseClass construct (java.lang.String value) {
+		ifdlim() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		voimax(){
-			public BaseClass construct (java.lang.String value) {
+		koi() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		voimin(){
-			public BaseClass construct (java.lang.String value) {
+		voimax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		ifdlim(){
-			public BaseClass construct (java.lang.String value) {
+		voimin() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		};
+		}
 	}
 
 	private enum OverexcLim2_class_attributes_enum {
+		ifdlim,
 		koi,
 		voimax,
 		voimin,
-		ifdlim,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-	
 	public OverexcLim2() {
 		OverexcLim2_primitive_attributes = new BaseClass[OverexcLim2_primitive_builder.values().length];
 		OverexcLim2_class_attributes = new BaseClass[OverexcLim2_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(OverexcLim2_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new OverexcLim2();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(OverexcLim2_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			OverexcLim2_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(OverexcLim2_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(OverexcLim2_primitive_builder attrEnum, BaseClass value) {
 		try {
 			OverexcLim2_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			OverexcLim2_class_attributes_enum attrEnum = OverexcLim2_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated OverexcLim2, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated OverexcLim2, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			OverexcLim2_primitive_builder attrEnum = OverexcLim2_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated OverexcLim2, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated OverexcLim2, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			OverexcLim2_primitive_builder attrEnum = OverexcLim2_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = OverexcLim2_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			OverexcLim2_class_attributes_enum attrEnum = OverexcLim2_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = OverexcLim2_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : OverexcLim2_primitive_builder.values()) {
+			if (enumValue != OverexcLim2_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "OverexcLim2." + enumValue.name());
+			}
+		}
+		for (var enumValue : OverexcLim2_class_attributes_enum.values()) {
+			if (enumValue != OverexcLim2_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "OverexcLim2." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (OverexcLim2_primitive_builder attrEnum: OverexcLim2_primitive_builder.values()) {
+			for (OverexcLim2_primitive_builder attrEnum : OverexcLim2_primitive_builder.values()) {
 				BaseClass bc = OverexcLim2_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    OverexcLim2." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (OverexcLim2_class_attributes_enum attrEnum: OverexcLim2_class_attributes_enum.values()) {
+			for (OverexcLim2_class_attributes_enum attrEnum : OverexcLim2_class_attributes_enum.values()) {
 				BaseClass bc = OverexcLim2_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    OverexcLim2." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(OverexcLim2) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "OverexcLim2";
+	private final java.lang.String debugName = "OverexcLim2";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new OverexcLim2();
-        }
-};
+}

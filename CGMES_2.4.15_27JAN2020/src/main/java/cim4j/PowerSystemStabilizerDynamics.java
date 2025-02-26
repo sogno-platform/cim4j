@@ -1,136 +1,190 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.DynamicsFunctionBlock;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * Power system stabilizer function block whose behaviour is described by reference to a standard model
+ */
+public class PowerSystemStabilizerDynamics extends DynamicsFunctionBlock {
 
+	private static final Logging LOG = Logging.getLogger(PowerSystemStabilizerDynamics.class);
 
-
-import cim4j.RemoteInputSignal;
-import cim4j.ExcitationSystemDynamics;
-
-/*
-Power system stabilizer function block whose behaviour is described by reference to a standard model
-*/
-public class PowerSystemStabilizerDynamics extends DynamicsFunctionBlock
-{
 	private BaseClass[] PowerSystemStabilizerDynamics_class_attributes;
 	private BaseClass[] PowerSystemStabilizerDynamics_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new PowerSystemStabilizerDynamics().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum PowerSystemStabilizerDynamics_primitive_builder implements PrimitiveBuilder {
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		};
+		}
 	}
 
 	private enum PowerSystemStabilizerDynamics_class_attributes_enum {
-		RemoteInputSignal,
 		ExcitationSystemDynamics,
-			LAST_ENUM;
+		RemoteInputSignal,
+		LAST_ENUM
 	}
 
-		
-		
-	
 	public PowerSystemStabilizerDynamics() {
 		PowerSystemStabilizerDynamics_primitive_attributes = new BaseClass[PowerSystemStabilizerDynamics_primitive_builder.values().length];
 		PowerSystemStabilizerDynamics_class_attributes = new BaseClass[PowerSystemStabilizerDynamics_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(PowerSystemStabilizerDynamics_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new PowerSystemStabilizerDynamics();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(PowerSystemStabilizerDynamics_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			PowerSystemStabilizerDynamics_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(PowerSystemStabilizerDynamics_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(PowerSystemStabilizerDynamics_primitive_builder attrEnum, BaseClass value) {
 		try {
 			PowerSystemStabilizerDynamics_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			PowerSystemStabilizerDynamics_class_attributes_enum attrEnum = PowerSystemStabilizerDynamics_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated PowerSystemStabilizerDynamics, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated PowerSystemStabilizerDynamics, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			PowerSystemStabilizerDynamics_primitive_builder attrEnum = PowerSystemStabilizerDynamics_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated PowerSystemStabilizerDynamics, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated PowerSystemStabilizerDynamics, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			PowerSystemStabilizerDynamics_primitive_builder attrEnum = PowerSystemStabilizerDynamics_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = PowerSystemStabilizerDynamics_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			PowerSystemStabilizerDynamics_class_attributes_enum attrEnum = PowerSystemStabilizerDynamics_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = PowerSystemStabilizerDynamics_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : PowerSystemStabilizerDynamics_primitive_builder.values()) {
+			if (enumValue != PowerSystemStabilizerDynamics_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "PowerSystemStabilizerDynamics." + enumValue.name());
+			}
+		}
+		for (var enumValue : PowerSystemStabilizerDynamics_class_attributes_enum.values()) {
+			if (enumValue != PowerSystemStabilizerDynamics_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "PowerSystemStabilizerDynamics." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (PowerSystemStabilizerDynamics_primitive_builder attrEnum: PowerSystemStabilizerDynamics_primitive_builder.values()) {
+			for (PowerSystemStabilizerDynamics_primitive_builder attrEnum : PowerSystemStabilizerDynamics_primitive_builder.values()) {
 				BaseClass bc = PowerSystemStabilizerDynamics_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    PowerSystemStabilizerDynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (PowerSystemStabilizerDynamics_class_attributes_enum attrEnum: PowerSystemStabilizerDynamics_class_attributes_enum.values()) {
+			for (PowerSystemStabilizerDynamics_class_attributes_enum attrEnum : PowerSystemStabilizerDynamics_class_attributes_enum.values()) {
 				BaseClass bc = PowerSystemStabilizerDynamics_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    PowerSystemStabilizerDynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(PowerSystemStabilizerDynamics) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "PowerSystemStabilizerDynamics";
+	private final java.lang.String debugName = "PowerSystemStabilizerDynamics";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new PowerSystemStabilizerDynamics();
-        }
-};
+}

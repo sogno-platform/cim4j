@@ -1,87 +1,80 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.IdentifiedObject;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * Rotor resistance control model.  Reference: IEC Standard 61400-27-1 Section 6.6.5.2.
+ */
+public class WindContRotorRIEC extends IdentifiedObject {
 
-import cim4j.PU;
-import cim4j.Simple_Float;
-import cim4j.Seconds;
+	private static final Logging LOG = Logging.getLogger(WindContRotorRIEC.class);
 
-
-import cim4j.WindDynamicsLookupTable;
-import cim4j.WindGenTurbineType2IEC;
-
-/*
-Rotor resistance control model.  Reference: IEC Standard 61400-27-1 Section 6.6.5.2.
-*/
-public class WindContRotorRIEC extends IdentifiedObject
-{
 	private BaseClass[] WindContRotorRIEC_class_attributes;
 	private BaseClass[] WindContRotorRIEC_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new WindContRotorRIEC().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum WindContRotorRIEC_primitive_builder implements PrimitiveBuilder {
-		kirr(){
-			public BaseClass construct (java.lang.String value) {
+		kirr() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		komegafilt(){
-			public BaseClass construct (java.lang.String value) {
+		komegafilt() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		kpfilt(){
-			public BaseClass construct (java.lang.String value) {
+		kpfilt() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		kprr(){
-			public BaseClass construct (java.lang.String value) {
+		kprr() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		rmax(){
-			public BaseClass construct (java.lang.String value) {
+		rmax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		rmin(){
-			public BaseClass construct (java.lang.String value) {
+		rmin() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		tomegafilt(){
-			public BaseClass construct (java.lang.String value) {
+		tomegafilt() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		tpfilt(){
-			public BaseClass construct (java.lang.String value) {
+		tpfilt() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		};
+		}
 	}
 
 	private enum WindContRotorRIEC_class_attributes_enum {
+		WindDynamicsLookupTable,
+		WindGenTurbineType2IEC,
 		kirr,
 		komegafilt,
 		kpfilt,
@@ -90,106 +83,156 @@ public class WindContRotorRIEC extends IdentifiedObject
 		rmin,
 		tomegafilt,
 		tpfilt,
-		WindDynamicsLookupTable,
-		WindGenTurbineType2IEC,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	public WindContRotorRIEC() {
 		WindContRotorRIEC_primitive_attributes = new BaseClass[WindContRotorRIEC_primitive_builder.values().length];
 		WindContRotorRIEC_class_attributes = new BaseClass[WindContRotorRIEC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(WindContRotorRIEC_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new WindContRotorRIEC();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(WindContRotorRIEC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			WindContRotorRIEC_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(WindContRotorRIEC_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(WindContRotorRIEC_primitive_builder attrEnum, BaseClass value) {
 		try {
 			WindContRotorRIEC_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			WindContRotorRIEC_class_attributes_enum attrEnum = WindContRotorRIEC_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated WindContRotorRIEC, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated WindContRotorRIEC, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			WindContRotorRIEC_primitive_builder attrEnum = WindContRotorRIEC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated WindContRotorRIEC, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated WindContRotorRIEC, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			WindContRotorRIEC_primitive_builder attrEnum = WindContRotorRIEC_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = WindContRotorRIEC_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			WindContRotorRIEC_class_attributes_enum attrEnum = WindContRotorRIEC_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = WindContRotorRIEC_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : WindContRotorRIEC_primitive_builder.values()) {
+			if (enumValue != WindContRotorRIEC_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "WindContRotorRIEC." + enumValue.name());
+			}
+		}
+		for (var enumValue : WindContRotorRIEC_class_attributes_enum.values()) {
+			if (enumValue != WindContRotorRIEC_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "WindContRotorRIEC." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (WindContRotorRIEC_primitive_builder attrEnum: WindContRotorRIEC_primitive_builder.values()) {
+			for (WindContRotorRIEC_primitive_builder attrEnum : WindContRotorRIEC_primitive_builder.values()) {
 				BaseClass bc = WindContRotorRIEC_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    WindContRotorRIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (WindContRotorRIEC_class_attributes_enum attrEnum: WindContRotorRIEC_class_attributes_enum.values()) {
+			for (WindContRotorRIEC_class_attributes_enum attrEnum : WindContRotorRIEC_class_attributes_enum.values()) {
 				BaseClass bc = WindContRotorRIEC_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    WindContRotorRIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(WindContRotorRIEC) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "WindContRotorRIEC";
+	private final java.lang.String debugName = "WindContRotorRIEC";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new WindContRotorRIEC();
-        }
-};
+}

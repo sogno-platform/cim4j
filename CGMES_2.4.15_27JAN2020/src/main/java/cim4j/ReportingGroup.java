@@ -1,136 +1,190 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.IdentifiedObject;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * A reporting group is used for various ad-hoc groupings used for reporting.
+ */
+public class ReportingGroup extends IdentifiedObject {
 
+	private static final Logging LOG = Logging.getLogger(ReportingGroup.class);
 
-
-import cim4j.BusNameMarker;
-import cim4j.TopologicalNode;
-
-/*
-A reporting group is used for various ad-hoc groupings used for reporting.
-*/
-public class ReportingGroup extends IdentifiedObject
-{
 	private BaseClass[] ReportingGroup_class_attributes;
 	private BaseClass[] ReportingGroup_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new ReportingGroup().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum ReportingGroup_primitive_builder implements PrimitiveBuilder {
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		};
+		}
 	}
 
 	private enum ReportingGroup_class_attributes_enum {
 		BusNameMarker,
 		TopologicalNode,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-	
 	public ReportingGroup() {
 		ReportingGroup_primitive_attributes = new BaseClass[ReportingGroup_primitive_builder.values().length];
 		ReportingGroup_class_attributes = new BaseClass[ReportingGroup_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ReportingGroup_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new ReportingGroup();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(ReportingGroup_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			ReportingGroup_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(ReportingGroup_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(ReportingGroup_primitive_builder attrEnum, BaseClass value) {
 		try {
 			ReportingGroup_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			ReportingGroup_class_attributes_enum attrEnum = ReportingGroup_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated ReportingGroup, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated ReportingGroup, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ReportingGroup_primitive_builder attrEnum = ReportingGroup_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated ReportingGroup, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated ReportingGroup, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			ReportingGroup_primitive_builder attrEnum = ReportingGroup_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = ReportingGroup_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			ReportingGroup_class_attributes_enum attrEnum = ReportingGroup_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = ReportingGroup_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : ReportingGroup_primitive_builder.values()) {
+			if (enumValue != ReportingGroup_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "ReportingGroup." + enumValue.name());
+			}
+		}
+		for (var enumValue : ReportingGroup_class_attributes_enum.values()) {
+			if (enumValue != ReportingGroup_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "ReportingGroup." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (ReportingGroup_primitive_builder attrEnum: ReportingGroup_primitive_builder.values()) {
+			for (ReportingGroup_primitive_builder attrEnum : ReportingGroup_primitive_builder.values()) {
 				BaseClass bc = ReportingGroup_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    ReportingGroup." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (ReportingGroup_class_attributes_enum attrEnum: ReportingGroup_class_attributes_enum.values()) {
+			for (ReportingGroup_class_attributes_enum attrEnum : ReportingGroup_class_attributes_enum.values()) {
 				BaseClass bc = ReportingGroup_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    ReportingGroup." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(ReportingGroup) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "ReportingGroup";
+	private final java.lang.String debugName = "ReportingGroup";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new ReportingGroup();
-        }
-};
+}

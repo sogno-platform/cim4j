@@ -1,178 +1,170 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.TurbineGovernorDynamics;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * Detailed hydro unit - Francis model.  This model can be used to represent three types of governors. A schematic of the hydraulic system of detailed hydro unit models, like Francis and Pelton, is provided in the DetailedHydroModelHydraulicSystem diagram.
+ */
+public class GovHydroFrancis extends TurbineGovernorDynamics {
 
-import cim4j.PU;
-import cim4j.Area;
-import cim4j.Frequency;
-import cim4j.FrancisGovernorControlKind;
-import cim4j.Length;
-import cim4j.Seconds;
-import cim4j.Simple_Float;
-import cim4j.Boolean;
+	private static final Logging LOG = Logging.getLogger(GovHydroFrancis.class);
 
-
-import cim4j.VolumeFlowRate;
-
-/*
-Detailed hydro unit - Francis model.  This model can be used to represent three types of governors. A schematic of the hydraulic system of detailed hydro unit models, like Francis and Pelton, is provided in the DetailedHydroModelHydraulicSystem diagram.
-*/
-public class GovHydroFrancis extends TurbineGovernorDynamics
-{
 	private BaseClass[] GovHydroFrancis_class_attributes;
 	private BaseClass[] GovHydroFrancis_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new GovHydroFrancis().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum GovHydroFrancis_primitive_builder implements PrimitiveBuilder {
-		am(){
-			public BaseClass construct (java.lang.String value) {
+		am() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		av0(){
-			public BaseClass construct (java.lang.String value) {
+		av0() {
+			public BaseClass construct(java.lang.String value) {
 				return new Area(value);
 			}
 		},
-		av1(){
-			public BaseClass construct (java.lang.String value) {
+		av1() {
+			public BaseClass construct(java.lang.String value) {
 				return new Area(value);
 			}
 		},
-		bp(){
-			public BaseClass construct (java.lang.String value) {
+		bp() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		db1(){
-			public BaseClass construct (java.lang.String value) {
+		db1() {
+			public BaseClass construct(java.lang.String value) {
 				return new Frequency(value);
 			}
 		},
-		etamax(){
-			public BaseClass construct (java.lang.String value) {
+		etamax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		governorControl(){
-			public BaseClass construct (java.lang.String value) {
+		governorControl() {
+			public BaseClass construct(java.lang.String value) {
 				return new FrancisGovernorControlKind(value);
 			}
 		},
-		h1(){
-			public BaseClass construct (java.lang.String value) {
+		h1() {
+			public BaseClass construct(java.lang.String value) {
 				return new Length(value);
 			}
 		},
-		h2(){
-			public BaseClass construct (java.lang.String value) {
+		h2() {
+			public BaseClass construct(java.lang.String value) {
 				return new Length(value);
 			}
 		},
-		hn(){
-			public BaseClass construct (java.lang.String value) {
+		hn() {
+			public BaseClass construct(java.lang.String value) {
 				return new Length(value);
 			}
 		},
-		kc(){
-			public BaseClass construct (java.lang.String value) {
+		kc() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		kg(){
-			public BaseClass construct (java.lang.String value) {
+		kg() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		kt(){
-			public BaseClass construct (java.lang.String value) {
+		kt() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		qc0(){
-			public BaseClass construct (java.lang.String value) {
+		qc0() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		ta(){
-			public BaseClass construct (java.lang.String value) {
+		qn() {
+			public BaseClass construct(java.lang.String value) {
+				return new VolumeFlowRate(value);
+			}
+		},
+		ta() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		td(){
-			public BaseClass construct (java.lang.String value) {
+		td() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		ts(){
-			public BaseClass construct (java.lang.String value) {
+		ts() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		twnc(){
-			public BaseClass construct (java.lang.String value) {
+		twnc() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		twng(){
-			public BaseClass construct (java.lang.String value) {
+		twng() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		tx(){
-			public BaseClass construct (java.lang.String value) {
+		tx() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		va(){
-			public BaseClass construct (java.lang.String value) {
+		va() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		valvmax(){
-			public BaseClass construct (java.lang.String value) {
+		valvmax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		valvmin(){
-			public BaseClass construct (java.lang.String value) {
+		valvmin() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		vc(){
-			public BaseClass construct (java.lang.String value) {
+		vc() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		waterTunnelSurgeChamberSimulation(){
-			public BaseClass construct (java.lang.String value) {
+		waterTunnelSurgeChamberSimulation() {
+			public BaseClass construct(java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-		zsfc(){
-			public BaseClass construct (java.lang.String value) {
+		zsfc() {
+			public BaseClass construct(java.lang.String value) {
 				return new Length(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		};
+		}
 	}
 
 	private enum GovHydroFrancis_class_attributes_enum {
@@ -203,121 +195,156 @@ public class GovHydroFrancis extends TurbineGovernorDynamics
 		vc,
 		waterTunnelSurgeChamberSimulation,
 		zsfc,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	public GovHydroFrancis() {
 		GovHydroFrancis_primitive_attributes = new BaseClass[GovHydroFrancis_primitive_builder.values().length];
 		GovHydroFrancis_class_attributes = new BaseClass[GovHydroFrancis_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(GovHydroFrancis_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new GovHydroFrancis();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(GovHydroFrancis_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			GovHydroFrancis_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(GovHydroFrancis_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(GovHydroFrancis_primitive_builder attrEnum, BaseClass value) {
 		try {
 			GovHydroFrancis_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			GovHydroFrancis_class_attributes_enum attrEnum = GovHydroFrancis_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated GovHydroFrancis, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated GovHydroFrancis, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			GovHydroFrancis_primitive_builder attrEnum = GovHydroFrancis_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated GovHydroFrancis, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated GovHydroFrancis, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			GovHydroFrancis_primitive_builder attrEnum = GovHydroFrancis_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = GovHydroFrancis_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			GovHydroFrancis_class_attributes_enum attrEnum = GovHydroFrancis_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = GovHydroFrancis_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : GovHydroFrancis_primitive_builder.values()) {
+			if (enumValue != GovHydroFrancis_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "GovHydroFrancis." + enumValue.name());
+			}
+		}
+		for (var enumValue : GovHydroFrancis_class_attributes_enum.values()) {
+			if (enumValue != GovHydroFrancis_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "GovHydroFrancis." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (GovHydroFrancis_primitive_builder attrEnum: GovHydroFrancis_primitive_builder.values()) {
+			for (GovHydroFrancis_primitive_builder attrEnum : GovHydroFrancis_primitive_builder.values()) {
 				BaseClass bc = GovHydroFrancis_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    GovHydroFrancis." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (GovHydroFrancis_class_attributes_enum attrEnum: GovHydroFrancis_class_attributes_enum.values()) {
+			for (GovHydroFrancis_class_attributes_enum attrEnum : GovHydroFrancis_class_attributes_enum.values()) {
 				BaseClass bc = GovHydroFrancis_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    GovHydroFrancis." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(GovHydroFrancis) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "GovHydroFrancis";
+	private final java.lang.String debugName = "GovHydroFrancis";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new GovHydroFrancis();
-        }
-};
+}

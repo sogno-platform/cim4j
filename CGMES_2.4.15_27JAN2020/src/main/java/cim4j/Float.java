@@ -1,16 +1,22 @@
-package cim4j;
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
 
-import java.util.Map;
-import java.lang.Double;
-import java.util.HashMap;
-import java.lang.IllegalArgumentException;
+package cim4j;
 
 /**
  * A floating point number. The range is unspecified and not limited.
  */
 public class Float extends BaseClass {
 
-	public Float() {}
+	private static final Logging LOG = Logging.getLogger(Float.class);
+
+	private double value = 0.0;
+
+	private boolean initialized = false;
+
+	public Float() {
+	}
 
 	public Float(double v) {
 		value = v;
@@ -21,41 +27,55 @@ public class Float extends BaseClass {
 		setValue(s);
 	}
 
+	@Override
 	public BaseClass construct() {
 		return new Float();
-        }
-
-	public void setAttribute(java.lang.String attributeName, java.lang.String value) {
-		setValue(value);
 	}
 
+	@Override
+	public boolean isPrimitive() {
+		return true;
+	}
+
+	@Override
+	public boolean isInitialized() {
+		return initialized;
+	}
+
+	@Override
 	public void setValue(java.lang.String s) {
-		try
-		{
+		try {
 			value = java.lang.Float.valueOf(s.trim()).floatValue();
 			initialized = true;
+		} catch (NumberFormatException nfe) {
+			LOG.error("NumberFormatException: " + nfe.getMessage());
 		}
-		catch (NumberFormatException nfe)
-		{
-			System.out.println("NumberFormatException: " + nfe.getMessage());
-		}
-        }
+	}
 
-	public double value = 0.0;
-	public boolean initialized = false;
+	@Override
+	public Object getValue() {
+		return Double.valueOf(value);
+	}
+
+	@Override
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		throw new IllegalArgumentException("Float class cannot set attribute: " + attrName);
+	}
+
+	@Override
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+		throw new IllegalArgumentException("Float class cannot set attribute: " + attrName);
+	}
+
+	@Override
+	public java.lang.String toString(boolean topClass) {
+		return "Float: (" + Double.toString(value) + ")";
+	}
 
 	private final java.lang.String debugName = "Float";
 
+	@Override
 	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setAttribute(java.lang.String attributeName, BaseClass value) {
-		throw new IllegalArgumentException("Float class cannot set attribute: " + attributeName);
-	}
-
-	public java.lang.String toString(boolean b) {
-		return Double.toString(value);
-	}
-};
-
+}

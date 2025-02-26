@@ -1,210 +1,254 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.ExcitationSystemDynamics;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * Transformer fed static excitation system (static with ABB regulator). This model represents a static excitation system in which a gated thyristor bridge fed by a transformer at the main generator terminals feeds the main generator directly.
+ */
+public class ExcBBC extends ExcitationSystemDynamics {
 
-import cim4j.Seconds;
-import cim4j.PU;
-import cim4j.Boolean;
+	private static final Logging LOG = Logging.getLogger(ExcBBC.class);
 
-
-
-/*
-Transformer fed static excitation system (static with ABB regulator). This model represents a static excitation system in which a gated thyristor bridge fed by a transformer at the main generator terminals feeds the main generator directly.
-*/
-public class ExcBBC extends ExcitationSystemDynamics
-{
 	private BaseClass[] ExcBBC_class_attributes;
 	private BaseClass[] ExcBBC_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new ExcBBC().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum ExcBBC_primitive_builder implements PrimitiveBuilder {
-		t1(){
-			public BaseClass construct (java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		t2(){
-			public BaseClass construct (java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		t3(){
-			public BaseClass construct (java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		t4(){
-			public BaseClass construct (java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		k(){
-			public BaseClass construct (java.lang.String value) {
+		efdmax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		vrmin(){
-			public BaseClass construct (java.lang.String value) {
+		efdmin() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		vrmax(){
-			public BaseClass construct (java.lang.String value) {
+		k() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		efdmin(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		efdmax(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		xe(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		_switch(){
-			public BaseClass construct (java.lang.String value) {
+		_switch() {
+			public BaseClass construct(java.lang.String value) {
 				return new Boolean(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		t1() {
+			public BaseClass construct(java.lang.String value) {
+				return new Seconds(value);
 			}
-		};
+		},
+		t2() {
+			public BaseClass construct(java.lang.String value) {
+				return new Seconds(value);
+			}
+		},
+		t3() {
+			public BaseClass construct(java.lang.String value) {
+				return new Seconds(value);
+			}
+		},
+		t4() {
+			public BaseClass construct(java.lang.String value) {
+				return new Seconds(value);
+			}
+		},
+		vrmax() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		vrmin() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		xe() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
+			}
+		}
 	}
 
 	private enum ExcBBC_class_attributes_enum {
+		efdmax,
+		efdmin,
+		k,
+		_switch,
 		t1,
 		t2,
 		t3,
 		t4,
-		k,
-		vrmin,
 		vrmax,
-		efdmin,
-		efdmax,
+		vrmin,
 		xe,
-		_switch,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	public ExcBBC() {
 		ExcBBC_primitive_attributes = new BaseClass[ExcBBC_primitive_builder.values().length];
 		ExcBBC_class_attributes = new BaseClass[ExcBBC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcBBC_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new ExcBBC();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(ExcBBC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			ExcBBC_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(ExcBBC_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(ExcBBC_primitive_builder attrEnum, BaseClass value) {
 		try {
 			ExcBBC_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			ExcBBC_class_attributes_enum attrEnum = ExcBBC_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated ExcBBC, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated ExcBBC, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcBBC_primitive_builder attrEnum = ExcBBC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated ExcBBC, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated ExcBBC, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			ExcBBC_primitive_builder attrEnum = ExcBBC_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = ExcBBC_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			ExcBBC_class_attributes_enum attrEnum = ExcBBC_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = ExcBBC_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : ExcBBC_primitive_builder.values()) {
+			if (enumValue != ExcBBC_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "ExcBBC." + enumValue.name());
+			}
+		}
+		for (var enumValue : ExcBBC_class_attributes_enum.values()) {
+			if (enumValue != ExcBBC_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "ExcBBC." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (ExcBBC_primitive_builder attrEnum: ExcBBC_primitive_builder.values()) {
+			for (ExcBBC_primitive_builder attrEnum : ExcBBC_primitive_builder.values()) {
 				BaseClass bc = ExcBBC_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    ExcBBC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (ExcBBC_class_attributes_enum attrEnum: ExcBBC_class_attributes_enum.values()) {
+			for (ExcBBC_class_attributes_enum attrEnum : ExcBBC_class_attributes_enum.values()) {
 				BaseClass bc = ExcBBC_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    ExcBBC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(ExcBBC) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "ExcBBC";
+	private final java.lang.String debugName = "ExcBBC";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new ExcBBC();
-        }
-};
+}

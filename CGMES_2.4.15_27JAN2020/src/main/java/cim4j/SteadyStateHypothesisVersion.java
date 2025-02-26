@@ -1,85 +1,85 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.BaseClass;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * Version details.
+ */
+public class SteadyStateHypothesisVersion extends BaseClass {
 
+	private static final Logging LOG = Logging.getLogger(SteadyStateHypothesisVersion.class);
 
-
-import cim4j.Date;
-
-/*
-Version details.
-*/
-public class SteadyStateHypothesisVersion extends BaseClass
-{
 	private BaseClass[] SteadyStateHypothesisVersion_class_attributes;
 	private BaseClass[] SteadyStateHypothesisVersion_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new SteadyStateHypothesisVersion().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum SteadyStateHypothesisVersion_primitive_builder implements PrimitiveBuilder {
-		baseUML(){
-			public BaseClass construct (java.lang.String value) {
+		baseUML() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		baseURI(){
-			public BaseClass construct (java.lang.String value) {
+		baseURI() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		differenceModelURI(){
-			public BaseClass construct (java.lang.String value) {
+		date() {
+			public BaseClass construct(java.lang.String value) {
+				return new Date(value);
+			}
+		},
+		differenceModelURI() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		entsoeUML(){
-			public BaseClass construct (java.lang.String value) {
+		entsoeUML() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		entsoeURI(){
-			public BaseClass construct (java.lang.String value) {
+		entsoeURI() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		modelDescriptionURI(){
-			public BaseClass construct (java.lang.String value) {
+		modelDescriptionURI() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		namespaceRDF(){
-			public BaseClass construct (java.lang.String value) {
+		namespaceRDF() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		namespaceUML(){
-			public BaseClass construct (java.lang.String value) {
+		namespaceUML() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		shortName(){
-			public BaseClass construct (java.lang.String value) {
+		shortName() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		};
+		}
 	}
 
 	private enum SteadyStateHypothesisVersion_class_attributes_enum {
@@ -93,104 +93,156 @@ public class SteadyStateHypothesisVersion extends BaseClass
 		namespaceRDF,
 		namespaceUML,
 		shortName,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	public SteadyStateHypothesisVersion() {
 		SteadyStateHypothesisVersion_primitive_attributes = new BaseClass[SteadyStateHypothesisVersion_primitive_builder.values().length];
 		SteadyStateHypothesisVersion_class_attributes = new BaseClass[SteadyStateHypothesisVersion_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(SteadyStateHypothesisVersion_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new SteadyStateHypothesisVersion();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(SteadyStateHypothesisVersion_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			SteadyStateHypothesisVersion_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(SteadyStateHypothesisVersion_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(SteadyStateHypothesisVersion_primitive_builder attrEnum, BaseClass value) {
 		try {
 			SteadyStateHypothesisVersion_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			SteadyStateHypothesisVersion_class_attributes_enum attrEnum = SteadyStateHypothesisVersion_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated SteadyStateHypothesisVersion, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated SteadyStateHypothesisVersion, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			SteadyStateHypothesisVersion_primitive_builder attrEnum = SteadyStateHypothesisVersion_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated SteadyStateHypothesisVersion, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated SteadyStateHypothesisVersion, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			SteadyStateHypothesisVersion_primitive_builder attrEnum = SteadyStateHypothesisVersion_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = SteadyStateHypothesisVersion_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			SteadyStateHypothesisVersion_class_attributes_enum attrEnum = SteadyStateHypothesisVersion_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = SteadyStateHypothesisVersion_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : SteadyStateHypothesisVersion_primitive_builder.values()) {
+			if (enumValue != SteadyStateHypothesisVersion_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "SteadyStateHypothesisVersion." + enumValue.name());
+			}
+		}
+		for (var enumValue : SteadyStateHypothesisVersion_class_attributes_enum.values()) {
+			if (enumValue != SteadyStateHypothesisVersion_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "SteadyStateHypothesisVersion." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (SteadyStateHypothesisVersion_primitive_builder attrEnum: SteadyStateHypothesisVersion_primitive_builder.values()) {
+			for (SteadyStateHypothesisVersion_primitive_builder attrEnum : SteadyStateHypothesisVersion_primitive_builder.values()) {
 				BaseClass bc = SteadyStateHypothesisVersion_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    SteadyStateHypothesisVersion." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (SteadyStateHypothesisVersion_class_attributes_enum attrEnum: SteadyStateHypothesisVersion_class_attributes_enum.values()) {
+			for (SteadyStateHypothesisVersion_class_attributes_enum attrEnum : SteadyStateHypothesisVersion_class_attributes_enum.values()) {
 				BaseClass bc = SteadyStateHypothesisVersion_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    SteadyStateHypothesisVersion." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(SteadyStateHypothesisVersion) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "SteadyStateHypothesisVersion";
+	private final java.lang.String debugName = "SteadyStateHypothesisVersion";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new SteadyStateHypothesisVersion();
-        }
-};
+}

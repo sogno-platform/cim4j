@@ -9,73 +9,73 @@ package cim4j;
  */
 public class Conductance extends BaseClass {
 
-	private static final Logging LOG = Logging.getLogger(Conductance.class);
+    private static final Logging LOG = Logging.getLogger(Conductance.class);
 
-	private double value = 0.0;
+    private double value = 0.0;
 
-	private boolean initialized = false;
+    private boolean initialized = false;
 
-	public Conductance() {
-	}
+    public Conductance() {
+    }
 
-	public Conductance(double v) {
-		value = v;
-		initialized = true;
-	}
+    public Conductance(double v) {
+        value = v;
+        initialized = true;
+    }
 
-	public Conductance(java.lang.String s) {
-		setValue(s);
-	}
+    public Conductance(java.lang.String s) {
+        setValue(s);
+    }
 
-	@Override
-	public BaseClass construct() {
-		return new Conductance();
-	}
+    @Override
+    public BaseClass construct() {
+        return new Conductance();
+    }
 
-	@Override
-	public boolean isPrimitive() {
-		return true;
-	}
+    @Override
+    public boolean isPrimitive() {
+        return true;
+    }
 
-	@Override
-	public boolean isInitialized() {
-		return initialized;
-	}
+    @Override
+    public boolean isInitialized() {
+        return initialized;
+    }
 
-	@Override
-	public void setValue(java.lang.String s) {
-		try {
-			value = java.lang.Float.valueOf(s.trim()).floatValue();
-			initialized = true;
-		} catch (NumberFormatException nfe) {
-			LOG.error("NumberFormatException: " + nfe.getMessage());
-		}
-	}
+    @Override
+    public void setValue(java.lang.String s) {
+        try {
+            value = java.lang.Float.valueOf(s.trim()).floatValue();
+            initialized = true;
+        } catch (NumberFormatException nfe) {
+            LOG.error("NumberFormatException: " + nfe.getMessage());
+        }
+    }
 
-	@Override
-	public Object getValue() {
-		return Double.valueOf(value);
-	}
+    @Override
+    public Object getValue() {
+        return Double.valueOf(value);
+    }
 
-	@Override
-	public void setAttribute(java.lang.String attrName, BaseClass value) {
-		throw new IllegalArgumentException("Float class cannot set attribute: " + attrName);
-	}
+    @Override
+    public void setAttribute(java.lang.String attrName, BaseClass value) {
+        throw new IllegalArgumentException("Float class cannot set attribute: " + attrName);
+    }
 
-	@Override
-	public void setAttribute(java.lang.String attrName, java.lang.String value) {
-		throw new IllegalArgumentException("Float class cannot set attribute: " + attrName);
-	}
+    @Override
+    public void setAttribute(java.lang.String attrName, java.lang.String value) {
+        throw new IllegalArgumentException("Float class cannot set attribute: " + attrName);
+    }
 
-	@Override
-	public java.lang.String toString(boolean topClass) {
-		return "Float: (" + Double.toString(value) + ")";
-	}
+    @Override
+    public java.lang.String toString(boolean topClass) {
+        return "Float: (" + Double.toString(value) + ")";
+    }
 
-	private final java.lang.String debugName = "Conductance";
+    private final java.lang.String debugName = "Conductance";
 
-	@Override
-	public java.lang.String debugString() {
-		return debugName;
-	}
+    @Override
+    public java.lang.String debugString() {
+        return debugName;
+    }
 }

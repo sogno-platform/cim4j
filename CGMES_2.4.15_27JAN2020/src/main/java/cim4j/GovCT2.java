@@ -13,512 +13,604 @@ import java.util.Set;
  */
 public class GovCT2 extends TurbineGovernorDynamics {
 
-	private static final Logging LOG = Logging.getLogger(GovCT2.class);
+    private static final Logging LOG = Logging.getLogger(GovCT2.class);
 
-	private BaseClass[] GovCT2_class_attributes;
-	private BaseClass[] GovCT2_primitive_attributes;
-	private java.lang.String rdfid;
+    private BaseClass[] GovCT2_class_attributes;
+    private BaseClass[] GovCT2_primitive_attributes;
+    private java.lang.String rdfid;
 
-	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-	static {
-		ATTRIBUTE_NAMES_MAP = new GovCT2().getAttributeNamesMap();
-	}
+    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+    static {
+        ATTRIBUTE_NAMES_MAP = new GovCT2().getAttributeNamesMap();
+    }
 
-	private enum GovCT2_primitive_builder implements PrimitiveBuilder {
-		aset() {
-			public BaseClass construct(java.lang.String value) {
-				return new Simple_Float(value);
-			}
-		},
-		db() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		dm() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		flim1() {
-			public BaseClass construct(java.lang.String value) {
-				return new Frequency(value);
-			}
-		},
-		flim10() {
-			public BaseClass construct(java.lang.String value) {
-				return new Frequency(value);
-			}
-		},
-		flim2() {
-			public BaseClass construct(java.lang.String value) {
-				return new Frequency(value);
-			}
-		},
-		flim3() {
-			public BaseClass construct(java.lang.String value) {
-				return new Frequency(value);
-			}
-		},
-		flim4() {
-			public BaseClass construct(java.lang.String value) {
-				return new Frequency(value);
-			}
-		},
-		flim5() {
-			public BaseClass construct(java.lang.String value) {
-				return new Frequency(value);
-			}
-		},
-		flim6() {
-			public BaseClass construct(java.lang.String value) {
-				return new Frequency(value);
-			}
-		},
-		flim7() {
-			public BaseClass construct(java.lang.String value) {
-				return new Frequency(value);
-			}
-		},
-		flim8() {
-			public BaseClass construct(java.lang.String value) {
-				return new Frequency(value);
-			}
-		},
-		flim9() {
-			public BaseClass construct(java.lang.String value) {
-				return new Frequency(value);
-			}
-		},
-		ka() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		kdgov() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		kigov() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		kiload() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		kimw() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		kpgov() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		kpload() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		kturb() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		ldref() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		maxerr() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		minerr() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		mwbase() {
-			public BaseClass construct(java.lang.String value) {
-				return new ActivePower(value);
-			}
-		},
-		plim1() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		plim10() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		plim2() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		plim3() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		plim4() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		plim5() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		plim6() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		plim7() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		plim8() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		plim9() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		prate() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		r() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		rclose() {
-			public BaseClass construct(java.lang.String value) {
-				return new Simple_Float(value);
-			}
-		},
-		rdown() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		ropen() {
-			public BaseClass construct(java.lang.String value) {
-				return new Simple_Float(value);
-			}
-		},
-		rselect() {
-			public BaseClass construct(java.lang.String value) {
-				return new DroopSignalFeedbackKind(value);
-			}
-		},
-		rup() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		ta() {
-			public BaseClass construct(java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tact() {
-			public BaseClass construct(java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tb() {
-			public BaseClass construct(java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tc() {
-			public BaseClass construct(java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tdgov() {
-			public BaseClass construct(java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		teng() {
-			public BaseClass construct(java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tfload() {
-			public BaseClass construct(java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tpelec() {
-			public BaseClass construct(java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tsa() {
-			public BaseClass construct(java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tsb() {
-			public BaseClass construct(java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		vmax() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		vmin() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		wfnl() {
-			public BaseClass construct(java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		wfspd() {
-			public BaseClass construct(java.lang.String value) {
-				return new Boolean(value);
-			}
-		},
-		LAST_ENUM() {
-			public BaseClass construct(java.lang.String value) {
-				return new Integer("0");
-			}
-		}
-	}
+    private enum GovCT2_primitive_builder implements PrimitiveBuilder {
+        aset() {
+            public BaseClass construct(java.lang.String value) {
+                return new Simple_Float(value);
+            }
+        },
+        db() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        dm() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        flim1() {
+            public BaseClass construct(java.lang.String value) {
+                return new Frequency(value);
+            }
+        },
+        flim10() {
+            public BaseClass construct(java.lang.String value) {
+                return new Frequency(value);
+            }
+        },
+        flim2() {
+            public BaseClass construct(java.lang.String value) {
+                return new Frequency(value);
+            }
+        },
+        flim3() {
+            public BaseClass construct(java.lang.String value) {
+                return new Frequency(value);
+            }
+        },
+        flim4() {
+            public BaseClass construct(java.lang.String value) {
+                return new Frequency(value);
+            }
+        },
+        flim5() {
+            public BaseClass construct(java.lang.String value) {
+                return new Frequency(value);
+            }
+        },
+        flim6() {
+            public BaseClass construct(java.lang.String value) {
+                return new Frequency(value);
+            }
+        },
+        flim7() {
+            public BaseClass construct(java.lang.String value) {
+                return new Frequency(value);
+            }
+        },
+        flim8() {
+            public BaseClass construct(java.lang.String value) {
+                return new Frequency(value);
+            }
+        },
+        flim9() {
+            public BaseClass construct(java.lang.String value) {
+                return new Frequency(value);
+            }
+        },
+        ka() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        kdgov() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        kigov() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        kiload() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        kimw() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        kpgov() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        kpload() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        kturb() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        ldref() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        maxerr() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        minerr() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        mwbase() {
+            public BaseClass construct(java.lang.String value) {
+                return new ActivePower(value);
+            }
+        },
+        plim1() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        plim10() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        plim2() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        plim3() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        plim4() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        plim5() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        plim6() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        plim7() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        plim8() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        plim9() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        prate() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        r() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        rclose() {
+            public BaseClass construct(java.lang.String value) {
+                return new Simple_Float(value);
+            }
+        },
+        rdown() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        ropen() {
+            public BaseClass construct(java.lang.String value) {
+                return new Simple_Float(value);
+            }
+        },
+        rselect() {
+            public BaseClass construct(java.lang.String value) {
+                return new DroopSignalFeedbackKind(value);
+            }
+        },
+        rup() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        ta() {
+            public BaseClass construct(java.lang.String value) {
+                return new Seconds(value);
+            }
+        },
+        tact() {
+            public BaseClass construct(java.lang.String value) {
+                return new Seconds(value);
+            }
+        },
+        tb() {
+            public BaseClass construct(java.lang.String value) {
+                return new Seconds(value);
+            }
+        },
+        tc() {
+            public BaseClass construct(java.lang.String value) {
+                return new Seconds(value);
+            }
+        },
+        tdgov() {
+            public BaseClass construct(java.lang.String value) {
+                return new Seconds(value);
+            }
+        },
+        teng() {
+            public BaseClass construct(java.lang.String value) {
+                return new Seconds(value);
+            }
+        },
+        tfload() {
+            public BaseClass construct(java.lang.String value) {
+                return new Seconds(value);
+            }
+        },
+        tpelec() {
+            public BaseClass construct(java.lang.String value) {
+                return new Seconds(value);
+            }
+        },
+        tsa() {
+            public BaseClass construct(java.lang.String value) {
+                return new Seconds(value);
+            }
+        },
+        tsb() {
+            public BaseClass construct(java.lang.String value) {
+                return new Seconds(value);
+            }
+        },
+        vmax() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        vmin() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        wfnl() {
+            public BaseClass construct(java.lang.String value) {
+                return new PU(value);
+            }
+        },
+        wfspd() {
+            public BaseClass construct(java.lang.String value) {
+                return new Boolean(value);
+            }
+        },
+        LAST_ENUM() {
+            public BaseClass construct(java.lang.String value) {
+                return new Integer("0");
+            }
+        }
+    }
 
-	private enum GovCT2_class_attributes_enum {
-		aset,
-		db,
-		dm,
-		flim1,
-		flim10,
-		flim2,
-		flim3,
-		flim4,
-		flim5,
-		flim6,
-		flim7,
-		flim8,
-		flim9,
-		ka,
-		kdgov,
-		kigov,
-		kiload,
-		kimw,
-		kpgov,
-		kpload,
-		kturb,
-		ldref,
-		maxerr,
-		minerr,
-		mwbase,
-		plim1,
-		plim10,
-		plim2,
-		plim3,
-		plim4,
-		plim5,
-		plim6,
-		plim7,
-		plim8,
-		plim9,
-		prate,
-		r,
-		rclose,
-		rdown,
-		ropen,
-		rselect,
-		rup,
-		ta,
-		tact,
-		tb,
-		tc,
-		tdgov,
-		teng,
-		tfload,
-		tpelec,
-		tsa,
-		tsb,
-		vmax,
-		vmin,
-		wfnl,
-		wfspd,
-		LAST_ENUM
-	}
+    private enum GovCT2_class_attributes_enum {
+        aset,
+        db,
+        dm,
+        flim1,
+        flim10,
+        flim2,
+        flim3,
+        flim4,
+        flim5,
+        flim6,
+        flim7,
+        flim8,
+        flim9,
+        ka,
+        kdgov,
+        kigov,
+        kiload,
+        kimw,
+        kpgov,
+        kpload,
+        kturb,
+        ldref,
+        maxerr,
+        minerr,
+        mwbase,
+        plim1,
+        plim10,
+        plim2,
+        plim3,
+        plim4,
+        plim5,
+        plim6,
+        plim7,
+        plim8,
+        plim9,
+        prate,
+        r,
+        rclose,
+        rdown,
+        ropen,
+        rselect,
+        rup,
+        ta,
+        tact,
+        tb,
+        tc,
+        tdgov,
+        teng,
+        tfload,
+        tpelec,
+        tsa,
+        tsb,
+        vmax,
+        vmin,
+        wfnl,
+        wfspd,
+        LAST_ENUM
+    }
 
-	public GovCT2() {
-		GovCT2_primitive_attributes = new BaseClass[GovCT2_primitive_builder.values().length];
-		GovCT2_class_attributes = new BaseClass[GovCT2_class_attributes_enum.values().length];
-	}
+    public GovCT2() {
+        GovCT2_primitive_attributes = new BaseClass[GovCT2_primitive_builder.values().length];
+        GovCT2_class_attributes = new BaseClass[GovCT2_class_attributes_enum.values().length];
+    }
 
-	@Override
-	public BaseClass construct() {
-		return new GovCT2();
-	}
+    @Override
+    public BaseClass construct() {
+        return new GovCT2();
+    }
 
-	@Override
-	public void setValue(java.lang.String s) {
-		LOG.error(debugString() + " is not sure what to do with " + s);
-	}
+    @Override
+    public void setValue(java.lang.String s) {
+        LOG.error(debugString() + " is not sure what to do with " + s);
+    }
 
-	@Override
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
-	}
+    @Override
+    public void setRdfid(java.lang.String id) {
+        rdfid = id;
+    }
 
-	@Override
-	public java.lang.String getRdfid() {
-		return rdfid;
-	}
+    @Override
+    public java.lang.String getRdfid() {
+        return rdfid;
+    }
 
-	private void updateAttributeInArray(GovCT2_class_attributes_enum attrEnum, BaseClass value) {
-		try {
-			GovCT2_class_attributes[attrEnum.ordinal()] = value;
-		} catch (ArrayIndexOutOfBoundsException aoobe) {
-			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-		}
-	}
+    private void updateAttributeInArray(GovCT2_class_attributes_enum attrEnum, BaseClass value) {
+        try {
+            GovCT2_class_attributes[attrEnum.ordinal()] = value;
+        } catch (ArrayIndexOutOfBoundsException aoobe) {
+            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+        }
+    }
 
-	private void updateAttributeInArray(GovCT2_primitive_builder attrEnum, BaseClass value) {
-		try {
-			GovCT2_primitive_attributes[attrEnum.ordinal()] = value;
-		} catch (ArrayIndexOutOfBoundsException aoobe) {
-			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-		}
-	}
+    private void updateAttributeInArray(GovCT2_primitive_builder attrEnum, BaseClass value) {
+        try {
+            GovCT2_primitive_attributes[attrEnum.ordinal()] = value;
+        } catch (ArrayIndexOutOfBoundsException aoobe) {
+            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+        }
+    }
 
-	@Override
-	public void setAttribute(java.lang.String attrName, BaseClass value) {
-		try {
-			GovCT2_class_attributes_enum attrEnum = GovCT2_class_attributes_enum.valueOf(attrName);
-			updateAttributeInArray(attrEnum, value);
-			LOG.debug("Updated GovCT2, setting " + attrName);
-		} catch (IllegalArgumentException iae) {
-			super.setAttribute(attrName, value);
-		}
-	}
+    @Override
+    public void setAttribute(java.lang.String attrName, BaseClass value) {
+        try {
+            GovCT2_class_attributes_enum attrEnum = GovCT2_class_attributes_enum.valueOf(attrName);
+            updateAttributeInArray(attrEnum, value);
+            LOG.debug("Updated GovCT2, setting " + attrName);
+        } catch (IllegalArgumentException iae) {
+            super.setAttribute(attrName, value);
+        }
+    }
 
-	@Override
-	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-	public void setAttribute(java.lang.String attrName, java.lang.String value) {
-		try {
-			GovCT2_primitive_builder attrEnum = GovCT2_primitive_builder.valueOf(attrName);
-			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			LOG.debug("Updated GovCT2, setting " + attrName + " to: " + value);
-		} catch (IllegalArgumentException iae) {
-			super.setAttribute(attrName, value);
-		}
-	}
+    @Override
+    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
+    public void setAttribute(java.lang.String attrName, java.lang.String value) {
+        try {
+            GovCT2_primitive_builder attrEnum = GovCT2_primitive_builder.valueOf(attrName);
+            updateAttributeInArray(attrEnum, attrEnum.construct(value));
+            LOG.debug("Updated GovCT2, setting " + attrName + " to: " + value);
+        } catch (IllegalArgumentException iae) {
+            super.setAttribute(attrName, value);
+        }
+    }
 
-	@Override
-	public BaseClass getAttribute(java.lang.String attrName) {
-		boolean defined = false;
-		try {
-			GovCT2_primitive_builder attrEnum = GovCT2_primitive_builder.valueOf(attrName);
-			defined = true;
-			BaseClass attrValue = GovCT2_primitive_attributes[attrEnum.ordinal()];
-			if (attrValue != null) {
-				return attrValue;
-			}
-		} catch (IllegalArgumentException ignored) {
-		}
+    @Override
+    public BaseClass getAttribute(java.lang.String attrName) {
+        boolean defined = false;
+        try {
+            GovCT2_primitive_builder attrEnum = GovCT2_primitive_builder.valueOf(attrName);
+            defined = true;
+            BaseClass attrValue = GovCT2_primitive_attributes[attrEnum.ordinal()];
+            if (attrValue != null) {
+                return attrValue;
+            }
+        } catch (IllegalArgumentException ignored) {
+        }
 
-		try {
-			GovCT2_class_attributes_enum attrEnum = GovCT2_class_attributes_enum.valueOf(attrName);
-			defined = true;
-			BaseClass attrValue = GovCT2_class_attributes[attrEnum.ordinal()];
-			if (attrValue != null) {
-				return attrValue;
-			}
-		} catch (IllegalArgumentException ignored) {
-		}
+        try {
+            GovCT2_class_attributes_enum attrEnum = GovCT2_class_attributes_enum.valueOf(attrName);
+            defined = true;
+            BaseClass attrValue = GovCT2_class_attributes[attrEnum.ordinal()];
+            if (attrValue != null) {
+                return attrValue;
+            }
+        } catch (IllegalArgumentException ignored) {
+        }
 
-		if (!defined) {
-			return super.getAttribute(attrName);
-		}
-		return null;
-	}
+        if (!defined) {
+            return super.getAttribute(attrName);
+        }
+        return null;
+    }
 
-	@Override
-	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-		for (var enumValue : GovCT2_primitive_builder.values()) {
-			if (enumValue != GovCT2_primitive_builder.LAST_ENUM) {
-				namesMap.put(enumValue.name(), "GovCT2." + enumValue.name());
-			}
-		}
-		for (var enumValue : GovCT2_class_attributes_enum.values()) {
-			if (enumValue != GovCT2_class_attributes_enum.LAST_ENUM) {
-				namesMap.put(enumValue.name(), "GovCT2." + enumValue.name());
-			}
-		}
-		namesMap.putAll(super.getAttributeNamesMap());
-		return namesMap;
-	}
+    @Override
+    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+        for (var enumValue : GovCT2_primitive_builder.values()) {
+            if (enumValue != GovCT2_primitive_builder.LAST_ENUM) {
+                namesMap.put(enumValue.name(), "GovCT2." + enumValue.name());
+            }
+        }
+        for (var enumValue : GovCT2_class_attributes_enum.values()) {
+            if (enumValue != GovCT2_class_attributes_enum.LAST_ENUM) {
+                namesMap.put(enumValue.name(), "GovCT2." + enumValue.name());
+            }
+        }
+        namesMap.putAll(super.getAttributeNamesMap());
+        return namesMap;
+    }
 
-	@Override
-	public Set<java.lang.String> getAttributeNames() {
-		return ATTRIBUTE_NAMES_MAP.keySet();
-	}
+    @Override
+    public Set<java.lang.String> getAttributeNames() {
+        return ATTRIBUTE_NAMES_MAP.keySet();
+    }
 
-	@Override
-	public java.lang.String getAttributeFullName(java.lang.String attrName) {
-		return ATTRIBUTE_NAMES_MAP.get(attrName);
-	}
+    @Override
+    public java.lang.String getAttributeFullName(java.lang.String attrName) {
+        return ATTRIBUTE_NAMES_MAP.get(attrName);
+    }
 
-	@Override
-	public java.lang.String toString(boolean topClass) {
-		java.lang.String result = "";
-		if (topClass) {
-			for (GovCT2_primitive_builder attrEnum : GovCT2_primitive_builder.values()) {
-				BaseClass bc = GovCT2_primitive_attributes[attrEnum.ordinal()];
-				if (bc != null) {
-					result += "    GovCT2." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-				}
-			}
-			for (GovCT2_class_attributes_enum attrEnum : GovCT2_class_attributes_enum.values()) {
-				BaseClass bc = GovCT2_class_attributes[attrEnum.ordinal()];
-				if (bc != null) {
-					result += "    GovCT2." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-				}
-			}
-			result += super.toString(true);
-		} else {
-			result += "(GovCT2) RDFID: " + rdfid;
-		}
-		return result;
-	}
+    @Override
+    public java.lang.String toString(boolean topClass) {
+        java.lang.String result = "";
+        if (topClass) {
+            for (GovCT2_primitive_builder attrEnum : GovCT2_primitive_builder.values()) {
+                BaseClass bc = GovCT2_primitive_attributes[attrEnum.ordinal()];
+                if (bc != null) {
+                    result += "    GovCT2." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+                }
+            }
+            for (GovCT2_class_attributes_enum attrEnum : GovCT2_class_attributes_enum.values()) {
+                BaseClass bc = GovCT2_class_attributes[attrEnum.ordinal()];
+                if (bc != null) {
+                    result += "    GovCT2." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+                }
+            }
+            result += super.toString(true);
+        } else {
+            result += "(GovCT2) RDFID: " + rdfid;
+        }
+        return result;
+    }
 
-	private final java.lang.String debugName = "GovCT2";
+    private final java.lang.String debugName = "GovCT2";
 
-	@Override
-	public java.lang.String debugString() {
-		return debugName;
-	}
+    @Override
+    public java.lang.String debugString() {
+        return debugName;
+    }
+
+    /**
+     * Get the namespace URL of an object of this class.
+     *
+     * @return The namespace URL
+     */
+    @Override
+    public java.lang.String getClassNamespaceUrl() {
+        return "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    }
+
+    /**
+     * Get the namespace URL of an attribute (also for inherited attributes).
+     *
+     * @return The namespace URL
+     */
+    @Override
+    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+        return ATTR_NAMESPACE_MAP.get(attrName);
+    }
+
+    private static final Map<java.lang.String, java.lang.String> ATTR_NAMESPACE_MAP;
+    static {
+        ATTR_NAMESPACE_MAP = new GovCT2().allAttrNamespaceMap();
+    }
+
+    @Override
+    protected Map<java.lang.String, java.lang.String> allAttrNamespaceMap() {
+        Map<java.lang.String, java.lang.String> map = new LinkedHashMap<>(classAttrNamespaceMap);
+        map.putAll(super.allAttrNamespaceMap());
+        map.remove("LAST_ATTRIBUTE");
+        return map;
+    }
+
+    private Map<java.lang.String, java.lang.String> classAttrNamespaceMap = Map.ofEntries(
+            Map.entry("aset", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("db", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("dm", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("flim1", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("flim10", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("flim2", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("flim3", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("flim4", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("flim5", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("flim6", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("flim7", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("flim8", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("flim9", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("ka", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("kdgov", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("kigov", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("kiload", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("kimw", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("kpgov", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("kpload", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("kturb", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("ldref", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("maxerr", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("minerr", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("mwbase", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("plim1", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("plim10", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("plim2", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("plim3", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("plim4", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("plim5", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("plim6", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("plim7", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("plim8", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("plim9", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("prate", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("r", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("rclose", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("rdown", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("ropen", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("rselect", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("rup", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("ta", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("tact", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("tb", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("tc", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("tdgov", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("teng", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("tfload", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("tpelec", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("tsa", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("tsb", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("vmax", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("vmin", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("wfnl", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("wfspd", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("LAST_ATTRIBUTE", ""));
 }

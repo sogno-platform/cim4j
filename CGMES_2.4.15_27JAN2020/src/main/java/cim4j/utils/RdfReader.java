@@ -66,10 +66,10 @@ public final class RdfReader {
                     setAttribute(object, attribute);
                 }
             } else {
-                LOG.debug(String.format("Unknown CIM class: %s (rdf:ID: %s)", className, element.id));
+                LOG.warn(String.format("Unknown CIM class: %s (rdf:ID: %s)", className, element.id));
             }
         } else {
-            LOG.debug(String.format("Possible CIM class: %s (rdf:ID missing)", className));
+            LOG.warn(String.format("Possible CIM class: %s (rdf:ID missing)", className));
         }
     }
 

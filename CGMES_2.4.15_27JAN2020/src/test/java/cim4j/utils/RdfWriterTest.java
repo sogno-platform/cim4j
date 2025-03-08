@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.StringWriter;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.MethodOrderer;
@@ -66,7 +67,7 @@ class RdfWriterTest {
     @Test
     @Order(130)
     void testWrite001() {
-        var cimData = RdfReader.read(getPath("rdf/test001.xml"));
+        var cimData = RdfReader.read(List.of(getPath("rdf/test001.xml")));
         assertEquals(2, cimData.size());
 
         assertTrue(cimData.containsKey("VoltageLevel.98"));
@@ -96,7 +97,7 @@ class RdfWriterTest {
     @Test
     @Order(140)
     void testWrite002() {
-        var cimData = RdfReader.read(getPath("rdf/test002.xml"));
+        var cimData = RdfReader.read(List.of(getPath("rdf/test002.xml")));
         assertEquals(4, cimData.size());
 
         assertTrue(cimData.containsKey("Analog.N0.Voltage"));
@@ -129,7 +130,7 @@ class RdfWriterTest {
     @Test
     @Order(150)
     void testWrite003() {
-        var cimData = RdfReader.read(getPath("rdf/test003.xml"));
+        var cimData = RdfReader.read(List.of(getPath("rdf/test003.xml")));
         assertEquals(2, cimData.size());
 
         assertTrue(cimData.containsKey("N0"));
@@ -158,7 +159,7 @@ class RdfWriterTest {
     @Test
     @Order(160)
     void testWrite004() {
-        var cimData = RdfReader.read(getPath("rdf/test004.xml"));
+        var cimData = RdfReader.read(List.of(getPath("rdf/test004.xml")));
         assertEquals(1, cimData.size());
 
         assertTrue(cimData.containsKey("BaseVoltage.20"));
@@ -188,7 +189,7 @@ class RdfWriterTest {
         if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_13")) {
             // There is no class or list attribute in cgmes_v2_4_13 with entsoe namespace
         } else if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_15")) {
-            var cimData = RdfReader.read(getPath("rdf/test005_CGMES2.xml"));
+            var cimData = RdfReader.read(List.of(getPath("rdf/test005_CGMES2.xml")));
             assertEquals(2, cimData.size());
 
             assertTrue(cimData.containsKey("ES"));
@@ -213,7 +214,7 @@ class RdfWriterTest {
             assertEquals("  </entsoe:EnergySchedulingType>", lines[7]);
             assertEquals("</rdf:RDF>", lines[8]);
         } else if (CimConstants.CIM_VERSION.equals("cgmes_v3_0_0")) {
-            var cimData = RdfReader.read(getPath("rdf/test005_CGMES3.xml"));
+            var cimData = RdfReader.read(List.of(getPath("rdf/test005_CGMES3.xml")));
             assertEquals(2, cimData.size());
 
             assertTrue(cimData.containsKey("N0"));
@@ -244,7 +245,7 @@ class RdfWriterTest {
     @Order(180)
     void testWrite006() {
         if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_13") || CimConstants.CIM_VERSION.equals("cgmes_v2_4_15")) {
-            var cimData = RdfReader.read(getPath("rdf/test006_CGMES2.xml"));
+            var cimData = RdfReader.read(List.of(getPath("rdf/test006_CGMES2.xml")));
             assertEquals(2, cimData.size());
 
             assertTrue(cimData.containsKey("OLT"));
@@ -267,7 +268,7 @@ class RdfWriterTest {
             assertEquals("  </cim:OperationalLimitType>", lines[5]);
             assertEquals("</rdf:RDF>", lines[6]);
         } else if (CimConstants.CIM_VERSION.equals("cgmes_v3_0_0")) {
-            var cimData = RdfReader.read(getPath("rdf/test006_CGMES3.xml"));
+            var cimData = RdfReader.read(List.of(getPath("rdf/test006_CGMES3.xml")));
             assertEquals(2, cimData.size());
 
             assertTrue(cimData.containsKey("OLT"));
@@ -295,7 +296,7 @@ class RdfWriterTest {
     @Test
     @Order(190)
     void testWrite007() {
-        var cimData = RdfReader.read(getPath("rdf/test007.xml"));
+        var cimData = RdfReader.read(List.of(getPath("rdf/test007.xml")));
         assertEquals(4, cimData.size());
 
         assertTrue(cimData.containsKey("VoltageLevel.96"));

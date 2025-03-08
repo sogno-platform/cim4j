@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -37,7 +38,7 @@ class RdfReaderTest {
     void testRead() {
         Logging.setEnabled(false);
         assertFalse(Logging.isEnabled());
-        var ex = assertThrows(RuntimeException.class, () -> RdfReader.read("dummy.xml"));
+        var ex = assertThrows(RuntimeException.class, () -> RdfReader.read(List.of("dummy.xml")));
         var msg = ex.getMessage();
         assertTrue(msg.startsWith("Error while reading rdf file:"));
         var cause = ex.getCause();
@@ -51,7 +52,7 @@ class RdfReaderTest {
     @Test
     @Order(110)
     void testRead001() {
-        var cimData = RdfReader.read(getPath("rdf/test001.xml"));
+        var cimData = RdfReader.read(List.of(getPath("rdf/test001.xml")));
         assertEquals(2, cimData.size());
 
         assertTrue(cimData.containsKey("VoltageLevel.98"));
@@ -86,7 +87,7 @@ class RdfReaderTest {
     @Test
     @Order(120)
     void testRead002() {
-        var cimData = RdfReader.read(getPath("rdf/test002.xml"));
+        var cimData = RdfReader.read(List.of(getPath("rdf/test002.xml")));
         assertEquals(4, cimData.size());
 
         assertTrue(cimData.containsKey("Analog.N0.Voltage"));
@@ -130,7 +131,7 @@ class RdfReaderTest {
     @Test
     @Order(130)
     void testRead003() {
-        var cimData = RdfReader.read(getPath("rdf/test003.xml"));
+        var cimData = RdfReader.read(List.of(getPath("rdf/test003.xml")));
         assertEquals(2, cimData.size());
 
         assertTrue(cimData.containsKey("N0"));
@@ -158,7 +159,7 @@ class RdfReaderTest {
     @Test
     @Order(140)
     void testRead004() {
-        var cimData = RdfReader.read(getPath("rdf/test004.xml"));
+        var cimData = RdfReader.read(List.of(getPath("rdf/test004.xml")));
         assertEquals(1, cimData.size());
 
         assertTrue(cimData.containsKey("BaseVoltage.20"));
@@ -177,7 +178,7 @@ class RdfReaderTest {
     @Order(150)
     void testRead005() {
         if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_13") || CimConstants.CIM_VERSION.equals("cgmes_v2_4_15")) {
-            var cimData = RdfReader.read(getPath("rdf/test005_CGMES2.xml"));
+            var cimData = RdfReader.read(List.of(getPath("rdf/test005_CGMES2.xml")));
             assertEquals(2, cimData.size());
 
             assertTrue(cimData.containsKey("ES"));
@@ -201,7 +202,7 @@ class RdfReaderTest {
             assertTrue(attributeNames.contains("name"));
             assertEquals("EST", energySchedulingType.getAttribute("name").toString(false));
         } else if (CimConstants.CIM_VERSION.equals("cgmes_v3_0_0")) {
-            var cimData = RdfReader.read(getPath("rdf/test005_CGMES3.xml"));
+            var cimData = RdfReader.read(List.of(getPath("rdf/test005_CGMES3.xml")));
             assertEquals(2, cimData.size());
 
             assertTrue(cimData.containsKey("N0"));
@@ -231,7 +232,7 @@ class RdfReaderTest {
     @Order(160)
     void testRead006() {
         if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_13") || CimConstants.CIM_VERSION.equals("cgmes_v2_4_15")) {
-            var cimData = RdfReader.read(getPath("rdf/test006_CGMES2.xml"));
+            var cimData = RdfReader.read(List.of(getPath("rdf/test006_CGMES2.xml")));
             assertEquals(2, cimData.size());
 
             assertTrue(cimData.containsKey("OLT"));
@@ -252,7 +253,7 @@ class RdfReaderTest {
             assertEquals(2, parts.length);
             assertEquals("LimitTypeKind.highVoltage", parts[1]);
         } else if (CimConstants.CIM_VERSION.equals("cgmes_v3_0_0")) {
-            var cimData = RdfReader.read(getPath("rdf/test006_CGMES3.xml"));
+            var cimData = RdfReader.read(List.of(getPath("rdf/test006_CGMES3.xml")));
             assertEquals(2, cimData.size());
 
             assertTrue(cimData.containsKey("OLT"));
@@ -278,7 +279,7 @@ class RdfReaderTest {
     @Test
     @Order(170)
     void testRead007() {
-        var cimData = RdfReader.read(getPath("rdf/test007.xml"));
+        var cimData = RdfReader.read(List.of(getPath("rdf/test007.xml")));
         assertEquals(4, cimData.size());
 
         assertTrue(cimData.containsKey("VoltageLevel.96"));

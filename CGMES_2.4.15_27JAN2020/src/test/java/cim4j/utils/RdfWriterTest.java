@@ -331,6 +331,151 @@ class RdfWriterTest {
     }
 
     @Test
+    @Order(200)
+    void testWrite008_EQ_TP() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test008_EQ.xml"), getPath("rdf/test008_TP.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("N0"));
+        assertTrue(cimData.containsKey("Terminal.N0"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(10, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:Terminal rdf:ID=\"Terminal.N0\">", lines[2]);
+        assertEquals("    <cim:Terminal.TopologicalNode rdf:resource=\"#N0\"/>", lines[3]);
+        assertEquals("    <cim:IdentifiedObject.name>Terminal.N0</cim:IdentifiedObject.name>", lines[4]);
+        assertEquals("  </cim:Terminal>", lines[5]);
+        assertEquals("  <cim:TopologicalNode rdf:ID=\"N0\">", lines[6]);
+        assertEquals("    <cim:IdentifiedObject.name>N0</cim:IdentifiedObject.name>", lines[7]);
+        assertEquals("  </cim:TopologicalNode>", lines[8]);
+        assertEquals("</rdf:RDF>", lines[9]);
+    }
+
+    @Test
+    @Order(210)
+    void testWrite008_TP_EQ() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test008_TP.xml"), getPath("rdf/test008_EQ.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("N0"));
+        assertTrue(cimData.containsKey("Terminal.N0"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(10, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:TopologicalNode rdf:ID=\"N0\">", lines[2]);
+        assertEquals("    <cim:IdentifiedObject.name>N0</cim:IdentifiedObject.name>", lines[3]);
+        assertEquals("  </cim:TopologicalNode>", lines[4]);
+        assertEquals("  <cim:Terminal rdf:ID=\"Terminal.N0\">", lines[5]);
+        assertEquals("    <cim:Terminal.TopologicalNode rdf:resource=\"#N0\"/>", lines[6]);
+        assertEquals("    <cim:IdentifiedObject.name>Terminal.N0</cim:IdentifiedObject.name>", lines[7]);
+        assertEquals("  </cim:Terminal>", lines[8]);
+        assertEquals("</rdf:RDF>", lines[9]);
+    }
+
+    @Test
+    @Order(220)
+    void testWrite009_EQ_TP() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test009_EQ.xml"), getPath("rdf/test009_TP.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("N0"));
+        assertTrue(cimData.containsKey("Terminal.N0"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(10, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:Terminal rdf:ID=\"Terminal.N0\">", lines[2]);
+        assertEquals("    <cim:Terminal.TopologicalNode rdf:resource=\"#N0\"/>", lines[3]);
+        assertEquals("    <cim:IdentifiedObject.name>Terminal.N0</cim:IdentifiedObject.name>", lines[4]);
+        assertEquals("  </cim:Terminal>", lines[5]);
+        assertEquals("  <cim:TopologicalNode rdf:ID=\"N0\">", lines[6]);
+        assertEquals("    <cim:IdentifiedObject.name>N0</cim:IdentifiedObject.name>", lines[7]);
+        assertEquals("  </cim:TopologicalNode>", lines[8]);
+        assertEquals("</rdf:RDF>", lines[9]);
+    }
+
+    @Test
+    @Order(230)
+    void testWrite009_TP_EQ() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test009_TP.xml"), getPath("rdf/test009_EQ.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("N0"));
+        assertTrue(cimData.containsKey("Terminal.N0"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(10, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:TopologicalNode rdf:ID=\"N0\">", lines[2]);
+        assertEquals("    <cim:IdentifiedObject.name>N0</cim:IdentifiedObject.name>", lines[3]);
+        assertEquals("  </cim:TopologicalNode>", lines[4]);
+        assertEquals("  <cim:Terminal rdf:ID=\"Terminal.N0\">", lines[5]);
+        assertEquals("    <cim:Terminal.TopologicalNode rdf:resource=\"#N0\"/>", lines[6]);
+        assertEquals("    <cim:IdentifiedObject.name>Terminal.N0</cim:IdentifiedObject.name>", lines[7]);
+        assertEquals("  </cim:Terminal>", lines[8]);
+        assertEquals("</rdf:RDF>", lines[9]);
+    }
+
+    @Test
+    @Order(240)
+    void testWrite010() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test010.xml")));
+        assertEquals(1, cimData.size());
+
+        assertTrue(cimData.containsKey("BaseVoltage.20"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(6, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:BaseVoltage rdf:ID=\"BaseVoltage.20\">", lines[2]);
+        assertEquals("    <cim:IdentifiedObject.description>€ÄÖÜäöüß</cim:IdentifiedObject.description>", lines[3]);
+        assertEquals("  </cim:BaseVoltage>", lines[4]);
+        assertEquals("</rdf:RDF>", lines[5]);
+    }
+
+    @Test
     @Order(900)
     void testWriteCimData() {
         var rdfWriter = new RdfWriter();

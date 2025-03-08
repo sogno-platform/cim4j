@@ -305,6 +305,165 @@ class RdfReaderTest {
         assertEquals(baseVoltage, voltageLevel.getAttribute("BaseVoltage"));
     }
 
+    @Test
+    @Order(180)
+    void testRead008_EQ_TP() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test008_EQ.xml"), getPath("rdf/test008_TP.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("N0"));
+        assertTrue(cimData.containsKey("Terminal.N0"));
+
+        var terminal = cimData.get("Terminal.N0");
+        assertNotNull(terminal);
+        assertEquals(Terminal.class, terminal.getClass());
+        assertEquals("Terminal.N0", terminal.getRdfid());
+
+        var attributeNames = terminal.getAttributeNames();
+        assertTrue(attributeNames.contains("TopologicalNode"));
+        assertTrue(attributeNames.contains("name"));
+        assertEquals("Terminal.N0", terminal.getAttribute("name").toString(false));
+
+        var topologicalNode = terminal.getAttribute("TopologicalNode");
+        assertNotNull(topologicalNode);
+        assertEquals(TopologicalNode.class, topologicalNode.getClass());
+        assertEquals("N0", topologicalNode.getRdfid());
+        assertEquals(topologicalNode, cimData.get("N0"));
+
+        attributeNames = topologicalNode.getAttributeNames();
+        assertTrue(attributeNames.contains("name"));
+        assertEquals("N0", topologicalNode.getAttribute("name").toString(false));
+    }
+
+    @Test
+    @Order(190)
+    void testRead008_TP_EQ() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test008_TP.xml"), getPath("rdf/test008_EQ.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("N0"));
+        assertTrue(cimData.containsKey("Terminal.N0"));
+
+        var terminal = cimData.get("Terminal.N0");
+        assertNotNull(terminal);
+        assertEquals(Terminal.class, terminal.getClass());
+        assertEquals("Terminal.N0", terminal.getRdfid());
+
+        var attributeNames = terminal.getAttributeNames();
+        assertTrue(attributeNames.contains("TopologicalNode"));
+        assertTrue(attributeNames.contains("name"));
+        assertEquals("Terminal.N0", terminal.getAttribute("name").toString(false));
+
+        var topologicalNode = terminal.getAttribute("TopologicalNode");
+        assertNotNull(topologicalNode);
+        assertEquals(TopologicalNode.class, topologicalNode.getClass());
+        assertEquals("N0", topologicalNode.getRdfid());
+        assertEquals(topologicalNode, cimData.get("N0"));
+
+        attributeNames = topologicalNode.getAttributeNames();
+        assertTrue(attributeNames.contains("name"));
+        assertEquals("N0", topologicalNode.getAttribute("name").toString(false));
+    }
+
+    @Test
+    @Order(200)
+    void testRead009_EQ_TP() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test009_EQ.xml"), getPath("rdf/test009_TP.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("N0"));
+        assertTrue(cimData.containsKey("Terminal.N0"));
+
+        var terminal = cimData.get("Terminal.N0");
+        assertNotNull(terminal);
+        assertEquals(Terminal.class, terminal.getClass());
+        assertEquals("Terminal.N0", terminal.getRdfid());
+
+        var attributeNames = terminal.getAttributeNames();
+        assertTrue(attributeNames.contains("TopologicalNode"));
+        assertTrue(attributeNames.contains("name"));
+        assertEquals("Terminal.N0", terminal.getAttribute("name").toString(false));
+
+        var topologicalNode = terminal.getAttribute("TopologicalNode");
+        assertNotNull(topologicalNode);
+        assertEquals(TopologicalNode.class, topologicalNode.getClass());
+        assertEquals("N0", topologicalNode.getRdfid());
+        assertEquals(topologicalNode, cimData.get("N0"));
+
+        attributeNames = topologicalNode.getAttributeNames();
+        assertTrue(attributeNames.contains("name"));
+        assertEquals("N0", topologicalNode.getAttribute("name").toString(false));
+    }
+
+    @Test
+    @Order(210)
+    void testRead009_TP_EQ() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test009_TP.xml"), getPath("rdf/test009_EQ.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("N0"));
+        assertTrue(cimData.containsKey("Terminal.N0"));
+
+        var terminal = cimData.get("Terminal.N0");
+        assertNotNull(terminal);
+        assertEquals(Terminal.class, terminal.getClass());
+        assertEquals("Terminal.N0", terminal.getRdfid());
+
+        var attributeNames = terminal.getAttributeNames();
+        assertTrue(attributeNames.contains("TopologicalNode"));
+        assertTrue(attributeNames.contains("name"));
+        assertEquals("Terminal.N0", terminal.getAttribute("name").toString(false));
+
+        var topologicalNode = terminal.getAttribute("TopologicalNode");
+        assertNotNull(topologicalNode);
+        assertEquals(TopologicalNode.class, topologicalNode.getClass());
+        assertEquals("N0", topologicalNode.getRdfid());
+        assertEquals(topologicalNode, cimData.get("N0"));
+
+        attributeNames = topologicalNode.getAttributeNames();
+        assertTrue(attributeNames.contains("name"));
+        assertEquals("N0", topologicalNode.getAttribute("name").toString(false));
+    }
+
+    @Test
+    @Order(220)
+    void testRead010() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test010.xml")));
+        assertEquals(1, cimData.size());
+
+        assertTrue(cimData.containsKey("BaseVoltage.20"));
+
+        var baseVoltage = cimData.get("BaseVoltage.20");
+        assertNotNull(baseVoltage);
+
+        var attributeNames = baseVoltage.getAttributeNames();
+        assertTrue(attributeNames.contains("description"));
+        assertEquals("€ÄÖÜäöüß", baseVoltage.getAttribute("description").toString(false));
+    }
+
+    @Test
+    @Order(230)
+    void testReadFromStrings() {
+        final String xml = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n" +
+                "<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n" +
+                "         xmlns:cim=\"http://iec.ch/TC57/2013/CIM-schema-cim16#\">\n" +
+                "  <cim:BaseVoltage rdf:ID=\"BaseVoltage.20\">\n" +
+                "    <cim:IdentifiedObject.description>€ÄÖÜäöüß</cim:IdentifiedObject.description>\n" +
+                "  </cim:BaseVoltage>\n" +
+                "</rdf:RDF>\n";
+        var cimData = RdfReader.readFromStrings(List.of(xml));
+        assertEquals(1, cimData.size());
+
+        assertTrue(cimData.containsKey("BaseVoltage.20"));
+
+        var baseVoltage = cimData.get("BaseVoltage.20");
+        assertNotNull(baseVoltage);
+
+        var attributeNames = baseVoltage.getAttributeNames();
+        assertTrue(attributeNames.contains("description"));
+        assertEquals("€ÄÖÜäöüß", baseVoltage.getAttribute("description").toString(false));
+    }
+
     private String getPath(String aResource) {
         var url = getClass().getClassLoader().getResource(aResource);
         assertNotNull(url);

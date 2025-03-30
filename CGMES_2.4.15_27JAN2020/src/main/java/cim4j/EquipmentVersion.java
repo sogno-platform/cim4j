@@ -1,105 +1,105 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.BaseClass;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * Version details.
+ */
+public class EquipmentVersion extends BaseClass {
 
+	private static final Logging LOG = Logging.getLogger(EquipmentVersion.class);
 
-
-import cim4j.Date;
-
-/*
-Version details.
-*/
-public class EquipmentVersion extends BaseClass
-{
 	private BaseClass[] EquipmentVersion_class_attributes;
 	private BaseClass[] EquipmentVersion_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new EquipmentVersion().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum EquipmentVersion_primitive_builder implements PrimitiveBuilder {
-		baseUML(){
-			public BaseClass construct (java.lang.String value) {
+		baseUML() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		baseURIcore(){
-			public BaseClass construct (java.lang.String value) {
+		baseURIcore() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		baseURIoperation(){
-			public BaseClass construct (java.lang.String value) {
+		baseURIoperation() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		baseURIshortCircuit(){
-			public BaseClass construct (java.lang.String value) {
+		baseURIshortCircuit() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		differenceModelURI(){
-			public BaseClass construct (java.lang.String value) {
+		date() {
+			public BaseClass construct(java.lang.String value) {
+				return new Date(value);
+			}
+		},
+		differenceModelURI() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		entsoeUML(){
-			public BaseClass construct (java.lang.String value) {
+		entsoeUML() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		entsoeURIcore(){
-			public BaseClass construct (java.lang.String value) {
+		entsoeURIcore() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		entsoeURIoperation(){
-			public BaseClass construct (java.lang.String value) {
+		entsoeURIoperation() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		entsoeURIshortCircuit(){
-			public BaseClass construct (java.lang.String value) {
+		entsoeURIshortCircuit() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		modelDescriptionURI(){
-			public BaseClass construct (java.lang.String value) {
+		modelDescriptionURI() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		namespaceRDF(){
-			public BaseClass construct (java.lang.String value) {
+		namespaceRDF() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		namespaceUML(){
-			public BaseClass construct (java.lang.String value) {
+		namespaceUML() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-		shortName(){
-			public BaseClass construct (java.lang.String value) {
+		shortName() {
+			public BaseClass construct(java.lang.String value) {
 				return new String(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		};
+		}
 	}
 
 	private enum EquipmentVersion_class_attributes_enum {
@@ -117,108 +117,156 @@ public class EquipmentVersion extends BaseClass
 		namespaceRDF,
 		namespaceUML,
 		shortName,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	public EquipmentVersion() {
 		EquipmentVersion_primitive_attributes = new BaseClass[EquipmentVersion_primitive_builder.values().length];
 		EquipmentVersion_class_attributes = new BaseClass[EquipmentVersion_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(EquipmentVersion_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new EquipmentVersion();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(EquipmentVersion_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			EquipmentVersion_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(EquipmentVersion_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(EquipmentVersion_primitive_builder attrEnum, BaseClass value) {
 		try {
 			EquipmentVersion_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			EquipmentVersion_class_attributes_enum attrEnum = EquipmentVersion_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated EquipmentVersion, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated EquipmentVersion, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			EquipmentVersion_primitive_builder attrEnum = EquipmentVersion_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated EquipmentVersion, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated EquipmentVersion, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			EquipmentVersion_primitive_builder attrEnum = EquipmentVersion_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = EquipmentVersion_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			EquipmentVersion_class_attributes_enum attrEnum = EquipmentVersion_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = EquipmentVersion_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : EquipmentVersion_primitive_builder.values()) {
+			if (enumValue != EquipmentVersion_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "EquipmentVersion." + enumValue.name());
+			}
+		}
+		for (var enumValue : EquipmentVersion_class_attributes_enum.values()) {
+			if (enumValue != EquipmentVersion_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "EquipmentVersion." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (EquipmentVersion_primitive_builder attrEnum: EquipmentVersion_primitive_builder.values()) {
+			for (EquipmentVersion_primitive_builder attrEnum : EquipmentVersion_primitive_builder.values()) {
 				BaseClass bc = EquipmentVersion_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    EquipmentVersion." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (EquipmentVersion_class_attributes_enum attrEnum: EquipmentVersion_class_attributes_enum.values()) {
+			for (EquipmentVersion_class_attributes_enum attrEnum : EquipmentVersion_class_attributes_enum.values()) {
 				BaseClass bc = EquipmentVersion_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    EquipmentVersion." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(EquipmentVersion) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "EquipmentVersion";
+	private final java.lang.String debugName = "EquipmentVersion";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new EquipmentVersion();
-        }
-};
+}

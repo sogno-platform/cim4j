@@ -1,82 +1,96 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+/**
+ * Governor droop signal feedback source.
+ */
+public class DroopSignalFeedbackKind extends BaseClass {
 
-/*
-Governor droop signal feedback source.
-*/
-public class DroopSignalFeedbackKind extends BaseClass
-{
-	private enum DroopSignalFeedbackKind_ENUM
-	{
-			/**
+	private static final Logging LOG = Logging.getLogger(DroopSignalFeedbackKind.class);
+
+	private enum DroopSignalFeedbackKind_ENUM {
+		/**
 		 * Electrical power feedback (connection indicated as 1 in the block diagrams of models, e.g. GovCT1, GovCT2).
 		 */
 		electricalPower,
-			/**
+		/**
 		 * No droop signal feedback, is isochronous governor.
 		 */
 		none,
-			/**
+		/**
 		 * Fuel valve stroke feedback (true stroke) (connection indicated as 2 in the block diagrams of model, e.g. GovCT1, GovCT2).
 		 */
 		fuelValveStroke,
-			/**
+		/**
 		 * Governor output feedback (requested stroke) (connection indicated as 3 in the block diagrams of models, e.g. GovCT1, GovCT2).
 		 */
 		governorOutput,
-			MAX_DroopSignalFeedbackKind_ENUM;
+		MAX_DroopSignalFeedbackKind_ENUM
 	}
 
 	private DroopSignalFeedbackKind_ENUM value;
 
-	public BaseClass construct() {
-		return new DroopSignalFeedbackKind();
-        }
+	private boolean initialized = false;
 
-	public DroopSignalFeedbackKind() {}
+	public DroopSignalFeedbackKind() {
+	}
 
 	public DroopSignalFeedbackKind(java.lang.String s) {
 		setValue(s);
-        }
+	}
 
+	@Override
+	public BaseClass construct() {
+		return new DroopSignalFeedbackKind();
+	}
+
+	@Override
+	public boolean isPrimitive() {
+		return true;
+	}
+
+	@Override
+	public boolean isInitialized() {
+		return initialized;
+	}
+
+	@Override
 	public void setValue(java.lang.String s) {
-		try
-		{
+		try {
 			value = DroopSignalFeedbackKind_ENUM.valueOf(s.trim());
+			initialized = true;
+		} catch (IllegalArgumentException iae) {
+			LOG.error("IllegalArgumentException: " + iae.getMessage());
 		}
-		catch (IllegalArgumentException iae)
-		{
-			System.out.println("NumberFormatException: " + iae.getMessage());
-		}
-        }
-
-	public void setAttribute(java.lang.String a, java.lang.String s) {
-		try
-		{
-			value = DroopSignalFeedbackKind_ENUM.valueOf(s.trim());
-		}
-		catch (IllegalArgumentException iae)
-		{
-			System.out.println("NumberFormatException: " + iae.getMessage());
-		}
-        }
-
-	public void setAttribute(java.lang.String attributeName, BaseClass value) {
-		throw new IllegalArgumentException("ENUM cannot set attribute: " + attributeName);
 	}
 
-	private java.lang.String debugName = "DroopSignalFeedbackKind";
-
-	public java.lang.String debugString(){
-		return debugName;
+	@Override
+	public Object getValue() {
+		return value.toString();
 	}
 
-	public java.lang.String toString(boolean b) {
+	@Override
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
+	}
+
+	@Override
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+		throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
+	}
+
+	@Override
+	public java.lang.String toString(boolean topClass) {
 		return "Enum (" + value.toString() + ")";
 	}
-};
 
+	private final java.lang.String debugName = "DroopSignalFeedbackKind";
+
+	@Override
+	public java.lang.String debugString() {
+		return debugName;
+	}
+}

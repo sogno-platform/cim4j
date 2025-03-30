@@ -1,160 +1,212 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.WindTurbineType3or4IEC;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * IEC Type 4 generator set model.  Reference: IEC Standard 61400-27-1 Section 6.6.3.4.
+ */
+public class WindGenType4IEC extends WindTurbineType3or4IEC {
 
-import cim4j.PU;
-import cim4j.Seconds;
+	private static final Logging LOG = Logging.getLogger(WindGenType4IEC.class);
 
-
-
-/*
-IEC Type 4 generator set model.  Reference: IEC Standard 61400-27-1 Section 6.6.3.4.
-*/
-public class WindGenType4IEC extends WindTurbineType3or4IEC
-{
 	private BaseClass[] WindGenType4IEC_class_attributes;
 	private BaseClass[] WindGenType4IEC_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new WindGenType4IEC().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum WindGenType4IEC_primitive_builder implements PrimitiveBuilder {
-		dipmax(){
-			public BaseClass construct (java.lang.String value) {
+		dipmax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		diqmin(){
-			public BaseClass construct (java.lang.String value) {
+		diqmax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		diqmax(){
-			public BaseClass construct (java.lang.String value) {
+		diqmin() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		tg(){
-			public BaseClass construct (java.lang.String value) {
+		tg() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		};
+		}
 	}
 
 	private enum WindGenType4IEC_class_attributes_enum {
 		dipmax,
-		diqmin,
 		diqmax,
+		diqmin,
 		tg,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-	
 	public WindGenType4IEC() {
 		WindGenType4IEC_primitive_attributes = new BaseClass[WindGenType4IEC_primitive_builder.values().length];
 		WindGenType4IEC_class_attributes = new BaseClass[WindGenType4IEC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(WindGenType4IEC_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new WindGenType4IEC();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(WindGenType4IEC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			WindGenType4IEC_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(WindGenType4IEC_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(WindGenType4IEC_primitive_builder attrEnum, BaseClass value) {
 		try {
 			WindGenType4IEC_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			WindGenType4IEC_class_attributes_enum attrEnum = WindGenType4IEC_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated WindGenType4IEC, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated WindGenType4IEC, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			WindGenType4IEC_primitive_builder attrEnum = WindGenType4IEC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated WindGenType4IEC, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated WindGenType4IEC, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			WindGenType4IEC_primitive_builder attrEnum = WindGenType4IEC_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = WindGenType4IEC_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			WindGenType4IEC_class_attributes_enum attrEnum = WindGenType4IEC_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = WindGenType4IEC_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : WindGenType4IEC_primitive_builder.values()) {
+			if (enumValue != WindGenType4IEC_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "WindGenType4IEC." + enumValue.name());
+			}
+		}
+		for (var enumValue : WindGenType4IEC_class_attributes_enum.values()) {
+			if (enumValue != WindGenType4IEC_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "WindGenType4IEC." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (WindGenType4IEC_primitive_builder attrEnum: WindGenType4IEC_primitive_builder.values()) {
+			for (WindGenType4IEC_primitive_builder attrEnum : WindGenType4IEC_primitive_builder.values()) {
 				BaseClass bc = WindGenType4IEC_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    WindGenType4IEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (WindGenType4IEC_class_attributes_enum attrEnum: WindGenType4IEC_class_attributes_enum.values()) {
+			for (WindGenType4IEC_class_attributes_enum attrEnum : WindGenType4IEC_class_attributes_enum.values()) {
 				BaseClass bc = WindGenType4IEC_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    WindGenType4IEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(WindGenType4IEC) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "WindGenType4IEC";
+	private final java.lang.String debugName = "WindGenType4IEC";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new WindGenType4IEC();
-        }
-};
+}

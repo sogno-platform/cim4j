@@ -1,202 +1,248 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.ExcitationSystemDynamics;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * Czech Proportion/Integral Exciter.
+ */
+public class ExcCZ extends ExcitationSystemDynamics {
 
-import cim4j.PU;
-import cim4j.Seconds;
+	private static final Logging LOG = Logging.getLogger(ExcCZ.class);
 
-
-
-/*
-Czech Proportion/Integral Exciter.
-*/
-public class ExcCZ extends ExcitationSystemDynamics
-{
 	private BaseClass[] ExcCZ_class_attributes;
 	private BaseClass[] ExcCZ_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new ExcCZ().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum ExcCZ_primitive_builder implements PrimitiveBuilder {
-		kp(){
-			public BaseClass construct (java.lang.String value) {
+		efdmax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		tc(){
-			public BaseClass construct (java.lang.String value) {
+		efdmin() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		ka() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		ke() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		kp() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		ta() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		vrmax(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		vrmin(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		ka(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		ta(){
-			public BaseClass construct (java.lang.String value) {
+		tc() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		ke(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		te(){
-			public BaseClass construct (java.lang.String value) {
+		te() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		efdmax(){
-			public BaseClass construct (java.lang.String value) {
+		vrmax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		efdmin(){
-			public BaseClass construct (java.lang.String value) {
+		vrmin() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		};
+		}
 	}
 
 	private enum ExcCZ_class_attributes_enum {
-		kp,
-		tc,
-		vrmax,
-		vrmin,
-		ka,
-		ta,
-		ke,
-		te,
 		efdmax,
 		efdmin,
-			LAST_ENUM;
+		ka,
+		ke,
+		kp,
+		ta,
+		tc,
+		te,
+		vrmax,
+		vrmin,
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	public ExcCZ() {
 		ExcCZ_primitive_attributes = new BaseClass[ExcCZ_primitive_builder.values().length];
 		ExcCZ_class_attributes = new BaseClass[ExcCZ_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcCZ_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new ExcCZ();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(ExcCZ_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			ExcCZ_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(ExcCZ_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(ExcCZ_primitive_builder attrEnum, BaseClass value) {
 		try {
 			ExcCZ_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			ExcCZ_class_attributes_enum attrEnum = ExcCZ_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated ExcCZ, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated ExcCZ, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcCZ_primitive_builder attrEnum = ExcCZ_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated ExcCZ, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated ExcCZ, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			ExcCZ_primitive_builder attrEnum = ExcCZ_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = ExcCZ_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			ExcCZ_class_attributes_enum attrEnum = ExcCZ_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = ExcCZ_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : ExcCZ_primitive_builder.values()) {
+			if (enumValue != ExcCZ_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "ExcCZ." + enumValue.name());
+			}
+		}
+		for (var enumValue : ExcCZ_class_attributes_enum.values()) {
+			if (enumValue != ExcCZ_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "ExcCZ." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (ExcCZ_primitive_builder attrEnum: ExcCZ_primitive_builder.values()) {
+			for (ExcCZ_primitive_builder attrEnum : ExcCZ_primitive_builder.values()) {
 				BaseClass bc = ExcCZ_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    ExcCZ." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (ExcCZ_class_attributes_enum attrEnum: ExcCZ_class_attributes_enum.values()) {
+			for (ExcCZ_class_attributes_enum attrEnum : ExcCZ_class_attributes_enum.values()) {
 				BaseClass bc = ExcCZ_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    ExcCZ." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(ExcCZ) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "ExcCZ";
+	private final java.lang.String debugName = "ExcCZ";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new ExcCZ();
-        }
-};
+}

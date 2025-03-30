@@ -1,413 +1,428 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.UnderexcitationLimiterDynamics;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * The class represents the Type UEL2 which has either a straight-line or multi-segment characteristic when plotted in terms of machine reactive power output vs. real power output.  Reference: IEEE UEL2 421.5-2005 Section 10.2.  (Limit characteristic lookup table shown in Figure 10.4 (p 32) of the standard).
+ */
+public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
 
-import cim4j.Seconds;
-import cim4j.PU;
-import cim4j.Simple_Float;
+	private static final Logging LOG = Logging.getLogger(UnderexcLimIEEE2.class);
 
-
-
-/*
-The class represents the Type UEL2 which has either a straight-line or multi-segment characteristic when plotted in terms of machine reactive power output vs. real power output.  Reference: IEEE UEL2 421.5-2005 Section 10.2.  (Limit characteristic lookup table shown in Figure 10.4 (p 32) of the standard).
-*/
-public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics
-{
 	private BaseClass[] UnderexcLimIEEE2_class_attributes;
 	private BaseClass[] UnderexcLimIEEE2_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new UnderexcLimIEEE2().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum UnderexcLimIEEE2_primitive_builder implements PrimitiveBuilder {
-		tuv(){
-			public BaseClass construct (java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tup(){
-			public BaseClass construct (java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tuq(){
-			public BaseClass construct (java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		kui(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		kul(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		vuimax(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		vuimin(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		kuf(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		kfb(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		tul(){
-			public BaseClass construct (java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tu1(){
-			public BaseClass construct (java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tu2(){
-			public BaseClass construct (java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tu3(){
-			public BaseClass construct (java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		tu4(){
-			public BaseClass construct (java.lang.String value) {
-				return new Seconds(value);
-			}
-		},
-		vulmax(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		vulmin(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		p0(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		q0(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		p1(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		q1(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		p2(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		q2(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		p3(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		q3(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		p4(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		q4(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		p5(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		q5(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		p6(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		q6(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		p7(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		q7(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		p8(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		q8(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		p9(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		q9(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		p10(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		q10(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		k1(){
-			public BaseClass construct (java.lang.String value) {
+		k1() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-		k2(){
-			public BaseClass construct (java.lang.String value) {
+		k2() {
+			public BaseClass construct(java.lang.String value) {
 				return new Simple_Float(value);
 			}
 		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
+		kfb() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
 			}
-		};
+		},
+		kuf() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		kui() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		kul() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		p0() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		p1() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		p10() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		p2() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		p3() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		p4() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		p5() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		p6() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		p7() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		p8() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		p9() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		q0() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		q1() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		q10() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		q2() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		q3() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		q4() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		q5() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		q6() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		q7() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		q8() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		q9() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		tu1() {
+			public BaseClass construct(java.lang.String value) {
+				return new Seconds(value);
+			}
+		},
+		tu2() {
+			public BaseClass construct(java.lang.String value) {
+				return new Seconds(value);
+			}
+		},
+		tu3() {
+			public BaseClass construct(java.lang.String value) {
+				return new Seconds(value);
+			}
+		},
+		tu4() {
+			public BaseClass construct(java.lang.String value) {
+				return new Seconds(value);
+			}
+		},
+		tul() {
+			public BaseClass construct(java.lang.String value) {
+				return new Seconds(value);
+			}
+		},
+		tup() {
+			public BaseClass construct(java.lang.String value) {
+				return new Seconds(value);
+			}
+		},
+		tuq() {
+			public BaseClass construct(java.lang.String value) {
+				return new Seconds(value);
+			}
+		},
+		tuv() {
+			public BaseClass construct(java.lang.String value) {
+				return new Seconds(value);
+			}
+		},
+		vuimax() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		vuimin() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		vulmax() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		vulmin() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
+			}
+		}
 	}
 
 	private enum UnderexcLimIEEE2_class_attributes_enum {
-		tuv,
-		tup,
-		tuq,
+		k1,
+		k2,
+		kfb,
+		kuf,
 		kui,
 		kul,
-		vuimax,
-		vuimin,
-		kuf,
-		kfb,
-		tul,
+		p0,
+		p1,
+		p10,
+		p2,
+		p3,
+		p4,
+		p5,
+		p6,
+		p7,
+		p8,
+		p9,
+		q0,
+		q1,
+		q10,
+		q2,
+		q3,
+		q4,
+		q5,
+		q6,
+		q7,
+		q8,
+		q9,
 		tu1,
 		tu2,
 		tu3,
 		tu4,
+		tul,
+		tup,
+		tuq,
+		tuv,
+		vuimax,
+		vuimin,
 		vulmax,
 		vulmin,
-		p0,
-		q0,
-		p1,
-		q1,
-		p2,
-		q2,
-		p3,
-		q3,
-		p4,
-		q4,
-		p5,
-		q5,
-		p6,
-		q6,
-		p7,
-		q7,
-		p8,
-		q8,
-		p9,
-		q9,
-		p10,
-		q10,
-		k1,
-		k2,
-			LAST_ENUM;
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	public UnderexcLimIEEE2() {
 		UnderexcLimIEEE2_primitive_attributes = new BaseClass[UnderexcLimIEEE2_primitive_builder.values().length];
 		UnderexcLimIEEE2_class_attributes = new BaseClass[UnderexcLimIEEE2_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(UnderexcLimIEEE2_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new UnderexcLimIEEE2();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(UnderexcLimIEEE2_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			UnderexcLimIEEE2_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(UnderexcLimIEEE2_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(UnderexcLimIEEE2_primitive_builder attrEnum, BaseClass value) {
 		try {
 			UnderexcLimIEEE2_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			UnderexcLimIEEE2_class_attributes_enum attrEnum = UnderexcLimIEEE2_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated UnderexcLimIEEE2, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated UnderexcLimIEEE2, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			UnderexcLimIEEE2_primitive_builder attrEnum = UnderexcLimIEEE2_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated UnderexcLimIEEE2, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated UnderexcLimIEEE2, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			UnderexcLimIEEE2_primitive_builder attrEnum = UnderexcLimIEEE2_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = UnderexcLimIEEE2_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			UnderexcLimIEEE2_class_attributes_enum attrEnum = UnderexcLimIEEE2_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = UnderexcLimIEEE2_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : UnderexcLimIEEE2_primitive_builder.values()) {
+			if (enumValue != UnderexcLimIEEE2_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "UnderexcLimIEEE2." + enumValue.name());
+			}
+		}
+		for (var enumValue : UnderexcLimIEEE2_class_attributes_enum.values()) {
+			if (enumValue != UnderexcLimIEEE2_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "UnderexcLimIEEE2." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (UnderexcLimIEEE2_primitive_builder attrEnum: UnderexcLimIEEE2_primitive_builder.values()) {
+			for (UnderexcLimIEEE2_primitive_builder attrEnum : UnderexcLimIEEE2_primitive_builder.values()) {
 				BaseClass bc = UnderexcLimIEEE2_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    UnderexcLimIEEE2." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (UnderexcLimIEEE2_class_attributes_enum attrEnum: UnderexcLimIEEE2_class_attributes_enum.values()) {
+			for (UnderexcLimIEEE2_class_attributes_enum attrEnum : UnderexcLimIEEE2_class_attributes_enum.values()) {
 				BaseClass bc = UnderexcLimIEEE2_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    UnderexcLimIEEE2." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(UnderexcLimIEEE2) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "UnderexcLimIEEE2";
+	private final java.lang.String debugName = "UnderexcLimIEEE2";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new UnderexcLimIEEE2();
-        }
-};
+}

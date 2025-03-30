@@ -1,293 +1,326 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
-import cim4j.ExcitationSystemDynamics;
-import java.lang.ArrayIndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.util.Set;
 
+/**
+ * Proportional/Integral Regulator Excitation System Model.  This model can be used to represent excitation systems with a proportional-integral (PI) voltage regulator controller.
+ */
+public class ExcPIC extends ExcitationSystemDynamics {
 
-import cim4j.PU;
-import cim4j.Seconds;
+	private static final Logging LOG = Logging.getLogger(ExcPIC.class);
 
-
-
-/*
-Proportional/Integral Regulator Excitation System Model.  This model can be used to represent excitation systems with a proportional-integral (PI) voltage regulator controller.
-*/
-public class ExcPIC extends ExcitationSystemDynamics
-{
 	private BaseClass[] ExcPIC_class_attributes;
 	private BaseClass[] ExcPIC_primitive_attributes;
 	private java.lang.String rdfid;
 
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
+	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+	static {
+		ATTRIBUTE_NAMES_MAP = new ExcPIC().getAttributeNamesMap();
 	}
 
-	private abstract interface PrimitiveBuilder {
-		public abstract BaseClass construct(java.lang.String value);
-	};
-
 	private enum ExcPIC_primitive_builder implements PrimitiveBuilder {
-		ka(){
-			public BaseClass construct (java.lang.String value) {
+		e1() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		ta1(){
-			public BaseClass construct (java.lang.String value) {
+		e2() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		efdmax() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		efdmin() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		ka() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		kc() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		ke() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		kf() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		ki() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		kp() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		se1() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		se2() {
+			public BaseClass construct(java.lang.String value) {
+				return new PU(value);
+			}
+		},
+		ta1() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		vr1(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		vr2(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		ta2(){
-			public BaseClass construct (java.lang.String value) {
+		ta2() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		ta3(){
-			public BaseClass construct (java.lang.String value) {
+		ta3() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		ta4(){
-			public BaseClass construct (java.lang.String value) {
+		ta4() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		vrmax(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		vrmin(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		kf(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		tf1(){
-			public BaseClass construct (java.lang.String value) {
+		te() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		tf2(){
-			public BaseClass construct (java.lang.String value) {
+		tf1() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		efdmax(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		efdmin(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		ke(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		te(){
-			public BaseClass construct (java.lang.String value) {
+		tf2() {
+			public BaseClass construct(java.lang.String value) {
 				return new Seconds(value);
 			}
 		},
-		e1(){
-			public BaseClass construct (java.lang.String value) {
+		vr1() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		se1(){
-			public BaseClass construct (java.lang.String value) {
+		vr2() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		e2(){
-			public BaseClass construct (java.lang.String value) {
+		vrmax() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		se2(){
-			public BaseClass construct (java.lang.String value) {
+		vrmin() {
+			public BaseClass construct(java.lang.String value) {
 				return new PU(value);
 			}
 		},
-		kp(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
+		LAST_ENUM() {
+			public BaseClass construct(java.lang.String value) {
+				return new Integer("0");
 			}
-		},
-		ki(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-		kc(){
-			public BaseClass construct (java.lang.String value) {
-				return new PU(value);
-			}
-		},
-			LAST_ENUM() {
-			public BaseClass construct (java.lang.String value) {
-				return new cim4j.Integer("0");
-			}
-		};
+		}
 	}
 
 	private enum ExcPIC_class_attributes_enum {
+		e1,
+		e2,
+		efdmax,
+		efdmin,
 		ka,
+		kc,
+		ke,
+		kf,
+		ki,
+		kp,
+		se1,
+		se2,
 		ta1,
-		vr1,
-		vr2,
 		ta2,
 		ta3,
 		ta4,
-		vrmax,
-		vrmin,
-		kf,
+		te,
 		tf1,
 		tf2,
-		efdmax,
-		efdmin,
-		ke,
-		te,
-		e1,
-		se1,
-		e2,
-		se2,
-		kp,
-		ki,
-		kc,
-			LAST_ENUM;
+		vr1,
+		vr2,
+		vrmax,
+		vrmin,
+		LAST_ENUM
 	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	public ExcPIC() {
 		ExcPIC_primitive_attributes = new BaseClass[ExcPIC_primitive_builder.values().length];
 		ExcPIC_class_attributes = new BaseClass[ExcPIC_class_attributes_enum.values().length];
 	}
 
-	public void updateAttributeInArray(ExcPIC_class_attributes_enum attrEnum, BaseClass value) {
+	@Override
+	public BaseClass construct() {
+		return new ExcPIC();
+	}
+
+	@Override
+	public void setValue(java.lang.String s) {
+		LOG.error(debugString() + " is not sure what to do with " + s);
+	}
+
+	@Override
+	public void setRdfid(java.lang.String id) {
+		rdfid = id;
+	}
+
+	@Override
+	public java.lang.String getRdfid() {
+		return rdfid;
+	}
+
+	private void updateAttributeInArray(ExcPIC_class_attributes_enum attrEnum, BaseClass value) {
 		try {
 			ExcPIC_class_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
-	public void updateAttributeInArray(ExcPIC_primitive_builder attrEnum, BaseClass value) {
+	private void updateAttributeInArray(ExcPIC_primitive_builder attrEnum, BaseClass value) {
 		try {
 			ExcPIC_primitive_attributes[attrEnum.ordinal()] = value;
-		}
-		catch (ArrayIndexOutOfBoundsException aoobe) {
-			System.out.println("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aoobe) {
+			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
 		}
 	}
 
+	@Override
 	public void setAttribute(java.lang.String attrName, BaseClass value) {
 		try {
 			ExcPIC_class_attributes_enum attrEnum = ExcPIC_class_attributes_enum.valueOf(attrName);
 			updateAttributeInArray(attrEnum, value);
-			System.out.println("Updated ExcPIC, setting " + attrName);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated ExcPIC, setting " + attrName);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
 	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
 	public void setAttribute(java.lang.String attrName, java.lang.String value) {
 		try {
 			ExcPIC_primitive_builder attrEnum = ExcPIC_primitive_builder.valueOf(attrName);
 			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			System.out.println("Updated ExcPIC, setting " + attrName  + " to: "  + value);
-		}
-		catch (IllegalArgumentException iae)
-		{
+			LOG.debug("Updated ExcPIC, setting " + attrName + " to: " + value);
+		} catch (IllegalArgumentException iae) {
 			super.setAttribute(attrName, value);
 		}
 	}
 
+	@Override
+	public BaseClass getAttribute(java.lang.String attrName) {
+		boolean defined = false;
+		try {
+			ExcPIC_primitive_builder attrEnum = ExcPIC_primitive_builder.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = ExcPIC_primitive_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		try {
+			ExcPIC_class_attributes_enum attrEnum = ExcPIC_class_attributes_enum.valueOf(attrName);
+			defined = true;
+			BaseClass attrValue = ExcPIC_class_attributes[attrEnum.ordinal()];
+			if (attrValue != null) {
+				return attrValue;
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
+
+		if (!defined) {
+			return super.getAttribute(attrName);
+		}
+		return null;
+	}
+
+	@Override
+	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+		for (var enumValue : ExcPIC_primitive_builder.values()) {
+			if (enumValue != ExcPIC_primitive_builder.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "ExcPIC." + enumValue.name());
+			}
+		}
+		for (var enumValue : ExcPIC_class_attributes_enum.values()) {
+			if (enumValue != ExcPIC_class_attributes_enum.LAST_ENUM) {
+				namesMap.put(enumValue.name(), "ExcPIC." + enumValue.name());
+			}
+		}
+		namesMap.putAll(super.getAttributeNamesMap());
+		return namesMap;
+	}
+
+	@Override
+	public Set<java.lang.String> getAttributeNames() {
+		return ATTRIBUTE_NAMES_MAP.keySet();
+	}
+
+	@Override
+	public java.lang.String getAttributeFullName(java.lang.String attrName) {
+		return ATTRIBUTE_NAMES_MAP.get(attrName);
+	}
+
+	@Override
 	public java.lang.String toString(boolean topClass) {
 		java.lang.String result = "";
-		java.lang.String indent = "";
 		if (topClass) {
-			for (ExcPIC_primitive_builder attrEnum: ExcPIC_primitive_builder.values()) {
+			for (ExcPIC_primitive_builder attrEnum : ExcPIC_primitive_builder.values()) {
 				BaseClass bc = ExcPIC_primitive_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    ExcPIC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
-			for (ExcPIC_class_attributes_enum attrEnum: ExcPIC_class_attributes_enum.values()) {
+			for (ExcPIC_class_attributes_enum attrEnum : ExcPIC_class_attributes_enum.values()) {
 				BaseClass bc = ExcPIC_class_attributes[attrEnum.ordinal()];
 				if (bc != null) {
 					result += "    ExcPIC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
 				}
 			}
 			result += super.toString(true);
-		}
-		else {
+		} else {
 			result += "(ExcPIC) RDFID: " + rdfid;
 		}
 		return result;
 	}
 
-	public final java.lang.String debugName = "ExcPIC";
+	private final java.lang.String debugName = "ExcPIC";
 
-	public java.lang.String debugString()
-	{
+	@Override
+	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setValue(java.lang.String s) {
-		System.out.println(debugString() + " is not sure what to do with " + s);
-	}
-
-	public BaseClass construct() {
-		return new ExcPIC();
-        }
-};
+}

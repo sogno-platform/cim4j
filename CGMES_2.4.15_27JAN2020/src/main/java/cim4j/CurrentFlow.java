@@ -1,67 +1,81 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
 package cim4j;
 
-import java.lang.Double;
-import java.util.Map;
-import java.util.HashMap;
-import cim4j.BaseClass;
+/**
+ * Electrical current with sign convention: positive flow is out of the conducting equipment into the connectivity node. Can be both AC and DC.
+ */
+public class CurrentFlow extends BaseClass {
 
-public class CurrentFlow extends BaseClass
-{
-	CurrentFlow () {}
+	private static final Logging LOG = Logging.getLogger(CurrentFlow.class);
 
-	CurrentFlow (double v) {
+	private double value = 0.0;
+
+	private boolean initialized = false;
+
+	public CurrentFlow() {
+	}
+
+	public CurrentFlow(double v) {
 		value = v;
 		initialized = true;
 	}
 
-	CurrentFlow (java.lang.String s) {
+	public CurrentFlow(java.lang.String s) {
 		setValue(s);
 	}
 
-	public void setValue(java.lang.String s) {
-		try
-		{
-			value = java.lang.Float.valueOf(s.trim()).floatValue();
-			initialized = true;
-		}
-		catch (NumberFormatException nfe)
-		{
-			System.out.println("NumberFormatException: " + nfe.getMessage());
-		}
-        }
-
+	@Override
 	public BaseClass construct() {
 		return new CurrentFlow();
-        }
+	}
 
-	public double value = 0.0;
+	@Override
+	public boolean isPrimitive() {
+		return true;
+	}
 
-	public boolean initialized = false;
+	@Override
+	public boolean isInitialized() {
+		return initialized;
+	}
 
-	public java.lang.String debugName = "CurrentFlow";
+	@Override
+	public void setValue(java.lang.String s) {
+		try {
+			value = java.lang.Float.valueOf(s.trim()).floatValue();
+			initialized = true;
+		} catch (NumberFormatException nfe) {
+			LOG.error("NumberFormatException: " + nfe.getMessage());
+		}
+	}
 
+	@Override
+	public Object getValue() {
+		return Double.valueOf(value);
+	}
+
+	@Override
+	public void setAttribute(java.lang.String attrName, BaseClass value) {
+		throw new IllegalArgumentException("Float class cannot set attribute: " + attrName);
+	}
+
+	@Override
+	public void setAttribute(java.lang.String attrName, java.lang.String value) {
+		throw new IllegalArgumentException("Float class cannot set attribute: " + attrName);
+	}
+
+	@Override
+	public java.lang.String toString(boolean topClass) {
+		return "Float: (" + Double.toString(value) + ")";
+	}
+
+	private final java.lang.String debugName = "CurrentFlow";
+
+	@Override
 	public java.lang.String debugString() {
 		return debugName;
 	}
-
-	public void setAttribute(java.lang.String attributeName, BaseClass value) {
-		throw new IllegalArgumentException("Float class cannot set attribute: " + attributeName);
-	}
-
-	public void setAttribute(java.lang.String s, java.lang.String v) {
-		try
-		{
-			value = java.lang.Float.parseFloat(v.trim());
-			initialized = true;
-		}
-		catch (NumberFormatException nfe)
-		{
-			System.out.println("NumberFormatException: " + nfe.getMessage());
-		}
-	}
-
-	public java.lang.String toString(boolean b) {
-		return "Float: (" + Double.toString(value) + ")";
-	}
-};
-
+}

@@ -13,178 +13,216 @@ import java.util.Set;
  */
 public class NonConformLoadGroup extends LoadGroup {
 
-	private static final Logging LOG = Logging.getLogger(NonConformLoadGroup.class);
+    private static final Logging LOG = Logging.getLogger(NonConformLoadGroup.class);
 
-	private BaseClass[] NonConformLoadGroup_class_attributes;
-	private BaseClass[] NonConformLoadGroup_primitive_attributes;
-	private java.lang.String rdfid;
+    private BaseClass[] NonConformLoadGroup_class_attributes;
+    private BaseClass[] NonConformLoadGroup_primitive_attributes;
+    private java.lang.String rdfid;
 
-	private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-	static {
-		ATTRIBUTE_NAMES_MAP = new NonConformLoadGroup().getAttributeNamesMap();
-	}
+    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+    static {
+        ATTRIBUTE_NAMES_MAP = new NonConformLoadGroup().getAttributeNamesMap();
+    }
 
-	private enum NonConformLoadGroup_primitive_builder implements PrimitiveBuilder {
-		LAST_ENUM() {
-			public BaseClass construct(java.lang.String value) {
-				return new Integer("0");
-			}
-		}
-	}
+    private enum NonConformLoadGroup_primitive_builder implements PrimitiveBuilder {
+        LAST_ENUM() {
+            public BaseClass construct(java.lang.String value) {
+                return new Integer("0");
+            }
+        }
+    }
 
-	private enum NonConformLoadGroup_class_attributes_enum {
-		EnergyConsumers,
-		NonConformLoadSchedules,
-		LAST_ENUM
-	}
+    private enum NonConformLoadGroup_class_attributes_enum {
+        EnergyConsumers,
+        NonConformLoadSchedules,
+        LAST_ENUM
+    }
 
-	public NonConformLoadGroup() {
-		NonConformLoadGroup_primitive_attributes = new BaseClass[NonConformLoadGroup_primitive_builder.values().length];
-		NonConformLoadGroup_class_attributes = new BaseClass[NonConformLoadGroup_class_attributes_enum.values().length];
-	}
+    public NonConformLoadGroup() {
+        NonConformLoadGroup_primitive_attributes = new BaseClass[NonConformLoadGroup_primitive_builder.values().length];
+        NonConformLoadGroup_class_attributes = new BaseClass[NonConformLoadGroup_class_attributes_enum.values().length];
+    }
 
-	@Override
-	public BaseClass construct() {
-		return new NonConformLoadGroup();
-	}
+    @Override
+    public BaseClass construct() {
+        return new NonConformLoadGroup();
+    }
 
-	@Override
-	public void setValue(java.lang.String s) {
-		LOG.error(debugString() + " is not sure what to do with " + s);
-	}
+    @Override
+    public void setValue(java.lang.String s) {
+        LOG.error(debugString() + " is not sure what to do with " + s);
+    }
 
-	@Override
-	public void setRdfid(java.lang.String id) {
-		rdfid = id;
-	}
+    @Override
+    public void setRdfid(java.lang.String id) {
+        rdfid = id;
+    }
 
-	@Override
-	public java.lang.String getRdfid() {
-		return rdfid;
-	}
+    @Override
+    public java.lang.String getRdfid() {
+        return rdfid;
+    }
 
-	private void updateAttributeInArray(NonConformLoadGroup_class_attributes_enum attrEnum, BaseClass value) {
-		try {
-			NonConformLoadGroup_class_attributes[attrEnum.ordinal()] = value;
-		} catch (ArrayIndexOutOfBoundsException aoobe) {
-			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-		}
-	}
+    private void updateAttributeInArray(NonConformLoadGroup_class_attributes_enum attrEnum, BaseClass value) {
+        try {
+            NonConformLoadGroup_class_attributes[attrEnum.ordinal()] = value;
+        } catch (ArrayIndexOutOfBoundsException aoobe) {
+            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+        }
+    }
 
-	private void updateAttributeInArray(NonConformLoadGroup_primitive_builder attrEnum, BaseClass value) {
-		try {
-			NonConformLoadGroup_primitive_attributes[attrEnum.ordinal()] = value;
-		} catch (ArrayIndexOutOfBoundsException aoobe) {
-			LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-		}
-	}
+    private void updateAttributeInArray(NonConformLoadGroup_primitive_builder attrEnum, BaseClass value) {
+        try {
+            NonConformLoadGroup_primitive_attributes[attrEnum.ordinal()] = value;
+        } catch (ArrayIndexOutOfBoundsException aoobe) {
+            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+        }
+    }
 
-	@Override
-	public void setAttribute(java.lang.String attrName, BaseClass value) {
-		try {
-			NonConformLoadGroup_class_attributes_enum attrEnum = NonConformLoadGroup_class_attributes_enum.valueOf(attrName);
-			updateAttributeInArray(attrEnum, value);
-			LOG.debug("Updated NonConformLoadGroup, setting " + attrName);
-		} catch (IllegalArgumentException iae) {
-			super.setAttribute(attrName, value);
-		}
-	}
+    @Override
+    public void setAttribute(java.lang.String attrName, BaseClass value) {
+        try {
+            NonConformLoadGroup_class_attributes_enum attrEnum = NonConformLoadGroup_class_attributes_enum.valueOf(attrName);
+            updateAttributeInArray(attrEnum, value);
+            LOG.debug("Updated NonConformLoadGroup, setting " + attrName);
+        } catch (IllegalArgumentException iae) {
+            super.setAttribute(attrName, value);
+        }
+    }
 
-	@Override
-	/* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-	public void setAttribute(java.lang.String attrName, java.lang.String value) {
-		try {
-			NonConformLoadGroup_primitive_builder attrEnum = NonConformLoadGroup_primitive_builder.valueOf(attrName);
-			updateAttributeInArray(attrEnum, attrEnum.construct(value));
-			LOG.debug("Updated NonConformLoadGroup, setting " + attrName + " to: " + value);
-		} catch (IllegalArgumentException iae) {
-			super.setAttribute(attrName, value);
-		}
-	}
+    @Override
+    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
+    public void setAttribute(java.lang.String attrName, java.lang.String value) {
+        try {
+            NonConformLoadGroup_primitive_builder attrEnum = NonConformLoadGroup_primitive_builder.valueOf(attrName);
+            updateAttributeInArray(attrEnum, attrEnum.construct(value));
+            LOG.debug("Updated NonConformLoadGroup, setting " + attrName + " to: " + value);
+        } catch (IllegalArgumentException iae) {
+            super.setAttribute(attrName, value);
+        }
+    }
 
-	@Override
-	public BaseClass getAttribute(java.lang.String attrName) {
-		boolean defined = false;
-		try {
-			NonConformLoadGroup_primitive_builder attrEnum = NonConformLoadGroup_primitive_builder.valueOf(attrName);
-			defined = true;
-			BaseClass attrValue = NonConformLoadGroup_primitive_attributes[attrEnum.ordinal()];
-			if (attrValue != null) {
-				return attrValue;
-			}
-		} catch (IllegalArgumentException ignored) {
-		}
+    @Override
+    public BaseClass getAttribute(java.lang.String attrName) {
+        boolean defined = false;
+        try {
+            NonConformLoadGroup_primitive_builder attrEnum = NonConformLoadGroup_primitive_builder.valueOf(attrName);
+            defined = true;
+            BaseClass attrValue = NonConformLoadGroup_primitive_attributes[attrEnum.ordinal()];
+            if (attrValue != null) {
+                return attrValue;
+            }
+        } catch (IllegalArgumentException ignored) {
+        }
 
-		try {
-			NonConformLoadGroup_class_attributes_enum attrEnum = NonConformLoadGroup_class_attributes_enum.valueOf(attrName);
-			defined = true;
-			BaseClass attrValue = NonConformLoadGroup_class_attributes[attrEnum.ordinal()];
-			if (attrValue != null) {
-				return attrValue;
-			}
-		} catch (IllegalArgumentException ignored) {
-		}
+        try {
+            NonConformLoadGroup_class_attributes_enum attrEnum = NonConformLoadGroup_class_attributes_enum.valueOf(attrName);
+            defined = true;
+            BaseClass attrValue = NonConformLoadGroup_class_attributes[attrEnum.ordinal()];
+            if (attrValue != null) {
+                return attrValue;
+            }
+        } catch (IllegalArgumentException ignored) {
+        }
 
-		if (!defined) {
-			return super.getAttribute(attrName);
-		}
-		return null;
-	}
+        if (!defined) {
+            return super.getAttribute(attrName);
+        }
+        return null;
+    }
 
-	@Override
-	protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-		Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-		for (var enumValue : NonConformLoadGroup_primitive_builder.values()) {
-			if (enumValue != NonConformLoadGroup_primitive_builder.LAST_ENUM) {
-				namesMap.put(enumValue.name(), "NonConformLoadGroup." + enumValue.name());
-			}
-		}
-		for (var enumValue : NonConformLoadGroup_class_attributes_enum.values()) {
-			if (enumValue != NonConformLoadGroup_class_attributes_enum.LAST_ENUM) {
-				namesMap.put(enumValue.name(), "NonConformLoadGroup." + enumValue.name());
-			}
-		}
-		namesMap.putAll(super.getAttributeNamesMap());
-		return namesMap;
-	}
+    @Override
+    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+        for (var enumValue : NonConformLoadGroup_primitive_builder.values()) {
+            if (enumValue != NonConformLoadGroup_primitive_builder.LAST_ENUM) {
+                namesMap.put(enumValue.name(), "NonConformLoadGroup." + enumValue.name());
+            }
+        }
+        for (var enumValue : NonConformLoadGroup_class_attributes_enum.values()) {
+            if (enumValue != NonConformLoadGroup_class_attributes_enum.LAST_ENUM) {
+                namesMap.put(enumValue.name(), "NonConformLoadGroup." + enumValue.name());
+            }
+        }
+        namesMap.putAll(super.getAttributeNamesMap());
+        return namesMap;
+    }
 
-	@Override
-	public Set<java.lang.String> getAttributeNames() {
-		return ATTRIBUTE_NAMES_MAP.keySet();
-	}
+    @Override
+    public Set<java.lang.String> getAttributeNames() {
+        return ATTRIBUTE_NAMES_MAP.keySet();
+    }
 
-	@Override
-	public java.lang.String getAttributeFullName(java.lang.String attrName) {
-		return ATTRIBUTE_NAMES_MAP.get(attrName);
-	}
+    @Override
+    public java.lang.String getAttributeFullName(java.lang.String attrName) {
+        return ATTRIBUTE_NAMES_MAP.get(attrName);
+    }
 
-	@Override
-	public java.lang.String toString(boolean topClass) {
-		java.lang.String result = "";
-		if (topClass) {
-			for (NonConformLoadGroup_primitive_builder attrEnum : NonConformLoadGroup_primitive_builder.values()) {
-				BaseClass bc = NonConformLoadGroup_primitive_attributes[attrEnum.ordinal()];
-				if (bc != null) {
-					result += "    NonConformLoadGroup." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-				}
-			}
-			for (NonConformLoadGroup_class_attributes_enum attrEnum : NonConformLoadGroup_class_attributes_enum.values()) {
-				BaseClass bc = NonConformLoadGroup_class_attributes[attrEnum.ordinal()];
-				if (bc != null) {
-					result += "    NonConformLoadGroup." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-				}
-			}
-			result += super.toString(true);
-		} else {
-			result += "(NonConformLoadGroup) RDFID: " + rdfid;
-		}
-		return result;
-	}
+    @Override
+    public java.lang.String toString(boolean topClass) {
+        java.lang.String result = "";
+        if (topClass) {
+            for (NonConformLoadGroup_primitive_builder attrEnum : NonConformLoadGroup_primitive_builder.values()) {
+                BaseClass bc = NonConformLoadGroup_primitive_attributes[attrEnum.ordinal()];
+                if (bc != null) {
+                    result += "    NonConformLoadGroup." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+                }
+            }
+            for (NonConformLoadGroup_class_attributes_enum attrEnum : NonConformLoadGroup_class_attributes_enum.values()) {
+                BaseClass bc = NonConformLoadGroup_class_attributes[attrEnum.ordinal()];
+                if (bc != null) {
+                    result += "    NonConformLoadGroup." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+                }
+            }
+            result += super.toString(true);
+        } else {
+            result += "(NonConformLoadGroup) RDFID: " + rdfid;
+        }
+        return result;
+    }
 
-	private final java.lang.String debugName = "NonConformLoadGroup";
+    private final java.lang.String debugName = "NonConformLoadGroup";
 
-	@Override
-	public java.lang.String debugString() {
-		return debugName;
-	}
+    @Override
+    public java.lang.String debugString() {
+        return debugName;
+    }
+
+    /**
+     * Get the namespace URL of an object of this class.
+     *
+     * @return The namespace URL
+     */
+    @Override
+    public java.lang.String getClassNamespaceUrl() {
+        return "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    }
+
+    /**
+     * Get the namespace URL of an attribute (also for inherited attributes).
+     *
+     * @return The namespace URL
+     */
+    @Override
+    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+        return ATTR_NAMESPACE_MAP.get(attrName);
+    }
+
+    private static final Map<java.lang.String, java.lang.String> ATTR_NAMESPACE_MAP;
+    static {
+        ATTR_NAMESPACE_MAP = new NonConformLoadGroup().allAttrNamespaceMap();
+    }
+
+    @Override
+    protected Map<java.lang.String, java.lang.String> allAttrNamespaceMap() {
+        Map<java.lang.String, java.lang.String> map = new LinkedHashMap<>(classAttrNamespaceMap);
+        map.putAll(super.allAttrNamespaceMap());
+        map.remove("LAST_ATTRIBUTE");
+        return map;
+    }
+
+    private Map<java.lang.String, java.lang.String> classAttrNamespaceMap = Map.ofEntries(
+            Map.entry("EnergyConsumers", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("NonConformLoadSchedules", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
+            Map.entry("LAST_ATTRIBUTE", ""));
 }

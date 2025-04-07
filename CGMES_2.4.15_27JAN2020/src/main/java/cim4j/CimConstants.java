@@ -11,6 +11,11 @@ import java.util.Map;
 public final class CimConstants {
 
     /**
+     * CIM version string.
+     */
+    public static final java.lang.String CIM_VERSION = "cgmes_v2_4_15";
+
+    /**
      * Default namespaces used by CGMES. Map of namespace key to URL.
      */
     public static final Map<java.lang.String, java.lang.String> NAMESPACES_MAP;

@@ -9,88 +9,88 @@ package cim4j;
  */
 public class StaticLoadModelKind extends BaseClass {
 
-	private static final Logging LOG = Logging.getLogger(StaticLoadModelKind.class);
+    private static final Logging LOG = Logging.getLogger(StaticLoadModelKind.class);
 
-	private enum StaticLoadModelKind_ENUM {
-		/**
-		 * Exponential P and Q equations are used and the following attributes are required: kp1, kp2, kp3, kpf, ep1, ep2, ep3 kq1, kq2, kq3, kqf, eq1, eq2, eq3.
-		 */
-		exponential,
-		/**
-		 * ZIP1 P and Q equations are used and the following attributes are required: kp1, kp2, kp3, kpf kq1, kq2, kq3, kqf.
-		 */
-		zIP1,
-		/**
-		 * This model separates the frequency-dependent load (primarily motors) from other load.  ZIP2 P and Q equations are used and the following attributes are required: kp1, kp2, kp3, kq4, kpf kq1, kq2, kq3, kq4, kqf.
-		 */
-		zIP2,
-		/**
-		 * The load is represented as a constant impedance.  ConstantZ P and Q equations are used and no attributes are required.
-		 */
-		constantZ,
-		MAX_StaticLoadModelKind_ENUM
-	}
+    private enum StaticLoadModelKind_ENUM {
+        /**
+         * Exponential P and Q equations are used and the following attributes are required: kp1, kp2, kp3, kpf, ep1, ep2, ep3 kq1, kq2, kq3, kqf, eq1, eq2, eq3.
+         */
+        exponential,
+        /**
+         * ZIP1 P and Q equations are used and the following attributes are required: kp1, kp2, kp3, kpf kq1, kq2, kq3, kqf.
+         */
+        zIP1,
+        /**
+         * This model separates the frequency-dependent load (primarily motors) from other load.  ZIP2 P and Q equations are used and the following attributes are required: kp1, kp2, kp3, kq4, kpf kq1, kq2, kq3, kq4, kqf.
+         */
+        zIP2,
+        /**
+         * The load is represented as a constant impedance.  ConstantZ P and Q equations are used and no attributes are required.
+         */
+        constantZ,
+        MAX_StaticLoadModelKind_ENUM
+    }
 
-	private StaticLoadModelKind_ENUM value;
+    private StaticLoadModelKind_ENUM value;
 
-	private boolean initialized = false;
+    private boolean initialized = false;
 
-	public StaticLoadModelKind() {
-	}
+    public StaticLoadModelKind() {
+    }
 
-	public StaticLoadModelKind(java.lang.String s) {
-		setValue(s);
-	}
+    public StaticLoadModelKind(java.lang.String s) {
+        setValue(s);
+    }
 
-	@Override
-	public BaseClass construct() {
-		return new StaticLoadModelKind();
-	}
+    @Override
+    public BaseClass construct() {
+        return new StaticLoadModelKind();
+    }
 
-	@Override
-	public boolean isPrimitive() {
-		return true;
-	}
+    @Override
+    public boolean isPrimitive() {
+        return true;
+    }
 
-	@Override
-	public boolean isInitialized() {
-		return initialized;
-	}
+    @Override
+    public boolean isInitialized() {
+        return initialized;
+    }
 
-	@Override
-	public void setValue(java.lang.String s) {
-		try {
-			value = StaticLoadModelKind_ENUM.valueOf(s.trim());
-			initialized = true;
-		} catch (IllegalArgumentException iae) {
-			LOG.error("IllegalArgumentException: " + iae.getMessage());
-		}
-	}
+    @Override
+    public void setValue(java.lang.String s) {
+        try {
+            value = StaticLoadModelKind_ENUM.valueOf(s.trim());
+            initialized = true;
+        } catch (IllegalArgumentException iae) {
+            LOG.error("IllegalArgumentException: " + iae.getMessage());
+        }
+    }
 
-	@Override
-	public Object getValue() {
-		return value.toString();
-	}
+    @Override
+    public Object getValue() {
+        return value.toString();
+    }
 
-	@Override
-	public void setAttribute(java.lang.String attrName, BaseClass value) {
-		throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
-	}
+    @Override
+    public void setAttribute(java.lang.String attrName, BaseClass value) {
+        throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
+    }
 
-	@Override
-	public void setAttribute(java.lang.String attrName, java.lang.String value) {
-		throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
-	}
+    @Override
+    public void setAttribute(java.lang.String attrName, java.lang.String value) {
+        throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
+    }
 
-	@Override
-	public java.lang.String toString(boolean topClass) {
-		return "Enum (" + value.toString() + ")";
-	}
+    @Override
+    public java.lang.String toString(boolean topClass) {
+        return "Enum (" + value.toString() + ")";
+    }
 
-	private final java.lang.String debugName = "StaticLoadModelKind";
+    private final java.lang.String debugName = "StaticLoadModelKind";
 
-	@Override
-	public java.lang.String debugString() {
-		return debugName;
-	}
+    @Override
+    public java.lang.String debugString() {
+        return debugName;
+    }
 }

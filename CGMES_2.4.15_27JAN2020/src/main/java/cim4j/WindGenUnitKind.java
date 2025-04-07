@@ -9,80 +9,80 @@ package cim4j;
  */
 public class WindGenUnitKind extends BaseClass {
 
-	private static final Logging LOG = Logging.getLogger(WindGenUnitKind.class);
+    private static final Logging LOG = Logging.getLogger(WindGenUnitKind.class);
 
-	private enum WindGenUnitKind_ENUM {
-		/**
-		 * The wind generating unit is located offshore.
-		 */
-		offshore,
-		/**
-		 * The wind generating unit is located onshore.
-		 */
-		onshore,
-		MAX_WindGenUnitKind_ENUM
-	}
+    private enum WindGenUnitKind_ENUM {
+        /**
+         * The wind generating unit is located offshore.
+         */
+        offshore,
+        /**
+         * The wind generating unit is located onshore.
+         */
+        onshore,
+        MAX_WindGenUnitKind_ENUM
+    }
 
-	private WindGenUnitKind_ENUM value;
+    private WindGenUnitKind_ENUM value;
 
-	private boolean initialized = false;
+    private boolean initialized = false;
 
-	public WindGenUnitKind() {
-	}
+    public WindGenUnitKind() {
+    }
 
-	public WindGenUnitKind(java.lang.String s) {
-		setValue(s);
-	}
+    public WindGenUnitKind(java.lang.String s) {
+        setValue(s);
+    }
 
-	@Override
-	public BaseClass construct() {
-		return new WindGenUnitKind();
-	}
+    @Override
+    public BaseClass construct() {
+        return new WindGenUnitKind();
+    }
 
-	@Override
-	public boolean isPrimitive() {
-		return true;
-	}
+    @Override
+    public boolean isPrimitive() {
+        return true;
+    }
 
-	@Override
-	public boolean isInitialized() {
-		return initialized;
-	}
+    @Override
+    public boolean isInitialized() {
+        return initialized;
+    }
 
-	@Override
-	public void setValue(java.lang.String s) {
-		try {
-			value = WindGenUnitKind_ENUM.valueOf(s.trim());
-			initialized = true;
-		} catch (IllegalArgumentException iae) {
-			LOG.error("IllegalArgumentException: " + iae.getMessage());
-		}
-	}
+    @Override
+    public void setValue(java.lang.String s) {
+        try {
+            value = WindGenUnitKind_ENUM.valueOf(s.trim());
+            initialized = true;
+        } catch (IllegalArgumentException iae) {
+            LOG.error("IllegalArgumentException: " + iae.getMessage());
+        }
+    }
 
-	@Override
-	public Object getValue() {
-		return value.toString();
-	}
+    @Override
+    public Object getValue() {
+        return value.toString();
+    }
 
-	@Override
-	public void setAttribute(java.lang.String attrName, BaseClass value) {
-		throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
-	}
+    @Override
+    public void setAttribute(java.lang.String attrName, BaseClass value) {
+        throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
+    }
 
-	@Override
-	public void setAttribute(java.lang.String attrName, java.lang.String value) {
-		throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
-	}
+    @Override
+    public void setAttribute(java.lang.String attrName, java.lang.String value) {
+        throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
+    }
 
-	@Override
-	public java.lang.String toString(boolean topClass) {
-		return "Enum (" + value.toString() + ")";
-	}
+    @Override
+    public java.lang.String toString(boolean topClass) {
+        return "Enum (" + value.toString() + ")";
+    }
 
-	private final java.lang.String debugName = "WindGenUnitKind";
+    private final java.lang.String debugName = "WindGenUnitKind";
 
-	@Override
-	public java.lang.String debugString() {
-		return debugName;
-	}
+    @Override
+    public java.lang.String debugString() {
+        return debugName;
+    }
 }

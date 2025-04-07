@@ -9,92 +9,92 @@ package cim4j;
  */
 public class SynchronousMachineModelKind extends BaseClass {
 
-	private static final Logging LOG = Logging.getLogger(SynchronousMachineModelKind.class);
+    private static final Logging LOG = Logging.getLogger(SynchronousMachineModelKind.class);
 
-	private enum SynchronousMachineModelKind_ENUM {
-		/**
-		 * Subtransient synchronous machine model.
-		 */
-		subtransient,
-		/**
-		 * WECC Type F variant of subtransient synchronous machine model.
-		 */
-		subtransientTypeF,
-		/**
-		 * WECC Type J variant of subtransient synchronous machine model.
-		 */
-		subtransientTypeJ,
-		/**
-		 * Simplified version of subtransient synchronous machine model where magnetic coupling between the direct and quadrature axes is ignored.
-		 */
-		subtransientSimplified,
-		/**
-		 * Simplified version of a subtransient synchronous machine model with no damper circuit on d-axis.
-		 */
-		subtransientSimplifiedDirectAxis,
-		MAX_SynchronousMachineModelKind_ENUM
-	}
+    private enum SynchronousMachineModelKind_ENUM {
+        /**
+         * Subtransient synchronous machine model.
+         */
+        subtransient,
+        /**
+         * WECC Type F variant of subtransient synchronous machine model.
+         */
+        subtransientTypeF,
+        /**
+         * WECC Type J variant of subtransient synchronous machine model.
+         */
+        subtransientTypeJ,
+        /**
+         * Simplified version of subtransient synchronous machine model where magnetic coupling between the direct and quadrature axes is ignored.
+         */
+        subtransientSimplified,
+        /**
+         * Simplified version of a subtransient synchronous machine model with no damper circuit on d-axis.
+         */
+        subtransientSimplifiedDirectAxis,
+        MAX_SynchronousMachineModelKind_ENUM
+    }
 
-	private SynchronousMachineModelKind_ENUM value;
+    private SynchronousMachineModelKind_ENUM value;
 
-	private boolean initialized = false;
+    private boolean initialized = false;
 
-	public SynchronousMachineModelKind() {
-	}
+    public SynchronousMachineModelKind() {
+    }
 
-	public SynchronousMachineModelKind(java.lang.String s) {
-		setValue(s);
-	}
+    public SynchronousMachineModelKind(java.lang.String s) {
+        setValue(s);
+    }
 
-	@Override
-	public BaseClass construct() {
-		return new SynchronousMachineModelKind();
-	}
+    @Override
+    public BaseClass construct() {
+        return new SynchronousMachineModelKind();
+    }
 
-	@Override
-	public boolean isPrimitive() {
-		return true;
-	}
+    @Override
+    public boolean isPrimitive() {
+        return true;
+    }
 
-	@Override
-	public boolean isInitialized() {
-		return initialized;
-	}
+    @Override
+    public boolean isInitialized() {
+        return initialized;
+    }
 
-	@Override
-	public void setValue(java.lang.String s) {
-		try {
-			value = SynchronousMachineModelKind_ENUM.valueOf(s.trim());
-			initialized = true;
-		} catch (IllegalArgumentException iae) {
-			LOG.error("IllegalArgumentException: " + iae.getMessage());
-		}
-	}
+    @Override
+    public void setValue(java.lang.String s) {
+        try {
+            value = SynchronousMachineModelKind_ENUM.valueOf(s.trim());
+            initialized = true;
+        } catch (IllegalArgumentException iae) {
+            LOG.error("IllegalArgumentException: " + iae.getMessage());
+        }
+    }
 
-	@Override
-	public Object getValue() {
-		return value.toString();
-	}
+    @Override
+    public Object getValue() {
+        return value.toString();
+    }
 
-	@Override
-	public void setAttribute(java.lang.String attrName, BaseClass value) {
-		throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
-	}
+    @Override
+    public void setAttribute(java.lang.String attrName, BaseClass value) {
+        throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
+    }
 
-	@Override
-	public void setAttribute(java.lang.String attrName, java.lang.String value) {
-		throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
-	}
+    @Override
+    public void setAttribute(java.lang.String attrName, java.lang.String value) {
+        throw new IllegalArgumentException("ENUM cannot set attribute: " + attrName);
+    }
 
-	@Override
-	public java.lang.String toString(boolean topClass) {
-		return "Enum (" + value.toString() + ")";
-	}
+    @Override
+    public java.lang.String toString(boolean topClass) {
+        return "Enum (" + value.toString() + ")";
+    }
 
-	private final java.lang.String debugName = "SynchronousMachineModelKind";
+    private final java.lang.String debugName = "SynchronousMachineModelKind";
 
-	@Override
-	public java.lang.String debugString() {
-		return debugName;
-	}
+    @Override
+    public java.lang.String debugString() {
+        return debugName;
+    }
 }

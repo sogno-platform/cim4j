@@ -3,6 +3,7 @@ package cim4j.utils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -24,6 +25,7 @@ import cim4j.EnergySource;
 import cim4j.Logging;
 import cim4j.OperationalLimitType;
 import cim4j.Terminal;
+import cim4j.TopologicalIsland;
 import cim4j.TopologicalNode;
 import cim4j.Voltage;
 import cim4j.VoltageLevel;
@@ -462,6 +464,46 @@ class RdfReaderTest {
         var attributeNames = baseVoltage.getAttributeNames();
         assertTrue(attributeNames.contains("description"));
         assertEquals("€ÄÖÜäöüß", baseVoltage.getAttribute("description").toString(false));
+    }
+
+    @Test
+    @Order(350)
+    void testRead022() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test022.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("TopologicalIsland.N"));
+        assertTrue(cimData.containsKey("TopologicalIsland.N2"));
+
+        var obj = cimData.get("TopologicalIsland.N");
+        assertNotNull(obj);
+        assertTrue(obj instanceof TopologicalIsland);
+        var topologicalIsland = (TopologicalIsland) obj;
+        assertEquals(TopologicalIsland.class, topologicalIsland.getClass());
+        assertEquals("TopologicalIsland.N", topologicalIsland.getRdfid());
+
+        var attributeNames = topologicalIsland.getAttributeNames();
+        assertTrue(attributeNames.contains("TopologicalNodes"));
+        assertTrue(attributeNames.contains("description"));
+        assertTrue(attributeNames.contains("name"));
+        assertNull(topologicalIsland.getAttribute("TopologicalNodes"));
+        assertEquals("Island N", topologicalIsland.getAttribute("description").toString(false));
+        assertEquals("N", topologicalIsland.getAttribute("name").toString(false));
+
+        obj = cimData.get("TopologicalIsland.N2");
+        assertNotNull(obj);
+        assertTrue(obj instanceof TopologicalIsland);
+        topologicalIsland = (TopologicalIsland) obj;
+        assertEquals(TopologicalIsland.class, topologicalIsland.getClass());
+        assertEquals("TopologicalIsland.N2", topologicalIsland.getRdfid());
+
+        attributeNames = topologicalIsland.getAttributeNames();
+        assertTrue(attributeNames.contains("TopologicalNodes"));
+        assertTrue(attributeNames.contains("description"));
+        assertTrue(attributeNames.contains("name"));
+        assertNull(topologicalIsland.getAttribute("TopologicalNodes"));
+        assertNull(topologicalIsland.getAttribute("description"));
+        assertNull(topologicalIsland.getAttribute("name"));
     }
 
     private String getPath(String aResource) {

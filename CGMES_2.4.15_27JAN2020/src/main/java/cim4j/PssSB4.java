@@ -4,7 +4,9 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -259,7 +261,7 @@ public class PssSB4 extends PowerSystemStabilizerDynamics {
      */
     @Override
     public java.lang.String getClassNamespaceUrl() {
-        return "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+        return CLASS_NAMESPACE;
     }
 
     /**
@@ -269,33 +271,146 @@ public class PssSB4 extends PowerSystemStabilizerDynamics {
      */
     @Override
     public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
-        return ATTR_NAMESPACE_MAP.get(attrName);
-    }
-
-    private static final Map<java.lang.String, java.lang.String> ATTR_NAMESPACE_MAP;
-    static {
-        ATTR_NAMESPACE_MAP = new PssSB4().allAttrNamespaceMap();
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> allAttrNamespaceMap() {
-        Map<java.lang.String, java.lang.String> map = new LinkedHashMap<>(classAttrNamespaceMap);
-        map.putAll(super.allAttrNamespaceMap());
-        map.remove("LAST_ATTRIBUTE");
+    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
+        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
         return map;
     }
 
-    private Map<java.lang.String, java.lang.String> classAttrNamespaceMap = Map.ofEntries(
-            Map.entry("kx", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("ta", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("tb", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("tc", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("td", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("te", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("tt", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("tx1", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("tx2", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("vsmax", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("vsmin", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("LAST_ATTRIBUTE", ""));
+    /**
+     * A resource can be used by multiple profiles. This is the set of profiles
+     * where this element can be found.
+     *
+     * @return All possible profiles for an object of this class
+     */
+    @Override
+    public Set<CGMESProfile> getPossibleProfiles() {
+        return POSSIBLE_PROFILES;
+    }
+
+    /**
+     * This is the profile with most of the attributes.
+     * It should be used to write the data to as few as possible files.
+     *
+     * @return The recommended profiles for an object of this class
+     */
+    @Override
+    public CGMESProfile getRecommendedProfile() {
+        return RECOMMENDED_PROFILE;
+    }
+
+    /**
+     * Get the possible profiles of an attribute (also for inherited attributes).
+     *
+     * @return All possible profiles for an attribute
+     */
+    @Override
+    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
+    }
+
+    /**
+     * Get the possible profiles for an object of this class including the possible
+     * profiles of all direct or inherited attributes.
+     *
+     * A resource can be used by multiple profiles. This is the set of profiles
+     * where this element or an attribute of this element can be found.
+     *
+     * @return All possible profiles for an object of this class and its attributes
+     */
+    @Override
+    public Set<CGMESProfile> getPossibleProfilesIncludingAttributes() {
+        return POSSIBLE_PROFILES_INCLUDING_ATTRIBUTES;
+    }
+
+    /**
+     * Private infos.
+     */
+
+    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+
+    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    static {
+        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("kx", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("ta", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("tb", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("tc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("td", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("te", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("tt", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("tx1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("tx2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("vsmax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("vsmin", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        CLASS_ATTR_DETAILS_MAP = map;
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PssSB4().allAttrDetailsMap());
+    }
+
+    private static final Set<CGMESProfile> POSSIBLE_PROFILES;
+    static {
+        Set<CGMESProfile> profiles = new LinkedHashSet<>();
+        profiles.add(CGMESProfile.DY);
+        POSSIBLE_PROFILES = Collections.unmodifiableSet(profiles);
+    }
+
+    private static final CGMESProfile RECOMMENDED_PROFILE = CGMESProfile.DY;
+
+    private static final Set<CGMESProfile> POSSIBLE_PROFILES_INCLUDING_ATTRIBUTES;
+    static {
+        Set<CGMESProfile> profiles = new LinkedHashSet<>(POSSIBLE_PROFILES);
+        for (var attrDetails : ATTR_DETAILS_MAP.values()) {
+            profiles.addAll(attrDetails.profiles);
+        }
+        POSSIBLE_PROFILES_INCLUDING_ATTRIBUTES = Collections.unmodifiableSet(profiles);
+    }
 }

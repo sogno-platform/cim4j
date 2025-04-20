@@ -4,7 +4,9 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -529,7 +531,7 @@ public class GovCT2 extends TurbineGovernorDynamics {
      */
     @Override
     public java.lang.String getClassNamespaceUrl() {
-        return "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+        return CLASS_NAMESPACE;
     }
 
     /**
@@ -539,78 +541,371 @@ public class GovCT2 extends TurbineGovernorDynamics {
      */
     @Override
     public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
-        return ATTR_NAMESPACE_MAP.get(attrName);
-    }
-
-    private static final Map<java.lang.String, java.lang.String> ATTR_NAMESPACE_MAP;
-    static {
-        ATTR_NAMESPACE_MAP = new GovCT2().allAttrNamespaceMap();
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> allAttrNamespaceMap() {
-        Map<java.lang.String, java.lang.String> map = new LinkedHashMap<>(classAttrNamespaceMap);
-        map.putAll(super.allAttrNamespaceMap());
-        map.remove("LAST_ATTRIBUTE");
+    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
+        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
         return map;
     }
 
-    private Map<java.lang.String, java.lang.String> classAttrNamespaceMap = Map.ofEntries(
-            Map.entry("aset", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("db", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("dm", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("flim1", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("flim10", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("flim2", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("flim3", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("flim4", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("flim5", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("flim6", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("flim7", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("flim8", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("flim9", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("ka", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("kdgov", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("kigov", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("kiload", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("kimw", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("kpgov", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("kpload", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("kturb", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("ldref", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("maxerr", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("minerr", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("mwbase", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("plim1", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("plim10", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("plim2", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("plim3", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("plim4", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("plim5", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("plim6", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("plim7", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("plim8", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("plim9", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("prate", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("r", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("rclose", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("rdown", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("ropen", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("rselect", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("rup", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("ta", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("tact", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("tb", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("tc", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("tdgov", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("teng", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("tfload", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("tpelec", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("tsa", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("tsb", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("vmax", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("vmin", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("wfnl", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("wfspd", "http://iec.ch/TC57/2013/CIM-schema-cim16#"),
-            Map.entry("LAST_ATTRIBUTE", ""));
+    /**
+     * A resource can be used by multiple profiles. This is the set of profiles
+     * where this element can be found.
+     *
+     * @return All possible profiles for an object of this class
+     */
+    @Override
+    public Set<CGMESProfile> getPossibleProfiles() {
+        return POSSIBLE_PROFILES;
+    }
+
+    /**
+     * This is the profile with most of the attributes.
+     * It should be used to write the data to as few as possible files.
+     *
+     * @return The recommended profiles for an object of this class
+     */
+    @Override
+    public CGMESProfile getRecommendedProfile() {
+        return RECOMMENDED_PROFILE;
+    }
+
+    /**
+     * Get the possible profiles of an attribute (also for inherited attributes).
+     *
+     * @return All possible profiles for an attribute
+     */
+    @Override
+    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
+    }
+
+    /**
+     * Get the possible profiles for an object of this class including the possible
+     * profiles of all direct or inherited attributes.
+     *
+     * A resource can be used by multiple profiles. This is the set of profiles
+     * where this element or an attribute of this element can be found.
+     *
+     * @return All possible profiles for an object of this class and its attributes
+     */
+    @Override
+    public Set<CGMESProfile> getPossibleProfilesIncludingAttributes() {
+        return POSSIBLE_PROFILES_INCLUDING_ATTRIBUTES;
+    }
+
+    /**
+     * Private infos.
+     */
+
+    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+
+    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    static {
+        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("aset", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("db", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("dm", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("flim1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("flim10", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("flim2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("flim3", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("flim4", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("flim5", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("flim6", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("flim7", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("flim8", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("flim9", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("ka", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("kdgov", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("kigov", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("kiload", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("kimw", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("kpgov", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("kpload", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("kturb", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("ldref", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("maxerr", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("minerr", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("mwbase", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("plim1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("plim10", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("plim2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("plim3", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("plim4", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("plim5", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("plim6", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("plim7", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("plim8", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("plim9", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("prate", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("r", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("rclose", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("rdown", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("ropen", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("rselect", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("rup", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("ta", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("tact", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("tb", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("tc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("tdgov", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("teng", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("tfload", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("tpelec", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("tsa", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("tsb", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("vmax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("vmin", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("wfnl", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.DY);
+            map.put("wfspd", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+        }
+        CLASS_ATTR_DETAILS_MAP = map;
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovCT2().allAttrDetailsMap());
+    }
+
+    private static final Set<CGMESProfile> POSSIBLE_PROFILES;
+    static {
+        Set<CGMESProfile> profiles = new LinkedHashSet<>();
+        profiles.add(CGMESProfile.DY);
+        POSSIBLE_PROFILES = Collections.unmodifiableSet(profiles);
+    }
+
+    private static final CGMESProfile RECOMMENDED_PROFILE = CGMESProfile.DY;
+
+    private static final Set<CGMESProfile> POSSIBLE_PROFILES_INCLUDING_ATTRIBUTES;
+    static {
+        Set<CGMESProfile> profiles = new LinkedHashSet<>(POSSIBLE_PROFILES);
+        for (var attrDetails : ATTR_DETAILS_MAP.values()) {
+            profiles.addAll(attrDetails.profiles);
+        }
+        POSSIBLE_PROFILES_INCLUDING_ATTRIBUTES = Collections.unmodifiableSet(profiles);
+    }
 }

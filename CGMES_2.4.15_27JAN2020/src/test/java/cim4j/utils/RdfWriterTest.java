@@ -756,6 +756,36 @@ class RdfWriterTest {
     }
 
     @Test
+    @Order(460)
+    void testWrite023() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test023.xml")));
+        assertEquals(1, cimData.size());
+
+        assertTrue(cimData.containsKey("BaseVoltage.20"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(7, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:BaseVoltage rdf:ID=\"BaseVoltage.20\">", lines[2]);
+        assertEquals(
+                "    <cim:IdentifiedObject.description>&lt;&amp;&gt; &lt;&amp;&gt; &lt;&amp;&gt;</cim:IdentifiedObject.description>",
+                lines[3]);
+        assertEquals("    <cim:IdentifiedObject.name>unknown entity reference: &amp;nbsp;</cim:IdentifiedObject.name>",
+                lines[4]);
+        assertEquals("  </cim:BaseVoltage>", lines[5]);
+        assertEquals("</rdf:RDF>", lines[6]);
+    }
+
+    @Test
     @Order(900)
     void testWriteEmpty() {
         var rdfWriter = new RdfWriter();

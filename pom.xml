@@ -20,6 +20,7 @@
 
     <modules>
         <module>CGMES_2.4.15_27JAN2020</module>
+        <module>CGMES_3.0.0</module>
     </modules>
 
     <distributionManagement>

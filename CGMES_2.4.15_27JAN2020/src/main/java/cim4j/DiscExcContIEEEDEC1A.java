@@ -4,296 +4,542 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * The class represents IEEE Type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.  Reference: IEEE Standard 421.5-2005 Section 12.2.
  */
+@SuppressWarnings("unused")
 public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics {
 
     private static final Logging LOG = Logging.getLogger(DiscExcContIEEEDEC1A.class);
 
-    private BaseClass[] DiscExcContIEEEDEC1A_class_attributes;
-    private BaseClass[] DiscExcContIEEEDEC1A_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new DiscExcContIEEEDEC1A().getAttributeNamesMap();
-    }
-
-    private enum DiscExcContIEEEDEC1A_primitive_builder implements PrimitiveBuilder {
-        esc() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kan() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        ketl() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        tan() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        td() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tl1() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tl2() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tw5() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        val() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        vanmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        vomax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        vomin() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        vsmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        vsmin() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        vtc() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        vtlmt() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        vtm() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        vtn() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum DiscExcContIEEEDEC1A_class_attributes_enum {
-        esc,
-        kan,
-        ketl,
-        tan,
-        td,
-        tl1,
-        tl2,
-        tw5,
-        val,
-        vanmax,
-        vomax,
-        vomin,
-        vsmax,
-        vsmin,
-        vtc,
-        vtlmt,
-        vtm,
-        vtn,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public DiscExcContIEEEDEC1A() {
-        DiscExcContIEEEDEC1A_primitive_attributes = new BaseClass[DiscExcContIEEEDEC1A_primitive_builder.values().length];
-        DiscExcContIEEEDEC1A_class_attributes = new BaseClass[DiscExcContIEEEDEC1A_class_attributes_enum.values().length];
+        setCimType("DiscExcContIEEEDEC1A");
+    }
+
+    /**
+     * Speed change reference ().  Typical Value = 0.0015.
+     */
+    private Double esc; // PU
+
+    public Double getEsc() {
+        return esc;
+    }
+
+    public void setEsc(Double _value_) {
+        esc = _value_;
+    }
+
+    public void setEsc(String _value_) {
+        esc = getDoubleFromString(_value_);
+    }
+
+    public String escToString() {
+        return esc != null ? esc.toString() : null;
+    }
+
+    /**
+     * Discontinuous controller gain ().  Typical Value = 400.
+     */
+    private Double kan; // PU
+
+    public Double getKan() {
+        return kan;
+    }
+
+    public void setKan(Double _value_) {
+        kan = _value_;
+    }
+
+    public void setKan(String _value_) {
+        kan = getDoubleFromString(_value_);
+    }
+
+    public String kanToString() {
+        return kan != null ? kan.toString() : null;
+    }
+
+    /**
+     * Terminal voltage limiter gain ().  Typical Value = 47.
+     */
+    private Double ketl; // PU
+
+    public Double getKetl() {
+        return ketl;
+    }
+
+    public void setKetl(Double _value_) {
+        ketl = _value_;
+    }
+
+    public void setKetl(String _value_) {
+        ketl = getDoubleFromString(_value_);
+    }
+
+    public String ketlToString() {
+        return ketl != null ? ketl.toString() : null;
+    }
+
+    /**
+     * Discontinuous controller time constant ().  Typical Value = 0.08.
+     */
+    private Double tan; // Seconds
+
+    public Double getTan() {
+        return tan;
+    }
+
+    public void setTan(Double _value_) {
+        tan = _value_;
+    }
+
+    public void setTan(String _value_) {
+        tan = getDoubleFromString(_value_);
+    }
+
+    public String tanToString() {
+        return tan != null ? tan.toString() : null;
+    }
+
+    /**
+     * Time constant ().  Typical Value = 0.03.
+     */
+    private Double td; // Seconds
+
+    public Double getTd() {
+        return td;
+    }
+
+    public void setTd(Double _value_) {
+        td = _value_;
+    }
+
+    public void setTd(String _value_) {
+        td = getDoubleFromString(_value_);
+    }
+
+    public String tdToString() {
+        return td != null ? td.toString() : null;
+    }
+
+    /**
+     * Time constant ().  Typical Value = 0.025.
+     */
+    private Double tl1; // Seconds
+
+    public Double getTl1() {
+        return tl1;
+    }
+
+    public void setTl1(Double _value_) {
+        tl1 = _value_;
+    }
+
+    public void setTl1(String _value_) {
+        tl1 = getDoubleFromString(_value_);
+    }
+
+    public String tl1ToString() {
+        return tl1 != null ? tl1.toString() : null;
+    }
+
+    /**
+     * Time constant ().  Typical Value = 1.25.
+     */
+    private Double tl2; // Seconds
+
+    public Double getTl2() {
+        return tl2;
+    }
+
+    public void setTl2(Double _value_) {
+        tl2 = _value_;
+    }
+
+    public void setTl2(String _value_) {
+        tl2 = getDoubleFromString(_value_);
+    }
+
+    public String tl2ToString() {
+        return tl2 != null ? tl2.toString() : null;
+    }
+
+    /**
+     * DEC washout time constant ().  Typical Value = 5.
+     */
+    private Double tw5; // Seconds
+
+    public Double getTw5() {
+        return tw5;
+    }
+
+    public void setTw5(Double _value_) {
+        tw5 = _value_;
+    }
+
+    public void setTw5(String _value_) {
+        tw5 = getDoubleFromString(_value_);
+    }
+
+    public String tw5ToString() {
+        return tw5 != null ? tw5.toString() : null;
+    }
+
+    /**
+     * Regulator voltage reference ().  Typical Value = 5.5.
+     */
+    private Double val; // PU
+
+    public Double getVal() {
+        return val;
+    }
+
+    public void setVal(Double _value_) {
+        val = _value_;
+    }
+
+    public void setVal(String _value_) {
+        val = getDoubleFromString(_value_);
+    }
+
+    public String valToString() {
+        return val != null ? val.toString() : null;
+    }
+
+    /**
+     * Limiter for Van ().
+     */
+    private Double vanmax; // PU
+
+    public Double getVanmax() {
+        return vanmax;
+    }
+
+    public void setVanmax(Double _value_) {
+        vanmax = _value_;
+    }
+
+    public void setVanmax(String _value_) {
+        vanmax = getDoubleFromString(_value_);
+    }
+
+    public String vanmaxToString() {
+        return vanmax != null ? vanmax.toString() : null;
+    }
+
+    /**
+     * Limiter ().  Typical Value = 0.3.
+     */
+    private Double vomax; // PU
+
+    public Double getVomax() {
+        return vomax;
+    }
+
+    public void setVomax(Double _value_) {
+        vomax = _value_;
+    }
+
+    public void setVomax(String _value_) {
+        vomax = getDoubleFromString(_value_);
+    }
+
+    public String vomaxToString() {
+        return vomax != null ? vomax.toString() : null;
+    }
+
+    /**
+     * Limiter ().  Typical Value = 0.1.
+     */
+    private Double vomin; // PU
+
+    public Double getVomin() {
+        return vomin;
+    }
+
+    public void setVomin(Double _value_) {
+        vomin = _value_;
+    }
+
+    public void setVomin(String _value_) {
+        vomin = getDoubleFromString(_value_);
+    }
+
+    public String vominToString() {
+        return vomin != null ? vomin.toString() : null;
+    }
+
+    /**
+     * Limiter ().  Typical Value = 0.2.
+     */
+    private Double vsmax; // PU
+
+    public Double getVsmax() {
+        return vsmax;
+    }
+
+    public void setVsmax(Double _value_) {
+        vsmax = _value_;
+    }
+
+    public void setVsmax(String _value_) {
+        vsmax = getDoubleFromString(_value_);
+    }
+
+    public String vsmaxToString() {
+        return vsmax != null ? vsmax.toString() : null;
+    }
+
+    /**
+     * Limiter ().  Typical Value = -0.066.
+     */
+    private Double vsmin; // PU
+
+    public Double getVsmin() {
+        return vsmin;
+    }
+
+    public void setVsmin(Double _value_) {
+        vsmin = _value_;
+    }
+
+    public void setVsmin(String _value_) {
+        vsmin = getDoubleFromString(_value_);
+    }
+
+    public String vsminToString() {
+        return vsmin != null ? vsmin.toString() : null;
+    }
+
+    /**
+     * Terminal voltage level reference ().  Typical Value = 0.95.
+     */
+    private Double vtc; // PU
+
+    public Double getVtc() {
+        return vtc;
+    }
+
+    public void setVtc(Double _value_) {
+        vtc = _value_;
+    }
+
+    public void setVtc(String _value_) {
+        vtc = getDoubleFromString(_value_);
+    }
+
+    public String vtcToString() {
+        return vtc != null ? vtc.toString() : null;
+    }
+
+    /**
+     * Voltage reference ().  Typical Value = 1.1.
+     */
+    private Double vtlmt; // PU
+
+    public Double getVtlmt() {
+        return vtlmt;
+    }
+
+    public void setVtlmt(Double _value_) {
+        vtlmt = _value_;
+    }
+
+    public void setVtlmt(String _value_) {
+        vtlmt = getDoubleFromString(_value_);
+    }
+
+    public String vtlmtToString() {
+        return vtlmt != null ? vtlmt.toString() : null;
+    }
+
+    /**
+     * Voltage limits ().  Typical Value = 1.13.
+     */
+    private Double vtm; // PU
+
+    public Double getVtm() {
+        return vtm;
+    }
+
+    public void setVtm(Double _value_) {
+        vtm = _value_;
+    }
+
+    public void setVtm(String _value_) {
+        vtm = getDoubleFromString(_value_);
+    }
+
+    public String vtmToString() {
+        return vtm != null ? vtm.toString() : null;
+    }
+
+    /**
+     * Voltage limits ().  Typical Value = 1.12.
+     */
+    private Double vtn; // PU
+
+    public Double getVtn() {
+        return vtn;
+    }
+
+    public void setVtn(Double _value_) {
+        vtn = _value_;
+    }
+
+    public void setVtn(String _value_) {
+        vtn = getDoubleFromString(_value_);
+    }
+
+    public String vtnToString() {
+        return vtn != null ? vtn.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new DiscExcContIEEEDEC1A();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("DiscExcContIEEEDEC1A", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(DiscExcContIEEEDEC1A_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            DiscExcContIEEEDEC1A_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(DiscExcContIEEEDEC1A_primitive_builder attrEnum, BaseClass value) {
-        try {
-            DiscExcContIEEEDEC1A_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("DiscExcContIEEEDEC1A", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            DiscExcContIEEEDEC1A_class_attributes_enum attrEnum = DiscExcContIEEEDEC1A_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated DiscExcContIEEEDEC1A, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            DiscExcContIEEEDEC1A_primitive_builder attrEnum = DiscExcContIEEEDEC1A_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated DiscExcContIEEEDEC1A, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            DiscExcContIEEEDEC1A_primitive_builder attrEnum = DiscExcContIEEEDEC1A_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = DiscExcContIEEEDEC1A_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            DiscExcContIEEEDEC1A_class_attributes_enum attrEnum = DiscExcContIEEEDEC1A_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = DiscExcContIEEEDEC1A_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : DiscExcContIEEEDEC1A_primitive_builder.values()) {
-            if (enumValue != DiscExcContIEEEDEC1A_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "DiscExcContIEEEDEC1A." + enumValue.name());
-            }
-        }
-        for (var enumValue : DiscExcContIEEEDEC1A_class_attributes_enum.values()) {
-            if (enumValue != DiscExcContIEEEDEC1A_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "DiscExcContIEEEDEC1A." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (DiscExcContIEEEDEC1A_primitive_builder attrEnum : DiscExcContIEEEDEC1A_primitive_builder.values()) {
-                BaseClass bc = DiscExcContIEEEDEC1A_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    DiscExcContIEEEDEC1A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (DiscExcContIEEEDEC1A_class_attributes_enum attrEnum : DiscExcContIEEEDEC1A_class_attributes_enum.values()) {
-                BaseClass bc = DiscExcContIEEEDEC1A_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    DiscExcContIEEEDEC1A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(DiscExcContIEEEDEC1A) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "DiscExcContIEEEDEC1A";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("DiscExcContIEEEDEC1A", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -302,7 +548,7 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -312,15 +558,8 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -351,7 +590,7 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -373,104 +612,130 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("esc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("esc", new AttrDetails("DiscExcContIEEEDEC1A.esc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kan", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kan", new AttrDetails("DiscExcContIEEEDEC1A.kan", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ketl", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ketl", new AttrDetails("DiscExcContIEEEDEC1A.ketl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tan", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tan", new AttrDetails("DiscExcContIEEEDEC1A.tan", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("td", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("td", new AttrDetails("DiscExcContIEEEDEC1A.td", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tl1", new AttrDetails("DiscExcContIEEEDEC1A.tl1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tl2", new AttrDetails("DiscExcContIEEEDEC1A.tl2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tw5", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tw5", new AttrDetails("DiscExcContIEEEDEC1A.tw5", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("val", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("val", new AttrDetails("DiscExcContIEEEDEC1A.val", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vanmax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vanmax", new AttrDetails("DiscExcContIEEEDEC1A.vanmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vomax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vomax", new AttrDetails("DiscExcContIEEEDEC1A.vomax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vomin", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vomin", new AttrDetails("DiscExcContIEEEDEC1A.vomin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vsmax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vsmax", new AttrDetails("DiscExcContIEEEDEC1A.vsmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vsmin", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vsmin", new AttrDetails("DiscExcContIEEEDEC1A.vsmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vtc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vtc", new AttrDetails("DiscExcContIEEEDEC1A.vtc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vtlmt", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vtlmt", new AttrDetails("DiscExcContIEEEDEC1A.vtlmt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vtm", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vtm", new AttrDetails("DiscExcContIEEEDEC1A.vtm", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vtn", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vtn", new AttrDetails("DiscExcContIEEEDEC1A.vtn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DiscExcContIEEEDEC1A().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("esc", new GetterSetter(this::escToString, null, this::setEsc));
+        map.put("kan", new GetterSetter(this::kanToString, null, this::setKan));
+        map.put("ketl", new GetterSetter(this::ketlToString, null, this::setKetl));
+        map.put("tan", new GetterSetter(this::tanToString, null, this::setTan));
+        map.put("td", new GetterSetter(this::tdToString, null, this::setTd));
+        map.put("tl1", new GetterSetter(this::tl1ToString, null, this::setTl1));
+        map.put("tl2", new GetterSetter(this::tl2ToString, null, this::setTl2));
+        map.put("tw5", new GetterSetter(this::tw5ToString, null, this::setTw5));
+        map.put("val", new GetterSetter(this::valToString, null, this::setVal));
+        map.put("vanmax", new GetterSetter(this::vanmaxToString, null, this::setVanmax));
+        map.put("vomax", new GetterSetter(this::vomaxToString, null, this::setVomax));
+        map.put("vomin", new GetterSetter(this::vominToString, null, this::setVomin));
+        map.put("vsmax", new GetterSetter(this::vsmaxToString, null, this::setVsmax));
+        map.put("vsmin", new GetterSetter(this::vsminToString, null, this::setVsmin));
+        map.put("vtc", new GetterSetter(this::vtcToString, null, this::setVtc));
+        map.put("vtlmt", new GetterSetter(this::vtlmtToString, null, this::setVtlmt));
+        map.put("vtm", new GetterSetter(this::vtmToString, null, this::setVtm));
+        map.put("vtn", new GetterSetter(this::vtnToString, null, this::setVtn));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

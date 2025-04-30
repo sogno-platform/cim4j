@@ -4,192 +4,257 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * The place, scene, or point of something where someone or something has been, is, and/or will be at a given moment in time. It can be defined with one or more position points (coordinates) in a given coordinate system.
  */
+@SuppressWarnings("unused")
 public class Location extends IdentifiedObject {
 
     private static final Logging LOG = Logging.getLogger(Location.class);
 
-    private BaseClass[] Location_class_attributes;
-    private BaseClass[] Location_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new Location().getAttributeNamesMap();
-    }
-
-    private enum Location_primitive_builder implements PrimitiveBuilder {
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum Location_class_attributes_enum {
-        CoordinateSystem,
-        PositionPoints,
-        PowerSystemResources,
-        mainAddress,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public Location() {
-        Location_primitive_attributes = new BaseClass[Location_primitive_builder.values().length];
-        Location_class_attributes = new BaseClass[Location_class_attributes_enum.values().length];
+        setCimType("Location");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new Location();
+    /**
+     * Coordinate system used to describe position points of this location.
+     */
+    private CoordinateSystem CoordinateSystem; // ManyToOne
+
+    public CoordinateSystem getCoordinateSystem() {
+        return CoordinateSystem;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(Location_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            Location_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setCoordinateSystem(BaseClass _object_) {
+        if (!(_object_ instanceof CoordinateSystem)) {
+            throw new IllegalArgumentException("Object is not CoordinateSystem");
+        }
+        if (CoordinateSystem != _object_) {
+            CoordinateSystem = (CoordinateSystem) _object_;
+            CoordinateSystem.setLocations(this);
         }
     }
 
-    private void updateAttributeInArray(Location_primitive_builder attrEnum, BaseClass value) {
-        try {
-            Location_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String CoordinateSystemToString() {
+        return CoordinateSystem != null ? CoordinateSystem.getRdfid() : null;
+    }
+
+    /**
+     * Sequence of position points describing this location, expressed in coordinate system `Location.CoordinateSystem`.
+     *
+     * NOT USED
+     */
+    private Set<PositionPoint> PositionPoints = new HashSet<>(); // OneToMany
+
+    public Set<PositionPoint> getPositionPoints() {
+        return PositionPoints;
+    }
+
+    public void setPositionPoints(BaseClass _object_) {
+        if (!(_object_ instanceof PositionPoint)) {
+            throw new IllegalArgumentException("Object is not PositionPoint");
+        }
+        if (!PositionPoints.contains(_object_)) {
+            PositionPoints.add((PositionPoint) _object_);
+            ((PositionPoint) _object_).setLocation(this);
         }
     }
 
-    @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            Location_class_attributes_enum attrEnum = Location_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated Location, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    public String PositionPointsToString() {
+        return getStringFromSet(PositionPoints);
+    }
+
+    /**
+     * All power system resources at this location.
+     */
+    private PowerSystemResource PowerSystemResources; // OneToOne
+
+    public PowerSystemResource getPowerSystemResources() {
+        return PowerSystemResources;
+    }
+
+    public void setPowerSystemResources(BaseClass _object_) {
+        if (!(_object_ instanceof PowerSystemResource)) {
+            throw new IllegalArgumentException("Object is not PowerSystemResource");
+        }
+        if (PowerSystemResources != _object_) {
+            PowerSystemResources = (PowerSystemResource) _object_;
+            PowerSystemResources.setLocation(this);
         }
     }
 
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            Location_primitive_builder attrEnum = Location_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated Location, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    public String PowerSystemResourcesToString() {
+        return PowerSystemResources != null ? PowerSystemResources.getRdfid() : null;
+    }
+
+    /**
+     * Main address of the location.
+     */
+    private StreetAddress mainAddress; // OneToOne
+
+    public StreetAddress getMainAddress() {
+        return mainAddress;
+    }
+
+    public void setMainAddress(BaseClass _object_) {
+        if (!(_object_ instanceof StreetAddress)) {
+            throw new IllegalArgumentException("Object is not StreetAddress");
+        }
+        if (mainAddress != _object_) {
+            mainAddress = (StreetAddress) _object_;
         }
     }
 
+    public String mainAddressToString() {
+        return mainAddress != null ? mainAddress.getRdfid() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            Location_primitive_builder attrEnum = Location_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = Location_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            Location_class_attributes_enum attrEnum = Location_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = Location_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : Location_primitive_builder.values()) {
-            if (enumValue != Location_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "Location." + enumValue.name());
-            }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("Location", attrName);
+    }
+
+    @Override
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
-        for (var enumValue : Location_class_attributes_enum.values()) {
-            if (enumValue != Location_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "Location." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("Location", attrName, objectValue);
     }
 
     @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (Location_primitive_builder attrEnum : Location_primitive_builder.values()) {
-                BaseClass bc = Location_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    Location." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (Location_class_attributes_enum attrEnum : Location_class_attributes_enum.values()) {
-                BaseClass bc = Location_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    Location." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(Location) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "Location";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("Location", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -198,7 +263,7 @@ public class Location extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -208,15 +273,8 @@ public class Location extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -247,7 +305,7 @@ public class Location extends IdentifiedObject {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -269,34 +327,46 @@ public class Location extends IdentifiedObject {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("CoordinateSystem", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("CoordinateSystem", new AttrDetails("Location.CoordinateSystem", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("PositionPoints", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("PositionPoints", new AttrDetails("Location.PositionPoints", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("PowerSystemResources", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("PowerSystemResources", new AttrDetails("Location.PowerSystemResources", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("mainAddress", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("mainAddress", new AttrDetails("Location.mainAddress", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Location().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("CoordinateSystem", new GetterSetter(this::CoordinateSystemToString, this::setCoordinateSystem, null));
+        map.put("PositionPoints", new GetterSetter(this::PositionPointsToString, this::setPositionPoints, null));
+        map.put("PowerSystemResources", new GetterSetter(this::PowerSystemResourcesToString, this::setPowerSystemResources, null));
+        map.put("mainAddress", new GetterSetter(this::mainAddressToString, this::setMainAddress, null));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

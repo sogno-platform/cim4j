@@ -4,260 +4,416 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Turbine load controller model developed by WECC.  This model represents a supervisory turbine load controller that acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference. This model is intended to represent slow reset 'outer loop' controllers managing the action of the turbine governor.
  */
+@SuppressWarnings("unused")
 public class TurbLCFB1 extends TurbineLoadControllerDynamics {
 
     private static final Logging LOG = Logging.getLogger(TurbLCFB1.class);
 
-    private BaseClass[] TurbLCFB1_class_attributes;
-    private BaseClass[] TurbLCFB1_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new TurbLCFB1().getAttributeNamesMap();
-    }
-
-    private enum TurbLCFB1_primitive_builder implements PrimitiveBuilder {
-        db() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        emax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        fb() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        fbf() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        irmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        ki() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        mwbase() {
-            public BaseClass construct(java.lang.String value) {
-                return new ActivePower(value);
-            }
-        },
-        pbf() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        pmwset() {
-            public BaseClass construct(java.lang.String value) {
-                return new ActivePower(value);
-            }
-        },
-        speedReferenceGovernor() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        tpelec() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum TurbLCFB1_class_attributes_enum {
-        db,
-        emax,
-        fb,
-        fbf,
-        irmax,
-        ki,
-        kp,
-        mwbase,
-        pbf,
-        pmwset,
-        speedReferenceGovernor,
-        tpelec,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public TurbLCFB1() {
-        TurbLCFB1_primitive_attributes = new BaseClass[TurbLCFB1_primitive_builder.values().length];
-        TurbLCFB1_class_attributes = new BaseClass[TurbLCFB1_class_attributes_enum.values().length];
+        setCimType("TurbLCFB1");
+    }
+
+    /**
+     * Controller deadband (&lt;i&gt;db&lt;/i&gt;).  Typical value = 0.
+     */
+    private Double db; // PU
+
+    public Double getDb() {
+        return db;
+    }
+
+    public void setDb(Double _value_) {
+        db = _value_;
+    }
+
+    public void setDb(String _value_) {
+        db = getDoubleFromString(_value_);
+    }
+
+    public String dbToString() {
+        return db != null ? db.toString() : null;
+    }
+
+    /**
+     * Maximum control error (&lt;i&gt;Emax&lt;/i&gt;) (see parameter detail 4).  Typical value = 0,02.
+     */
+    private Double emax; // PU
+
+    public Double getEmax() {
+        return emax;
+    }
+
+    public void setEmax(Double _value_) {
+        emax = _value_;
+    }
+
+    public void setEmax(String _value_) {
+        emax = getDoubleFromString(_value_);
+    }
+
+    public String emaxToString() {
+        return emax != null ? emax.toString() : null;
+    }
+
+    /**
+     * Frequency bias gain (&lt;i&gt;Fb&lt;/i&gt;).  Typical value = 0.
+     */
+    private Double fb; // PU
+
+    public Double getFb() {
+        return fb;
+    }
+
+    public void setFb(Double _value_) {
+        fb = _value_;
+    }
+
+    public void setFb(String _value_) {
+        fb = getDoubleFromString(_value_);
+    }
+
+    public String fbToString() {
+        return fb != null ? fb.toString() : null;
+    }
+
+    /**
+     * Frequency bias flag (&lt;i&gt;Fbf&lt;/i&gt;). true = enable frequency bias false = disable frequency bias. Typical value = false.
+     */
+    private Boolean fbf; // Boolean
+
+    public Boolean getFbf() {
+        return fbf;
+    }
+
+    public void setFbf(Boolean _value_) {
+        fbf = _value_;
+    }
+
+    public void setFbf(String _value_) {
+        fbf = getBooleanFromString(_value_);
+    }
+
+    public String fbfToString() {
+        return fbf != null ? fbf.toString() : null;
+    }
+
+    /**
+     * Maximum turbine speed/load reference bias (&lt;i&gt;Irmax&lt;/i&gt;) (see parameter detail 3).  Typical value = 0.
+     */
+    private Double irmax; // PU
+
+    public Double getIrmax() {
+        return irmax;
+    }
+
+    public void setIrmax(Double _value_) {
+        irmax = _value_;
+    }
+
+    public void setIrmax(String _value_) {
+        irmax = getDoubleFromString(_value_);
+    }
+
+    public String irmaxToString() {
+        return irmax != null ? irmax.toString() : null;
+    }
+
+    /**
+     * Integral gain (&lt;i&gt;Ki&lt;/i&gt;).  Typical value = 0.
+     */
+    private Double ki; // PU
+
+    public Double getKi() {
+        return ki;
+    }
+
+    public void setKi(Double _value_) {
+        ki = _value_;
+    }
+
+    public void setKi(String _value_) {
+        ki = getDoubleFromString(_value_);
+    }
+
+    public String kiToString() {
+        return ki != null ? ki.toString() : null;
+    }
+
+    /**
+     * Proportional gain (&lt;i&gt;Kp&lt;/i&gt;).  Typical value = 0.
+     */
+    private Double kp; // PU
+
+    public Double getKp() {
+        return kp;
+    }
+
+    public void setKp(Double _value_) {
+        kp = _value_;
+    }
+
+    public void setKp(String _value_) {
+        kp = getDoubleFromString(_value_);
+    }
+
+    public String kpToString() {
+        return kp != null ? kp.toString() : null;
+    }
+
+    /**
+     * Base for power values (&lt;i&gt;MWbase&lt;/i&gt;) (&amp;gt; 0).  Unit = MW.
+     */
+    private Double mwbase; // ActivePower
+
+    public Double getMwbase() {
+        return mwbase;
+    }
+
+    public void setMwbase(Double _value_) {
+        mwbase = _value_;
+    }
+
+    public void setMwbase(String _value_) {
+        mwbase = getDoubleFromString(_value_);
+    }
+
+    public String mwbaseToString() {
+        return mwbase != null ? mwbase.toString() : null;
+    }
+
+    /**
+     * Power controller flag (&lt;i&gt;Pbf&lt;/i&gt;). true = enable load controller false = disable load controller. Typical value = false.
+     */
+    private Boolean pbf; // Boolean
+
+    public Boolean getPbf() {
+        return pbf;
+    }
+
+    public void setPbf(Boolean _value_) {
+        pbf = _value_;
+    }
+
+    public void setPbf(String _value_) {
+        pbf = getBooleanFromString(_value_);
+    }
+
+    public String pbfToString() {
+        return pbf != null ? pbf.toString() : null;
+    }
+
+    /**
+     * Power controller setpoint (&lt;i&gt;Pmwset&lt;/i&gt;) (see parameter detail 1).  Unit = MW. Typical value = 0.
+     */
+    private Double pmwset; // ActivePower
+
+    public Double getPmwset() {
+        return pmwset;
+    }
+
+    public void setPmwset(Double _value_) {
+        pmwset = _value_;
+    }
+
+    public void setPmwset(String _value_) {
+        pmwset = getDoubleFromString(_value_);
+    }
+
+    public String pmwsetToString() {
+        return pmwset != null ? pmwset.toString() : null;
+    }
+
+    /**
+     * Type of turbine governor reference (&lt;i&gt;Type&lt;/i&gt;). true = speed reference governor false = load reference governor. Typical value = true.
+     */
+    private Boolean speedReferenceGovernor; // Boolean
+
+    public Boolean getSpeedReferenceGovernor() {
+        return speedReferenceGovernor;
+    }
+
+    public void setSpeedReferenceGovernor(Boolean _value_) {
+        speedReferenceGovernor = _value_;
+    }
+
+    public void setSpeedReferenceGovernor(String _value_) {
+        speedReferenceGovernor = getBooleanFromString(_value_);
+    }
+
+    public String speedReferenceGovernorToString() {
+        return speedReferenceGovernor != null ? speedReferenceGovernor.toString() : null;
+    }
+
+    /**
+     * Power transducer time constant (&lt;i&gt;Tpelec&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     */
+    private Double tpelec; // Seconds
+
+    public Double getTpelec() {
+        return tpelec;
+    }
+
+    public void setTpelec(Double _value_) {
+        tpelec = _value_;
+    }
+
+    public void setTpelec(String _value_) {
+        tpelec = getDoubleFromString(_value_);
+    }
+
+    public String tpelecToString() {
+        return tpelec != null ? tpelec.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new TurbLCFB1();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("TurbLCFB1", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(TurbLCFB1_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            TurbLCFB1_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(TurbLCFB1_primitive_builder attrEnum, BaseClass value) {
-        try {
-            TurbLCFB1_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("TurbLCFB1", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            TurbLCFB1_class_attributes_enum attrEnum = TurbLCFB1_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated TurbLCFB1, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            TurbLCFB1_primitive_builder attrEnum = TurbLCFB1_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated TurbLCFB1, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            TurbLCFB1_primitive_builder attrEnum = TurbLCFB1_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = TurbLCFB1_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            TurbLCFB1_class_attributes_enum attrEnum = TurbLCFB1_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = TurbLCFB1_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : TurbLCFB1_primitive_builder.values()) {
-            if (enumValue != TurbLCFB1_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "TurbLCFB1." + enumValue.name());
-            }
-        }
-        for (var enumValue : TurbLCFB1_class_attributes_enum.values()) {
-            if (enumValue != TurbLCFB1_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "TurbLCFB1." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (TurbLCFB1_primitive_builder attrEnum : TurbLCFB1_primitive_builder.values()) {
-                BaseClass bc = TurbLCFB1_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    TurbLCFB1." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (TurbLCFB1_class_attributes_enum attrEnum : TurbLCFB1_class_attributes_enum.values()) {
-                BaseClass bc = TurbLCFB1_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    TurbLCFB1." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(TurbLCFB1) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "TurbLCFB1";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("TurbLCFB1", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -266,7 +422,7 @@ public class TurbLCFB1 extends TurbineLoadControllerDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -276,15 +432,8 @@ public class TurbLCFB1 extends TurbineLoadControllerDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -315,7 +464,7 @@ public class TurbLCFB1 extends TurbineLoadControllerDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -337,74 +486,94 @@ public class TurbLCFB1 extends TurbineLoadControllerDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("db", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("db", new AttrDetails("TurbLCFB1.db", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("emax", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("emax", new AttrDetails("TurbLCFB1.emax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("fb", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("fb", new AttrDetails("TurbLCFB1.fb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("fbf", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("fbf", new AttrDetails("TurbLCFB1.fbf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("irmax", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("irmax", new AttrDetails("TurbLCFB1.irmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ki", new AttrDetails("TurbLCFB1.ki", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kp", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("kp", new AttrDetails("TurbLCFB1.kp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mwbase", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("mwbase", new AttrDetails("TurbLCFB1.mwbase", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pbf", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("pbf", new AttrDetails("TurbLCFB1.pbf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmwset", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("pmwset", new AttrDetails("TurbLCFB1.pmwset", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("speedReferenceGovernor", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("speedReferenceGovernor", new AttrDetails("TurbLCFB1.speedReferenceGovernor", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpelec", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tpelec", new AttrDetails("TurbLCFB1.tpelec", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TurbLCFB1().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("db", new GetterSetter(this::dbToString, null, this::setDb));
+        map.put("emax", new GetterSetter(this::emaxToString, null, this::setEmax));
+        map.put("fb", new GetterSetter(this::fbToString, null, this::setFb));
+        map.put("fbf", new GetterSetter(this::fbfToString, null, this::setFbf));
+        map.put("irmax", new GetterSetter(this::irmaxToString, null, this::setIrmax));
+        map.put("ki", new GetterSetter(this::kiToString, null, this::setKi));
+        map.put("kp", new GetterSetter(this::kpToString, null, this::setKp));
+        map.put("mwbase", new GetterSetter(this::mwbaseToString, null, this::setMwbase));
+        map.put("pbf", new GetterSetter(this::pbfToString, null, this::setPbf));
+        map.put("pmwset", new GetterSetter(this::pmwsetToString, null, this::setPmwset));
+        map.put("speedReferenceGovernor", new GetterSetter(this::speedReferenceGovernorToString, null, this::setSpeedReferenceGovernor));
+        map.put("tpelec", new GetterSetter(this::tpelecToString, null, this::setTpelec));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

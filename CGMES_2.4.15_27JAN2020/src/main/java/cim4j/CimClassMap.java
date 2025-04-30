@@ -17,7 +17,7 @@ public final class CimClassMap {
      * @param className The class name to check.
      * @return          Is this a CIM class?
      */
-    public static boolean isCimClass(java.lang.String className) {
+    public static boolean isCimClass(String className) {
         return CREATE_MAP.containsKey(className);
     }
 
@@ -27,7 +27,7 @@ public final class CimClassMap {
      * @param className The class name of the new CIM object.
      * @return          The new CIM object.
      */
-    public static BaseClass createCimObject(java.lang.String className) {
+    public static BaseClass createCimObject(String className) {
         var createFunction = CREATE_MAP.get(className);
         return createFunction.get();
     }
@@ -47,9 +47,9 @@ public final class CimClassMap {
     /**
      * Map of CIM class name to supplier function which creates a new CIM object.
      */
-    private static final Map<java.lang.String, Supplier<BaseClass>> CREATE_MAP;
+    private static final Map<String, Supplier<BaseClass>> CREATE_MAP;
     static {
-        var map = new LinkedHashMap<java.lang.String, Supplier<BaseClass>>();
+        var map = new LinkedHashMap<String, Supplier<BaseClass>>();
 
         map.put("ACDCConverter", () -> new ACDCConverter());
         map.put("ACDCConverterDCTerminal", () -> new ACDCConverterDCTerminal());
@@ -60,37 +60,25 @@ public final class CimClassMap {
         map.put("AccumulatorLimitSet", () -> new AccumulatorLimitSet());
         map.put("AccumulatorReset", () -> new AccumulatorReset());
         map.put("AccumulatorValue", () -> new AccumulatorValue());
-        map.put("ActivePower", () -> new ActivePower());
         map.put("ActivePowerLimit", () -> new ActivePowerLimit());
-        map.put("ActivePowerPerCurrentFlow", () -> new ActivePowerPerCurrentFlow());
-        map.put("ActivePowerPerFrequency", () -> new ActivePowerPerFrequency());
         map.put("Analog", () -> new Analog());
         map.put("AnalogControl", () -> new AnalogControl());
         map.put("AnalogLimit", () -> new AnalogLimit());
         map.put("AnalogLimitSet", () -> new AnalogLimitSet());
         map.put("AnalogValue", () -> new AnalogValue());
-        map.put("AngleDegrees", () -> new AngleDegrees());
-        map.put("AngleRadians", () -> new AngleRadians());
-        map.put("ApparentPower", () -> new ApparentPower());
         map.put("ApparentPowerLimit", () -> new ApparentPowerLimit());
-        map.put("Area", () -> new Area());
         map.put("AsynchronousMachine", () -> new AsynchronousMachine());
         map.put("AsynchronousMachineDynamics", () -> new AsynchronousMachineDynamics());
         map.put("AsynchronousMachineEquivalentCircuit", () -> new AsynchronousMachineEquivalentCircuit());
-        map.put("AsynchronousMachineKind", () -> new AsynchronousMachineKind());
         map.put("AsynchronousMachineTimeConstantReactance", () -> new AsynchronousMachineTimeConstantReactance());
         map.put("AsynchronousMachineUserDefined", () -> new AsynchronousMachineUserDefined());
         map.put("BaseVoltage", () -> new BaseVoltage());
         map.put("BasicIntervalSchedule", () -> new BasicIntervalSchedule());
         map.put("Bay", () -> new Bay());
-        map.put("Boolean", () -> new Boolean());
         map.put("Breaker", () -> new Breaker());
         map.put("BusNameMarker", () -> new BusNameMarker());
         map.put("BusbarSection", () -> new BusbarSection());
-        map.put("Capacitance", () -> new Capacitance());
-        map.put("CapacitancePerLength", () -> new CapacitancePerLength());
         map.put("Command", () -> new Command());
-        map.put("Conductance", () -> new Conductance());
         map.put("ConductingEquipment", () -> new ConductingEquipment());
         map.put("Conductor", () -> new Conductor());
         map.put("ConformLoad", () -> new ConformLoad());
@@ -102,23 +90,16 @@ public final class CimClassMap {
         map.put("Control", () -> new Control());
         map.put("ControlArea", () -> new ControlArea());
         map.put("ControlAreaGeneratingUnit", () -> new ControlAreaGeneratingUnit());
-        map.put("ControlAreaTypeKind", () -> new ControlAreaTypeKind());
         map.put("CoordinateSystem", () -> new CoordinateSystem());
         map.put("CsConverter", () -> new CsConverter());
-        map.put("CsOperatingModeKind", () -> new CsOperatingModeKind());
-        map.put("CsPpccControlKind", () -> new CsPpccControlKind());
-        map.put("Currency", () -> new Currency());
-        map.put("CurrentFlow", () -> new CurrentFlow());
         map.put("CurrentLimit", () -> new CurrentLimit());
         map.put("Curve", () -> new Curve());
         map.put("CurveData", () -> new CurveData());
-        map.put("CurveStyle", () -> new CurveStyle());
         map.put("DCBaseTerminal", () -> new DCBaseTerminal());
         map.put("DCBreaker", () -> new DCBreaker());
         map.put("DCBusbar", () -> new DCBusbar());
         map.put("DCChopper", () -> new DCChopper());
         map.put("DCConductingEquipment", () -> new DCConductingEquipment());
-        map.put("DCConverterOperatingModeKind", () -> new DCConverterOperatingModeKind());
         map.put("DCConverterUnit", () -> new DCConverterUnit());
         map.put("DCDisconnector", () -> new DCDisconnector());
         map.put("DCEquipmentContainer", () -> new DCEquipmentContainer());
@@ -126,17 +107,13 @@ public final class CimClassMap {
         map.put("DCLine", () -> new DCLine());
         map.put("DCLineSegment", () -> new DCLineSegment());
         map.put("DCNode", () -> new DCNode());
-        map.put("DCPolarityKind", () -> new DCPolarityKind());
         map.put("DCSeriesDevice", () -> new DCSeriesDevice());
         map.put("DCShunt", () -> new DCShunt());
         map.put("DCSwitch", () -> new DCSwitch());
         map.put("DCTerminal", () -> new DCTerminal());
         map.put("DCTopologicalIsland", () -> new DCTopologicalIsland());
         map.put("DCTopologicalNode", () -> new DCTopologicalNode());
-        map.put("Date", () -> new Date());
-        map.put("DateTime", () -> new DateTime());
         map.put("DayType", () -> new DayType());
-        map.put("Decimal", () -> new Decimal());
         map.put("Diagram", () -> new Diagram());
         map.put("DiagramLayoutVersion", () -> new DiagramLayoutVersion());
         map.put("DiagramObject", () -> new DiagramObject());
@@ -152,7 +129,6 @@ public final class CimClassMap {
         map.put("DiscontinuousExcitationControlUserDefined", () -> new DiscontinuousExcitationControlUserDefined());
         map.put("Discrete", () -> new Discrete());
         map.put("DiscreteValue", () -> new DiscreteValue());
-        map.put("DroopSignalFeedbackKind", () -> new DroopSignalFeedbackKind());
         map.put("DynamicsFunctionBlock", () -> new DynamicsFunctionBlock());
         map.put("DynamicsVersion", () -> new DynamicsVersion());
         map.put("EarthFaultCompensator", () -> new EarthFaultCompensator());
@@ -205,7 +181,6 @@ public final class CimClassMap {
         map.put("ExcIEEEDC3A", () -> new ExcIEEEDC3A());
         map.put("ExcIEEEDC4B", () -> new ExcIEEEDC4B());
         map.put("ExcIEEEST1A", () -> new ExcIEEEST1A());
-        map.put("ExcIEEEST1AUELselectorKind", () -> new ExcIEEEST1AUELselectorKind());
         map.put("ExcIEEEST2A", () -> new ExcIEEEST2A());
         map.put("ExcIEEEST3A", () -> new ExcIEEEST3A());
         map.put("ExcIEEEST4B", () -> new ExcIEEEST4B());
@@ -215,7 +190,6 @@ public final class CimClassMap {
         map.put("ExcOEX3T", () -> new ExcOEX3T());
         map.put("ExcPIC", () -> new ExcPIC());
         map.put("ExcREXS", () -> new ExcREXS());
-        map.put("ExcREXSFeedbackSignalKind", () -> new ExcREXSFeedbackSignalKind());
         map.put("ExcSCRX", () -> new ExcSCRX());
         map.put("ExcSEXS", () -> new ExcSEXS());
         map.put("ExcSK", () -> new ExcSK());
@@ -224,22 +198,13 @@ public final class CimClassMap {
         map.put("ExcST3A", () -> new ExcST3A());
         map.put("ExcST4B", () -> new ExcST4B());
         map.put("ExcST6B", () -> new ExcST6B());
-        map.put("ExcST6BOELselectorKind", () -> new ExcST6BOELselectorKind());
         map.put("ExcST7B", () -> new ExcST7B());
-        map.put("ExcST7BOELselectorKind", () -> new ExcST7BOELselectorKind());
-        map.put("ExcST7BUELselectorKind", () -> new ExcST7BUELselectorKind());
         map.put("ExcitationSystemDynamics", () -> new ExcitationSystemDynamics());
         map.put("ExcitationSystemUserDefined", () -> new ExcitationSystemUserDefined());
         map.put("ExternalNetworkInjection", () -> new ExternalNetworkInjection());
-        map.put("Float", () -> new Float());
         map.put("FossilFuel", () -> new FossilFuel());
-        map.put("FrancisGovernorControlKind", () -> new FrancisGovernorControlKind());
-        map.put("Frequency", () -> new Frequency());
-        map.put("FuelType", () -> new FuelType());
         map.put("GenICompensationForGenJ", () -> new GenICompensationForGenJ());
         map.put("GeneratingUnit", () -> new GeneratingUnit());
-        map.put("GeneratorControlSource", () -> new GeneratorControlSource());
-        map.put("GenericNonLinearLoadModelKind", () -> new GenericNonLinearLoadModelKind());
         map.put("GeographicalLocationVersion", () -> new GeographicalLocationVersion());
         map.put("GeographicalRegion", () -> new GeographicalRegion());
         map.put("GovCT1", () -> new GovCT1());
@@ -278,22 +243,13 @@ public final class CimClassMap {
         map.put("Ground", () -> new Ground());
         map.put("GroundDisconnector", () -> new GroundDisconnector());
         map.put("GroundingImpedance", () -> new GroundingImpedance());
-        map.put("HydroEnergyConversionKind", () -> new HydroEnergyConversionKind());
         map.put("HydroGeneratingUnit", () -> new HydroGeneratingUnit());
-        map.put("HydroPlantStorageKind", () -> new HydroPlantStorageKind());
         map.put("HydroPowerPlant", () -> new HydroPowerPlant());
         map.put("HydroPump", () -> new HydroPump());
         map.put("IdentifiedObject", () -> new IdentifiedObject());
-        map.put("IfdBaseKind", () -> new IfdBaseKind());
-        map.put("Inductance", () -> new Inductance());
-        map.put("InductancePerLength", () -> new InductancePerLength());
-        map.put("InputSignalKind", () -> new InputSignalKind());
-        map.put("Integer", () -> new Integer());
         map.put("Junction", () -> new Junction());
-        map.put("Length", () -> new Length());
         map.put("Limit", () -> new Limit());
         map.put("LimitSet", () -> new LimitSet());
-        map.put("LimitTypeKind", () -> new LimitTypeKind());
         map.put("Line", () -> new Line());
         map.put("LinearShuntCompensator", () -> new LinearShuntCompensator());
         map.put("LoadAggregate", () -> new LoadAggregate());
@@ -315,8 +271,6 @@ public final class CimClassMap {
         map.put("MechLoad1", () -> new MechLoad1());
         map.put("MechanicalLoadDynamics", () -> new MechanicalLoadDynamics());
         map.put("MechanicalLoadUserDefined", () -> new MechanicalLoadUserDefined());
-        map.put("Money", () -> new Money());
-        map.put("MonthDay", () -> new MonthDay());
         map.put("MutualCoupling", () -> new MutualCoupling());
         map.put("NonConformLoad", () -> new NonConformLoad());
         map.put("NonConformLoadGroup", () -> new NonConformLoadGroup());
@@ -325,10 +279,8 @@ public final class CimClassMap {
         map.put("NonlinearShuntCompensatorPoint", () -> new NonlinearShuntCompensatorPoint());
         map.put("NuclearGeneratingUnit", () -> new NuclearGeneratingUnit());
         map.put("OperationalLimit", () -> new OperationalLimit());
-        map.put("OperationalLimitDirectionKind", () -> new OperationalLimitDirectionKind());
         map.put("OperationalLimitSet", () -> new OperationalLimitSet());
         map.put("OperationalLimitType", () -> new OperationalLimitType());
-        map.put("OrientationKind", () -> new OrientationKind());
         map.put("OverexcLim2", () -> new OverexcLim2());
         map.put("OverexcLimIEEE", () -> new OverexcLimIEEE());
         map.put("OverexcLimX1", () -> new OverexcLimX1());
@@ -344,12 +296,8 @@ public final class CimClassMap {
         map.put("PFVArType2Common1", () -> new PFVArType2Common1());
         map.put("PFVArType2IEEEPFController", () -> new PFVArType2IEEEPFController());
         map.put("PFVArType2IEEEVArController", () -> new PFVArType2IEEEVArController());
-        map.put("PU", () -> new PU());
-        map.put("PerCent", () -> new PerCent());
         map.put("PerLengthDCLineParameter", () -> new PerLengthDCLineParameter());
         map.put("PetersenCoil", () -> new PetersenCoil());
-        map.put("PetersenCoilModeKind", () -> new PetersenCoilModeKind());
-        map.put("PhaseCode", () -> new PhaseCode());
         map.put("PhaseTapChanger", () -> new PhaseTapChanger());
         map.put("PhaseTapChangerAsymmetrical", () -> new PhaseTapChangerAsymmetrical());
         map.put("PhaseTapChangerLinear", () -> new PhaseTapChangerLinear());
@@ -387,47 +335,31 @@ public final class CimClassMap {
         map.put("RatioTapChanger", () -> new RatioTapChanger());
         map.put("RatioTapChangerTable", () -> new RatioTapChangerTable());
         map.put("RatioTapChangerTablePoint", () -> new RatioTapChangerTablePoint());
-        map.put("Reactance", () -> new Reactance());
         map.put("ReactiveCapabilityCurve", () -> new ReactiveCapabilityCurve());
-        map.put("ReactivePower", () -> new ReactivePower());
         map.put("RegularIntervalSchedule", () -> new RegularIntervalSchedule());
         map.put("RegularTimePoint", () -> new RegularTimePoint());
         map.put("RegulatingCondEq", () -> new RegulatingCondEq());
         map.put("RegulatingControl", () -> new RegulatingControl());
-        map.put("RegulatingControlModeKind", () -> new RegulatingControlModeKind());
         map.put("RegulationSchedule", () -> new RegulationSchedule());
         map.put("RemoteInputSignal", () -> new RemoteInputSignal());
-        map.put("RemoteSignalKind", () -> new RemoteSignalKind());
         map.put("ReportingGroup", () -> new ReportingGroup());
-        map.put("Resistance", () -> new Resistance());
-        map.put("ResistancePerLength", () -> new ResistancePerLength());
         map.put("RotatingMachine", () -> new RotatingMachine());
         map.put("RotatingMachineDynamics", () -> new RotatingMachineDynamics());
-        map.put("RotationSpeed", () -> new RotationSpeed());
-        map.put("RotorKind", () -> new RotorKind());
-        map.put("SVCControlMode", () -> new SVCControlMode());
         map.put("Season", () -> new Season());
         map.put("SeasonDayTypeSchedule", () -> new SeasonDayTypeSchedule());
-        map.put("Seconds", () -> new Seconds());
         map.put("SeriesCompensator", () -> new SeriesCompensator());
         map.put("SetPoint", () -> new SetPoint());
-        map.put("ShortCircuitRotorKind", () -> new ShortCircuitRotorKind());
         map.put("ShuntCompensator", () -> new ShuntCompensator());
-        map.put("Simple_Float", () -> new Simple_Float());
         map.put("SolarGeneratingUnit", () -> new SolarGeneratingUnit());
-        map.put("Source", () -> new Source());
         map.put("StateVariablesVersion", () -> new StateVariablesVersion());
-        map.put("StaticLoadModelKind", () -> new StaticLoadModelKind());
         map.put("StaticVarCompensator", () -> new StaticVarCompensator());
         map.put("StationSupply", () -> new StationSupply());
         map.put("SteadyStateHypothesisVersion", () -> new SteadyStateHypothesisVersion());
-        map.put("String", () -> new String());
         map.put("StringMeasurement", () -> new StringMeasurement());
         map.put("StringMeasurementValue", () -> new StringMeasurementValue());
         map.put("SubGeographicalRegion", () -> new SubGeographicalRegion());
         map.put("SubLoadArea", () -> new SubLoadArea());
         map.put("Substation", () -> new Substation());
-        map.put("Susceptance", () -> new Susceptance());
         map.put("SvInjection", () -> new SvInjection());
         map.put("SvPowerFlow", () -> new SvPowerFlow());
         map.put("SvShuntCompensatorSections", () -> new SvShuntCompensatorSections());
@@ -440,9 +372,6 @@ public final class CimClassMap {
         map.put("SynchronousMachineDetailed", () -> new SynchronousMachineDetailed());
         map.put("SynchronousMachineDynamics", () -> new SynchronousMachineDynamics());
         map.put("SynchronousMachineEquivalentCircuit", () -> new SynchronousMachineEquivalentCircuit());
-        map.put("SynchronousMachineKind", () -> new SynchronousMachineKind());
-        map.put("SynchronousMachineModelKind", () -> new SynchronousMachineModelKind());
-        map.put("SynchronousMachineOperatingMode", () -> new SynchronousMachineOperatingMode());
         map.put("SynchronousMachineSimplified", () -> new SynchronousMachineSimplified());
         map.put("SynchronousMachineTimeConstantReactance", () -> new SynchronousMachineTimeConstantReactance());
         map.put("SynchronousMachineUserDefined", () -> new SynchronousMachineUserDefined());
@@ -450,7 +379,6 @@ public final class CimClassMap {
         map.put("TapChangerControl", () -> new TapChangerControl());
         map.put("TapChangerTablePoint", () -> new TapChangerTablePoint());
         map.put("TapSchedule", () -> new TapSchedule());
-        map.put("Temperature", () -> new Temperature());
         map.put("Terminal", () -> new Terminal());
         map.put("TextDiagramObject", () -> new TextDiagramObject());
         map.put("ThermalGeneratingUnit", () -> new ThermalGeneratingUnit());
@@ -459,7 +387,6 @@ public final class CimClassMap {
         map.put("TopologicalNode", () -> new TopologicalNode());
         map.put("TopologyBoundaryVersion", () -> new TopologyBoundaryVersion());
         map.put("TopologyVersion", () -> new TopologyVersion());
-        map.put("TransformerControlMode", () -> new TransformerControlMode());
         map.put("TransformerEnd", () -> new TransformerEnd());
         map.put("TurbLCFB1", () -> new TurbLCFB1());
         map.put("TurbineGovernorDynamics", () -> new TurbineGovernorDynamics());
@@ -473,28 +400,20 @@ public final class CimClassMap {
         map.put("UnderexcLimX2", () -> new UnderexcLimX2());
         map.put("UnderexcitationLimiterDynamics", () -> new UnderexcitationLimiterDynamics());
         map.put("UnderexcitationLimiterUserDefined", () -> new UnderexcitationLimiterUserDefined());
-        map.put("UnitMultiplier", () -> new UnitMultiplier());
-        map.put("UnitSymbol", () -> new UnitSymbol());
         map.put("VAdjIEEE", () -> new VAdjIEEE());
         map.put("VCompIEEEType1", () -> new VCompIEEEType1());
         map.put("VCompIEEEType2", () -> new VCompIEEEType2());
-        map.put("Validity", () -> new Validity());
         map.put("ValueAliasSet", () -> new ValueAliasSet());
         map.put("ValueToAlias", () -> new ValueToAlias());
         map.put("VisibilityLayer", () -> new VisibilityLayer());
-        map.put("Voltage", () -> new Voltage());
         map.put("VoltageAdjusterDynamics", () -> new VoltageAdjusterDynamics());
         map.put("VoltageAdjusterUserDefined", () -> new VoltageAdjusterUserDefined());
         map.put("VoltageCompensatorDynamics", () -> new VoltageCompensatorDynamics());
         map.put("VoltageCompensatorUserDefined", () -> new VoltageCompensatorUserDefined());
         map.put("VoltageLevel", () -> new VoltageLevel());
         map.put("VoltageLimit", () -> new VoltageLimit());
-        map.put("VoltagePerReactivePower", () -> new VoltagePerReactivePower());
-        map.put("VolumeFlowRate", () -> new VolumeFlowRate());
         map.put("VsCapabilityCurve", () -> new VsCapabilityCurve());
         map.put("VsConverter", () -> new VsConverter());
-        map.put("VsPpccControlKind", () -> new VsPpccControlKind());
-        map.put("VsQpccControlKind", () -> new VsQpccControlKind());
         map.put("WindAeroConstIEC", () -> new WindAeroConstIEC());
         map.put("WindAeroLinearIEC", () -> new WindAeroLinearIEC());
         map.put("WindContCurrLimIEC", () -> new WindContCurrLimIEC());
@@ -511,10 +430,7 @@ public final class CimClassMap {
         map.put("WindGenTurbineType3aIEC", () -> new WindGenTurbineType3aIEC());
         map.put("WindGenTurbineType3bIEC", () -> new WindGenTurbineType3bIEC());
         map.put("WindGenType4IEC", () -> new WindGenType4IEC());
-        map.put("WindGenUnitKind", () -> new WindGenUnitKind());
         map.put("WindGeneratingUnit", () -> new WindGeneratingUnit());
-        map.put("WindLVRTQcontrolModesKind", () -> new WindLVRTQcontrolModesKind());
-        map.put("WindLookupTableFunctionKind", () -> new WindLookupTableFunctionKind());
         map.put("WindMechIEC", () -> new WindMechIEC());
         map.put("WindPitchContEmulIEC", () -> new WindPitchContEmulIEC());
         map.put("WindPlantDynamics", () -> new WindPlantDynamics());
@@ -523,7 +439,6 @@ public final class CimClassMap {
         map.put("WindPlantReactiveControlIEC", () -> new WindPlantReactiveControlIEC());
         map.put("WindPlantUserDefined", () -> new WindPlantUserDefined());
         map.put("WindProtectionIEC", () -> new WindProtectionIEC());
-        map.put("WindQcontrolModesKind", () -> new WindQcontrolModesKind());
         map.put("WindTurbineType1or2Dynamics", () -> new WindTurbineType1or2Dynamics());
         map.put("WindTurbineType1or2IEC", () -> new WindTurbineType1or2IEC());
         map.put("WindTurbineType3or4Dynamics", () -> new WindTurbineType3or4Dynamics());
@@ -532,7 +447,6 @@ public final class CimClassMap {
         map.put("WindTurbineType4bIEC", () -> new WindTurbineType4bIEC());
         map.put("WindType1or2UserDefined", () -> new WindType1or2UserDefined());
         map.put("WindType3or4UserDefined", () -> new WindType3or4UserDefined());
-        map.put("WindingConnection", () -> new WindingConnection());
 
         CREATE_MAP = Collections.unmodifiableMap(map);
     }

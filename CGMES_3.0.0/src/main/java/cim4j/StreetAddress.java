@@ -4,209 +4,281 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * General purpose street and postal address information.
  */
+@SuppressWarnings("unused")
 public class StreetAddress extends BaseClass {
 
     private static final Logging LOG = Logging.getLogger(StreetAddress.class);
 
-    private BaseClass[] StreetAddress_class_attributes;
-    private BaseClass[] StreetAddress_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new StreetAddress().getAttributeNamesMap();
-    }
-
-    private enum StreetAddress_primitive_builder implements PrimitiveBuilder {
-        language() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        poBox() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        postalCode() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum StreetAddress_class_attributes_enum {
-        language,
-        poBox,
-        postalCode,
-        status,
-        streetDetail,
-        townDetail,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public StreetAddress() {
-        StreetAddress_primitive_attributes = new BaseClass[StreetAddress_primitive_builder.values().length];
-        StreetAddress_class_attributes = new BaseClass[StreetAddress_class_attributes_enum.values().length];
+        setCimType("StreetAddress");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new StreetAddress();
+    /**
+     * The language in which the address is specified, using ISO 639-1 two digit language code.
+     */
+    private String language; // String
+
+    public String getLanguage() {
+        return language;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
+    public void setLanguage(String _value_) {
+        language = _value_;
     }
 
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
+    public String languageToString() {
+        return language != null ? language.toString() : null;
     }
 
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
+    /**
+     * Post office box.
+     */
+    private String poBox; // String
+
+    public String getPoBox() {
+        return poBox;
     }
 
-    private void updateAttributeInArray(StreetAddress_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            StreetAddress_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setPoBox(String _value_) {
+        poBox = _value_;
+    }
+
+    public String poBoxToString() {
+        return poBox != null ? poBox.toString() : null;
+    }
+
+    /**
+     * Postal code for the address.
+     */
+    private String postalCode; // String
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String _value_) {
+        postalCode = _value_;
+    }
+
+    public String postalCodeToString() {
+        return postalCode != null ? postalCode.toString() : null;
+    }
+
+    /**
+     * Status of this address.
+     */
+    private Status status; // OneToOne
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(BaseClass _object_) {
+        if (!(_object_ instanceof Status)) {
+            throw new IllegalArgumentException("Object is not Status");
+        }
+        if (status != _object_) {
+            status = (Status) _object_;
         }
     }
 
-    private void updateAttributeInArray(StreetAddress_primitive_builder attrEnum, BaseClass value) {
-        try {
-            StreetAddress_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String statusToString() {
+        return status != null ? status.getRdfid() : null;
+    }
+
+    /**
+     * Street detail.
+     */
+    private StreetDetail streetDetail; // OneToOne
+
+    public StreetDetail getStreetDetail() {
+        return streetDetail;
+    }
+
+    public void setStreetDetail(BaseClass _object_) {
+        if (!(_object_ instanceof StreetDetail)) {
+            throw new IllegalArgumentException("Object is not StreetDetail");
+        }
+        if (streetDetail != _object_) {
+            streetDetail = (StreetDetail) _object_;
         }
     }
 
-    @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            StreetAddress_class_attributes_enum attrEnum = StreetAddress_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated StreetAddress, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    public String streetDetailToString() {
+        return streetDetail != null ? streetDetail.getRdfid() : null;
+    }
+
+    /**
+     * Town detail.
+     */
+    private TownDetail townDetail; // OneToOne
+
+    public TownDetail getTownDetail() {
+        return townDetail;
+    }
+
+    public void setTownDetail(BaseClass _object_) {
+        if (!(_object_ instanceof TownDetail)) {
+            throw new IllegalArgumentException("Object is not TownDetail");
+        }
+        if (townDetail != _object_) {
+            townDetail = (TownDetail) _object_;
         }
     }
 
+    public String townDetailToString() {
+        return townDetail != null ? townDetail.getRdfid() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            StreetAddress_primitive_builder attrEnum = StreetAddress_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated StreetAddress, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            StreetAddress_primitive_builder attrEnum = StreetAddress_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = StreetAddress_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
 
-        try {
-            StreetAddress_class_attributes_enum attrEnum = StreetAddress_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = StreetAddress_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
 
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("StreetAddress", attrName);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : StreetAddress_primitive_builder.values()) {
-            if (enumValue != StreetAddress_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "StreetAddress." + enumValue.name());
-            }
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
-        for (var enumValue : StreetAddress_class_attributes_enum.values()) {
-            if (enumValue != StreetAddress_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "StreetAddress." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("StreetAddress", attrName, objectValue);
     }
 
     @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (StreetAddress_primitive_builder attrEnum : StreetAddress_primitive_builder.values()) {
-                BaseClass bc = StreetAddress_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    StreetAddress." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (StreetAddress_class_attributes_enum attrEnum : StreetAddress_class_attributes_enum.values()) {
-                BaseClass bc = StreetAddress_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    StreetAddress." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(StreetAddress) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "StreetAddress";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("StreetAddress", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -215,7 +287,7 @@ public class StreetAddress extends BaseClass {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -225,15 +297,8 @@ public class StreetAddress extends BaseClass {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -264,7 +329,7 @@ public class StreetAddress extends BaseClass {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -286,44 +351,58 @@ public class StreetAddress extends BaseClass {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("language", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("language", new AttrDetails("StreetAddress.language", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("poBox", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("poBox", new AttrDetails("StreetAddress.poBox", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("postalCode", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("postalCode", new AttrDetails("StreetAddress.postalCode", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("status", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("status", new AttrDetails("StreetAddress.status", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("streetDetail", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("streetDetail", new AttrDetails("StreetAddress.streetDetail", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("townDetail", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("townDetail", new AttrDetails("StreetAddress.townDetail", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new StreetAddress().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("language", new GetterSetter(this::languageToString, null, this::setLanguage));
+        map.put("poBox", new GetterSetter(this::poBoxToString, null, this::setPoBox));
+        map.put("postalCode", new GetterSetter(this::postalCodeToString, null, this::setPostalCode));
+        map.put("status", new GetterSetter(this::statusToString, this::setStatus, null));
+        map.put("streetDetail", new GetterSetter(this::streetDetailToString, this::setStreetDetail, null));
+        map.put("townDetail", new GetterSetter(this::townDetailToString, this::setTownDetail, null));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

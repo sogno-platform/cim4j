@@ -4,218 +4,269 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Parameter details: <ol> 	<li>If <i>X'' </i>=<i> X'</i>, a single cage (one equivalent rotor winding per axis) is modelled.</li> 	<li>The "<i>p</i>" in the attribute names is a substitution for a "prime" in the usual parameter notation, e.g. <i>tpo</i> refers to <i>T'o</i>.</li> </ol> The parameters used for models expressed in time constant reactance form include: - RotatingMachine.ratedS (<i>MVAbase</i>); - RotatingMachineDynamics.damping (<i>D</i>); - RotatingMachineDynamics.inertia (<i>H</i>); - RotatingMachineDynamics.saturationFactor (<i>S1</i>); - RotatingMachineDynamics.saturationFactor120 (<i>S12</i>); - RotatingMachineDynamics.statorLeakageReactance (<i>Xl</i>); - RotatingMachineDynamics.statorResistance (<i>Rs</i>); - .xs (<i>Xs</i>); - .xp (<i>X'</i>); - .xpp (<i>X''</i>); - .tpo (<i>T'o</i>); - .tppo (<i>T''o</i>).
  */
+@SuppressWarnings("unused")
 public class AsynchronousMachineTimeConstantReactance extends AsynchronousMachineDynamics {
 
     private static final Logging LOG = Logging.getLogger(AsynchronousMachineTimeConstantReactance.class);
 
-    private BaseClass[] AsynchronousMachineTimeConstantReactance_class_attributes;
-    private BaseClass[] AsynchronousMachineTimeConstantReactance_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new AsynchronousMachineTimeConstantReactance().getAttributeNamesMap();
-    }
-
-    private enum AsynchronousMachineTimeConstantReactance_primitive_builder implements PrimitiveBuilder {
-        tpo() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tppo() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        xp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        xpp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        xs() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum AsynchronousMachineTimeConstantReactance_class_attributes_enum {
-        tpo,
-        tppo,
-        xp,
-        xpp,
-        xs,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public AsynchronousMachineTimeConstantReactance() {
-        AsynchronousMachineTimeConstantReactance_primitive_attributes = new BaseClass[AsynchronousMachineTimeConstantReactance_primitive_builder.values().length];
-        AsynchronousMachineTimeConstantReactance_class_attributes = new BaseClass[AsynchronousMachineTimeConstantReactance_class_attributes_enum.values().length];
+        setCimType("AsynchronousMachineTimeConstantReactance");
+    }
+
+    /**
+     * Transient rotor time constant (&lt;i&gt;T`o&lt;/i&gt;) (&amp;gt; AsynchronousMachineTimeConstantReactance.tppo).  Typical value = 5.
+     */
+    private Double tpo; // Seconds
+
+    public Double getTpo() {
+        return tpo;
+    }
+
+    public void setTpo(Double _value_) {
+        tpo = _value_;
+    }
+
+    public void setTpo(String _value_) {
+        tpo = getDoubleFromString(_value_);
+    }
+
+    public String tpoToString() {
+        return tpo != null ? tpo.toString() : null;
+    }
+
+    /**
+     * Subtransient rotor time constant (&lt;i&gt;T``o&lt;/i&gt;) (&amp;gt; 0).  Typical value = 0,03.
+     */
+    private Double tppo; // Seconds
+
+    public Double getTppo() {
+        return tppo;
+    }
+
+    public void setTppo(Double _value_) {
+        tppo = _value_;
+    }
+
+    public void setTppo(String _value_) {
+        tppo = getDoubleFromString(_value_);
+    }
+
+    public String tppoToString() {
+        return tppo != null ? tppo.toString() : null;
+    }
+
+    /**
+     * Transient reactance (unsaturated) (&lt;i&gt;X`&lt;/i&gt;) (&amp;gt;= AsynchronousMachineTimeConstantReactance.xpp).  Typical value = 0,5.
+     */
+    private Double xp; // PU
+
+    public Double getXp() {
+        return xp;
+    }
+
+    public void setXp(Double _value_) {
+        xp = _value_;
+    }
+
+    public void setXp(String _value_) {
+        xp = getDoubleFromString(_value_);
+    }
+
+    public String xpToString() {
+        return xp != null ? xp.toString() : null;
+    }
+
+    /**
+     * Subtransient reactance (unsaturated) (&lt;i&gt;X``&lt;/i&gt;) (&amp;gt; RotatingMachineDynamics.statorLeakageReactance).  Typical value = 0,2.
+     */
+    private Double xpp; // PU
+
+    public Double getXpp() {
+        return xpp;
+    }
+
+    public void setXpp(Double _value_) {
+        xpp = _value_;
+    }
+
+    public void setXpp(String _value_) {
+        xpp = getDoubleFromString(_value_);
+    }
+
+    public String xppToString() {
+        return xpp != null ? xpp.toString() : null;
+    }
+
+    /**
+     * Synchronous reactance (&lt;i&gt;Xs&lt;/i&gt;) (&amp;gt;= AsynchronousMachineTimeConstantReactance.xp).  Typical value = 1,8.
+     */
+    private Double xs; // PU
+
+    public Double getXs() {
+        return xs;
+    }
+
+    public void setXs(Double _value_) {
+        xs = _value_;
+    }
+
+    public void setXs(String _value_) {
+        xs = getDoubleFromString(_value_);
+    }
+
+    public String xsToString() {
+        return xs != null ? xs.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new AsynchronousMachineTimeConstantReactance();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("AsynchronousMachineTimeConstantReactance", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(AsynchronousMachineTimeConstantReactance_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            AsynchronousMachineTimeConstantReactance_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(AsynchronousMachineTimeConstantReactance_primitive_builder attrEnum, BaseClass value) {
-        try {
-            AsynchronousMachineTimeConstantReactance_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("AsynchronousMachineTimeConstantReactance", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            AsynchronousMachineTimeConstantReactance_class_attributes_enum attrEnum = AsynchronousMachineTimeConstantReactance_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated AsynchronousMachineTimeConstantReactance, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            AsynchronousMachineTimeConstantReactance_primitive_builder attrEnum = AsynchronousMachineTimeConstantReactance_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated AsynchronousMachineTimeConstantReactance, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            AsynchronousMachineTimeConstantReactance_primitive_builder attrEnum = AsynchronousMachineTimeConstantReactance_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = AsynchronousMachineTimeConstantReactance_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            AsynchronousMachineTimeConstantReactance_class_attributes_enum attrEnum = AsynchronousMachineTimeConstantReactance_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = AsynchronousMachineTimeConstantReactance_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : AsynchronousMachineTimeConstantReactance_primitive_builder.values()) {
-            if (enumValue != AsynchronousMachineTimeConstantReactance_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "AsynchronousMachineTimeConstantReactance." + enumValue.name());
-            }
-        }
-        for (var enumValue : AsynchronousMachineTimeConstantReactance_class_attributes_enum.values()) {
-            if (enumValue != AsynchronousMachineTimeConstantReactance_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "AsynchronousMachineTimeConstantReactance." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (AsynchronousMachineTimeConstantReactance_primitive_builder attrEnum : AsynchronousMachineTimeConstantReactance_primitive_builder.values()) {
-                BaseClass bc = AsynchronousMachineTimeConstantReactance_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    AsynchronousMachineTimeConstantReactance." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (AsynchronousMachineTimeConstantReactance_class_attributes_enum attrEnum : AsynchronousMachineTimeConstantReactance_class_attributes_enum.values()) {
-                BaseClass bc = AsynchronousMachineTimeConstantReactance_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    AsynchronousMachineTimeConstantReactance." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(AsynchronousMachineTimeConstantReactance) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "AsynchronousMachineTimeConstantReactance";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("AsynchronousMachineTimeConstantReactance", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -224,7 +275,7 @@ public class AsynchronousMachineTimeConstantReactance extends AsynchronousMachin
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -234,15 +285,8 @@ public class AsynchronousMachineTimeConstantReactance extends AsynchronousMachin
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -273,7 +317,7 @@ public class AsynchronousMachineTimeConstantReactance extends AsynchronousMachin
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -295,39 +339,52 @@ public class AsynchronousMachineTimeConstantReactance extends AsynchronousMachin
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpo", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tpo", new AttrDetails("AsynchronousMachineTimeConstantReactance.tpo", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tppo", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tppo", new AttrDetails("AsynchronousMachineTimeConstantReactance.tppo", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xp", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("xp", new AttrDetails("AsynchronousMachineTimeConstantReactance.xp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xpp", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("xpp", new AttrDetails("AsynchronousMachineTimeConstantReactance.xpp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xs", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("xs", new AttrDetails("AsynchronousMachineTimeConstantReactance.xs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AsynchronousMachineTimeConstantReactance().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("tpo", new GetterSetter(this::tpoToString, null, this::setTpo));
+        map.put("tppo", new GetterSetter(this::tppoToString, null, this::setTppo));
+        map.put("xp", new GetterSetter(this::xpToString, null, this::setXp));
+        map.put("xpp", new GetterSetter(this::xppToString, null, this::setXpp));
+        map.put("xs", new GetterSetter(this::xsToString, null, this::setXs));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

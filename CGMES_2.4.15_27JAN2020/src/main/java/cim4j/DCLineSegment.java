@@ -4,213 +4,271 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * A wire or combination of wires not insulated from one another, with consistent electrical characteristics, used to carry direct current between points in the DC region of the power system.
  */
+@SuppressWarnings("unused")
 public class DCLineSegment extends DCConductingEquipment {
 
     private static final Logging LOG = Logging.getLogger(DCLineSegment.class);
 
-    private BaseClass[] DCLineSegment_class_attributes;
-    private BaseClass[] DCLineSegment_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new DCLineSegment().getAttributeNamesMap();
-    }
-
-    private enum DCLineSegment_primitive_builder implements PrimitiveBuilder {
-        capacitance() {
-            public BaseClass construct(java.lang.String value) {
-                return new Capacitance(value);
-            }
-        },
-        inductance() {
-            public BaseClass construct(java.lang.String value) {
-                return new Inductance(value);
-            }
-        },
-        length() {
-            public BaseClass construct(java.lang.String value) {
-                return new Length(value);
-            }
-        },
-        resistance() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum DCLineSegment_class_attributes_enum {
-        PerLengthParameter,
-        capacitance,
-        inductance,
-        length,
-        resistance,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public DCLineSegment() {
-        DCLineSegment_primitive_attributes = new BaseClass[DCLineSegment_primitive_builder.values().length];
-        DCLineSegment_class_attributes = new BaseClass[DCLineSegment_class_attributes_enum.values().length];
+        setCimType("DCLineSegment");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new DCLineSegment();
+    /**
+     * Set of per-length parameters for this line segment.
+     */
+    private PerLengthDCLineParameter PerLengthParameter; // ManyToOne
+
+    public PerLengthDCLineParameter getPerLengthParameter() {
+        return PerLengthParameter;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(DCLineSegment_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            DCLineSegment_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setPerLengthParameter(BaseClass _object_) {
+        if (!(_object_ instanceof PerLengthDCLineParameter)) {
+            throw new IllegalArgumentException("Object is not PerLengthDCLineParameter");
+        }
+        if (PerLengthParameter != _object_) {
+            PerLengthParameter = (PerLengthDCLineParameter) _object_;
+            PerLengthParameter.setDCLineSegments(this);
         }
     }
 
-    private void updateAttributeInArray(DCLineSegment_primitive_builder attrEnum, BaseClass value) {
-        try {
-            DCLineSegment_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    public String PerLengthParameterToString() {
+        return PerLengthParameter != null ? PerLengthParameter.getRdfid() : null;
+    }
+
+    /**
+     * Capacitance of the DC line segment. Significant for cables only.
+     */
+    private Double capacitance; // Capacitance
+
+    public Double getCapacitance() {
+        return capacitance;
+    }
+
+    public void setCapacitance(Double _value_) {
+        capacitance = _value_;
+    }
+
+    public void setCapacitance(String _value_) {
+        capacitance = getDoubleFromString(_value_);
+    }
+
+    public String capacitanceToString() {
+        return capacitance != null ? capacitance.toString() : null;
+    }
+
+    /**
+     * Inductance of the DC line segment. Neglectable compared with DCSeriesDevice used for smoothing.
+     */
+    private Double inductance; // Inductance
+
+    public Double getInductance() {
+        return inductance;
+    }
+
+    public void setInductance(Double _value_) {
+        inductance = _value_;
+    }
+
+    public void setInductance(String _value_) {
+        inductance = getDoubleFromString(_value_);
+    }
+
+    public String inductanceToString() {
+        return inductance != null ? inductance.toString() : null;
+    }
+
+    /**
+     * Segment length for calculating line section capabilities.
+     */
+    private Double length; // Length
+
+    public Double getLength() {
+        return length;
+    }
+
+    public void setLength(Double _value_) {
+        length = _value_;
+    }
+
+    public void setLength(String _value_) {
+        length = getDoubleFromString(_value_);
+    }
+
+    public String lengthToString() {
+        return length != null ? length.toString() : null;
+    }
+
+    /**
+     * Resistance of the DC line segment.
+     */
+    private Double resistance; // Resistance
+
+    public Double getResistance() {
+        return resistance;
+    }
+
+    public void setResistance(Double _value_) {
+        resistance = _value_;
+    }
+
+    public void setResistance(String _value_) {
+        resistance = getDoubleFromString(_value_);
+    }
+
+    public String resistanceToString() {
+        return resistance != null ? resistance.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            DCLineSegment_class_attributes_enum attrEnum = DCLineSegment_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated DCLineSegment, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("DCLineSegment", attrName);
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            DCLineSegment_primitive_builder attrEnum = DCLineSegment_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated DCLineSegment, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("DCLineSegment", attrName, objectValue);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            DCLineSegment_primitive_builder attrEnum = DCLineSegment_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = DCLineSegment_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            DCLineSegment_class_attributes_enum attrEnum = DCLineSegment_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = DCLineSegment_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : DCLineSegment_primitive_builder.values()) {
-            if (enumValue != DCLineSegment_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "DCLineSegment." + enumValue.name());
-            }
-        }
-        for (var enumValue : DCLineSegment_class_attributes_enum.values()) {
-            if (enumValue != DCLineSegment_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "DCLineSegment." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (DCLineSegment_primitive_builder attrEnum : DCLineSegment_primitive_builder.values()) {
-                BaseClass bc = DCLineSegment_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    DCLineSegment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (DCLineSegment_class_attributes_enum attrEnum : DCLineSegment_class_attributes_enum.values()) {
-                BaseClass bc = DCLineSegment_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    DCLineSegment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(DCLineSegment) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "DCLineSegment";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("DCLineSegment", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -219,7 +277,7 @@ public class DCLineSegment extends DCConductingEquipment {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -229,15 +287,8 @@ public class DCLineSegment extends DCConductingEquipment {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -268,7 +319,7 @@ public class DCLineSegment extends DCConductingEquipment {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -290,39 +341,52 @@ public class DCLineSegment extends DCConductingEquipment {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("PerLengthParameter", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("PerLengthParameter", new AttrDetails("DCLineSegment.PerLengthParameter", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("capacitance", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("capacitance", new AttrDetails("DCLineSegment.capacitance", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("inductance", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("inductance", new AttrDetails("DCLineSegment.inductance", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("length", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("length", new AttrDetails("DCLineSegment.length", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("resistance", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("resistance", new AttrDetails("DCLineSegment.resistance", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DCLineSegment().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("PerLengthParameter", new GetterSetter(this::PerLengthParameterToString, this::setPerLengthParameter, null));
+        map.put("capacitance", new GetterSetter(this::capacitanceToString, null, this::setCapacitance));
+        map.put("inductance", new GetterSetter(this::inductanceToString, null, this::setInductance));
+        map.put("length", new GetterSetter(this::lengthToString, null, this::setLength));
+        map.put("resistance", new GetterSetter(this::resistanceToString, null, this::setResistance));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

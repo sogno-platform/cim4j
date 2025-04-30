@@ -4,227 +4,355 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Specifies a set of equipment that works together to control a power system quantity such as voltage or flow.  Remote bus voltage control is possible by specifying the controlled terminal located at some place remote from the controlling equipment. In case multiple equipment, possibly of different types, control same terminal there must be only one RegulatingControl at that terminal. The most specific subtype of RegulatingControl shall be used in case such equipment participate in the control, e.g. TapChangerControl for tap changers. For flow control  load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
  */
+@SuppressWarnings("unused")
 public class RegulatingControl extends PowerSystemResource {
 
     private static final Logging LOG = Logging.getLogger(RegulatingControl.class);
 
-    private BaseClass[] RegulatingControl_class_attributes;
-    private BaseClass[] RegulatingControl_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new RegulatingControl().getAttributeNamesMap();
-    }
-
-    private enum RegulatingControl_primitive_builder implements PrimitiveBuilder {
-        discrete() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        enabled() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        mode() {
-            public BaseClass construct(java.lang.String value) {
-                return new RegulatingControlModeKind(value);
-            }
-        },
-        targetDeadband() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        targetValue() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        targetValueUnitMultiplier() {
-            public BaseClass construct(java.lang.String value) {
-                return new UnitMultiplier(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum RegulatingControl_class_attributes_enum {
-        RegulatingCondEq,
-        RegulationSchedule,
-        Terminal,
-        discrete,
-        enabled,
-        mode,
-        targetDeadband,
-        targetValue,
-        targetValueUnitMultiplier,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public RegulatingControl() {
-        RegulatingControl_primitive_attributes = new BaseClass[RegulatingControl_primitive_builder.values().length];
-        RegulatingControl_class_attributes = new BaseClass[RegulatingControl_class_attributes_enum.values().length];
+        setCimType("RegulatingControl");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new RegulatingControl();
+    /**
+     * The equipment that participates in this regulating control scheme.
+     *
+     * NOT USED
+     */
+    private Set<RegulatingCondEq> RegulatingCondEq = new HashSet<>(); // OneToMany
+
+    public Set<RegulatingCondEq> getRegulatingCondEq() {
+        return RegulatingCondEq;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(RegulatingControl_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            RegulatingControl_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setRegulatingCondEq(BaseClass _object_) {
+        if (!(_object_ instanceof RegulatingCondEq)) {
+            throw new IllegalArgumentException("Object is not RegulatingCondEq");
+        }
+        if (!RegulatingCondEq.contains(_object_)) {
+            RegulatingCondEq.add((RegulatingCondEq) _object_);
+            ((RegulatingCondEq) _object_).setRegulatingControl(this);
         }
     }
 
-    private void updateAttributeInArray(RegulatingControl_primitive_builder attrEnum, BaseClass value) {
-        try {
-            RegulatingControl_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String RegulatingCondEqToString() {
+        return getStringFromSet(RegulatingCondEq);
+    }
+
+    /**
+     * Schedule for this Regulating regulating control.
+     *
+     * NOT USED
+     */
+    private Set<RegulationSchedule> RegulationSchedule = new HashSet<>(); // OneToMany
+
+    public Set<RegulationSchedule> getRegulationSchedule() {
+        return RegulationSchedule;
+    }
+
+    public void setRegulationSchedule(BaseClass _object_) {
+        if (!(_object_ instanceof RegulationSchedule)) {
+            throw new IllegalArgumentException("Object is not RegulationSchedule");
+        }
+        if (!RegulationSchedule.contains(_object_)) {
+            RegulationSchedule.add((RegulationSchedule) _object_);
+            ((RegulationSchedule) _object_).setRegulatingControl(this);
         }
     }
 
-    @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            RegulatingControl_class_attributes_enum attrEnum = RegulatingControl_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated RegulatingControl, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    public String RegulationScheduleToString() {
+        return getStringFromSet(RegulationSchedule);
+    }
+
+    /**
+     * The controls regulating this terminal.
+     */
+    private Terminal Terminal; // OneToOne
+
+    public Terminal getTerminal() {
+        return Terminal;
+    }
+
+    public void setTerminal(BaseClass _object_) {
+        if (!(_object_ instanceof Terminal)) {
+            throw new IllegalArgumentException("Object is not Terminal");
+        }
+        if (Terminal != _object_) {
+            Terminal = (Terminal) _object_;
+            Terminal.setRegulatingControl(this);
         }
     }
 
+    public String TerminalToString() {
+        return Terminal != null ? Terminal.getRdfid() : null;
+    }
+
+    /**
+     * The regulation is performed in a discrete mode. This applies to equipment with discrete controls, e.g. tap changers and shunt compensators.
+     */
+    private Boolean discrete; // Boolean
+
+    public Boolean getDiscrete() {
+        return discrete;
+    }
+
+    public void setDiscrete(Boolean _value_) {
+        discrete = _value_;
+    }
+
+    public void setDiscrete(String _value_) {
+        discrete = getBooleanFromString(_value_);
+    }
+
+    public String discreteToString() {
+        return discrete != null ? discrete.toString() : null;
+    }
+
+    /**
+     * The flag tells if regulation is enabled.
+     */
+    private Boolean enabled; // Boolean
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean _value_) {
+        enabled = _value_;
+    }
+
+    public void setEnabled(String _value_) {
+        enabled = getBooleanFromString(_value_);
+    }
+
+    public String enabledToString() {
+        return enabled != null ? enabled.toString() : null;
+    }
+
+    /**
+     * The regulating control mode presently available.  This specification allows for determining the kind of regulation without need for obtaining the units from a schedule.
+     */
+    private String mode; // RegulatingControlModeKind
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String _value_) {
+        mode = _value_;
+    }
+
+    public String modeToString() {
+        return mode;
+    }
+
+    /**
+     * This is a deadband used with discrete control to avoid excessive update of controls like tap changers and shunt compensator banks while regulating. The units of those appropriate for the mode.
+     */
+    private Double targetDeadband; // Simple_Float
+
+    public Double getTargetDeadband() {
+        return targetDeadband;
+    }
+
+    public void setTargetDeadband(Double _value_) {
+        targetDeadband = _value_;
+    }
+
+    public void setTargetDeadband(String _value_) {
+        targetDeadband = getDoubleFromString(_value_);
+    }
+
+    public String targetDeadbandToString() {
+        return targetDeadband != null ? targetDeadband.toString() : null;
+    }
+
+    /**
+     * The target value specified for case input.   This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.
+     */
+    private Double targetValue; // Simple_Float
+
+    public Double getTargetValue() {
+        return targetValue;
+    }
+
+    public void setTargetValue(Double _value_) {
+        targetValue = _value_;
+    }
+
+    public void setTargetValue(String _value_) {
+        targetValue = getDoubleFromString(_value_);
+    }
+
+    public String targetValueToString() {
+        return targetValue != null ? targetValue.toString() : null;
+    }
+
+    /**
+     * Specify the multiplier for used for the targetValue.
+     */
+    private String targetValueUnitMultiplier; // UnitMultiplier
+
+    public String getTargetValueUnitMultiplier() {
+        return targetValueUnitMultiplier;
+    }
+
+    public void setTargetValueUnitMultiplier(String _value_) {
+        targetValueUnitMultiplier = _value_;
+    }
+
+    public String targetValueUnitMultiplierToString() {
+        return targetValueUnitMultiplier;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            RegulatingControl_primitive_builder attrEnum = RegulatingControl_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated RegulatingControl, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            RegulatingControl_primitive_builder attrEnum = RegulatingControl_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = RegulatingControl_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
 
-        try {
-            RegulatingControl_class_attributes_enum attrEnum = RegulatingControl_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = RegulatingControl_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
 
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("RegulatingControl", attrName);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : RegulatingControl_primitive_builder.values()) {
-            if (enumValue != RegulatingControl_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "RegulatingControl." + enumValue.name());
-            }
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
-        for (var enumValue : RegulatingControl_class_attributes_enum.values()) {
-            if (enumValue != RegulatingControl_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "RegulatingControl." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("RegulatingControl", attrName, objectValue);
     }
 
     @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (RegulatingControl_primitive_builder attrEnum : RegulatingControl_primitive_builder.values()) {
-                BaseClass bc = RegulatingControl_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    RegulatingControl." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (RegulatingControl_class_attributes_enum attrEnum : RegulatingControl_class_attributes_enum.values()) {
-                BaseClass bc = RegulatingControl_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    RegulatingControl." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(RegulatingControl) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "RegulatingControl";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("RegulatingControl", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -233,7 +361,7 @@ public class RegulatingControl extends PowerSystemResource {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -243,15 +371,8 @@ public class RegulatingControl extends PowerSystemResource {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -282,7 +403,7 @@ public class RegulatingControl extends PowerSystemResource {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -304,59 +425,76 @@ public class RegulatingControl extends PowerSystemResource {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("RegulatingCondEq", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
-        }
-        {
-            Set<CGMESProfile> profiles = new LinkedHashSet<>();
-            profiles.add(CGMESProfile.EQ);
-            map.put("RegulationSchedule", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("RegulatingCondEq", new AttrDetails("RegulatingControl.RegulatingCondEq", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Terminal", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
-        }
-        {
-            Set<CGMESProfile> profiles = new LinkedHashSet<>();
-            profiles.add(CGMESProfile.SSH);
-            map.put("discrete", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
-        }
-        {
-            Set<CGMESProfile> profiles = new LinkedHashSet<>();
-            profiles.add(CGMESProfile.SSH);
-            map.put("enabled", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("RegulationSchedule", new AttrDetails("RegulatingControl.RegulationSchedule", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("mode", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("Terminal", new AttrDetails("RegulatingControl.Terminal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetDeadband", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("discrete", new AttrDetails("RegulatingControl.discrete", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetValue", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("enabled", new AttrDetails("RegulatingControl.enabled", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("mode", new AttrDetails("RegulatingControl.mode", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetValueUnitMultiplier", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("targetDeadband", new AttrDetails("RegulatingControl.targetDeadband", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.SSH);
+            map.put("targetValue", new AttrDetails("RegulatingControl.targetValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.SSH);
+            map.put("targetValueUnitMultiplier", new AttrDetails("RegulatingControl.targetValueUnitMultiplier", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RegulatingControl().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("RegulatingCondEq", new GetterSetter(this::RegulatingCondEqToString, this::setRegulatingCondEq, null));
+        map.put("RegulationSchedule", new GetterSetter(this::RegulationScheduleToString, this::setRegulationSchedule, null));
+        map.put("Terminal", new GetterSetter(this::TerminalToString, this::setTerminal, null));
+        map.put("discrete", new GetterSetter(this::discreteToString, null, this::setDiscrete));
+        map.put("enabled", new GetterSetter(this::enabledToString, null, this::setEnabled));
+        map.put("mode", new GetterSetter(this::modeToString, null, this::setMode));
+        map.put("targetDeadband", new GetterSetter(this::targetDeadbandToString, null, this::setTargetDeadband));
+        map.put("targetValue", new GetterSetter(this::targetValueToString, null, this::setTargetValue));
+        map.put("targetValueUnitMultiplier", new GetterSetter(this::targetValueUnitMultiplierToString, null, this::setTargetValueUnitMultiplier));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

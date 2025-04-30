@@ -4,224 +4,290 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * <font color="#0f0f0f">Allis-Chalmers minimum excitation limiter.</font>
  */
+@SuppressWarnings("unused")
 public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
 
     private static final Logging LOG = Logging.getLogger(UnderexcLimX1.class);
 
-    private BaseClass[] UnderexcLimX1_class_attributes;
-    private BaseClass[] UnderexcLimX1_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new UnderexcLimX1().getAttributeNamesMap();
-    }
-
-    private enum UnderexcLimX1_primitive_builder implements PrimitiveBuilder {
-        k() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kf2() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        km() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        melmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        tf2() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tm() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum UnderexcLimX1_class_attributes_enum {
-        k,
-        kf2,
-        km,
-        melmax,
-        tf2,
-        tm,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public UnderexcLimX1() {
-        UnderexcLimX1_primitive_attributes = new BaseClass[UnderexcLimX1_primitive_builder.values().length];
-        UnderexcLimX1_class_attributes = new BaseClass[UnderexcLimX1_class_attributes_enum.values().length];
+        setCimType("UnderexcLimX1");
+    }
+
+    /**
+     * Minimum excitation limit slope (&lt;i&gt;K&lt;/i&gt;) (&amp;gt; 0).
+     */
+    private Double k; // PU
+
+    public Double getK() {
+        return k;
+    }
+
+    public void setK(Double _value_) {
+        k = _value_;
+    }
+
+    public void setK(String _value_) {
+        k = getDoubleFromString(_value_);
+    }
+
+    public String kToString() {
+        return k != null ? k.toString() : null;
+    }
+
+    /**
+     * Differential gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;F2&lt;/sub&gt;&lt;/i&gt;).
+     */
+    private Double kf2; // PU
+
+    public Double getKf2() {
+        return kf2;
+    }
+
+    public void setKf2(Double _value_) {
+        kf2 = _value_;
+    }
+
+    public void setKf2(String _value_) {
+        kf2 = getDoubleFromString(_value_);
+    }
+
+    public String kf2ToString() {
+        return kf2 != null ? kf2.toString() : null;
+    }
+
+    /**
+     * Minimum excitation limit gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;M&lt;/sub&gt;&lt;/i&gt;).
+     */
+    private Double km; // PU
+
+    public Double getKm() {
+        return km;
+    }
+
+    public void setKm(Double _value_) {
+        km = _value_;
+    }
+
+    public void setKm(String _value_) {
+        km = getDoubleFromString(_value_);
+    }
+
+    public String kmToString() {
+        return km != null ? km.toString() : null;
+    }
+
+    /**
+     * Minimum excitation limit value (&lt;i&gt;MELMAX&lt;/i&gt;).
+     */
+    private Double melmax; // PU
+
+    public Double getMelmax() {
+        return melmax;
+    }
+
+    public void setMelmax(Double _value_) {
+        melmax = _value_;
+    }
+
+    public void setMelmax(String _value_) {
+        melmax = getDoubleFromString(_value_);
+    }
+
+    public String melmaxToString() {
+        return melmax != null ? melmax.toString() : null;
+    }
+
+    /**
+     * Differential time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;F2&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).
+     */
+    private Double tf2; // Seconds
+
+    public Double getTf2() {
+        return tf2;
+    }
+
+    public void setTf2(Double _value_) {
+        tf2 = _value_;
+    }
+
+    public void setTf2(String _value_) {
+        tf2 = getDoubleFromString(_value_);
+    }
+
+    public String tf2ToString() {
+        return tf2 != null ? tf2.toString() : null;
+    }
+
+    /**
+     * Minimum excitation limit time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;M&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).
+     */
+    private Double tm; // Seconds
+
+    public Double getTm() {
+        return tm;
+    }
+
+    public void setTm(Double _value_) {
+        tm = _value_;
+    }
+
+    public void setTm(String _value_) {
+        tm = getDoubleFromString(_value_);
+    }
+
+    public String tmToString() {
+        return tm != null ? tm.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new UnderexcLimX1();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("UnderexcLimX1", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(UnderexcLimX1_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            UnderexcLimX1_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(UnderexcLimX1_primitive_builder attrEnum, BaseClass value) {
-        try {
-            UnderexcLimX1_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("UnderexcLimX1", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            UnderexcLimX1_class_attributes_enum attrEnum = UnderexcLimX1_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated UnderexcLimX1, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            UnderexcLimX1_primitive_builder attrEnum = UnderexcLimX1_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated UnderexcLimX1, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            UnderexcLimX1_primitive_builder attrEnum = UnderexcLimX1_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = UnderexcLimX1_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            UnderexcLimX1_class_attributes_enum attrEnum = UnderexcLimX1_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = UnderexcLimX1_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : UnderexcLimX1_primitive_builder.values()) {
-            if (enumValue != UnderexcLimX1_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "UnderexcLimX1." + enumValue.name());
-            }
-        }
-        for (var enumValue : UnderexcLimX1_class_attributes_enum.values()) {
-            if (enumValue != UnderexcLimX1_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "UnderexcLimX1." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (UnderexcLimX1_primitive_builder attrEnum : UnderexcLimX1_primitive_builder.values()) {
-                BaseClass bc = UnderexcLimX1_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    UnderexcLimX1." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (UnderexcLimX1_class_attributes_enum attrEnum : UnderexcLimX1_class_attributes_enum.values()) {
-                BaseClass bc = UnderexcLimX1_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    UnderexcLimX1." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(UnderexcLimX1) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "UnderexcLimX1";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("UnderexcLimX1", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -230,7 +296,7 @@ public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -240,15 +306,8 @@ public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -279,7 +338,7 @@ public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -301,44 +360,58 @@ public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("k", new AttrDetails("UnderexcLimX1.k", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kf2", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("kf2", new AttrDetails("UnderexcLimX1.kf2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("km", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("km", new AttrDetails("UnderexcLimX1.km", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("melmax", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("melmax", new AttrDetails("UnderexcLimX1.melmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf2", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tf2", new AttrDetails("UnderexcLimX1.tf2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tm", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tm", new AttrDetails("UnderexcLimX1.tm", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new UnderexcLimX1().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("k", new GetterSetter(this::kToString, null, this::setK));
+        map.put("kf2", new GetterSetter(this::kf2ToString, null, this::setKf2));
+        map.put("km", new GetterSetter(this::kmToString, null, this::setKm));
+        map.put("melmax", new GetterSetter(this::melmaxToString, null, this::setMelmax));
+        map.put("tf2", new GetterSetter(this::tf2ToString, null, this::setTf2));
+        map.put("tm", new GetterSetter(this::tmToString, null, this::setTm));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

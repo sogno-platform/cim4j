@@ -4,284 +4,500 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * The class represents equivalent branches. In cases where a transformer phase shift is modelled and the EquivalentBranch is spanning the same nodes, the impedance quantities for the EquivalentBranch shall consider the needed phase shift.
  */
+@SuppressWarnings("unused")
 public class EquivalentBranch extends EquivalentEquipment {
 
     private static final Logging LOG = Logging.getLogger(EquivalentBranch.class);
 
-    private BaseClass[] EquivalentBranch_class_attributes;
-    private BaseClass[] EquivalentBranch_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new EquivalentBranch().getAttributeNamesMap();
-    }
-
-    private enum EquivalentBranch_primitive_builder implements PrimitiveBuilder {
-        negativeR12() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        negativeR21() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        negativeX12() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        negativeX21() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        positiveR12() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        positiveR21() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        positiveX12() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        positiveX21() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        r() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        r21() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        x() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        x21() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        zeroR12() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        zeroR21() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        zeroX12() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        zeroX21() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum EquivalentBranch_class_attributes_enum {
-        negativeR12,
-        negativeR21,
-        negativeX12,
-        negativeX21,
-        positiveR12,
-        positiveR21,
-        positiveX12,
-        positiveX21,
-        r,
-        r21,
-        x,
-        x21,
-        zeroR12,
-        zeroR21,
-        zeroX12,
-        zeroX21,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public EquivalentBranch() {
-        EquivalentBranch_primitive_attributes = new BaseClass[EquivalentBranch_primitive_builder.values().length];
-        EquivalentBranch_class_attributes = new BaseClass[EquivalentBranch_class_attributes_enum.values().length];
+        setCimType("EquivalentBranch");
+    }
+
+    /**
+     * Negative sequence series resistance from terminal sequence  1 to terminal sequence 2. Used for short circuit data exchange according to IEC 60909. EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double negativeR12; // Resistance
+
+    public Double getNegativeR12() {
+        return negativeR12;
+    }
+
+    public void setNegativeR12(Double _value_) {
+        negativeR12 = _value_;
+    }
+
+    public void setNegativeR12(String _value_) {
+        negativeR12 = getDoubleFromString(_value_);
+    }
+
+    public String negativeR12ToString() {
+        return negativeR12 != null ? negativeR12.toString() : null;
+    }
+
+    /**
+     * Negative sequence series resistance from terminal sequence 2 to terminal sequence 1. Used for short circuit data exchange according to IEC 60909. EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double negativeR21; // Resistance
+
+    public Double getNegativeR21() {
+        return negativeR21;
+    }
+
+    public void setNegativeR21(Double _value_) {
+        negativeR21 = _value_;
+    }
+
+    public void setNegativeR21(String _value_) {
+        negativeR21 = getDoubleFromString(_value_);
+    }
+
+    public String negativeR21ToString() {
+        return negativeR21 != null ? negativeR21.toString() : null;
+    }
+
+    /**
+     * Negative sequence series reactance from terminal sequence  1 to terminal sequence 2. Used for short circuit data exchange according to IEC 60909. Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double negativeX12; // Reactance
+
+    public Double getNegativeX12() {
+        return negativeX12;
+    }
+
+    public void setNegativeX12(Double _value_) {
+        negativeX12 = _value_;
+    }
+
+    public void setNegativeX12(String _value_) {
+        negativeX12 = getDoubleFromString(_value_);
+    }
+
+    public String negativeX12ToString() {
+        return negativeX12 != null ? negativeX12.toString() : null;
+    }
+
+    /**
+     * Negative sequence series reactance from terminal sequence 2 to terminal sequence 1. Used for short circuit data exchange according to IEC 60909. Usage: EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double negativeX21; // Reactance
+
+    public Double getNegativeX21() {
+        return negativeX21;
+    }
+
+    public void setNegativeX21(Double _value_) {
+        negativeX21 = _value_;
+    }
+
+    public void setNegativeX21(String _value_) {
+        negativeX21 = getDoubleFromString(_value_);
+    }
+
+    public String negativeX21ToString() {
+        return negativeX21 != null ? negativeX21.toString() : null;
+    }
+
+    /**
+     * Positive sequence series resistance from terminal sequence  1 to terminal sequence 2 . Used for short circuit data exchange according to IEC 60909.  EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double positiveR12; // Resistance
+
+    public Double getPositiveR12() {
+        return positiveR12;
+    }
+
+    public void setPositiveR12(Double _value_) {
+        positiveR12 = _value_;
+    }
+
+    public void setPositiveR12(String _value_) {
+        positiveR12 = getDoubleFromString(_value_);
+    }
+
+    public String positiveR12ToString() {
+        return positiveR12 != null ? positiveR12.toString() : null;
+    }
+
+    /**
+     * Positive sequence series resistance from terminal sequence 2 to terminal sequence 1. Used for short circuit data exchange according to IEC 60909. EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double positiveR21; // Resistance
+
+    public Double getPositiveR21() {
+        return positiveR21;
+    }
+
+    public void setPositiveR21(Double _value_) {
+        positiveR21 = _value_;
+    }
+
+    public void setPositiveR21(String _value_) {
+        positiveR21 = getDoubleFromString(_value_);
+    }
+
+    public String positiveR21ToString() {
+        return positiveR21 != null ? positiveR21.toString() : null;
+    }
+
+    /**
+     * Positive sequence series reactance from terminal sequence  1 to terminal sequence 2. Used for short circuit data exchange according to IEC 60909. Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double positiveX12; // Reactance
+
+    public Double getPositiveX12() {
+        return positiveX12;
+    }
+
+    public void setPositiveX12(Double _value_) {
+        positiveX12 = _value_;
+    }
+
+    public void setPositiveX12(String _value_) {
+        positiveX12 = getDoubleFromString(_value_);
+    }
+
+    public String positiveX12ToString() {
+        return positiveX12 != null ? positiveX12.toString() : null;
+    }
+
+    /**
+     * Positive sequence series reactance from terminal sequence 2 to terminal sequence 1. Used for short circuit data exchange according to IEC 60909. Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double positiveX21; // Reactance
+
+    public Double getPositiveX21() {
+        return positiveX21;
+    }
+
+    public void setPositiveX21(Double _value_) {
+        positiveX21 = _value_;
+    }
+
+    public void setPositiveX21(String _value_) {
+        positiveX21 = getDoubleFromString(_value_);
+    }
+
+    public String positiveX21ToString() {
+        return positiveX21 != null ? positiveX21.toString() : null;
+    }
+
+    /**
+     * Positive sequence series resistance of the reduced branch.
+     */
+    private Double r; // Resistance
+
+    public Double getR() {
+        return r;
+    }
+
+    public void setR(Double _value_) {
+        r = _value_;
+    }
+
+    public void setR(String _value_) {
+        r = getDoubleFromString(_value_);
+    }
+
+    public String rToString() {
+        return r != null ? r.toString() : null;
+    }
+
+    /**
+     * Resistance from terminal sequence 2 to terminal sequence 1 .Used for steady state power flow. This attribute is optional and represent unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.r is given, then EquivalentBranch.r21 is assumed equal to EquivalentBranch.r. Usage rule : EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double r21; // Resistance
+
+    public Double getR21() {
+        return r21;
+    }
+
+    public void setR21(Double _value_) {
+        r21 = _value_;
+    }
+
+    public void setR21(String _value_) {
+        r21 = getDoubleFromString(_value_);
+    }
+
+    public String r21ToString() {
+        return r21 != null ? r21.toString() : null;
+    }
+
+    /**
+     * Positive sequence series reactance of the reduced branch.
+     */
+    private Double x; // Reactance
+
+    public Double getX() {
+        return x;
+    }
+
+    public void setX(Double _value_) {
+        x = _value_;
+    }
+
+    public void setX(String _value_) {
+        x = getDoubleFromString(_value_);
+    }
+
+    public String xToString() {
+        return x != null ? x.toString() : null;
+    }
+
+    /**
+     * Reactance from terminal sequence 2 to terminal sequence 1. Used for steady state power flow. This attribute is optional and represents an unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.x is given, then EquivalentBranch.x21 is assumed equal to EquivalentBranch.x. Usage rule: EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double x21; // Reactance
+
+    public Double getX21() {
+        return x21;
+    }
+
+    public void setX21(Double _value_) {
+        x21 = _value_;
+    }
+
+    public void setX21(String _value_) {
+        x21 = getDoubleFromString(_value_);
+    }
+
+    public String x21ToString() {
+        return x21 != null ? x21.toString() : null;
+    }
+
+    /**
+     * Zero sequence series resistance from terminal sequence  1 to terminal sequence 2. Used for short circuit data exchange according to IEC 60909. EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double zeroR12; // Resistance
+
+    public Double getZeroR12() {
+        return zeroR12;
+    }
+
+    public void setZeroR12(Double _value_) {
+        zeroR12 = _value_;
+    }
+
+    public void setZeroR12(String _value_) {
+        zeroR12 = getDoubleFromString(_value_);
+    }
+
+    public String zeroR12ToString() {
+        return zeroR12 != null ? zeroR12.toString() : null;
+    }
+
+    /**
+     * Zero sequence series resistance from terminal sequence  2 to terminal sequence 1. Used for short circuit data exchange according to IEC 60909. Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double zeroR21; // Resistance
+
+    public Double getZeroR21() {
+        return zeroR21;
+    }
+
+    public void setZeroR21(Double _value_) {
+        zeroR21 = _value_;
+    }
+
+    public void setZeroR21(String _value_) {
+        zeroR21 = getDoubleFromString(_value_);
+    }
+
+    public String zeroR21ToString() {
+        return zeroR21 != null ? zeroR21.toString() : null;
+    }
+
+    /**
+     * Zero sequence series reactance from terminal sequence  1 to terminal sequence 2. Used for short circuit data exchange according to IEC 60909. Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double zeroX12; // Reactance
+
+    public Double getZeroX12() {
+        return zeroX12;
+    }
+
+    public void setZeroX12(Double _value_) {
+        zeroX12 = _value_;
+    }
+
+    public void setZeroX12(String _value_) {
+        zeroX12 = getDoubleFromString(_value_);
+    }
+
+    public String zeroX12ToString() {
+        return zeroX12 != null ? zeroX12.toString() : null;
+    }
+
+    /**
+     * Zero sequence series reactance from terminal sequence 2 to terminal sequence 1. Used for short circuit data exchange according to IEC 60909. Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
+     */
+    private Double zeroX21; // Reactance
+
+    public Double getZeroX21() {
+        return zeroX21;
+    }
+
+    public void setZeroX21(Double _value_) {
+        zeroX21 = _value_;
+    }
+
+    public void setZeroX21(String _value_) {
+        zeroX21 = getDoubleFromString(_value_);
+    }
+
+    public String zeroX21ToString() {
+        return zeroX21 != null ? zeroX21.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new EquivalentBranch();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("EquivalentBranch", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(EquivalentBranch_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            EquivalentBranch_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(EquivalentBranch_primitive_builder attrEnum, BaseClass value) {
-        try {
-            EquivalentBranch_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("EquivalentBranch", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            EquivalentBranch_class_attributes_enum attrEnum = EquivalentBranch_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated EquivalentBranch, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            EquivalentBranch_primitive_builder attrEnum = EquivalentBranch_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated EquivalentBranch, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            EquivalentBranch_primitive_builder attrEnum = EquivalentBranch_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = EquivalentBranch_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            EquivalentBranch_class_attributes_enum attrEnum = EquivalentBranch_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = EquivalentBranch_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : EquivalentBranch_primitive_builder.values()) {
-            if (enumValue != EquivalentBranch_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "EquivalentBranch." + enumValue.name());
-            }
-        }
-        for (var enumValue : EquivalentBranch_class_attributes_enum.values()) {
-            if (enumValue != EquivalentBranch_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "EquivalentBranch." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (EquivalentBranch_primitive_builder attrEnum : EquivalentBranch_primitive_builder.values()) {
-                BaseClass bc = EquivalentBranch_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    EquivalentBranch." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (EquivalentBranch_class_attributes_enum attrEnum : EquivalentBranch_class_attributes_enum.values()) {
-                BaseClass bc = EquivalentBranch_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    EquivalentBranch." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(EquivalentBranch) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "EquivalentBranch";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("EquivalentBranch", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -290,7 +506,7 @@ public class EquivalentBranch extends EquivalentEquipment {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -300,15 +516,8 @@ public class EquivalentBranch extends EquivalentEquipment {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -339,7 +548,7 @@ public class EquivalentBranch extends EquivalentEquipment {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -361,94 +570,118 @@ public class EquivalentBranch extends EquivalentEquipment {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("negativeR12", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("negativeR12", new AttrDetails("EquivalentBranch.negativeR12", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("negativeR21", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("negativeR21", new AttrDetails("EquivalentBranch.negativeR21", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("negativeX12", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("negativeX12", new AttrDetails("EquivalentBranch.negativeX12", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("negativeX21", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("negativeX21", new AttrDetails("EquivalentBranch.negativeX21", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("positiveR12", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("positiveR12", new AttrDetails("EquivalentBranch.positiveR12", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("positiveR21", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("positiveR21", new AttrDetails("EquivalentBranch.positiveR21", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("positiveX12", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("positiveX12", new AttrDetails("EquivalentBranch.positiveX12", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("positiveX21", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("positiveX21", new AttrDetails("EquivalentBranch.positiveX21", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("r", new AttrDetails("EquivalentBranch.r", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r21", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("r21", new AttrDetails("EquivalentBranch.r21", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("x", new AttrDetails("EquivalentBranch.x", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x21", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("x21", new AttrDetails("EquivalentBranch.x21", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("zeroR12", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("zeroR12", new AttrDetails("EquivalentBranch.zeroR12", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("zeroR21", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("zeroR21", new AttrDetails("EquivalentBranch.zeroR21", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("zeroX12", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("zeroX12", new AttrDetails("EquivalentBranch.zeroX12", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("zeroX21", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("zeroX21", new AttrDetails("EquivalentBranch.zeroX21", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EquivalentBranch().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("negativeR12", new GetterSetter(this::negativeR12ToString, null, this::setNegativeR12));
+        map.put("negativeR21", new GetterSetter(this::negativeR21ToString, null, this::setNegativeR21));
+        map.put("negativeX12", new GetterSetter(this::negativeX12ToString, null, this::setNegativeX12));
+        map.put("negativeX21", new GetterSetter(this::negativeX21ToString, null, this::setNegativeX21));
+        map.put("positiveR12", new GetterSetter(this::positiveR12ToString, null, this::setPositiveR12));
+        map.put("positiveR21", new GetterSetter(this::positiveR21ToString, null, this::setPositiveR21));
+        map.put("positiveX12", new GetterSetter(this::positiveX12ToString, null, this::setPositiveX12));
+        map.put("positiveX21", new GetterSetter(this::positiveX21ToString, null, this::setPositiveX21));
+        map.put("r", new GetterSetter(this::rToString, null, this::setR));
+        map.put("r21", new GetterSetter(this::r21ToString, null, this::setR21));
+        map.put("x", new GetterSetter(this::xToString, null, this::setX));
+        map.put("x21", new GetterSetter(this::x21ToString, null, this::setX21));
+        map.put("zeroR12", new GetterSetter(this::zeroR12ToString, null, this::setZeroR12));
+        map.put("zeroR21", new GetterSetter(this::zeroR21ToString, null, this::setZeroR21));
+        map.put("zeroX12", new GetterSetter(this::zeroX12ToString, null, this::setZeroX12));
+        map.put("zeroX21", new GetterSetter(this::zeroX21ToString, null, this::setZeroX21));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

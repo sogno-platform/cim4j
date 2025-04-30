@@ -4,191 +4,233 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * DC nodes are points where terminals of DC conducting equipment are connected together with zero impedance.
  */
+@SuppressWarnings("unused")
 public class DCNode extends IdentifiedObject {
 
     private static final Logging LOG = Logging.getLogger(DCNode.class);
 
-    private BaseClass[] DCNode_class_attributes;
-    private BaseClass[] DCNode_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new DCNode().getAttributeNamesMap();
-    }
-
-    private enum DCNode_primitive_builder implements PrimitiveBuilder {
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum DCNode_class_attributes_enum {
-        DCEquipmentContainer,
-        DCTerminals,
-        DCTopologicalNode,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public DCNode() {
-        DCNode_primitive_attributes = new BaseClass[DCNode_primitive_builder.values().length];
-        DCNode_class_attributes = new BaseClass[DCNode_class_attributes_enum.values().length];
+        setCimType("DCNode");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new DCNode();
+    /**
+     */
+    private DCEquipmentContainer DCEquipmentContainer; // ManyToOne
+
+    public DCEquipmentContainer getDCEquipmentContainer() {
+        return DCEquipmentContainer;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(DCNode_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            DCNode_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setDCEquipmentContainer(BaseClass _object_) {
+        if (!(_object_ instanceof DCEquipmentContainer)) {
+            throw new IllegalArgumentException("Object is not DCEquipmentContainer");
+        }
+        if (DCEquipmentContainer != _object_) {
+            DCEquipmentContainer = (DCEquipmentContainer) _object_;
+            DCEquipmentContainer.setDCNodes(this);
         }
     }
 
-    private void updateAttributeInArray(DCNode_primitive_builder attrEnum, BaseClass value) {
-        try {
-            DCNode_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String DCEquipmentContainerToString() {
+        return DCEquipmentContainer != null ? DCEquipmentContainer.getRdfid() : null;
+    }
+
+    /**
+     *
+     * NOT USED
+     */
+    private Set<DCBaseTerminal> DCTerminals = new HashSet<>(); // OneToMany
+
+    public Set<DCBaseTerminal> getDCTerminals() {
+        return DCTerminals;
+    }
+
+    public void setDCTerminals(BaseClass _object_) {
+        if (!(_object_ instanceof DCBaseTerminal)) {
+            throw new IllegalArgumentException("Object is not DCBaseTerminal");
+        }
+        if (!DCTerminals.contains(_object_)) {
+            DCTerminals.add((DCBaseTerminal) _object_);
+            ((DCBaseTerminal) _object_).setDCNode(this);
         }
     }
 
-    @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            DCNode_class_attributes_enum attrEnum = DCNode_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated DCNode, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    public String DCTerminalsToString() {
+        return getStringFromSet(DCTerminals);
+    }
+
+    /**
+     * See association end TopologicalNode.ConnectivityNodes.
+     */
+    private DCTopologicalNode DCTopologicalNode; // ManyToOne
+
+    public DCTopologicalNode getDCTopologicalNode() {
+        return DCTopologicalNode;
+    }
+
+    public void setDCTopologicalNode(BaseClass _object_) {
+        if (!(_object_ instanceof DCTopologicalNode)) {
+            throw new IllegalArgumentException("Object is not DCTopologicalNode");
+        }
+        if (DCTopologicalNode != _object_) {
+            DCTopologicalNode = (DCTopologicalNode) _object_;
+            DCTopologicalNode.setDCNodes(this);
         }
     }
 
+    public String DCTopologicalNodeToString() {
+        return DCTopologicalNode != null ? DCTopologicalNode.getRdfid() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            DCNode_primitive_builder attrEnum = DCNode_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated DCNode, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            DCNode_primitive_builder attrEnum = DCNode_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = DCNode_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
 
-        try {
-            DCNode_class_attributes_enum attrEnum = DCNode_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = DCNode_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
 
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("DCNode", attrName);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : DCNode_primitive_builder.values()) {
-            if (enumValue != DCNode_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "DCNode." + enumValue.name());
-            }
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
-        for (var enumValue : DCNode_class_attributes_enum.values()) {
-            if (enumValue != DCNode_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "DCNode." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("DCNode", attrName, objectValue);
     }
 
     @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (DCNode_primitive_builder attrEnum : DCNode_primitive_builder.values()) {
-                BaseClass bc = DCNode_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    DCNode." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (DCNode_class_attributes_enum attrEnum : DCNode_class_attributes_enum.values()) {
-                BaseClass bc = DCNode_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    DCNode." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(DCNode) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "DCNode";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("DCNode", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -197,7 +239,7 @@ public class DCNode extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -207,15 +249,8 @@ public class DCNode extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -246,7 +281,7 @@ public class DCNode extends IdentifiedObject {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -268,29 +303,40 @@ public class DCNode extends IdentifiedObject {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("DCEquipmentContainer", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("DCEquipmentContainer", new AttrDetails("DCNode.DCEquipmentContainer", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("DCTerminals", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("DCTerminals", new AttrDetails("DCNode.DCTerminals", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.TP);
-            map.put("DCTopologicalNode", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("DCTopologicalNode", new AttrDetails("DCNode.DCTopologicalNode", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DCNode().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("DCEquipmentContainer", new GetterSetter(this::DCEquipmentContainerToString, this::setDCEquipmentContainer, null));
+        map.put("DCTerminals", new GetterSetter(this::DCTerminalsToString, this::setDCTerminals, null));
+        map.put("DCTopologicalNode", new GetterSetter(this::DCTopologicalNodeToString, this::setDCTopologicalNode, null));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

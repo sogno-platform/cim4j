@@ -4,208 +4,275 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * The parts of a power system that are physical devices, electronic or mechanical.
  */
+@SuppressWarnings("unused")
 public class Equipment extends PowerSystemResource {
 
     private static final Logging LOG = Logging.getLogger(Equipment.class);
 
-    private BaseClass[] Equipment_class_attributes;
-    private BaseClass[] Equipment_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new Equipment().getAttributeNamesMap();
-    }
-
-    private enum Equipment_primitive_builder implements PrimitiveBuilder {
-        aggregate() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        inService() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        normallyInService() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum Equipment_class_attributes_enum {
-        EquipmentContainer,
-        OperationalLimitSet,
-        aggregate,
-        inService,
-        normallyInService,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public Equipment() {
-        Equipment_primitive_attributes = new BaseClass[Equipment_primitive_builder.values().length];
-        Equipment_class_attributes = new BaseClass[Equipment_class_attributes_enum.values().length];
+        setCimType("Equipment");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new Equipment();
+    /**
+     * Container of this equipment.
+     */
+    private EquipmentContainer EquipmentContainer; // ManyToOne
+
+    public EquipmentContainer getEquipmentContainer() {
+        return EquipmentContainer;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(Equipment_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            Equipment_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setEquipmentContainer(BaseClass _object_) {
+        if (!(_object_ instanceof EquipmentContainer)) {
+            throw new IllegalArgumentException("Object is not EquipmentContainer");
+        }
+        if (EquipmentContainer != _object_) {
+            EquipmentContainer = (EquipmentContainer) _object_;
+            EquipmentContainer.setEquipments(this);
         }
     }
 
-    private void updateAttributeInArray(Equipment_primitive_builder attrEnum, BaseClass value) {
-        try {
-            Equipment_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String EquipmentContainerToString() {
+        return EquipmentContainer != null ? EquipmentContainer.getRdfid() : null;
+    }
+
+    /**
+     * The operational limit sets associated with this equipment.
+     *
+     * NOT USED
+     */
+    private Set<OperationalLimitSet> OperationalLimitSet = new HashSet<>(); // OneToMany
+
+    public Set<OperationalLimitSet> getOperationalLimitSet() {
+        return OperationalLimitSet;
+    }
+
+    public void setOperationalLimitSet(BaseClass _object_) {
+        if (!(_object_ instanceof OperationalLimitSet)) {
+            throw new IllegalArgumentException("Object is not OperationalLimitSet");
+        }
+        if (!OperationalLimitSet.contains(_object_)) {
+            OperationalLimitSet.add((OperationalLimitSet) _object_);
+            ((OperationalLimitSet) _object_).setEquipment(this);
         }
     }
 
+    public String OperationalLimitSetToString() {
+        return getStringFromSet(OperationalLimitSet);
+    }
+
+    /**
+     * The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to `true` the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.   The attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection.
+     */
+    private Boolean aggregate; // Boolean
+
+    public Boolean getAggregate() {
+        return aggregate;
+    }
+
+    public void setAggregate(Boolean _value_) {
+        aggregate = _value_;
+    }
+
+    public void setAggregate(String _value_) {
+        aggregate = getBooleanFromString(_value_);
+    }
+
+    public String aggregateToString() {
+        return aggregate != null ? aggregate.toString() : null;
+    }
+
+    /**
+     * Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.
+     */
+    private Boolean inService; // Boolean
+
+    public Boolean getInService() {
+        return inService;
+    }
+
+    public void setInService(Boolean _value_) {
+        inService = _value_;
+    }
+
+    public void setInService(String _value_) {
+        inService = getBooleanFromString(_value_);
+    }
+
+    public String inServiceToString() {
+        return inService != null ? inService.toString() : null;
+    }
+
+    /**
+     * Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.
+     */
+    private Boolean normallyInService; // Boolean
+
+    public Boolean getNormallyInService() {
+        return normallyInService;
+    }
+
+    public void setNormallyInService(Boolean _value_) {
+        normallyInService = _value_;
+    }
+
+    public void setNormallyInService(String _value_) {
+        normallyInService = getBooleanFromString(_value_);
+    }
+
+    public String normallyInServiceToString() {
+        return normallyInService != null ? normallyInService.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            Equipment_class_attributes_enum attrEnum = Equipment_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated Equipment, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            Equipment_primitive_builder attrEnum = Equipment_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated Equipment, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("Equipment", attrName);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            Equipment_primitive_builder attrEnum = Equipment_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = Equipment_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
 
-        try {
-            Equipment_class_attributes_enum attrEnum = Equipment_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = Equipment_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("Equipment", attrName, objectValue);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : Equipment_primitive_builder.values()) {
-            if (enumValue != Equipment_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "Equipment." + enumValue.name());
-            }
-        }
-        for (var enumValue : Equipment_class_attributes_enum.values()) {
-            if (enumValue != Equipment_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "Equipment." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (Equipment_primitive_builder attrEnum : Equipment_primitive_builder.values()) {
-                BaseClass bc = Equipment_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    Equipment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (Equipment_class_attributes_enum attrEnum : Equipment_class_attributes_enum.values()) {
-                BaseClass bc = Equipment_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    Equipment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(Equipment) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "Equipment";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("Equipment", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -214,7 +281,7 @@ public class Equipment extends PowerSystemResource {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -224,15 +291,8 @@ public class Equipment extends PowerSystemResource {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -263,7 +323,7 @@ public class Equipment extends PowerSystemResource {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -285,40 +345,53 @@ public class Equipment extends PowerSystemResource {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
             profiles.add(CGMESProfile.EQBD);
-            map.put("EquipmentContainer", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("EquipmentContainer", new AttrDetails("Equipment.EquipmentContainer", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("OperationalLimitSet", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("OperationalLimitSet", new AttrDetails("Equipment.OperationalLimitSet", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("aggregate", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("aggregate", new AttrDetails("Equipment.aggregate", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("inService", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("inService", new AttrDetails("Equipment.inService", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("normallyInService", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("normallyInService", new AttrDetails("Equipment.normallyInService", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Equipment().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("EquipmentContainer", new GetterSetter(this::EquipmentContainerToString, this::setEquipmentContainer, null));
+        map.put("OperationalLimitSet", new GetterSetter(this::OperationalLimitSetToString, this::setOperationalLimitSet, null));
+        map.put("aggregate", new GetterSetter(this::aggregateToString, null, this::setAggregate));
+        map.put("inService", new GetterSetter(this::inServiceToString, null, this::setInService));
+        map.put("normallyInService", new GetterSetter(this::normallyInServiceToString, null, this::setNormallyInService));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

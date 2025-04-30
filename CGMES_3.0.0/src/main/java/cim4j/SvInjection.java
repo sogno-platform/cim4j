@@ -4,201 +4,229 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * The SvInjection reports the calculated bus injection minus the sum of the terminal flows. The terminal flow is positive out from the bus (load sign convention) and bus injection has positive flow into the bus. SvInjection may have the remainder after state estimation or slack after power flow calculation.
  */
+@SuppressWarnings("unused")
 public class SvInjection extends BaseClass {
 
     private static final Logging LOG = Logging.getLogger(SvInjection.class);
 
-    private BaseClass[] SvInjection_class_attributes;
-    private BaseClass[] SvInjection_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new SvInjection().getAttributeNamesMap();
-    }
-
-    private enum SvInjection_primitive_builder implements PrimitiveBuilder {
-        pInjection() {
-            public BaseClass construct(java.lang.String value) {
-                return new ActivePower(value);
-            }
-        },
-        qInjection() {
-            public BaseClass construct(java.lang.String value) {
-                return new ReactivePower(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum SvInjection_class_attributes_enum {
-        TopologicalNode,
-        pInjection,
-        qInjection,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public SvInjection() {
-        SvInjection_primitive_attributes = new BaseClass[SvInjection_primitive_builder.values().length];
-        SvInjection_class_attributes = new BaseClass[SvInjection_class_attributes_enum.values().length];
+        setCimType("SvInjection");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new SvInjection();
+    /**
+     * The topological node associated with the flow injection state variable.
+     */
+    private TopologicalNode TopologicalNode; // OneToOne
+
+    public TopologicalNode getTopologicalNode() {
+        return TopologicalNode;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(SvInjection_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            SvInjection_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setTopologicalNode(BaseClass _object_) {
+        if (!(_object_ instanceof TopologicalNode)) {
+            throw new IllegalArgumentException("Object is not TopologicalNode");
+        }
+        if (TopologicalNode != _object_) {
+            TopologicalNode = (TopologicalNode) _object_;
+            TopologicalNode.setSvInjection(this);
         }
     }
 
-    private void updateAttributeInArray(SvInjection_primitive_builder attrEnum, BaseClass value) {
-        try {
-            SvInjection_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    public String TopologicalNodeToString() {
+        return TopologicalNode != null ? TopologicalNode.getRdfid() : null;
+    }
+
+    /**
+     * The active power mismatch between calculated injection and initial injection.  Positive sign means injection into the TopologicalNode (bus).
+     */
+    private Double pInjection; // ActivePower
+
+    public Double getPInjection() {
+        return pInjection;
+    }
+
+    public void setPInjection(Double _value_) {
+        pInjection = _value_;
+    }
+
+    public void setPInjection(String _value_) {
+        pInjection = getDoubleFromString(_value_);
+    }
+
+    public String pInjectionToString() {
+        return pInjection != null ? pInjection.toString() : null;
+    }
+
+    /**
+     * The reactive power mismatch between calculated injection and initial injection.  Positive sign means injection into the TopologicalNode (bus).
+     */
+    private Double qInjection; // ReactivePower
+
+    public Double getQInjection() {
+        return qInjection;
+    }
+
+    public void setQInjection(Double _value_) {
+        qInjection = _value_;
+    }
+
+    public void setQInjection(String _value_) {
+        qInjection = getDoubleFromString(_value_);
+    }
+
+    public String qInjectionToString() {
+        return qInjection != null ? qInjection.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            SvInjection_class_attributes_enum attrEnum = SvInjection_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated SvInjection, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("SvInjection", attrName);
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            SvInjection_primitive_builder attrEnum = SvInjection_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated SvInjection, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("SvInjection", attrName, objectValue);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            SvInjection_primitive_builder attrEnum = SvInjection_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = SvInjection_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            SvInjection_class_attributes_enum attrEnum = SvInjection_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = SvInjection_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : SvInjection_primitive_builder.values()) {
-            if (enumValue != SvInjection_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "SvInjection." + enumValue.name());
-            }
-        }
-        for (var enumValue : SvInjection_class_attributes_enum.values()) {
-            if (enumValue != SvInjection_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "SvInjection." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (SvInjection_primitive_builder attrEnum : SvInjection_primitive_builder.values()) {
-                BaseClass bc = SvInjection_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    SvInjection." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (SvInjection_class_attributes_enum attrEnum : SvInjection_class_attributes_enum.values()) {
-                BaseClass bc = SvInjection_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    SvInjection." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(SvInjection) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "SvInjection";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("SvInjection", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -207,7 +235,7 @@ public class SvInjection extends BaseClass {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -217,15 +245,8 @@ public class SvInjection extends BaseClass {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -256,7 +277,7 @@ public class SvInjection extends BaseClass {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -278,29 +299,40 @@ public class SvInjection extends BaseClass {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("TopologicalNode", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("TopologicalNode", new AttrDetails("SvInjection.TopologicalNode", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("pInjection", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("pInjection", new AttrDetails("SvInjection.pInjection", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("qInjection", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("qInjection", new AttrDetails("SvInjection.qInjection", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SvInjection().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("TopologicalNode", new GetterSetter(this::TopologicalNodeToString, this::setTopologicalNode, null));
+        map.put("pInjection", new GetterSetter(this::pInjectionToString, null, this::setPInjection));
+        map.put("qInjection", new GetterSetter(this::qInjectionToString, null, this::setQInjection));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

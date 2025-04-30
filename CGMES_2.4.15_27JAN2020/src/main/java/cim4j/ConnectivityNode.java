@@ -4,233 +4,358 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Connectivity nodes are points where terminals of AC conducting equipment are connected together with zero impedance.
  */
+@SuppressWarnings("unused")
 public class ConnectivityNode extends IdentifiedObject {
 
     private static final Logging LOG = Logging.getLogger(ConnectivityNode.class);
 
-    private BaseClass[] ConnectivityNode_class_attributes;
-    private BaseClass[] ConnectivityNode_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new ConnectivityNode().getAttributeNamesMap();
-    }
-
-    private enum ConnectivityNode_primitive_builder implements PrimitiveBuilder {
-        boundaryPoint() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        fromEndIsoCode() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        fromEndName() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        fromEndNameTso() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        toEndIsoCode() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        toEndName() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        toEndNameTso() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum ConnectivityNode_class_attributes_enum {
-        ConnectivityNodeContainer,
-        Terminals,
-        TopologicalNode,
-        boundaryPoint,
-        fromEndIsoCode,
-        fromEndName,
-        fromEndNameTso,
-        toEndIsoCode,
-        toEndName,
-        toEndNameTso,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public ConnectivityNode() {
-        ConnectivityNode_primitive_attributes = new BaseClass[ConnectivityNode_primitive_builder.values().length];
-        ConnectivityNode_class_attributes = new BaseClass[ConnectivityNode_class_attributes_enum.values().length];
+        setCimType("ConnectivityNode");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new ConnectivityNode();
+    /**
+     * Container of this connectivity node.
+     */
+    private ConnectivityNodeContainer ConnectivityNodeContainer; // ManyToOne
+
+    public ConnectivityNodeContainer getConnectivityNodeContainer() {
+        return ConnectivityNodeContainer;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(ConnectivityNode_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            ConnectivityNode_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setConnectivityNodeContainer(BaseClass _object_) {
+        if (!(_object_ instanceof ConnectivityNodeContainer)) {
+            throw new IllegalArgumentException("Object is not ConnectivityNodeContainer");
+        }
+        if (ConnectivityNodeContainer != _object_) {
+            ConnectivityNodeContainer = (ConnectivityNodeContainer) _object_;
+            ConnectivityNodeContainer.setConnectivityNodes(this);
         }
     }
 
-    private void updateAttributeInArray(ConnectivityNode_primitive_builder attrEnum, BaseClass value) {
-        try {
-            ConnectivityNode_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String ConnectivityNodeContainerToString() {
+        return ConnectivityNodeContainer != null ? ConnectivityNodeContainer.getRdfid() : null;
+    }
+
+    /**
+     * The connectivity node to which this terminal connects with zero impedance.
+     *
+     * NOT USED
+     */
+    private Set<Terminal> Terminals = new HashSet<>(); // OneToMany
+
+    public Set<Terminal> getTerminals() {
+        return Terminals;
+    }
+
+    public void setTerminals(BaseClass _object_) {
+        if (!(_object_ instanceof Terminal)) {
+            throw new IllegalArgumentException("Object is not Terminal");
+        }
+        if (!Terminals.contains(_object_)) {
+            Terminals.add((Terminal) _object_);
+            ((Terminal) _object_).setConnectivityNode(this);
         }
     }
 
-    @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            ConnectivityNode_class_attributes_enum attrEnum = ConnectivityNode_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated ConnectivityNode, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    public String TerminalsToString() {
+        return getStringFromSet(Terminals);
+    }
+
+    /**
+     * The topological node to which this connectivity node is assigned.  May depend on the current state of switches in the network.
+     */
+    private TopologicalNode TopologicalNode; // ManyToOne
+
+    public TopologicalNode getTopologicalNode() {
+        return TopologicalNode;
+    }
+
+    public void setTopologicalNode(BaseClass _object_) {
+        if (!(_object_ instanceof TopologicalNode)) {
+            throw new IllegalArgumentException("Object is not TopologicalNode");
+        }
+        if (TopologicalNode != _object_) {
+            TopologicalNode = (TopologicalNode) _object_;
+            TopologicalNode.setConnectivityNodes(this);
         }
     }
 
+    public String TopologicalNodeToString() {
+        return TopologicalNode != null ? TopologicalNode.getRdfid() : null;
+    }
+
+    /**
+     * Identifies if a node is a BoundaryPoint. If boundaryPoint=true the ConnectivityNode or the TopologicalNode represents a BoundaryPoint.
+     */
+    private Boolean boundaryPoint; // Boolean
+
+    public Boolean getBoundaryPoint() {
+        return boundaryPoint;
+    }
+
+    public void setBoundaryPoint(Boolean _value_) {
+        boundaryPoint = _value_;
+    }
+
+    public void setBoundaryPoint(String _value_) {
+        boundaryPoint = getBooleanFromString(_value_);
+    }
+
+    public String boundaryPointToString() {
+        return boundaryPoint != null ? boundaryPoint.toString() : null;
+    }
+
+    /**
+     * The attribute is used for an exchange of the ISO code of the region to which the `From` side of the Boundary point belongs to or it is connected to. The ISO code is two characters country code as defined by ISO 3166 (). The length of the string is 2 characters maximum. The attribute is a required for the Boundary Model Authority Set where this attribute is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.
+     */
+    private String fromEndIsoCode; // String
+
+    public String getFromEndIsoCode() {
+        return fromEndIsoCode;
+    }
+
+    public void setFromEndIsoCode(String _value_) {
+        fromEndIsoCode = _value_;
+    }
+
+    public String fromEndIsoCodeToString() {
+        return fromEndIsoCode != null ? fromEndIsoCode.toString() : null;
+    }
+
+    /**
+     * The attribute is used for an exchange of a human readable name with length of the string 32 characters maximum. The attribute covers two cases:  The attribute is required for the Boundary Model Authority Set where it is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.
+     */
+    private String fromEndName; // String
+
+    public String getFromEndName() {
+        return fromEndName;
+    }
+
+    public void setFromEndName(String _value_) {
+        fromEndName = _value_;
+    }
+
+    public String fromEndNameToString() {
+        return fromEndName != null ? fromEndName.toString() : null;
+    }
+
+    /**
+     * The attribute is used for an exchange of the name of the TSO to which the `From` side of the Boundary point belongs to or it is connected to. The length of the string is 32 characters maximum. The attribute is required for the Boundary Model Authority Set where it is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.
+     */
+    private String fromEndNameTso; // String
+
+    public String getFromEndNameTso() {
+        return fromEndNameTso;
+    }
+
+    public void setFromEndNameTso(String _value_) {
+        fromEndNameTso = _value_;
+    }
+
+    public String fromEndNameTsoToString() {
+        return fromEndNameTso != null ? fromEndNameTso.toString() : null;
+    }
+
+    /**
+     * The attribute is used for an exchange of the ISO code of the region to which the `To` side of the Boundary point belongs to or it is connected to. The ISO code is two characters country code as defined by ISO 3166 (). The length of the string is 2 characters maximum. The attribute is a required for the Boundary Model Authority Set where this attribute is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.
+     */
+    private String toEndIsoCode; // String
+
+    public String getToEndIsoCode() {
+        return toEndIsoCode;
+    }
+
+    public void setToEndIsoCode(String _value_) {
+        toEndIsoCode = _value_;
+    }
+
+    public String toEndIsoCodeToString() {
+        return toEndIsoCode != null ? toEndIsoCode.toString() : null;
+    }
+
+    /**
+     * The attribute is used for an exchange of a human readable name with length of the string 32 characters maximum. The attribute covers two cases:  The attribute is required for the Boundary Model Authority Set where it is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.
+     */
+    private String toEndName; // String
+
+    public String getToEndName() {
+        return toEndName;
+    }
+
+    public void setToEndName(String _value_) {
+        toEndName = _value_;
+    }
+
+    public String toEndNameToString() {
+        return toEndName != null ? toEndName.toString() : null;
+    }
+
+    /**
+     * The attribute is used for an exchange of the name of the TSO to which the `To` side of the Boundary point belongs to or it is connected to. The length of the string is 32 characters maximum. The attribute is required for the Boundary Model Authority Set where it is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.
+     */
+    private String toEndNameTso; // String
+
+    public String getToEndNameTso() {
+        return toEndNameTso;
+    }
+
+    public void setToEndNameTso(String _value_) {
+        toEndNameTso = _value_;
+    }
+
+    public String toEndNameTsoToString() {
+        return toEndNameTso != null ? toEndNameTso.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            ConnectivityNode_primitive_builder attrEnum = ConnectivityNode_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated ConnectivityNode, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            ConnectivityNode_primitive_builder attrEnum = ConnectivityNode_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = ConnectivityNode_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
 
-        try {
-            ConnectivityNode_class_attributes_enum attrEnum = ConnectivityNode_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = ConnectivityNode_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
 
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("ConnectivityNode", attrName);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : ConnectivityNode_primitive_builder.values()) {
-            if (enumValue != ConnectivityNode_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "ConnectivityNode." + enumValue.name());
-            }
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
-        for (var enumValue : ConnectivityNode_class_attributes_enum.values()) {
-            if (enumValue != ConnectivityNode_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "ConnectivityNode." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("ConnectivityNode", attrName, objectValue);
     }
 
     @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (ConnectivityNode_primitive_builder attrEnum : ConnectivityNode_primitive_builder.values()) {
-                BaseClass bc = ConnectivityNode_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    ConnectivityNode." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (ConnectivityNode_class_attributes_enum attrEnum : ConnectivityNode_class_attributes_enum.values()) {
-                BaseClass bc = ConnectivityNode_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    ConnectivityNode." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(ConnectivityNode) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "ConnectivityNode";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("ConnectivityNode", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -239,7 +364,7 @@ public class ConnectivityNode extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -249,15 +374,8 @@ public class ConnectivityNode extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -288,7 +406,7 @@ public class ConnectivityNode extends IdentifiedObject {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -310,66 +428,84 @@ public class ConnectivityNode extends IdentifiedObject {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ_BD);
             profiles.add(CGMESProfile.EQ);
-            map.put("ConnectivityNodeContainer", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ConnectivityNodeContainer", new AttrDetails("ConnectivityNode.ConnectivityNodeContainer", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Terminals", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("Terminals", new AttrDetails("ConnectivityNode.Terminals", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.TP_BD);
             profiles.add(CGMESProfile.TP);
-            map.put("TopologicalNode", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("TopologicalNode", new AttrDetails("ConnectivityNode.TopologicalNode", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ_BD);
-            map.put("boundaryPoint", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("boundaryPoint", new AttrDetails("ConnectivityNode.boundaryPoint", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ_BD);
-            map.put("fromEndIsoCode", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("fromEndIsoCode", new AttrDetails("ConnectivityNode.fromEndIsoCode", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ_BD);
-            map.put("fromEndName", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("fromEndName", new AttrDetails("ConnectivityNode.fromEndName", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ_BD);
-            map.put("fromEndNameTso", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("fromEndNameTso", new AttrDetails("ConnectivityNode.fromEndNameTso", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ_BD);
-            map.put("toEndIsoCode", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("toEndIsoCode", new AttrDetails("ConnectivityNode.toEndIsoCode", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ_BD);
-            map.put("toEndName", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("toEndName", new AttrDetails("ConnectivityNode.toEndName", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ_BD);
-            map.put("toEndNameTso", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("toEndNameTso", new AttrDetails("ConnectivityNode.toEndNameTso", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ConnectivityNode().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("ConnectivityNodeContainer", new GetterSetter(this::ConnectivityNodeContainerToString, this::setConnectivityNodeContainer, null));
+        map.put("Terminals", new GetterSetter(this::TerminalsToString, this::setTerminals, null));
+        map.put("TopologicalNode", new GetterSetter(this::TopologicalNodeToString, this::setTopologicalNode, null));
+        map.put("boundaryPoint", new GetterSetter(this::boundaryPointToString, null, this::setBoundaryPoint));
+        map.put("fromEndIsoCode", new GetterSetter(this::fromEndIsoCodeToString, null, this::setFromEndIsoCode));
+        map.put("fromEndName", new GetterSetter(this::fromEndNameToString, null, this::setFromEndName));
+        map.put("fromEndNameTso", new GetterSetter(this::fromEndNameTsoToString, null, this::setFromEndNameTso));
+        map.put("toEndIsoCode", new GetterSetter(this::toEndIsoCodeToString, null, this::setToEndIsoCode));
+        map.put("toEndName", new GetterSetter(this::toEndNameToString, null, this::setToEndName));
+        map.put("toEndNameTso", new GetterSetter(this::toEndNameTsoToString, null, this::setToEndNameTso));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

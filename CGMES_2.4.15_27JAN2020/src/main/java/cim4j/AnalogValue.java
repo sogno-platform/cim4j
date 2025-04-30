@@ -4,196 +4,233 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * AnalogValue represents an analog MeasurementValue.
  */
+@SuppressWarnings("unused")
 public class AnalogValue extends MeasurementValue {
 
     private static final Logging LOG = Logging.getLogger(AnalogValue.class);
 
-    private BaseClass[] AnalogValue_class_attributes;
-    private BaseClass[] AnalogValue_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new AnalogValue().getAttributeNamesMap();
-    }
-
-    private enum AnalogValue_primitive_builder implements PrimitiveBuilder {
-        value() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum AnalogValue_class_attributes_enum {
-        Analog,
-        AnalogControl,
-        value,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public AnalogValue() {
-        AnalogValue_primitive_attributes = new BaseClass[AnalogValue_primitive_builder.values().length];
-        AnalogValue_class_attributes = new BaseClass[AnalogValue_class_attributes_enum.values().length];
+        setCimType("AnalogValue");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new AnalogValue();
+    /**
+     * The values connected to this measurement.
+     */
+    private Analog Analog; // ManyToOne
+
+    public Analog getAnalog() {
+        return Analog;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(AnalogValue_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            AnalogValue_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setAnalog(BaseClass _object_) {
+        if (!(_object_ instanceof Analog)) {
+            throw new IllegalArgumentException("Object is not Analog");
+        }
+        if (Analog != _object_) {
+            Analog = (Analog) _object_;
+            Analog.setAnalogValues(this);
         }
     }
 
-    private void updateAttributeInArray(AnalogValue_primitive_builder attrEnum, BaseClass value) {
-        try {
-            AnalogValue_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String AnalogToString() {
+        return Analog != null ? Analog.getRdfid() : null;
+    }
+
+    /**
+     * The MeasurementValue that is controlled.
+     *
+     * NOT USED
+     */
+    private AnalogControl AnalogControl; // OneToOne
+
+    public AnalogControl getAnalogControl() {
+        return AnalogControl;
+    }
+
+    public void setAnalogControl(BaseClass _object_) {
+        if (!(_object_ instanceof AnalogControl)) {
+            throw new IllegalArgumentException("Object is not AnalogControl");
+        }
+        if (AnalogControl != _object_) {
+            AnalogControl = (AnalogControl) _object_;
+            AnalogControl.setAnalogValue(this);
         }
     }
 
+    public String AnalogControlToString() {
+        return AnalogControl != null ? AnalogControl.getRdfid() : null;
+    }
+
+    /**
+     * The value to supervise.
+     */
+    private Double value; // Simple_Float
+
+    public Double getValue() {
+        return value;
+    }
+
+    public void setValue(Double _value_) {
+        value = _value_;
+    }
+
+    public void setValue(String _value_) {
+        value = getDoubleFromString(_value_);
+    }
+
+    public String valueToString() {
+        return value != null ? value.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            AnalogValue_class_attributes_enum attrEnum = AnalogValue_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated AnalogValue, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            AnalogValue_primitive_builder attrEnum = AnalogValue_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated AnalogValue, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("AnalogValue", attrName);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            AnalogValue_primitive_builder attrEnum = AnalogValue_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = AnalogValue_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
 
-        try {
-            AnalogValue_class_attributes_enum attrEnum = AnalogValue_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = AnalogValue_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("AnalogValue", attrName, objectValue);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : AnalogValue_primitive_builder.values()) {
-            if (enumValue != AnalogValue_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "AnalogValue." + enumValue.name());
-            }
-        }
-        for (var enumValue : AnalogValue_class_attributes_enum.values()) {
-            if (enumValue != AnalogValue_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "AnalogValue." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (AnalogValue_primitive_builder attrEnum : AnalogValue_primitive_builder.values()) {
-                BaseClass bc = AnalogValue_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    AnalogValue." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (AnalogValue_class_attributes_enum attrEnum : AnalogValue_class_attributes_enum.values()) {
-                BaseClass bc = AnalogValue_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    AnalogValue." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(AnalogValue) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "AnalogValue";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("AnalogValue", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -202,7 +239,7 @@ public class AnalogValue extends MeasurementValue {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -212,15 +249,8 @@ public class AnalogValue extends MeasurementValue {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -251,7 +281,7 @@ public class AnalogValue extends MeasurementValue {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -273,29 +303,40 @@ public class AnalogValue extends MeasurementValue {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Analog", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("Analog", new AttrDetails("AnalogValue.Analog", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("AnalogControl", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("AnalogControl", new AttrDetails("AnalogValue.AnalogControl", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("value", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("value", new AttrDetails("AnalogValue.value", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AnalogValue().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("Analog", new GetterSetter(this::AnalogToString, this::setAnalog, null));
+        map.put("AnalogControl", new GetterSetter(this::AnalogControlToString, this::setAnalogControl, null));
+        map.put("value", new GetterSetter(this::valueToString, null, this::setValue));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

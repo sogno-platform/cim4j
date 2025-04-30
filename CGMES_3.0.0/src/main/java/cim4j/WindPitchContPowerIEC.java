@@ -4,233 +4,386 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Pitch control power model. Reference: IEC 61400-27-1:2015, 5.6.5.1.
  */
+@SuppressWarnings("unused")
 public class WindPitchContPowerIEC extends IdentifiedObject {
 
     private static final Logging LOG = Logging.getLogger(WindPitchContPowerIEC.class);
 
-    private BaseClass[] WindPitchContPowerIEC_class_attributes;
-    private BaseClass[] WindPitchContPowerIEC_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new WindPitchContPowerIEC().getAttributeNamesMap();
-    }
-
-    private enum WindPitchContPowerIEC_primitive_builder implements PrimitiveBuilder {
-        dpmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        dpmin() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        pmin() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        pset() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        t1() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tr() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        uuvrt() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum WindPitchContPowerIEC_class_attributes_enum {
-        WindDynamicsLookupTable,
-        WindGenTurbineType1bIEC,
-        WindGenTurbineType2IEC,
-        dpmax,
-        dpmin,
-        pmin,
-        pset,
-        t1,
-        tr,
-        uuvrt,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public WindPitchContPowerIEC() {
-        WindPitchContPowerIEC_primitive_attributes = new BaseClass[WindPitchContPowerIEC_primitive_builder.values().length];
-        WindPitchContPowerIEC_class_attributes = new BaseClass[WindPitchContPowerIEC_class_attributes_enum.values().length];
+        setCimType("WindPitchContPowerIEC");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new WindPitchContPowerIEC();
+    /**
+     * The wind dynamics lookup table associated with this pitch control power model.
+     *
+     * NOT USED
+     */
+    private Set<WindDynamicsLookupTable> WindDynamicsLookupTable = new HashSet<>(); // OneToMany
+
+    public Set<WindDynamicsLookupTable> getWindDynamicsLookupTable() {
+        return WindDynamicsLookupTable;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(WindPitchContPowerIEC_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            WindPitchContPowerIEC_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setWindDynamicsLookupTable(BaseClass _object_) {
+        if (!(_object_ instanceof WindDynamicsLookupTable)) {
+            throw new IllegalArgumentException("Object is not WindDynamicsLookupTable");
+        }
+        if (!WindDynamicsLookupTable.contains(_object_)) {
+            WindDynamicsLookupTable.add((WindDynamicsLookupTable) _object_);
+            ((WindDynamicsLookupTable) _object_).setWindPitchContPowerIEC(this);
         }
     }
 
-    private void updateAttributeInArray(WindPitchContPowerIEC_primitive_builder attrEnum, BaseClass value) {
-        try {
-            WindPitchContPowerIEC_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String WindDynamicsLookupTableToString() {
+        return getStringFromSet(WindDynamicsLookupTable);
+    }
+
+    /**
+     * Wind turbine type 1B model with which this pitch control power model is associated.
+     *
+     * NOT USED
+     */
+    private WindGenTurbineType1bIEC WindGenTurbineType1bIEC; // OneToOne
+
+    public WindGenTurbineType1bIEC getWindGenTurbineType1bIEC() {
+        return WindGenTurbineType1bIEC;
+    }
+
+    public void setWindGenTurbineType1bIEC(BaseClass _object_) {
+        if (!(_object_ instanceof WindGenTurbineType1bIEC)) {
+            throw new IllegalArgumentException("Object is not WindGenTurbineType1bIEC");
+        }
+        if (WindGenTurbineType1bIEC != _object_) {
+            WindGenTurbineType1bIEC = (WindGenTurbineType1bIEC) _object_;
+            WindGenTurbineType1bIEC.setWindPitchContPowerIEC(this);
         }
     }
 
-    @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            WindPitchContPowerIEC_class_attributes_enum attrEnum = WindPitchContPowerIEC_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated WindPitchContPowerIEC, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    public String WindGenTurbineType1bIECToString() {
+        return WindGenTurbineType1bIEC != null ? WindGenTurbineType1bIEC.getRdfid() : null;
+    }
+
+    /**
+     * Wind turbine type 2 model with which this pitch control power model is associated.
+     *
+     * NOT USED
+     */
+    private WindGenTurbineType2IEC WindGenTurbineType2IEC; // OneToOne
+
+    public WindGenTurbineType2IEC getWindGenTurbineType2IEC() {
+        return WindGenTurbineType2IEC;
+    }
+
+    public void setWindGenTurbineType2IEC(BaseClass _object_) {
+        if (!(_object_ instanceof WindGenTurbineType2IEC)) {
+            throw new IllegalArgumentException("Object is not WindGenTurbineType2IEC");
+        }
+        if (WindGenTurbineType2IEC != _object_) {
+            WindGenTurbineType2IEC = (WindGenTurbineType2IEC) _object_;
+            WindGenTurbineType2IEC.setWindPitchContPowerIEC(this);
         }
     }
 
+    public String WindGenTurbineType2IECToString() {
+        return WindGenTurbineType2IEC != null ? WindGenTurbineType2IEC.getRdfid() : null;
+    }
+
+    /**
+     * Rate limit for increasing power (&lt;i&gt;dp&lt;/i&gt;&lt;i&gt;&lt;sub&gt;max&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; WindPitchContPowerIEC.dpmin). It is a type-dependent parameter.
+     */
+    private Double dpmax; // PU
+
+    public Double getDpmax() {
+        return dpmax;
+    }
+
+    public void setDpmax(Double _value_) {
+        dpmax = _value_;
+    }
+
+    public void setDpmax(String _value_) {
+        dpmax = getDoubleFromString(_value_);
+    }
+
+    public String dpmaxToString() {
+        return dpmax != null ? dpmax.toString() : null;
+    }
+
+    /**
+     * Rate limit for decreasing power (&lt;i&gt;dp&lt;/i&gt;&lt;i&gt;&lt;sub&gt;min&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; WindPitchContPowerIEC.dpmax). It is a type-dependent parameter.
+     */
+    private Double dpmin; // PU
+
+    public Double getDpmin() {
+        return dpmin;
+    }
+
+    public void setDpmin(Double _value_) {
+        dpmin = _value_;
+    }
+
+    public void setDpmin(String _value_) {
+        dpmin = getDoubleFromString(_value_);
+    }
+
+    public String dpminToString() {
+        return dpmin != null ? dpmin.toString() : null;
+    }
+
+    /**
+     * Minimum power setting (&lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;min&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     */
+    private Double pmin; // PU
+
+    public Double getPmin() {
+        return pmin;
+    }
+
+    public void setPmin(Double _value_) {
+        pmin = _value_;
+    }
+
+    public void setPmin(String _value_) {
+        pmin = getDoubleFromString(_value_);
+    }
+
+    public String pminToString() {
+        return pmin != null ? pmin.toString() : null;
+    }
+
+    /**
+     * If &lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;init&lt;/sub&gt;&lt;/i&gt;&lt;sub&gt; &lt;/sub&gt;&amp;lt; &lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;set&lt;/sub&gt;&lt;/i&gt;&lt;sub&gt; &lt;/sub&gt;then power will be ramped down to &lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;min&lt;/sub&gt;&lt;/i&gt;. It is (&lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;set&lt;/sub&gt;&lt;/i&gt;) in the IEC 61400-27-1:2015. It is a type-dependent parameter.
+     */
+    private Double pset; // PU
+
+    public Double getPset() {
+        return pset;
+    }
+
+    public void setPset(Double _value_) {
+        pset = _value_;
+    }
+
+    public void setPset(String _value_) {
+        pset = getDoubleFromString(_value_);
+    }
+
+    public String psetToString() {
+        return pset != null ? pset.toString() : null;
+    }
+
+    /**
+     * Lag time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     */
+    private Double t1; // Seconds
+
+    public Double getT1() {
+        return t1;
+    }
+
+    public void setT1(Double _value_) {
+        t1 = _value_;
+    }
+
+    public void setT1(String _value_) {
+        t1 = getDoubleFromString(_value_);
+    }
+
+    public String t1ToString() {
+        return t1 != null ? t1.toString() : null;
+    }
+
+    /**
+     * Voltage measurement time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;r&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     */
+    private Double tr; // Seconds
+
+    public Double getTr() {
+        return tr;
+    }
+
+    public void setTr(Double _value_) {
+        tr = _value_;
+    }
+
+    public void setTr(String _value_) {
+        tr = getDoubleFromString(_value_);
+    }
+
+    public String trToString() {
+        return tr != null ? tr.toString() : null;
+    }
+
+    /**
+     * Dip detection threshold (&lt;i&gt;u&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UVRT&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     */
+    private Double uuvrt; // PU
+
+    public Double getUuvrt() {
+        return uuvrt;
+    }
+
+    public void setUuvrt(Double _value_) {
+        uuvrt = _value_;
+    }
+
+    public void setUuvrt(String _value_) {
+        uuvrt = getDoubleFromString(_value_);
+    }
+
+    public String uuvrtToString() {
+        return uuvrt != null ? uuvrt.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            WindPitchContPowerIEC_primitive_builder attrEnum = WindPitchContPowerIEC_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated WindPitchContPowerIEC, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            WindPitchContPowerIEC_primitive_builder attrEnum = WindPitchContPowerIEC_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = WindPitchContPowerIEC_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
 
-        try {
-            WindPitchContPowerIEC_class_attributes_enum attrEnum = WindPitchContPowerIEC_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = WindPitchContPowerIEC_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
 
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("WindPitchContPowerIEC", attrName);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : WindPitchContPowerIEC_primitive_builder.values()) {
-            if (enumValue != WindPitchContPowerIEC_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "WindPitchContPowerIEC." + enumValue.name());
-            }
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
-        for (var enumValue : WindPitchContPowerIEC_class_attributes_enum.values()) {
-            if (enumValue != WindPitchContPowerIEC_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "WindPitchContPowerIEC." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("WindPitchContPowerIEC", attrName, objectValue);
     }
 
     @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (WindPitchContPowerIEC_primitive_builder attrEnum : WindPitchContPowerIEC_primitive_builder.values()) {
-                BaseClass bc = WindPitchContPowerIEC_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    WindPitchContPowerIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (WindPitchContPowerIEC_class_attributes_enum attrEnum : WindPitchContPowerIEC_class_attributes_enum.values()) {
-                BaseClass bc = WindPitchContPowerIEC_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    WindPitchContPowerIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(WindPitchContPowerIEC) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "WindPitchContPowerIEC";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("WindPitchContPowerIEC", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -239,7 +392,7 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -249,15 +402,8 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -288,7 +434,7 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -310,64 +456,82 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindDynamicsLookupTable", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("WindDynamicsLookupTable", new AttrDetails("WindPitchContPowerIEC.WindDynamicsLookupTable", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindGenTurbineType1bIEC", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("WindGenTurbineType1bIEC", new AttrDetails("WindPitchContPowerIEC.WindGenTurbineType1bIEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindGenTurbineType2IEC", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("WindGenTurbineType2IEC", new AttrDetails("WindPitchContPowerIEC.WindGenTurbineType2IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dpmax", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("dpmax", new AttrDetails("WindPitchContPowerIEC.dpmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dpmin", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("dpmin", new AttrDetails("WindPitchContPowerIEC.dpmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmin", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("pmin", new AttrDetails("WindPitchContPowerIEC.pmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pset", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("pset", new AttrDetails("WindPitchContPowerIEC.pset", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t1", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("t1", new AttrDetails("WindPitchContPowerIEC.t1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tr", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tr", new AttrDetails("WindPitchContPowerIEC.tr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("uuvrt", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("uuvrt", new AttrDetails("WindPitchContPowerIEC.uuvrt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindPitchContPowerIEC().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("WindDynamicsLookupTable", new GetterSetter(this::WindDynamicsLookupTableToString, this::setWindDynamicsLookupTable, null));
+        map.put("WindGenTurbineType1bIEC", new GetterSetter(this::WindGenTurbineType1bIECToString, this::setWindGenTurbineType1bIEC, null));
+        map.put("WindGenTurbineType2IEC", new GetterSetter(this::WindGenTurbineType2IECToString, this::setWindGenTurbineType2IEC, null));
+        map.put("dpmax", new GetterSetter(this::dpmaxToString, null, this::setDpmax));
+        map.put("dpmin", new GetterSetter(this::dpminToString, null, this::setDpmin));
+        map.put("pmin", new GetterSetter(this::pminToString, null, this::setPmin));
+        map.put("pset", new GetterSetter(this::psetToString, null, this::setPset));
+        map.put("t1", new GetterSetter(this::t1ToString, null, this::setT1));
+        map.put("tr", new GetterSetter(this::trToString, null, this::setTr));
+        map.put("uuvrt", new GetterSetter(this::uuvrtToString, null, this::setUuvrt));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

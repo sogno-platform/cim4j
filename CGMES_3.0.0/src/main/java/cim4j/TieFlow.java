@@ -4,196 +4,231 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Defines the structure (in terms of location and direction) of the net interchange constraint for a control area. This constraint may be used by either AGC or power flow.
  */
+@SuppressWarnings("unused")
 public class TieFlow extends IdentifiedObject {
 
     private static final Logging LOG = Logging.getLogger(TieFlow.class);
 
-    private BaseClass[] TieFlow_class_attributes;
-    private BaseClass[] TieFlow_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new TieFlow().getAttributeNamesMap();
-    }
-
-    private enum TieFlow_primitive_builder implements PrimitiveBuilder {
-        positiveFlowIn() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum TieFlow_class_attributes_enum {
-        ControlArea,
-        Terminal,
-        positiveFlowIn,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public TieFlow() {
-        TieFlow_primitive_attributes = new BaseClass[TieFlow_primitive_builder.values().length];
-        TieFlow_class_attributes = new BaseClass[TieFlow_class_attributes_enum.values().length];
+        setCimType("TieFlow");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new TieFlow();
+    /**
+     * The control area of the tie flows.
+     */
+    private ControlArea ControlArea; // ManyToOne
+
+    public ControlArea getControlArea() {
+        return ControlArea;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(TieFlow_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            TieFlow_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setControlArea(BaseClass _object_) {
+        if (!(_object_ instanceof ControlArea)) {
+            throw new IllegalArgumentException("Object is not ControlArea");
+        }
+        if (ControlArea != _object_) {
+            ControlArea = (ControlArea) _object_;
+            ControlArea.setTieFlow(this);
         }
     }
 
-    private void updateAttributeInArray(TieFlow_primitive_builder attrEnum, BaseClass value) {
-        try {
-            TieFlow_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String ControlAreaToString() {
+        return ControlArea != null ? ControlArea.getRdfid() : null;
+    }
+
+    /**
+     * The terminal to which this tie flow belongs.
+     */
+    private Terminal Terminal; // ManyToOne
+
+    public Terminal getTerminal() {
+        return Terminal;
+    }
+
+    public void setTerminal(BaseClass _object_) {
+        if (!(_object_ instanceof Terminal)) {
+            throw new IllegalArgumentException("Object is not Terminal");
+        }
+        if (Terminal != _object_) {
+            Terminal = (Terminal) _object_;
+            Terminal.setTieFlow(this);
         }
     }
 
+    public String TerminalToString() {
+        return Terminal != null ? Terminal.getRdfid() : null;
+    }
+
+    /**
+     * Specifies the sign of the tie flow associated with a control area. True if positive flow into the terminal (load convention) is also positive flow into the control area.  See the description of ControlArea for further explanation of how TieFlow.positiveFlowIn is used.
+     */
+    private Boolean positiveFlowIn; // Boolean
+
+    public Boolean getPositiveFlowIn() {
+        return positiveFlowIn;
+    }
+
+    public void setPositiveFlowIn(Boolean _value_) {
+        positiveFlowIn = _value_;
+    }
+
+    public void setPositiveFlowIn(String _value_) {
+        positiveFlowIn = getBooleanFromString(_value_);
+    }
+
+    public String positiveFlowInToString() {
+        return positiveFlowIn != null ? positiveFlowIn.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            TieFlow_class_attributes_enum attrEnum = TieFlow_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated TieFlow, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            TieFlow_primitive_builder attrEnum = TieFlow_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated TieFlow, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("TieFlow", attrName);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            TieFlow_primitive_builder attrEnum = TieFlow_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = TieFlow_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
 
-        try {
-            TieFlow_class_attributes_enum attrEnum = TieFlow_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = TieFlow_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("TieFlow", attrName, objectValue);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : TieFlow_primitive_builder.values()) {
-            if (enumValue != TieFlow_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "TieFlow." + enumValue.name());
-            }
-        }
-        for (var enumValue : TieFlow_class_attributes_enum.values()) {
-            if (enumValue != TieFlow_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "TieFlow." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (TieFlow_primitive_builder attrEnum : TieFlow_primitive_builder.values()) {
-                BaseClass bc = TieFlow_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    TieFlow." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (TieFlow_class_attributes_enum attrEnum : TieFlow_class_attributes_enum.values()) {
-                BaseClass bc = TieFlow_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    TieFlow." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(TieFlow) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "TieFlow";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("TieFlow", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -202,7 +237,7 @@ public class TieFlow extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -212,15 +247,8 @@ public class TieFlow extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -251,7 +279,7 @@ public class TieFlow extends IdentifiedObject {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -273,29 +301,40 @@ public class TieFlow extends IdentifiedObject {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ControlArea", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ControlArea", new AttrDetails("TieFlow.ControlArea", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Terminal", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("Terminal", new AttrDetails("TieFlow.Terminal", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("positiveFlowIn", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("positiveFlowIn", new AttrDetails("TieFlow.positiveFlowIn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TieFlow().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("ControlArea", new GetterSetter(this::ControlAreaToString, this::setControlArea, null));
+        map.put("Terminal", new GetterSetter(this::TerminalToString, this::setTerminal, null));
+        map.put("positiveFlowIn", new GetterSetter(this::positiveFlowInToString, null, this::setPositiveFlowIn));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

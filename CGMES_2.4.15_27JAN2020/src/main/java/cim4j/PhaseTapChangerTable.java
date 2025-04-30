@@ -4,190 +4,214 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Describes a tabular curve for how the phase angle difference and impedance varies with the tap step.
  */
+@SuppressWarnings("unused")
 public class PhaseTapChangerTable extends IdentifiedObject {
 
     private static final Logging LOG = Logging.getLogger(PhaseTapChangerTable.class);
 
-    private BaseClass[] PhaseTapChangerTable_class_attributes;
-    private BaseClass[] PhaseTapChangerTable_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new PhaseTapChangerTable().getAttributeNamesMap();
-    }
-
-    private enum PhaseTapChangerTable_primitive_builder implements PrimitiveBuilder {
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum PhaseTapChangerTable_class_attributes_enum {
-        PhaseTapChangerTablePoint,
-        PhaseTapChangerTabular,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public PhaseTapChangerTable() {
-        PhaseTapChangerTable_primitive_attributes = new BaseClass[PhaseTapChangerTable_primitive_builder.values().length];
-        PhaseTapChangerTable_class_attributes = new BaseClass[PhaseTapChangerTable_class_attributes_enum.values().length];
+        setCimType("PhaseTapChangerTable");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new PhaseTapChangerTable();
+    /**
+     * The points of this table.
+     *
+     * NOT USED
+     */
+    private Set<PhaseTapChangerTablePoint> PhaseTapChangerTablePoint = new HashSet<>(); // OneToMany
+
+    public Set<PhaseTapChangerTablePoint> getPhaseTapChangerTablePoint() {
+        return PhaseTapChangerTablePoint;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(PhaseTapChangerTable_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            PhaseTapChangerTable_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setPhaseTapChangerTablePoint(BaseClass _object_) {
+        if (!(_object_ instanceof PhaseTapChangerTablePoint)) {
+            throw new IllegalArgumentException("Object is not PhaseTapChangerTablePoint");
+        }
+        if (!PhaseTapChangerTablePoint.contains(_object_)) {
+            PhaseTapChangerTablePoint.add((PhaseTapChangerTablePoint) _object_);
+            ((PhaseTapChangerTablePoint) _object_).setPhaseTapChangerTable(this);
         }
     }
 
-    private void updateAttributeInArray(PhaseTapChangerTable_primitive_builder attrEnum, BaseClass value) {
-        try {
-            PhaseTapChangerTable_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String PhaseTapChangerTablePointToString() {
+        return getStringFromSet(PhaseTapChangerTablePoint);
+    }
+
+    /**
+     * The phase tap changers to which this phase tap table applies.
+     *
+     * NOT USED
+     */
+    private Set<PhaseTapChangerTabular> PhaseTapChangerTabular = new HashSet<>(); // OneToMany
+
+    public Set<PhaseTapChangerTabular> getPhaseTapChangerTabular() {
+        return PhaseTapChangerTabular;
+    }
+
+    public void setPhaseTapChangerTabular(BaseClass _object_) {
+        if (!(_object_ instanceof PhaseTapChangerTabular)) {
+            throw new IllegalArgumentException("Object is not PhaseTapChangerTabular");
+        }
+        if (!PhaseTapChangerTabular.contains(_object_)) {
+            PhaseTapChangerTabular.add((PhaseTapChangerTabular) _object_);
+            ((PhaseTapChangerTabular) _object_).setPhaseTapChangerTable(this);
         }
     }
 
+    public String PhaseTapChangerTabularToString() {
+        return getStringFromSet(PhaseTapChangerTabular);
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            PhaseTapChangerTable_class_attributes_enum attrEnum = PhaseTapChangerTable_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated PhaseTapChangerTable, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            PhaseTapChangerTable_primitive_builder attrEnum = PhaseTapChangerTable_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated PhaseTapChangerTable, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("PhaseTapChangerTable", attrName);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            PhaseTapChangerTable_primitive_builder attrEnum = PhaseTapChangerTable_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = PhaseTapChangerTable_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
 
-        try {
-            PhaseTapChangerTable_class_attributes_enum attrEnum = PhaseTapChangerTable_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = PhaseTapChangerTable_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("PhaseTapChangerTable", attrName, objectValue);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : PhaseTapChangerTable_primitive_builder.values()) {
-            if (enumValue != PhaseTapChangerTable_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "PhaseTapChangerTable." + enumValue.name());
-            }
-        }
-        for (var enumValue : PhaseTapChangerTable_class_attributes_enum.values()) {
-            if (enumValue != PhaseTapChangerTable_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "PhaseTapChangerTable." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (PhaseTapChangerTable_primitive_builder attrEnum : PhaseTapChangerTable_primitive_builder.values()) {
-                BaseClass bc = PhaseTapChangerTable_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    PhaseTapChangerTable." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (PhaseTapChangerTable_class_attributes_enum attrEnum : PhaseTapChangerTable_class_attributes_enum.values()) {
-                BaseClass bc = PhaseTapChangerTable_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    PhaseTapChangerTable." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(PhaseTapChangerTable) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "PhaseTapChangerTable";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("PhaseTapChangerTable", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -196,7 +220,7 @@ public class PhaseTapChangerTable extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -206,15 +230,8 @@ public class PhaseTapChangerTable extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -245,7 +262,7 @@ public class PhaseTapChangerTable extends IdentifiedObject {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -267,24 +284,34 @@ public class PhaseTapChangerTable extends IdentifiedObject {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("PhaseTapChangerTablePoint", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("PhaseTapChangerTablePoint", new AttrDetails("PhaseTapChangerTable.PhaseTapChangerTablePoint", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("PhaseTapChangerTabular", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("PhaseTapChangerTabular", new AttrDetails("PhaseTapChangerTable.PhaseTapChangerTabular", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PhaseTapChangerTable().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("PhaseTapChangerTablePoint", new GetterSetter(this::PhaseTapChangerTablePointToString, this::setPhaseTapChangerTablePoint, null));
+        map.put("PhaseTapChangerTabular", new GetterSetter(this::PhaseTapChangerTabularToString, this::setPhaseTapChangerTabular, null));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

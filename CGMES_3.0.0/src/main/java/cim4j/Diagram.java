@@ -4,220 +4,313 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * The diagram being exchanged. The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation. The initial view related attributes can be used to specify an initial view with the x,y coordinates of the diagonal points.
  */
+@SuppressWarnings("unused")
 public class Diagram extends IdentifiedObject {
 
     private static final Logging LOG = Logging.getLogger(Diagram.class);
 
-    private BaseClass[] Diagram_class_attributes;
-    private BaseClass[] Diagram_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new Diagram().getAttributeNamesMap();
-    }
-
-    private enum Diagram_primitive_builder implements PrimitiveBuilder {
-        orientation() {
-            public BaseClass construct(java.lang.String value) {
-                return new OrientationKind(value);
-            }
-        },
-        x1InitialView() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        x2InitialView() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        y1InitialView() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        y2InitialView() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum Diagram_class_attributes_enum {
-        DiagramElements,
-        DiagramStyle,
-        orientation,
-        x1InitialView,
-        x2InitialView,
-        y1InitialView,
-        y2InitialView,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public Diagram() {
-        Diagram_primitive_attributes = new BaseClass[Diagram_primitive_builder.values().length];
-        Diagram_class_attributes = new BaseClass[Diagram_class_attributes_enum.values().length];
+        setCimType("Diagram");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new Diagram();
+    /**
+     * A diagram is made up of multiple diagram objects.
+     *
+     * NOT USED
+     */
+    private Set<DiagramObject> DiagramElements = new HashSet<>(); // OneToMany
+
+    public Set<DiagramObject> getDiagramElements() {
+        return DiagramElements;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(Diagram_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            Diagram_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setDiagramElements(BaseClass _object_) {
+        if (!(_object_ instanceof DiagramObject)) {
+            throw new IllegalArgumentException("Object is not DiagramObject");
+        }
+        if (!DiagramElements.contains(_object_)) {
+            DiagramElements.add((DiagramObject) _object_);
+            ((DiagramObject) _object_).setDiagram(this);
         }
     }
 
-    private void updateAttributeInArray(Diagram_primitive_builder attrEnum, BaseClass value) {
-        try {
-            Diagram_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String DiagramElementsToString() {
+        return getStringFromSet(DiagramElements);
+    }
+
+    /**
+     * A Diagram may have a DiagramStyle.
+     */
+    private DiagramStyle DiagramStyle; // ManyToOne
+
+    public DiagramStyle getDiagramStyle() {
+        return DiagramStyle;
+    }
+
+    public void setDiagramStyle(BaseClass _object_) {
+        if (!(_object_ instanceof DiagramStyle)) {
+            throw new IllegalArgumentException("Object is not DiagramStyle");
+        }
+        if (DiagramStyle != _object_) {
+            DiagramStyle = (DiagramStyle) _object_;
+            DiagramStyle.setDiagram(this);
         }
     }
 
+    public String DiagramStyleToString() {
+        return DiagramStyle != null ? DiagramStyle.getRdfid() : null;
+    }
+
+    /**
+     * Coordinate system orientation of the diagram. A positive orientation gives standard `right-hand` orientation, with negative orientation indicating a `left-hand` orientation. For 2D diagrams, a positive orientation will result in X values increasing from left to right and Y values increasing from bottom to top. A negative orientation gives the `left-hand` orientation (favoured by computer graphics displays) with X values increasing from left to right and Y values increasing from top to bottom.
+     */
+    private String orientation; // OrientationKind
+
+    public String getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(String _value_) {
+        orientation = _value_;
+    }
+
+    public String orientationToString() {
+        return orientation;
+    }
+
+    /**
+     * X coordinate of the first corner of the initial view.
+     */
+    private Float x1InitialView; // Float
+
+    public Float getX1InitialView() {
+        return x1InitialView;
+    }
+
+    public void setX1InitialView(Float _value_) {
+        x1InitialView = _value_;
+    }
+
+    public void setX1InitialView(String _value_) {
+        x1InitialView = getFloatFromString(_value_);
+    }
+
+    public String x1InitialViewToString() {
+        return x1InitialView != null ? x1InitialView.toString() : null;
+    }
+
+    /**
+     * X coordinate of the second corner of the initial view.
+     */
+    private Float x2InitialView; // Float
+
+    public Float getX2InitialView() {
+        return x2InitialView;
+    }
+
+    public void setX2InitialView(Float _value_) {
+        x2InitialView = _value_;
+    }
+
+    public void setX2InitialView(String _value_) {
+        x2InitialView = getFloatFromString(_value_);
+    }
+
+    public String x2InitialViewToString() {
+        return x2InitialView != null ? x2InitialView.toString() : null;
+    }
+
+    /**
+     * Y coordinate of the first corner of the initial view.
+     */
+    private Float y1InitialView; // Float
+
+    public Float getY1InitialView() {
+        return y1InitialView;
+    }
+
+    public void setY1InitialView(Float _value_) {
+        y1InitialView = _value_;
+    }
+
+    public void setY1InitialView(String _value_) {
+        y1InitialView = getFloatFromString(_value_);
+    }
+
+    public String y1InitialViewToString() {
+        return y1InitialView != null ? y1InitialView.toString() : null;
+    }
+
+    /**
+     * Y coordinate of the second corner of the initial view.
+     */
+    private Float y2InitialView; // Float
+
+    public Float getY2InitialView() {
+        return y2InitialView;
+    }
+
+    public void setY2InitialView(Float _value_) {
+        y2InitialView = _value_;
+    }
+
+    public void setY2InitialView(String _value_) {
+        y2InitialView = getFloatFromString(_value_);
+    }
+
+    public String y2InitialViewToString() {
+        return y2InitialView != null ? y2InitialView.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            Diagram_class_attributes_enum attrEnum = Diagram_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated Diagram, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            Diagram_primitive_builder attrEnum = Diagram_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated Diagram, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("Diagram", attrName);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            Diagram_primitive_builder attrEnum = Diagram_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = Diagram_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
 
-        try {
-            Diagram_class_attributes_enum attrEnum = Diagram_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = Diagram_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("Diagram", attrName, objectValue);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : Diagram_primitive_builder.values()) {
-            if (enumValue != Diagram_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "Diagram." + enumValue.name());
-            }
-        }
-        for (var enumValue : Diagram_class_attributes_enum.values()) {
-            if (enumValue != Diagram_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "Diagram." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (Diagram_primitive_builder attrEnum : Diagram_primitive_builder.values()) {
-                BaseClass bc = Diagram_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    Diagram." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (Diagram_class_attributes_enum attrEnum : Diagram_class_attributes_enum.values()) {
-                BaseClass bc = Diagram_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    Diagram." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(Diagram) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "Diagram";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("Diagram", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -226,7 +319,7 @@ public class Diagram extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -236,15 +329,8 @@ public class Diagram extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -275,7 +361,7 @@ public class Diagram extends IdentifiedObject {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -297,49 +383,64 @@ public class Diagram extends IdentifiedObject {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("DiagramElements", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("DiagramElements", new AttrDetails("Diagram.DiagramElements", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("DiagramStyle", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("DiagramStyle", new AttrDetails("Diagram.DiagramStyle", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("orientation", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("orientation", new AttrDetails("Diagram.orientation", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("x1InitialView", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("x1InitialView", new AttrDetails("Diagram.x1InitialView", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("x2InitialView", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("x2InitialView", new AttrDetails("Diagram.x2InitialView", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("y1InitialView", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("y1InitialView", new AttrDetails("Diagram.y1InitialView", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("y2InitialView", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("y2InitialView", new AttrDetails("Diagram.y2InitialView", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Diagram().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("DiagramElements", new GetterSetter(this::DiagramElementsToString, this::setDiagramElements, null));
+        map.put("DiagramStyle", new GetterSetter(this::DiagramStyleToString, this::setDiagramStyle, null));
+        map.put("orientation", new GetterSetter(this::orientationToString, null, this::setOrientation));
+        map.put("x1InitialView", new GetterSetter(this::x1InitialViewToString, null, this::setX1InitialView));
+        map.put("x2InitialView", new GetterSetter(this::x2InitialViewToString, null, this::setX2InitialView));
+        map.put("y1InitialView", new GetterSetter(this::y1InitialViewToString, null, this::setY1InitialView));
+        map.put("y2InitialView", new GetterSetter(this::y2InitialViewToString, null, this::setY2InitialView));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

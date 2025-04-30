@@ -4,243 +4,374 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * A shunt capacitor or reactor or switchable bank of shunt capacitors or reactors. A section of a shunt compensator is an individual capacitor or reactor.  A negative value for reactivePerSection indicates that the compensator is a reactor. ShuntCompensator is a single terminal device.  Ground is implied.
  */
+@SuppressWarnings("unused")
 public class ShuntCompensator extends RegulatingCondEq {
 
     private static final Logging LOG = Logging.getLogger(ShuntCompensator.class);
 
-    private BaseClass[] ShuntCompensator_class_attributes;
-    private BaseClass[] ShuntCompensator_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new ShuntCompensator().getAttributeNamesMap();
-    }
-
-    private enum ShuntCompensator_primitive_builder implements PrimitiveBuilder {
-        aVRDelay() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        grounded() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        maximumSections() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer(value);
-            }
-        },
-        nomU() {
-            public BaseClass construct(java.lang.String value) {
-                return new Voltage(value);
-            }
-        },
-        normalSections() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer(value);
-            }
-        },
-        sections() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        switchOnCount() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer(value);
-            }
-        },
-        switchOnDate() {
-            public BaseClass construct(java.lang.String value) {
-                return new DateTime(value);
-            }
-        },
-        voltageSensitivity() {
-            public BaseClass construct(java.lang.String value) {
-                return new VoltagePerReactivePower(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum ShuntCompensator_class_attributes_enum {
-        SvShuntCompensatorSections,
-        aVRDelay,
-        grounded,
-        maximumSections,
-        nomU,
-        normalSections,
-        sections,
-        switchOnCount,
-        switchOnDate,
-        voltageSensitivity,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public ShuntCompensator() {
-        ShuntCompensator_primitive_attributes = new BaseClass[ShuntCompensator_primitive_builder.values().length];
-        ShuntCompensator_class_attributes = new BaseClass[ShuntCompensator_class_attributes_enum.values().length];
+        setCimType("ShuntCompensator");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new ShuntCompensator();
+    /**
+     * The state for the number of shunt compensator sections in service.
+     *
+     * NOT USED
+     */
+    private SvShuntCompensatorSections SvShuntCompensatorSections; // OneToOne
+
+    public SvShuntCompensatorSections getSvShuntCompensatorSections() {
+        return SvShuntCompensatorSections;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(ShuntCompensator_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            ShuntCompensator_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setSvShuntCompensatorSections(BaseClass _object_) {
+        if (!(_object_ instanceof SvShuntCompensatorSections)) {
+            throw new IllegalArgumentException("Object is not SvShuntCompensatorSections");
+        }
+        if (SvShuntCompensatorSections != _object_) {
+            SvShuntCompensatorSections = (SvShuntCompensatorSections) _object_;
+            SvShuntCompensatorSections.setShuntCompensator(this);
         }
     }
 
-    private void updateAttributeInArray(ShuntCompensator_primitive_builder attrEnum, BaseClass value) {
-        try {
-            ShuntCompensator_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    public String SvShuntCompensatorSectionsToString() {
+        return SvShuntCompensatorSections != null ? SvShuntCompensatorSections.getRdfid() : null;
+    }
+
+    /**
+     * Time delay required for the device to be connected or disconnected by automatic voltage regulation (AVR).
+     */
+    private Double aVRDelay; // Seconds
+
+    public Double getAVRDelay() {
+        return aVRDelay;
+    }
+
+    public void setAVRDelay(Double _value_) {
+        aVRDelay = _value_;
+    }
+
+    public void setAVRDelay(String _value_) {
+        aVRDelay = getDoubleFromString(_value_);
+    }
+
+    public String aVRDelayToString() {
+        return aVRDelay != null ? aVRDelay.toString() : null;
+    }
+
+    /**
+     * Used for Yn and Zn connections. True if the neutral is solidly grounded.
+     */
+    private Boolean grounded; // Boolean
+
+    public Boolean getGrounded() {
+        return grounded;
+    }
+
+    public void setGrounded(Boolean _value_) {
+        grounded = _value_;
+    }
+
+    public void setGrounded(String _value_) {
+        grounded = getBooleanFromString(_value_);
+    }
+
+    public String groundedToString() {
+        return grounded != null ? grounded.toString() : null;
+    }
+
+    /**
+     * The maximum number of sections that may be switched in.
+     */
+    private Integer maximumSections; // Integer
+
+    public Integer getMaximumSections() {
+        return maximumSections;
+    }
+
+    public void setMaximumSections(Integer _value_) {
+        maximumSections = _value_;
+    }
+
+    public void setMaximumSections(String _value_) {
+        maximumSections = getIntegerFromString(_value_);
+    }
+
+    public String maximumSectionsToString() {
+        return maximumSections != null ? maximumSections.toString() : null;
+    }
+
+    /**
+     * The voltage at which the nominal reactive power may be calculated. This should normally be within 10% of the voltage at which the capacitor is connected to the network.
+     */
+    private Double nomU; // Voltage
+
+    public Double getNomU() {
+        return nomU;
+    }
+
+    public void setNomU(Double _value_) {
+        nomU = _value_;
+    }
+
+    public void setNomU(String _value_) {
+        nomU = getDoubleFromString(_value_);
+    }
+
+    public String nomUToString() {
+        return nomU != null ? nomU.toString() : null;
+    }
+
+    /**
+     * The normal number of sections switched in.
+     */
+    private Integer normalSections; // Integer
+
+    public Integer getNormalSections() {
+        return normalSections;
+    }
+
+    public void setNormalSections(Integer _value_) {
+        normalSections = _value_;
+    }
+
+    public void setNormalSections(String _value_) {
+        normalSections = getIntegerFromString(_value_);
+    }
+
+    public String normalSectionsToString() {
+        return normalSections != null ? normalSections.toString() : null;
+    }
+
+    /**
+     * Shunt compensator sections in use. Starting value for steady state solution. Non integer values are allowed to support continuous variables. The reasons for continuous value are to support study cases where no discrete shunt compensators has yet been designed, a solutions where a narrow voltage band force the sections to oscillate or accommodate for a continuous solution as input.
+     */
+    private Double sections; // Simple_Float
+
+    public Double getSections() {
+        return sections;
+    }
+
+    public void setSections(Double _value_) {
+        sections = _value_;
+    }
+
+    public void setSections(String _value_) {
+        sections = getDoubleFromString(_value_);
+    }
+
+    public String sectionsToString() {
+        return sections != null ? sections.toString() : null;
+    }
+
+    /**
+     * The switch on count since the capacitor count was last reset or initialized.
+     */
+    private Integer switchOnCount; // Integer
+
+    public Integer getSwitchOnCount() {
+        return switchOnCount;
+    }
+
+    public void setSwitchOnCount(Integer _value_) {
+        switchOnCount = _value_;
+    }
+
+    public void setSwitchOnCount(String _value_) {
+        switchOnCount = getIntegerFromString(_value_);
+    }
+
+    public String switchOnCountToString() {
+        return switchOnCount != null ? switchOnCount.toString() : null;
+    }
+
+    /**
+     * The date and time when the capacitor bank was last switched on.
+     */
+    private String switchOnDate; // DateTime
+
+    public String getSwitchOnDate() {
+        return switchOnDate;
+    }
+
+    public void setSwitchOnDate(String _value_) {
+        switchOnDate = _value_;
+    }
+
+    public String switchOnDateToString() {
+        return switchOnDate != null ? switchOnDate.toString() : null;
+    }
+
+    /**
+     * Voltage sensitivity required for the device to regulate the bus voltage, in voltage/reactive power.
+     */
+    private Double voltageSensitivity; // VoltagePerReactivePower
+
+    public Double getVoltageSensitivity() {
+        return voltageSensitivity;
+    }
+
+    public void setVoltageSensitivity(Double _value_) {
+        voltageSensitivity = _value_;
+    }
+
+    public void setVoltageSensitivity(String _value_) {
+        voltageSensitivity = getDoubleFromString(_value_);
+    }
+
+    public String voltageSensitivityToString() {
+        return voltageSensitivity != null ? voltageSensitivity.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            ShuntCompensator_class_attributes_enum attrEnum = ShuntCompensator_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated ShuntCompensator, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("ShuntCompensator", attrName);
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            ShuntCompensator_primitive_builder attrEnum = ShuntCompensator_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated ShuntCompensator, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("ShuntCompensator", attrName, objectValue);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            ShuntCompensator_primitive_builder attrEnum = ShuntCompensator_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = ShuntCompensator_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            ShuntCompensator_class_attributes_enum attrEnum = ShuntCompensator_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = ShuntCompensator_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : ShuntCompensator_primitive_builder.values()) {
-            if (enumValue != ShuntCompensator_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "ShuntCompensator." + enumValue.name());
-            }
-        }
-        for (var enumValue : ShuntCompensator_class_attributes_enum.values()) {
-            if (enumValue != ShuntCompensator_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "ShuntCompensator." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (ShuntCompensator_primitive_builder attrEnum : ShuntCompensator_primitive_builder.values()) {
-                BaseClass bc = ShuntCompensator_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    ShuntCompensator." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (ShuntCompensator_class_attributes_enum attrEnum : ShuntCompensator_class_attributes_enum.values()) {
-                BaseClass bc = ShuntCompensator_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    ShuntCompensator." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(ShuntCompensator) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "ShuntCompensator";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("ShuntCompensator", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -249,7 +380,7 @@ public class ShuntCompensator extends RegulatingCondEq {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -259,15 +390,8 @@ public class ShuntCompensator extends RegulatingCondEq {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -298,7 +422,7 @@ public class ShuntCompensator extends RegulatingCondEq {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -320,64 +444,82 @@ public class ShuntCompensator extends RegulatingCondEq {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("SvShuntCompensatorSections", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("SvShuntCompensatorSections", new AttrDetails("ShuntCompensator.SvShuntCompensatorSections", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("aVRDelay", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("aVRDelay", new AttrDetails("ShuntCompensator.aVRDelay", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("grounded", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("grounded", new AttrDetails("ShuntCompensator.grounded", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maximumSections", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("maximumSections", new AttrDetails("ShuntCompensator.maximumSections", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("nomU", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("nomU", new AttrDetails("ShuntCompensator.nomU", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("normalSections", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("normalSections", new AttrDetails("ShuntCompensator.normalSections", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("sections", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("sections", new AttrDetails("ShuntCompensator.sections", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("switchOnCount", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("switchOnCount", new AttrDetails("ShuntCompensator.switchOnCount", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("switchOnDate", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("switchOnDate", new AttrDetails("ShuntCompensator.switchOnDate", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("voltageSensitivity", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("voltageSensitivity", new AttrDetails("ShuntCompensator.voltageSensitivity", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ShuntCompensator().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("SvShuntCompensatorSections", new GetterSetter(this::SvShuntCompensatorSectionsToString, this::setSvShuntCompensatorSections, null));
+        map.put("aVRDelay", new GetterSetter(this::aVRDelayToString, null, this::setAVRDelay));
+        map.put("grounded", new GetterSetter(this::groundedToString, null, this::setGrounded));
+        map.put("maximumSections", new GetterSetter(this::maximumSectionsToString, null, this::setMaximumSections));
+        map.put("nomU", new GetterSetter(this::nomUToString, null, this::setNomU));
+        map.put("normalSections", new GetterSetter(this::normalSectionsToString, null, this::setNormalSections));
+        map.put("sections", new GetterSetter(this::sectionsToString, null, this::setSections));
+        map.put("switchOnCount", new GetterSetter(this::switchOnCountToString, null, this::setSwitchOnCount));
+        map.put("switchOnDate", new GetterSetter(this::switchOnDateToString, null, this::setSwitchOnDate));
+        map.put("voltageSensitivity", new GetterSetter(this::voltageSensitivityToString, null, this::setVoltageSensitivity));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

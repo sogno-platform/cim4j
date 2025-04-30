@@ -4,207 +4,250 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Time point for a schedule where the time between the consecutive points is constant.
  */
+@SuppressWarnings("unused")
 public class RegularTimePoint extends BaseClass {
 
     private static final Logging LOG = Logging.getLogger(RegularTimePoint.class);
 
-    private BaseClass[] RegularTimePoint_class_attributes;
-    private BaseClass[] RegularTimePoint_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new RegularTimePoint().getAttributeNamesMap();
-    }
-
-    private enum RegularTimePoint_primitive_builder implements PrimitiveBuilder {
-        sequenceNumber() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer(value);
-            }
-        },
-        value1() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        value2() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum RegularTimePoint_class_attributes_enum {
-        IntervalSchedule,
-        sequenceNumber,
-        value1,
-        value2,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public RegularTimePoint() {
-        RegularTimePoint_primitive_attributes = new BaseClass[RegularTimePoint_primitive_builder.values().length];
-        RegularTimePoint_class_attributes = new BaseClass[RegularTimePoint_class_attributes_enum.values().length];
+        setCimType("RegularTimePoint");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new RegularTimePoint();
+    /**
+     * Regular interval schedule containing this time point.
+     */
+    private RegularIntervalSchedule IntervalSchedule; // ManyToOne
+
+    public RegularIntervalSchedule getIntervalSchedule() {
+        return IntervalSchedule;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(RegularTimePoint_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            RegularTimePoint_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setIntervalSchedule(BaseClass _object_) {
+        if (!(_object_ instanceof RegularIntervalSchedule)) {
+            throw new IllegalArgumentException("Object is not RegularIntervalSchedule");
+        }
+        if (IntervalSchedule != _object_) {
+            IntervalSchedule = (RegularIntervalSchedule) _object_;
+            IntervalSchedule.setTimePoints(this);
         }
     }
 
-    private void updateAttributeInArray(RegularTimePoint_primitive_builder attrEnum, BaseClass value) {
-        try {
-            RegularTimePoint_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    public String IntervalScheduleToString() {
+        return IntervalSchedule != null ? IntervalSchedule.getRdfid() : null;
+    }
+
+    /**
+     * The position of the regular time point in the sequence. Note that time points don`t have to be sequential, i.e. time points may be omitted. The actual time for a RegularTimePoint is computed by multiplying the associated regular interval schedule`s time step with the regular time point sequence number and adding the associated schedules start time. To specify values for the start time, use sequence number 0.  The sequence number cannot be negative.
+     */
+    private Integer sequenceNumber; // Integer
+
+    public Integer getSequenceNumber() {
+        return sequenceNumber;
+    }
+
+    public void setSequenceNumber(Integer _value_) {
+        sequenceNumber = _value_;
+    }
+
+    public void setSequenceNumber(String _value_) {
+        sequenceNumber = getIntegerFromString(_value_);
+    }
+
+    public String sequenceNumberToString() {
+        return sequenceNumber != null ? sequenceNumber.toString() : null;
+    }
+
+    /**
+     * The first value at the time. The meaning of the value is defined by the derived type of the associated schedule.
+     */
+    private Float value1; // Float
+
+    public Float getValue1() {
+        return value1;
+    }
+
+    public void setValue1(Float _value_) {
+        value1 = _value_;
+    }
+
+    public void setValue1(String _value_) {
+        value1 = getFloatFromString(_value_);
+    }
+
+    public String value1ToString() {
+        return value1 != null ? value1.toString() : null;
+    }
+
+    /**
+     * The second value at the time. The meaning of the value is defined by the derived type of the associated schedule.
+     */
+    private Float value2; // Float
+
+    public Float getValue2() {
+        return value2;
+    }
+
+    public void setValue2(Float _value_) {
+        value2 = _value_;
+    }
+
+    public void setValue2(String _value_) {
+        value2 = getFloatFromString(_value_);
+    }
+
+    public String value2ToString() {
+        return value2 != null ? value2.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            RegularTimePoint_class_attributes_enum attrEnum = RegularTimePoint_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated RegularTimePoint, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("RegularTimePoint", attrName);
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            RegularTimePoint_primitive_builder attrEnum = RegularTimePoint_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated RegularTimePoint, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("RegularTimePoint", attrName, objectValue);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            RegularTimePoint_primitive_builder attrEnum = RegularTimePoint_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = RegularTimePoint_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            RegularTimePoint_class_attributes_enum attrEnum = RegularTimePoint_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = RegularTimePoint_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : RegularTimePoint_primitive_builder.values()) {
-            if (enumValue != RegularTimePoint_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "RegularTimePoint." + enumValue.name());
-            }
-        }
-        for (var enumValue : RegularTimePoint_class_attributes_enum.values()) {
-            if (enumValue != RegularTimePoint_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "RegularTimePoint." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (RegularTimePoint_primitive_builder attrEnum : RegularTimePoint_primitive_builder.values()) {
-                BaseClass bc = RegularTimePoint_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    RegularTimePoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (RegularTimePoint_class_attributes_enum attrEnum : RegularTimePoint_class_attributes_enum.values()) {
-                BaseClass bc = RegularTimePoint_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    RegularTimePoint." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(RegularTimePoint) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "RegularTimePoint";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("RegularTimePoint", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -213,7 +256,7 @@ public class RegularTimePoint extends BaseClass {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -223,15 +266,8 @@ public class RegularTimePoint extends BaseClass {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -262,7 +298,7 @@ public class RegularTimePoint extends BaseClass {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -284,34 +320,46 @@ public class RegularTimePoint extends BaseClass {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("IntervalSchedule", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("IntervalSchedule", new AttrDetails("RegularTimePoint.IntervalSchedule", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("sequenceNumber", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("sequenceNumber", new AttrDetails("RegularTimePoint.sequenceNumber", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("value1", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("value1", new AttrDetails("RegularTimePoint.value1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("value2", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("value2", new AttrDetails("RegularTimePoint.value2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RegularTimePoint().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("IntervalSchedule", new GetterSetter(this::IntervalScheduleToString, this::setIntervalSchedule, null));
+        map.put("sequenceNumber", new GetterSetter(this::sequenceNumberToString, null, this::setSequenceNumber));
+        map.put("value1", new GetterSetter(this::value1ToString, null, this::setValue1));
+        map.put("value2", new GetterSetter(this::value2ToString, null, this::setValue2));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

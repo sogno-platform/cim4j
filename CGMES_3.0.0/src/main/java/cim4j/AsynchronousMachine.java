@@ -4,249 +4,395 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * A rotating machine whose shaft rotates asynchronously with the electrical field.  Also known as an induction machine with no external connection to the rotor windings, e.g. squirrel-cage induction machine.
  */
+@SuppressWarnings("unused")
 public class AsynchronousMachine extends RotatingMachine {
 
     private static final Logging LOG = Logging.getLogger(AsynchronousMachine.class);
 
-    private BaseClass[] AsynchronousMachine_class_attributes;
-    private BaseClass[] AsynchronousMachine_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new AsynchronousMachine().getAttributeNamesMap();
-    }
-
-    private enum AsynchronousMachine_primitive_builder implements PrimitiveBuilder {
-        asynchronousMachineType() {
-            public BaseClass construct(java.lang.String value) {
-                return new AsynchronousMachineKind(value);
-            }
-        },
-        converterFedDrive() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        efficiency() {
-            public BaseClass construct(java.lang.String value) {
-                return new PerCent(value);
-            }
-        },
-        iaIrRatio() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        nominalFrequency() {
-            public BaseClass construct(java.lang.String value) {
-                return new Frequency(value);
-            }
-        },
-        nominalSpeed() {
-            public BaseClass construct(java.lang.String value) {
-                return new RotationSpeed(value);
-            }
-        },
-        polePairNumber() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer(value);
-            }
-        },
-        ratedMechanicalPower() {
-            public BaseClass construct(java.lang.String value) {
-                return new ActivePower(value);
-            }
-        },
-        reversible() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        rxLockedRotorRatio() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum AsynchronousMachine_class_attributes_enum {
-        AsynchronousMachineDynamics,
-        asynchronousMachineType,
-        converterFedDrive,
-        efficiency,
-        iaIrRatio,
-        nominalFrequency,
-        nominalSpeed,
-        polePairNumber,
-        ratedMechanicalPower,
-        reversible,
-        rxLockedRotorRatio,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public AsynchronousMachine() {
-        AsynchronousMachine_primitive_attributes = new BaseClass[AsynchronousMachine_primitive_builder.values().length];
-        AsynchronousMachine_class_attributes = new BaseClass[AsynchronousMachine_class_attributes_enum.values().length];
+        setCimType("AsynchronousMachine");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new AsynchronousMachine();
+    /**
+     * Asynchronous machine dynamics model used to describe dynamic behaviour of this asynchronous machine.
+     *
+     * NOT USED
+     */
+    private AsynchronousMachineDynamics AsynchronousMachineDynamics; // OneToOne
+
+    public AsynchronousMachineDynamics getAsynchronousMachineDynamics() {
+        return AsynchronousMachineDynamics;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(AsynchronousMachine_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            AsynchronousMachine_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setAsynchronousMachineDynamics(BaseClass _object_) {
+        if (!(_object_ instanceof AsynchronousMachineDynamics)) {
+            throw new IllegalArgumentException("Object is not AsynchronousMachineDynamics");
+        }
+        if (AsynchronousMachineDynamics != _object_) {
+            AsynchronousMachineDynamics = (AsynchronousMachineDynamics) _object_;
+            AsynchronousMachineDynamics.setAsynchronousMachine(this);
         }
     }
 
-    private void updateAttributeInArray(AsynchronousMachine_primitive_builder attrEnum, BaseClass value) {
-        try {
-            AsynchronousMachine_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    public String AsynchronousMachineDynamicsToString() {
+        return AsynchronousMachineDynamics != null ? AsynchronousMachineDynamics.getRdfid() : null;
+    }
+
+    /**
+     * Indicates the type of Asynchronous Machine (motor or generator).
+     */
+    private String asynchronousMachineType; // AsynchronousMachineKind
+
+    public String getAsynchronousMachineType() {
+        return asynchronousMachineType;
+    }
+
+    public void setAsynchronousMachineType(String _value_) {
+        asynchronousMachineType = _value_;
+    }
+
+    public String asynchronousMachineTypeToString() {
+        return asynchronousMachineType;
+    }
+
+    /**
+     * Indicates whether the machine is a converter fed drive. Used for short circuit data exchange according to IEC 60909.
+     */
+    private Boolean converterFedDrive; // Boolean
+
+    public Boolean getConverterFedDrive() {
+        return converterFedDrive;
+    }
+
+    public void setConverterFedDrive(Boolean _value_) {
+        converterFedDrive = _value_;
+    }
+
+    public void setConverterFedDrive(String _value_) {
+        converterFedDrive = getBooleanFromString(_value_);
+    }
+
+    public String converterFedDriveToString() {
+        return converterFedDrive != null ? converterFedDrive.toString() : null;
+    }
+
+    /**
+     * Efficiency of the asynchronous machine at nominal operation as a percentage. Indicator for converter drive motors. Used for short circuit data exchange according to IEC 60909.
+     */
+    private Double efficiency; // PerCent
+
+    public Double getEfficiency() {
+        return efficiency;
+    }
+
+    public void setEfficiency(Double _value_) {
+        efficiency = _value_;
+    }
+
+    public void setEfficiency(String _value_) {
+        efficiency = getDoubleFromString(_value_);
+    }
+
+    public String efficiencyToString() {
+        return efficiency != null ? efficiency.toString() : null;
+    }
+
+    /**
+     * Ratio of locked-rotor current to the rated current of the motor (Ia/Ir). Used for short circuit data exchange according to IEC 60909.
+     */
+    private Float iaIrRatio; // Float
+
+    public Float getIaIrRatio() {
+        return iaIrRatio;
+    }
+
+    public void setIaIrRatio(Float _value_) {
+        iaIrRatio = _value_;
+    }
+
+    public void setIaIrRatio(String _value_) {
+        iaIrRatio = getFloatFromString(_value_);
+    }
+
+    public String iaIrRatioToString() {
+        return iaIrRatio != null ? iaIrRatio.toString() : null;
+    }
+
+    /**
+     * Nameplate data indicates if the machine is 50 Hz or 60 Hz.
+     */
+    private Double nominalFrequency; // Frequency
+
+    public Double getNominalFrequency() {
+        return nominalFrequency;
+    }
+
+    public void setNominalFrequency(Double _value_) {
+        nominalFrequency = _value_;
+    }
+
+    public void setNominalFrequency(String _value_) {
+        nominalFrequency = getDoubleFromString(_value_);
+    }
+
+    public String nominalFrequencyToString() {
+        return nominalFrequency != null ? nominalFrequency.toString() : null;
+    }
+
+    /**
+     * Nameplate data.  Depends on the slip and number of pole pairs.
+     */
+    private Double nominalSpeed; // RotationSpeed
+
+    public Double getNominalSpeed() {
+        return nominalSpeed;
+    }
+
+    public void setNominalSpeed(Double _value_) {
+        nominalSpeed = _value_;
+    }
+
+    public void setNominalSpeed(String _value_) {
+        nominalSpeed = getDoubleFromString(_value_);
+    }
+
+    public String nominalSpeedToString() {
+        return nominalSpeed != null ? nominalSpeed.toString() : null;
+    }
+
+    /**
+     * Number of pole pairs of stator. Used for short circuit data exchange according to IEC 60909.
+     */
+    private Integer polePairNumber; // Integer
+
+    public Integer getPolePairNumber() {
+        return polePairNumber;
+    }
+
+    public void setPolePairNumber(Integer _value_) {
+        polePairNumber = _value_;
+    }
+
+    public void setPolePairNumber(String _value_) {
+        polePairNumber = getIntegerFromString(_value_);
+    }
+
+    public String polePairNumberToString() {
+        return polePairNumber != null ? polePairNumber.toString() : null;
+    }
+
+    /**
+     * Rated mechanical power (Pr in IEC 60909-0). Used for short circuit data exchange according to IEC 60909.
+     */
+    private Double ratedMechanicalPower; // ActivePower
+
+    public Double getRatedMechanicalPower() {
+        return ratedMechanicalPower;
+    }
+
+    public void setRatedMechanicalPower(Double _value_) {
+        ratedMechanicalPower = _value_;
+    }
+
+    public void setRatedMechanicalPower(String _value_) {
+        ratedMechanicalPower = getDoubleFromString(_value_);
+    }
+
+    public String ratedMechanicalPowerToString() {
+        return ratedMechanicalPower != null ? ratedMechanicalPower.toString() : null;
+    }
+
+    /**
+     * Indicates for converter drive motors if the power can be reversible. Used for short circuit data exchange according to IEC 60909.
+     */
+    private Boolean reversible; // Boolean
+
+    public Boolean getReversible() {
+        return reversible;
+    }
+
+    public void setReversible(Boolean _value_) {
+        reversible = _value_;
+    }
+
+    public void setReversible(String _value_) {
+        reversible = getBooleanFromString(_value_);
+    }
+
+    public String reversibleToString() {
+        return reversible != null ? reversible.toString() : null;
+    }
+
+    /**
+     * Locked rotor ratio (R/X). Used for short circuit data exchange according to IEC 60909.
+     */
+    private Float rxLockedRotorRatio; // Float
+
+    public Float getRxLockedRotorRatio() {
+        return rxLockedRotorRatio;
+    }
+
+    public void setRxLockedRotorRatio(Float _value_) {
+        rxLockedRotorRatio = _value_;
+    }
+
+    public void setRxLockedRotorRatio(String _value_) {
+        rxLockedRotorRatio = getFloatFromString(_value_);
+    }
+
+    public String rxLockedRotorRatioToString() {
+        return rxLockedRotorRatio != null ? rxLockedRotorRatio.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            AsynchronousMachine_class_attributes_enum attrEnum = AsynchronousMachine_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated AsynchronousMachine, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("AsynchronousMachine", attrName);
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            AsynchronousMachine_primitive_builder attrEnum = AsynchronousMachine_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated AsynchronousMachine, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("AsynchronousMachine", attrName, objectValue);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            AsynchronousMachine_primitive_builder attrEnum = AsynchronousMachine_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = AsynchronousMachine_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            AsynchronousMachine_class_attributes_enum attrEnum = AsynchronousMachine_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = AsynchronousMachine_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : AsynchronousMachine_primitive_builder.values()) {
-            if (enumValue != AsynchronousMachine_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "AsynchronousMachine." + enumValue.name());
-            }
-        }
-        for (var enumValue : AsynchronousMachine_class_attributes_enum.values()) {
-            if (enumValue != AsynchronousMachine_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "AsynchronousMachine." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (AsynchronousMachine_primitive_builder attrEnum : AsynchronousMachine_primitive_builder.values()) {
-                BaseClass bc = AsynchronousMachine_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    AsynchronousMachine." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (AsynchronousMachine_class_attributes_enum attrEnum : AsynchronousMachine_class_attributes_enum.values()) {
-                BaseClass bc = AsynchronousMachine_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    AsynchronousMachine." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(AsynchronousMachine) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "AsynchronousMachine";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("AsynchronousMachine", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -255,7 +401,7 @@ public class AsynchronousMachine extends RotatingMachine {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -265,15 +411,8 @@ public class AsynchronousMachine extends RotatingMachine {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -304,7 +443,7 @@ public class AsynchronousMachine extends RotatingMachine {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -326,69 +465,88 @@ public class AsynchronousMachine extends RotatingMachine {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("AsynchronousMachineDynamics", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("AsynchronousMachineDynamics", new AttrDetails("AsynchronousMachine.AsynchronousMachineDynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("asynchronousMachineType", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("asynchronousMachineType", new AttrDetails("AsynchronousMachine.asynchronousMachineType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("converterFedDrive", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("converterFedDrive", new AttrDetails("AsynchronousMachine.converterFedDrive", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("efficiency", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("efficiency", new AttrDetails("AsynchronousMachine.efficiency", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("iaIrRatio", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("iaIrRatio", new AttrDetails("AsynchronousMachine.iaIrRatio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("nominalFrequency", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("nominalFrequency", new AttrDetails("AsynchronousMachine.nominalFrequency", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("nominalSpeed", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("nominalSpeed", new AttrDetails("AsynchronousMachine.nominalSpeed", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("polePairNumber", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("polePairNumber", new AttrDetails("AsynchronousMachine.polePairNumber", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("ratedMechanicalPower", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ratedMechanicalPower", new AttrDetails("AsynchronousMachine.ratedMechanicalPower", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("reversible", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("reversible", new AttrDetails("AsynchronousMachine.reversible", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("rxLockedRotorRatio", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("rxLockedRotorRatio", new AttrDetails("AsynchronousMachine.rxLockedRotorRatio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AsynchronousMachine().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("AsynchronousMachineDynamics", new GetterSetter(this::AsynchronousMachineDynamicsToString, this::setAsynchronousMachineDynamics, null));
+        map.put("asynchronousMachineType", new GetterSetter(this::asynchronousMachineTypeToString, null, this::setAsynchronousMachineType));
+        map.put("converterFedDrive", new GetterSetter(this::converterFedDriveToString, null, this::setConverterFedDrive));
+        map.put("efficiency", new GetterSetter(this::efficiencyToString, null, this::setEfficiency));
+        map.put("iaIrRatio", new GetterSetter(this::iaIrRatioToString, null, this::setIaIrRatio));
+        map.put("nominalFrequency", new GetterSetter(this::nominalFrequencyToString, null, this::setNominalFrequency));
+        map.put("nominalSpeed", new GetterSetter(this::nominalSpeedToString, null, this::setNominalSpeed));
+        map.put("polePairNumber", new GetterSetter(this::polePairNumberToString, null, this::setPolePairNumber));
+        map.put("ratedMechanicalPower", new GetterSetter(this::ratedMechanicalPowerToString, null, this::setRatedMechanicalPower));
+        map.put("reversible", new GetterSetter(this::reversibleToString, null, this::setReversible));
+        map.put("rxLockedRotorRatio", new GetterSetter(this::rxLockedRotorRatioToString, null, this::setRxLockedRotorRatio));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

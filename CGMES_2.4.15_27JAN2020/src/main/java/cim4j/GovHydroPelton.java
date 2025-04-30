@@ -4,356 +4,752 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Detailed hydro unit - Pelton model.  This model can be used to represent the dynamic related to water tunnel and surge chamber. A schematic of the hydraulic system of detailed hydro unit models, like Francis and Pelton, is located under the GovHydroFrancis class.
  */
+@SuppressWarnings("unused")
 public class GovHydroPelton extends TurbineGovernorDynamics {
 
     private static final Logging LOG = Logging.getLogger(GovHydroPelton.class);
 
-    private BaseClass[] GovHydroPelton_class_attributes;
-    private BaseClass[] GovHydroPelton_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new GovHydroPelton().getAttributeNamesMap();
-    }
-
-    private enum GovHydroPelton_primitive_builder implements PrimitiveBuilder {
-        av0() {
-            public BaseClass construct(java.lang.String value) {
-                return new Area(value);
-            }
-        },
-        av1() {
-            public BaseClass construct(java.lang.String value) {
-                return new Area(value);
-            }
-        },
-        bp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        db1() {
-            public BaseClass construct(java.lang.String value) {
-                return new Frequency(value);
-            }
-        },
-        db2() {
-            public BaseClass construct(java.lang.String value) {
-                return new Frequency(value);
-            }
-        },
-        h1() {
-            public BaseClass construct(java.lang.String value) {
-                return new Length(value);
-            }
-        },
-        h2() {
-            public BaseClass construct(java.lang.String value) {
-                return new Length(value);
-            }
-        },
-        hn() {
-            public BaseClass construct(java.lang.String value) {
-                return new Length(value);
-            }
-        },
-        kc() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kg() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        qc0() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        qn() {
-            public BaseClass construct(java.lang.String value) {
-                return new VolumeFlowRate(value);
-            }
-        },
-        simplifiedPelton() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        staticCompensating() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        ta() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        ts() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tv() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        twnc() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        twng() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tx() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        va() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        valvmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        valvmin() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        vav() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        vc() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        vcv() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        waterTunnelSurgeChamberSimulation() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        zsfc() {
-            public BaseClass construct(java.lang.String value) {
-                return new Length(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum GovHydroPelton_class_attributes_enum {
-        av0,
-        av1,
-        bp,
-        db1,
-        db2,
-        h1,
-        h2,
-        hn,
-        kc,
-        kg,
-        qc0,
-        qn,
-        simplifiedPelton,
-        staticCompensating,
-        ta,
-        ts,
-        tv,
-        twnc,
-        twng,
-        tx,
-        va,
-        valvmax,
-        valvmin,
-        vav,
-        vc,
-        vcv,
-        waterTunnelSurgeChamberSimulation,
-        zsfc,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public GovHydroPelton() {
-        GovHydroPelton_primitive_attributes = new BaseClass[GovHydroPelton_primitive_builder.values().length];
-        GovHydroPelton_class_attributes = new BaseClass[GovHydroPelton_class_attributes_enum.values().length];
+        setCimType("GovHydroPelton");
+    }
+
+    /**
+     * Area of the surge tank (A). Unit = m. Typical Value = 30.
+     */
+    private Double av0; // Area
+
+    public Double getAv0() {
+        return av0;
+    }
+
+    public void setAv0(Double _value_) {
+        av0 = _value_;
+    }
+
+    public void setAv0(String _value_) {
+        av0 = getDoubleFromString(_value_);
+    }
+
+    public String av0ToString() {
+        return av0 != null ? av0.toString() : null;
+    }
+
+    /**
+     * Area of the compensation tank (A). Unit = m. Typical Value = 700.
+     */
+    private Double av1; // Area
+
+    public Double getAv1() {
+        return av1;
+    }
+
+    public void setAv1(Double _value_) {
+        av1 = _value_;
+    }
+
+    public void setAv1(String _value_) {
+        av1 = getDoubleFromString(_value_);
+    }
+
+    public String av1ToString() {
+        return av1 != null ? av1.toString() : null;
+    }
+
+    /**
+     * Droop (bp).  Typical Value = 0.05.
+     */
+    private Double bp; // PU
+
+    public Double getBp() {
+        return bp;
+    }
+
+    public void setBp(Double _value_) {
+        bp = _value_;
+    }
+
+    public void setBp(String _value_) {
+        bp = getDoubleFromString(_value_);
+    }
+
+    public String bpToString() {
+        return bp != null ? bp.toString() : null;
+    }
+
+    /**
+     * Intentional dead-band width (DB1).  Unit = Hz.  Typical Value = 0.
+     */
+    private Double db1; // Frequency
+
+    public Double getDb1() {
+        return db1;
+    }
+
+    public void setDb1(Double _value_) {
+        db1 = _value_;
+    }
+
+    public void setDb1(String _value_) {
+        db1 = getDoubleFromString(_value_);
+    }
+
+    public String db1ToString() {
+        return db1 != null ? db1.toString() : null;
+    }
+
+    /**
+     * Intentional dead-band width of valve opening error (DB2). Unit = Hz.  Typical Value = 0.01.
+     */
+    private Double db2; // Frequency
+
+    public Double getDb2() {
+        return db2;
+    }
+
+    public void setDb2(Double _value_) {
+        db2 = _value_;
+    }
+
+    public void setDb2(String _value_) {
+        db2 = getDoubleFromString(_value_);
+    }
+
+    public String db2ToString() {
+        return db2 != null ? db2.toString() : null;
+    }
+
+    /**
+     * Head of compensation chamber water level with respect to the level of penstock (H).  Unit = m. Typical Value = 4.
+     */
+    private Double h1; // Length
+
+    public Double getH1() {
+        return h1;
+    }
+
+    public void setH1(Double _value_) {
+        h1 = _value_;
+    }
+
+    public void setH1(String _value_) {
+        h1 = getDoubleFromString(_value_);
+    }
+
+    public String h1ToString() {
+        return h1 != null ? h1.toString() : null;
+    }
+
+    /**
+     * Head of surge tank water level with respect to the level of penstock (H).  Unit = m. Typical Value = 40.
+     */
+    private Double h2; // Length
+
+    public Double getH2() {
+        return h2;
+    }
+
+    public void setH2(Double _value_) {
+        h2 = _value_;
+    }
+
+    public void setH2(String _value_) {
+        h2 = getDoubleFromString(_value_);
+    }
+
+    public String h2ToString() {
+        return h2 != null ? h2.toString() : null;
+    }
+
+    /**
+     * Rated hydraulic head (H).  Unit = m. Typical Value = 250.
+     */
+    private Double hn; // Length
+
+    public Double getHn() {
+        return hn;
+    }
+
+    public void setHn(Double _value_) {
+        hn = _value_;
+    }
+
+    public void setHn(String _value_) {
+        hn = getDoubleFromString(_value_);
+    }
+
+    public String hnToString() {
+        return hn != null ? hn.toString() : null;
+    }
+
+    /**
+     * Penstock loss coefficient (due to friction) (Kc).  Typical Value = 0.025.
+     */
+    private Double kc; // PU
+
+    public Double getKc() {
+        return kc;
+    }
+
+    public void setKc(Double _value_) {
+        kc = _value_;
+    }
+
+    public void setKc(String _value_) {
+        kc = getDoubleFromString(_value_);
+    }
+
+    public String kcToString() {
+        return kc != null ? kc.toString() : null;
+    }
+
+    /**
+     * Water tunnel and surge chamber loss coefficient (due to friction) (Kg).  Typical Value = -0.025.
+     */
+    private Double kg; // PU
+
+    public Double getKg() {
+        return kg;
+    }
+
+    public void setKg(Double _value_) {
+        kg = _value_;
+    }
+
+    public void setKg(String _value_) {
+        kg = getDoubleFromString(_value_);
+    }
+
+    public String kgToString() {
+        return kg != null ? kg.toString() : null;
+    }
+
+    /**
+     * No-load turbine flow at nominal head (Qc0).  Typical Value = 0.05.
+     */
+    private Double qc0; // PU
+
+    public Double getQc0() {
+        return qc0;
+    }
+
+    public void setQc0(Double _value_) {
+        qc0 = _value_;
+    }
+
+    public void setQc0(String _value_) {
+        qc0 = getDoubleFromString(_value_);
+    }
+
+    public String qc0ToString() {
+        return qc0 != null ? qc0.toString() : null;
+    }
+
+    /**
+     * Rated flow (Q). Unit = m/s. Typical Value = 40.
+     */
+    private Double qn; // VolumeFlowRate
+
+    public Double getQn() {
+        return qn;
+    }
+
+    public void setQn(Double _value_) {
+        qn = _value_;
+    }
+
+    public void setQn(String _value_) {
+        qn = getDoubleFromString(_value_);
+    }
+
+    public String qnToString() {
+        return qn != null ? qn.toString() : null;
+    }
+
+    /**
+     * Simplified Pelton model simulation (Sflag). true = enable of simplified Pelton model simulation false = enable of complete Pelton model simulation (non linear gain). Typical Value = false.
+     */
+    private Boolean simplifiedPelton; // Boolean
+
+    public Boolean getSimplifiedPelton() {
+        return simplifiedPelton;
+    }
+
+    public void setSimplifiedPelton(Boolean _value_) {
+        simplifiedPelton = _value_;
+    }
+
+    public void setSimplifiedPelton(String _value_) {
+        simplifiedPelton = getBooleanFromString(_value_);
+    }
+
+    public String simplifiedPeltonToString() {
+        return simplifiedPelton != null ? simplifiedPelton.toString() : null;
+    }
+
+    /**
+     * Static compensating characteristic (Cflag). true = enable of static compensating characteristic  false = inhibit of static compensating characteristic. Typical Value = false.
+     */
+    private Boolean staticCompensating; // Boolean
+
+    public Boolean getStaticCompensating() {
+        return staticCompensating;
+    }
+
+    public void setStaticCompensating(Boolean _value_) {
+        staticCompensating = _value_;
+    }
+
+    public void setStaticCompensating(String _value_) {
+        staticCompensating = getBooleanFromString(_value_);
+    }
+
+    public String staticCompensatingToString() {
+        return staticCompensating != null ? staticCompensating.toString() : null;
+    }
+
+    /**
+     * Derivative gain (accelerometer time constant) (Ta).  Typical Value = 3.
+     */
+    private Double ta; // Seconds
+
+    public Double getTa() {
+        return ta;
+    }
+
+    public void setTa(Double _value_) {
+        ta = _value_;
+    }
+
+    public void setTa(String _value_) {
+        ta = getDoubleFromString(_value_);
+    }
+
+    public String taToString() {
+        return ta != null ? ta.toString() : null;
+    }
+
+    /**
+     * Gate servo time constant (Ts).  Typical Value = 0.15.
+     */
+    private Double ts; // Seconds
+
+    public Double getTs() {
+        return ts;
+    }
+
+    public void setTs(Double _value_) {
+        ts = _value_;
+    }
+
+    public void setTs(String _value_) {
+        ts = getDoubleFromString(_value_);
+    }
+
+    public String tsToString() {
+        return ts != null ? ts.toString() : null;
+    }
+
+    /**
+     * Servomotor integrator time constant (TV).  Typical Value = 0.3.
+     */
+    private Double tv; // Seconds
+
+    public Double getTv() {
+        return tv;
+    }
+
+    public void setTv(Double _value_) {
+        tv = _value_;
+    }
+
+    public void setTv(String _value_) {
+        tv = getDoubleFromString(_value_);
+    }
+
+    public String tvToString() {
+        return tv != null ? tv.toString() : null;
+    }
+
+    /**
+     * Water inertia time constant (Twnc).  Typical Value = 1.
+     */
+    private Double twnc; // Seconds
+
+    public Double getTwnc() {
+        return twnc;
+    }
+
+    public void setTwnc(Double _value_) {
+        twnc = _value_;
+    }
+
+    public void setTwnc(String _value_) {
+        twnc = getDoubleFromString(_value_);
+    }
+
+    public String twncToString() {
+        return twnc != null ? twnc.toString() : null;
+    }
+
+    /**
+     * Water tunnel and surge chamber inertia time constant (Twng). Typical Value = 3.
+     */
+    private Double twng; // Seconds
+
+    public Double getTwng() {
+        return twng;
+    }
+
+    public void setTwng(Double _value_) {
+        twng = _value_;
+    }
+
+    public void setTwng(String _value_) {
+        twng = getDoubleFromString(_value_);
+    }
+
+    public String twngToString() {
+        return twng != null ? twng.toString() : null;
+    }
+
+    /**
+     * Electronic integrator time constant (Tx).  Typical Value = 0.5.
+     */
+    private Double tx; // Seconds
+
+    public Double getTx() {
+        return tx;
+    }
+
+    public void setTx(Double _value_) {
+        tx = _value_;
+    }
+
+    public void setTx(String _value_) {
+        tx = getDoubleFromString(_value_);
+    }
+
+    public String txToString() {
+        return tx != null ? tx.toString() : null;
+    }
+
+    /**
+     * Maximum gate opening velocity (Va).  Unit = PU/sec.  Typical Value = 0.016.
+     */
+    private Double va; // Simple_Float
+
+    public Double getVa() {
+        return va;
+    }
+
+    public void setVa(Double _value_) {
+        va = _value_;
+    }
+
+    public void setVa(String _value_) {
+        va = getDoubleFromString(_value_);
+    }
+
+    public String vaToString() {
+        return va != null ? va.toString() : null;
+    }
+
+    /**
+     * Maximum gate opening (ValvMax).  Typical Value = 1.
+     */
+    private Double valvmax; // PU
+
+    public Double getValvmax() {
+        return valvmax;
+    }
+
+    public void setValvmax(Double _value_) {
+        valvmax = _value_;
+    }
+
+    public void setValvmax(String _value_) {
+        valvmax = getDoubleFromString(_value_);
+    }
+
+    public String valvmaxToString() {
+        return valvmax != null ? valvmax.toString() : null;
+    }
+
+    /**
+     * Minimum gate opening (ValvMin).  Typical Value = 0.
+     */
+    private Double valvmin; // PU
+
+    public Double getValvmin() {
+        return valvmin;
+    }
+
+    public void setValvmin(Double _value_) {
+        valvmin = _value_;
+    }
+
+    public void setValvmin(String _value_) {
+        valvmin = getDoubleFromString(_value_);
+    }
+
+    public String valvminToString() {
+        return valvmin != null ? valvmin.toString() : null;
+    }
+
+    /**
+     * Maximum servomotor valve opening velocity (Vav).  Typical Value = 0.017.
+     */
+    private Double vav; // PU
+
+    public Double getVav() {
+        return vav;
+    }
+
+    public void setVav(Double _value_) {
+        vav = _value_;
+    }
+
+    public void setVav(String _value_) {
+        vav = getDoubleFromString(_value_);
+    }
+
+    public String vavToString() {
+        return vav != null ? vav.toString() : null;
+    }
+
+    /**
+     * Maximum gate closing velocity (Vc).  Unit = PU/sec.  Typical Value = -0.016.
+     */
+    private Double vc; // Simple_Float
+
+    public Double getVc() {
+        return vc;
+    }
+
+    public void setVc(Double _value_) {
+        vc = _value_;
+    }
+
+    public void setVc(String _value_) {
+        vc = getDoubleFromString(_value_);
+    }
+
+    public String vcToString() {
+        return vc != null ? vc.toString() : null;
+    }
+
+    /**
+     * Maximum servomotor valve closing velocity (Vcv).  Typical Value = -0.017.
+     */
+    private Double vcv; // PU
+
+    public Double getVcv() {
+        return vcv;
+    }
+
+    public void setVcv(Double _value_) {
+        vcv = _value_;
+    }
+
+    public void setVcv(String _value_) {
+        vcv = getDoubleFromString(_value_);
+    }
+
+    public String vcvToString() {
+        return vcv != null ? vcv.toString() : null;
+    }
+
+    /**
+     * Water tunnel and surge chamber simulation (Tflag). true = enable of water tunnel and surge chamber simulation false = inhibit of water tunnel and surge chamber simulation. Typical Value = false.
+     */
+    private Boolean waterTunnelSurgeChamberSimulation; // Boolean
+
+    public Boolean getWaterTunnelSurgeChamberSimulation() {
+        return waterTunnelSurgeChamberSimulation;
+    }
+
+    public void setWaterTunnelSurgeChamberSimulation(Boolean _value_) {
+        waterTunnelSurgeChamberSimulation = _value_;
+    }
+
+    public void setWaterTunnelSurgeChamberSimulation(String _value_) {
+        waterTunnelSurgeChamberSimulation = getBooleanFromString(_value_);
+    }
+
+    public String waterTunnelSurgeChamberSimulationToString() {
+        return waterTunnelSurgeChamberSimulation != null ? waterTunnelSurgeChamberSimulation.toString() : null;
+    }
+
+    /**
+     * Head of upper water level with respect to the level of penstock (Zsfc).  Unit = m. Typical Value = 25.
+     */
+    private Double zsfc; // Length
+
+    public Double getZsfc() {
+        return zsfc;
+    }
+
+    public void setZsfc(Double _value_) {
+        zsfc = _value_;
+    }
+
+    public void setZsfc(String _value_) {
+        zsfc = getDoubleFromString(_value_);
+    }
+
+    public String zsfcToString() {
+        return zsfc != null ? zsfc.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new GovHydroPelton();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("GovHydroPelton", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(GovHydroPelton_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            GovHydroPelton_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(GovHydroPelton_primitive_builder attrEnum, BaseClass value) {
-        try {
-            GovHydroPelton_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("GovHydroPelton", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            GovHydroPelton_class_attributes_enum attrEnum = GovHydroPelton_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated GovHydroPelton, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            GovHydroPelton_primitive_builder attrEnum = GovHydroPelton_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated GovHydroPelton, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            GovHydroPelton_primitive_builder attrEnum = GovHydroPelton_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = GovHydroPelton_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            GovHydroPelton_class_attributes_enum attrEnum = GovHydroPelton_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = GovHydroPelton_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : GovHydroPelton_primitive_builder.values()) {
-            if (enumValue != GovHydroPelton_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "GovHydroPelton." + enumValue.name());
-            }
-        }
-        for (var enumValue : GovHydroPelton_class_attributes_enum.values()) {
-            if (enumValue != GovHydroPelton_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "GovHydroPelton." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (GovHydroPelton_primitive_builder attrEnum : GovHydroPelton_primitive_builder.values()) {
-                BaseClass bc = GovHydroPelton_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    GovHydroPelton." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (GovHydroPelton_class_attributes_enum attrEnum : GovHydroPelton_class_attributes_enum.values()) {
-                BaseClass bc = GovHydroPelton_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    GovHydroPelton." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(GovHydroPelton) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "GovHydroPelton";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("GovHydroPelton", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -362,7 +758,7 @@ public class GovHydroPelton extends TurbineGovernorDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -372,15 +768,8 @@ public class GovHydroPelton extends TurbineGovernorDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -411,7 +800,7 @@ public class GovHydroPelton extends TurbineGovernorDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -433,154 +822,190 @@ public class GovHydroPelton extends TurbineGovernorDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("av0", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("av0", new AttrDetails("GovHydroPelton.av0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("av1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("av1", new AttrDetails("GovHydroPelton.av1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("bp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("bp", new AttrDetails("GovHydroPelton.bp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("db1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("db1", new AttrDetails("GovHydroPelton.db1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("db2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("db2", new AttrDetails("GovHydroPelton.db2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("h1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("h1", new AttrDetails("GovHydroPelton.h1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("h2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("h2", new AttrDetails("GovHydroPelton.h2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("hn", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("hn", new AttrDetails("GovHydroPelton.hn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kc", new AttrDetails("GovHydroPelton.kc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kg", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kg", new AttrDetails("GovHydroPelton.kg", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("qc0", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("qc0", new AttrDetails("GovHydroPelton.qc0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("qn", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("qn", new AttrDetails("GovHydroPelton.qn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("simplifiedPelton", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("simplifiedPelton", new AttrDetails("GovHydroPelton.simplifiedPelton", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("staticCompensating", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("staticCompensating", new AttrDetails("GovHydroPelton.staticCompensating", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ta", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ta", new AttrDetails("GovHydroPelton.ta", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ts", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ts", new AttrDetails("GovHydroPelton.ts", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tv", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tv", new AttrDetails("GovHydroPelton.tv", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("twnc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("twnc", new AttrDetails("GovHydroPelton.twnc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("twng", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("twng", new AttrDetails("GovHydroPelton.twng", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tx", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tx", new AttrDetails("GovHydroPelton.tx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("va", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("va", new AttrDetails("GovHydroPelton.va", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("valvmax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("valvmax", new AttrDetails("GovHydroPelton.valvmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("valvmin", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("valvmin", new AttrDetails("GovHydroPelton.valvmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vav", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vav", new AttrDetails("GovHydroPelton.vav", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vc", new AttrDetails("GovHydroPelton.vc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vcv", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vcv", new AttrDetails("GovHydroPelton.vcv", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("waterTunnelSurgeChamberSimulation", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("waterTunnelSurgeChamberSimulation", new AttrDetails("GovHydroPelton.waterTunnelSurgeChamberSimulation", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("zsfc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("zsfc", new AttrDetails("GovHydroPelton.zsfc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovHydroPelton().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("av0", new GetterSetter(this::av0ToString, null, this::setAv0));
+        map.put("av1", new GetterSetter(this::av1ToString, null, this::setAv1));
+        map.put("bp", new GetterSetter(this::bpToString, null, this::setBp));
+        map.put("db1", new GetterSetter(this::db1ToString, null, this::setDb1));
+        map.put("db2", new GetterSetter(this::db2ToString, null, this::setDb2));
+        map.put("h1", new GetterSetter(this::h1ToString, null, this::setH1));
+        map.put("h2", new GetterSetter(this::h2ToString, null, this::setH2));
+        map.put("hn", new GetterSetter(this::hnToString, null, this::setHn));
+        map.put("kc", new GetterSetter(this::kcToString, null, this::setKc));
+        map.put("kg", new GetterSetter(this::kgToString, null, this::setKg));
+        map.put("qc0", new GetterSetter(this::qc0ToString, null, this::setQc0));
+        map.put("qn", new GetterSetter(this::qnToString, null, this::setQn));
+        map.put("simplifiedPelton", new GetterSetter(this::simplifiedPeltonToString, null, this::setSimplifiedPelton));
+        map.put("staticCompensating", new GetterSetter(this::staticCompensatingToString, null, this::setStaticCompensating));
+        map.put("ta", new GetterSetter(this::taToString, null, this::setTa));
+        map.put("ts", new GetterSetter(this::tsToString, null, this::setTs));
+        map.put("tv", new GetterSetter(this::tvToString, null, this::setTv));
+        map.put("twnc", new GetterSetter(this::twncToString, null, this::setTwnc));
+        map.put("twng", new GetterSetter(this::twngToString, null, this::setTwng));
+        map.put("tx", new GetterSetter(this::txToString, null, this::setTx));
+        map.put("va", new GetterSetter(this::vaToString, null, this::setVa));
+        map.put("valvmax", new GetterSetter(this::valvmaxToString, null, this::setValvmax));
+        map.put("valvmin", new GetterSetter(this::valvminToString, null, this::setValvmin));
+        map.put("vav", new GetterSetter(this::vavToString, null, this::setVav));
+        map.put("vc", new GetterSetter(this::vcToString, null, this::setVc));
+        map.put("vcv", new GetterSetter(this::vcvToString, null, this::setVcv));
+        map.put("waterTunnelSurgeChamberSimulation", new GetterSetter(this::waterTunnelSurgeChamberSimulationToString, null, this::setWaterTunnelSurgeChamberSimulation));
+        map.put("zsfc", new GetterSetter(this::zsfcToString, null, this::setZsfc));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

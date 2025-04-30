@@ -4,254 +4,395 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Combined static load and induction motor load effects. The dynamics of the motor are simplified by linearizing the induction machine equations.
  */
+@SuppressWarnings("unused")
 public class LoadComposite extends LoadDynamics {
 
     private static final Logging LOG = Logging.getLogger(LoadComposite.class);
 
-    private BaseClass[] LoadComposite_class_attributes;
-    private BaseClass[] LoadComposite_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new LoadComposite().getAttributeNamesMap();
-    }
-
-    private enum LoadComposite_primitive_builder implements PrimitiveBuilder {
-        epfd() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        epfs() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        epvd() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        epvs() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        eqfd() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        eqfs() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        eqvd() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        eqvs() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        h() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        lfac() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        pfrac() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum LoadComposite_class_attributes_enum {
-        epfd,
-        epfs,
-        epvd,
-        epvs,
-        eqfd,
-        eqfs,
-        eqvd,
-        eqvs,
-        h,
-        lfac,
-        pfrac,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public LoadComposite() {
-        LoadComposite_primitive_attributes = new BaseClass[LoadComposite_primitive_builder.values().length];
-        LoadComposite_class_attributes = new BaseClass[LoadComposite_class_attributes_enum.values().length];
+        setCimType("LoadComposite");
+    }
+
+    /**
+     * Active load-frequency dependence index (dynamic) (&lt;i&gt;Epfd&lt;/i&gt;).  Typical value = 1,5.
+     */
+    private Float epfd; // Float
+
+    public Float getEpfd() {
+        return epfd;
+    }
+
+    public void setEpfd(Float _value_) {
+        epfd = _value_;
+    }
+
+    public void setEpfd(String _value_) {
+        epfd = getFloatFromString(_value_);
+    }
+
+    public String epfdToString() {
+        return epfd != null ? epfd.toString() : null;
+    }
+
+    /**
+     * Active load-frequency dependence index (static) (&lt;i&gt;Epfs&lt;/i&gt;).  Typical value = 1,5.
+     */
+    private Float epfs; // Float
+
+    public Float getEpfs() {
+        return epfs;
+    }
+
+    public void setEpfs(Float _value_) {
+        epfs = _value_;
+    }
+
+    public void setEpfs(String _value_) {
+        epfs = getFloatFromString(_value_);
+    }
+
+    public String epfsToString() {
+        return epfs != null ? epfs.toString() : null;
+    }
+
+    /**
+     * Active load-voltage dependence index (dynamic) (&lt;i&gt;Epvd&lt;/i&gt;).  Typical value = 0,7.
+     */
+    private Float epvd; // Float
+
+    public Float getEpvd() {
+        return epvd;
+    }
+
+    public void setEpvd(Float _value_) {
+        epvd = _value_;
+    }
+
+    public void setEpvd(String _value_) {
+        epvd = getFloatFromString(_value_);
+    }
+
+    public String epvdToString() {
+        return epvd != null ? epvd.toString() : null;
+    }
+
+    /**
+     * Active load-voltage dependence index (static) (&lt;i&gt;Epvs&lt;/i&gt;).  Typical value = 0,7.
+     */
+    private Float epvs; // Float
+
+    public Float getEpvs() {
+        return epvs;
+    }
+
+    public void setEpvs(Float _value_) {
+        epvs = _value_;
+    }
+
+    public void setEpvs(String _value_) {
+        epvs = getFloatFromString(_value_);
+    }
+
+    public String epvsToString() {
+        return epvs != null ? epvs.toString() : null;
+    }
+
+    /**
+     * Reactive load-frequency dependence index (dynamic) (&lt;i&gt;Eqfd&lt;/i&gt;).  Typical value = 0.
+     */
+    private Float eqfd; // Float
+
+    public Float getEqfd() {
+        return eqfd;
+    }
+
+    public void setEqfd(Float _value_) {
+        eqfd = _value_;
+    }
+
+    public void setEqfd(String _value_) {
+        eqfd = getFloatFromString(_value_);
+    }
+
+    public String eqfdToString() {
+        return eqfd != null ? eqfd.toString() : null;
+    }
+
+    /**
+     * Reactive load-frequency dependence index (static) (&lt;i&gt;Eqfs&lt;/i&gt;).  Typical value = 0.
+     */
+    private Float eqfs; // Float
+
+    public Float getEqfs() {
+        return eqfs;
+    }
+
+    public void setEqfs(Float _value_) {
+        eqfs = _value_;
+    }
+
+    public void setEqfs(String _value_) {
+        eqfs = getFloatFromString(_value_);
+    }
+
+    public String eqfsToString() {
+        return eqfs != null ? eqfs.toString() : null;
+    }
+
+    /**
+     * Reactive load-voltage dependence index (dynamic) (&lt;i&gt;Eqvd&lt;/i&gt;).  Typical value = 2.
+     */
+    private Float eqvd; // Float
+
+    public Float getEqvd() {
+        return eqvd;
+    }
+
+    public void setEqvd(Float _value_) {
+        eqvd = _value_;
+    }
+
+    public void setEqvd(String _value_) {
+        eqvd = getFloatFromString(_value_);
+    }
+
+    public String eqvdToString() {
+        return eqvd != null ? eqvd.toString() : null;
+    }
+
+    /**
+     * Reactive load-voltage dependence index (static) (&lt;i&gt;Eqvs&lt;/i&gt;).  Typical value = 2.
+     */
+    private Float eqvs; // Float
+
+    public Float getEqvs() {
+        return eqvs;
+    }
+
+    public void setEqvs(Float _value_) {
+        eqvs = _value_;
+    }
+
+    public void setEqvs(String _value_) {
+        eqvs = getFloatFromString(_value_);
+    }
+
+    public String eqvsToString() {
+        return eqvs != null ? eqvs.toString() : null;
+    }
+
+    /**
+     * Inertia constant (&lt;i&gt;H&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 2,5.
+     */
+    private Double h; // Seconds
+
+    public Double getH() {
+        return h;
+    }
+
+    public void setH(Double _value_) {
+        h = _value_;
+    }
+
+    public void setH(String _value_) {
+        h = getDoubleFromString(_value_);
+    }
+
+    public String hToString() {
+        return h != null ? h.toString() : null;
+    }
+
+    /**
+     * Loading factor (&lt;i&gt;L&lt;/i&gt;&lt;i&gt;&lt;sub&gt;fac&lt;/sub&gt;&lt;/i&gt;). The ratio of initial &lt;i&gt;P&lt;/i&gt; to motor MVA base.  Typical value = 0,8.
+     */
+    private Float lfac; // Float
+
+    public Float getLfac() {
+        return lfac;
+    }
+
+    public void setLfac(Float _value_) {
+        lfac = _value_;
+    }
+
+    public void setLfac(String _value_) {
+        lfac = getFloatFromString(_value_);
+    }
+
+    public String lfacToString() {
+        return lfac != null ? lfac.toString() : null;
+    }
+
+    /**
+     * Fraction of constant-power load to be represented by this motor model (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FRAC&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0,0 and &amp;lt;= 1,0).  Typical value = 0,5.
+     */
+    private Float pfrac; // Float
+
+    public Float getPfrac() {
+        return pfrac;
+    }
+
+    public void setPfrac(Float _value_) {
+        pfrac = _value_;
+    }
+
+    public void setPfrac(String _value_) {
+        pfrac = getFloatFromString(_value_);
+    }
+
+    public String pfracToString() {
+        return pfrac != null ? pfrac.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new LoadComposite();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("LoadComposite", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(LoadComposite_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            LoadComposite_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(LoadComposite_primitive_builder attrEnum, BaseClass value) {
-        try {
-            LoadComposite_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("LoadComposite", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            LoadComposite_class_attributes_enum attrEnum = LoadComposite_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated LoadComposite, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            LoadComposite_primitive_builder attrEnum = LoadComposite_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated LoadComposite, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            LoadComposite_primitive_builder attrEnum = LoadComposite_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = LoadComposite_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            LoadComposite_class_attributes_enum attrEnum = LoadComposite_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = LoadComposite_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : LoadComposite_primitive_builder.values()) {
-            if (enumValue != LoadComposite_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "LoadComposite." + enumValue.name());
-            }
-        }
-        for (var enumValue : LoadComposite_class_attributes_enum.values()) {
-            if (enumValue != LoadComposite_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "LoadComposite." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (LoadComposite_primitive_builder attrEnum : LoadComposite_primitive_builder.values()) {
-                BaseClass bc = LoadComposite_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    LoadComposite." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (LoadComposite_class_attributes_enum attrEnum : LoadComposite_class_attributes_enum.values()) {
-                BaseClass bc = LoadComposite_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    LoadComposite." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(LoadComposite) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "LoadComposite";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("LoadComposite", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -260,7 +401,7 @@ public class LoadComposite extends LoadDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -270,15 +411,8 @@ public class LoadComposite extends LoadDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -309,7 +443,7 @@ public class LoadComposite extends LoadDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -331,69 +465,88 @@ public class LoadComposite extends LoadDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("epfd", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("epfd", new AttrDetails("LoadComposite.epfd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("epfs", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("epfs", new AttrDetails("LoadComposite.epfs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("epvd", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("epvd", new AttrDetails("LoadComposite.epvd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("epvs", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("epvs", new AttrDetails("LoadComposite.epvs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eqfd", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("eqfd", new AttrDetails("LoadComposite.eqfd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eqfs", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("eqfs", new AttrDetails("LoadComposite.eqfs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eqvd", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("eqvd", new AttrDetails("LoadComposite.eqvd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eqvs", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("eqvs", new AttrDetails("LoadComposite.eqvs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("h", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("h", new AttrDetails("LoadComposite.h", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("lfac", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("lfac", new AttrDetails("LoadComposite.lfac", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pfrac", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("pfrac", new AttrDetails("LoadComposite.pfrac", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadComposite().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("epfd", new GetterSetter(this::epfdToString, null, this::setEpfd));
+        map.put("epfs", new GetterSetter(this::epfsToString, null, this::setEpfs));
+        map.put("epvd", new GetterSetter(this::epvdToString, null, this::setEpvd));
+        map.put("epvs", new GetterSetter(this::epvsToString, null, this::setEpvs));
+        map.put("eqfd", new GetterSetter(this::eqfdToString, null, this::setEqfd));
+        map.put("eqfs", new GetterSetter(this::eqfsToString, null, this::setEqfs));
+        map.put("eqvd", new GetterSetter(this::eqvdToString, null, this::setEqvd));
+        map.put("eqvs", new GetterSetter(this::eqvsToString, null, this::setEqvs));
+        map.put("h", new GetterSetter(this::hToString, null, this::setH));
+        map.put("lfac", new GetterSetter(this::lfacToString, null, this::setLfac));
+        map.put("pfrac", new GetterSetter(this::pfracToString, null, this::setPfrac));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

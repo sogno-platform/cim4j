@@ -13,14 +13,14 @@ public final class CimConstants {
     /**
      * CIM version string.
      */
-    public static final java.lang.String CIM_VERSION = "cgmes_v3_0_0";
+    public static final String CIM_VERSION = "cgmes_v3_0_0";
 
     /**
      * Default namespaces used by CGMES. Map of namespace key to URL.
      */
-    public static final Map<java.lang.String, java.lang.String> NAMESPACES_MAP;
+    public static final Map<String, String> NAMESPACES_MAP;
     static {
-        var map = new HashMap<java.lang.String, java.lang.String>();
+        var map = new HashMap<String, String>();
 
         map.put("cim", "http://iec.ch/TC57/CIM100#");
         map.put("eu", "http://iec.ch/TC57/CIM100-European#");

@@ -4,248 +4,374 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Power system stabilizer type RQB. This power system stabilizer is intended to be used together with excitation system type ExcRQB, which is primarily used in nuclear or thermal generating units.
  */
+@SuppressWarnings("unused")
 public class PssRQB extends PowerSystemStabilizerDynamics {
 
     private static final Logging LOG = Logging.getLogger(PssRQB.class);
 
-    private BaseClass[] PssRQB_class_attributes;
-    private BaseClass[] PssRQB_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new PssRQB().getAttributeNamesMap();
-    }
-
-    private enum PssRQB_primitive_builder implements PrimitiveBuilder {
-        kdpm() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        ki2() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        ki3() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        ki4() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        sibv() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        t4f() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t4m() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t4mom() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tomd() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tomsl() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum PssRQB_class_attributes_enum {
-        kdpm,
-        ki2,
-        ki3,
-        ki4,
-        sibv,
-        t4f,
-        t4m,
-        t4mom,
-        tomd,
-        tomsl,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public PssRQB() {
-        PssRQB_primitive_attributes = new BaseClass[PssRQB_primitive_builder.values().length];
-        PssRQB_class_attributes = new BaseClass[PssRQB_class_attributes_enum.values().length];
+        setCimType("PssRQB");
+    }
+
+    /**
+     * Lead lag gain (&lt;i&gt;KDPM&lt;/i&gt;). Typical value = 0,185.
+     */
+    private Float kdpm; // Float
+
+    public Float getKdpm() {
+        return kdpm;
+    }
+
+    public void setKdpm(Float _value_) {
+        kdpm = _value_;
+    }
+
+    public void setKdpm(String _value_) {
+        kdpm = getFloatFromString(_value_);
+    }
+
+    public String kdpmToString() {
+        return kdpm != null ? kdpm.toString() : null;
+    }
+
+    /**
+     * Speed input gain (&lt;i&gt;Ki2&lt;/i&gt;). Typical value = 3,43.
+     */
+    private Float ki2; // Float
+
+    public Float getKi2() {
+        return ki2;
+    }
+
+    public void setKi2(Float _value_) {
+        ki2 = _value_;
+    }
+
+    public void setKi2(String _value_) {
+        ki2 = getFloatFromString(_value_);
+    }
+
+    public String ki2ToString() {
+        return ki2 != null ? ki2.toString() : null;
+    }
+
+    /**
+     * Electrical power input gain (&lt;i&gt;Ki3&lt;/i&gt;). Typical value = -11,45.
+     */
+    private Float ki3; // Float
+
+    public Float getKi3() {
+        return ki3;
+    }
+
+    public void setKi3(Float _value_) {
+        ki3 = _value_;
+    }
+
+    public void setKi3(String _value_) {
+        ki3 = getFloatFromString(_value_);
+    }
+
+    public String ki3ToString() {
+        return ki3 != null ? ki3.toString() : null;
+    }
+
+    /**
+     * Mechanical power input gain (&lt;i&gt;Ki4&lt;/i&gt;). Typical value = 11,86.
+     */
+    private Float ki4; // Float
+
+    public Float getKi4() {
+        return ki4;
+    }
+
+    public void setKi4(Float _value_) {
+        ki4 = _value_;
+    }
+
+    public void setKi4(String _value_) {
+        ki4 = getFloatFromString(_value_);
+    }
+
+    public String ki4ToString() {
+        return ki4 != null ? ki4.toString() : null;
+    }
+
+    /**
+     * Speed deadband (&lt;i&gt;SIBV&lt;/i&gt;). Typical value = 0,006.
+     */
+    private Double sibv; // PU
+
+    public Double getSibv() {
+        return sibv;
+    }
+
+    public void setSibv(Double _value_) {
+        sibv = _value_;
+    }
+
+    public void setSibv(String _value_) {
+        sibv = getDoubleFromString(_value_);
+    }
+
+    public String sibvToString() {
+        return sibv != null ? sibv.toString() : null;
+    }
+
+    /**
+     * Lead lag time constant (&lt;i&gt;T4F&lt;/i&gt;) (&amp;gt;= 0). Typical value = 0,045.
+     */
+    private Double t4f; // Seconds
+
+    public Double getT4f() {
+        return t4f;
+    }
+
+    public void setT4f(Double _value_) {
+        t4f = _value_;
+    }
+
+    public void setT4f(String _value_) {
+        t4f = getDoubleFromString(_value_);
+    }
+
+    public String t4fToString() {
+        return t4f != null ? t4f.toString() : null;
+    }
+
+    /**
+     * Input time constant (&lt;i&gt;T4M&lt;/i&gt;) (&amp;gt;= 0). Typical value = 5.
+     */
+    private Double t4m; // Seconds
+
+    public Double getT4m() {
+        return t4m;
+    }
+
+    public void setT4m(Double _value_) {
+        t4m = _value_;
+    }
+
+    public void setT4m(String _value_) {
+        t4m = getDoubleFromString(_value_);
+    }
+
+    public String t4mToString() {
+        return t4m != null ? t4m.toString() : null;
+    }
+
+    /**
+     * Speed time constant (&lt;i&gt;T4MOM&lt;/i&gt;) (&amp;gt;= 0). Typical value = 1,27.
+     */
+    private Double t4mom; // Seconds
+
+    public Double getT4mom() {
+        return t4mom;
+    }
+
+    public void setT4mom(Double _value_) {
+        t4mom = _value_;
+    }
+
+    public void setT4mom(String _value_) {
+        t4mom = getDoubleFromString(_value_);
+    }
+
+    public String t4momToString() {
+        return t4mom != null ? t4mom.toString() : null;
+    }
+
+    /**
+     * Speed delay (&lt;i&gt;TOMD&lt;/i&gt;) (&amp;gt;= 0). Typical value = 0,02.
+     */
+    private Double tomd; // Seconds
+
+    public Double getTomd() {
+        return tomd;
+    }
+
+    public void setTomd(Double _value_) {
+        tomd = _value_;
+    }
+
+    public void setTomd(String _value_) {
+        tomd = getDoubleFromString(_value_);
+    }
+
+    public String tomdToString() {
+        return tomd != null ? tomd.toString() : null;
+    }
+
+    /**
+     * Speed time constant (&lt;i&gt;TOMSL&lt;/i&gt;) (&amp;gt;= 0). Typical value = 0,04.
+     */
+    private Double tomsl; // Seconds
+
+    public Double getTomsl() {
+        return tomsl;
+    }
+
+    public void setTomsl(Double _value_) {
+        tomsl = _value_;
+    }
+
+    public void setTomsl(String _value_) {
+        tomsl = getDoubleFromString(_value_);
+    }
+
+    public String tomslToString() {
+        return tomsl != null ? tomsl.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new PssRQB();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("PssRQB", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(PssRQB_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            PssRQB_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(PssRQB_primitive_builder attrEnum, BaseClass value) {
-        try {
-            PssRQB_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("PssRQB", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            PssRQB_class_attributes_enum attrEnum = PssRQB_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated PssRQB, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            PssRQB_primitive_builder attrEnum = PssRQB_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated PssRQB, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            PssRQB_primitive_builder attrEnum = PssRQB_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = PssRQB_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            PssRQB_class_attributes_enum attrEnum = PssRQB_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = PssRQB_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : PssRQB_primitive_builder.values()) {
-            if (enumValue != PssRQB_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "PssRQB." + enumValue.name());
-            }
-        }
-        for (var enumValue : PssRQB_class_attributes_enum.values()) {
-            if (enumValue != PssRQB_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "PssRQB." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (PssRQB_primitive_builder attrEnum : PssRQB_primitive_builder.values()) {
-                BaseClass bc = PssRQB_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    PssRQB." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (PssRQB_class_attributes_enum attrEnum : PssRQB_class_attributes_enum.values()) {
-                BaseClass bc = PssRQB_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    PssRQB." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(PssRQB) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "PssRQB";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("PssRQB", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -254,7 +380,7 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -264,15 +390,8 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -303,7 +422,7 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -325,64 +444,82 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kdpm", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("kdpm", new AttrDetails("PssRQB.kdpm", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki2", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ki2", new AttrDetails("PssRQB.ki2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki3", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ki3", new AttrDetails("PssRQB.ki3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki4", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ki4", new AttrDetails("PssRQB.ki4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("sibv", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("sibv", new AttrDetails("PssRQB.sibv", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t4f", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("t4f", new AttrDetails("PssRQB.t4f", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t4m", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("t4m", new AttrDetails("PssRQB.t4m", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t4mom", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("t4mom", new AttrDetails("PssRQB.t4mom", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tomd", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tomd", new AttrDetails("PssRQB.tomd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tomsl", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tomsl", new AttrDetails("PssRQB.tomsl", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PssRQB().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("kdpm", new GetterSetter(this::kdpmToString, null, this::setKdpm));
+        map.put("ki2", new GetterSetter(this::ki2ToString, null, this::setKi2));
+        map.put("ki3", new GetterSetter(this::ki3ToString, null, this::setKi3));
+        map.put("ki4", new GetterSetter(this::ki4ToString, null, this::setKi4));
+        map.put("sibv", new GetterSetter(this::sibvToString, null, this::setSibv));
+        map.put("t4f", new GetterSetter(this::t4fToString, null, this::setT4f));
+        map.put("t4m", new GetterSetter(this::t4mToString, null, this::setT4m));
+        map.put("t4mom", new GetterSetter(this::t4momToString, null, this::setT4mom));
+        map.put("tomd", new GetterSetter(this::tomdToString, null, this::setTomd));
+        map.put("tomsl", new GetterSetter(this::tomslToString, null, this::setTomsl));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

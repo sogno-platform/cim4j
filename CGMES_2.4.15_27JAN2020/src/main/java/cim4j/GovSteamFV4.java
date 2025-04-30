@@ -4,494 +4,1235 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Detailed electro-hydraulic governor for steam unit.
  */
+@SuppressWarnings("unused")
 public class GovSteamFV4 extends TurbineGovernorDynamics {
 
     private static final Logging LOG = Logging.getLogger(GovSteamFV4.class);
 
-    private BaseClass[] GovSteamFV4_class_attributes;
-    private BaseClass[] GovSteamFV4_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new GovSteamFV4().getAttributeNamesMap();
-    }
-
-    private enum GovSteamFV4_primitive_builder implements PrimitiveBuilder {
-        cpsmn() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        cpsmx() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        crmn() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        crmx() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kdc() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kf1() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kf3() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        khp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kic() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kip() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kit() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kmp1() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kmp2() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kpc() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kpp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kpt() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        krc() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        ksh() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        lpi() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        lps() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        mnef() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        mxef() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        pr1() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        pr2() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        psmn() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        rsmimn() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        rsmimx() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        rvgmn() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        rvgmx() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        srmn() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        srmx() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        srsmp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        svmn() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        svmx() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        ta() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tam() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tc() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tcm() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tdc() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tf1() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tf2() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        thp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tmp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        trh() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tv() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        ty() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        y() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        yhpmn() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        yhpmx() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        ympmn() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        ympmx() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum GovSteamFV4_class_attributes_enum {
-        cpsmn,
-        cpsmx,
-        crmn,
-        crmx,
-        kdc,
-        kf1,
-        kf3,
-        khp,
-        kic,
-        kip,
-        kit,
-        kmp1,
-        kmp2,
-        kpc,
-        kpp,
-        kpt,
-        krc,
-        ksh,
-        lpi,
-        lps,
-        mnef,
-        mxef,
-        pr1,
-        pr2,
-        psmn,
-        rsmimn,
-        rsmimx,
-        rvgmn,
-        rvgmx,
-        srmn,
-        srmx,
-        srsmp,
-        svmn,
-        svmx,
-        ta,
-        tam,
-        tc,
-        tcm,
-        tdc,
-        tf1,
-        tf2,
-        thp,
-        tmp,
-        trh,
-        tv,
-        ty,
-        y,
-        yhpmn,
-        yhpmx,
-        ympmn,
-        ympmx,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public GovSteamFV4() {
-        GovSteamFV4_primitive_attributes = new BaseClass[GovSteamFV4_primitive_builder.values().length];
-        GovSteamFV4_class_attributes = new BaseClass[GovSteamFV4_class_attributes_enum.values().length];
+        setCimType("GovSteamFV4");
+    }
+
+    /**
+     * Minimum value of pressure regulator output (Cpsmn).  Typical Value = -1.
+     */
+    private Double cpsmn; // PU
+
+    public Double getCpsmn() {
+        return cpsmn;
+    }
+
+    public void setCpsmn(Double _value_) {
+        cpsmn = _value_;
+    }
+
+    public void setCpsmn(String _value_) {
+        cpsmn = getDoubleFromString(_value_);
+    }
+
+    public String cpsmnToString() {
+        return cpsmn != null ? cpsmn.toString() : null;
+    }
+
+    /**
+     * Maximum value of pressure regulator output (Cpsmx).  Typical Value = 1.
+     */
+    private Double cpsmx; // PU
+
+    public Double getCpsmx() {
+        return cpsmx;
+    }
+
+    public void setCpsmx(Double _value_) {
+        cpsmx = _value_;
+    }
+
+    public void setCpsmx(String _value_) {
+        cpsmx = getDoubleFromString(_value_);
+    }
+
+    public String cpsmxToString() {
+        return cpsmx != null ? cpsmx.toString() : null;
+    }
+
+    /**
+     * Minimum value of regulator set-point (Crmn).  Typical Value = 0.
+     */
+    private Double crmn; // PU
+
+    public Double getCrmn() {
+        return crmn;
+    }
+
+    public void setCrmn(Double _value_) {
+        crmn = _value_;
+    }
+
+    public void setCrmn(String _value_) {
+        crmn = getDoubleFromString(_value_);
+    }
+
+    public String crmnToString() {
+        return crmn != null ? crmn.toString() : null;
+    }
+
+    /**
+     * Maximum value of regulator set-point (Crmx).  Typical Value = 1.2.
+     */
+    private Double crmx; // PU
+
+    public Double getCrmx() {
+        return crmx;
+    }
+
+    public void setCrmx(Double _value_) {
+        crmx = _value_;
+    }
+
+    public void setCrmx(String _value_) {
+        crmx = getDoubleFromString(_value_);
+    }
+
+    public String crmxToString() {
+        return crmx != null ? crmx.toString() : null;
+    }
+
+    /**
+     * Derivative gain of pressure regulator (Kdc).  Typical Value = 1.
+     */
+    private Double kdc; // PU
+
+    public Double getKdc() {
+        return kdc;
+    }
+
+    public void setKdc(Double _value_) {
+        kdc = _value_;
+    }
+
+    public void setKdc(String _value_) {
+        kdc = getDoubleFromString(_value_);
+    }
+
+    public String kdcToString() {
+        return kdc != null ? kdc.toString() : null;
+    }
+
+    /**
+     * Frequency bias (reciprocal of droop) (Kf1).  Typical Value = 20.
+     */
+    private Double kf1; // PU
+
+    public Double getKf1() {
+        return kf1;
+    }
+
+    public void setKf1(Double _value_) {
+        kf1 = _value_;
+    }
+
+    public void setKf1(String _value_) {
+        kf1 = getDoubleFromString(_value_);
+    }
+
+    public String kf1ToString() {
+        return kf1 != null ? kf1.toString() : null;
+    }
+
+    /**
+     * Frequency control (reciprocal of droop) (Kf3).  Typical Value = 20.
+     */
+    private Double kf3; // PU
+
+    public Double getKf3() {
+        return kf3;
+    }
+
+    public void setKf3(Double _value_) {
+        kf3 = _value_;
+    }
+
+    public void setKf3(String _value_) {
+        kf3 = getDoubleFromString(_value_);
+    }
+
+    public String kf3ToString() {
+        return kf3 != null ? kf3.toString() : null;
+    }
+
+    /**
+     * Fraction  of total turbine output generated by HP part (Khp).  Typical Value = 0.35.
+     */
+    private Double khp; // PU
+
+    public Double getKhp() {
+        return khp;
+    }
+
+    public void setKhp(Double _value_) {
+        khp = _value_;
+    }
+
+    public void setKhp(String _value_) {
+        khp = getDoubleFromString(_value_);
+    }
+
+    public String khpToString() {
+        return khp != null ? khp.toString() : null;
+    }
+
+    /**
+     * Integral gain of pressure regulator (Kic).  Typical Value = 0.0033.
+     */
+    private Double kic; // PU
+
+    public Double getKic() {
+        return kic;
+    }
+
+    public void setKic(Double _value_) {
+        kic = _value_;
+    }
+
+    public void setKic(String _value_) {
+        kic = getDoubleFromString(_value_);
+    }
+
+    public String kicToString() {
+        return kic != null ? kic.toString() : null;
+    }
+
+    /**
+     * Integral gain of pressure feedback regulator (Kip).  Typical Value = 0.5.
+     */
+    private Double kip; // PU
+
+    public Double getKip() {
+        return kip;
+    }
+
+    public void setKip(Double _value_) {
+        kip = _value_;
+    }
+
+    public void setKip(String _value_) {
+        kip = getDoubleFromString(_value_);
+    }
+
+    public String kipToString() {
+        return kip != null ? kip.toString() : null;
+    }
+
+    /**
+     * Integral gain of electro-hydraulic regulator (Kit).  Typical Value = 0.04.
+     */
+    private Double kit; // PU
+
+    public Double getKit() {
+        return kit;
+    }
+
+    public void setKit(Double _value_) {
+        kit = _value_;
+    }
+
+    public void setKit(String _value_) {
+        kit = getDoubleFromString(_value_);
+    }
+
+    public String kitToString() {
+        return kit != null ? kit.toString() : null;
+    }
+
+    /**
+     * First gain coefficient of  intercept valves characteristic (Kmp1).  Typical Value = 0.5.
+     */
+    private Double kmp1; // PU
+
+    public Double getKmp1() {
+        return kmp1;
+    }
+
+    public void setKmp1(Double _value_) {
+        kmp1 = _value_;
+    }
+
+    public void setKmp1(String _value_) {
+        kmp1 = getDoubleFromString(_value_);
+    }
+
+    public String kmp1ToString() {
+        return kmp1 != null ? kmp1.toString() : null;
+    }
+
+    /**
+     * Second gain coefficient of intercept valves characteristic (Kmp2).  Typical Value = 3.5.
+     */
+    private Double kmp2; // PU
+
+    public Double getKmp2() {
+        return kmp2;
+    }
+
+    public void setKmp2(Double _value_) {
+        kmp2 = _value_;
+    }
+
+    public void setKmp2(String _value_) {
+        kmp2 = getDoubleFromString(_value_);
+    }
+
+    public String kmp2ToString() {
+        return kmp2 != null ? kmp2.toString() : null;
+    }
+
+    /**
+     * Proportional gain of pressure regulator (Kpc).  Typical Value = 0.5.
+     */
+    private Double kpc; // PU
+
+    public Double getKpc() {
+        return kpc;
+    }
+
+    public void setKpc(Double _value_) {
+        kpc = _value_;
+    }
+
+    public void setKpc(String _value_) {
+        kpc = getDoubleFromString(_value_);
+    }
+
+    public String kpcToString() {
+        return kpc != null ? kpc.toString() : null;
+    }
+
+    /**
+     * Proportional gain of pressure feedback regulator (Kpp).  Typical Value = 1.
+     */
+    private Double kpp; // PU
+
+    public Double getKpp() {
+        return kpp;
+    }
+
+    public void setKpp(Double _value_) {
+        kpp = _value_;
+    }
+
+    public void setKpp(String _value_) {
+        kpp = getDoubleFromString(_value_);
+    }
+
+    public String kppToString() {
+        return kpp != null ? kpp.toString() : null;
+    }
+
+    /**
+     * Proportional gain of electro-hydraulic regulator (Kpt).  Typical Value = 0.3.
+     */
+    private Double kpt; // PU
+
+    public Double getKpt() {
+        return kpt;
+    }
+
+    public void setKpt(Double _value_) {
+        kpt = _value_;
+    }
+
+    public void setKpt(String _value_) {
+        kpt = getDoubleFromString(_value_);
+    }
+
+    public String kptToString() {
+        return kpt != null ? kpt.toString() : null;
+    }
+
+    /**
+     * Maximum variation of fuel flow (Krc).  Typical Value = 0.05.
+     */
+    private Double krc; // PU
+
+    public Double getKrc() {
+        return krc;
+    }
+
+    public void setKrc(Double _value_) {
+        krc = _value_;
+    }
+
+    public void setKrc(String _value_) {
+        krc = getDoubleFromString(_value_);
+    }
+
+    public String krcToString() {
+        return krc != null ? krc.toString() : null;
+    }
+
+    /**
+     * Pressure loss due to flow friction in the boiler tubes (Ksh).  Typical Value = 0.08.
+     */
+    private Double ksh; // PU
+
+    public Double getKsh() {
+        return ksh;
+    }
+
+    public void setKsh(Double _value_) {
+        ksh = _value_;
+    }
+
+    public void setKsh(String _value_) {
+        ksh = getDoubleFromString(_value_);
+    }
+
+    public String kshToString() {
+        return ksh != null ? ksh.toString() : null;
+    }
+
+    /**
+     * Maximum negative power error (Lpi).  Typical Value = -0.15.
+     */
+    private Double lpi; // PU
+
+    public Double getLpi() {
+        return lpi;
+    }
+
+    public void setLpi(Double _value_) {
+        lpi = _value_;
+    }
+
+    public void setLpi(String _value_) {
+        lpi = getDoubleFromString(_value_);
+    }
+
+    public String lpiToString() {
+        return lpi != null ? lpi.toString() : null;
+    }
+
+    /**
+     * Maximum positive power error (Lps).  Typical Value = 0.03.
+     */
+    private Double lps; // PU
+
+    public Double getLps() {
+        return lps;
+    }
+
+    public void setLps(Double _value_) {
+        lps = _value_;
+    }
+
+    public void setLps(String _value_) {
+        lps = getDoubleFromString(_value_);
+    }
+
+    public String lpsToString() {
+        return lps != null ? lps.toString() : null;
+    }
+
+    /**
+     * Lower limit for frequency correction (MN).  Typical Value = -0.05.
+     */
+    private Double mnef; // PU
+
+    public Double getMnef() {
+        return mnef;
+    }
+
+    public void setMnef(Double _value_) {
+        mnef = _value_;
+    }
+
+    public void setMnef(String _value_) {
+        mnef = getDoubleFromString(_value_);
+    }
+
+    public String mnefToString() {
+        return mnef != null ? mnef.toString() : null;
+    }
+
+    /**
+     * Upper limit for frequency correction (MX).  Typical Value = 0.05.
+     */
+    private Double mxef; // PU
+
+    public Double getMxef() {
+        return mxef;
+    }
+
+    public void setMxef(Double _value_) {
+        mxef = _value_;
+    }
+
+    public void setMxef(String _value_) {
+        mxef = getDoubleFromString(_value_);
+    }
+
+    public String mxefToString() {
+        return mxef != null ? mxef.toString() : null;
+    }
+
+    /**
+     * First value of pressure set point static characteristic (Pr1).  Typical Value = 0.2.
+     */
+    private Double pr1; // PU
+
+    public Double getPr1() {
+        return pr1;
+    }
+
+    public void setPr1(Double _value_) {
+        pr1 = _value_;
+    }
+
+    public void setPr1(String _value_) {
+        pr1 = getDoubleFromString(_value_);
+    }
+
+    public String pr1ToString() {
+        return pr1 != null ? pr1.toString() : null;
+    }
+
+    /**
+     * Second value of pressure set point static characteristic, corresponding to Ps0 = 1.0 PU (Pr2).  Typical Value = 0.75.
+     */
+    private Double pr2; // PU
+
+    public Double getPr2() {
+        return pr2;
+    }
+
+    public void setPr2(Double _value_) {
+        pr2 = _value_;
+    }
+
+    public void setPr2(String _value_) {
+        pr2 = getDoubleFromString(_value_);
+    }
+
+    public String pr2ToString() {
+        return pr2 != null ? pr2.toString() : null;
+    }
+
+    /**
+     * Minimum value of pressure set point static characteristic (Psmn).  Typical Value = 1.
+     */
+    private Double psmn; // PU
+
+    public Double getPsmn() {
+        return psmn;
+    }
+
+    public void setPsmn(Double _value_) {
+        psmn = _value_;
+    }
+
+    public void setPsmn(String _value_) {
+        psmn = getDoubleFromString(_value_);
+    }
+
+    public String psmnToString() {
+        return psmn != null ? psmn.toString() : null;
+    }
+
+    /**
+     * Minimum value of integral regulator (Rsmimn).  Typical Value = 0.
+     */
+    private Double rsmimn; // PU
+
+    public Double getRsmimn() {
+        return rsmimn;
+    }
+
+    public void setRsmimn(Double _value_) {
+        rsmimn = _value_;
+    }
+
+    public void setRsmimn(String _value_) {
+        rsmimn = getDoubleFromString(_value_);
+    }
+
+    public String rsmimnToString() {
+        return rsmimn != null ? rsmimn.toString() : null;
+    }
+
+    /**
+     * Maximum value of integral regulator (Rsmimx).  Typical Value = 1.1.
+     */
+    private Double rsmimx; // PU
+
+    public Double getRsmimx() {
+        return rsmimx;
+    }
+
+    public void setRsmimx(Double _value_) {
+        rsmimx = _value_;
+    }
+
+    public void setRsmimx(String _value_) {
+        rsmimx = getDoubleFromString(_value_);
+    }
+
+    public String rsmimxToString() {
+        return rsmimx != null ? rsmimx.toString() : null;
+    }
+
+    /**
+     * Minimum value of integral regulator (Rvgmn).  Typical Value = 0.
+     */
+    private Double rvgmn; // PU
+
+    public Double getRvgmn() {
+        return rvgmn;
+    }
+
+    public void setRvgmn(Double _value_) {
+        rvgmn = _value_;
+    }
+
+    public void setRvgmn(String _value_) {
+        rvgmn = getDoubleFromString(_value_);
+    }
+
+    public String rvgmnToString() {
+        return rvgmn != null ? rvgmn.toString() : null;
+    }
+
+    /**
+     * Maximum value of integral regulator (Rvgmx).  Typical Value = 1.2.
+     */
+    private Double rvgmx; // PU
+
+    public Double getRvgmx() {
+        return rvgmx;
+    }
+
+    public void setRvgmx(Double _value_) {
+        rvgmx = _value_;
+    }
+
+    public void setRvgmx(String _value_) {
+        rvgmx = getDoubleFromString(_value_);
+    }
+
+    public String rvgmxToString() {
+        return rvgmx != null ? rvgmx.toString() : null;
+    }
+
+    /**
+     * Minimum valve opening (Srmn).  Typical Value = 0.
+     */
+    private Double srmn; // PU
+
+    public Double getSrmn() {
+        return srmn;
+    }
+
+    public void setSrmn(Double _value_) {
+        srmn = _value_;
+    }
+
+    public void setSrmn(String _value_) {
+        srmn = getDoubleFromString(_value_);
+    }
+
+    public String srmnToString() {
+        return srmn != null ? srmn.toString() : null;
+    }
+
+    /**
+     * Maximum valve opening (Srmx).  Typical Value = 1.1.
+     */
+    private Double srmx; // PU
+
+    public Double getSrmx() {
+        return srmx;
+    }
+
+    public void setSrmx(Double _value_) {
+        srmx = _value_;
+    }
+
+    public void setSrmx(String _value_) {
+        srmx = getDoubleFromString(_value_);
+    }
+
+    public String srmxToString() {
+        return srmx != null ? srmx.toString() : null;
+    }
+
+    /**
+     * Intercept valves characteristic discontinuity point (Srsmp).  Typical Value = 0.43.
+     */
+    private Double srsmp; // PU
+
+    public Double getSrsmp() {
+        return srsmp;
+    }
+
+    public void setSrsmp(Double _value_) {
+        srsmp = _value_;
+    }
+
+    public void setSrsmp(String _value_) {
+        srsmp = getDoubleFromString(_value_);
+    }
+
+    public String srsmpToString() {
+        return srsmp != null ? srsmp.toString() : null;
+    }
+
+    /**
+     * Maximum regulator gate closing velocity (Svmn).  Typical Value = -0.0333.
+     */
+    private Double svmn; // Simple_Float
+
+    public Double getSvmn() {
+        return svmn;
+    }
+
+    public void setSvmn(Double _value_) {
+        svmn = _value_;
+    }
+
+    public void setSvmn(String _value_) {
+        svmn = getDoubleFromString(_value_);
+    }
+
+    public String svmnToString() {
+        return svmn != null ? svmn.toString() : null;
+    }
+
+    /**
+     * Maximum regulator gate opening velocity (Svmx).  Typical Value = 0.0333.
+     */
+    private Double svmx; // Simple_Float
+
+    public Double getSvmx() {
+        return svmx;
+    }
+
+    public void setSvmx(Double _value_) {
+        svmx = _value_;
+    }
+
+    public void setSvmx(String _value_) {
+        svmx = getDoubleFromString(_value_);
+    }
+
+    public String svmxToString() {
+        return svmx != null ? svmx.toString() : null;
+    }
+
+    /**
+     * Control valves rate opening time (Ta).  Typical Value = 0.8.
+     */
+    private Double ta; // Seconds
+
+    public Double getTa() {
+        return ta;
+    }
+
+    public void setTa(Double _value_) {
+        ta = _value_;
+    }
+
+    public void setTa(String _value_) {
+        ta = getDoubleFromString(_value_);
+    }
+
+    public String taToString() {
+        return ta != null ? ta.toString() : null;
+    }
+
+    /**
+     * Intercept valves rate opening time (Tam).  Typical Value = 0.8.
+     */
+    private Double tam; // Seconds
+
+    public Double getTam() {
+        return tam;
+    }
+
+    public void setTam(Double _value_) {
+        tam = _value_;
+    }
+
+    public void setTam(String _value_) {
+        tam = getDoubleFromString(_value_);
+    }
+
+    public String tamToString() {
+        return tam != null ? tam.toString() : null;
+    }
+
+    /**
+     * Control valves rate closing time (Tc).  Typical Value = 0.5.
+     */
+    private Double tc; // Seconds
+
+    public Double getTc() {
+        return tc;
+    }
+
+    public void setTc(Double _value_) {
+        tc = _value_;
+    }
+
+    public void setTc(String _value_) {
+        tc = getDoubleFromString(_value_);
+    }
+
+    public String tcToString() {
+        return tc != null ? tc.toString() : null;
+    }
+
+    /**
+     * Intercept valves rate closing time (Tcm).  Typical Value = 0.5.
+     */
+    private Double tcm; // Seconds
+
+    public Double getTcm() {
+        return tcm;
+    }
+
+    public void setTcm(Double _value_) {
+        tcm = _value_;
+    }
+
+    public void setTcm(String _value_) {
+        tcm = getDoubleFromString(_value_);
+    }
+
+    public String tcmToString() {
+        return tcm != null ? tcm.toString() : null;
+    }
+
+    /**
+     * Derivative time constant of pressure regulator (Tdc).  Typical Value = 90.
+     */
+    private Double tdc; // Seconds
+
+    public Double getTdc() {
+        return tdc;
+    }
+
+    public void setTdc(Double _value_) {
+        tdc = _value_;
+    }
+
+    public void setTdc(String _value_) {
+        tdc = getDoubleFromString(_value_);
+    }
+
+    public String tdcToString() {
+        return tdc != null ? tdc.toString() : null;
+    }
+
+    /**
+     * Time constant of fuel regulation (Tf1).  Typical Value = 10.
+     */
+    private Double tf1; // Seconds
+
+    public Double getTf1() {
+        return tf1;
+    }
+
+    public void setTf1(Double _value_) {
+        tf1 = _value_;
+    }
+
+    public void setTf1(String _value_) {
+        tf1 = getDoubleFromString(_value_);
+    }
+
+    public String tf1ToString() {
+        return tf1 != null ? tf1.toString() : null;
+    }
+
+    /**
+     * Time constant of steam chest (Tf2).  Typical Value = 10.
+     */
+    private Double tf2; // Seconds
+
+    public Double getTf2() {
+        return tf2;
+    }
+
+    public void setTf2(Double _value_) {
+        tf2 = _value_;
+    }
+
+    public void setTf2(String _value_) {
+        tf2 = getDoubleFromString(_value_);
+    }
+
+    public String tf2ToString() {
+        return tf2 != null ? tf2.toString() : null;
+    }
+
+    /**
+     * High pressure (HP) time constant of the turbine (Thp).  Typical Value = 0.15.
+     */
+    private Double thp; // Seconds
+
+    public Double getThp() {
+        return thp;
+    }
+
+    public void setThp(Double _value_) {
+        thp = _value_;
+    }
+
+    public void setThp(String _value_) {
+        thp = getDoubleFromString(_value_);
+    }
+
+    public String thpToString() {
+        return thp != null ? thp.toString() : null;
+    }
+
+    /**
+     * Low pressure (LP) time constant of the turbine (Tmp).  Typical Value = 0.4.
+     */
+    private Double tmp; // Seconds
+
+    public Double getTmp() {
+        return tmp;
+    }
+
+    public void setTmp(Double _value_) {
+        tmp = _value_;
+    }
+
+    public void setTmp(String _value_) {
+        tmp = getDoubleFromString(_value_);
+    }
+
+    public String tmpToString() {
+        return tmp != null ? tmp.toString() : null;
+    }
+
+    /**
+     * Reheater  time constant of the turbine (Trh).  Typical Value = 10.
+     */
+    private Double trh; // Seconds
+
+    public Double getTrh() {
+        return trh;
+    }
+
+    public void setTrh(Double _value_) {
+        trh = _value_;
+    }
+
+    public void setTrh(String _value_) {
+        trh = getDoubleFromString(_value_);
+    }
+
+    public String trhToString() {
+        return trh != null ? trh.toString() : null;
+    }
+
+    /**
+     * Boiler time constant (Tv).  Typical Value = 60.
+     */
+    private Double tv; // Seconds
+
+    public Double getTv() {
+        return tv;
+    }
+
+    public void setTv(Double _value_) {
+        tv = _value_;
+    }
+
+    public void setTv(String _value_) {
+        tv = getDoubleFromString(_value_);
+    }
+
+    public String tvToString() {
+        return tv != null ? tv.toString() : null;
+    }
+
+    /**
+     * Control valves servo time constant (Ty).  Typical Value = 0.1.
+     */
+    private Double ty; // Seconds
+
+    public Double getTy() {
+        return ty;
+    }
+
+    public void setTy(Double _value_) {
+        ty = _value_;
+    }
+
+    public void setTy(String _value_) {
+        ty = getDoubleFromString(_value_);
+    }
+
+    public String tyToString() {
+        return ty != null ? ty.toString() : null;
+    }
+
+    /**
+     * Coefficient of linearized equations of turbine (Stodola formulation) (Y).  Typical Value = 0.13.
+     */
+    private Double y; // PU
+
+    public Double getY() {
+        return y;
+    }
+
+    public void setY(Double _value_) {
+        y = _value_;
+    }
+
+    public void setY(String _value_) {
+        y = getDoubleFromString(_value_);
+    }
+
+    public String yToString() {
+        return y != null ? y.toString() : null;
+    }
+
+    /**
+     * Minimum control valve position (Yhpmn).  Typical Value = 0.
+     */
+    private Double yhpmn; // PU
+
+    public Double getYhpmn() {
+        return yhpmn;
+    }
+
+    public void setYhpmn(Double _value_) {
+        yhpmn = _value_;
+    }
+
+    public void setYhpmn(String _value_) {
+        yhpmn = getDoubleFromString(_value_);
+    }
+
+    public String yhpmnToString() {
+        return yhpmn != null ? yhpmn.toString() : null;
+    }
+
+    /**
+     * Maximum control valve position (Yhpmx).  Typical Value = 1.1.
+     */
+    private Double yhpmx; // PU
+
+    public Double getYhpmx() {
+        return yhpmx;
+    }
+
+    public void setYhpmx(Double _value_) {
+        yhpmx = _value_;
+    }
+
+    public void setYhpmx(String _value_) {
+        yhpmx = getDoubleFromString(_value_);
+    }
+
+    public String yhpmxToString() {
+        return yhpmx != null ? yhpmx.toString() : null;
+    }
+
+    /**
+     * Minimum intercept valve position (Ympmn).  Typical Value = 0.
+     */
+    private Double ympmn; // PU
+
+    public Double getYmpmn() {
+        return ympmn;
+    }
+
+    public void setYmpmn(Double _value_) {
+        ympmn = _value_;
+    }
+
+    public void setYmpmn(String _value_) {
+        ympmn = getDoubleFromString(_value_);
+    }
+
+    public String ympmnToString() {
+        return ympmn != null ? ympmn.toString() : null;
+    }
+
+    /**
+     * Maximum intercept valve position (Ympmx).  Typical Value = 1.1.
+     */
+    private Double ympmx; // PU
+
+    public Double getYmpmx() {
+        return ympmx;
+    }
+
+    public void setYmpmx(Double _value_) {
+        ympmx = _value_;
+    }
+
+    public void setYmpmx(String _value_) {
+        ympmx = getDoubleFromString(_value_);
+    }
+
+    public String ympmxToString() {
+        return ympmx != null ? ympmx.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new GovSteamFV4();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("GovSteamFV4", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(GovSteamFV4_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            GovSteamFV4_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(GovSteamFV4_primitive_builder attrEnum, BaseClass value) {
-        try {
-            GovSteamFV4_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("GovSteamFV4", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            GovSteamFV4_class_attributes_enum attrEnum = GovSteamFV4_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated GovSteamFV4, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            GovSteamFV4_primitive_builder attrEnum = GovSteamFV4_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated GovSteamFV4, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            GovSteamFV4_primitive_builder attrEnum = GovSteamFV4_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = GovSteamFV4_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            GovSteamFV4_class_attributes_enum attrEnum = GovSteamFV4_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = GovSteamFV4_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : GovSteamFV4_primitive_builder.values()) {
-            if (enumValue != GovSteamFV4_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "GovSteamFV4." + enumValue.name());
-            }
-        }
-        for (var enumValue : GovSteamFV4_class_attributes_enum.values()) {
-            if (enumValue != GovSteamFV4_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "GovSteamFV4." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (GovSteamFV4_primitive_builder attrEnum : GovSteamFV4_primitive_builder.values()) {
-                BaseClass bc = GovSteamFV4_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    GovSteamFV4." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (GovSteamFV4_class_attributes_enum attrEnum : GovSteamFV4_class_attributes_enum.values()) {
-                BaseClass bc = GovSteamFV4_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    GovSteamFV4." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(GovSteamFV4) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "GovSteamFV4";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("GovSteamFV4", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -500,7 +1241,7 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -510,15 +1251,8 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -549,7 +1283,7 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -571,269 +1305,328 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("cpsmn", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("cpsmn", new AttrDetails("GovSteamFV4.cpsmn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("cpsmx", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("cpsmx", new AttrDetails("GovSteamFV4.cpsmx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("crmn", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("crmn", new AttrDetails("GovSteamFV4.crmn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("crmx", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("crmx", new AttrDetails("GovSteamFV4.crmx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kdc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kdc", new AttrDetails("GovSteamFV4.kdc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kf1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kf1", new AttrDetails("GovSteamFV4.kf1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kf3", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kf3", new AttrDetails("GovSteamFV4.kf3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("khp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("khp", new AttrDetails("GovSteamFV4.khp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kic", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kic", new AttrDetails("GovSteamFV4.kic", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kip", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kip", new AttrDetails("GovSteamFV4.kip", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kit", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kit", new AttrDetails("GovSteamFV4.kit", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kmp1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kmp1", new AttrDetails("GovSteamFV4.kmp1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kmp2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kmp2", new AttrDetails("GovSteamFV4.kmp2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kpc", new AttrDetails("GovSteamFV4.kpc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kpp", new AttrDetails("GovSteamFV4.kpp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpt", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kpt", new AttrDetails("GovSteamFV4.kpt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("krc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("krc", new AttrDetails("GovSteamFV4.krc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ksh", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ksh", new AttrDetails("GovSteamFV4.ksh", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("lpi", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("lpi", new AttrDetails("GovSteamFV4.lpi", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("lps", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("lps", new AttrDetails("GovSteamFV4.lps", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mnef", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("mnef", new AttrDetails("GovSteamFV4.mnef", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mxef", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("mxef", new AttrDetails("GovSteamFV4.mxef", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pr1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("pr1", new AttrDetails("GovSteamFV4.pr1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pr2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("pr2", new AttrDetails("GovSteamFV4.pr2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("psmn", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("psmn", new AttrDetails("GovSteamFV4.psmn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rsmimn", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("rsmimn", new AttrDetails("GovSteamFV4.rsmimn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rsmimx", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("rsmimx", new AttrDetails("GovSteamFV4.rsmimx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rvgmn", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("rvgmn", new AttrDetails("GovSteamFV4.rvgmn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rvgmx", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("rvgmx", new AttrDetails("GovSteamFV4.rvgmx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("srmn", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("srmn", new AttrDetails("GovSteamFV4.srmn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("srmx", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("srmx", new AttrDetails("GovSteamFV4.srmx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("srsmp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("srsmp", new AttrDetails("GovSteamFV4.srsmp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("svmn", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("svmn", new AttrDetails("GovSteamFV4.svmn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("svmx", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("svmx", new AttrDetails("GovSteamFV4.svmx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ta", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ta", new AttrDetails("GovSteamFV4.ta", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tam", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tam", new AttrDetails("GovSteamFV4.tam", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tc", new AttrDetails("GovSteamFV4.tc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tcm", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tcm", new AttrDetails("GovSteamFV4.tcm", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tdc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tdc", new AttrDetails("GovSteamFV4.tdc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tf1", new AttrDetails("GovSteamFV4.tf1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tf2", new AttrDetails("GovSteamFV4.tf2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("thp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("thp", new AttrDetails("GovSteamFV4.thp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tmp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tmp", new AttrDetails("GovSteamFV4.tmp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("trh", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("trh", new AttrDetails("GovSteamFV4.trh", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tv", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tv", new AttrDetails("GovSteamFV4.tv", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ty", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ty", new AttrDetails("GovSteamFV4.ty", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("y", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("y", new AttrDetails("GovSteamFV4.y", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("yhpmn", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("yhpmn", new AttrDetails("GovSteamFV4.yhpmn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("yhpmx", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("yhpmx", new AttrDetails("GovSteamFV4.yhpmx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ympmn", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ympmn", new AttrDetails("GovSteamFV4.ympmn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ympmx", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ympmx", new AttrDetails("GovSteamFV4.ympmx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovSteamFV4().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("cpsmn", new GetterSetter(this::cpsmnToString, null, this::setCpsmn));
+        map.put("cpsmx", new GetterSetter(this::cpsmxToString, null, this::setCpsmx));
+        map.put("crmn", new GetterSetter(this::crmnToString, null, this::setCrmn));
+        map.put("crmx", new GetterSetter(this::crmxToString, null, this::setCrmx));
+        map.put("kdc", new GetterSetter(this::kdcToString, null, this::setKdc));
+        map.put("kf1", new GetterSetter(this::kf1ToString, null, this::setKf1));
+        map.put("kf3", new GetterSetter(this::kf3ToString, null, this::setKf3));
+        map.put("khp", new GetterSetter(this::khpToString, null, this::setKhp));
+        map.put("kic", new GetterSetter(this::kicToString, null, this::setKic));
+        map.put("kip", new GetterSetter(this::kipToString, null, this::setKip));
+        map.put("kit", new GetterSetter(this::kitToString, null, this::setKit));
+        map.put("kmp1", new GetterSetter(this::kmp1ToString, null, this::setKmp1));
+        map.put("kmp2", new GetterSetter(this::kmp2ToString, null, this::setKmp2));
+        map.put("kpc", new GetterSetter(this::kpcToString, null, this::setKpc));
+        map.put("kpp", new GetterSetter(this::kppToString, null, this::setKpp));
+        map.put("kpt", new GetterSetter(this::kptToString, null, this::setKpt));
+        map.put("krc", new GetterSetter(this::krcToString, null, this::setKrc));
+        map.put("ksh", new GetterSetter(this::kshToString, null, this::setKsh));
+        map.put("lpi", new GetterSetter(this::lpiToString, null, this::setLpi));
+        map.put("lps", new GetterSetter(this::lpsToString, null, this::setLps));
+        map.put("mnef", new GetterSetter(this::mnefToString, null, this::setMnef));
+        map.put("mxef", new GetterSetter(this::mxefToString, null, this::setMxef));
+        map.put("pr1", new GetterSetter(this::pr1ToString, null, this::setPr1));
+        map.put("pr2", new GetterSetter(this::pr2ToString, null, this::setPr2));
+        map.put("psmn", new GetterSetter(this::psmnToString, null, this::setPsmn));
+        map.put("rsmimn", new GetterSetter(this::rsmimnToString, null, this::setRsmimn));
+        map.put("rsmimx", new GetterSetter(this::rsmimxToString, null, this::setRsmimx));
+        map.put("rvgmn", new GetterSetter(this::rvgmnToString, null, this::setRvgmn));
+        map.put("rvgmx", new GetterSetter(this::rvgmxToString, null, this::setRvgmx));
+        map.put("srmn", new GetterSetter(this::srmnToString, null, this::setSrmn));
+        map.put("srmx", new GetterSetter(this::srmxToString, null, this::setSrmx));
+        map.put("srsmp", new GetterSetter(this::srsmpToString, null, this::setSrsmp));
+        map.put("svmn", new GetterSetter(this::svmnToString, null, this::setSvmn));
+        map.put("svmx", new GetterSetter(this::svmxToString, null, this::setSvmx));
+        map.put("ta", new GetterSetter(this::taToString, null, this::setTa));
+        map.put("tam", new GetterSetter(this::tamToString, null, this::setTam));
+        map.put("tc", new GetterSetter(this::tcToString, null, this::setTc));
+        map.put("tcm", new GetterSetter(this::tcmToString, null, this::setTcm));
+        map.put("tdc", new GetterSetter(this::tdcToString, null, this::setTdc));
+        map.put("tf1", new GetterSetter(this::tf1ToString, null, this::setTf1));
+        map.put("tf2", new GetterSetter(this::tf2ToString, null, this::setTf2));
+        map.put("thp", new GetterSetter(this::thpToString, null, this::setThp));
+        map.put("tmp", new GetterSetter(this::tmpToString, null, this::setTmp));
+        map.put("trh", new GetterSetter(this::trhToString, null, this::setTrh));
+        map.put("tv", new GetterSetter(this::tvToString, null, this::setTv));
+        map.put("ty", new GetterSetter(this::tyToString, null, this::setTy));
+        map.put("y", new GetterSetter(this::yToString, null, this::setY));
+        map.put("yhpmn", new GetterSetter(this::yhpmnToString, null, this::setYhpmn));
+        map.put("yhpmx", new GetterSetter(this::yhpmxToString, null, this::setYhpmx));
+        map.put("ympmn", new GetterSetter(this::ympmnToString, null, this::setYmpmn));
+        map.put("ympmx", new GetterSetter(this::ympmxToString, null, this::setYmpmx));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

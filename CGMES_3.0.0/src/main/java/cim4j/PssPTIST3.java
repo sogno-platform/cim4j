@@ -4,392 +4,878 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * PTI microprocessor-based stabilizer type 3.
  */
+@SuppressWarnings("unused")
 public class PssPTIST3 extends PowerSystemStabilizerDynamics {
 
     private static final Logging LOG = Logging.getLogger(PssPTIST3.class);
 
-    private BaseClass[] PssPTIST3_class_attributes;
-    private BaseClass[] PssPTIST3_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new PssPTIST3().getAttributeNamesMap();
-    }
-
-    private enum PssPTIST3_primitive_builder implements PrimitiveBuilder {
-        a0() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        a1() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        a2() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        a3() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        a4() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        a5() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        al() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        athres() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        b0() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        b1() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        b2() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        b3() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        b4() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        b5() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        dl() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        dtc() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        dtf() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        dtp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        isw() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        k() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        lthres() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        m() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        nav() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        ncl() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        ncr() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        pmin() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        t1() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t2() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t3() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t4() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t5() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t6() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tf() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum PssPTIST3_class_attributes_enum {
-        a0,
-        a1,
-        a2,
-        a3,
-        a4,
-        a5,
-        al,
-        athres,
-        b0,
-        b1,
-        b2,
-        b3,
-        b4,
-        b5,
-        dl,
-        dtc,
-        dtf,
-        dtp,
-        isw,
-        k,
-        lthres,
-        m,
-        nav,
-        ncl,
-        ncr,
-        pmin,
-        t1,
-        t2,
-        t3,
-        t4,
-        t5,
-        t6,
-        tf,
-        tp,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public PssPTIST3() {
-        PssPTIST3_primitive_attributes = new BaseClass[PssPTIST3_primitive_builder.values().length];
-        PssPTIST3_class_attributes = new BaseClass[PssPTIST3_class_attributes_enum.values().length];
+        setCimType("PssPTIST3");
+    }
+
+    /**
+     * Filter coefficient (&lt;i&gt;A0&lt;/i&gt;).
+     */
+    private Double a0; // PU
+
+    public Double getA0() {
+        return a0;
+    }
+
+    public void setA0(Double _value_) {
+        a0 = _value_;
+    }
+
+    public void setA0(String _value_) {
+        a0 = getDoubleFromString(_value_);
+    }
+
+    public String a0ToString() {
+        return a0 != null ? a0.toString() : null;
+    }
+
+    /**
+     * Limiter (&lt;i&gt;Al&lt;/i&gt;).
+     */
+    private Double a1; // PU
+
+    public Double getA1() {
+        return a1;
+    }
+
+    public void setA1(Double _value_) {
+        a1 = _value_;
+    }
+
+    public void setA1(String _value_) {
+        a1 = getDoubleFromString(_value_);
+    }
+
+    public String a1ToString() {
+        return a1 != null ? a1.toString() : null;
+    }
+
+    /**
+     * Filter coefficient (&lt;i&gt;A2&lt;/i&gt;).
+     */
+    private Double a2; // PU
+
+    public Double getA2() {
+        return a2;
+    }
+
+    public void setA2(Double _value_) {
+        a2 = _value_;
+    }
+
+    public void setA2(String _value_) {
+        a2 = getDoubleFromString(_value_);
+    }
+
+    public String a2ToString() {
+        return a2 != null ? a2.toString() : null;
+    }
+
+    /**
+     * Filter coefficient (&lt;i&gt;A3&lt;/i&gt;).
+     */
+    private Double a3; // PU
+
+    public Double getA3() {
+        return a3;
+    }
+
+    public void setA3(Double _value_) {
+        a3 = _value_;
+    }
+
+    public void setA3(String _value_) {
+        a3 = getDoubleFromString(_value_);
+    }
+
+    public String a3ToString() {
+        return a3 != null ? a3.toString() : null;
+    }
+
+    /**
+     * Filter coefficient (&lt;i&gt;A4&lt;/i&gt;).
+     */
+    private Double a4; // PU
+
+    public Double getA4() {
+        return a4;
+    }
+
+    public void setA4(Double _value_) {
+        a4 = _value_;
+    }
+
+    public void setA4(String _value_) {
+        a4 = getDoubleFromString(_value_);
+    }
+
+    public String a4ToString() {
+        return a4 != null ? a4.toString() : null;
+    }
+
+    /**
+     * Filter coefficient (&lt;i&gt;A5&lt;/i&gt;).
+     */
+    private Double a5; // PU
+
+    public Double getA5() {
+        return a5;
+    }
+
+    public void setA5(Double _value_) {
+        a5 = _value_;
+    }
+
+    public void setA5(String _value_) {
+        a5 = getDoubleFromString(_value_);
+    }
+
+    public String a5ToString() {
+        return a5 != null ? a5.toString() : null;
+    }
+
+    /**
+     * Limiter (&lt;i&gt;Al&lt;/i&gt;).
+     */
+    private Double al; // PU
+
+    public Double getAl() {
+        return al;
+    }
+
+    public void setAl(Double _value_) {
+        al = _value_;
+    }
+
+    public void setAl(String _value_) {
+        al = getDoubleFromString(_value_);
+    }
+
+    public String alToString() {
+        return al != null ? al.toString() : null;
+    }
+
+    /**
+     * Threshold value above which output averaging will be bypassed (&lt;i&gt;Athres&lt;/i&gt;).  Typical value = 0,005.
+     */
+    private Double athres; // PU
+
+    public Double getAthres() {
+        return athres;
+    }
+
+    public void setAthres(Double _value_) {
+        athres = _value_;
+    }
+
+    public void setAthres(String _value_) {
+        athres = getDoubleFromString(_value_);
+    }
+
+    public String athresToString() {
+        return athres != null ? athres.toString() : null;
+    }
+
+    /**
+     * Filter coefficient (&lt;i&gt;B0&lt;/i&gt;).
+     */
+    private Double b0; // PU
+
+    public Double getB0() {
+        return b0;
+    }
+
+    public void setB0(Double _value_) {
+        b0 = _value_;
+    }
+
+    public void setB0(String _value_) {
+        b0 = getDoubleFromString(_value_);
+    }
+
+    public String b0ToString() {
+        return b0 != null ? b0.toString() : null;
+    }
+
+    /**
+     * Filter coefficient (&lt;i&gt;B1&lt;/i&gt;).
+     */
+    private Double b1; // PU
+
+    public Double getB1() {
+        return b1;
+    }
+
+    public void setB1(Double _value_) {
+        b1 = _value_;
+    }
+
+    public void setB1(String _value_) {
+        b1 = getDoubleFromString(_value_);
+    }
+
+    public String b1ToString() {
+        return b1 != null ? b1.toString() : null;
+    }
+
+    /**
+     * Filter coefficient (&lt;i&gt;B2&lt;/i&gt;).
+     */
+    private Double b2; // PU
+
+    public Double getB2() {
+        return b2;
+    }
+
+    public void setB2(Double _value_) {
+        b2 = _value_;
+    }
+
+    public void setB2(String _value_) {
+        b2 = getDoubleFromString(_value_);
+    }
+
+    public String b2ToString() {
+        return b2 != null ? b2.toString() : null;
+    }
+
+    /**
+     * Filter coefficient (&lt;i&gt;B3&lt;/i&gt;).
+     */
+    private Double b3; // PU
+
+    public Double getB3() {
+        return b3;
+    }
+
+    public void setB3(Double _value_) {
+        b3 = _value_;
+    }
+
+    public void setB3(String _value_) {
+        b3 = getDoubleFromString(_value_);
+    }
+
+    public String b3ToString() {
+        return b3 != null ? b3.toString() : null;
+    }
+
+    /**
+     * Filter coefficient (&lt;i&gt;B4&lt;/i&gt;).
+     */
+    private Double b4; // PU
+
+    public Double getB4() {
+        return b4;
+    }
+
+    public void setB4(Double _value_) {
+        b4 = _value_;
+    }
+
+    public void setB4(String _value_) {
+        b4 = getDoubleFromString(_value_);
+    }
+
+    public String b4ToString() {
+        return b4 != null ? b4.toString() : null;
+    }
+
+    /**
+     * Filter coefficient (&lt;i&gt;B5&lt;/i&gt;).
+     */
+    private Double b5; // PU
+
+    public Double getB5() {
+        return b5;
+    }
+
+    public void setB5(Double _value_) {
+        b5 = _value_;
+    }
+
+    public void setB5(String _value_) {
+        b5 = getDoubleFromString(_value_);
+    }
+
+    public String b5ToString() {
+        return b5 != null ? b5.toString() : null;
+    }
+
+    /**
+     * Limiter (&lt;i&gt;Dl&lt;/i&gt;).
+     */
+    private Double dl; // PU
+
+    public Double getDl() {
+        return dl;
+    }
+
+    public void setDl(Double _value_) {
+        dl = _value_;
+    }
+
+    public void setDl(String _value_) {
+        dl = getDoubleFromString(_value_);
+    }
+
+    public String dlToString() {
+        return dl != null ? dl.toString() : null;
+    }
+
+    /**
+     * Time step related to activation of controls (&lt;i&gt;deltatc&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,025 (0,03 for 50 Hz).
+     */
+    private Double dtc; // Seconds
+
+    public Double getDtc() {
+        return dtc;
+    }
+
+    public void setDtc(Double _value_) {
+        dtc = _value_;
+    }
+
+    public void setDtc(String _value_) {
+        dtc = getDoubleFromString(_value_);
+    }
+
+    public String dtcToString() {
+        return dtc != null ? dtc.toString() : null;
+    }
+
+    /**
+     * Time step frequency calculation (&lt;i&gt;deltatf&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,025 (0,03 for 50 Hz).
+     */
+    private Double dtf; // Seconds
+
+    public Double getDtf() {
+        return dtf;
+    }
+
+    public void setDtf(Double _value_) {
+        dtf = _value_;
+    }
+
+    public void setDtf(String _value_) {
+        dtf = getDoubleFromString(_value_);
+    }
+
+    public String dtfToString() {
+        return dtf != null ? dtf.toString() : null;
+    }
+
+    /**
+     * Time step active power calculation (&lt;i&gt;deltatp&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,0125  (0,015 for 50 Hz).
+     */
+    private Double dtp; // Seconds
+
+    public Double getDtp() {
+        return dtp;
+    }
+
+    public void setDtp(Double _value_) {
+        dtp = _value_;
+    }
+
+    public void setDtp(String _value_) {
+        dtp = getDoubleFromString(_value_);
+    }
+
+    public String dtpToString() {
+        return dtp != null ? dtp.toString() : null;
+    }
+
+    /**
+     * Digital/analogue output switch (&lt;i&gt;Isw&lt;/i&gt;). true = produce analogue output false = convert to digital output, using tap selection table.
+     */
+    private Boolean isw; // Boolean
+
+    public Boolean getIsw() {
+        return isw;
+    }
+
+    public void setIsw(Boolean _value_) {
+        isw = _value_;
+    }
+
+    public void setIsw(String _value_) {
+        isw = getBooleanFromString(_value_);
+    }
+
+    public String iswToString() {
+        return isw != null ? isw.toString() : null;
+    }
+
+    /**
+     * Gain (&lt;i&gt;K&lt;/i&gt;).  Typical value = 9.
+     */
+    private Double k; // PU
+
+    public Double getK() {
+        return k;
+    }
+
+    public void setK(Double _value_) {
+        k = _value_;
+    }
+
+    public void setK(String _value_) {
+        k = getDoubleFromString(_value_);
+    }
+
+    public String kToString() {
+        return k != null ? k.toString() : null;
+    }
+
+    /**
+     * Threshold value (&lt;i&gt;Lthres&lt;/i&gt;).
+     */
+    private Double lthres; // PU
+
+    public Double getLthres() {
+        return lthres;
+    }
+
+    public void setLthres(Double _value_) {
+        lthres = _value_;
+    }
+
+    public void setLthres(String _value_) {
+        lthres = getDoubleFromString(_value_);
+    }
+
+    public String lthresToString() {
+        return lthres != null ? lthres.toString() : null;
+    }
+
+    /**
+     * (&lt;i&gt;M&lt;/i&gt;).  &lt;i&gt;M&lt;/i&gt; = 2 x &lt;i&gt;H&lt;/i&gt;.  Typical value = 5.
+     */
+    private Double m; // PU
+
+    public Double getM() {
+        return m;
+    }
+
+    public void setM(Double _value_) {
+        m = _value_;
+    }
+
+    public void setM(String _value_) {
+        m = getDoubleFromString(_value_);
+    }
+
+    public String mToString() {
+        return m != null ? m.toString() : null;
+    }
+
+    /**
+     * Number of control outputs to average (&lt;i&gt;NAV&lt;/i&gt;) (1 &amp;lt;=  &lt;i&gt;NAV&lt;/i&gt; &amp;lt;= 16).  Typical value = 4.
+     */
+    private Float nav; // Float
+
+    public Float getNav() {
+        return nav;
+    }
+
+    public void setNav(Float _value_) {
+        nav = _value_;
+    }
+
+    public void setNav(String _value_) {
+        nav = getFloatFromString(_value_);
+    }
+
+    public String navToString() {
+        return nav != null ? nav.toString() : null;
+    }
+
+    /**
+     * Number of counts at limit to active limit function (&lt;i&gt;NCL&lt;/i&gt;) (&amp;gt; 0).
+     */
+    private Float ncl; // Float
+
+    public Float getNcl() {
+        return ncl;
+    }
+
+    public void setNcl(Float _value_) {
+        ncl = _value_;
+    }
+
+    public void setNcl(String _value_) {
+        ncl = getFloatFromString(_value_);
+    }
+
+    public String nclToString() {
+        return ncl != null ? ncl.toString() : null;
+    }
+
+    /**
+     * Number of counts until reset after limit function is triggered (&lt;i&gt;NCR&lt;/i&gt;).
+     */
+    private Float ncr; // Float
+
+    public Float getNcr() {
+        return ncr;
+    }
+
+    public void setNcr(Float _value_) {
+        ncr = _value_;
+    }
+
+    public void setNcr(String _value_) {
+        ncr = getFloatFromString(_value_);
+    }
+
+    public String ncrToString() {
+        return ncr != null ? ncr.toString() : null;
+    }
+
+    /**
+     * (&lt;i&gt;Pmin&lt;/i&gt;).
+     */
+    private Double pmin; // PU
+
+    public Double getPmin() {
+        return pmin;
+    }
+
+    public void setPmin(Double _value_) {
+        pmin = _value_;
+    }
+
+    public void setPmin(String _value_) {
+        pmin = getDoubleFromString(_value_);
+    }
+
+    public String pminToString() {
+        return pmin != null ? pmin.toString() : null;
+    }
+
+    /**
+     * Time constant (&lt;i&gt;T1&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,3.
+     */
+    private Double t1; // Seconds
+
+    public Double getT1() {
+        return t1;
+    }
+
+    public void setT1(Double _value_) {
+        t1 = _value_;
+    }
+
+    public void setT1(String _value_) {
+        t1 = getDoubleFromString(_value_);
+    }
+
+    public String t1ToString() {
+        return t1 != null ? t1.toString() : null;
+    }
+
+    /**
+     * Time constant (&lt;i&gt;T2&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 1.
+     */
+    private Double t2; // Seconds
+
+    public Double getT2() {
+        return t2;
+    }
+
+    public void setT2(Double _value_) {
+        t2 = _value_;
+    }
+
+    public void setT2(String _value_) {
+        t2 = getDoubleFromString(_value_);
+    }
+
+    public String t2ToString() {
+        return t2 != null ? t2.toString() : null;
+    }
+
+    /**
+     * Time constant (&lt;i&gt;T3&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,2.
+     */
+    private Double t3; // Seconds
+
+    public Double getT3() {
+        return t3;
+    }
+
+    public void setT3(Double _value_) {
+        t3 = _value_;
+    }
+
+    public void setT3(String _value_) {
+        t3 = getDoubleFromString(_value_);
+    }
+
+    public String t3ToString() {
+        return t3 != null ? t3.toString() : null;
+    }
+
+    /**
+     * Time constant (&lt;i&gt;T4&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,05.
+     */
+    private Double t4; // Seconds
+
+    public Double getT4() {
+        return t4;
+    }
+
+    public void setT4(Double _value_) {
+        t4 = _value_;
+    }
+
+    public void setT4(String _value_) {
+        t4 = getDoubleFromString(_value_);
+    }
+
+    public String t4ToString() {
+        return t4 != null ? t4.toString() : null;
+    }
+
+    /**
+     * Time constant (&lt;i&gt;T5&lt;/i&gt;) (&amp;gt;= 0).
+     */
+    private Double t5; // Seconds
+
+    public Double getT5() {
+        return t5;
+    }
+
+    public void setT5(Double _value_) {
+        t5 = _value_;
+    }
+
+    public void setT5(String _value_) {
+        t5 = getDoubleFromString(_value_);
+    }
+
+    public String t5ToString() {
+        return t5 != null ? t5.toString() : null;
+    }
+
+    /**
+     * Time constant (&lt;i&gt;T6&lt;/i&gt;) (&amp;gt;= 0).
+     */
+    private Double t6; // Seconds
+
+    public Double getT6() {
+        return t6;
+    }
+
+    public void setT6(Double _value_) {
+        t6 = _value_;
+    }
+
+    public void setT6(String _value_) {
+        t6 = getDoubleFromString(_value_);
+    }
+
+    public String t6ToString() {
+        return t6 != null ? t6.toString() : null;
+    }
+
+    /**
+     * Time constant (&lt;i&gt;Tf&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,2.
+     */
+    private Double tf; // Seconds
+
+    public Double getTf() {
+        return tf;
+    }
+
+    public void setTf(Double _value_) {
+        tf = _value_;
+    }
+
+    public void setTf(String _value_) {
+        tf = getDoubleFromString(_value_);
+    }
+
+    public String tfToString() {
+        return tf != null ? tf.toString() : null;
+    }
+
+    /**
+     * Time constant (&lt;i&gt;Tp&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,2.
+     */
+    private Double tp; // Seconds
+
+    public Double getTp() {
+        return tp;
+    }
+
+    public void setTp(Double _value_) {
+        tp = _value_;
+    }
+
+    public void setTp(String _value_) {
+        tp = getDoubleFromString(_value_);
+    }
+
+    public String tpToString() {
+        return tp != null ? tp.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new PssPTIST3();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("PssPTIST3", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(PssPTIST3_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            PssPTIST3_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(PssPTIST3_primitive_builder attrEnum, BaseClass value) {
-        try {
-            PssPTIST3_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("PssPTIST3", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            PssPTIST3_class_attributes_enum attrEnum = PssPTIST3_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated PssPTIST3, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            PssPTIST3_primitive_builder attrEnum = PssPTIST3_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated PssPTIST3, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            PssPTIST3_primitive_builder attrEnum = PssPTIST3_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = PssPTIST3_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            PssPTIST3_class_attributes_enum attrEnum = PssPTIST3_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = PssPTIST3_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : PssPTIST3_primitive_builder.values()) {
-            if (enumValue != PssPTIST3_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "PssPTIST3." + enumValue.name());
-            }
-        }
-        for (var enumValue : PssPTIST3_class_attributes_enum.values()) {
-            if (enumValue != PssPTIST3_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "PssPTIST3." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (PssPTIST3_primitive_builder attrEnum : PssPTIST3_primitive_builder.values()) {
-                BaseClass bc = PssPTIST3_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    PssPTIST3." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (PssPTIST3_class_attributes_enum attrEnum : PssPTIST3_class_attributes_enum.values()) {
-                BaseClass bc = PssPTIST3_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    PssPTIST3." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(PssPTIST3) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "PssPTIST3";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("PssPTIST3", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -398,7 +884,7 @@ public class PssPTIST3 extends PowerSystemStabilizerDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -408,15 +894,8 @@ public class PssPTIST3 extends PowerSystemStabilizerDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -447,7 +926,7 @@ public class PssPTIST3 extends PowerSystemStabilizerDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -469,184 +948,226 @@ public class PssPTIST3 extends PowerSystemStabilizerDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("a0", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("a0", new AttrDetails("PssPTIST3.a0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("a1", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("a1", new AttrDetails("PssPTIST3.a1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("a2", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("a2", new AttrDetails("PssPTIST3.a2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("a3", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("a3", new AttrDetails("PssPTIST3.a3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("a4", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("a4", new AttrDetails("PssPTIST3.a4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("a5", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("a5", new AttrDetails("PssPTIST3.a5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("al", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("al", new AttrDetails("PssPTIST3.al", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("athres", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("athres", new AttrDetails("PssPTIST3.athres", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("b0", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("b0", new AttrDetails("PssPTIST3.b0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("b1", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("b1", new AttrDetails("PssPTIST3.b1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("b2", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("b2", new AttrDetails("PssPTIST3.b2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("b3", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("b3", new AttrDetails("PssPTIST3.b3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("b4", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("b4", new AttrDetails("PssPTIST3.b4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("b5", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("b5", new AttrDetails("PssPTIST3.b5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dl", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("dl", new AttrDetails("PssPTIST3.dl", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dtc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("dtc", new AttrDetails("PssPTIST3.dtc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dtf", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("dtf", new AttrDetails("PssPTIST3.dtf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dtp", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("dtp", new AttrDetails("PssPTIST3.dtp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("isw", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("isw", new AttrDetails("PssPTIST3.isw", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("k", new AttrDetails("PssPTIST3.k", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("lthres", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("lthres", new AttrDetails("PssPTIST3.lthres", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("m", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("m", new AttrDetails("PssPTIST3.m", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("nav", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("nav", new AttrDetails("PssPTIST3.nav", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ncl", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ncl", new AttrDetails("PssPTIST3.ncl", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ncr", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ncr", new AttrDetails("PssPTIST3.ncr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmin", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("pmin", new AttrDetails("PssPTIST3.pmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t1", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("t1", new AttrDetails("PssPTIST3.t1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t2", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("t2", new AttrDetails("PssPTIST3.t2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t3", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("t3", new AttrDetails("PssPTIST3.t3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t4", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("t4", new AttrDetails("PssPTIST3.t4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t5", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("t5", new AttrDetails("PssPTIST3.t5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t6", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("t6", new AttrDetails("PssPTIST3.t6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tf", new AttrDetails("PssPTIST3.tf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tp", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tp", new AttrDetails("PssPTIST3.tp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PssPTIST3().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("a0", new GetterSetter(this::a0ToString, null, this::setA0));
+        map.put("a1", new GetterSetter(this::a1ToString, null, this::setA1));
+        map.put("a2", new GetterSetter(this::a2ToString, null, this::setA2));
+        map.put("a3", new GetterSetter(this::a3ToString, null, this::setA3));
+        map.put("a4", new GetterSetter(this::a4ToString, null, this::setA4));
+        map.put("a5", new GetterSetter(this::a5ToString, null, this::setA5));
+        map.put("al", new GetterSetter(this::alToString, null, this::setAl));
+        map.put("athres", new GetterSetter(this::athresToString, null, this::setAthres));
+        map.put("b0", new GetterSetter(this::b0ToString, null, this::setB0));
+        map.put("b1", new GetterSetter(this::b1ToString, null, this::setB1));
+        map.put("b2", new GetterSetter(this::b2ToString, null, this::setB2));
+        map.put("b3", new GetterSetter(this::b3ToString, null, this::setB3));
+        map.put("b4", new GetterSetter(this::b4ToString, null, this::setB4));
+        map.put("b5", new GetterSetter(this::b5ToString, null, this::setB5));
+        map.put("dl", new GetterSetter(this::dlToString, null, this::setDl));
+        map.put("dtc", new GetterSetter(this::dtcToString, null, this::setDtc));
+        map.put("dtf", new GetterSetter(this::dtfToString, null, this::setDtf));
+        map.put("dtp", new GetterSetter(this::dtpToString, null, this::setDtp));
+        map.put("isw", new GetterSetter(this::iswToString, null, this::setIsw));
+        map.put("k", new GetterSetter(this::kToString, null, this::setK));
+        map.put("lthres", new GetterSetter(this::lthresToString, null, this::setLthres));
+        map.put("m", new GetterSetter(this::mToString, null, this::setM));
+        map.put("nav", new GetterSetter(this::navToString, null, this::setNav));
+        map.put("ncl", new GetterSetter(this::nclToString, null, this::setNcl));
+        map.put("ncr", new GetterSetter(this::ncrToString, null, this::setNcr));
+        map.put("pmin", new GetterSetter(this::pminToString, null, this::setPmin));
+        map.put("t1", new GetterSetter(this::t1ToString, null, this::setT1));
+        map.put("t2", new GetterSetter(this::t2ToString, null, this::setT2));
+        map.put("t3", new GetterSetter(this::t3ToString, null, this::setT3));
+        map.put("t4", new GetterSetter(this::t4ToString, null, this::setT4));
+        map.put("t5", new GetterSetter(this::t5ToString, null, this::setT5));
+        map.put("t6", new GetterSetter(this::t6ToString, null, this::setT6));
+        map.put("tf", new GetterSetter(this::tfToString, null, this::setTf));
+        map.put("tp", new GetterSetter(this::tpToString, null, this::setTp));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

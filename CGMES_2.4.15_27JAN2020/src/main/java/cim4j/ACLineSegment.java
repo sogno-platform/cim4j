@@ -4,242 +4,353 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * A wire or combination of wires, with consistent electrical characteristics, building a single electrical system, used to carry alternating current between points in the power system. For symmetrical, transposed 3ph lines, it is sufficient to use  attributes of the line segment, which describe impedances and admittances for the entire length of the segment.  Additionally impedances can be computed by using length and associated per length impedances. The BaseVoltage at the two ends of ACLineSegments in a Line shall have the same BaseVoltage.nominalVoltage. However, boundary lines  may have slightly different BaseVoltage.nominalVoltages and  variation is allowed. Larger voltage difference in general requires use of an equivalent branch.
  */
+@SuppressWarnings("unused")
 public class ACLineSegment extends Conductor {
 
     private static final Logging LOG = Logging.getLogger(ACLineSegment.class);
 
-    private BaseClass[] ACLineSegment_class_attributes;
-    private BaseClass[] ACLineSegment_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new ACLineSegment().getAttributeNamesMap();
-    }
-
-    private enum ACLineSegment_primitive_builder implements PrimitiveBuilder {
-        b0ch() {
-            public BaseClass construct(java.lang.String value) {
-                return new Susceptance(value);
-            }
-        },
-        bch() {
-            public BaseClass construct(java.lang.String value) {
-                return new Susceptance(value);
-            }
-        },
-        g0ch() {
-            public BaseClass construct(java.lang.String value) {
-                return new Conductance(value);
-            }
-        },
-        gch() {
-            public BaseClass construct(java.lang.String value) {
-                return new Conductance(value);
-            }
-        },
-        r() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        r0() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        shortCircuitEndTemperature() {
-            public BaseClass construct(java.lang.String value) {
-                return new Temperature(value);
-            }
-        },
-        x() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        x0() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum ACLineSegment_class_attributes_enum {
-        b0ch,
-        bch,
-        g0ch,
-        gch,
-        r,
-        r0,
-        shortCircuitEndTemperature,
-        x,
-        x0,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public ACLineSegment() {
-        ACLineSegment_primitive_attributes = new BaseClass[ACLineSegment_primitive_builder.values().length];
-        ACLineSegment_class_attributes = new BaseClass[ACLineSegment_class_attributes_enum.values().length];
+        setCimType("ACLineSegment");
+    }
+
+    /**
+     * Zero sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
+     */
+    private Double b0ch; // Susceptance
+
+    public Double getB0ch() {
+        return b0ch;
+    }
+
+    public void setB0ch(Double _value_) {
+        b0ch = _value_;
+    }
+
+    public void setB0ch(String _value_) {
+        b0ch = getDoubleFromString(_value_);
+    }
+
+    public String b0chToString() {
+        return b0ch != null ? b0ch.toString() : null;
+    }
+
+    /**
+     * Positive sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.  This value represents the full charging over the full length of the line.
+     */
+    private Double bch; // Susceptance
+
+    public Double getBch() {
+        return bch;
+    }
+
+    public void setBch(Double _value_) {
+        bch = _value_;
+    }
+
+    public void setBch(String _value_) {
+        bch = getDoubleFromString(_value_);
+    }
+
+    public String bchToString() {
+        return bch != null ? bch.toString() : null;
+    }
+
+    /**
+     * Zero sequence shunt (charging) conductance, uniformly distributed, of the entire line section.
+     */
+    private Double g0ch; // Conductance
+
+    public Double getG0ch() {
+        return g0ch;
+    }
+
+    public void setG0ch(Double _value_) {
+        g0ch = _value_;
+    }
+
+    public void setG0ch(String _value_) {
+        g0ch = getDoubleFromString(_value_);
+    }
+
+    public String g0chToString() {
+        return g0ch != null ? g0ch.toString() : null;
+    }
+
+    /**
+     * Positive sequence shunt (charging) conductance, uniformly distributed, of the entire line section.
+     */
+    private Double gch; // Conductance
+
+    public Double getGch() {
+        return gch;
+    }
+
+    public void setGch(Double _value_) {
+        gch = _value_;
+    }
+
+    public void setGch(String _value_) {
+        gch = getDoubleFromString(_value_);
+    }
+
+    public String gchToString() {
+        return gch != null ? gch.toString() : null;
+    }
+
+    /**
+     * Positive sequence series resistance of the entire line section.
+     */
+    private Double r; // Resistance
+
+    public Double getR() {
+        return r;
+    }
+
+    public void setR(Double _value_) {
+        r = _value_;
+    }
+
+    public void setR(String _value_) {
+        r = getDoubleFromString(_value_);
+    }
+
+    public String rToString() {
+        return r != null ? r.toString() : null;
+    }
+
+    /**
+     * Zero sequence series resistance of the entire line section.
+     */
+    private Double r0; // Resistance
+
+    public Double getR0() {
+        return r0;
+    }
+
+    public void setR0(Double _value_) {
+        r0 = _value_;
+    }
+
+    public void setR0(String _value_) {
+        r0 = getDoubleFromString(_value_);
+    }
+
+    public String r0ToString() {
+        return r0 != null ? r0.toString() : null;
+    }
+
+    /**
+     * Maximum permitted temperature at the end of SC for the calculation of minimum short-circuit currents. Used for short circuit data exchange according to IEC 60909
+     */
+    private Double shortCircuitEndTemperature; // Temperature
+
+    public Double getShortCircuitEndTemperature() {
+        return shortCircuitEndTemperature;
+    }
+
+    public void setShortCircuitEndTemperature(Double _value_) {
+        shortCircuitEndTemperature = _value_;
+    }
+
+    public void setShortCircuitEndTemperature(String _value_) {
+        shortCircuitEndTemperature = getDoubleFromString(_value_);
+    }
+
+    public String shortCircuitEndTemperatureToString() {
+        return shortCircuitEndTemperature != null ? shortCircuitEndTemperature.toString() : null;
+    }
+
+    /**
+     * Positive sequence series reactance of the entire line section.
+     */
+    private Double x; // Reactance
+
+    public Double getX() {
+        return x;
+    }
+
+    public void setX(Double _value_) {
+        x = _value_;
+    }
+
+    public void setX(String _value_) {
+        x = getDoubleFromString(_value_);
+    }
+
+    public String xToString() {
+        return x != null ? x.toString() : null;
+    }
+
+    /**
+     * Zero sequence series reactance of the entire line section.
+     */
+    private Double x0; // Reactance
+
+    public Double getX0() {
+        return x0;
+    }
+
+    public void setX0(Double _value_) {
+        x0 = _value_;
+    }
+
+    public void setX0(String _value_) {
+        x0 = getDoubleFromString(_value_);
+    }
+
+    public String x0ToString() {
+        return x0 != null ? x0.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new ACLineSegment();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("ACLineSegment", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(ACLineSegment_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            ACLineSegment_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(ACLineSegment_primitive_builder attrEnum, BaseClass value) {
-        try {
-            ACLineSegment_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("ACLineSegment", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            ACLineSegment_class_attributes_enum attrEnum = ACLineSegment_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated ACLineSegment, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            ACLineSegment_primitive_builder attrEnum = ACLineSegment_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated ACLineSegment, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            ACLineSegment_primitive_builder attrEnum = ACLineSegment_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = ACLineSegment_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            ACLineSegment_class_attributes_enum attrEnum = ACLineSegment_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = ACLineSegment_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : ACLineSegment_primitive_builder.values()) {
-            if (enumValue != ACLineSegment_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "ACLineSegment." + enumValue.name());
-            }
-        }
-        for (var enumValue : ACLineSegment_class_attributes_enum.values()) {
-            if (enumValue != ACLineSegment_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "ACLineSegment." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (ACLineSegment_primitive_builder attrEnum : ACLineSegment_primitive_builder.values()) {
-                BaseClass bc = ACLineSegment_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    ACLineSegment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (ACLineSegment_class_attributes_enum attrEnum : ACLineSegment_class_attributes_enum.values()) {
-                BaseClass bc = ACLineSegment_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    ACLineSegment." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(ACLineSegment) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "ACLineSegment";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("ACLineSegment", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -248,7 +359,7 @@ public class ACLineSegment extends Conductor {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -258,15 +369,8 @@ public class ACLineSegment extends Conductor {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -297,7 +401,7 @@ public class ACLineSegment extends Conductor {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -319,59 +423,76 @@ public class ACLineSegment extends Conductor {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("b0ch", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("b0ch", new AttrDetails("ACLineSegment.b0ch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("bch", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("bch", new AttrDetails("ACLineSegment.bch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("g0ch", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("g0ch", new AttrDetails("ACLineSegment.g0ch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("gch", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("gch", new AttrDetails("ACLineSegment.gch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("r", new AttrDetails("ACLineSegment.r", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r0", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("r0", new AttrDetails("ACLineSegment.r0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("shortCircuitEndTemperature", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("shortCircuitEndTemperature", new AttrDetails("ACLineSegment.shortCircuitEndTemperature", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("x", new AttrDetails("ACLineSegment.x", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x0", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("x0", new AttrDetails("ACLineSegment.x0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ACLineSegment().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("b0ch", new GetterSetter(this::b0chToString, null, this::setB0ch));
+        map.put("bch", new GetterSetter(this::bchToString, null, this::setBch));
+        map.put("g0ch", new GetterSetter(this::g0chToString, null, this::setG0ch));
+        map.put("gch", new GetterSetter(this::gchToString, null, this::setGch));
+        map.put("r", new GetterSetter(this::rToString, null, this::setR));
+        map.put("r0", new GetterSetter(this::r0ToString, null, this::setR0));
+        map.put("shortCircuitEndTemperature", new GetterSetter(this::shortCircuitEndTemperatureToString, null, this::setShortCircuitEndTemperature));
+        map.put("x", new GetterSetter(this::xToString, null, this::setX));
+        map.put("x0", new GetterSetter(this::x0ToString, null, this::setX0));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

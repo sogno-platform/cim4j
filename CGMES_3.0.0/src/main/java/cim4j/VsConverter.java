@@ -4,268 +4,477 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * DC side of the voltage source converter (VSC).
  */
+@SuppressWarnings("unused")
 public class VsConverter extends ACDCConverter {
 
     private static final Logging LOG = Logging.getLogger(VsConverter.class);
 
-    private BaseClass[] VsConverter_class_attributes;
-    private BaseClass[] VsConverter_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new VsConverter().getAttributeNamesMap();
-    }
-
-    private enum VsConverter_primitive_builder implements PrimitiveBuilder {
-        delta() {
-            public BaseClass construct(java.lang.String value) {
-                return new AngleDegrees(value);
-            }
-        },
-        droop() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        droopCompensation() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        maxModulationIndex() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        pPccControl() {
-            public BaseClass construct(java.lang.String value) {
-                return new VsPpccControlKind(value);
-            }
-        },
-        qPccControl() {
-            public BaseClass construct(java.lang.String value) {
-                return new VsQpccControlKind(value);
-            }
-        },
-        qShare() {
-            public BaseClass construct(java.lang.String value) {
-                return new PerCent(value);
-            }
-        },
-        targetPWMfactor() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        targetPhasePcc() {
-            public BaseClass construct(java.lang.String value) {
-                return new AngleDegrees(value);
-            }
-        },
-        targetPowerFactorPcc() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        targetQpcc() {
-            public BaseClass construct(java.lang.String value) {
-                return new ReactivePower(value);
-            }
-        },
-        targetUpcc() {
-            public BaseClass construct(java.lang.String value) {
-                return new Voltage(value);
-            }
-        },
-        uv() {
-            public BaseClass construct(java.lang.String value) {
-                return new Voltage(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum VsConverter_class_attributes_enum {
-        CapabilityCurve,
-        VSCDynamics,
-        delta,
-        droop,
-        droopCompensation,
-        maxModulationIndex,
-        pPccControl,
-        qPccControl,
-        qShare,
-        targetPWMfactor,
-        targetPhasePcc,
-        targetPowerFactorPcc,
-        targetQpcc,
-        targetUpcc,
-        uv,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public VsConverter() {
-        VsConverter_primitive_attributes = new BaseClass[VsConverter_primitive_builder.values().length];
-        VsConverter_class_attributes = new BaseClass[VsConverter_class_attributes_enum.values().length];
+        setCimType("VsConverter");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new VsConverter();
+    /**
+     * Capability curve of this converter.
+     */
+    private VsCapabilityCurve CapabilityCurve; // ManyToOne
+
+    public VsCapabilityCurve getCapabilityCurve() {
+        return CapabilityCurve;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(VsConverter_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            VsConverter_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setCapabilityCurve(BaseClass _object_) {
+        if (!(_object_ instanceof VsCapabilityCurve)) {
+            throw new IllegalArgumentException("Object is not VsCapabilityCurve");
+        }
+        if (CapabilityCurve != _object_) {
+            CapabilityCurve = (VsCapabilityCurve) _object_;
+            CapabilityCurve.setVsConverterDCSides(this);
         }
     }
 
-    private void updateAttributeInArray(VsConverter_primitive_builder attrEnum, BaseClass value) {
-        try {
-            VsConverter_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String CapabilityCurveToString() {
+        return CapabilityCurve != null ? CapabilityCurve.getRdfid() : null;
+    }
+
+    /**
+     * Voltage source converter dynamics model used to describe dynamic behaviour of this converter.
+     *
+     * NOT USED
+     */
+    private VSCDynamics VSCDynamics; // OneToOne
+
+    public VSCDynamics getVSCDynamics() {
+        return VSCDynamics;
+    }
+
+    public void setVSCDynamics(BaseClass _object_) {
+        if (!(_object_ instanceof VSCDynamics)) {
+            throw new IllegalArgumentException("Object is not VSCDynamics");
+        }
+        if (VSCDynamics != _object_) {
+            VSCDynamics = (VSCDynamics) _object_;
+            VSCDynamics.setVsConverter(this);
         }
     }
 
+    public String VSCDynamicsToString() {
+        return VSCDynamics != null ? VSCDynamics.getRdfid() : null;
+    }
+
+    /**
+     * Angle between VsConverter.uv and ACDCConverter.uc. It is converter`s state variable used in power flow. The attribute shall be a positive value or zero.
+     */
+    private Double delta; // AngleDegrees
+
+    public Double getDelta() {
+        return delta;
+    }
+
+    public void setDelta(Double _value_) {
+        delta = _value_;
+    }
+
+    public void setDelta(String _value_) {
+        delta = getDoubleFromString(_value_);
+    }
+
+    public String deltaToString() {
+        return delta != null ? delta.toString() : null;
+    }
+
+    /**
+     * Droop constant. The pu value is obtained as D [kV/MW] x Sb / Ubdc. The attribute shall be a positive value.
+     */
+    private Double droop; // PU
+
+    public Double getDroop() {
+        return droop;
+    }
+
+    public void setDroop(Double _value_) {
+        droop = _value_;
+    }
+
+    public void setDroop(String _value_) {
+        droop = getDoubleFromString(_value_);
+    }
+
+    public String droopToString() {
+        return droop != null ? droop.toString() : null;
+    }
+
+    /**
+     * Compensation constant. Used to compensate for voltage drop when controlling voltage at a distant bus. The attribute shall be a positive value.
+     */
+    private Double droopCompensation; // Resistance
+
+    public Double getDroopCompensation() {
+        return droopCompensation;
+    }
+
+    public void setDroopCompensation(Double _value_) {
+        droopCompensation = _value_;
+    }
+
+    public void setDroopCompensation(String _value_) {
+        droopCompensation = getDoubleFromString(_value_);
+    }
+
+    public String droopCompensationToString() {
+        return droopCompensation != null ? droopCompensation.toString() : null;
+    }
+
+    /**
+     * The maximum quotient between the AC converter voltage (Uc) and DC voltage (Ud). A factor typically less than 1. It is converter`s configuration data used in power flow.
+     */
+    private Float maxModulationIndex; // Float
+
+    public Float getMaxModulationIndex() {
+        return maxModulationIndex;
+    }
+
+    public void setMaxModulationIndex(Float _value_) {
+        maxModulationIndex = _value_;
+    }
+
+    public void setMaxModulationIndex(String _value_) {
+        maxModulationIndex = getFloatFromString(_value_);
+    }
+
+    public String maxModulationIndexToString() {
+        return maxModulationIndex != null ? maxModulationIndex.toString() : null;
+    }
+
+    /**
+     * Kind of control of real power and/or DC voltage.
+     */
+    private String pPccControl; // VsPpccControlKind
+
+    public String getPPccControl() {
+        return pPccControl;
+    }
+
+    public void setPPccControl(String _value_) {
+        pPccControl = _value_;
+    }
+
+    public String pPccControlToString() {
+        return pPccControl;
+    }
+
+    /**
+     * Kind of reactive power control.
+     */
+    private String qPccControl; // VsQpccControlKind
+
+    public String getQPccControl() {
+        return qPccControl;
+    }
+
+    public void setQPccControl(String _value_) {
+        qPccControl = _value_;
+    }
+
+    public String qPccControlToString() {
+        return qPccControl;
+    }
+
+    /**
+     * Reactive power sharing factor among parallel converters on Uac control. The attribute shall be a positive value or zero.
+     */
+    private Double qShare; // PerCent
+
+    public Double getQShare() {
+        return qShare;
+    }
+
+    public void setQShare(Double _value_) {
+        qShare = _value_;
+    }
+
+    public void setQShare(String _value_) {
+        qShare = getDoubleFromString(_value_);
+    }
+
+    public String qShareToString() {
+        return qShare != null ? qShare.toString() : null;
+    }
+
+    /**
+     * Magnitude of pulse-modulation factor. The attribute shall be a positive value.
+     */
+    private Float targetPWMfactor; // Float
+
+    public Float getTargetPWMfactor() {
+        return targetPWMfactor;
+    }
+
+    public void setTargetPWMfactor(Float _value_) {
+        targetPWMfactor = _value_;
+    }
+
+    public void setTargetPWMfactor(String _value_) {
+        targetPWMfactor = getFloatFromString(_value_);
+    }
+
+    public String targetPWMfactorToString() {
+        return targetPWMfactor != null ? targetPWMfactor.toString() : null;
+    }
+
+    /**
+     * Phase target at AC side, at point of common coupling. The attribute shall be a positive value.
+     */
+    private Double targetPhasePcc; // AngleDegrees
+
+    public Double getTargetPhasePcc() {
+        return targetPhasePcc;
+    }
+
+    public void setTargetPhasePcc(Double _value_) {
+        targetPhasePcc = _value_;
+    }
+
+    public void setTargetPhasePcc(String _value_) {
+        targetPhasePcc = getDoubleFromString(_value_);
+    }
+
+    public String targetPhasePccToString() {
+        return targetPhasePcc != null ? targetPhasePcc.toString() : null;
+    }
+
+    /**
+     * Power factor target at the AC side, at point of common coupling. The attribute shall be a positive value.
+     */
+    private Float targetPowerFactorPcc; // Float
+
+    public Float getTargetPowerFactorPcc() {
+        return targetPowerFactorPcc;
+    }
+
+    public void setTargetPowerFactorPcc(Float _value_) {
+        targetPowerFactorPcc = _value_;
+    }
+
+    public void setTargetPowerFactorPcc(String _value_) {
+        targetPowerFactorPcc = getFloatFromString(_value_);
+    }
+
+    public String targetPowerFactorPccToString() {
+        return targetPowerFactorPcc != null ? targetPowerFactorPcc.toString() : null;
+    }
+
+    /**
+     * Reactive power injection target in AC grid, at point of common coupling.  Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
+    private Double targetQpcc; // ReactivePower
+
+    public Double getTargetQpcc() {
+        return targetQpcc;
+    }
+
+    public void setTargetQpcc(Double _value_) {
+        targetQpcc = _value_;
+    }
+
+    public void setTargetQpcc(String _value_) {
+        targetQpcc = getDoubleFromString(_value_);
+    }
+
+    public String targetQpccToString() {
+        return targetQpcc != null ? targetQpcc.toString() : null;
+    }
+
+    /**
+     * Voltage target in AC grid, at point of common coupling. The attribute shall be a positive value.
+     */
+    private Double targetUpcc; // Voltage
+
+    public Double getTargetUpcc() {
+        return targetUpcc;
+    }
+
+    public void setTargetUpcc(Double _value_) {
+        targetUpcc = _value_;
+    }
+
+    public void setTargetUpcc(String _value_) {
+        targetUpcc = getDoubleFromString(_value_);
+    }
+
+    public String targetUpccToString() {
+        return targetUpcc != null ? targetUpcc.toString() : null;
+    }
+
+    /**
+     * Line-to-line voltage on the valve side of the converter transformer. It is converter`s state variable, result from power flow. The attribute shall be a positive value.
+     */
+    private Double uv; // Voltage
+
+    public Double getUv() {
+        return uv;
+    }
+
+    public void setUv(Double _value_) {
+        uv = _value_;
+    }
+
+    public void setUv(String _value_) {
+        uv = getDoubleFromString(_value_);
+    }
+
+    public String uvToString() {
+        return uv != null ? uv.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            VsConverter_class_attributes_enum attrEnum = VsConverter_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated VsConverter, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            VsConverter_primitive_builder attrEnum = VsConverter_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated VsConverter, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("VsConverter", attrName);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            VsConverter_primitive_builder attrEnum = VsConverter_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = VsConverter_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
 
-        try {
-            VsConverter_class_attributes_enum attrEnum = VsConverter_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = VsConverter_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("VsConverter", attrName, objectValue);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : VsConverter_primitive_builder.values()) {
-            if (enumValue != VsConverter_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "VsConverter." + enumValue.name());
-            }
-        }
-        for (var enumValue : VsConverter_class_attributes_enum.values()) {
-            if (enumValue != VsConverter_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "VsConverter." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (VsConverter_primitive_builder attrEnum : VsConverter_primitive_builder.values()) {
-                BaseClass bc = VsConverter_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    VsConverter." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (VsConverter_class_attributes_enum attrEnum : VsConverter_class_attributes_enum.values()) {
-                BaseClass bc = VsConverter_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    VsConverter." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(VsConverter) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "VsConverter";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("VsConverter", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -274,7 +483,7 @@ public class VsConverter extends ACDCConverter {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -284,15 +493,8 @@ public class VsConverter extends ACDCConverter {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -323,7 +525,7 @@ public class VsConverter extends ACDCConverter {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -345,89 +547,112 @@ public class VsConverter extends ACDCConverter {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("CapabilityCurve", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("CapabilityCurve", new AttrDetails("VsConverter.CapabilityCurve", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("VSCDynamics", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("VSCDynamics", new AttrDetails("VsConverter.VSCDynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("delta", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("delta", new AttrDetails("VsConverter.delta", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("droop", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("droop", new AttrDetails("VsConverter.droop", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("droopCompensation", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("droopCompensation", new AttrDetails("VsConverter.droopCompensation", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxModulationIndex", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("maxModulationIndex", new AttrDetails("VsConverter.maxModulationIndex", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("pPccControl", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("pPccControl", new AttrDetails("VsConverter.pPccControl", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("qPccControl", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("qPccControl", new AttrDetails("VsConverter.qPccControl", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("qShare", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("qShare", new AttrDetails("VsConverter.qShare", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetPWMfactor", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("targetPWMfactor", new AttrDetails("VsConverter.targetPWMfactor", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetPhasePcc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("targetPhasePcc", new AttrDetails("VsConverter.targetPhasePcc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetPowerFactorPcc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("targetPowerFactorPcc", new AttrDetails("VsConverter.targetPowerFactorPcc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetQpcc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("targetQpcc", new AttrDetails("VsConverter.targetQpcc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetUpcc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("targetUpcc", new AttrDetails("VsConverter.targetUpcc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("uv", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("uv", new AttrDetails("VsConverter.uv", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new VsConverter().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("CapabilityCurve", new GetterSetter(this::CapabilityCurveToString, this::setCapabilityCurve, null));
+        map.put("VSCDynamics", new GetterSetter(this::VSCDynamicsToString, this::setVSCDynamics, null));
+        map.put("delta", new GetterSetter(this::deltaToString, null, this::setDelta));
+        map.put("droop", new GetterSetter(this::droopToString, null, this::setDroop));
+        map.put("droopCompensation", new GetterSetter(this::droopCompensationToString, null, this::setDroopCompensation));
+        map.put("maxModulationIndex", new GetterSetter(this::maxModulationIndexToString, null, this::setMaxModulationIndex));
+        map.put("pPccControl", new GetterSetter(this::pPccControlToString, null, this::setPPccControl));
+        map.put("qPccControl", new GetterSetter(this::qPccControlToString, null, this::setQPccControl));
+        map.put("qShare", new GetterSetter(this::qShareToString, null, this::setQShare));
+        map.put("targetPWMfactor", new GetterSetter(this::targetPWMfactorToString, null, this::setTargetPWMfactor));
+        map.put("targetPhasePcc", new GetterSetter(this::targetPhasePccToString, null, this::setTargetPhasePcc));
+        map.put("targetPowerFactorPcc", new GetterSetter(this::targetPowerFactorPccToString, null, this::setTargetPowerFactorPcc));
+        map.put("targetQpcc", new GetterSetter(this::targetQpccToString, null, this::setTargetQpcc));
+        map.put("targetUpcc", new GetterSetter(this::targetUpccToString, null, this::setTargetUpcc));
+        map.put("uv", new GetterSetter(this::uvToString, null, this::setUv));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

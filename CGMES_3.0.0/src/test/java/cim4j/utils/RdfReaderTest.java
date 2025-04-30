@@ -20,6 +20,7 @@ import cim4j.AnalogValue;
 import cim4j.BaseVoltage;
 import cim4j.CimConstants;
 import cim4j.ConnectivityNode;
+import cim4j.EnergyConsumer;
 import cim4j.EnergySchedulingType;
 import cim4j.EnergySource;
 import cim4j.Location;
@@ -700,6 +701,72 @@ class RdfReaderTest {
 
         assertEquals(svVoltage, topologicalNode.getSvVoltage());
         assertEquals(topologicalNode, svVoltage.getTopologicalNode());
+    }
+
+    @Test
+    @Order(330)
+    void testRead020() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test020.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("VoltageLevel.98"));
+        assertTrue(cimData.containsKey("EnergyConsumer.H-5"));
+
+        var obj = cimData.get("EnergyConsumer.H-5");
+        assertNotNull(obj);
+        assertTrue(obj instanceof EnergyConsumer);
+        var energyConsumer = (EnergyConsumer) obj;
+        assertEquals(EnergyConsumer.class, energyConsumer.getClass());
+        assertEquals("EnergyConsumer", energyConsumer.getCimType());
+        assertEquals("EnergyConsumer.H-5", energyConsumer.getRdfid());
+
+        var attributeNames = energyConsumer.getAttributeNames();
+        assertTrue(attributeNames.contains("EquipmentContainer"));
+        assertEquals("VoltageLevel.98", energyConsumer.getAttribute("EquipmentContainer"));
+
+        var voltageLevel = energyConsumer.getEquipmentContainer();
+        assertNotNull(voltageLevel);
+        assertEquals(VoltageLevel.class, voltageLevel.getClass());
+        assertEquals("VoltageLevel", voltageLevel.getCimType());
+        assertEquals("VoltageLevel.98", voltageLevel.getRdfid());
+        assertEquals(voltageLevel, cimData.get("VoltageLevel.98"));
+        assertEquals(voltageLevel.getRdfid(), energyConsumer.EquipmentContainerToString());
+
+        attributeNames = voltageLevel.getAttributeNames();
+        assertTrue(attributeNames.contains("Equipments"));
+        assertTrue(attributeNames.contains("name"));
+        assertEquals("EnergyConsumer.H-5", voltageLevel.getAttribute("Equipments"));
+        assertEquals("98", voltageLevel.getAttribute("name"));
+
+        var equipments = voltageLevel.getEquipments();
+        assertNotNull(equipments);
+        assertEquals(1, equipments.size());
+        assertTrue(equipments.contains(energyConsumer));
+    }
+
+    @Test
+    @Order(340)
+    void testRead021() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test021.xml")));
+        assertEquals(1, cimData.size());
+
+        assertTrue(cimData.containsKey("VoltageLevel.98"));
+
+        var obj = cimData.get("VoltageLevel.98");
+        assertNotNull(obj);
+        assertTrue(obj instanceof VoltageLevel);
+        var voltageLevel = (VoltageLevel) obj;
+        assertEquals(VoltageLevel.class, voltageLevel.getClass());
+        assertEquals("VoltageLevel", voltageLevel.getCimType());
+        assertEquals("VoltageLevel.98", voltageLevel.getRdfid());
+
+        var attributeNames = voltageLevel.getAttributeNames();
+        assertTrue(attributeNames.contains("BaseVoltage"));
+        assertTrue(attributeNames.contains("name"));
+        assertNull(voltageLevel.getAttribute("BaseVoltage"));
+        assertEquals("98", voltageLevel.getAttribute("name"));
     }
 
     @Test

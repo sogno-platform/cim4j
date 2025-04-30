@@ -704,6 +704,64 @@ class RdfWriterTest {
     }
 
     @Test
+    @Order(340)
+    void testWrite020() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test020.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("VoltageLevel.98"));
+        assertTrue(cimData.containsKey("EnergyConsumer.H-5"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(9, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:VoltageLevel rdf:ID=\"VoltageLevel.98\">", lines[2]);
+        assertEquals("    <cim:IdentifiedObject.name>98</cim:IdentifiedObject.name>", lines[3]);
+        assertEquals("  </cim:VoltageLevel>", lines[4]);
+        assertEquals("  <cim:EnergyConsumer rdf:ID=\"EnergyConsumer.H-5\">", lines[5]);
+        assertEquals("    <cim:Equipment.EquipmentContainer rdf:resource=\"#VoltageLevel.98\"/>", lines[6]);
+        assertEquals("  </cim:EnergyConsumer>", lines[7]);
+        assertEquals("</rdf:RDF>", lines[8]);
+    }
+
+    @Test
+    @Order(350)
+    void testWrite021() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test021.xml")));
+        assertEquals(1, cimData.size());
+
+        assertTrue(cimData.containsKey("VoltageLevel.98"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(6, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:VoltageLevel rdf:ID=\"VoltageLevel.98\">", lines[2]);
+        assertEquals("    <cim:IdentifiedObject.name>98</cim:IdentifiedObject.name>", lines[3]);
+        assertEquals("  </cim:VoltageLevel>", lines[4]);
+        assertEquals("</rdf:RDF>", lines[5]);
+    }
+
+    @Test
     @Order(360)
     void testIsClassMatchingProfile() {
         BaseClass cimObj = new BaseVoltage();

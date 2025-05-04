@@ -5,7 +5,7 @@
 
     <groupId>org.lfenergy.sogno</groupId>
     <artifactId>cim4j-parent</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
     <packaging>pom</packaging>
 
     <name>Java classes for CIM / CGMES</name>

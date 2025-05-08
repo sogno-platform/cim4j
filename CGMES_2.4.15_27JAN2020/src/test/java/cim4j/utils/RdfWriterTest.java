@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.StringWriter;
@@ -495,26 +496,43 @@ class RdfWriterTest {
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.EQ));
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.TP));
 
-        // All profiles are matching because of the attributes inherited from
+        // Many profiles are matching because of the attributes inherited from
         // IdentifiedObject (e.g. name).
-        for (CGMESProfile profile : CGMESProfile.values()) {
-            assertTrue(RdfWriter.isClassMatchingProfile(cimObj, profile));
-        }
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.DL));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.DY));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.GL));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SSH));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SV));
 
         cimObj = new VoltageLevel();
-        for (CGMESProfile profile : CGMESProfile.values()) {
-            assertTrue(RdfWriter.isClassMatchingProfile(cimObj, profile));
-        }
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.EQ));
+
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.DL));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.DY));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.GL));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SSH));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SV));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.TP));
 
         cimObj = new TopologicalNode();
-        for (CGMESProfile profile : CGMESProfile.values()) {
-            assertTrue(RdfWriter.isClassMatchingProfile(cimObj, profile));
-        }
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SV));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.TP));
+
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.EQ));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.DL));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.DY));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.GL));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SSH));
 
         cimObj = new TopologicalIsland();
-        for (CGMESProfile profile : CGMESProfile.values()) {
-            assertTrue(RdfWriter.isClassMatchingProfile(cimObj, profile));
-        }
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SV));
+
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.EQ));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.DL));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.DY));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.GL));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SSH));
+        assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.TP));
 
         cimObj = new SvVoltage();
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SV));
@@ -524,9 +542,9 @@ class RdfWriterTest {
         // SvVoltage does not inherit from IdentifiedObject
         for (CGMESProfile profile : CGMESProfile.values()) {
             if (profile == CGMESProfile.SV) {
-                assertTrue(RdfWriter.isClassMatchingProfile(cimObj, profile));
+                assertTrue(RdfWriter.isClassMatchingProfile(cimObj, profile), profile.toString());
             } else {
-                assertFalse(RdfWriter.isClassMatchingProfile(cimObj, profile));
+                assertFalse(RdfWriter.isClassMatchingProfile(cimObj, profile), profile.toString());
             }
         }
     }
@@ -594,6 +612,8 @@ class RdfWriterTest {
         assertEquals(CGMESProfile.SV, RdfWriter.getAttributeProfile(cimObj, "TopologicalNodes", profile));
         assertEquals(CGMESProfile.SV, RdfWriter.getAttributeProfile(cimObj, "name", profile));
         assertEquals(CGMESProfile.EQ, RdfWriter.getAttributeProfile(cimObj, "description", profile));
+
+        assertNull(RdfWriter.getAttributeProfile(cimObj, "dummy", profile));
     }
 
     @Test
@@ -753,6 +773,36 @@ class RdfWriterTest {
         assertEquals("    <cim:IdentifiedObject.name>Terminal.N0</cim:IdentifiedObject.name>", lines[10]);
         assertEquals("  </cim:Terminal>", lines[11]);
         assertEquals("</rdf:RDF>", lines[12]);
+    }
+
+    @Test
+    @Order(460)
+    void testWrite023() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test023.xml")));
+        assertEquals(1, cimData.size());
+
+        assertTrue(cimData.containsKey("BaseVoltage.20"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(7, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:BaseVoltage rdf:ID=\"BaseVoltage.20\">", lines[2]);
+        assertEquals(
+                "    <cim:IdentifiedObject.description>&lt;&amp;&gt; &lt;&amp;&gt; &lt;&amp;&gt;</cim:IdentifiedObject.description>",
+                lines[3]);
+        assertEquals("    <cim:IdentifiedObject.name>unknown entity reference: &amp;nbsp;</cim:IdentifiedObject.name>",
+                lines[4]);
+        assertEquals("  </cim:BaseVoltage>", lines[5]);
+        assertEquals("</rdf:RDF>", lines[6]);
     }
 
     @Test

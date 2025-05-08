@@ -506,6 +506,24 @@ class RdfReaderTest {
         assertNull(topologicalIsland.getAttribute("name"));
     }
 
+    @Test
+    @Order(360)
+    void testRead023() {
+        var cimData = RdfReader.read(List.of(getPath("rdf/test023.xml")));
+        assertEquals(1, cimData.size());
+
+        assertTrue(cimData.containsKey("BaseVoltage.20"));
+
+        var baseVoltage = cimData.get("BaseVoltage.20");
+        assertNotNull(baseVoltage);
+
+        var attributeNames = baseVoltage.getAttributeNames();
+        assertTrue(attributeNames.contains("description"));
+        assertTrue(attributeNames.contains("name"));
+        assertEquals("<&> <&> <&>", baseVoltage.getAttribute("description").toString(false));
+        assertEquals("unknown entity reference: &nbsp;", baseVoltage.getAttribute("name").toString(false));
+    }
+
     private String getPath(String aResource) {
         var url = getClass().getClassLoader().getResource(aResource);
         assertNotNull(url);

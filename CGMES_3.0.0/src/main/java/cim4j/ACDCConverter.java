@@ -1,0 +1,519 @@
+/*
+Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cimgen
+*/
+
+package cim4j;
+
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * A unit with valves for three phases, together with unit control equipment, essential protective and switching devices, DC storage capacitors, phase reactors and auxiliaries, if any, used for conversion.
+ */
+public class ACDCConverter extends ConductingEquipment {
+
+    private static final Logging LOG = Logging.getLogger(ACDCConverter.class);
+
+    private BaseClass[] ACDCConverter_class_attributes;
+    private BaseClass[] ACDCConverter_primitive_attributes;
+    private java.lang.String rdfid;
+
+    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
+    static {
+        ATTRIBUTE_NAMES_MAP = new ACDCConverter().getAttributeNamesMap();
+    }
+
+    private enum ACDCConverter_primitive_builder implements PrimitiveBuilder {
+        baseS() {
+            public BaseClass construct(java.lang.String value) {
+                return new ApparentPower(value);
+            }
+        },
+        idc() {
+            public BaseClass construct(java.lang.String value) {
+                return new CurrentFlow(value);
+            }
+        },
+        idleLoss() {
+            public BaseClass construct(java.lang.String value) {
+                return new ActivePower(value);
+            }
+        },
+        maxP() {
+            public BaseClass construct(java.lang.String value) {
+                return new ActivePower(value);
+            }
+        },
+        maxUdc() {
+            public BaseClass construct(java.lang.String value) {
+                return new Voltage(value);
+            }
+        },
+        minP() {
+            public BaseClass construct(java.lang.String value) {
+                return new ActivePower(value);
+            }
+        },
+        minUdc() {
+            public BaseClass construct(java.lang.String value) {
+                return new Voltage(value);
+            }
+        },
+        numberOfValves() {
+            public BaseClass construct(java.lang.String value) {
+                return new Integer(value);
+            }
+        },
+        p() {
+            public BaseClass construct(java.lang.String value) {
+                return new ActivePower(value);
+            }
+        },
+        poleLossP() {
+            public BaseClass construct(java.lang.String value) {
+                return new ActivePower(value);
+            }
+        },
+        q() {
+            public BaseClass construct(java.lang.String value) {
+                return new ReactivePower(value);
+            }
+        },
+        ratedUdc() {
+            public BaseClass construct(java.lang.String value) {
+                return new Voltage(value);
+            }
+        },
+        resistiveLoss() {
+            public BaseClass construct(java.lang.String value) {
+                return new Resistance(value);
+            }
+        },
+        switchingLoss() {
+            public BaseClass construct(java.lang.String value) {
+                return new ActivePowerPerCurrentFlow(value);
+            }
+        },
+        targetPpcc() {
+            public BaseClass construct(java.lang.String value) {
+                return new ActivePower(value);
+            }
+        },
+        targetUdc() {
+            public BaseClass construct(java.lang.String value) {
+                return new Voltage(value);
+            }
+        },
+        uc() {
+            public BaseClass construct(java.lang.String value) {
+                return new Voltage(value);
+            }
+        },
+        udc() {
+            public BaseClass construct(java.lang.String value) {
+                return new Voltage(value);
+            }
+        },
+        valveU0() {
+            public BaseClass construct(java.lang.String value) {
+                return new Voltage(value);
+            }
+        },
+        LAST_ENUM() {
+            public BaseClass construct(java.lang.String value) {
+                return new Integer("0");
+            }
+        }
+    }
+
+    private enum ACDCConverter_class_attributes_enum {
+        DCTerminals,
+        PccTerminal,
+        baseS,
+        idc,
+        idleLoss,
+        maxP,
+        maxUdc,
+        minP,
+        minUdc,
+        numberOfValves,
+        p,
+        poleLossP,
+        q,
+        ratedUdc,
+        resistiveLoss,
+        switchingLoss,
+        targetPpcc,
+        targetUdc,
+        uc,
+        udc,
+        valveU0,
+        LAST_ENUM
+    }
+
+    public ACDCConverter() {
+        ACDCConverter_primitive_attributes = new BaseClass[ACDCConverter_primitive_builder.values().length];
+        ACDCConverter_class_attributes = new BaseClass[ACDCConverter_class_attributes_enum.values().length];
+    }
+
+    @Override
+    public BaseClass construct() {
+        return new ACDCConverter();
+    }
+
+    @Override
+    public void setValue(java.lang.String s) {
+        LOG.error(debugString() + " is not sure what to do with " + s);
+    }
+
+    @Override
+    public void setRdfid(java.lang.String id) {
+        rdfid = id;
+    }
+
+    @Override
+    public java.lang.String getRdfid() {
+        return rdfid;
+    }
+
+    private void updateAttributeInArray(ACDCConverter_class_attributes_enum attrEnum, BaseClass value) {
+        try {
+            ACDCConverter_class_attributes[attrEnum.ordinal()] = value;
+        } catch (ArrayIndexOutOfBoundsException aoobe) {
+            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+        }
+    }
+
+    private void updateAttributeInArray(ACDCConverter_primitive_builder attrEnum, BaseClass value) {
+        try {
+            ACDCConverter_primitive_attributes[attrEnum.ordinal()] = value;
+        } catch (ArrayIndexOutOfBoundsException aoobe) {
+            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+        }
+    }
+
+    @Override
+    public void setAttribute(java.lang.String attrName, BaseClass value) {
+        try {
+            ACDCConverter_class_attributes_enum attrEnum = ACDCConverter_class_attributes_enum.valueOf(attrName);
+            updateAttributeInArray(attrEnum, value);
+            LOG.debug("Updated ACDCConverter, setting " + attrName);
+        } catch (IllegalArgumentException iae) {
+            super.setAttribute(attrName, value);
+        }
+    }
+
+    @Override
+    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
+    public void setAttribute(java.lang.String attrName, java.lang.String value) {
+        try {
+            ACDCConverter_primitive_builder attrEnum = ACDCConverter_primitive_builder.valueOf(attrName);
+            updateAttributeInArray(attrEnum, attrEnum.construct(value));
+            LOG.debug("Updated ACDCConverter, setting " + attrName + " to: " + value);
+        } catch (IllegalArgumentException iae) {
+            super.setAttribute(attrName, value);
+        }
+    }
+
+    @Override
+    public BaseClass getAttribute(java.lang.String attrName) {
+        boolean defined = false;
+        try {
+            ACDCConverter_primitive_builder attrEnum = ACDCConverter_primitive_builder.valueOf(attrName);
+            defined = true;
+            BaseClass attrValue = ACDCConverter_primitive_attributes[attrEnum.ordinal()];
+            if (attrValue != null) {
+                return attrValue;
+            }
+        } catch (IllegalArgumentException ignored) {
+        }
+
+        try {
+            ACDCConverter_class_attributes_enum attrEnum = ACDCConverter_class_attributes_enum.valueOf(attrName);
+            defined = true;
+            BaseClass attrValue = ACDCConverter_class_attributes[attrEnum.ordinal()];
+            if (attrValue != null) {
+                return attrValue;
+            }
+        } catch (IllegalArgumentException ignored) {
+        }
+
+        if (!defined) {
+            return super.getAttribute(attrName);
+        }
+        return null;
+    }
+
+    @Override
+    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
+        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
+        for (var enumValue : ACDCConverter_primitive_builder.values()) {
+            if (enumValue != ACDCConverter_primitive_builder.LAST_ENUM) {
+                namesMap.put(enumValue.name(), "ACDCConverter." + enumValue.name());
+            }
+        }
+        for (var enumValue : ACDCConverter_class_attributes_enum.values()) {
+            if (enumValue != ACDCConverter_class_attributes_enum.LAST_ENUM) {
+                namesMap.put(enumValue.name(), "ACDCConverter." + enumValue.name());
+            }
+        }
+        namesMap.putAll(super.getAttributeNamesMap());
+        return namesMap;
+    }
+
+    @Override
+    public Set<java.lang.String> getAttributeNames() {
+        return ATTRIBUTE_NAMES_MAP.keySet();
+    }
+
+    @Override
+    public java.lang.String getAttributeFullName(java.lang.String attrName) {
+        return ATTRIBUTE_NAMES_MAP.get(attrName);
+    }
+
+    @Override
+    public java.lang.String toString(boolean topClass) {
+        java.lang.String result = "";
+        if (topClass) {
+            for (ACDCConverter_primitive_builder attrEnum : ACDCConverter_primitive_builder.values()) {
+                BaseClass bc = ACDCConverter_primitive_attributes[attrEnum.ordinal()];
+                if (bc != null) {
+                    result += "    ACDCConverter." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+                }
+            }
+            for (ACDCConverter_class_attributes_enum attrEnum : ACDCConverter_class_attributes_enum.values()) {
+                BaseClass bc = ACDCConverter_class_attributes[attrEnum.ordinal()];
+                if (bc != null) {
+                    result += "    ACDCConverter." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
+                }
+            }
+            result += super.toString(true);
+        } else {
+            result += "(ACDCConverter) RDFID: " + rdfid;
+        }
+        return result;
+    }
+
+    private final java.lang.String debugName = "ACDCConverter";
+
+    @Override
+    public java.lang.String debugString() {
+        return debugName;
+    }
+
+    /**
+     * Get the namespace URL of an object of this class.
+     *
+     * @return The namespace URL
+     */
+    @Override
+    public java.lang.String getClassNamespaceUrl() {
+        return CLASS_NAMESPACE;
+    }
+
+    /**
+     * Get the namespace URL of an attribute (also for inherited attributes).
+     *
+     * @return The namespace URL
+     */
+    @Override
+    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
+    }
+
+    @Override
+    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
+        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * A resource can be used by multiple profiles. This is the set of profiles
+     * where this element can be found.
+     *
+     * @return All possible profiles for an object of this class
+     */
+    @Override
+    public Set<CGMESProfile> getPossibleProfiles() {
+        return POSSIBLE_PROFILES;
+    }
+
+    /**
+     * This is the profile with most of the attributes.
+     * It should be used to write the data to as few as possible files.
+     *
+     * @return The recommended profiles for an object of this class
+     */
+    @Override
+    public CGMESProfile getRecommendedProfile() {
+        return RECOMMENDED_PROFILE;
+    }
+
+    /**
+     * Get the possible profiles of an attribute (also for inherited attributes).
+     *
+     * @return All possible profiles for an attribute
+     */
+    @Override
+    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
+    }
+
+    /**
+     * Get the possible profiles for an object of this class including the possible
+     * profiles of all direct or inherited attributes.
+     *
+     * A resource can be used by multiple profiles. This is the set of profiles
+     * where this element or an attribute of this element can be found.
+     *
+     * @return All possible profiles for an object of this class and its attributes
+     */
+    @Override
+    public Set<CGMESProfile> getPossibleProfilesIncludingAttributes() {
+        return POSSIBLE_PROFILES_INCLUDING_ATTRIBUTES;
+    }
+
+    /**
+     * Private infos.
+     */
+
+    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+
+    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    static {
+        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("DCTerminals", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("PccTerminal", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("baseS", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.SV);
+            map.put("idc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("idleLoss", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("maxP", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("maxUdc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("minP", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("minUdc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("numberOfValves", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.SSH);
+            map.put("p", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.SV);
+            map.put("poleLossP", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.SSH);
+            map.put("q", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("ratedUdc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("resistiveLoss", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("switchingLoss", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.SSH);
+            map.put("targetPpcc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.SSH);
+            map.put("targetUdc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.SV);
+            map.put("uc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.SV);
+            map.put("udc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        {
+            Set<CGMESProfile> profiles = new LinkedHashSet<>();
+            profiles.add(CGMESProfile.EQ);
+            map.put("valveU0", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+        }
+        CLASS_ATTR_DETAILS_MAP = map;
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ACDCConverter().allAttrDetailsMap());
+    }
+
+    private static final Set<CGMESProfile> POSSIBLE_PROFILES;
+    static {
+        Set<CGMESProfile> profiles = new LinkedHashSet<>();
+        profiles.add(CGMESProfile.DY);
+        profiles.add(CGMESProfile.EQ);
+        profiles.add(CGMESProfile.SSH);
+        profiles.add(CGMESProfile.SV);
+        POSSIBLE_PROFILES = Collections.unmodifiableSet(profiles);
+    }
+
+    private static final CGMESProfile RECOMMENDED_PROFILE = CGMESProfile.EQ;
+
+    private static final Set<CGMESProfile> POSSIBLE_PROFILES_INCLUDING_ATTRIBUTES;
+    static {
+        Set<CGMESProfile> profiles = new LinkedHashSet<>(POSSIBLE_PROFILES);
+        for (var attrDetails : ATTR_DETAILS_MAP.values()) {
+            profiles.addAll(attrDetails.profiles);
+        }
+        POSSIBLE_PROFILES_INCLUDING_ATTRIBUTES = Collections.unmodifiableSet(profiles);
+    }
+}

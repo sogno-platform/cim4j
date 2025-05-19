@@ -4,290 +4,520 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Italian PSS - Detailed PSS.
  */
+@SuppressWarnings("unused")
 public class Pss5 extends PowerSystemStabilizerDynamics {
 
     private static final Logging LOG = Logging.getLogger(Pss5.class);
 
-    private BaseClass[] Pss5_class_attributes;
-    private BaseClass[] Pss5_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new Pss5().getAttributeNamesMap();
-    }
-
-    private enum Pss5_primitive_builder implements PrimitiveBuilder {
-        ctw2() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        deadband() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        isfreq() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        kf() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        kpe() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        kpss() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        pmm() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        tl1() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tl2() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tl3() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tl4() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tpe() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tw1() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tw2() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        vadat() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        vsmn() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        vsmx() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum Pss5_class_attributes_enum {
-        ctw2,
-        deadband,
-        isfreq,
-        kf,
-        kpe,
-        kpss,
-        pmm,
-        tl1,
-        tl2,
-        tl3,
-        tl4,
-        tpe,
-        tw1,
-        tw2,
-        vadat,
-        vsmn,
-        vsmx,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public Pss5() {
-        Pss5_primitive_attributes = new BaseClass[Pss5_primitive_builder.values().length];
-        Pss5_class_attributes = new BaseClass[Pss5_class_attributes_enum.values().length];
+        setCimType("Pss5");
+    }
+
+    /**
+     * Selector for Second washout enabling (C). true = second washout filter is bypassed false = second washout filter in use. Typical Value = true.
+     */
+    private Boolean ctw2; // Boolean
+
+    public Boolean getCtw2() {
+        return ctw2;
+    }
+
+    public void setCtw2(Boolean _value_) {
+        ctw2 = _value_;
+    }
+
+    public void setCtw2(String _value_) {
+        ctw2 = getBooleanFromString(_value_);
+    }
+
+    public String ctw2ToString() {
+        return ctw2 != null ? ctw2.toString() : null;
+    }
+
+    /**
+     * Stabilizer output dead band (DeadBand).  Typical Value = 0.
+     */
+    private Double deadband; // PU
+
+    public Double getDeadband() {
+        return deadband;
+    }
+
+    public void setDeadband(Double _value_) {
+        deadband = _value_;
+    }
+
+    public void setDeadband(String _value_) {
+        deadband = getDoubleFromString(_value_);
+    }
+
+    public String deadbandToString() {
+        return deadband != null ? deadband.toString() : null;
+    }
+
+    /**
+     * Selector for Frequency/shaft speed input (IsFreq). true = speed false = frequency. Typical Value = true.
+     */
+    private Boolean isfreq; // Boolean
+
+    public Boolean getIsfreq() {
+        return isfreq;
+    }
+
+    public void setIsfreq(Boolean _value_) {
+        isfreq = _value_;
+    }
+
+    public void setIsfreq(String _value_) {
+        isfreq = getBooleanFromString(_value_);
+    }
+
+    public String isfreqToString() {
+        return isfreq != null ? isfreq.toString() : null;
+    }
+
+    /**
+     * Frequency/shaft speed input gain (K).  Typical Value = 5.
+     */
+    private Double kf; // Simple_Float
+
+    public Double getKf() {
+        return kf;
+    }
+
+    public void setKf(Double _value_) {
+        kf = _value_;
+    }
+
+    public void setKf(String _value_) {
+        kf = getDoubleFromString(_value_);
+    }
+
+    public String kfToString() {
+        return kf != null ? kf.toString() : null;
+    }
+
+    /**
+     * Electric power input gain (K).  Typical Value = 0.3.
+     */
+    private Double kpe; // Simple_Float
+
+    public Double getKpe() {
+        return kpe;
+    }
+
+    public void setKpe(Double _value_) {
+        kpe = _value_;
+    }
+
+    public void setKpe(String _value_) {
+        kpe = getDoubleFromString(_value_);
+    }
+
+    public String kpeToString() {
+        return kpe != null ? kpe.toString() : null;
+    }
+
+    /**
+     * PSS gain (K).  Typical Value = 1.
+     */
+    private Double kpss; // Simple_Float
+
+    public Double getKpss() {
+        return kpss;
+    }
+
+    public void setKpss(Double _value_) {
+        kpss = _value_;
+    }
+
+    public void setKpss(String _value_) {
+        kpss = getDoubleFromString(_value_);
+    }
+
+    public String kpssToString() {
+        return kpss != null ? kpss.toString() : null;
+    }
+
+    /**
+     * Minimum power PSS enabling (P).  Typical Value = 0.25.
+     */
+    private Double pmm; // PU
+
+    public Double getPmm() {
+        return pmm;
+    }
+
+    public void setPmm(Double _value_) {
+        pmm = _value_;
+    }
+
+    public void setPmm(String _value_) {
+        pmm = getDoubleFromString(_value_);
+    }
+
+    public String pmmToString() {
+        return pmm != null ? pmm.toString() : null;
+    }
+
+    /**
+     * Lead/lag time constant (T).  Typical Value = 0.
+     */
+    private Double tl1; // Seconds
+
+    public Double getTl1() {
+        return tl1;
+    }
+
+    public void setTl1(Double _value_) {
+        tl1 = _value_;
+    }
+
+    public void setTl1(String _value_) {
+        tl1 = getDoubleFromString(_value_);
+    }
+
+    public String tl1ToString() {
+        return tl1 != null ? tl1.toString() : null;
+    }
+
+    /**
+     * Lead/lag time constant (T).  Typical Value = 0.
+     */
+    private Double tl2; // Seconds
+
+    public Double getTl2() {
+        return tl2;
+    }
+
+    public void setTl2(Double _value_) {
+        tl2 = _value_;
+    }
+
+    public void setTl2(String _value_) {
+        tl2 = getDoubleFromString(_value_);
+    }
+
+    public String tl2ToString() {
+        return tl2 != null ? tl2.toString() : null;
+    }
+
+    /**
+     * Lead/lag time constant (T).  Typical Value = 0.
+     */
+    private Double tl3; // Seconds
+
+    public Double getTl3() {
+        return tl3;
+    }
+
+    public void setTl3(Double _value_) {
+        tl3 = _value_;
+    }
+
+    public void setTl3(String _value_) {
+        tl3 = getDoubleFromString(_value_);
+    }
+
+    public String tl3ToString() {
+        return tl3 != null ? tl3.toString() : null;
+    }
+
+    /**
+     * Lead/lag time constant (T).  Typical Value = 0.
+     */
+    private Double tl4; // Seconds
+
+    public Double getTl4() {
+        return tl4;
+    }
+
+    public void setTl4(Double _value_) {
+        tl4 = _value_;
+    }
+
+    public void setTl4(String _value_) {
+        tl4 = getDoubleFromString(_value_);
+    }
+
+    public String tl4ToString() {
+        return tl4 != null ? tl4.toString() : null;
+    }
+
+    /**
+     * Electric power filter time constant (T).  Typical Value = 0.05.
+     */
+    private Double tpe; // Seconds
+
+    public Double getTpe() {
+        return tpe;
+    }
+
+    public void setTpe(Double _value_) {
+        tpe = _value_;
+    }
+
+    public void setTpe(String _value_) {
+        tpe = getDoubleFromString(_value_);
+    }
+
+    public String tpeToString() {
+        return tpe != null ? tpe.toString() : null;
+    }
+
+    /**
+     * First WashOut (T).  Typical Value = 3.5.
+     */
+    private Double tw1; // Seconds
+
+    public Double getTw1() {
+        return tw1;
+    }
+
+    public void setTw1(Double _value_) {
+        tw1 = _value_;
+    }
+
+    public void setTw1(String _value_) {
+        tw1 = getDoubleFromString(_value_);
+    }
+
+    public String tw1ToString() {
+        return tw1 != null ? tw1.toString() : null;
+    }
+
+    /**
+     * Second WashOut (T).  Typical Value = 0.
+     */
+    private Double tw2; // Seconds
+
+    public Double getTw2() {
+        return tw2;
+    }
+
+    public void setTw2(Double _value_) {
+        tw2 = _value_;
+    }
+
+    public void setTw2(String _value_) {
+        tw2 = getDoubleFromString(_value_);
+    }
+
+    public String tw2ToString() {
+        return tw2 != null ? tw2.toString() : null;
+    }
+
+    /**
+     */
+    private Boolean vadat; // Boolean
+
+    public Boolean getVadat() {
+        return vadat;
+    }
+
+    public void setVadat(Boolean _value_) {
+        vadat = _value_;
+    }
+
+    public void setVadat(String _value_) {
+        vadat = getBooleanFromString(_value_);
+    }
+
+    public String vadatToString() {
+        return vadat != null ? vadat.toString() : null;
+    }
+
+    /**
+     * Stabilizer output max limit (V).  Typical Value = -0.1.
+     */
+    private Double vsmn; // PU
+
+    public Double getVsmn() {
+        return vsmn;
+    }
+
+    public void setVsmn(Double _value_) {
+        vsmn = _value_;
+    }
+
+    public void setVsmn(String _value_) {
+        vsmn = getDoubleFromString(_value_);
+    }
+
+    public String vsmnToString() {
+        return vsmn != null ? vsmn.toString() : null;
+    }
+
+    /**
+     * Stabilizer output min limit (V).  Typical Value = 0.1.
+     */
+    private Double vsmx; // PU
+
+    public Double getVsmx() {
+        return vsmx;
+    }
+
+    public void setVsmx(Double _value_) {
+        vsmx = _value_;
+    }
+
+    public void setVsmx(String _value_) {
+        vsmx = getDoubleFromString(_value_);
+    }
+
+    public String vsmxToString() {
+        return vsmx != null ? vsmx.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new Pss5();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("Pss5", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(Pss5_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            Pss5_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(Pss5_primitive_builder attrEnum, BaseClass value) {
-        try {
-            Pss5_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("Pss5", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            Pss5_class_attributes_enum attrEnum = Pss5_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated Pss5, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            Pss5_primitive_builder attrEnum = Pss5_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated Pss5, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            Pss5_primitive_builder attrEnum = Pss5_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = Pss5_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            Pss5_class_attributes_enum attrEnum = Pss5_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = Pss5_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : Pss5_primitive_builder.values()) {
-            if (enumValue != Pss5_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "Pss5." + enumValue.name());
-            }
-        }
-        for (var enumValue : Pss5_class_attributes_enum.values()) {
-            if (enumValue != Pss5_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "Pss5." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (Pss5_primitive_builder attrEnum : Pss5_primitive_builder.values()) {
-                BaseClass bc = Pss5_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    Pss5." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (Pss5_class_attributes_enum attrEnum : Pss5_class_attributes_enum.values()) {
-                BaseClass bc = Pss5_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    Pss5." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(Pss5) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "Pss5";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("Pss5", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -296,7 +526,7 @@ public class Pss5 extends PowerSystemStabilizerDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -306,15 +536,8 @@ public class Pss5 extends PowerSystemStabilizerDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -345,7 +568,7 @@ public class Pss5 extends PowerSystemStabilizerDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -367,99 +590,124 @@ public class Pss5 extends PowerSystemStabilizerDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ctw2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ctw2", new AttrDetails("Pss5.ctw2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("deadband", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("deadband", new AttrDetails("Pss5.deadband", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("isfreq", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("isfreq", new AttrDetails("Pss5.isfreq", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kf", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kf", new AttrDetails("Pss5.kf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpe", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kpe", new AttrDetails("Pss5.kpe", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpss", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kpss", new AttrDetails("Pss5.kpss", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmm", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("pmm", new AttrDetails("Pss5.pmm", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tl1", new AttrDetails("Pss5.tl1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tl2", new AttrDetails("Pss5.tl2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl3", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tl3", new AttrDetails("Pss5.tl3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl4", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tl4", new AttrDetails("Pss5.tl4", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpe", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tpe", new AttrDetails("Pss5.tpe", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tw1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tw1", new AttrDetails("Pss5.tw1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tw2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tw2", new AttrDetails("Pss5.tw2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vadat", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vadat", new AttrDetails("Pss5.vadat", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vsmn", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vsmn", new AttrDetails("Pss5.vsmn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vsmx", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vsmx", new AttrDetails("Pss5.vsmx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Pss5().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("ctw2", new GetterSetter(this::ctw2ToString, null, this::setCtw2));
+        map.put("deadband", new GetterSetter(this::deadbandToString, null, this::setDeadband));
+        map.put("isfreq", new GetterSetter(this::isfreqToString, null, this::setIsfreq));
+        map.put("kf", new GetterSetter(this::kfToString, null, this::setKf));
+        map.put("kpe", new GetterSetter(this::kpeToString, null, this::setKpe));
+        map.put("kpss", new GetterSetter(this::kpssToString, null, this::setKpss));
+        map.put("pmm", new GetterSetter(this::pmmToString, null, this::setPmm));
+        map.put("tl1", new GetterSetter(this::tl1ToString, null, this::setTl1));
+        map.put("tl2", new GetterSetter(this::tl2ToString, null, this::setTl2));
+        map.put("tl3", new GetterSetter(this::tl3ToString, null, this::setTl3));
+        map.put("tl4", new GetterSetter(this::tl4ToString, null, this::setTl4));
+        map.put("tpe", new GetterSetter(this::tpeToString, null, this::setTpe));
+        map.put("tw1", new GetterSetter(this::tw1ToString, null, this::setTw1));
+        map.put("tw2", new GetterSetter(this::tw2ToString, null, this::setTw2));
+        map.put("vadat", new GetterSetter(this::vadatToString, null, this::setVadat));
+        map.put("vsmn", new GetterSetter(this::vsmnToString, null, this::setVsmn));
+        map.put("vsmx", new GetterSetter(this::vsmxToString, null, this::setVsmx));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

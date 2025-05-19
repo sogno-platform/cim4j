@@ -4,314 +4,605 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Generic turbogas with acceleration and temperature controller.
  */
+@SuppressWarnings("unused")
 public class GovGAST3 extends TurbineGovernorDynamics {
 
     private static final Logging LOG = Logging.getLogger(GovGAST3.class);
 
-    private BaseClass[] GovGAST3_class_attributes;
-    private BaseClass[] GovGAST3_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new GovGAST3().getAttributeNamesMap();
-    }
-
-    private enum GovGAST3_primitive_builder implements PrimitiveBuilder {
-        bca() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        bp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        dtc() {
-            public BaseClass construct(java.lang.String value) {
-                return new Temperature(value);
-            }
-        },
-        ka() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kac() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        kca() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        ksi() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        ky() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        mnef() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        mxef() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        rcmn() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        rcmx() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        tac() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tc() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        td() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tfen() {
-            public BaseClass construct(java.lang.String value) {
-                return new Temperature(value);
-            }
-        },
-        tg() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tsi() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tt() {
-            public BaseClass construct(java.lang.String value) {
-                return new Temperature(value);
-            }
-        },
-        ttc() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        ty() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum GovGAST3_class_attributes_enum {
-        bca,
-        bp,
-        dtc,
-        ka,
-        kac,
-        kca,
-        ksi,
-        ky,
-        mnef,
-        mxef,
-        rcmn,
-        rcmx,
-        tac,
-        tc,
-        td,
-        tfen,
-        tg,
-        tsi,
-        tt,
-        ttc,
-        ty,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public GovGAST3() {
-        GovGAST3_primitive_attributes = new BaseClass[GovGAST3_primitive_builder.values().length];
-        GovGAST3_class_attributes = new BaseClass[GovGAST3_class_attributes_enum.values().length];
+        setCimType("GovGAST3");
+    }
+
+    /**
+     * Acceleration limit set-point (&lt;i&gt;Bca&lt;/i&gt;).  Unit = 1/s.  Typical value = 0,01.
+     */
+    private Float bca; // Float
+
+    public Float getBca() {
+        return bca;
+    }
+
+    public void setBca(Float _value_) {
+        bca = _value_;
+    }
+
+    public void setBca(String _value_) {
+        bca = getFloatFromString(_value_);
+    }
+
+    public String bcaToString() {
+        return bca != null ? bca.toString() : null;
+    }
+
+    /**
+     * Droop (&lt;i&gt;bp&lt;/i&gt;).  Typical value = 0,05.
+     */
+    private Double bp; // PU
+
+    public Double getBp() {
+        return bp;
+    }
+
+    public void setBp(Double _value_) {
+        bp = _value_;
+    }
+
+    public void setBp(String _value_) {
+        bp = getDoubleFromString(_value_);
+    }
+
+    public String bpToString() {
+        return bp != null ? bp.toString() : null;
+    }
+
+    /**
+     * Exhaust temperature variation due to fuel flow increasing from 0 to 1 PU (&lt;i&gt;deltaTc&lt;/i&gt;).  Typical value = 390.
+     */
+    private Double dtc; // Temperature
+
+    public Double getDtc() {
+        return dtc;
+    }
+
+    public void setDtc(Double _value_) {
+        dtc = _value_;
+    }
+
+    public void setDtc(String _value_) {
+        dtc = getDoubleFromString(_value_);
+    }
+
+    public String dtcToString() {
+        return dtc != null ? dtc.toString() : null;
+    }
+
+    /**
+     * Minimum fuel flow (&lt;i&gt;Ka&lt;/i&gt;).  Typical value = 0,23.
+     */
+    private Double ka; // PU
+
+    public Double getKa() {
+        return ka;
+    }
+
+    public void setKa(Double _value_) {
+        ka = _value_;
+    }
+
+    public void setKa(String _value_) {
+        ka = getDoubleFromString(_value_);
+    }
+
+    public String kaToString() {
+        return ka != null ? ka.toString() : null;
+    }
+
+    /**
+     * Fuel system feedback (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;AC&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0.
+     */
+    private Float kac; // Float
+
+    public Float getKac() {
+        return kac;
+    }
+
+    public void setKac(Float _value_) {
+        kac = _value_;
+    }
+
+    public void setKac(String _value_) {
+        kac = getFloatFromString(_value_);
+    }
+
+    public String kacToString() {
+        return kac != null ? kac.toString() : null;
+    }
+
+    /**
+     * Acceleration control integral gain (&lt;i&gt;Kca&lt;/i&gt;). Unit = 1/s.  Typical value = 100.
+     */
+    private Float kca; // Float
+
+    public Float getKca() {
+        return kca;
+    }
+
+    public void setKca(Float _value_) {
+        kca = _value_;
+    }
+
+    public void setKca(String _value_) {
+        kca = getFloatFromString(_value_);
+    }
+
+    public String kcaToString() {
+        return kca != null ? kca.toString() : null;
+    }
+
+    /**
+     * Gain of radiation shield (&lt;i&gt;Ksi&lt;/i&gt;).  Typical value = 0,8.
+     */
+    private Float ksi; // Float
+
+    public Float getKsi() {
+        return ksi;
+    }
+
+    public void setKsi(Float _value_) {
+        ksi = _value_;
+    }
+
+    public void setKsi(String _value_) {
+        ksi = getFloatFromString(_value_);
+    }
+
+    public String ksiToString() {
+        return ksi != null ? ksi.toString() : null;
+    }
+
+    /**
+     * Coefficient of transfer function of fuel valve positioner (&lt;i&gt;Ky&lt;/i&gt;).  Typical value = 1.
+     */
+    private Float ky; // Float
+
+    public Float getKy() {
+        return ky;
+    }
+
+    public void setKy(Float _value_) {
+        ky = _value_;
+    }
+
+    public void setKy(String _value_) {
+        ky = getFloatFromString(_value_);
+    }
+
+    public String kyToString() {
+        return ky != null ? ky.toString() : null;
+    }
+
+    /**
+     * Fuel flow maximum negative error value (&lt;i&gt;MNef&lt;/i&gt;).  Typical value = -0,05.
+     */
+    private Double mnef; // PU
+
+    public Double getMnef() {
+        return mnef;
+    }
+
+    public void setMnef(Double _value_) {
+        mnef = _value_;
+    }
+
+    public void setMnef(String _value_) {
+        mnef = getDoubleFromString(_value_);
+    }
+
+    public String mnefToString() {
+        return mnef != null ? mnef.toString() : null;
+    }
+
+    /**
+     * Fuel flow maximum positive error value (&lt;i&gt;MXef&lt;/i&gt;).  Typical value = 0,05.
+     */
+    private Double mxef; // PU
+
+    public Double getMxef() {
+        return mxef;
+    }
+
+    public void setMxef(Double _value_) {
+        mxef = _value_;
+    }
+
+    public void setMxef(String _value_) {
+        mxef = getDoubleFromString(_value_);
+    }
+
+    public String mxefToString() {
+        return mxef != null ? mxef.toString() : null;
+    }
+
+    /**
+     * Minimum fuel flow (&lt;i&gt;RCMN&lt;/i&gt;).  Typical value = -0,1.
+     */
+    private Double rcmn; // PU
+
+    public Double getRcmn() {
+        return rcmn;
+    }
+
+    public void setRcmn(Double _value_) {
+        rcmn = _value_;
+    }
+
+    public void setRcmn(String _value_) {
+        rcmn = getDoubleFromString(_value_);
+    }
+
+    public String rcmnToString() {
+        return rcmn != null ? rcmn.toString() : null;
+    }
+
+    /**
+     * Maximum fuel flow (&lt;i&gt;RCMX&lt;/i&gt;).  Typical value = 1.
+     */
+    private Double rcmx; // PU
+
+    public Double getRcmx() {
+        return rcmx;
+    }
+
+    public void setRcmx(Double _value_) {
+        rcmx = _value_;
+    }
+
+    public void setRcmx(String _value_) {
+        rcmx = getDoubleFromString(_value_);
+    }
+
+    public String rcmxToString() {
+        return rcmx != null ? rcmx.toString() : null;
+    }
+
+    /**
+     * Fuel control time constant (&lt;i&gt;Tac&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,1.
+     */
+    private Double tac; // Seconds
+
+    public Double getTac() {
+        return tac;
+    }
+
+    public void setTac(Double _value_) {
+        tac = _value_;
+    }
+
+    public void setTac(String _value_) {
+        tac = getDoubleFromString(_value_);
+    }
+
+    public String tacToString() {
+        return tac != null ? tac.toString() : null;
+    }
+
+    /**
+     * Compressor discharge volume time constant (&lt;i&gt;Tc&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,2.
+     */
+    private Double tc; // Seconds
+
+    public Double getTc() {
+        return tc;
+    }
+
+    public void setTc(Double _value_) {
+        tc = _value_;
+    }
+
+    public void setTc(String _value_) {
+        tc = getDoubleFromString(_value_);
+    }
+
+    public String tcToString() {
+        return tc != null ? tc.toString() : null;
+    }
+
+    /**
+     * Temperature controller derivative gain (&lt;i&gt;Td&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 3,3.
+     */
+    private Double td; // Seconds
+
+    public Double getTd() {
+        return td;
+    }
+
+    public void setTd(Double _value_) {
+        td = _value_;
+    }
+
+    public void setTd(String _value_) {
+        td = getDoubleFromString(_value_);
+    }
+
+    public String tdToString() {
+        return td != null ? td.toString() : null;
+    }
+
+    /**
+     * Turbine rated exhaust temperature correspondent to Pm=1 PU (&lt;i&gt;Tfen&lt;/i&gt;).  Typical value = 540.
+     */
+    private Double tfen; // Temperature
+
+    public Double getTfen() {
+        return tfen;
+    }
+
+    public void setTfen(Double _value_) {
+        tfen = _value_;
+    }
+
+    public void setTfen(String _value_) {
+        tfen = getDoubleFromString(_value_);
+    }
+
+    public String tfenToString() {
+        return tfen != null ? tfen.toString() : null;
+    }
+
+    /**
+     * Time constant of speed governor (&lt;i&gt;Tg&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,05.
+     */
+    private Double tg; // Seconds
+
+    public Double getTg() {
+        return tg;
+    }
+
+    public void setTg(Double _value_) {
+        tg = _value_;
+    }
+
+    public void setTg(String _value_) {
+        tg = getDoubleFromString(_value_);
+    }
+
+    public String tgToString() {
+        return tg != null ? tg.toString() : null;
+    }
+
+    /**
+     * Time constant of radiation shield (&lt;i&gt;Tsi&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 15.
+     */
+    private Double tsi; // Seconds
+
+    public Double getTsi() {
+        return tsi;
+    }
+
+    public void setTsi(Double _value_) {
+        tsi = _value_;
+    }
+
+    public void setTsi(String _value_) {
+        tsi = getDoubleFromString(_value_);
+    }
+
+    public String tsiToString() {
+        return tsi != null ? tsi.toString() : null;
+    }
+
+    /**
+     * Temperature controller integration rate (&lt;i&gt;Tt&lt;/i&gt;).  Typical value = 250.
+     */
+    private Double tt; // Temperature
+
+    public Double getTt() {
+        return tt;
+    }
+
+    public void setTt(Double _value_) {
+        tt = _value_;
+    }
+
+    public void setTt(String _value_) {
+        tt = getDoubleFromString(_value_);
+    }
+
+    public String ttToString() {
+        return tt != null ? tt.toString() : null;
+    }
+
+    /**
+     * Time constant of thermocouple (&lt;i&gt;Ttc&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 2,5.
+     */
+    private Double ttc; // Seconds
+
+    public Double getTtc() {
+        return ttc;
+    }
+
+    public void setTtc(Double _value_) {
+        ttc = _value_;
+    }
+
+    public void setTtc(String _value_) {
+        ttc = getDoubleFromString(_value_);
+    }
+
+    public String ttcToString() {
+        return ttc != null ? ttc.toString() : null;
+    }
+
+    /**
+     * Time constant of fuel valve positioner (&lt;i&gt;Ty&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,2.
+     */
+    private Double ty; // Seconds
+
+    public Double getTy() {
+        return ty;
+    }
+
+    public void setTy(Double _value_) {
+        ty = _value_;
+    }
+
+    public void setTy(String _value_) {
+        ty = getDoubleFromString(_value_);
+    }
+
+    public String tyToString() {
+        return ty != null ? ty.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new GovGAST3();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("GovGAST3", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(GovGAST3_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            GovGAST3_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(GovGAST3_primitive_builder attrEnum, BaseClass value) {
-        try {
-            GovGAST3_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("GovGAST3", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            GovGAST3_class_attributes_enum attrEnum = GovGAST3_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated GovGAST3, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            GovGAST3_primitive_builder attrEnum = GovGAST3_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated GovGAST3, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            GovGAST3_primitive_builder attrEnum = GovGAST3_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = GovGAST3_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            GovGAST3_class_attributes_enum attrEnum = GovGAST3_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = GovGAST3_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : GovGAST3_primitive_builder.values()) {
-            if (enumValue != GovGAST3_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "GovGAST3." + enumValue.name());
-            }
-        }
-        for (var enumValue : GovGAST3_class_attributes_enum.values()) {
-            if (enumValue != GovGAST3_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "GovGAST3." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (GovGAST3_primitive_builder attrEnum : GovGAST3_primitive_builder.values()) {
-                BaseClass bc = GovGAST3_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    GovGAST3." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (GovGAST3_class_attributes_enum attrEnum : GovGAST3_class_attributes_enum.values()) {
-                BaseClass bc = GovGAST3_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    GovGAST3." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(GovGAST3) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "GovGAST3";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("GovGAST3", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -320,7 +611,7 @@ public class GovGAST3 extends TurbineGovernorDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -330,15 +621,8 @@ public class GovGAST3 extends TurbineGovernorDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -369,7 +653,7 @@ public class GovGAST3 extends TurbineGovernorDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -391,119 +675,148 @@ public class GovGAST3 extends TurbineGovernorDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("bca", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("bca", new AttrDetails("GovGAST3.bca", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("bp", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("bp", new AttrDetails("GovGAST3.bp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dtc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("dtc", new AttrDetails("GovGAST3.dtc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ka", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ka", new AttrDetails("GovGAST3.ka", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kac", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("kac", new AttrDetails("GovGAST3.kac", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kca", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("kca", new AttrDetails("GovGAST3.kca", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ksi", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ksi", new AttrDetails("GovGAST3.ksi", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ky", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ky", new AttrDetails("GovGAST3.ky", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mnef", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("mnef", new AttrDetails("GovGAST3.mnef", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mxef", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("mxef", new AttrDetails("GovGAST3.mxef", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rcmn", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("rcmn", new AttrDetails("GovGAST3.rcmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rcmx", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("rcmx", new AttrDetails("GovGAST3.rcmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tac", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tac", new AttrDetails("GovGAST3.tac", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tc", new AttrDetails("GovGAST3.tc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("td", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("td", new AttrDetails("GovGAST3.td", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tfen", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tfen", new AttrDetails("GovGAST3.tfen", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tg", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tg", new AttrDetails("GovGAST3.tg", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tsi", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tsi", new AttrDetails("GovGAST3.tsi", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tt", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tt", new AttrDetails("GovGAST3.tt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ttc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ttc", new AttrDetails("GovGAST3.ttc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ty", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ty", new AttrDetails("GovGAST3.ty", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovGAST3().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("bca", new GetterSetter(this::bcaToString, null, this::setBca));
+        map.put("bp", new GetterSetter(this::bpToString, null, this::setBp));
+        map.put("dtc", new GetterSetter(this::dtcToString, null, this::setDtc));
+        map.put("ka", new GetterSetter(this::kaToString, null, this::setKa));
+        map.put("kac", new GetterSetter(this::kacToString, null, this::setKac));
+        map.put("kca", new GetterSetter(this::kcaToString, null, this::setKca));
+        map.put("ksi", new GetterSetter(this::ksiToString, null, this::setKsi));
+        map.put("ky", new GetterSetter(this::kyToString, null, this::setKy));
+        map.put("mnef", new GetterSetter(this::mnefToString, null, this::setMnef));
+        map.put("mxef", new GetterSetter(this::mxefToString, null, this::setMxef));
+        map.put("rcmn", new GetterSetter(this::rcmnToString, null, this::setRcmn));
+        map.put("rcmx", new GetterSetter(this::rcmxToString, null, this::setRcmx));
+        map.put("tac", new GetterSetter(this::tacToString, null, this::setTac));
+        map.put("tc", new GetterSetter(this::tcToString, null, this::setTc));
+        map.put("td", new GetterSetter(this::tdToString, null, this::setTd));
+        map.put("tfen", new GetterSetter(this::tfenToString, null, this::setTfen));
+        map.put("tg", new GetterSetter(this::tgToString, null, this::setTg));
+        map.put("tsi", new GetterSetter(this::tsiToString, null, this::setTsi));
+        map.put("tt", new GetterSetter(this::ttToString, null, this::setTt));
+        map.put("ttc", new GetterSetter(this::ttcToString, null, this::setTtc));
+        map.put("ty", new GetterSetter(this::tyToString, null, this::setTy));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -4,248 +4,374 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Simplified excitation system.
  */
+@SuppressWarnings("unused")
 public class ExcSEXS extends ExcitationSystemDynamics {
 
     private static final Logging LOG = Logging.getLogger(ExcSEXS.class);
 
-    private BaseClass[] ExcSEXS_class_attributes;
-    private BaseClass[] ExcSEXS_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new ExcSEXS().getAttributeNamesMap();
-    }
-
-    private enum ExcSEXS_primitive_builder implements PrimitiveBuilder {
-        efdmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        efdmin() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        emax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        emin() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        k() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kc() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        tatb() {
-            public BaseClass construct(java.lang.String value) {
-                return new Float(value);
-            }
-        },
-        tb() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tc() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        te() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum ExcSEXS_class_attributes_enum {
-        efdmax,
-        efdmin,
-        emax,
-        emin,
-        k,
-        kc,
-        tatb,
-        tb,
-        tc,
-        te,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public ExcSEXS() {
-        ExcSEXS_primitive_attributes = new BaseClass[ExcSEXS_primitive_builder.values().length];
-        ExcSEXS_class_attributes = new BaseClass[ExcSEXS_class_attributes_enum.values().length];
+        setCimType("ExcSEXS");
+    }
+
+    /**
+     * Field voltage clipping maximum limit (&lt;i&gt;Efdmax&lt;/i&gt;) (&amp;gt; ExcSEXS.efdmin).  Typical value = 5.
+     */
+    private Double efdmax; // PU
+
+    public Double getEfdmax() {
+        return efdmax;
+    }
+
+    public void setEfdmax(Double _value_) {
+        efdmax = _value_;
+    }
+
+    public void setEfdmax(String _value_) {
+        efdmax = getDoubleFromString(_value_);
+    }
+
+    public String efdmaxToString() {
+        return efdmax != null ? efdmax.toString() : null;
+    }
+
+    /**
+     * Field voltage clipping minimum limit (&lt;i&gt;Efdmin&lt;/i&gt;) (&amp;lt; ExcSEXS.efdmax).  Typical value = -5.
+     */
+    private Double efdmin; // PU
+
+    public Double getEfdmin() {
+        return efdmin;
+    }
+
+    public void setEfdmin(Double _value_) {
+        efdmin = _value_;
+    }
+
+    public void setEfdmin(String _value_) {
+        efdmin = getDoubleFromString(_value_);
+    }
+
+    public String efdminToString() {
+        return efdmin != null ? efdmin.toString() : null;
+    }
+
+    /**
+     * Maximum field voltage output (&lt;i&gt;Emax&lt;/i&gt;) (&amp;gt; ExcSEXS.emin).  Typical value = 5.
+     */
+    private Double emax; // PU
+
+    public Double getEmax() {
+        return emax;
+    }
+
+    public void setEmax(Double _value_) {
+        emax = _value_;
+    }
+
+    public void setEmax(String _value_) {
+        emax = getDoubleFromString(_value_);
+    }
+
+    public String emaxToString() {
+        return emax != null ? emax.toString() : null;
+    }
+
+    /**
+     * Minimum field voltage output (&lt;i&gt;Emin&lt;/i&gt;) (&amp;lt; ExcSEXS.emax).  Typical value = -5.
+     */
+    private Double emin; // PU
+
+    public Double getEmin() {
+        return emin;
+    }
+
+    public void setEmin(Double _value_) {
+        emin = _value_;
+    }
+
+    public void setEmin(String _value_) {
+        emin = getDoubleFromString(_value_);
+    }
+
+    public String eminToString() {
+        return emin != null ? emin.toString() : null;
+    }
+
+    /**
+     * Gain (&lt;i&gt;K&lt;/i&gt;) (&amp;gt; 0).  Typical value = 100.
+     */
+    private Double k; // PU
+
+    public Double getK() {
+        return k;
+    }
+
+    public void setK(Double _value_) {
+        k = _value_;
+    }
+
+    public void setK(String _value_) {
+        k = getDoubleFromString(_value_);
+    }
+
+    public String kToString() {
+        return k != null ? k.toString() : null;
+    }
+
+    /**
+     * PI controller gain (&lt;i&gt;Kc&lt;/i&gt;) (&amp;gt; 0 if ExcSEXS.tc &amp;gt; 0).  Typical value = 0,08.
+     */
+    private Double kc; // PU
+
+    public Double getKc() {
+        return kc;
+    }
+
+    public void setKc(Double _value_) {
+        kc = _value_;
+    }
+
+    public void setKc(String _value_) {
+        kc = getDoubleFromString(_value_);
+    }
+
+    public String kcToString() {
+        return kc != null ? kc.toString() : null;
+    }
+
+    /**
+     * Gain reduction ratio of lag-lead element (&lt;i&gt;[Ta / Tb]&lt;/i&gt;).  Typical value = 0,1.
+     */
+    private Float tatb; // Float
+
+    public Float getTatb() {
+        return tatb;
+    }
+
+    public void setTatb(Float _value_) {
+        tatb = _value_;
+    }
+
+    public void setTatb(String _value_) {
+        tatb = getFloatFromString(_value_);
+    }
+
+    public String tatbToString() {
+        return tatb != null ? tatb.toString() : null;
+    }
+
+    /**
+     * Denominator time constant of lag-lead block (&lt;i&gt;Tb&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 10.
+     */
+    private Double tb; // Seconds
+
+    public Double getTb() {
+        return tb;
+    }
+
+    public void setTb(Double _value_) {
+        tb = _value_;
+    }
+
+    public void setTb(String _value_) {
+        tb = getDoubleFromString(_value_);
+    }
+
+    public String tbToString() {
+        return tb != null ? tb.toString() : null;
+    }
+
+    /**
+     * PI controller phase lead time constant (&lt;i&gt;Tc&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     */
+    private Double tc; // Seconds
+
+    public Double getTc() {
+        return tc;
+    }
+
+    public void setTc(Double _value_) {
+        tc = _value_;
+    }
+
+    public void setTc(String _value_) {
+        tc = getDoubleFromString(_value_);
+    }
+
+    public String tcToString() {
+        return tc != null ? tc.toString() : null;
+    }
+
+    /**
+     * Time constant of gain block (&lt;i&gt;Te&lt;/i&gt;) (&amp;gt; 0).  Typical value = 0,05.
+     */
+    private Double te; // Seconds
+
+    public Double getTe() {
+        return te;
+    }
+
+    public void setTe(Double _value_) {
+        te = _value_;
+    }
+
+    public void setTe(String _value_) {
+        te = getDoubleFromString(_value_);
+    }
+
+    public String teToString() {
+        return te != null ? te.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new ExcSEXS();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("ExcSEXS", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(ExcSEXS_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            ExcSEXS_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(ExcSEXS_primitive_builder attrEnum, BaseClass value) {
-        try {
-            ExcSEXS_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("ExcSEXS", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            ExcSEXS_class_attributes_enum attrEnum = ExcSEXS_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated ExcSEXS, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            ExcSEXS_primitive_builder attrEnum = ExcSEXS_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated ExcSEXS, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            ExcSEXS_primitive_builder attrEnum = ExcSEXS_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = ExcSEXS_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            ExcSEXS_class_attributes_enum attrEnum = ExcSEXS_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = ExcSEXS_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : ExcSEXS_primitive_builder.values()) {
-            if (enumValue != ExcSEXS_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "ExcSEXS." + enumValue.name());
-            }
-        }
-        for (var enumValue : ExcSEXS_class_attributes_enum.values()) {
-            if (enumValue != ExcSEXS_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "ExcSEXS." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (ExcSEXS_primitive_builder attrEnum : ExcSEXS_primitive_builder.values()) {
-                BaseClass bc = ExcSEXS_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    ExcSEXS." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (ExcSEXS_class_attributes_enum attrEnum : ExcSEXS_class_attributes_enum.values()) {
-                BaseClass bc = ExcSEXS_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    ExcSEXS." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(ExcSEXS) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "ExcSEXS";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("ExcSEXS", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -254,7 +380,7 @@ public class ExcSEXS extends ExcitationSystemDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -264,15 +390,8 @@ public class ExcSEXS extends ExcitationSystemDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -303,7 +422,7 @@ public class ExcSEXS extends ExcitationSystemDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -325,64 +444,82 @@ public class ExcSEXS extends ExcitationSystemDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("efdmax", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("efdmax", new AttrDetails("ExcSEXS.efdmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("efdmin", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("efdmin", new AttrDetails("ExcSEXS.efdmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("emax", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("emax", new AttrDetails("ExcSEXS.emax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("emin", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("emin", new AttrDetails("ExcSEXS.emin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("k", new AttrDetails("ExcSEXS.k", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("kc", new AttrDetails("ExcSEXS.kc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tatb", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tatb", new AttrDetails("ExcSEXS.tatb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tb", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tb", new AttrDetails("ExcSEXS.tb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tc", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tc", new AttrDetails("ExcSEXS.tc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("te", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("te", new AttrDetails("ExcSEXS.te", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcSEXS().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("efdmax", new GetterSetter(this::efdmaxToString, null, this::setEfdmax));
+        map.put("efdmin", new GetterSetter(this::efdminToString, null, this::setEfdmin));
+        map.put("emax", new GetterSetter(this::emaxToString, null, this::setEmax));
+        map.put("emin", new GetterSetter(this::eminToString, null, this::setEmin));
+        map.put("k", new GetterSetter(this::kToString, null, this::setK));
+        map.put("kc", new GetterSetter(this::kcToString, null, this::setKc));
+        map.put("tatb", new GetterSetter(this::tatbToString, null, this::setTatb));
+        map.put("tb", new GetterSetter(this::tbToString, null, this::setTb));
+        map.put("tc", new GetterSetter(this::tcToString, null, this::setTc));
+        map.put("te", new GetterSetter(this::teToString, null, this::setTe));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

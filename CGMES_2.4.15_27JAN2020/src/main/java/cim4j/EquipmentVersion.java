@@ -4,272 +4,402 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Version details.
  */
+@SuppressWarnings("unused")
 public class EquipmentVersion extends BaseClass {
 
     private static final Logging LOG = Logging.getLogger(EquipmentVersion.class);
 
-    private BaseClass[] EquipmentVersion_class_attributes;
-    private BaseClass[] EquipmentVersion_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new EquipmentVersion().getAttributeNamesMap();
-    }
-
-    private enum EquipmentVersion_primitive_builder implements PrimitiveBuilder {
-        baseUML() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        baseURIcore() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        baseURIoperation() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        baseURIshortCircuit() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        date() {
-            public BaseClass construct(java.lang.String value) {
-                return new Date(value);
-            }
-        },
-        differenceModelURI() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        entsoeUML() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        entsoeURIcore() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        entsoeURIoperation() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        entsoeURIshortCircuit() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        modelDescriptionURI() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        namespaceRDF() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        namespaceUML() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        shortName() {
-            public BaseClass construct(java.lang.String value) {
-                return new String(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum EquipmentVersion_class_attributes_enum {
-        baseUML,
-        baseURIcore,
-        baseURIoperation,
-        baseURIshortCircuit,
-        date,
-        differenceModelURI,
-        entsoeUML,
-        entsoeURIcore,
-        entsoeURIoperation,
-        entsoeURIshortCircuit,
-        modelDescriptionURI,
-        namespaceRDF,
-        namespaceUML,
-        shortName,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public EquipmentVersion() {
-        EquipmentVersion_primitive_attributes = new BaseClass[EquipmentVersion_primitive_builder.values().length];
-        EquipmentVersion_class_attributes = new BaseClass[EquipmentVersion_class_attributes_enum.values().length];
+        setCimType("EquipmentVersion");
+    }
+
+    /**
+     * Base UML provided by CIM model manager.
+     */
+    private String baseUML; // String
+
+    public String getBaseUML() {
+        return baseUML;
+    }
+
+    public void setBaseUML(String _value_) {
+        baseUML = _value_;
+    }
+
+    public String baseUMLToString() {
+        return baseUML != null ? baseUML.toString() : null;
+    }
+
+    /**
+     * Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.
+     */
+    private String baseURIcore; // String
+
+    public String getBaseURIcore() {
+        return baseURIcore;
+    }
+
+    public void setBaseURIcore(String _value_) {
+        baseURIcore = _value_;
+    }
+
+    public String baseURIcoreToString() {
+        return baseURIcore != null ? baseURIcore.toString() : null;
+    }
+
+    /**
+     * Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.
+     */
+    private String baseURIoperation; // String
+
+    public String getBaseURIoperation() {
+        return baseURIoperation;
+    }
+
+    public void setBaseURIoperation(String _value_) {
+        baseURIoperation = _value_;
+    }
+
+    public String baseURIoperationToString() {
+        return baseURIoperation != null ? baseURIoperation.toString() : null;
+    }
+
+    /**
+     * Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.
+     */
+    private String baseURIshortCircuit; // String
+
+    public String getBaseURIshortCircuit() {
+        return baseURIshortCircuit;
+    }
+
+    public void setBaseURIshortCircuit(String _value_) {
+        baseURIshortCircuit = _value_;
+    }
+
+    public String baseURIshortCircuitToString() {
+        return baseURIshortCircuit != null ? baseURIshortCircuit.toString() : null;
+    }
+
+    /**
+     * Profile creation date Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
+     */
+    private String date; // Date
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String _value_) {
+        date = _value_;
+    }
+
+    public String dateToString() {
+        return date != null ? date.toString() : null;
+    }
+
+    /**
+     * Difference model URI defined by IEC 61970-552.
+     */
+    private String differenceModelURI; // String
+
+    public String getDifferenceModelURI() {
+        return differenceModelURI;
+    }
+
+    public void setDifferenceModelURI(String _value_) {
+        differenceModelURI = _value_;
+    }
+
+    public String differenceModelURIToString() {
+        return differenceModelURI != null ? differenceModelURI.toString() : null;
+    }
+
+    /**
+     * UML provided by ENTSO-E.
+     */
+    private String entsoeUML; // String
+
+    public String getEntsoeUML() {
+        return entsoeUML;
+    }
+
+    public void setEntsoeUML(String _value_) {
+        entsoeUML = _value_;
+    }
+
+    public String entsoeUMLToString() {
+        return entsoeUML != null ? entsoeUML.toString() : null;
+    }
+
+    /**
+     * Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/EquipmentCore/yy/zzz) indicate major and minor versions where:  - yy - indicates a major version; - zzz - indicates a minor version.
+     */
+    private String entsoeURIcore; // String
+
+    public String getEntsoeURIcore() {
+        return entsoeURIcore;
+    }
+
+    public void setEntsoeURIcore(String _value_) {
+        entsoeURIcore = _value_;
+    }
+
+    public String entsoeURIcoreToString() {
+        return entsoeURIcore != null ? entsoeURIcore.toString() : null;
+    }
+
+    /**
+     * Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/EquipmentOperation/yy/zzz) indicate major and minor versions where:  - yy - indicates a major version; - zzz - indicates a minor version.
+     */
+    private String entsoeURIoperation; // String
+
+    public String getEntsoeURIoperation() {
+        return entsoeURIoperation;
+    }
+
+    public void setEntsoeURIoperation(String _value_) {
+        entsoeURIoperation = _value_;
+    }
+
+    public String entsoeURIoperationToString() {
+        return entsoeURIoperation != null ? entsoeURIoperation.toString() : null;
+    }
+
+    /**
+     * Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/EquipmentShortCircuit/yy/zzz) indicate major and minor versions where:  - yy - indicates a major version; - zzz - indicates a minor version.
+     */
+    private String entsoeURIshortCircuit; // String
+
+    public String getEntsoeURIshortCircuit() {
+        return entsoeURIshortCircuit;
+    }
+
+    public void setEntsoeURIshortCircuit(String _value_) {
+        entsoeURIshortCircuit = _value_;
+    }
+
+    public String entsoeURIshortCircuitToString() {
+        return entsoeURIshortCircuit != null ? entsoeURIshortCircuit.toString() : null;
+    }
+
+    /**
+     * Model Description URI defined by IEC 61970-552.
+     */
+    private String modelDescriptionURI; // String
+
+    public String getModelDescriptionURI() {
+        return modelDescriptionURI;
+    }
+
+    public void setModelDescriptionURI(String _value_) {
+        modelDescriptionURI = _value_;
+    }
+
+    public String modelDescriptionURIToString() {
+        return modelDescriptionURI != null ? modelDescriptionURI.toString() : null;
+    }
+
+    /**
+     * RDF namespace.
+     */
+    private String namespaceRDF; // String
+
+    public String getNamespaceRDF() {
+        return namespaceRDF;
+    }
+
+    public void setNamespaceRDF(String _value_) {
+        namespaceRDF = _value_;
+    }
+
+    public String namespaceRDFToString() {
+        return namespaceRDF != null ? namespaceRDF.toString() : null;
+    }
+
+    /**
+     * CIM UML namespace.
+     */
+    private String namespaceUML; // String
+
+    public String getNamespaceUML() {
+        return namespaceUML;
+    }
+
+    public void setNamespaceUML(String _value_) {
+        namespaceUML = _value_;
+    }
+
+    public String namespaceUMLToString() {
+        return namespaceUML != null ? namespaceUML.toString() : null;
+    }
+
+    /**
+     * The short name of the profile used in profile documentation.
+     */
+    private String shortName; // String
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(String _value_) {
+        shortName = _value_;
+    }
+
+    public String shortNameToString() {
+        return shortName != null ? shortName.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new EquipmentVersion();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("EquipmentVersion", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(EquipmentVersion_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            EquipmentVersion_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(EquipmentVersion_primitive_builder attrEnum, BaseClass value) {
-        try {
-            EquipmentVersion_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("EquipmentVersion", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            EquipmentVersion_class_attributes_enum attrEnum = EquipmentVersion_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated EquipmentVersion, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            EquipmentVersion_primitive_builder attrEnum = EquipmentVersion_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated EquipmentVersion, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            EquipmentVersion_primitive_builder attrEnum = EquipmentVersion_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = EquipmentVersion_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            EquipmentVersion_class_attributes_enum attrEnum = EquipmentVersion_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = EquipmentVersion_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : EquipmentVersion_primitive_builder.values()) {
-            if (enumValue != EquipmentVersion_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "EquipmentVersion." + enumValue.name());
-            }
-        }
-        for (var enumValue : EquipmentVersion_class_attributes_enum.values()) {
-            if (enumValue != EquipmentVersion_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "EquipmentVersion." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (EquipmentVersion_primitive_builder attrEnum : EquipmentVersion_primitive_builder.values()) {
-                BaseClass bc = EquipmentVersion_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    EquipmentVersion." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (EquipmentVersion_class_attributes_enum attrEnum : EquipmentVersion_class_attributes_enum.values()) {
-                BaseClass bc = EquipmentVersion_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    EquipmentVersion." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(EquipmentVersion) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "EquipmentVersion";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("EquipmentVersion", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -278,7 +408,7 @@ public class EquipmentVersion extends BaseClass {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -288,15 +418,8 @@ public class EquipmentVersion extends BaseClass {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -327,7 +450,7 @@ public class EquipmentVersion extends BaseClass {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -349,84 +472,106 @@ public class EquipmentVersion extends BaseClass {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://entsoe.eu/CIM/SchemaExtension/3/1#";
+    private static final String CLASS_NAMESPACE = "http://entsoe.eu/CIM/SchemaExtension/3/1#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("baseUML", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("baseUML", new AttrDetails("EquipmentVersion.baseUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("baseURIcore", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("baseURIcore", new AttrDetails("EquipmentVersion.baseURIcore", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("baseURIoperation", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("baseURIoperation", new AttrDetails("EquipmentVersion.baseURIoperation", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("baseURIshortCircuit", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("baseURIshortCircuit", new AttrDetails("EquipmentVersion.baseURIshortCircuit", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("date", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("date", new AttrDetails("EquipmentVersion.date", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("differenceModelURI", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("differenceModelURI", new AttrDetails("EquipmentVersion.differenceModelURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("entsoeUML", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("entsoeUML", new AttrDetails("EquipmentVersion.entsoeUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("entsoeURIcore", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("entsoeURIcore", new AttrDetails("EquipmentVersion.entsoeURIcore", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("entsoeURIoperation", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("entsoeURIoperation", new AttrDetails("EquipmentVersion.entsoeURIoperation", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("entsoeURIshortCircuit", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("entsoeURIshortCircuit", new AttrDetails("EquipmentVersion.entsoeURIshortCircuit", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("modelDescriptionURI", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("modelDescriptionURI", new AttrDetails("EquipmentVersion.modelDescriptionURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("namespaceRDF", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("namespaceRDF", new AttrDetails("EquipmentVersion.namespaceRDF", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("namespaceUML", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("namespaceUML", new AttrDetails("EquipmentVersion.namespaceUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("shortName", new AttrDetails("http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles));
+            map.put("shortName", new AttrDetails("EquipmentVersion.shortName", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EquipmentVersion().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("baseUML", new GetterSetter(this::baseUMLToString, null, this::setBaseUML));
+        map.put("baseURIcore", new GetterSetter(this::baseURIcoreToString, null, this::setBaseURIcore));
+        map.put("baseURIoperation", new GetterSetter(this::baseURIoperationToString, null, this::setBaseURIoperation));
+        map.put("baseURIshortCircuit", new GetterSetter(this::baseURIshortCircuitToString, null, this::setBaseURIshortCircuit));
+        map.put("date", new GetterSetter(this::dateToString, null, this::setDate));
+        map.put("differenceModelURI", new GetterSetter(this::differenceModelURIToString, null, this::setDifferenceModelURI));
+        map.put("entsoeUML", new GetterSetter(this::entsoeUMLToString, null, this::setEntsoeUML));
+        map.put("entsoeURIcore", new GetterSetter(this::entsoeURIcoreToString, null, this::setEntsoeURIcore));
+        map.put("entsoeURIoperation", new GetterSetter(this::entsoeURIoperationToString, null, this::setEntsoeURIoperation));
+        map.put("entsoeURIshortCircuit", new GetterSetter(this::entsoeURIshortCircuitToString, null, this::setEntsoeURIshortCircuit));
+        map.put("modelDescriptionURI", new GetterSetter(this::modelDescriptionURIToString, null, this::setModelDescriptionURI));
+        map.put("namespaceRDF", new GetterSetter(this::namespaceRDFToString, null, this::setNamespaceRDF));
+        map.put("namespaceUML", new GetterSetter(this::namespaceUMLToString, null, this::setNamespaceUML));
+        map.put("shortName", new GetterSetter(this::shortNameToString, null, this::setShortName));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -4,207 +4,252 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * P control model Type 4A.  Reference: IEC Standard 61400-27-1 Section 6.6.5.4.
  */
+@SuppressWarnings("unused")
 public class WindContPType4aIEC extends IdentifiedObject {
 
     private static final Logging LOG = Logging.getLogger(WindContPType4aIEC.class);
 
-    private BaseClass[] WindContPType4aIEC_class_attributes;
-    private BaseClass[] WindContPType4aIEC_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new WindContPType4aIEC().getAttributeNamesMap();
-    }
-
-    private enum WindContPType4aIEC_primitive_builder implements PrimitiveBuilder {
-        dpmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        tpord() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tufilt() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum WindContPType4aIEC_class_attributes_enum {
-        WindTurbineType4aIEC,
-        dpmax,
-        tpord,
-        tufilt,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public WindContPType4aIEC() {
-        WindContPType4aIEC_primitive_attributes = new BaseClass[WindContPType4aIEC_primitive_builder.values().length];
-        WindContPType4aIEC_class_attributes = new BaseClass[WindContPType4aIEC_class_attributes_enum.values().length];
+        setCimType("WindContPType4aIEC");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new WindContPType4aIEC();
+    /**
+     * Wind turbine type 4A model with which this wind control P type 4A model is associated.
+     *
+     * NOT USED
+     */
+    private WindTurbineType4aIEC WindTurbineType4aIEC; // OneToOne
+
+    public WindTurbineType4aIEC getWindTurbineType4aIEC() {
+        return WindTurbineType4aIEC;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(WindContPType4aIEC_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            WindContPType4aIEC_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setWindTurbineType4aIEC(BaseClass _object_) {
+        if (!(_object_ instanceof WindTurbineType4aIEC)) {
+            throw new IllegalArgumentException("Object is not WindTurbineType4aIEC");
+        }
+        if (WindTurbineType4aIEC != _object_) {
+            WindTurbineType4aIEC = (WindTurbineType4aIEC) _object_;
+            WindTurbineType4aIEC.setWindContPType4aIEC(this);
         }
     }
 
-    private void updateAttributeInArray(WindContPType4aIEC_primitive_builder attrEnum, BaseClass value) {
-        try {
-            WindContPType4aIEC_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    public String WindTurbineType4aIECToString() {
+        return WindTurbineType4aIEC != null ? WindTurbineType4aIEC.getRdfid() : null;
+    }
+
+    /**
+     * Maximum wind turbine power ramp rate (). It is project dependent parameter.
+     */
+    private Double dpmax; // PU
+
+    public Double getDpmax() {
+        return dpmax;
+    }
+
+    public void setDpmax(Double _value_) {
+        dpmax = _value_;
+    }
+
+    public void setDpmax(String _value_) {
+        dpmax = getDoubleFromString(_value_);
+    }
+
+    public String dpmaxToString() {
+        return dpmax != null ? dpmax.toString() : null;
+    }
+
+    /**
+     * Time constant in power order lag (). It is type dependent parameter.
+     */
+    private Double tpord; // Seconds
+
+    public Double getTpord() {
+        return tpord;
+    }
+
+    public void setTpord(Double _value_) {
+        tpord = _value_;
+    }
+
+    public void setTpord(String _value_) {
+        tpord = getDoubleFromString(_value_);
+    }
+
+    public String tpordToString() {
+        return tpord != null ? tpord.toString() : null;
+    }
+
+    /**
+     * Voltage measurement filter time constant (). It is type dependent parameter.
+     */
+    private Double tufilt; // Seconds
+
+    public Double getTufilt() {
+        return tufilt;
+    }
+
+    public void setTufilt(Double _value_) {
+        tufilt = _value_;
+    }
+
+    public void setTufilt(String _value_) {
+        tufilt = getDoubleFromString(_value_);
+    }
+
+    public String tufiltToString() {
+        return tufilt != null ? tufilt.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            WindContPType4aIEC_class_attributes_enum attrEnum = WindContPType4aIEC_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated WindContPType4aIEC, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("WindContPType4aIEC", attrName);
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            WindContPType4aIEC_primitive_builder attrEnum = WindContPType4aIEC_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated WindContPType4aIEC, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("WindContPType4aIEC", attrName, objectValue);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            WindContPType4aIEC_primitive_builder attrEnum = WindContPType4aIEC_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = WindContPType4aIEC_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            WindContPType4aIEC_class_attributes_enum attrEnum = WindContPType4aIEC_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = WindContPType4aIEC_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : WindContPType4aIEC_primitive_builder.values()) {
-            if (enumValue != WindContPType4aIEC_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "WindContPType4aIEC." + enumValue.name());
-            }
-        }
-        for (var enumValue : WindContPType4aIEC_class_attributes_enum.values()) {
-            if (enumValue != WindContPType4aIEC_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "WindContPType4aIEC." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (WindContPType4aIEC_primitive_builder attrEnum : WindContPType4aIEC_primitive_builder.values()) {
-                BaseClass bc = WindContPType4aIEC_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    WindContPType4aIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (WindContPType4aIEC_class_attributes_enum attrEnum : WindContPType4aIEC_class_attributes_enum.values()) {
-                BaseClass bc = WindContPType4aIEC_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    WindContPType4aIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(WindContPType4aIEC) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "WindContPType4aIEC";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("WindContPType4aIEC", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -213,7 +258,7 @@ public class WindContPType4aIEC extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -223,15 +268,8 @@ public class WindContPType4aIEC extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -262,7 +300,7 @@ public class WindContPType4aIEC extends IdentifiedObject {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -284,34 +322,46 @@ public class WindContPType4aIEC extends IdentifiedObject {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindTurbineType4aIEC", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("WindTurbineType4aIEC", new AttrDetails("WindContPType4aIEC.WindTurbineType4aIEC", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dpmax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("dpmax", new AttrDetails("WindContPType4aIEC.dpmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpord", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tpord", new AttrDetails("WindContPType4aIEC.tpord", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tufilt", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tufilt", new AttrDetails("WindContPType4aIEC.tufilt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindContPType4aIEC().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("WindTurbineType4aIEC", new GetterSetter(this::WindTurbineType4aIECToString, this::setWindTurbineType4aIEC, null));
+        map.put("dpmax", new GetterSetter(this::dpmaxToString, null, this::setDpmax));
+        map.put("tpord", new GetterSetter(this::tpordToString, null, this::setTpord));
+        map.put("tufilt", new GetterSetter(this::tufiltToString, null, this::setTufilt));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

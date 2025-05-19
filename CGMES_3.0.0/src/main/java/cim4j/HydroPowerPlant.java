@@ -4,196 +4,231 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * A hydro power station which can generate or pump. When generating, the generator turbines receive water from an upper reservoir. When pumping, the pumps receive their water from a lower reservoir.
  */
+@SuppressWarnings("unused")
 public class HydroPowerPlant extends PowerSystemResource {
 
     private static final Logging LOG = Logging.getLogger(HydroPowerPlant.class);
 
-    private BaseClass[] HydroPowerPlant_class_attributes;
-    private BaseClass[] HydroPowerPlant_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new HydroPowerPlant().getAttributeNamesMap();
-    }
-
-    private enum HydroPowerPlant_primitive_builder implements PrimitiveBuilder {
-        hydroPlantStorageType() {
-            public BaseClass construct(java.lang.String value) {
-                return new HydroPlantStorageKind(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum HydroPowerPlant_class_attributes_enum {
-        HydroGeneratingUnits,
-        HydroPumps,
-        hydroPlantStorageType,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public HydroPowerPlant() {
-        HydroPowerPlant_primitive_attributes = new BaseClass[HydroPowerPlant_primitive_builder.values().length];
-        HydroPowerPlant_class_attributes = new BaseClass[HydroPowerPlant_class_attributes_enum.values().length];
+        setCimType("HydroPowerPlant");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new HydroPowerPlant();
+    /**
+     * The hydro generating unit belongs to a hydro power plant.
+     *
+     * NOT USED
+     */
+    private Set<HydroGeneratingUnit> HydroGeneratingUnits = new HashSet<>(); // OneToMany
+
+    public Set<HydroGeneratingUnit> getHydroGeneratingUnits() {
+        return HydroGeneratingUnits;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(HydroPowerPlant_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            HydroPowerPlant_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setHydroGeneratingUnits(BaseClass _object_) {
+        if (!(_object_ instanceof HydroGeneratingUnit)) {
+            throw new IllegalArgumentException("Object is not HydroGeneratingUnit");
+        }
+        if (!HydroGeneratingUnits.contains(_object_)) {
+            HydroGeneratingUnits.add((HydroGeneratingUnit) _object_);
+            ((HydroGeneratingUnit) _object_).setHydroPowerPlant(this);
         }
     }
 
-    private void updateAttributeInArray(HydroPowerPlant_primitive_builder attrEnum, BaseClass value) {
-        try {
-            HydroPowerPlant_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String HydroGeneratingUnitsToString() {
+        return getStringFromSet(HydroGeneratingUnits);
+    }
+
+    /**
+     * The hydro pump may be a member of a pumped storage plant or a pump for distributing water.
+     *
+     * NOT USED
+     */
+    private Set<HydroPump> HydroPumps = new HashSet<>(); // OneToMany
+
+    public Set<HydroPump> getHydroPumps() {
+        return HydroPumps;
+    }
+
+    public void setHydroPumps(BaseClass _object_) {
+        if (!(_object_ instanceof HydroPump)) {
+            throw new IllegalArgumentException("Object is not HydroPump");
+        }
+        if (!HydroPumps.contains(_object_)) {
+            HydroPumps.add((HydroPump) _object_);
+            ((HydroPump) _object_).setHydroPowerPlant(this);
         }
     }
 
+    public String HydroPumpsToString() {
+        return getStringFromSet(HydroPumps);
+    }
+
+    /**
+     * The type of hydro power plant water storage.
+     */
+    private String hydroPlantStorageType; // HydroPlantStorageKind
+
+    public String getHydroPlantStorageType() {
+        return hydroPlantStorageType;
+    }
+
+    public void setHydroPlantStorageType(String _value_) {
+        hydroPlantStorageType = _value_;
+    }
+
+    public String hydroPlantStorageTypeToString() {
+        return hydroPlantStorageType;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            HydroPowerPlant_class_attributes_enum attrEnum = HydroPowerPlant_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated HydroPowerPlant, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            HydroPowerPlant_primitive_builder attrEnum = HydroPowerPlant_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated HydroPowerPlant, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("HydroPowerPlant", attrName);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            HydroPowerPlant_primitive_builder attrEnum = HydroPowerPlant_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = HydroPowerPlant_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
 
-        try {
-            HydroPowerPlant_class_attributes_enum attrEnum = HydroPowerPlant_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = HydroPowerPlant_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("HydroPowerPlant", attrName, objectValue);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : HydroPowerPlant_primitive_builder.values()) {
-            if (enumValue != HydroPowerPlant_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "HydroPowerPlant." + enumValue.name());
-            }
-        }
-        for (var enumValue : HydroPowerPlant_class_attributes_enum.values()) {
-            if (enumValue != HydroPowerPlant_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "HydroPowerPlant." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (HydroPowerPlant_primitive_builder attrEnum : HydroPowerPlant_primitive_builder.values()) {
-                BaseClass bc = HydroPowerPlant_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    HydroPowerPlant." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (HydroPowerPlant_class_attributes_enum attrEnum : HydroPowerPlant_class_attributes_enum.values()) {
-                BaseClass bc = HydroPowerPlant_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    HydroPowerPlant." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(HydroPowerPlant) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "HydroPowerPlant";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("HydroPowerPlant", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -202,7 +237,7 @@ public class HydroPowerPlant extends PowerSystemResource {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -212,15 +247,8 @@ public class HydroPowerPlant extends PowerSystemResource {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -251,7 +279,7 @@ public class HydroPowerPlant extends PowerSystemResource {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -273,29 +301,40 @@ public class HydroPowerPlant extends PowerSystemResource {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("HydroGeneratingUnits", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("HydroGeneratingUnits", new AttrDetails("HydroPowerPlant.HydroGeneratingUnits", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("HydroPumps", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("HydroPumps", new AttrDetails("HydroPowerPlant.HydroPumps", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("hydroPlantStorageType", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("hydroPlantStorageType", new AttrDetails("HydroPowerPlant.hydroPlantStorageType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new HydroPowerPlant().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("HydroGeneratingUnits", new GetterSetter(this::HydroGeneratingUnitsToString, this::setHydroGeneratingUnits, null));
+        map.put("HydroPumps", new GetterSetter(this::HydroPumpsToString, this::setHydroPumps, null));
+        map.put("hydroPlantStorageType", new GetterSetter(this::hydroPlantStorageTypeToString, null, this::setHydroPlantStorageType));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

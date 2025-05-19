@@ -4,232 +4,361 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Current limitation model.  The current limitation model combines the physical limits and the control limits. Reference: IEC 61400-27-1:2015, 5.6.5.8.
  */
+@SuppressWarnings("unused")
 public class WindContCurrLimIEC extends IdentifiedObject {
 
     private static final Logging LOG = Logging.getLogger(WindContCurrLimIEC.class);
 
-    private BaseClass[] WindContCurrLimIEC_class_attributes;
-    private BaseClass[] WindContCurrLimIEC_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new WindContCurrLimIEC().getAttributeNamesMap();
-    }
-
-    private enum WindContCurrLimIEC_primitive_builder implements PrimitiveBuilder {
-        imax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        imaxdip() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kpqu() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        mdfslim() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        mqpri() {
-            public BaseClass construct(java.lang.String value) {
-                return new Boolean(value);
-            }
-        },
-        tufiltcl() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        upqumax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum WindContCurrLimIEC_class_attributes_enum {
-        WindDynamicsLookupTable,
-        WindTurbineType3or4IEC,
-        imax,
-        imaxdip,
-        kpqu,
-        mdfslim,
-        mqpri,
-        tufiltcl,
-        upqumax,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public WindContCurrLimIEC() {
-        WindContCurrLimIEC_primitive_attributes = new BaseClass[WindContCurrLimIEC_primitive_builder.values().length];
-        WindContCurrLimIEC_class_attributes = new BaseClass[WindContCurrLimIEC_class_attributes_enum.values().length];
+        setCimType("WindContCurrLimIEC");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new WindContCurrLimIEC();
+    /**
+     * The wind dynamics lookup table associated with this current control limitation model.
+     *
+     * NOT USED
+     */
+    private Set<WindDynamicsLookupTable> WindDynamicsLookupTable = new HashSet<>(); // OneToMany
+
+    public Set<WindDynamicsLookupTable> getWindDynamicsLookupTable() {
+        return WindDynamicsLookupTable;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(WindContCurrLimIEC_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            WindContCurrLimIEC_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setWindDynamicsLookupTable(BaseClass _object_) {
+        if (!(_object_ instanceof WindDynamicsLookupTable)) {
+            throw new IllegalArgumentException("Object is not WindDynamicsLookupTable");
+        }
+        if (!WindDynamicsLookupTable.contains(_object_)) {
+            WindDynamicsLookupTable.add((WindDynamicsLookupTable) _object_);
+            ((WindDynamicsLookupTable) _object_).setWindContCurrLimIEC(this);
         }
     }
 
-    private void updateAttributeInArray(WindContCurrLimIEC_primitive_builder attrEnum, BaseClass value) {
-        try {
-            WindContCurrLimIEC_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String WindDynamicsLookupTableToString() {
+        return getStringFromSet(WindDynamicsLookupTable);
+    }
+
+    /**
+     * Wind turbine type 3 or type 4 model with which this wind control current limitation model is associated.
+     *
+     * NOT USED
+     */
+    private WindTurbineType3or4IEC WindTurbineType3or4IEC; // OneToOne
+
+    public WindTurbineType3or4IEC getWindTurbineType3or4IEC() {
+        return WindTurbineType3or4IEC;
+    }
+
+    public void setWindTurbineType3or4IEC(BaseClass _object_) {
+        if (!(_object_ instanceof WindTurbineType3or4IEC)) {
+            throw new IllegalArgumentException("Object is not WindTurbineType3or4IEC");
+        }
+        if (WindTurbineType3or4IEC != _object_) {
+            WindTurbineType3or4IEC = (WindTurbineType3or4IEC) _object_;
+            WindTurbineType3or4IEC.setWindContCurrLimIEC(this);
         }
     }
 
+    public String WindTurbineType3or4IECToString() {
+        return WindTurbineType3or4IEC != null ? WindTurbineType3or4IEC.getRdfid() : null;
+    }
+
+    /**
+     * Maximum continuous current at the wind turbine terminals (&lt;i&gt;i&lt;/i&gt;&lt;i&gt;&lt;sub&gt;max&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     */
+    private Double imax; // PU
+
+    public Double getImax() {
+        return imax;
+    }
+
+    public void setImax(Double _value_) {
+        imax = _value_;
+    }
+
+    public void setImax(String _value_) {
+        imax = getDoubleFromString(_value_);
+    }
+
+    public String imaxToString() {
+        return imax != null ? imax.toString() : null;
+    }
+
+    /**
+     * Maximum current during voltage dip at the wind turbine terminals (&lt;i&gt;i&lt;/i&gt;&lt;i&gt;&lt;sub&gt;maxdip&lt;/sub&gt;&lt;/i&gt;). It is a project-dependent parameter.
+     */
+    private Double imaxdip; // PU
+
+    public Double getImaxdip() {
+        return imaxdip;
+    }
+
+    public void setImaxdip(Double _value_) {
+        imaxdip = _value_;
+    }
+
+    public void setImaxdip(String _value_) {
+        imaxdip = getDoubleFromString(_value_);
+    }
+
+    public String imaxdipToString() {
+        return imaxdip != null ? imaxdip.toString() : null;
+    }
+
+    /**
+     * Partial derivative of reactive current limit (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;pqu&lt;/sub&gt;&lt;/i&gt;) versus voltage. It is a type-dependent parameter.
+     */
+    private Double kpqu; // PU
+
+    public Double getKpqu() {
+        return kpqu;
+    }
+
+    public void setKpqu(Double _value_) {
+        kpqu = _value_;
+    }
+
+    public void setKpqu(String _value_) {
+        kpqu = getDoubleFromString(_value_);
+    }
+
+    public String kpquToString() {
+        return kpqu != null ? kpqu.toString() : null;
+    }
+
+    /**
+     * Limitation of type 3 stator current (&lt;i&gt;M&lt;/i&gt;&lt;i&gt;&lt;sub&gt;DFSLim&lt;/sub&gt;&lt;/i&gt;). &lt;i&gt;M&lt;/i&gt;&lt;i&gt;&lt;sub&gt;DFSLim&lt;/sub&gt;&lt;/i&gt;&lt;sub&gt; &lt;/sub&gt;= 1 for wind turbines type 4. It is a type-dependent parameter. false= total current limitation (0 in the IEC model) true=stator current limitation (1 in the IEC model).
+     */
+    private Boolean mdfslim; // Boolean
+
+    public Boolean getMdfslim() {
+        return mdfslim;
+    }
+
+    public void setMdfslim(Boolean _value_) {
+        mdfslim = _value_;
+    }
+
+    public void setMdfslim(String _value_) {
+        mdfslim = getBooleanFromString(_value_);
+    }
+
+    public String mdfslimToString() {
+        return mdfslim != null ? mdfslim.toString() : null;
+    }
+
+    /**
+     * Prioritisation of Q control during UVRT (&lt;i&gt;M&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qpri&lt;/sub&gt;&lt;/i&gt;). It is a project-dependent parameter. true = reactive power priority (1 in the IEC model) false = active power priority (0 in the IEC model).
+     */
+    private Boolean mqpri; // Boolean
+
+    public Boolean getMqpri() {
+        return mqpri;
+    }
+
+    public void setMqpri(Boolean _value_) {
+        mqpri = _value_;
+    }
+
+    public void setMqpri(String _value_) {
+        mqpri = getBooleanFromString(_value_);
+    }
+
+    public String mqpriToString() {
+        return mqpri != null ? mqpri.toString() : null;
+    }
+
+    /**
+     * Voltage measurement filter time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ufiltcl&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     */
+    private Double tufiltcl; // Seconds
+
+    public Double getTufiltcl() {
+        return tufiltcl;
+    }
+
+    public void setTufiltcl(Double _value_) {
+        tufiltcl = _value_;
+    }
+
+    public void setTufiltcl(String _value_) {
+        tufiltcl = getDoubleFromString(_value_);
+    }
+
+    public String tufiltclToString() {
+        return tufiltcl != null ? tufiltcl.toString() : null;
+    }
+
+    /**
+     * Wind turbine voltage in the operation point where zero reactive current can be delivered (&lt;i&gt;u&lt;/i&gt;&lt;i&gt;&lt;sub&gt;pqumax&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     */
+    private Double upqumax; // PU
+
+    public Double getUpqumax() {
+        return upqumax;
+    }
+
+    public void setUpqumax(Double _value_) {
+        upqumax = _value_;
+    }
+
+    public void setUpqumax(String _value_) {
+        upqumax = getDoubleFromString(_value_);
+    }
+
+    public String upqumaxToString() {
+        return upqumax != null ? upqumax.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            WindContCurrLimIEC_class_attributes_enum attrEnum = WindContCurrLimIEC_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated WindContCurrLimIEC, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            WindContCurrLimIEC_primitive_builder attrEnum = WindContCurrLimIEC_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated WindContCurrLimIEC, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("WindContCurrLimIEC", attrName);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            WindContCurrLimIEC_primitive_builder attrEnum = WindContCurrLimIEC_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = WindContCurrLimIEC_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
 
-        try {
-            WindContCurrLimIEC_class_attributes_enum attrEnum = WindContCurrLimIEC_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = WindContCurrLimIEC_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("WindContCurrLimIEC", attrName, objectValue);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : WindContCurrLimIEC_primitive_builder.values()) {
-            if (enumValue != WindContCurrLimIEC_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "WindContCurrLimIEC." + enumValue.name());
-            }
-        }
-        for (var enumValue : WindContCurrLimIEC_class_attributes_enum.values()) {
-            if (enumValue != WindContCurrLimIEC_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "WindContCurrLimIEC." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (WindContCurrLimIEC_primitive_builder attrEnum : WindContCurrLimIEC_primitive_builder.values()) {
-                BaseClass bc = WindContCurrLimIEC_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    WindContCurrLimIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (WindContCurrLimIEC_class_attributes_enum attrEnum : WindContCurrLimIEC_class_attributes_enum.values()) {
-                BaseClass bc = WindContCurrLimIEC_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    WindContCurrLimIEC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(WindContCurrLimIEC) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "WindContCurrLimIEC";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("WindContCurrLimIEC", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -238,7 +367,7 @@ public class WindContCurrLimIEC extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -248,15 +377,8 @@ public class WindContCurrLimIEC extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -287,7 +409,7 @@ public class WindContCurrLimIEC extends IdentifiedObject {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -309,59 +431,76 @@ public class WindContCurrLimIEC extends IdentifiedObject {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindDynamicsLookupTable", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("WindDynamicsLookupTable", new AttrDetails("WindContCurrLimIEC.WindDynamicsLookupTable", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindTurbineType3or4IEC", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("WindTurbineType3or4IEC", new AttrDetails("WindContCurrLimIEC.WindTurbineType3or4IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("imax", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("imax", new AttrDetails("WindContCurrLimIEC.imax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("imaxdip", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("imaxdip", new AttrDetails("WindContCurrLimIEC.imaxdip", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpqu", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("kpqu", new AttrDetails("WindContCurrLimIEC.kpqu", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mdfslim", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("mdfslim", new AttrDetails("WindContCurrLimIEC.mdfslim", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mqpri", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("mqpri", new AttrDetails("WindContCurrLimIEC.mqpri", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tufiltcl", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("tufiltcl", new AttrDetails("WindContCurrLimIEC.tufiltcl", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("upqumax", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("upqumax", new AttrDetails("WindContCurrLimIEC.upqumax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindContCurrLimIEC().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("WindDynamicsLookupTable", new GetterSetter(this::WindDynamicsLookupTableToString, this::setWindDynamicsLookupTable, null));
+        map.put("WindTurbineType3or4IEC", new GetterSetter(this::WindTurbineType3or4IECToString, this::setWindTurbineType3or4IEC, null));
+        map.put("imax", new GetterSetter(this::imaxToString, null, this::setImax));
+        map.put("imaxdip", new GetterSetter(this::imaxdipToString, null, this::setImaxdip));
+        map.put("kpqu", new GetterSetter(this::kpquToString, null, this::setKpqu));
+        map.put("mdfslim", new GetterSetter(this::mdfslimToString, null, this::setMdfslim));
+        map.put("mqpri", new GetterSetter(this::mqpriToString, null, this::setMqpri));
+        map.put("tufiltcl", new GetterSetter(this::tufiltclToString, null, this::setTufiltcl));
+        map.put("upqumax", new GetterSetter(this::upqumaxToString, null, this::setUpqumax));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -4,225 +4,311 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * A facility for providing variable and controllable shunt reactive power. The SVC typically consists of a stepdown transformer, filter, thyristor-controlled reactor, and thyristor-switched capacitor arms.  The SVC may operate in fixed MVar output mode or in voltage control mode. When in voltage control mode, the output of the SVC will be proportional to the deviation of voltage at the controlled bus from the voltage setpoint.  The SVC characteristic slope defines the proportion.  If the voltage at the controlled bus is equal to the voltage setpoint, the SVC MVar output is zero.
  */
+@SuppressWarnings("unused")
 public class StaticVarCompensator extends RegulatingCondEq {
 
     private static final Logging LOG = Logging.getLogger(StaticVarCompensator.class);
 
-    private BaseClass[] StaticVarCompensator_class_attributes;
-    private BaseClass[] StaticVarCompensator_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new StaticVarCompensator().getAttributeNamesMap();
-    }
-
-    private enum StaticVarCompensator_primitive_builder implements PrimitiveBuilder {
-        capacitiveRating() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        inductiveRating() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        q() {
-            public BaseClass construct(java.lang.String value) {
-                return new ReactivePower(value);
-            }
-        },
-        sVCControlMode() {
-            public BaseClass construct(java.lang.String value) {
-                return new SVCControlMode(value);
-            }
-        },
-        slope() {
-            public BaseClass construct(java.lang.String value) {
-                return new VoltagePerReactivePower(value);
-            }
-        },
-        voltageSetPoint() {
-            public BaseClass construct(java.lang.String value) {
-                return new Voltage(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum StaticVarCompensator_class_attributes_enum {
-        StaticVarCompensatorDynamics,
-        capacitiveRating,
-        inductiveRating,
-        q,
-        sVCControlMode,
-        slope,
-        voltageSetPoint,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public StaticVarCompensator() {
-        StaticVarCompensator_primitive_attributes = new BaseClass[StaticVarCompensator_primitive_builder.values().length];
-        StaticVarCompensator_class_attributes = new BaseClass[StaticVarCompensator_class_attributes_enum.values().length];
+        setCimType("StaticVarCompensator");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new StaticVarCompensator();
+    /**
+     * Static Var Compensator dynamics model used to describe dynamic behaviour of this Static Var Compensator.
+     *
+     * NOT USED
+     */
+    private StaticVarCompensatorDynamics StaticVarCompensatorDynamics; // OneToOne
+
+    public StaticVarCompensatorDynamics getStaticVarCompensatorDynamics() {
+        return StaticVarCompensatorDynamics;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(StaticVarCompensator_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            StaticVarCompensator_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setStaticVarCompensatorDynamics(BaseClass _object_) {
+        if (!(_object_ instanceof StaticVarCompensatorDynamics)) {
+            throw new IllegalArgumentException("Object is not StaticVarCompensatorDynamics");
+        }
+        if (StaticVarCompensatorDynamics != _object_) {
+            StaticVarCompensatorDynamics = (StaticVarCompensatorDynamics) _object_;
+            StaticVarCompensatorDynamics.setStaticVarCompensator(this);
         }
     }
 
-    private void updateAttributeInArray(StaticVarCompensator_primitive_builder attrEnum, BaseClass value) {
-        try {
-            StaticVarCompensator_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    public String StaticVarCompensatorDynamicsToString() {
+        return StaticVarCompensatorDynamics != null ? StaticVarCompensatorDynamics.getRdfid() : null;
+    }
+
+    /**
+     * Capacitive reactance at maximum capacitive reactive power.  Shall always be positive.
+     */
+    private Double capacitiveRating; // Reactance
+
+    public Double getCapacitiveRating() {
+        return capacitiveRating;
+    }
+
+    public void setCapacitiveRating(Double _value_) {
+        capacitiveRating = _value_;
+    }
+
+    public void setCapacitiveRating(String _value_) {
+        capacitiveRating = getDoubleFromString(_value_);
+    }
+
+    public String capacitiveRatingToString() {
+        return capacitiveRating != null ? capacitiveRating.toString() : null;
+    }
+
+    /**
+     * Inductive reactance at maximum inductive reactive power.  Shall always be negative.
+     */
+    private Double inductiveRating; // Reactance
+
+    public Double getInductiveRating() {
+        return inductiveRating;
+    }
+
+    public void setInductiveRating(Double _value_) {
+        inductiveRating = _value_;
+    }
+
+    public void setInductiveRating(String _value_) {
+        inductiveRating = getDoubleFromString(_value_);
+    }
+
+    public String inductiveRatingToString() {
+        return inductiveRating != null ? inductiveRating.toString() : null;
+    }
+
+    /**
+     * Reactive power injection. Load sign convention is used, i.e. positive sign means flow out from a node. Starting value for a steady state solution.
+     */
+    private Double q; // ReactivePower
+
+    public Double getQ() {
+        return q;
+    }
+
+    public void setQ(Double _value_) {
+        q = _value_;
+    }
+
+    public void setQ(String _value_) {
+        q = getDoubleFromString(_value_);
+    }
+
+    public String qToString() {
+        return q != null ? q.toString() : null;
+    }
+
+    /**
+     * SVC control mode.
+     */
+    private String sVCControlMode; // SVCControlMode
+
+    public String getSVCControlMode() {
+        return sVCControlMode;
+    }
+
+    public void setSVCControlMode(String _value_) {
+        sVCControlMode = _value_;
+    }
+
+    public String sVCControlModeToString() {
+        return sVCControlMode;
+    }
+
+    /**
+     * The characteristics slope of an SVC defines how the reactive power output changes in proportion to the difference between the regulated bus voltage and the voltage setpoint. The attribute shall be a positive value or zero.
+     */
+    private Double slope; // VoltagePerReactivePower
+
+    public Double getSlope() {
+        return slope;
+    }
+
+    public void setSlope(Double _value_) {
+        slope = _value_;
+    }
+
+    public void setSlope(String _value_) {
+        slope = getDoubleFromString(_value_);
+    }
+
+    public String slopeToString() {
+        return slope != null ? slope.toString() : null;
+    }
+
+    /**
+     * The reactive power output of the SVC is proportional to the difference between the voltage at the regulated bus and the voltage setpoint.  When the regulated bus voltage is equal to the voltage setpoint, the reactive power output is zero.
+     */
+    private Double voltageSetPoint; // Voltage
+
+    public Double getVoltageSetPoint() {
+        return voltageSetPoint;
+    }
+
+    public void setVoltageSetPoint(Double _value_) {
+        voltageSetPoint = _value_;
+    }
+
+    public void setVoltageSetPoint(String _value_) {
+        voltageSetPoint = getDoubleFromString(_value_);
+    }
+
+    public String voltageSetPointToString() {
+        return voltageSetPoint != null ? voltageSetPoint.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            StaticVarCompensator_class_attributes_enum attrEnum = StaticVarCompensator_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated StaticVarCompensator, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("StaticVarCompensator", attrName);
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            StaticVarCompensator_primitive_builder attrEnum = StaticVarCompensator_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated StaticVarCompensator, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("StaticVarCompensator", attrName, objectValue);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            StaticVarCompensator_primitive_builder attrEnum = StaticVarCompensator_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = StaticVarCompensator_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            StaticVarCompensator_class_attributes_enum attrEnum = StaticVarCompensator_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = StaticVarCompensator_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : StaticVarCompensator_primitive_builder.values()) {
-            if (enumValue != StaticVarCompensator_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "StaticVarCompensator." + enumValue.name());
-            }
-        }
-        for (var enumValue : StaticVarCompensator_class_attributes_enum.values()) {
-            if (enumValue != StaticVarCompensator_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "StaticVarCompensator." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (StaticVarCompensator_primitive_builder attrEnum : StaticVarCompensator_primitive_builder.values()) {
-                BaseClass bc = StaticVarCompensator_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    StaticVarCompensator." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (StaticVarCompensator_class_attributes_enum attrEnum : StaticVarCompensator_class_attributes_enum.values()) {
-                BaseClass bc = StaticVarCompensator_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    StaticVarCompensator." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(StaticVarCompensator) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "StaticVarCompensator";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("StaticVarCompensator", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -231,7 +317,7 @@ public class StaticVarCompensator extends RegulatingCondEq {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -241,15 +327,8 @@ public class StaticVarCompensator extends RegulatingCondEq {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -280,7 +359,7 @@ public class StaticVarCompensator extends RegulatingCondEq {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -302,49 +381,64 @@ public class StaticVarCompensator extends RegulatingCondEq {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("StaticVarCompensatorDynamics", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("StaticVarCompensatorDynamics", new AttrDetails("StaticVarCompensator.StaticVarCompensatorDynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("capacitiveRating", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("capacitiveRating", new AttrDetails("StaticVarCompensator.capacitiveRating", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("inductiveRating", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("inductiveRating", new AttrDetails("StaticVarCompensator.inductiveRating", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("q", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("q", new AttrDetails("StaticVarCompensator.q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("sVCControlMode", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("sVCControlMode", new AttrDetails("StaticVarCompensator.sVCControlMode", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("slope", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("slope", new AttrDetails("StaticVarCompensator.slope", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("voltageSetPoint", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("voltageSetPoint", new AttrDetails("StaticVarCompensator.voltageSetPoint", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new StaticVarCompensator().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("StaticVarCompensatorDynamics", new GetterSetter(this::StaticVarCompensatorDynamicsToString, this::setStaticVarCompensatorDynamics, null));
+        map.put("capacitiveRating", new GetterSetter(this::capacitiveRatingToString, null, this::setCapacitiveRating));
+        map.put("inductiveRating", new GetterSetter(this::inductiveRatingToString, null, this::setInductiveRating));
+        map.put("q", new GetterSetter(this::qToString, null, this::setQ));
+        map.put("sVCControlMode", new GetterSetter(this::sVCControlModeToString, null, this::setSVCControlMode));
+        map.put("slope", new GetterSetter(this::slopeToString, null, this::setSlope));
+        map.put("voltageSetPoint", new GetterSetter(this::voltageSetPointToString, null, this::setVoltageSetPoint));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

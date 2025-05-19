@@ -4,206 +4,223 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * An electrochemical energy storage device.
  */
+@SuppressWarnings("unused")
 public class BatteryUnit extends PowerElectronicsUnit {
 
     private static final Logging LOG = Logging.getLogger(BatteryUnit.class);
 
-    private BaseClass[] BatteryUnit_class_attributes;
-    private BaseClass[] BatteryUnit_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new BatteryUnit().getAttributeNamesMap();
-    }
-
-    private enum BatteryUnit_primitive_builder implements PrimitiveBuilder {
-        batteryState() {
-            public BaseClass construct(java.lang.String value) {
-                return new BatteryStateKind(value);
-            }
-        },
-        ratedE() {
-            public BaseClass construct(java.lang.String value) {
-                return new RealEnergy(value);
-            }
-        },
-        storedE() {
-            public BaseClass construct(java.lang.String value) {
-                return new RealEnergy(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum BatteryUnit_class_attributes_enum {
-        batteryState,
-        ratedE,
-        storedE,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public BatteryUnit() {
-        BatteryUnit_primitive_attributes = new BaseClass[BatteryUnit_primitive_builder.values().length];
-        BatteryUnit_class_attributes = new BaseClass[BatteryUnit_class_attributes_enum.values().length];
+        setCimType("BatteryUnit");
+    }
+
+    /**
+     * The current state of the battery (charging, full, etc.).
+     */
+    private String batteryState; // BatteryStateKind
+
+    public String getBatteryState() {
+        return batteryState;
+    }
+
+    public void setBatteryState(String _value_) {
+        batteryState = _value_;
+    }
+
+    public String batteryStateToString() {
+        return batteryState;
+    }
+
+    /**
+     * Full energy storage capacity of the battery. The attribute shall be a positive value.
+     */
+    private Double ratedE; // RealEnergy
+
+    public Double getRatedE() {
+        return ratedE;
+    }
+
+    public void setRatedE(Double _value_) {
+        ratedE = _value_;
+    }
+
+    public void setRatedE(String _value_) {
+        ratedE = getDoubleFromString(_value_);
+    }
+
+    public String ratedEToString() {
+        return ratedE != null ? ratedE.toString() : null;
+    }
+
+    /**
+     * Amount of energy currently stored. The attribute shall be a positive value or zero and lower than BatteryUnit.ratedE.
+     */
+    private Double storedE; // RealEnergy
+
+    public Double getStoredE() {
+        return storedE;
+    }
+
+    public void setStoredE(Double _value_) {
+        storedE = _value_;
+    }
+
+    public void setStoredE(String _value_) {
+        storedE = getDoubleFromString(_value_);
+    }
+
+    public String storedEToString() {
+        return storedE != null ? storedE.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new BatteryUnit();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("BatteryUnit", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(BatteryUnit_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            BatteryUnit_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(BatteryUnit_primitive_builder attrEnum, BaseClass value) {
-        try {
-            BatteryUnit_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("BatteryUnit", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            BatteryUnit_class_attributes_enum attrEnum = BatteryUnit_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated BatteryUnit, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            BatteryUnit_primitive_builder attrEnum = BatteryUnit_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated BatteryUnit, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            BatteryUnit_primitive_builder attrEnum = BatteryUnit_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = BatteryUnit_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            BatteryUnit_class_attributes_enum attrEnum = BatteryUnit_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = BatteryUnit_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : BatteryUnit_primitive_builder.values()) {
-            if (enumValue != BatteryUnit_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "BatteryUnit." + enumValue.name());
-            }
-        }
-        for (var enumValue : BatteryUnit_class_attributes_enum.values()) {
-            if (enumValue != BatteryUnit_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "BatteryUnit." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (BatteryUnit_primitive_builder attrEnum : BatteryUnit_primitive_builder.values()) {
-                BaseClass bc = BatteryUnit_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    BatteryUnit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (BatteryUnit_class_attributes_enum attrEnum : BatteryUnit_class_attributes_enum.values()) {
-                BaseClass bc = BatteryUnit_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    BatteryUnit." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(BatteryUnit) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "BatteryUnit";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("BatteryUnit", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -212,7 +229,7 @@ public class BatteryUnit extends PowerElectronicsUnit {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -222,15 +239,8 @@ public class BatteryUnit extends PowerElectronicsUnit {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -261,7 +271,7 @@ public class BatteryUnit extends PowerElectronicsUnit {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -283,29 +293,40 @@ public class BatteryUnit extends PowerElectronicsUnit {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("batteryState", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("batteryState", new AttrDetails("BatteryUnit.batteryState", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedE", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("ratedE", new AttrDetails("BatteryUnit.ratedE", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("storedE", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("storedE", new AttrDetails("BatteryUnit.storedE", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new BatteryUnit().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("batteryState", new GetterSetter(this::batteryStateToString, null, this::setBatteryState));
+        map.put("ratedE", new GetterSetter(this::ratedEToString, null, this::setRatedE));
+        map.put("storedE", new GetterSetter(this::storedEToString, null, this::setStoredE));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

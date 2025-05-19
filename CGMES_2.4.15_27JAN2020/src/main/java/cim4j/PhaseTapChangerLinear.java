@@ -4,206 +4,227 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Describes a tap changer with a linear relation between the tap step and the phase angle difference across the transformer. This is a mathematical model that is an approximation of a real phase tap changer. The phase angle is computed as stepPhaseShitfIncrement times the tap position. The secondary side voltage magnitude is the same as at the primary side.
  */
+@SuppressWarnings("unused")
 public class PhaseTapChangerLinear extends PhaseTapChanger {
 
     private static final Logging LOG = Logging.getLogger(PhaseTapChangerLinear.class);
 
-    private BaseClass[] PhaseTapChangerLinear_class_attributes;
-    private BaseClass[] PhaseTapChangerLinear_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new PhaseTapChangerLinear().getAttributeNamesMap();
-    }
-
-    private enum PhaseTapChangerLinear_primitive_builder implements PrimitiveBuilder {
-        stepPhaseShiftIncrement() {
-            public BaseClass construct(java.lang.String value) {
-                return new AngleDegrees(value);
-            }
-        },
-        xMax() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        xMin() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum PhaseTapChangerLinear_class_attributes_enum {
-        stepPhaseShiftIncrement,
-        xMax,
-        xMin,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public PhaseTapChangerLinear() {
-        PhaseTapChangerLinear_primitive_attributes = new BaseClass[PhaseTapChangerLinear_primitive_builder.values().length];
-        PhaseTapChangerLinear_class_attributes = new BaseClass[PhaseTapChangerLinear_class_attributes_enum.values().length];
+        setCimType("PhaseTapChangerLinear");
+    }
+
+    /**
+     * Phase shift per step position. A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer). The actual phase shift increment might be more accurately computed from the symmetrical or asymmetrical models or a tap step table lookup if those are available.
+     */
+    private Double stepPhaseShiftIncrement; // AngleDegrees
+
+    public Double getStepPhaseShiftIncrement() {
+        return stepPhaseShiftIncrement;
+    }
+
+    public void setStepPhaseShiftIncrement(Double _value_) {
+        stepPhaseShiftIncrement = _value_;
+    }
+
+    public void setStepPhaseShiftIncrement(String _value_) {
+        stepPhaseShiftIncrement = getDoubleFromString(_value_);
+    }
+
+    public String stepPhaseShiftIncrementToString() {
+        return stepPhaseShiftIncrement != null ? stepPhaseShiftIncrement.toString() : null;
+    }
+
+    /**
+     * The reactance depend on the tap position according to a `u` shaped curve. The maximum reactance (xMax) appear at the low and high tap positions.
+     */
+    private Double xMax; // Reactance
+
+    public Double getXMax() {
+        return xMax;
+    }
+
+    public void setXMax(Double _value_) {
+        xMax = _value_;
+    }
+
+    public void setXMax(String _value_) {
+        xMax = getDoubleFromString(_value_);
+    }
+
+    public String xMaxToString() {
+        return xMax != null ? xMax.toString() : null;
+    }
+
+    /**
+     * The reactance depend on the tap position according to a `u` shaped curve. The minimum reactance (xMin) appear at the mid tap position.
+     */
+    private Double xMin; // Reactance
+
+    public Double getXMin() {
+        return xMin;
+    }
+
+    public void setXMin(Double _value_) {
+        xMin = _value_;
+    }
+
+    public void setXMin(String _value_) {
+        xMin = getDoubleFromString(_value_);
+    }
+
+    public String xMinToString() {
+        return xMin != null ? xMin.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new PhaseTapChangerLinear();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("PhaseTapChangerLinear", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(PhaseTapChangerLinear_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            PhaseTapChangerLinear_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(PhaseTapChangerLinear_primitive_builder attrEnum, BaseClass value) {
-        try {
-            PhaseTapChangerLinear_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("PhaseTapChangerLinear", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            PhaseTapChangerLinear_class_attributes_enum attrEnum = PhaseTapChangerLinear_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated PhaseTapChangerLinear, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            PhaseTapChangerLinear_primitive_builder attrEnum = PhaseTapChangerLinear_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated PhaseTapChangerLinear, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            PhaseTapChangerLinear_primitive_builder attrEnum = PhaseTapChangerLinear_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = PhaseTapChangerLinear_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            PhaseTapChangerLinear_class_attributes_enum attrEnum = PhaseTapChangerLinear_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = PhaseTapChangerLinear_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : PhaseTapChangerLinear_primitive_builder.values()) {
-            if (enumValue != PhaseTapChangerLinear_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "PhaseTapChangerLinear." + enumValue.name());
-            }
-        }
-        for (var enumValue : PhaseTapChangerLinear_class_attributes_enum.values()) {
-            if (enumValue != PhaseTapChangerLinear_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "PhaseTapChangerLinear." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (PhaseTapChangerLinear_primitive_builder attrEnum : PhaseTapChangerLinear_primitive_builder.values()) {
-                BaseClass bc = PhaseTapChangerLinear_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    PhaseTapChangerLinear." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (PhaseTapChangerLinear_class_attributes_enum attrEnum : PhaseTapChangerLinear_class_attributes_enum.values()) {
-                BaseClass bc = PhaseTapChangerLinear_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    PhaseTapChangerLinear." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(PhaseTapChangerLinear) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "PhaseTapChangerLinear";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("PhaseTapChangerLinear", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -212,7 +233,7 @@ public class PhaseTapChangerLinear extends PhaseTapChanger {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -222,15 +243,8 @@ public class PhaseTapChangerLinear extends PhaseTapChanger {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -261,7 +275,7 @@ public class PhaseTapChangerLinear extends PhaseTapChanger {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -283,29 +297,40 @@ public class PhaseTapChangerLinear extends PhaseTapChanger {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("stepPhaseShiftIncrement", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("stepPhaseShiftIncrement", new AttrDetails("PhaseTapChangerLinear.stepPhaseShiftIncrement", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("xMax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("xMax", new AttrDetails("PhaseTapChangerLinear.xMax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("xMin", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("xMin", new AttrDetails("PhaseTapChangerLinear.xMin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PhaseTapChangerLinear().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("stepPhaseShiftIncrement", new GetterSetter(this::stepPhaseShiftIncrementToString, null, this::setStepPhaseShiftIncrement));
+        map.put("xMax", new GetterSetter(this::xMaxToString, null, this::setXMax));
+        map.put("xMin", new GetterSetter(this::xMinToString, null, this::setXMin));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -4,267 +4,460 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * A generic equivalent for an energy supplier on a transmission or distribution voltage level.
  */
+@SuppressWarnings("unused")
 public class EnergySource extends EnergyConnection {
 
     private static final Logging LOG = Logging.getLogger(EnergySource.class);
 
-    private BaseClass[] EnergySource_class_attributes;
-    private BaseClass[] EnergySource_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new EnergySource().getAttributeNamesMap();
-    }
-
-    private enum EnergySource_primitive_builder implements PrimitiveBuilder {
-        activePower() {
-            public BaseClass construct(java.lang.String value) {
-                return new ActivePower(value);
-            }
-        },
-        nominalVoltage() {
-            public BaseClass construct(java.lang.String value) {
-                return new Voltage(value);
-            }
-        },
-        pMax() {
-            public BaseClass construct(java.lang.String value) {
-                return new ActivePower(value);
-            }
-        },
-        pMin() {
-            public BaseClass construct(java.lang.String value) {
-                return new ActivePower(value);
-            }
-        },
-        r() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        r0() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        reactivePower() {
-            public BaseClass construct(java.lang.String value) {
-                return new ReactivePower(value);
-            }
-        },
-        rn() {
-            public BaseClass construct(java.lang.String value) {
-                return new Resistance(value);
-            }
-        },
-        voltageAngle() {
-            public BaseClass construct(java.lang.String value) {
-                return new AngleRadians(value);
-            }
-        },
-        voltageMagnitude() {
-            public BaseClass construct(java.lang.String value) {
-                return new Voltage(value);
-            }
-        },
-        x() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        x0() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        xn() {
-            public BaseClass construct(java.lang.String value) {
-                return new Reactance(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum EnergySource_class_attributes_enum {
-        EnergySchedulingType,
-        activePower,
-        nominalVoltage,
-        pMax,
-        pMin,
-        r,
-        r0,
-        reactivePower,
-        rn,
-        voltageAngle,
-        voltageMagnitude,
-        x,
-        x0,
-        xn,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public EnergySource() {
-        EnergySource_primitive_attributes = new BaseClass[EnergySource_primitive_builder.values().length];
-        EnergySource_class_attributes = new BaseClass[EnergySource_class_attributes_enum.values().length];
+        setCimType("EnergySource");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new EnergySource();
+    /**
+     * Energy Scheduling Type of an Energy Source.
+     */
+    private EnergySchedulingType EnergySchedulingType; // ManyToOne
+
+    public EnergySchedulingType getEnergySchedulingType() {
+        return EnergySchedulingType;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(EnergySource_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            EnergySource_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setEnergySchedulingType(BaseClass _object_) {
+        if (!(_object_ instanceof EnergySchedulingType)) {
+            throw new IllegalArgumentException("Object is not EnergySchedulingType");
+        }
+        if (EnergySchedulingType != _object_) {
+            EnergySchedulingType = (EnergySchedulingType) _object_;
+            EnergySchedulingType.setEnergySource(this);
         }
     }
 
-    private void updateAttributeInArray(EnergySource_primitive_builder attrEnum, BaseClass value) {
-        try {
-            EnergySource_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    public String EnergySchedulingTypeToString() {
+        return EnergySchedulingType != null ? EnergySchedulingType.getRdfid() : null;
+    }
+
+    /**
+     * High voltage source active injection. Load sign convention is used, i.e. positive sign means flow out from a node. Starting value for steady state solutions.
+     */
+    private Double activePower; // ActivePower
+
+    public Double getActivePower() {
+        return activePower;
+    }
+
+    public void setActivePower(Double _value_) {
+        activePower = _value_;
+    }
+
+    public void setActivePower(String _value_) {
+        activePower = getDoubleFromString(_value_);
+    }
+
+    public String activePowerToString() {
+        return activePower != null ? activePower.toString() : null;
+    }
+
+    /**
+     * Phase-to-phase nominal voltage.
+     */
+    private Double nominalVoltage; // Voltage
+
+    public Double getNominalVoltage() {
+        return nominalVoltage;
+    }
+
+    public void setNominalVoltage(Double _value_) {
+        nominalVoltage = _value_;
+    }
+
+    public void setNominalVoltage(String _value_) {
+        nominalVoltage = getDoubleFromString(_value_);
+    }
+
+    public String nominalVoltageToString() {
+        return nominalVoltage != null ? nominalVoltage.toString() : null;
+    }
+
+    /**
+     * This is the maximum active power that can be produced by the source. Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+     */
+    private Double pMax; // ActivePower
+
+    public Double getPMax() {
+        return pMax;
+    }
+
+    public void setPMax(Double _value_) {
+        pMax = _value_;
+    }
+
+    public void setPMax(String _value_) {
+        pMax = getDoubleFromString(_value_);
+    }
+
+    public String pMaxToString() {
+        return pMax != null ? pMax.toString() : null;
+    }
+
+    /**
+     * This is the minimum active power that can be produced by the source. Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+     */
+    private Double pMin; // ActivePower
+
+    public Double getPMin() {
+        return pMin;
+    }
+
+    public void setPMin(Double _value_) {
+        pMin = _value_;
+    }
+
+    public void setPMin(String _value_) {
+        pMin = getDoubleFromString(_value_);
+    }
+
+    public String pMinToString() {
+        return pMin != null ? pMin.toString() : null;
+    }
+
+    /**
+     * Positive sequence Thevenin resistance.
+     */
+    private Double r; // Resistance
+
+    public Double getR() {
+        return r;
+    }
+
+    public void setR(Double _value_) {
+        r = _value_;
+    }
+
+    public void setR(String _value_) {
+        r = getDoubleFromString(_value_);
+    }
+
+    public String rToString() {
+        return r != null ? r.toString() : null;
+    }
+
+    /**
+     * Zero sequence Thevenin resistance.
+     */
+    private Double r0; // Resistance
+
+    public Double getR0() {
+        return r0;
+    }
+
+    public void setR0(Double _value_) {
+        r0 = _value_;
+    }
+
+    public void setR0(String _value_) {
+        r0 = getDoubleFromString(_value_);
+    }
+
+    public String r0ToString() {
+        return r0 != null ? r0.toString() : null;
+    }
+
+    /**
+     * High voltage source reactive injection. Load sign convention is used, i.e. positive sign means flow out from a node. Starting value for steady state solutions.
+     */
+    private Double reactivePower; // ReactivePower
+
+    public Double getReactivePower() {
+        return reactivePower;
+    }
+
+    public void setReactivePower(Double _value_) {
+        reactivePower = _value_;
+    }
+
+    public void setReactivePower(String _value_) {
+        reactivePower = getDoubleFromString(_value_);
+    }
+
+    public String reactivePowerToString() {
+        return reactivePower != null ? reactivePower.toString() : null;
+    }
+
+    /**
+     * Negative sequence Thevenin resistance.
+     */
+    private Double rn; // Resistance
+
+    public Double getRn() {
+        return rn;
+    }
+
+    public void setRn(Double _value_) {
+        rn = _value_;
+    }
+
+    public void setRn(String _value_) {
+        rn = getDoubleFromString(_value_);
+    }
+
+    public String rnToString() {
+        return rn != null ? rn.toString() : null;
+    }
+
+    /**
+     * Phase angle of a-phase open circuit used when voltage characteristics need to be imposed at the node associated with the terminal of the energy source, such as when voltages and angles from the transmission level are used as input to the distribution network. The attribute shall be a positive value or zero.
+     */
+    private Double voltageAngle; // AngleRadians
+
+    public Double getVoltageAngle() {
+        return voltageAngle;
+    }
+
+    public void setVoltageAngle(Double _value_) {
+        voltageAngle = _value_;
+    }
+
+    public void setVoltageAngle(String _value_) {
+        voltageAngle = getDoubleFromString(_value_);
+    }
+
+    public String voltageAngleToString() {
+        return voltageAngle != null ? voltageAngle.toString() : null;
+    }
+
+    /**
+     * Phase-to-phase open circuit voltage magnitude used when voltage characteristics need to be imposed at the node associated with the terminal of the energy source, such as when voltages and angles from the transmission level are used as input to the distribution network. The attribute shall be a positive value or zero.
+     */
+    private Double voltageMagnitude; // Voltage
+
+    public Double getVoltageMagnitude() {
+        return voltageMagnitude;
+    }
+
+    public void setVoltageMagnitude(Double _value_) {
+        voltageMagnitude = _value_;
+    }
+
+    public void setVoltageMagnitude(String _value_) {
+        voltageMagnitude = getDoubleFromString(_value_);
+    }
+
+    public String voltageMagnitudeToString() {
+        return voltageMagnitude != null ? voltageMagnitude.toString() : null;
+    }
+
+    /**
+     * Positive sequence Thevenin reactance.
+     */
+    private Double x; // Reactance
+
+    public Double getX() {
+        return x;
+    }
+
+    public void setX(Double _value_) {
+        x = _value_;
+    }
+
+    public void setX(String _value_) {
+        x = getDoubleFromString(_value_);
+    }
+
+    public String xToString() {
+        return x != null ? x.toString() : null;
+    }
+
+    /**
+     * Zero sequence Thevenin reactance.
+     */
+    private Double x0; // Reactance
+
+    public Double getX0() {
+        return x0;
+    }
+
+    public void setX0(Double _value_) {
+        x0 = _value_;
+    }
+
+    public void setX0(String _value_) {
+        x0 = getDoubleFromString(_value_);
+    }
+
+    public String x0ToString() {
+        return x0 != null ? x0.toString() : null;
+    }
+
+    /**
+     * Negative sequence Thevenin reactance.
+     */
+    private Double xn; // Reactance
+
+    public Double getXn() {
+        return xn;
+    }
+
+    public void setXn(Double _value_) {
+        xn = _value_;
+    }
+
+    public void setXn(String _value_) {
+        xn = getDoubleFromString(_value_);
+    }
+
+    public String xnToString() {
+        return xn != null ? xn.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            EnergySource_class_attributes_enum attrEnum = EnergySource_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated EnergySource, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("EnergySource", attrName);
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            EnergySource_primitive_builder attrEnum = EnergySource_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated EnergySource, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("EnergySource", attrName, objectValue);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            EnergySource_primitive_builder attrEnum = EnergySource_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = EnergySource_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            EnergySource_class_attributes_enum attrEnum = EnergySource_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = EnergySource_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : EnergySource_primitive_builder.values()) {
-            if (enumValue != EnergySource_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "EnergySource." + enumValue.name());
-            }
-        }
-        for (var enumValue : EnergySource_class_attributes_enum.values()) {
-            if (enumValue != EnergySource_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "EnergySource." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (EnergySource_primitive_builder attrEnum : EnergySource_primitive_builder.values()) {
-                BaseClass bc = EnergySource_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    EnergySource." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (EnergySource_class_attributes_enum attrEnum : EnergySource_class_attributes_enum.values()) {
-                BaseClass bc = EnergySource_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    EnergySource." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(EnergySource) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "EnergySource";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("EnergySource", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -273,7 +466,7 @@ public class EnergySource extends EnergyConnection {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -283,15 +476,8 @@ public class EnergySource extends EnergyConnection {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -322,7 +508,7 @@ public class EnergySource extends EnergyConnection {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -344,84 +530,106 @@ public class EnergySource extends EnergyConnection {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("EnergySchedulingType", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("EnergySchedulingType", new AttrDetails("EnergySource.EnergySchedulingType", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("activePower", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("activePower", new AttrDetails("EnergySource.activePower", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("nominalVoltage", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("nominalVoltage", new AttrDetails("EnergySource.nominalVoltage", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("pMax", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("pMax", new AttrDetails("EnergySource.pMax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("pMin", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("pMin", new AttrDetails("EnergySource.pMin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("r", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("r", new AttrDetails("EnergySource.r", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("r0", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("r0", new AttrDetails("EnergySource.r0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("reactivePower", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("reactivePower", new AttrDetails("EnergySource.reactivePower", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("rn", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("rn", new AttrDetails("EnergySource.rn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("voltageAngle", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("voltageAngle", new AttrDetails("EnergySource.voltageAngle", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("voltageMagnitude", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("voltageMagnitude", new AttrDetails("EnergySource.voltageMagnitude", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("x", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("x", new AttrDetails("EnergySource.x", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("x0", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("x0", new AttrDetails("EnergySource.x0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("xn", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("xn", new AttrDetails("EnergySource.xn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EnergySource().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("EnergySchedulingType", new GetterSetter(this::EnergySchedulingTypeToString, this::setEnergySchedulingType, null));
+        map.put("activePower", new GetterSetter(this::activePowerToString, null, this::setActivePower));
+        map.put("nominalVoltage", new GetterSetter(this::nominalVoltageToString, null, this::setNominalVoltage));
+        map.put("pMax", new GetterSetter(this::pMaxToString, null, this::setPMax));
+        map.put("pMin", new GetterSetter(this::pMinToString, null, this::setPMin));
+        map.put("r", new GetterSetter(this::rToString, null, this::setR));
+        map.put("r0", new GetterSetter(this::r0ToString, null, this::setR0));
+        map.put("reactivePower", new GetterSetter(this::reactivePowerToString, null, this::setReactivePower));
+        map.put("rn", new GetterSetter(this::rnToString, null, this::setRn));
+        map.put("voltageAngle", new GetterSetter(this::voltageAngleToString, null, this::setVoltageAngle));
+        map.put("voltageMagnitude", new GetterSetter(this::voltageMagnitudeToString, null, this::setVoltageMagnitude));
+        map.put("x", new GetterSetter(this::xToString, null, this::setX));
+        map.put("x0", new GetterSetter(this::x0ToString, null, this::setX0));
+        map.put("xn", new GetterSetter(this::xnToString, null, this::setXn));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

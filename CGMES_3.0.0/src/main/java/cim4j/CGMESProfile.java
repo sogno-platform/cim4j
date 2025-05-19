@@ -26,9 +26,9 @@ public enum CGMESProfile {
     TP("Topology"),
     ;
 
-    private final java.lang.String longName;
+    private final String longName;
 
-    private CGMESProfile(java.lang.String longName) {
+    private CGMESProfile(String longName) {
         this.longName = longName;
     }
 
@@ -37,13 +37,13 @@ public enum CGMESProfile {
      *
      * @return profile
      */
-    public static CGMESProfile fromLongName(java.lang.String longName) {
+    public static CGMESProfile fromLongName(String longName) {
         return ENUM_MAP.get(longName);
     }
 
-    private static final Map<java.lang.String, CGMESProfile> ENUM_MAP;
+    private static final Map<String, CGMESProfile> ENUM_MAP;
     static {
-        Map<java.lang.String, CGMESProfile> map = new LinkedHashMap<>();
+        Map<String, CGMESProfile> map = new LinkedHashMap<>();
         for (CGMESProfile profile : CGMESProfile.values()) {
             map.put(profile.longName, profile);
         }
@@ -55,7 +55,7 @@ public enum CGMESProfile {
      *
      * @return long name
      */
-    public java.lang.String getLongName() {
+    public String getLongName() {
         return longName;
     }
 
@@ -64,14 +64,14 @@ public enum CGMESProfile {
      *
      * @return list of uris
      */
-    public List<java.lang.String> getUris() {
+    public List<String> getUris() {
         return URI_MAP.get(name());
     }
 
-    private static final Map<java.lang.String, List<java.lang.String>> URI_MAP;
+    private static final Map<String, List<String>> URI_MAP;
     static {
-        Map<java.lang.String, List<java.lang.String>> map = new LinkedHashMap<>();
-        List<java.lang.String> uris;
+        Map<String, List<String>> map = new LinkedHashMap<>();
+        List<String> uris;
 
         uris = new ArrayList<>();
         uris.add("http://iec.ch/TC57/ns/CIM/CoreEquipment-EU/3.0");

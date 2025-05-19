@@ -4,267 +4,460 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Aggregate induction motor load. This model  is used to represent a fraction of an ordinary load as "induction motor load".  It allows load that is treated as ordinary constant power in power flow analysis to be represented by an induction motor in dynamic simulation.  If  = 0. or  = , or  = 0.,  only one cage is represented. Magnetic saturation is not modelled. Either a "one-cage" or "two-cage" model of the induction machine can be modelled. Magnetic saturation is not modelled.  This model is intended for representation of aggregations of many motors dispersed through a load represented at a high voltage bus but where there is no information on the characteristics of individual motors.  This model treats a fraction of the constant power part of a load as a motor. During initialisation, the initial power drawn by the motor is set equal to  times the constant  part of the static load.  The remainder of the load is left as static load.  The reactive power demand of the motor is calculated during initialisation as a function of voltage at the load bus. This reactive power demand may be less than or greater than the constant  component of the load.  If the motor's reactive demand is greater than the constant  component of the load, the model inserts a shunt capacitor at the terminal of the motor to bring its reactive demand down to equal the constant  reactive load.   If a motor model and a static load model are both present for a load, the motor  is assumed to be subtracted from the power flow constant  load before the static load model is applied.  The remainder of the load, if any, is then represented by the static load model.
  */
+@SuppressWarnings("unused")
 public class LoadMotor extends IdentifiedObject {
 
     private static final Logging LOG = Logging.getLogger(LoadMotor.class);
 
-    private BaseClass[] LoadMotor_class_attributes;
-    private BaseClass[] LoadMotor_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new LoadMotor().getAttributeNamesMap();
-    }
-
-    private enum LoadMotor_primitive_builder implements PrimitiveBuilder {
-        d() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        h() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        lfac() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        lp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        lpp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        ls() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        pfrac() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        ra() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        tbkr() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tpo() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tppo() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tv() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        vt() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum LoadMotor_class_attributes_enum {
-        LoadAggregate,
-        d,
-        h,
-        lfac,
-        lp,
-        lpp,
-        ls,
-        pfrac,
-        ra,
-        tbkr,
-        tpo,
-        tppo,
-        tv,
-        vt,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public LoadMotor() {
-        LoadMotor_primitive_attributes = new BaseClass[LoadMotor_primitive_builder.values().length];
-        LoadMotor_class_attributes = new BaseClass[LoadMotor_class_attributes_enum.values().length];
+        setCimType("LoadMotor");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new LoadMotor();
+    /**
+     * Aggregate load to which this aggregate motor (dynamic) load belongs.
+     */
+    private LoadAggregate LoadAggregate; // OneToOne
+
+    public LoadAggregate getLoadAggregate() {
+        return LoadAggregate;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(LoadMotor_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            LoadMotor_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setLoadAggregate(BaseClass _object_) {
+        if (!(_object_ instanceof LoadAggregate)) {
+            throw new IllegalArgumentException("Object is not LoadAggregate");
+        }
+        if (LoadAggregate != _object_) {
+            LoadAggregate = (LoadAggregate) _object_;
+            LoadAggregate.setLoadMotor(this);
         }
     }
 
-    private void updateAttributeInArray(LoadMotor_primitive_builder attrEnum, BaseClass value) {
-        try {
-            LoadMotor_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    public String LoadAggregateToString() {
+        return LoadAggregate != null ? LoadAggregate.getRdfid() : null;
+    }
+
+    /**
+     * Damping factor (D).  Unit = delta P/delta speed.  Typical Value = 2.
+     */
+    private Double d; // Simple_Float
+
+    public Double getD() {
+        return d;
+    }
+
+    public void setD(Double _value_) {
+        d = _value_;
+    }
+
+    public void setD(String _value_) {
+        d = getDoubleFromString(_value_);
+    }
+
+    public String dToString() {
+        return d != null ? d.toString() : null;
+    }
+
+    /**
+     * Inertia constant (H) (not=0).  Typical Value = 0.4.
+     */
+    private Double h; // Seconds
+
+    public Double getH() {
+        return h;
+    }
+
+    public void setH(Double _value_) {
+        h = _value_;
+    }
+
+    public void setH(String _value_) {
+        h = getDoubleFromString(_value_);
+    }
+
+    public String hToString() {
+        return h != null ? h.toString() : null;
+    }
+
+    /**
+     * Loading factor - ratio of initial P to motor MVA base (Lfac).  Typical Value = 0.8.
+     */
+    private Double lfac; // Simple_Float
+
+    public Double getLfac() {
+        return lfac;
+    }
+
+    public void setLfac(Double _value_) {
+        lfac = _value_;
+    }
+
+    public void setLfac(String _value_) {
+        lfac = getDoubleFromString(_value_);
+    }
+
+    public String lfacToString() {
+        return lfac != null ? lfac.toString() : null;
+    }
+
+    /**
+     * Transient reactance (Lp).  Typical Value = 0.15.
+     */
+    private Double lp; // PU
+
+    public Double getLp() {
+        return lp;
+    }
+
+    public void setLp(Double _value_) {
+        lp = _value_;
+    }
+
+    public void setLp(String _value_) {
+        lp = getDoubleFromString(_value_);
+    }
+
+    public String lpToString() {
+        return lp != null ? lp.toString() : null;
+    }
+
+    /**
+     * Subtransient reactance (Lpp).  Typical Value = 0.15.
+     */
+    private Double lpp; // PU
+
+    public Double getLpp() {
+        return lpp;
+    }
+
+    public void setLpp(Double _value_) {
+        lpp = _value_;
+    }
+
+    public void setLpp(String _value_) {
+        lpp = getDoubleFromString(_value_);
+    }
+
+    public String lppToString() {
+        return lpp != null ? lpp.toString() : null;
+    }
+
+    /**
+     * Synchronous reactance (Ls).  Typical Value = 3.2.
+     */
+    private Double ls; // PU
+
+    public Double getLs() {
+        return ls;
+    }
+
+    public void setLs(Double _value_) {
+        ls = _value_;
+    }
+
+    public void setLs(String _value_) {
+        ls = getDoubleFromString(_value_);
+    }
+
+    public String lsToString() {
+        return ls != null ? ls.toString() : null;
+    }
+
+    /**
+     * Fraction of constant-power load to be represented by this motor model (Pfrac) (&gt;=0.0 and &lt;=1.0).  Typical Value = 0.3.
+     */
+    private Double pfrac; // Simple_Float
+
+    public Double getPfrac() {
+        return pfrac;
+    }
+
+    public void setPfrac(Double _value_) {
+        pfrac = _value_;
+    }
+
+    public void setPfrac(String _value_) {
+        pfrac = getDoubleFromString(_value_);
+    }
+
+    public String pfracToString() {
+        return pfrac != null ? pfrac.toString() : null;
+    }
+
+    /**
+     * Stator resistance (Ra).  Typical Value = 0.
+     */
+    private Double ra; // PU
+
+    public Double getRa() {
+        return ra;
+    }
+
+    public void setRa(Double _value_) {
+        ra = _value_;
+    }
+
+    public void setRa(String _value_) {
+        ra = getDoubleFromString(_value_);
+    }
+
+    public String raToString() {
+        return ra != null ? ra.toString() : null;
+    }
+
+    /**
+     * Circuit breaker operating time (Tbkr).  Typical Value = 0.08.
+     */
+    private Double tbkr; // Seconds
+
+    public Double getTbkr() {
+        return tbkr;
+    }
+
+    public void setTbkr(Double _value_) {
+        tbkr = _value_;
+    }
+
+    public void setTbkr(String _value_) {
+        tbkr = getDoubleFromString(_value_);
+    }
+
+    public String tbkrToString() {
+        return tbkr != null ? tbkr.toString() : null;
+    }
+
+    /**
+     * Transient rotor time constant (Tpo) (not=0).  Typical Value = 1.
+     */
+    private Double tpo; // Seconds
+
+    public Double getTpo() {
+        return tpo;
+    }
+
+    public void setTpo(Double _value_) {
+        tpo = _value_;
+    }
+
+    public void setTpo(String _value_) {
+        tpo = getDoubleFromString(_value_);
+    }
+
+    public String tpoToString() {
+        return tpo != null ? tpo.toString() : null;
+    }
+
+    /**
+     * Subtransient rotor time constant (Tppo).  Typical Value = 0.02.
+     */
+    private Double tppo; // Seconds
+
+    public Double getTppo() {
+        return tppo;
+    }
+
+    public void setTppo(Double _value_) {
+        tppo = _value_;
+    }
+
+    public void setTppo(String _value_) {
+        tppo = getDoubleFromString(_value_);
+    }
+
+    public String tppoToString() {
+        return tppo != null ? tppo.toString() : null;
+    }
+
+    /**
+     * Voltage trip pickup time (Tv).  Typical Value = 0.1.
+     */
+    private Double tv; // Seconds
+
+    public Double getTv() {
+        return tv;
+    }
+
+    public void setTv(Double _value_) {
+        tv = _value_;
+    }
+
+    public void setTv(String _value_) {
+        tv = getDoubleFromString(_value_);
+    }
+
+    public String tvToString() {
+        return tv != null ? tv.toString() : null;
+    }
+
+    /**
+     * Voltage threshold for tripping (Vt).  Typical Value = 0.7.
+     */
+    private Double vt; // PU
+
+    public Double getVt() {
+        return vt;
+    }
+
+    public void setVt(Double _value_) {
+        vt = _value_;
+    }
+
+    public void setVt(String _value_) {
+        vt = getDoubleFromString(_value_);
+    }
+
+    public String vtToString() {
+        return vt != null ? vt.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            LoadMotor_class_attributes_enum attrEnum = LoadMotor_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated LoadMotor, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("LoadMotor", attrName);
     }
 
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            LoadMotor_primitive_builder attrEnum = LoadMotor_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated LoadMotor, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("LoadMotor", attrName, objectValue);
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            LoadMotor_primitive_builder attrEnum = LoadMotor_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = LoadMotor_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            LoadMotor_class_attributes_enum attrEnum = LoadMotor_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = LoadMotor_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : LoadMotor_primitive_builder.values()) {
-            if (enumValue != LoadMotor_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "LoadMotor." + enumValue.name());
-            }
-        }
-        for (var enumValue : LoadMotor_class_attributes_enum.values()) {
-            if (enumValue != LoadMotor_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "LoadMotor." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (LoadMotor_primitive_builder attrEnum : LoadMotor_primitive_builder.values()) {
-                BaseClass bc = LoadMotor_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    LoadMotor." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (LoadMotor_class_attributes_enum attrEnum : LoadMotor_class_attributes_enum.values()) {
-                BaseClass bc = LoadMotor_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    LoadMotor." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(LoadMotor) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "LoadMotor";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("LoadMotor", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -273,7 +466,7 @@ public class LoadMotor extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -283,15 +476,8 @@ public class LoadMotor extends IdentifiedObject {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -322,7 +508,7 @@ public class LoadMotor extends IdentifiedObject {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -344,84 +530,106 @@ public class LoadMotor extends IdentifiedObject {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("LoadAggregate", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("LoadAggregate", new AttrDetails("LoadMotor.LoadAggregate", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("d", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("d", new AttrDetails("LoadMotor.d", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("h", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("h", new AttrDetails("LoadMotor.h", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("lfac", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("lfac", new AttrDetails("LoadMotor.lfac", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("lp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("lp", new AttrDetails("LoadMotor.lp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("lpp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("lpp", new AttrDetails("LoadMotor.lpp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ls", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ls", new AttrDetails("LoadMotor.ls", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pfrac", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("pfrac", new AttrDetails("LoadMotor.pfrac", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ra", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ra", new AttrDetails("LoadMotor.ra", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tbkr", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tbkr", new AttrDetails("LoadMotor.tbkr", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpo", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tpo", new AttrDetails("LoadMotor.tpo", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tppo", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tppo", new AttrDetails("LoadMotor.tppo", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tv", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tv", new AttrDetails("LoadMotor.tv", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vt", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vt", new AttrDetails("LoadMotor.vt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadMotor().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("LoadAggregate", new GetterSetter(this::LoadAggregateToString, this::setLoadAggregate, null));
+        map.put("d", new GetterSetter(this::dToString, null, this::setD));
+        map.put("h", new GetterSetter(this::hToString, null, this::setH));
+        map.put("lfac", new GetterSetter(this::lfacToString, null, this::setLfac));
+        map.put("lp", new GetterSetter(this::lpToString, null, this::setLp));
+        map.put("lpp", new GetterSetter(this::lppToString, null, this::setLpp));
+        map.put("ls", new GetterSetter(this::lsToString, null, this::setLs));
+        map.put("pfrac", new GetterSetter(this::pfracToString, null, this::setPfrac));
+        map.put("ra", new GetterSetter(this::raToString, null, this::setRa));
+        map.put("tbkr", new GetterSetter(this::tbkrToString, null, this::setTbkr));
+        map.put("tpo", new GetterSetter(this::tpoToString, null, this::setTpo));
+        map.put("tppo", new GetterSetter(this::tppoToString, null, this::setTppo));
+        map.put("tv", new GetterSetter(this::tvToString, null, this::setTv));
+        map.put("vt", new GetterSetter(this::vtToString, null, this::setVt));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

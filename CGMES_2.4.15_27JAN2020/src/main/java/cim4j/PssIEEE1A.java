@@ -4,260 +4,412 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * The class represents IEEE Std 421.5-2005 type PSS1A power system stabilizer model. PSS1A is the generalized form of a PSS with a single input. Some common stabilizer input signals are speed, frequency, and power.  Reference: IEEE 1A 421.5-2005 Section 8.1.
  */
+@SuppressWarnings("unused")
 public class PssIEEE1A extends PowerSystemStabilizerDynamics {
 
     private static final Logging LOG = Logging.getLogger(PssIEEE1A.class);
 
-    private BaseClass[] PssIEEE1A_class_attributes;
-    private BaseClass[] PssIEEE1A_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new PssIEEE1A().getAttributeNamesMap();
-    }
-
-    private enum PssIEEE1A_primitive_builder implements PrimitiveBuilder {
-        a1() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        a2() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        inputSignalType() {
-            public BaseClass construct(java.lang.String value) {
-                return new InputSignalKind(value);
-            }
-        },
-        ks() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        t1() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t2() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t3() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t4() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t5() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t6() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        vrmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        vrmin() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum PssIEEE1A_class_attributes_enum {
-        a1,
-        a2,
-        inputSignalType,
-        ks,
-        t1,
-        t2,
-        t3,
-        t4,
-        t5,
-        t6,
-        vrmax,
-        vrmin,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public PssIEEE1A() {
-        PssIEEE1A_primitive_attributes = new BaseClass[PssIEEE1A_primitive_builder.values().length];
-        PssIEEE1A_class_attributes = new BaseClass[PssIEEE1A_class_attributes_enum.values().length];
+        setCimType("PssIEEE1A");
+    }
+
+    /**
+     * PSS signal conditioning frequency filter constant (A1).  Typical Value = 0.061.
+     */
+    private Double a1; // PU
+
+    public Double getA1() {
+        return a1;
+    }
+
+    public void setA1(Double _value_) {
+        a1 = _value_;
+    }
+
+    public void setA1(String _value_) {
+        a1 = getDoubleFromString(_value_);
+    }
+
+    public String a1ToString() {
+        return a1 != null ? a1.toString() : null;
+    }
+
+    /**
+     * PSS signal conditioning frequency filter constant (A2).  Typical Value = 0.0017.
+     */
+    private Double a2; // PU
+
+    public Double getA2() {
+        return a2;
+    }
+
+    public void setA2(Double _value_) {
+        a2 = _value_;
+    }
+
+    public void setA2(String _value_) {
+        a2 = getDoubleFromString(_value_);
+    }
+
+    public String a2ToString() {
+        return a2 != null ? a2.toString() : null;
+    }
+
+    /**
+     * Type of input signal.  Typical Value = rotorAngularFrequencyDeviation.
+     */
+    private String inputSignalType; // InputSignalKind
+
+    public String getInputSignalType() {
+        return inputSignalType;
+    }
+
+    public void setInputSignalType(String _value_) {
+        inputSignalType = _value_;
+    }
+
+    public String inputSignalTypeToString() {
+        return inputSignalType;
+    }
+
+    /**
+     * Stabilizer gain (Ks).  Typical Value = 5.
+     */
+    private Double ks; // PU
+
+    public Double getKs() {
+        return ks;
+    }
+
+    public void setKs(Double _value_) {
+        ks = _value_;
+    }
+
+    public void setKs(String _value_) {
+        ks = getDoubleFromString(_value_);
+    }
+
+    public String ksToString() {
+        return ks != null ? ks.toString() : null;
+    }
+
+    /**
+     * Lead/lag time constant (T1).  Typical Value = 0.3.
+     */
+    private Double t1; // Seconds
+
+    public Double getT1() {
+        return t1;
+    }
+
+    public void setT1(Double _value_) {
+        t1 = _value_;
+    }
+
+    public void setT1(String _value_) {
+        t1 = getDoubleFromString(_value_);
+    }
+
+    public String t1ToString() {
+        return t1 != null ? t1.toString() : null;
+    }
+
+    /**
+     * Lead/lag time constant (T2).  Typical Value = 0.03.
+     */
+    private Double t2; // Seconds
+
+    public Double getT2() {
+        return t2;
+    }
+
+    public void setT2(Double _value_) {
+        t2 = _value_;
+    }
+
+    public void setT2(String _value_) {
+        t2 = getDoubleFromString(_value_);
+    }
+
+    public String t2ToString() {
+        return t2 != null ? t2.toString() : null;
+    }
+
+    /**
+     * Lead/lag time constant (T3).  Typical Value = 0.3.
+     */
+    private Double t3; // Seconds
+
+    public Double getT3() {
+        return t3;
+    }
+
+    public void setT3(Double _value_) {
+        t3 = _value_;
+    }
+
+    public void setT3(String _value_) {
+        t3 = getDoubleFromString(_value_);
+    }
+
+    public String t3ToString() {
+        return t3 != null ? t3.toString() : null;
+    }
+
+    /**
+     * Lead/lag time constant (T4).  Typical Value = 0.03.
+     */
+    private Double t4; // Seconds
+
+    public Double getT4() {
+        return t4;
+    }
+
+    public void setT4(Double _value_) {
+        t4 = _value_;
+    }
+
+    public void setT4(String _value_) {
+        t4 = getDoubleFromString(_value_);
+    }
+
+    public String t4ToString() {
+        return t4 != null ? t4.toString() : null;
+    }
+
+    /**
+     * Washout time constant (T5).  Typical Value = 10.
+     */
+    private Double t5; // Seconds
+
+    public Double getT5() {
+        return t5;
+    }
+
+    public void setT5(Double _value_) {
+        t5 = _value_;
+    }
+
+    public void setT5(String _value_) {
+        t5 = getDoubleFromString(_value_);
+    }
+
+    public String t5ToString() {
+        return t5 != null ? t5.toString() : null;
+    }
+
+    /**
+     * Transducer time constant (T6).  Typical Value = 0.01.
+     */
+    private Double t6; // Seconds
+
+    public Double getT6() {
+        return t6;
+    }
+
+    public void setT6(Double _value_) {
+        t6 = _value_;
+    }
+
+    public void setT6(String _value_) {
+        t6 = getDoubleFromString(_value_);
+    }
+
+    public String t6ToString() {
+        return t6 != null ? t6.toString() : null;
+    }
+
+    /**
+     * Maximum stabilizer output (Vrmax).  Typical Value = 0.05.
+     */
+    private Double vrmax; // PU
+
+    public Double getVrmax() {
+        return vrmax;
+    }
+
+    public void setVrmax(Double _value_) {
+        vrmax = _value_;
+    }
+
+    public void setVrmax(String _value_) {
+        vrmax = getDoubleFromString(_value_);
+    }
+
+    public String vrmaxToString() {
+        return vrmax != null ? vrmax.toString() : null;
+    }
+
+    /**
+     * Minimum stabilizer output (Vrmin).  Typical Value = -0.05.
+     */
+    private Double vrmin; // PU
+
+    public Double getVrmin() {
+        return vrmin;
+    }
+
+    public void setVrmin(Double _value_) {
+        vrmin = _value_;
+    }
+
+    public void setVrmin(String _value_) {
+        vrmin = getDoubleFromString(_value_);
+    }
+
+    public String vrminToString() {
+        return vrmin != null ? vrmin.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new PssIEEE1A();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("PssIEEE1A", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(PssIEEE1A_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            PssIEEE1A_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(PssIEEE1A_primitive_builder attrEnum, BaseClass value) {
-        try {
-            PssIEEE1A_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("PssIEEE1A", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            PssIEEE1A_class_attributes_enum attrEnum = PssIEEE1A_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated PssIEEE1A, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            PssIEEE1A_primitive_builder attrEnum = PssIEEE1A_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated PssIEEE1A, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            PssIEEE1A_primitive_builder attrEnum = PssIEEE1A_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = PssIEEE1A_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            PssIEEE1A_class_attributes_enum attrEnum = PssIEEE1A_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = PssIEEE1A_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : PssIEEE1A_primitive_builder.values()) {
-            if (enumValue != PssIEEE1A_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "PssIEEE1A." + enumValue.name());
-            }
-        }
-        for (var enumValue : PssIEEE1A_class_attributes_enum.values()) {
-            if (enumValue != PssIEEE1A_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "PssIEEE1A." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (PssIEEE1A_primitive_builder attrEnum : PssIEEE1A_primitive_builder.values()) {
-                BaseClass bc = PssIEEE1A_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    PssIEEE1A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (PssIEEE1A_class_attributes_enum attrEnum : PssIEEE1A_class_attributes_enum.values()) {
-                BaseClass bc = PssIEEE1A_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    PssIEEE1A." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(PssIEEE1A) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "PssIEEE1A";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("PssIEEE1A", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -266,7 +418,7 @@ public class PssIEEE1A extends PowerSystemStabilizerDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -276,15 +428,8 @@ public class PssIEEE1A extends PowerSystemStabilizerDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -315,7 +460,7 @@ public class PssIEEE1A extends PowerSystemStabilizerDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -337,74 +482,94 @@ public class PssIEEE1A extends PowerSystemStabilizerDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("a1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("a1", new AttrDetails("PssIEEE1A.a1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("a2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("a2", new AttrDetails("PssIEEE1A.a2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("inputSignalType", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("inputSignalType", new AttrDetails("PssIEEE1A.inputSignalType", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ks", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ks", new AttrDetails("PssIEEE1A.ks", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t1", new AttrDetails("PssIEEE1A.t1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t2", new AttrDetails("PssIEEE1A.t2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t3", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t3", new AttrDetails("PssIEEE1A.t3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t4", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t4", new AttrDetails("PssIEEE1A.t4", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t5", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t5", new AttrDetails("PssIEEE1A.t5", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t6", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t6", new AttrDetails("PssIEEE1A.t6", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vrmax", new AttrDetails("PssIEEE1A.vrmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmin", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("vrmin", new AttrDetails("PssIEEE1A.vrmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PssIEEE1A().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("a1", new GetterSetter(this::a1ToString, null, this::setA1));
+        map.put("a2", new GetterSetter(this::a2ToString, null, this::setA2));
+        map.put("inputSignalType", new GetterSetter(this::inputSignalTypeToString, null, this::setInputSignalType));
+        map.put("ks", new GetterSetter(this::ksToString, null, this::setKs));
+        map.put("t1", new GetterSetter(this::t1ToString, null, this::setT1));
+        map.put("t2", new GetterSetter(this::t2ToString, null, this::setT2));
+        map.put("t3", new GetterSetter(this::t3ToString, null, this::setT3));
+        map.put("t4", new GetterSetter(this::t4ToString, null, this::setT4));
+        map.put("t5", new GetterSetter(this::t5ToString, null, this::setT5));
+        map.put("t6", new GetterSetter(this::t6ToString, null, this::setT6));
+        map.put("vrmax", new GetterSetter(this::vrmaxToString, null, this::setVrmax));
+        map.put("vrmin", new GetterSetter(this::vrminToString, null, this::setVrmin));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

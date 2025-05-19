@@ -4,218 +4,265 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * All synchronous machine detailed types use a subset of the same data parameters and input/output variables.   The several variations differ in the following ways:   It is not necessary for each simulation tool to have separate models for each of the model types.  The same model can often be used for several types by alternative logic within the model.  Also, differences in saturation representation may not result in significant model performance differences so model substitutions are often acceptable.
  */
+@SuppressWarnings("unused")
 public class SynchronousMachineDetailed extends SynchronousMachineDynamics {
 
     private static final Logging LOG = Logging.getLogger(SynchronousMachineDetailed.class);
 
-    private BaseClass[] SynchronousMachineDetailed_class_attributes;
-    private BaseClass[] SynchronousMachineDetailed_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new SynchronousMachineDetailed().getAttributeNamesMap();
-    }
-
-    private enum SynchronousMachineDetailed_primitive_builder implements PrimitiveBuilder {
-        efdBaseRatio() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        ifdBaseType() {
-            public BaseClass construct(java.lang.String value) {
-                return new IfdBaseKind(value);
-            }
-        },
-        ifdBaseValue() {
-            public BaseClass construct(java.lang.String value) {
-                return new CurrentFlow(value);
-            }
-        },
-        saturationFactor120QAxis() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        saturationFactorQAxis() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum SynchronousMachineDetailed_class_attributes_enum {
-        efdBaseRatio,
-        ifdBaseType,
-        ifdBaseValue,
-        saturationFactor120QAxis,
-        saturationFactorQAxis,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public SynchronousMachineDetailed() {
-        SynchronousMachineDetailed_primitive_attributes = new BaseClass[SynchronousMachineDetailed_primitive_builder.values().length];
-        SynchronousMachineDetailed_class_attributes = new BaseClass[SynchronousMachineDetailed_class_attributes_enum.values().length];
+        setCimType("SynchronousMachineDetailed");
+    }
+
+    /**
+     * Ratio of Efd bases of exciter and generator models.  Typical Value = 1.
+     */
+    private Double efdBaseRatio; // Simple_Float
+
+    public Double getEfdBaseRatio() {
+        return efdBaseRatio;
+    }
+
+    public void setEfdBaseRatio(Double _value_) {
+        efdBaseRatio = _value_;
+    }
+
+    public void setEfdBaseRatio(String _value_) {
+        efdBaseRatio = getDoubleFromString(_value_);
+    }
+
+    public String efdBaseRatioToString() {
+        return efdBaseRatio != null ? efdBaseRatio.toString() : null;
+    }
+
+    /**
+     * Excitation base system mode.  Typical Value = ifag.
+     */
+    private String ifdBaseType; // IfdBaseKind
+
+    public String getIfdBaseType() {
+        return ifdBaseType;
+    }
+
+    public void setIfdBaseType(String _value_) {
+        ifdBaseType = _value_;
+    }
+
+    public String ifdBaseTypeToString() {
+        return ifdBaseType;
+    }
+
+    /**
+     * Ifd base current if .ifdBaseType = other. Not needed if .ifdBaseType not = other.   Unit = A.  Typical Value = 0.
+     */
+    private Double ifdBaseValue; // CurrentFlow
+
+    public Double getIfdBaseValue() {
+        return ifdBaseValue;
+    }
+
+    public void setIfdBaseValue(Double _value_) {
+        ifdBaseValue = _value_;
+    }
+
+    public void setIfdBaseValue(String _value_) {
+        ifdBaseValue = getDoubleFromString(_value_);
+    }
+
+    public String ifdBaseValueToString() {
+        return ifdBaseValue != null ? ifdBaseValue.toString() : null;
+    }
+
+    /**
+     * Q-axis saturation factor at 120% of rated terminal voltage (S12q) (&gt;=S1q).  Typical Value = 0.12.
+     */
+    private Double saturationFactor120QAxis; // Simple_Float
+
+    public Double getSaturationFactor120QAxis() {
+        return saturationFactor120QAxis;
+    }
+
+    public void setSaturationFactor120QAxis(Double _value_) {
+        saturationFactor120QAxis = _value_;
+    }
+
+    public void setSaturationFactor120QAxis(String _value_) {
+        saturationFactor120QAxis = getDoubleFromString(_value_);
+    }
+
+    public String saturationFactor120QAxisToString() {
+        return saturationFactor120QAxis != null ? saturationFactor120QAxis.toString() : null;
+    }
+
+    /**
+     * Q-axis saturation factor at rated terminal voltage (S1q) (&gt;= 0). Typical Value = 0.02.
+     */
+    private Double saturationFactorQAxis; // Simple_Float
+
+    public Double getSaturationFactorQAxis() {
+        return saturationFactorQAxis;
+    }
+
+    public void setSaturationFactorQAxis(Double _value_) {
+        saturationFactorQAxis = _value_;
+    }
+
+    public void setSaturationFactorQAxis(String _value_) {
+        saturationFactorQAxis = getDoubleFromString(_value_);
+    }
+
+    public String saturationFactorQAxisToString() {
+        return saturationFactorQAxis != null ? saturationFactorQAxis.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new SynchronousMachineDetailed();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("SynchronousMachineDetailed", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(SynchronousMachineDetailed_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            SynchronousMachineDetailed_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(SynchronousMachineDetailed_primitive_builder attrEnum, BaseClass value) {
-        try {
-            SynchronousMachineDetailed_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("SynchronousMachineDetailed", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            SynchronousMachineDetailed_class_attributes_enum attrEnum = SynchronousMachineDetailed_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated SynchronousMachineDetailed, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            SynchronousMachineDetailed_primitive_builder attrEnum = SynchronousMachineDetailed_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated SynchronousMachineDetailed, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            SynchronousMachineDetailed_primitive_builder attrEnum = SynchronousMachineDetailed_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = SynchronousMachineDetailed_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            SynchronousMachineDetailed_class_attributes_enum attrEnum = SynchronousMachineDetailed_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = SynchronousMachineDetailed_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : SynchronousMachineDetailed_primitive_builder.values()) {
-            if (enumValue != SynchronousMachineDetailed_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "SynchronousMachineDetailed." + enumValue.name());
-            }
-        }
-        for (var enumValue : SynchronousMachineDetailed_class_attributes_enum.values()) {
-            if (enumValue != SynchronousMachineDetailed_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "SynchronousMachineDetailed." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (SynchronousMachineDetailed_primitive_builder attrEnum : SynchronousMachineDetailed_primitive_builder.values()) {
-                BaseClass bc = SynchronousMachineDetailed_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    SynchronousMachineDetailed." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (SynchronousMachineDetailed_class_attributes_enum attrEnum : SynchronousMachineDetailed_class_attributes_enum.values()) {
-                BaseClass bc = SynchronousMachineDetailed_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    SynchronousMachineDetailed." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(SynchronousMachineDetailed) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "SynchronousMachineDetailed";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("SynchronousMachineDetailed", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -224,7 +271,7 @@ public class SynchronousMachineDetailed extends SynchronousMachineDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -234,15 +281,8 @@ public class SynchronousMachineDetailed extends SynchronousMachineDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -273,7 +313,7 @@ public class SynchronousMachineDetailed extends SynchronousMachineDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -295,39 +335,52 @@ public class SynchronousMachineDetailed extends SynchronousMachineDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("efdBaseRatio", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("efdBaseRatio", new AttrDetails("SynchronousMachineDetailed.efdBaseRatio", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ifdBaseType", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ifdBaseType", new AttrDetails("SynchronousMachineDetailed.ifdBaseType", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ifdBaseValue", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ifdBaseValue", new AttrDetails("SynchronousMachineDetailed.ifdBaseValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("saturationFactor120QAxis", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("saturationFactor120QAxis", new AttrDetails("SynchronousMachineDetailed.saturationFactor120QAxis", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("saturationFactorQAxis", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("saturationFactorQAxis", new AttrDetails("SynchronousMachineDetailed.saturationFactorQAxis", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SynchronousMachineDetailed().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("efdBaseRatio", new GetterSetter(this::efdBaseRatioToString, null, this::setEfdBaseRatio));
+        map.put("ifdBaseType", new GetterSetter(this::ifdBaseTypeToString, null, this::setIfdBaseType));
+        map.put("ifdBaseValue", new GetterSetter(this::ifdBaseValueToString, null, this::setIfdBaseValue));
+        map.put("saturationFactor120QAxis", new GetterSetter(this::saturationFactor120QAxisToString, null, this::setSaturationFactor120QAxis));
+        map.put("saturationFactorQAxis", new GetterSetter(this::saturationFactorQAxisToString, null, this::setSaturationFactorQAxis));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

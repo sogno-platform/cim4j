@@ -4,290 +4,521 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Cross compound turbine governor model.
  */
+@SuppressWarnings("unused")
 public class GovSteamCC extends TurbineGovernorDynamics {
 
     private static final Logging LOG = Logging.getLogger(GovSteamCC.class);
 
-    private BaseClass[] GovSteamCC_class_attributes;
-    private BaseClass[] GovSteamCC_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new GovSteamCC().getAttributeNamesMap();
-    }
-
-    private enum GovSteamCC_primitive_builder implements PrimitiveBuilder {
-        dhp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        dlp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        fhp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        flp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        mwbase() {
-            public BaseClass construct(java.lang.String value) {
-                return new ActivePower(value);
-            }
-        },
-        pmaxhp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        pmaxlp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        rhp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        rlp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        t1hp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t1lp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t3hp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t3lp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t4hp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t4lp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t5hp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        t5lp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum GovSteamCC_class_attributes_enum {
-        dhp,
-        dlp,
-        fhp,
-        flp,
-        mwbase,
-        pmaxhp,
-        pmaxlp,
-        rhp,
-        rlp,
-        t1hp,
-        t1lp,
-        t3hp,
-        t3lp,
-        t4hp,
-        t4lp,
-        t5hp,
-        t5lp,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public GovSteamCC() {
-        GovSteamCC_primitive_attributes = new BaseClass[GovSteamCC_primitive_builder.values().length];
-        GovSteamCC_class_attributes = new BaseClass[GovSteamCC_class_attributes_enum.values().length];
+        setCimType("GovSteamCC");
+    }
+
+    /**
+     * HP damping factor (Dhp).  Typical Value = 0.
+     */
+    private Double dhp; // PU
+
+    public Double getDhp() {
+        return dhp;
+    }
+
+    public void setDhp(Double _value_) {
+        dhp = _value_;
+    }
+
+    public void setDhp(String _value_) {
+        dhp = getDoubleFromString(_value_);
+    }
+
+    public String dhpToString() {
+        return dhp != null ? dhp.toString() : null;
+    }
+
+    /**
+     * LP damping factor (Dlp).  Typical Value = 0.
+     */
+    private Double dlp; // PU
+
+    public Double getDlp() {
+        return dlp;
+    }
+
+    public void setDlp(Double _value_) {
+        dlp = _value_;
+    }
+
+    public void setDlp(String _value_) {
+        dlp = getDoubleFromString(_value_);
+    }
+
+    public String dlpToString() {
+        return dlp != null ? dlp.toString() : null;
+    }
+
+    /**
+     * Fraction of HP power ahead of reheater (Fhp).  Typical Value = 0.3.
+     */
+    private Double fhp; // PU
+
+    public Double getFhp() {
+        return fhp;
+    }
+
+    public void setFhp(Double _value_) {
+        fhp = _value_;
+    }
+
+    public void setFhp(String _value_) {
+        fhp = getDoubleFromString(_value_);
+    }
+
+    public String fhpToString() {
+        return fhp != null ? fhp.toString() : null;
+    }
+
+    /**
+     * Fraction of LP power ahead of reheater (Flp).  Typical Value = 0.7.
+     */
+    private Double flp; // PU
+
+    public Double getFlp() {
+        return flp;
+    }
+
+    public void setFlp(Double _value_) {
+        flp = _value_;
+    }
+
+    public void setFlp(String _value_) {
+        flp = getDoubleFromString(_value_);
+    }
+
+    public String flpToString() {
+        return flp != null ? flp.toString() : null;
+    }
+
+    /**
+     * Base for power values (MWbase) (&gt;0).  Unit = MW.
+     */
+    private Double mwbase; // ActivePower
+
+    public Double getMwbase() {
+        return mwbase;
+    }
+
+    public void setMwbase(Double _value_) {
+        mwbase = _value_;
+    }
+
+    public void setMwbase(String _value_) {
+        mwbase = getDoubleFromString(_value_);
+    }
+
+    public String mwbaseToString() {
+        return mwbase != null ? mwbase.toString() : null;
+    }
+
+    /**
+     * Maximum HP value position (Pmaxhp).  Typical Value = 1.
+     */
+    private Double pmaxhp; // PU
+
+    public Double getPmaxhp() {
+        return pmaxhp;
+    }
+
+    public void setPmaxhp(Double _value_) {
+        pmaxhp = _value_;
+    }
+
+    public void setPmaxhp(String _value_) {
+        pmaxhp = getDoubleFromString(_value_);
+    }
+
+    public String pmaxhpToString() {
+        return pmaxhp != null ? pmaxhp.toString() : null;
+    }
+
+    /**
+     * Maximum LP value position (Pmaxlp).  Typical Value = 1.
+     */
+    private Double pmaxlp; // PU
+
+    public Double getPmaxlp() {
+        return pmaxlp;
+    }
+
+    public void setPmaxlp(Double _value_) {
+        pmaxlp = _value_;
+    }
+
+    public void setPmaxlp(String _value_) {
+        pmaxlp = getDoubleFromString(_value_);
+    }
+
+    public String pmaxlpToString() {
+        return pmaxlp != null ? pmaxlp.toString() : null;
+    }
+
+    /**
+     * HP governor droop (Rhp).  Typical Value = 0.05.
+     */
+    private Double rhp; // PU
+
+    public Double getRhp() {
+        return rhp;
+    }
+
+    public void setRhp(Double _value_) {
+        rhp = _value_;
+    }
+
+    public void setRhp(String _value_) {
+        rhp = getDoubleFromString(_value_);
+    }
+
+    public String rhpToString() {
+        return rhp != null ? rhp.toString() : null;
+    }
+
+    /**
+     * LP governor droop (Rlp).  Typical Value = 0.05.
+     */
+    private Double rlp; // PU
+
+    public Double getRlp() {
+        return rlp;
+    }
+
+    public void setRlp(Double _value_) {
+        rlp = _value_;
+    }
+
+    public void setRlp(String _value_) {
+        rlp = getDoubleFromString(_value_);
+    }
+
+    public String rlpToString() {
+        return rlp != null ? rlp.toString() : null;
+    }
+
+    /**
+     * HP governor time constant (T1hp).  Typical Value = 0.1.
+     */
+    private Double t1hp; // Seconds
+
+    public Double getT1hp() {
+        return t1hp;
+    }
+
+    public void setT1hp(Double _value_) {
+        t1hp = _value_;
+    }
+
+    public void setT1hp(String _value_) {
+        t1hp = getDoubleFromString(_value_);
+    }
+
+    public String t1hpToString() {
+        return t1hp != null ? t1hp.toString() : null;
+    }
+
+    /**
+     * LP governor time constant (T1lp).  Typical Value = 0.1.
+     */
+    private Double t1lp; // Seconds
+
+    public Double getT1lp() {
+        return t1lp;
+    }
+
+    public void setT1lp(Double _value_) {
+        t1lp = _value_;
+    }
+
+    public void setT1lp(String _value_) {
+        t1lp = getDoubleFromString(_value_);
+    }
+
+    public String t1lpToString() {
+        return t1lp != null ? t1lp.toString() : null;
+    }
+
+    /**
+     * HP turbine time constant (T3hp).  Typical Value = 0.1.
+     */
+    private Double t3hp; // Seconds
+
+    public Double getT3hp() {
+        return t3hp;
+    }
+
+    public void setT3hp(Double _value_) {
+        t3hp = _value_;
+    }
+
+    public void setT3hp(String _value_) {
+        t3hp = getDoubleFromString(_value_);
+    }
+
+    public String t3hpToString() {
+        return t3hp != null ? t3hp.toString() : null;
+    }
+
+    /**
+     * LP turbine time constant (T3lp).  Typical Value = 0.1.
+     */
+    private Double t3lp; // Seconds
+
+    public Double getT3lp() {
+        return t3lp;
+    }
+
+    public void setT3lp(Double _value_) {
+        t3lp = _value_;
+    }
+
+    public void setT3lp(String _value_) {
+        t3lp = getDoubleFromString(_value_);
+    }
+
+    public String t3lpToString() {
+        return t3lp != null ? t3lp.toString() : null;
+    }
+
+    /**
+     * HP turbine time constant (T4hp).  Typical Value = 0.1.
+     */
+    private Double t4hp; // Seconds
+
+    public Double getT4hp() {
+        return t4hp;
+    }
+
+    public void setT4hp(Double _value_) {
+        t4hp = _value_;
+    }
+
+    public void setT4hp(String _value_) {
+        t4hp = getDoubleFromString(_value_);
+    }
+
+    public String t4hpToString() {
+        return t4hp != null ? t4hp.toString() : null;
+    }
+
+    /**
+     * LP turbine time constant (T4lp).  Typical Value = 0.1.
+     */
+    private Double t4lp; // Seconds
+
+    public Double getT4lp() {
+        return t4lp;
+    }
+
+    public void setT4lp(Double _value_) {
+        t4lp = _value_;
+    }
+
+    public void setT4lp(String _value_) {
+        t4lp = getDoubleFromString(_value_);
+    }
+
+    public String t4lpToString() {
+        return t4lp != null ? t4lp.toString() : null;
+    }
+
+    /**
+     * HP reheater time constant (T5hp).  Typical Value = 10.
+     */
+    private Double t5hp; // Seconds
+
+    public Double getT5hp() {
+        return t5hp;
+    }
+
+    public void setT5hp(Double _value_) {
+        t5hp = _value_;
+    }
+
+    public void setT5hp(String _value_) {
+        t5hp = getDoubleFromString(_value_);
+    }
+
+    public String t5hpToString() {
+        return t5hp != null ? t5hp.toString() : null;
+    }
+
+    /**
+     * LP reheater time constant (T5lp).  Typical Value = 10.
+     */
+    private Double t5lp; // Seconds
+
+    public Double getT5lp() {
+        return t5lp;
+    }
+
+    public void setT5lp(Double _value_) {
+        t5lp = _value_;
+    }
+
+    public void setT5lp(String _value_) {
+        t5lp = getDoubleFromString(_value_);
+    }
+
+    public String t5lpToString() {
+        return t5lp != null ? t5lp.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new GovSteamCC();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("GovSteamCC", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(GovSteamCC_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            GovSteamCC_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(GovSteamCC_primitive_builder attrEnum, BaseClass value) {
-        try {
-            GovSteamCC_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("GovSteamCC", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            GovSteamCC_class_attributes_enum attrEnum = GovSteamCC_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated GovSteamCC, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            GovSteamCC_primitive_builder attrEnum = GovSteamCC_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated GovSteamCC, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            GovSteamCC_primitive_builder attrEnum = GovSteamCC_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = GovSteamCC_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            GovSteamCC_class_attributes_enum attrEnum = GovSteamCC_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = GovSteamCC_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : GovSteamCC_primitive_builder.values()) {
-            if (enumValue != GovSteamCC_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "GovSteamCC." + enumValue.name());
-            }
-        }
-        for (var enumValue : GovSteamCC_class_attributes_enum.values()) {
-            if (enumValue != GovSteamCC_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "GovSteamCC." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (GovSteamCC_primitive_builder attrEnum : GovSteamCC_primitive_builder.values()) {
-                BaseClass bc = GovSteamCC_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    GovSteamCC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (GovSteamCC_class_attributes_enum attrEnum : GovSteamCC_class_attributes_enum.values()) {
-                BaseClass bc = GovSteamCC_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    GovSteamCC." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(GovSteamCC) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "GovSteamCC";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("GovSteamCC", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -296,7 +527,7 @@ public class GovSteamCC extends TurbineGovernorDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -306,15 +537,8 @@ public class GovSteamCC extends TurbineGovernorDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -345,7 +569,7 @@ public class GovSteamCC extends TurbineGovernorDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -367,99 +591,124 @@ public class GovSteamCC extends TurbineGovernorDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dhp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("dhp", new AttrDetails("GovSteamCC.dhp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dlp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("dlp", new AttrDetails("GovSteamCC.dlp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("fhp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("fhp", new AttrDetails("GovSteamCC.fhp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("flp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("flp", new AttrDetails("GovSteamCC.flp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mwbase", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("mwbase", new AttrDetails("GovSteamCC.mwbase", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmaxhp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("pmaxhp", new AttrDetails("GovSteamCC.pmaxhp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmaxlp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("pmaxlp", new AttrDetails("GovSteamCC.pmaxlp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rhp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("rhp", new AttrDetails("GovSteamCC.rhp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rlp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("rlp", new AttrDetails("GovSteamCC.rlp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t1hp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t1hp", new AttrDetails("GovSteamCC.t1hp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t1lp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t1lp", new AttrDetails("GovSteamCC.t1lp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t3hp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t3hp", new AttrDetails("GovSteamCC.t3hp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t3lp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t3lp", new AttrDetails("GovSteamCC.t3lp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t4hp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t4hp", new AttrDetails("GovSteamCC.t4hp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t4lp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t4lp", new AttrDetails("GovSteamCC.t4lp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t5hp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t5hp", new AttrDetails("GovSteamCC.t5hp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t5lp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("t5lp", new AttrDetails("GovSteamCC.t5lp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovSteamCC().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("dhp", new GetterSetter(this::dhpToString, null, this::setDhp));
+        map.put("dlp", new GetterSetter(this::dlpToString, null, this::setDlp));
+        map.put("fhp", new GetterSetter(this::fhpToString, null, this::setFhp));
+        map.put("flp", new GetterSetter(this::flpToString, null, this::setFlp));
+        map.put("mwbase", new GetterSetter(this::mwbaseToString, null, this::setMwbase));
+        map.put("pmaxhp", new GetterSetter(this::pmaxhpToString, null, this::setPmaxhp));
+        map.put("pmaxlp", new GetterSetter(this::pmaxlpToString, null, this::setPmaxlp));
+        map.put("rhp", new GetterSetter(this::rhpToString, null, this::setRhp));
+        map.put("rlp", new GetterSetter(this::rlpToString, null, this::setRlp));
+        map.put("t1hp", new GetterSetter(this::t1hpToString, null, this::setT1hp));
+        map.put("t1lp", new GetterSetter(this::t1lpToString, null, this::setT1lp));
+        map.put("t3hp", new GetterSetter(this::t3hpToString, null, this::setT3hp));
+        map.put("t3lp", new GetterSetter(this::t3lpToString, null, this::setT3lp));
+        map.put("t4hp", new GetterSetter(this::t4hpToString, null, this::setT4hp));
+        map.put("t4lp", new GetterSetter(this::t4lpToString, null, this::setT4lp));
+        map.put("t5hp", new GetterSetter(this::t5hpToString, null, this::setT5hp));
+        map.put("t5lp", new GetterSetter(this::t5lpToString, null, this::setT5lp));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

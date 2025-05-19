@@ -4,398 +4,899 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Simplified model  of boiler and steam turbine with PID governor.
  */
+@SuppressWarnings("unused")
 public class GovSteamEU extends TurbineGovernorDynamics {
 
     private static final Logging LOG = Logging.getLogger(GovSteamEU.class);
 
-    private BaseClass[] GovSteamEU_class_attributes;
-    private BaseClass[] GovSteamEU_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new GovSteamEU().getAttributeNamesMap();
-    }
-
-    private enum GovSteamEU_primitive_builder implements PrimitiveBuilder {
-        chc() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        cho() {
-            public BaseClass construct(java.lang.String value) {
-                return new Simple_Float(value);
-            }
-        },
-        cic() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        cio() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        db1() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        db2() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        hhpmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        ke() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kfcor() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        khp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        klp() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        kwcor() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        mwbase() {
-            public BaseClass construct(java.lang.String value) {
-                return new ActivePower(value);
-            }
-        },
-        pmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        prhmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        simx() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        tb() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tdp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        ten() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tf() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tfp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        thp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tip() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tlp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        trh() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tvhp() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tvip() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        tw() {
-            public BaseClass construct(java.lang.String value) {
-                return new Seconds(value);
-            }
-        },
-        wfmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        wfmin() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        wmax1() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        wmax2() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        wwmax() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        wwmin() {
-            public BaseClass construct(java.lang.String value) {
-                return new PU(value);
-            }
-        },
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum GovSteamEU_class_attributes_enum {
-        chc,
-        cho,
-        cic,
-        cio,
-        db1,
-        db2,
-        hhpmax,
-        ke,
-        kfcor,
-        khp,
-        klp,
-        kwcor,
-        mwbase,
-        pmax,
-        prhmax,
-        simx,
-        tb,
-        tdp,
-        ten,
-        tf,
-        tfp,
-        thp,
-        tip,
-        tlp,
-        tp,
-        trh,
-        tvhp,
-        tvip,
-        tw,
-        wfmax,
-        wfmin,
-        wmax1,
-        wmax2,
-        wwmax,
-        wwmin,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public GovSteamEU() {
-        GovSteamEU_primitive_attributes = new BaseClass[GovSteamEU_primitive_builder.values().length];
-        GovSteamEU_class_attributes = new BaseClass[GovSteamEU_class_attributes_enum.values().length];
+        setCimType("GovSteamEU");
+    }
+
+    /**
+     * Control valves rate closing limit (Chc).  Unit = PU/sec.  Typical Value = -3.3.
+     */
+    private Double chc; // Simple_Float
+
+    public Double getChc() {
+        return chc;
+    }
+
+    public void setChc(Double _value_) {
+        chc = _value_;
+    }
+
+    public void setChc(String _value_) {
+        chc = getDoubleFromString(_value_);
+    }
+
+    public String chcToString() {
+        return chc != null ? chc.toString() : null;
+    }
+
+    /**
+     * Control valves rate opening limit (Cho).  Unit = PU/sec.  Typical Value = 0.17.
+     */
+    private Double cho; // Simple_Float
+
+    public Double getCho() {
+        return cho;
+    }
+
+    public void setCho(Double _value_) {
+        cho = _value_;
+    }
+
+    public void setCho(String _value_) {
+        cho = getDoubleFromString(_value_);
+    }
+
+    public String choToString() {
+        return cho != null ? cho.toString() : null;
+    }
+
+    /**
+     * Intercept valves rate closing limit (Cic).  Typical Value = -2.2.
+     */
+    private Double cic; // PU
+
+    public Double getCic() {
+        return cic;
+    }
+
+    public void setCic(Double _value_) {
+        cic = _value_;
+    }
+
+    public void setCic(String _value_) {
+        cic = getDoubleFromString(_value_);
+    }
+
+    public String cicToString() {
+        return cic != null ? cic.toString() : null;
+    }
+
+    /**
+     * Intercept valves rate opening limit (Cio).  Typical Value = 0.123.
+     */
+    private Double cio; // PU
+
+    public Double getCio() {
+        return cio;
+    }
+
+    public void setCio(Double _value_) {
+        cio = _value_;
+    }
+
+    public void setCio(String _value_) {
+        cio = getDoubleFromString(_value_);
+    }
+
+    public String cioToString() {
+        return cio != null ? cio.toString() : null;
+    }
+
+    /**
+     * Dead band of the frequency corrector (db1).  Typical Value = 0.
+     */
+    private Double db1; // PU
+
+    public Double getDb1() {
+        return db1;
+    }
+
+    public void setDb1(Double _value_) {
+        db1 = _value_;
+    }
+
+    public void setDb1(String _value_) {
+        db1 = getDoubleFromString(_value_);
+    }
+
+    public String db1ToString() {
+        return db1 != null ? db1.toString() : null;
+    }
+
+    /**
+     * Dead band of the speed governor (db2).  Typical Value = 0.0004.
+     */
+    private Double db2; // PU
+
+    public Double getDb2() {
+        return db2;
+    }
+
+    public void setDb2(Double _value_) {
+        db2 = _value_;
+    }
+
+    public void setDb2(String _value_) {
+        db2 = getDoubleFromString(_value_);
+    }
+
+    public String db2ToString() {
+        return db2 != null ? db2.toString() : null;
+    }
+
+    /**
+     * Maximum control valve position (Hhpmax).  Typical Value = 1.
+     */
+    private Double hhpmax; // PU
+
+    public Double getHhpmax() {
+        return hhpmax;
+    }
+
+    public void setHhpmax(Double _value_) {
+        hhpmax = _value_;
+    }
+
+    public void setHhpmax(String _value_) {
+        hhpmax = getDoubleFromString(_value_);
+    }
+
+    public String hhpmaxToString() {
+        return hhpmax != null ? hhpmax.toString() : null;
+    }
+
+    /**
+     * Gain of the power controller (Ke).  Typical Value = 0.65.
+     */
+    private Double ke; // PU
+
+    public Double getKe() {
+        return ke;
+    }
+
+    public void setKe(Double _value_) {
+        ke = _value_;
+    }
+
+    public void setKe(String _value_) {
+        ke = getDoubleFromString(_value_);
+    }
+
+    public String keToString() {
+        return ke != null ? ke.toString() : null;
+    }
+
+    /**
+     * Gain of the frequency corrector (Kfcor).  Typical Value = 20.
+     */
+    private Double kfcor; // PU
+
+    public Double getKfcor() {
+        return kfcor;
+    }
+
+    public void setKfcor(Double _value_) {
+        kfcor = _value_;
+    }
+
+    public void setKfcor(String _value_) {
+        kfcor = getDoubleFromString(_value_);
+    }
+
+    public String kfcorToString() {
+        return kfcor != null ? kfcor.toString() : null;
+    }
+
+    /**
+     * Fraction of total turbine output generated by HP part (Khp).  Typical Value = 0.277.
+     */
+    private Double khp; // PU
+
+    public Double getKhp() {
+        return khp;
+    }
+
+    public void setKhp(Double _value_) {
+        khp = _value_;
+    }
+
+    public void setKhp(String _value_) {
+        khp = getDoubleFromString(_value_);
+    }
+
+    public String khpToString() {
+        return khp != null ? khp.toString() : null;
+    }
+
+    /**
+     * Fraction of total turbine output generated by HP part (Klp).  Typical Value = 0.723.
+     */
+    private Double klp; // PU
+
+    public Double getKlp() {
+        return klp;
+    }
+
+    public void setKlp(Double _value_) {
+        klp = _value_;
+    }
+
+    public void setKlp(String _value_) {
+        klp = getDoubleFromString(_value_);
+    }
+
+    public String klpToString() {
+        return klp != null ? klp.toString() : null;
+    }
+
+    /**
+     * Gain of the speed governor (Kwcor).  Typical Value = 20.
+     */
+    private Double kwcor; // PU
+
+    public Double getKwcor() {
+        return kwcor;
+    }
+
+    public void setKwcor(Double _value_) {
+        kwcor = _value_;
+    }
+
+    public void setKwcor(String _value_) {
+        kwcor = getDoubleFromString(_value_);
+    }
+
+    public String kwcorToString() {
+        return kwcor != null ? kwcor.toString() : null;
+    }
+
+    /**
+     * Base for power values (MWbase) (&gt;0).  Unit = MW.
+     */
+    private Double mwbase; // ActivePower
+
+    public Double getMwbase() {
+        return mwbase;
+    }
+
+    public void setMwbase(Double _value_) {
+        mwbase = _value_;
+    }
+
+    public void setMwbase(String _value_) {
+        mwbase = getDoubleFromString(_value_);
+    }
+
+    public String mwbaseToString() {
+        return mwbase != null ? mwbase.toString() : null;
+    }
+
+    /**
+     * Maximal active power of the turbine (Pmax).  Typical Value = 1.
+     */
+    private Double pmax; // PU
+
+    public Double getPmax() {
+        return pmax;
+    }
+
+    public void setPmax(Double _value_) {
+        pmax = _value_;
+    }
+
+    public void setPmax(String _value_) {
+        pmax = getDoubleFromString(_value_);
+    }
+
+    public String pmaxToString() {
+        return pmax != null ? pmax.toString() : null;
+    }
+
+    /**
+     * Maximum low pressure limit (Prhmax).  Typical Value = 1.4.
+     */
+    private Double prhmax; // PU
+
+    public Double getPrhmax() {
+        return prhmax;
+    }
+
+    public void setPrhmax(Double _value_) {
+        prhmax = _value_;
+    }
+
+    public void setPrhmax(String _value_) {
+        prhmax = getDoubleFromString(_value_);
+    }
+
+    public String prhmaxToString() {
+        return prhmax != null ? prhmax.toString() : null;
+    }
+
+    /**
+     * Intercept valves transfer limit (Simx).  Typical Value = 0.425.
+     */
+    private Double simx; // PU
+
+    public Double getSimx() {
+        return simx;
+    }
+
+    public void setSimx(Double _value_) {
+        simx = _value_;
+    }
+
+    public void setSimx(String _value_) {
+        simx = getDoubleFromString(_value_);
+    }
+
+    public String simxToString() {
+        return simx != null ? simx.toString() : null;
+    }
+
+    /**
+     * Boiler time constant (Tb).  Typical Value = 100.
+     */
+    private Double tb; // Seconds
+
+    public Double getTb() {
+        return tb;
+    }
+
+    public void setTb(Double _value_) {
+        tb = _value_;
+    }
+
+    public void setTb(String _value_) {
+        tb = getDoubleFromString(_value_);
+    }
+
+    public String tbToString() {
+        return tb != null ? tb.toString() : null;
+    }
+
+    /**
+     * Derivative time constant of the power controller (Tdp).  Typical Value = 0.
+     */
+    private Double tdp; // Seconds
+
+    public Double getTdp() {
+        return tdp;
+    }
+
+    public void setTdp(Double _value_) {
+        tdp = _value_;
+    }
+
+    public void setTdp(String _value_) {
+        tdp = getDoubleFromString(_value_);
+    }
+
+    public String tdpToString() {
+        return tdp != null ? tdp.toString() : null;
+    }
+
+    /**
+     * Electro hydraulic transducer (Ten).  Typical Value = 0.1.
+     */
+    private Double ten; // Seconds
+
+    public Double getTen() {
+        return ten;
+    }
+
+    public void setTen(Double _value_) {
+        ten = _value_;
+    }
+
+    public void setTen(String _value_) {
+        ten = getDoubleFromString(_value_);
+    }
+
+    public String tenToString() {
+        return ten != null ? ten.toString() : null;
+    }
+
+    /**
+     * Frequency transducer time constant (Tf).  Typical Value = 0.
+     */
+    private Double tf; // Seconds
+
+    public Double getTf() {
+        return tf;
+    }
+
+    public void setTf(Double _value_) {
+        tf = _value_;
+    }
+
+    public void setTf(String _value_) {
+        tf = getDoubleFromString(_value_);
+    }
+
+    public String tfToString() {
+        return tf != null ? tf.toString() : null;
+    }
+
+    /**
+     * Time constant of the power controller (Tfp).  Typical Value = 0.
+     */
+    private Double tfp; // Seconds
+
+    public Double getTfp() {
+        return tfp;
+    }
+
+    public void setTfp(Double _value_) {
+        tfp = _value_;
+    }
+
+    public void setTfp(String _value_) {
+        tfp = getDoubleFromString(_value_);
+    }
+
+    public String tfpToString() {
+        return tfp != null ? tfp.toString() : null;
+    }
+
+    /**
+     * High pressure (HP) time constant of the turbine (Thp).  Typical Value = 0.31.
+     */
+    private Double thp; // Seconds
+
+    public Double getThp() {
+        return thp;
+    }
+
+    public void setThp(Double _value_) {
+        thp = _value_;
+    }
+
+    public void setThp(String _value_) {
+        thp = getDoubleFromString(_value_);
+    }
+
+    public String thpToString() {
+        return thp != null ? thp.toString() : null;
+    }
+
+    /**
+     * Integral time constant of the power controller (Tip).  Typical Value = 2.
+     */
+    private Double tip; // Seconds
+
+    public Double getTip() {
+        return tip;
+    }
+
+    public void setTip(Double _value_) {
+        tip = _value_;
+    }
+
+    public void setTip(String _value_) {
+        tip = getDoubleFromString(_value_);
+    }
+
+    public String tipToString() {
+        return tip != null ? tip.toString() : null;
+    }
+
+    /**
+     * Low pressure(LP) time constant of the turbine (Tlp).  Typical Value = 0.45.
+     */
+    private Double tlp; // Seconds
+
+    public Double getTlp() {
+        return tlp;
+    }
+
+    public void setTlp(Double _value_) {
+        tlp = _value_;
+    }
+
+    public void setTlp(String _value_) {
+        tlp = getDoubleFromString(_value_);
+    }
+
+    public String tlpToString() {
+        return tlp != null ? tlp.toString() : null;
+    }
+
+    /**
+     * Power transducer time constant (Tp).  Typical Value = 0.07.
+     */
+    private Double tp; // Seconds
+
+    public Double getTp() {
+        return tp;
+    }
+
+    public void setTp(Double _value_) {
+        tp = _value_;
+    }
+
+    public void setTp(String _value_) {
+        tp = getDoubleFromString(_value_);
+    }
+
+    public String tpToString() {
+        return tp != null ? tp.toString() : null;
+    }
+
+    /**
+     * Reheater  time constant of the turbine (Trh).  Typical Value = 8.
+     */
+    private Double trh; // Seconds
+
+    public Double getTrh() {
+        return trh;
+    }
+
+    public void setTrh(Double _value_) {
+        trh = _value_;
+    }
+
+    public void setTrh(String _value_) {
+        trh = getDoubleFromString(_value_);
+    }
+
+    public String trhToString() {
+        return trh != null ? trh.toString() : null;
+    }
+
+    /**
+     * Control valves servo time constant (Tvhp).  Typical Value = 0.1.
+     */
+    private Double tvhp; // Seconds
+
+    public Double getTvhp() {
+        return tvhp;
+    }
+
+    public void setTvhp(Double _value_) {
+        tvhp = _value_;
+    }
+
+    public void setTvhp(String _value_) {
+        tvhp = getDoubleFromString(_value_);
+    }
+
+    public String tvhpToString() {
+        return tvhp != null ? tvhp.toString() : null;
+    }
+
+    /**
+     * Intercept valves servo time constant (Tvip).  Typical Value = 0.15.
+     */
+    private Double tvip; // Seconds
+
+    public Double getTvip() {
+        return tvip;
+    }
+
+    public void setTvip(Double _value_) {
+        tvip = _value_;
+    }
+
+    public void setTvip(String _value_) {
+        tvip = getDoubleFromString(_value_);
+    }
+
+    public String tvipToString() {
+        return tvip != null ? tvip.toString() : null;
+    }
+
+    /**
+     * Speed transducer time constant (Tw).  Typical Value = 0.02.
+     */
+    private Double tw; // Seconds
+
+    public Double getTw() {
+        return tw;
+    }
+
+    public void setTw(Double _value_) {
+        tw = _value_;
+    }
+
+    public void setTw(String _value_) {
+        tw = getDoubleFromString(_value_);
+    }
+
+    public String twToString() {
+        return tw != null ? tw.toString() : null;
+    }
+
+    /**
+     * Upper limit for frequency correction (Wfmax).  Typical Value = 0.05.
+     */
+    private Double wfmax; // PU
+
+    public Double getWfmax() {
+        return wfmax;
+    }
+
+    public void setWfmax(Double _value_) {
+        wfmax = _value_;
+    }
+
+    public void setWfmax(String _value_) {
+        wfmax = getDoubleFromString(_value_);
+    }
+
+    public String wfmaxToString() {
+        return wfmax != null ? wfmax.toString() : null;
+    }
+
+    /**
+     * Lower limit for frequency correction (Wfmin).  Typical Value = -0.05.
+     */
+    private Double wfmin; // PU
+
+    public Double getWfmin() {
+        return wfmin;
+    }
+
+    public void setWfmin(Double _value_) {
+        wfmin = _value_;
+    }
+
+    public void setWfmin(String _value_) {
+        wfmin = getDoubleFromString(_value_);
+    }
+
+    public String wfminToString() {
+        return wfmin != null ? wfmin.toString() : null;
+    }
+
+    /**
+     * Emergency speed control lower limit (wmax1).  Typical Value = 1.025.
+     */
+    private Double wmax1; // PU
+
+    public Double getWmax1() {
+        return wmax1;
+    }
+
+    public void setWmax1(Double _value_) {
+        wmax1 = _value_;
+    }
+
+    public void setWmax1(String _value_) {
+        wmax1 = getDoubleFromString(_value_);
+    }
+
+    public String wmax1ToString() {
+        return wmax1 != null ? wmax1.toString() : null;
+    }
+
+    /**
+     * Emergency speed control upper limit (wmax2).  Typical Value = 1.05.
+     */
+    private Double wmax2; // PU
+
+    public Double getWmax2() {
+        return wmax2;
+    }
+
+    public void setWmax2(Double _value_) {
+        wmax2 = _value_;
+    }
+
+    public void setWmax2(String _value_) {
+        wmax2 = getDoubleFromString(_value_);
+    }
+
+    public String wmax2ToString() {
+        return wmax2 != null ? wmax2.toString() : null;
+    }
+
+    /**
+     * Upper limit for the speed governor (Wwmax).  Typical Value = 0.1.
+     */
+    private Double wwmax; // PU
+
+    public Double getWwmax() {
+        return wwmax;
+    }
+
+    public void setWwmax(Double _value_) {
+        wwmax = _value_;
+    }
+
+    public void setWwmax(String _value_) {
+        wwmax = getDoubleFromString(_value_);
+    }
+
+    public String wwmaxToString() {
+        return wwmax != null ? wwmax.toString() : null;
+    }
+
+    /**
+     * Lower limit for the speed governor frequency correction (Wwmin).  Typical Value = -1.
+     */
+    private Double wwmin; // PU
+
+    public Double getWwmin() {
+        return wwmin;
+    }
+
+    public void setWwmin(Double _value_) {
+        wwmin = _value_;
+    }
+
+    public void setWwmin(String _value_) {
+        wwmin = getDoubleFromString(_value_);
+    }
+
+    public String wwminToString() {
+        return wwmin != null ? wwmin.toString() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
+    @Override
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass construct() {
-        return new GovSteamEU();
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
+
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
+
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("GovSteamEU", attrName);
     }
 
     @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(GovSteamEU_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            GovSteamEU_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
+        return super.getAttribute(className, attrName);
     }
 
-    private void updateAttributeInArray(GovSteamEU_primitive_builder attrEnum, BaseClass value) {
-        try {
-            GovSteamEU_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
-        }
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("GovSteamEU", attrName, objectValue);
     }
 
     @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            GovSteamEU_class_attributes_enum attrEnum = GovSteamEU_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated GovSteamEU, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            GovSteamEU_primitive_builder attrEnum = GovSteamEU_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated GovSteamEU, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
-    }
-
-    @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            GovSteamEU_primitive_builder attrEnum = GovSteamEU_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = GovSteamEU_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        try {
-            GovSteamEU_class_attributes_enum attrEnum = GovSteamEU_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = GovSteamEU_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
-
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
-    }
-
-    @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : GovSteamEU_primitive_builder.values()) {
-            if (enumValue != GovSteamEU_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "GovSteamEU." + enumValue.name());
-            }
-        }
-        for (var enumValue : GovSteamEU_class_attributes_enum.values()) {
-            if (enumValue != GovSteamEU_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "GovSteamEU." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
-    }
-
-    @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (GovSteamEU_primitive_builder attrEnum : GovSteamEU_primitive_builder.values()) {
-                BaseClass bc = GovSteamEU_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    GovSteamEU." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (GovSteamEU_class_attributes_enum attrEnum : GovSteamEU_class_attributes_enum.values()) {
-                BaseClass bc = GovSteamEU_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    GovSteamEU." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(GovSteamEU) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "GovSteamEU";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("GovSteamEU", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -404,7 +905,7 @@ public class GovSteamEU extends TurbineGovernorDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -414,15 +915,8 @@ public class GovSteamEU extends TurbineGovernorDynamics {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -453,7 +947,7 @@ public class GovSteamEU extends TurbineGovernorDynamics {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -475,189 +969,232 @@ public class GovSteamEU extends TurbineGovernorDynamics {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/2013/CIM-schema-cim16#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("chc", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("chc", new AttrDetails("GovSteamEU.chc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("cho", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("cho", new AttrDetails("GovSteamEU.cho", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("cic", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("cic", new AttrDetails("GovSteamEU.cic", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("cio", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("cio", new AttrDetails("GovSteamEU.cio", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("db1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("db1", new AttrDetails("GovSteamEU.db1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("db2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("db2", new AttrDetails("GovSteamEU.db2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("hhpmax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("hhpmax", new AttrDetails("GovSteamEU.hhpmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ke", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ke", new AttrDetails("GovSteamEU.ke", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kfcor", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kfcor", new AttrDetails("GovSteamEU.kfcor", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("khp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("khp", new AttrDetails("GovSteamEU.khp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("klp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("klp", new AttrDetails("GovSteamEU.klp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kwcor", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("kwcor", new AttrDetails("GovSteamEU.kwcor", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mwbase", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("mwbase", new AttrDetails("GovSteamEU.mwbase", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("pmax", new AttrDetails("GovSteamEU.pmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("prhmax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("prhmax", new AttrDetails("GovSteamEU.prhmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("simx", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("simx", new AttrDetails("GovSteamEU.simx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tb", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tb", new AttrDetails("GovSteamEU.tb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tdp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tdp", new AttrDetails("GovSteamEU.tdp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ten", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("ten", new AttrDetails("GovSteamEU.ten", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tf", new AttrDetails("GovSteamEU.tf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tfp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tfp", new AttrDetails("GovSteamEU.tfp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("thp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("thp", new AttrDetails("GovSteamEU.thp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tip", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tip", new AttrDetails("GovSteamEU.tip", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tlp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tlp", new AttrDetails("GovSteamEU.tlp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tp", new AttrDetails("GovSteamEU.tp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("trh", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("trh", new AttrDetails("GovSteamEU.trh", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tvhp", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tvhp", new AttrDetails("GovSteamEU.tvhp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tvip", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tvip", new AttrDetails("GovSteamEU.tvip", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tw", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("tw", new AttrDetails("GovSteamEU.tw", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("wfmax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("wfmax", new AttrDetails("GovSteamEU.wfmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("wfmin", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("wfmin", new AttrDetails("GovSteamEU.wfmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("wmax1", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("wmax1", new AttrDetails("GovSteamEU.wmax1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("wmax2", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("wmax2", new AttrDetails("GovSteamEU.wmax2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("wwmax", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("wwmax", new AttrDetails("GovSteamEU.wwmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("wwmin", new AttrDetails("http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles));
+            map.put("wwmin", new AttrDetails("GovSteamEU.wwmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovSteamEU().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("chc", new GetterSetter(this::chcToString, null, this::setChc));
+        map.put("cho", new GetterSetter(this::choToString, null, this::setCho));
+        map.put("cic", new GetterSetter(this::cicToString, null, this::setCic));
+        map.put("cio", new GetterSetter(this::cioToString, null, this::setCio));
+        map.put("db1", new GetterSetter(this::db1ToString, null, this::setDb1));
+        map.put("db2", new GetterSetter(this::db2ToString, null, this::setDb2));
+        map.put("hhpmax", new GetterSetter(this::hhpmaxToString, null, this::setHhpmax));
+        map.put("ke", new GetterSetter(this::keToString, null, this::setKe));
+        map.put("kfcor", new GetterSetter(this::kfcorToString, null, this::setKfcor));
+        map.put("khp", new GetterSetter(this::khpToString, null, this::setKhp));
+        map.put("klp", new GetterSetter(this::klpToString, null, this::setKlp));
+        map.put("kwcor", new GetterSetter(this::kwcorToString, null, this::setKwcor));
+        map.put("mwbase", new GetterSetter(this::mwbaseToString, null, this::setMwbase));
+        map.put("pmax", new GetterSetter(this::pmaxToString, null, this::setPmax));
+        map.put("prhmax", new GetterSetter(this::prhmaxToString, null, this::setPrhmax));
+        map.put("simx", new GetterSetter(this::simxToString, null, this::setSimx));
+        map.put("tb", new GetterSetter(this::tbToString, null, this::setTb));
+        map.put("tdp", new GetterSetter(this::tdpToString, null, this::setTdp));
+        map.put("ten", new GetterSetter(this::tenToString, null, this::setTen));
+        map.put("tf", new GetterSetter(this::tfToString, null, this::setTf));
+        map.put("tfp", new GetterSetter(this::tfpToString, null, this::setTfp));
+        map.put("thp", new GetterSetter(this::thpToString, null, this::setThp));
+        map.put("tip", new GetterSetter(this::tipToString, null, this::setTip));
+        map.put("tlp", new GetterSetter(this::tlpToString, null, this::setTlp));
+        map.put("tp", new GetterSetter(this::tpToString, null, this::setTp));
+        map.put("trh", new GetterSetter(this::trhToString, null, this::setTrh));
+        map.put("tvhp", new GetterSetter(this::tvhpToString, null, this::setTvhp));
+        map.put("tvip", new GetterSetter(this::tvipToString, null, this::setTvip));
+        map.put("tw", new GetterSetter(this::twToString, null, this::setTw));
+        map.put("wfmax", new GetterSetter(this::wfmaxToString, null, this::setWfmax));
+        map.put("wfmin", new GetterSetter(this::wfminToString, null, this::setWfmin));
+        map.put("wmax1", new GetterSetter(this::wmax1ToString, null, this::setWmax1));
+        map.put("wmax2", new GetterSetter(this::wmax2ToString, null, this::setWmax2));
+        map.put("wwmax", new GetterSetter(this::wwmaxToString, null, this::setWwmax));
+        map.put("wwmin", new GetterSetter(this::wwminToString, null, this::setWwmin));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

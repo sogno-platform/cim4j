@@ -4,191 +4,233 @@ Generated from the CGMES files via cimgen: https://github.com/sogno-platform/cim
 
 package cim4j;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Parent class supporting relationships to wind turbines type 3 and type 4 and wind plant including their control models.
  */
+@SuppressWarnings("unused")
 public class WindTurbineType3or4Dynamics extends DynamicsFunctionBlock {
 
     private static final Logging LOG = Logging.getLogger(WindTurbineType3or4Dynamics.class);
 
-    private BaseClass[] WindTurbineType3or4Dynamics_class_attributes;
-    private BaseClass[] WindTurbineType3or4Dynamics_primitive_attributes;
-    private java.lang.String rdfid;
-
-    private static final Map<java.lang.String, java.lang.String> ATTRIBUTE_NAMES_MAP;
-    static {
-        ATTRIBUTE_NAMES_MAP = new WindTurbineType3or4Dynamics().getAttributeNamesMap();
-    }
-
-    private enum WindTurbineType3or4Dynamics_primitive_builder implements PrimitiveBuilder {
-        LAST_ENUM() {
-            public BaseClass construct(java.lang.String value) {
-                return new Integer("0");
-            }
-        }
-    }
-
-    private enum WindTurbineType3or4Dynamics_class_attributes_enum {
-        PowerElectronicsConnection,
-        RemoteInputSignal,
-        WindPlantDynamics,
-        LAST_ENUM
-    }
-
+    /**
+     * Default constructor.
+     */
     public WindTurbineType3or4Dynamics() {
-        WindTurbineType3or4Dynamics_primitive_attributes = new BaseClass[WindTurbineType3or4Dynamics_primitive_builder.values().length];
-        WindTurbineType3or4Dynamics_class_attributes = new BaseClass[WindTurbineType3or4Dynamics_class_attributes_enum.values().length];
+        setCimType("WindTurbineType3or4Dynamics");
     }
 
-    @Override
-    public BaseClass construct() {
-        return new WindTurbineType3or4Dynamics();
+    /**
+     * The power electronics connection associated with this wind turbine type 3 or type 4 dynamics model.
+     */
+    private PowerElectronicsConnection PowerElectronicsConnection; // OneToOne
+
+    public PowerElectronicsConnection getPowerElectronicsConnection() {
+        return PowerElectronicsConnection;
     }
 
-    @Override
-    public void setValue(java.lang.String s) {
-        LOG.error(debugString() + " is not sure what to do with " + s);
-    }
-
-    @Override
-    public void setRdfid(java.lang.String id) {
-        rdfid = id;
-    }
-
-    @Override
-    public java.lang.String getRdfid() {
-        return rdfid;
-    }
-
-    private void updateAttributeInArray(WindTurbineType3or4Dynamics_class_attributes_enum attrEnum, BaseClass value) {
-        try {
-            WindTurbineType3or4Dynamics_class_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public void setPowerElectronicsConnection(BaseClass _object_) {
+        if (!(_object_ instanceof PowerElectronicsConnection)) {
+            throw new IllegalArgumentException("Object is not PowerElectronicsConnection");
+        }
+        if (PowerElectronicsConnection != _object_) {
+            PowerElectronicsConnection = (PowerElectronicsConnection) _object_;
+            PowerElectronicsConnection.setWindTurbineType3or4Dynamics(this);
         }
     }
 
-    private void updateAttributeInArray(WindTurbineType3or4Dynamics_primitive_builder attrEnum, BaseClass value) {
-        try {
-            WindTurbineType3or4Dynamics_primitive_attributes[attrEnum.ordinal()] = value;
-        } catch (ArrayIndexOutOfBoundsException aoobe) {
-            LOG.error("No such attribute: " + attrEnum.name() + ": " + aoobe.getMessage());
+    public String PowerElectronicsConnectionToString() {
+        return PowerElectronicsConnection != null ? PowerElectronicsConnection.getRdfid() : null;
+    }
+
+    /**
+     * Remote input signal used by these wind turbine type 3 or type 4 models.
+     */
+    private RemoteInputSignal RemoteInputSignal; // OneToOne
+
+    public RemoteInputSignal getRemoteInputSignal() {
+        return RemoteInputSignal;
+    }
+
+    public void setRemoteInputSignal(BaseClass _object_) {
+        if (!(_object_ instanceof RemoteInputSignal)) {
+            throw new IllegalArgumentException("Object is not RemoteInputSignal");
+        }
+        if (RemoteInputSignal != _object_) {
+            RemoteInputSignal = (RemoteInputSignal) _object_;
+            RemoteInputSignal.setWindTurbineType3or4Dynamics(this);
         }
     }
 
-    @Override
-    public void setAttribute(java.lang.String attrName, BaseClass value) {
-        try {
-            WindTurbineType3or4Dynamics_class_attributes_enum attrEnum = WindTurbineType3or4Dynamics_class_attributes_enum.valueOf(attrName);
-            updateAttributeInArray(attrEnum, value);
-            LOG.debug("Updated WindTurbineType3or4Dynamics, setting " + attrName);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
+    public String RemoteInputSignalToString() {
+        return RemoteInputSignal != null ? RemoteInputSignal.getRdfid() : null;
+    }
+
+    /**
+     * The wind plant with which the wind turbines type 3 or type 4 are associated.
+     */
+    private WindPlantDynamics WindPlantDynamics; // ManyToOne
+
+    public WindPlantDynamics getWindPlantDynamics() {
+        return WindPlantDynamics;
+    }
+
+    public void setWindPlantDynamics(BaseClass _object_) {
+        if (!(_object_ instanceof WindPlantDynamics)) {
+            throw new IllegalArgumentException("Object is not WindPlantDynamics");
+        }
+        if (WindPlantDynamics != _object_) {
+            WindPlantDynamics = (WindPlantDynamics) _object_;
+            WindPlantDynamics.setWindTurbineType3or4Dynamics(this);
         }
     }
 
+    public String WindPlantDynamicsToString() {
+        return WindPlantDynamics != null ? WindPlantDynamics.getRdfid() : null;
+    }
+
+    /**
+     * Get a list of all attribute names of the CIM type.
+     *
+     * The list includes all inherited attributes. The attribute name is only the
+     * last part of the full name (without the class name).
+     *
+     * @return All attributes of the CIM type
+     */
     @Override
-    /* If the attribute is a String, it is a primitive and we will make it into a BaseClass */
-    public void setAttribute(java.lang.String attrName, java.lang.String value) {
-        try {
-            WindTurbineType3or4Dynamics_primitive_builder attrEnum = WindTurbineType3or4Dynamics_primitive_builder.valueOf(attrName);
-            updateAttributeInArray(attrEnum, attrEnum.construct(value));
-            LOG.debug("Updated WindTurbineType3or4Dynamics, setting " + attrName + " to: " + value);
-        } catch (IllegalArgumentException iae) {
-            super.setAttribute(attrName, value);
-        }
+    public List<String> getAttributeNames() {
+        return ATTR_NAMES_LIST;
     }
 
     @Override
-    public BaseClass getAttribute(java.lang.String attrName) {
-        boolean defined = false;
-        try {
-            WindTurbineType3or4Dynamics_primitive_builder attrEnum = WindTurbineType3or4Dynamics_primitive_builder.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = WindTurbineType3or4Dynamics_primitive_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
+    protected Map<String, AttrDetails> allAttrDetailsMap() {
+        Map<String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
+        map.putAll(super.allAttrDetailsMap());
+        return map;
+    }
 
-        try {
-            WindTurbineType3or4Dynamics_class_attributes_enum attrEnum = WindTurbineType3or4Dynamics_class_attributes_enum.valueOf(attrName);
-            defined = true;
-            BaseClass attrValue = WindTurbineType3or4Dynamics_class_attributes[attrEnum.ordinal()];
-            if (attrValue != null) {
-                return attrValue;
-            }
-        } catch (IllegalArgumentException ignored) {
-        }
+    /**
+     * Get the full name of an attribute.
+     *
+     * The full name is "<class_name>.<attribute_name>".
+     *
+     * @param attrName The attribute name
+     * @return         The full name
+     */
+    @Override
+    public String getAttributeFullName(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).fullName : null;
+    }
 
-        if (!defined) {
-            return super.getAttribute(attrName);
-        }
-        return null;
+    /**
+     * Get an attribute value as string.
+     *
+     * @param attrName The attribute name
+     * @return         The attribute value
+     */
+    @Override
+    public String getAttribute(String attrName) {
+        return getAttribute("WindTurbineType3or4Dynamics", attrName);
     }
 
     @Override
-    protected Map<java.lang.String, java.lang.String> getAttributeNamesMap() {
-        Map<java.lang.String, java.lang.String> namesMap = new LinkedHashMap<>();
-        for (var enumValue : WindTurbineType3or4Dynamics_primitive_builder.values()) {
-            if (enumValue != WindTurbineType3or4Dynamics_primitive_builder.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "WindTurbineType3or4Dynamics." + enumValue.name());
-            }
+    protected String getAttribute(String className, String attrName) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var getterFunction = classGetterSetterMap.get(attrName).getter;
+            return getterFunction.get();
         }
-        for (var enumValue : WindTurbineType3or4Dynamics_class_attributes_enum.values()) {
-            if (enumValue != WindTurbineType3or4Dynamics_class_attributes_enum.LAST_ENUM) {
-                namesMap.put(enumValue.name(), "WindTurbineType3or4Dynamics." + enumValue.name());
-            }
-        }
-        namesMap.putAll(super.getAttributeNamesMap());
-        return namesMap;
+        return super.getAttribute(className, attrName);
+    }
+
+    /**
+     * Set an attribute value as object (for class and list attributes).
+     *
+     * @param attrName    The attribute name
+     * @param objectValue The attribute value as object
+     */
+    @Override
+    public void setAttribute(String attrName, BaseClass objectValue) {
+        setAttribute("WindTurbineType3or4Dynamics", attrName, objectValue);
     }
 
     @Override
-    public Set<java.lang.String> getAttributeNames() {
-        return ATTRIBUTE_NAMES_MAP.keySet();
-    }
-
-    @Override
-    public java.lang.String getAttributeFullName(java.lang.String attrName) {
-        return ATTRIBUTE_NAMES_MAP.get(attrName);
-    }
-
-    @Override
-    public java.lang.String toString(boolean topClass) {
-        java.lang.String result = "";
-        if (topClass) {
-            for (WindTurbineType3or4Dynamics_primitive_builder attrEnum : WindTurbineType3or4Dynamics_primitive_builder.values()) {
-                BaseClass bc = WindTurbineType3or4Dynamics_primitive_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    WindTurbineType3or4Dynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            for (WindTurbineType3or4Dynamics_class_attributes_enum attrEnum : WindTurbineType3or4Dynamics_class_attributes_enum.values()) {
-                BaseClass bc = WindTurbineType3or4Dynamics_class_attributes[attrEnum.ordinal()];
-                if (bc != null) {
-                    result += "    WindTurbineType3or4Dynamics." + attrEnum.name() + "(" + bc.debugString() + ")" + " " + bc.toString(false) + System.lineSeparator();
-                }
-            }
-            result += super.toString(true);
+    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
+            setterFunction.accept(objectValue);
         } else {
-            result += "(WindTurbineType3or4Dynamics) RDFID: " + rdfid;
+            super.setAttribute(className, attrName, objectValue);
         }
-        return result;
     }
 
-    private final java.lang.String debugName = "WindTurbineType3or4Dynamics";
+    /**
+     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
+     *
+     * @param attrName    The attribute name
+     * @param stringValue The attribute value as string
+     */
+    @Override
+    public void setAttribute(String attrName, String stringValue) {
+        setAttribute("WindTurbineType3or4Dynamics", attrName, stringValue);
+    }
 
     @Override
-    public java.lang.String debugString() {
-        return debugName;
+    protected void setAttribute(String className, String attrName, String stringValue) {
+        if (classGetterSetterMap.containsKey(attrName)) {
+            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
+            setterFunction.accept(stringValue);
+        } else {
+            super.setAttribute(className, attrName, stringValue);
+        }
+    }
+
+    /**
+     * Check if the attribute is a primitive attribute.
+     *
+     * This includes datatype_attributes.
+     *
+     * @param attrName The attribute name
+     * @return         Is it a primitive attribute?
+     */
+    @Override
+    public boolean isPrimitiveAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isPrimitive;
+    }
+
+    /**
+     * Check if the attribute is an enum attribute.
+     *
+     * @param attrName The attribute name
+     * @return         Is it an enum attribute?
+     */
+    @Override
+    public boolean isEnumAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isEnum;
+    }
+
+    /**
+     * Check if the attribute is used.
+     *
+     * Some attributes are declared as unused in the CGMES definition. In most cases
+     * these are list attributes, i.e. lists of links to other CIM objects. But
+     * there are some exceptions, e.g. the list of ToplogicalNodes in
+     * TopologicalIsland.
+     *
+     * @param attrName The attribute name
+     * @return         Is the attribute used?
+     */
+    @Override
+    public boolean isUsedAttribute(String attrName) {
+        return ATTR_DETAILS_MAP.containsKey(attrName) && ATTR_DETAILS_MAP.get(attrName).isUsed;
     }
 
     /**
@@ -197,7 +239,7 @@ public class WindTurbineType3or4Dynamics extends DynamicsFunctionBlock {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getClassNamespaceUrl() {
+    public String getClassNamespaceUrl() {
         return CLASS_NAMESPACE;
     }
 
@@ -207,15 +249,8 @@ public class WindTurbineType3or4Dynamics extends DynamicsFunctionBlock {
      * @return The namespace URL
      */
     @Override
-    public java.lang.String getAttributeNamespaceUrl(java.lang.String attrName) {
+    public String getAttributeNamespaceUrl(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).nameSpace : null;
-    }
-
-    @Override
-    protected Map<java.lang.String, AttrDetails> allAttrDetailsMap() {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>(CLASS_ATTR_DETAILS_MAP);
-        map.putAll(super.allAttrDetailsMap());
-        return map;
     }
 
     /**
@@ -246,7 +281,7 @@ public class WindTurbineType3or4Dynamics extends DynamicsFunctionBlock {
      * @return All possible profiles for an attribute
      */
     @Override
-    public Set<CGMESProfile> getPossibleAttributeProfiles(java.lang.String attrName) {
+    public Set<CGMESProfile> getPossibleAttributeProfiles(String attrName) {
         return ATTR_DETAILS_MAP.containsKey(attrName) ? ATTR_DETAILS_MAP.get(attrName).profiles : null;
     }
 
@@ -268,29 +303,40 @@ public class WindTurbineType3or4Dynamics extends DynamicsFunctionBlock {
      * Private infos.
      */
 
-    private static final java.lang.String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
+    private static final String CLASS_NAMESPACE = "http://iec.ch/TC57/CIM100#";
 
-    private static final Map<java.lang.String, AttrDetails> ATTR_DETAILS_MAP;
-    private static final Map<java.lang.String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
+    private static final List<String> ATTR_NAMES_LIST;
+    private static final Map<String, AttrDetails> ATTR_DETAILS_MAP;
+    private static final Map<String, AttrDetails> CLASS_ATTR_DETAILS_MAP;
     static {
-        Map<java.lang.String, AttrDetails> map = new LinkedHashMap<>();
+        Map<String, AttrDetails> map = new LinkedHashMap<>();
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("PowerElectronicsConnection", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("PowerElectronicsConnection", new AttrDetails("WindTurbineType3or4Dynamics.PowerElectronicsConnection", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("RemoteInputSignal", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("RemoteInputSignal", new AttrDetails("WindTurbineType3or4Dynamics.RemoteInputSignal", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindPlantDynamics", new AttrDetails("http://iec.ch/TC57/CIM100#", profiles));
+            map.put("WindPlantDynamics", new AttrDetails("WindTurbineType3or4Dynamics.WindPlantDynamics", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
         }
         CLASS_ATTR_DETAILS_MAP = map;
         ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindTurbineType3or4Dynamics().allAttrDetailsMap());
+        ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
+    }
+
+    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
+    private final Map<String, GetterSetter> fillGetterSetterMap() {
+        Map<String, GetterSetter> map = new LinkedHashMap<>();
+        map.put("PowerElectronicsConnection", new GetterSetter(this::PowerElectronicsConnectionToString, this::setPowerElectronicsConnection, null));
+        map.put("RemoteInputSignal", new GetterSetter(this::RemoteInputSignalToString, this::setRemoteInputSignal, null));
+        map.put("WindPlantDynamics", new GetterSetter(this::WindPlantDynamicsToString, this::setWindPlantDynamics, null));
+        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

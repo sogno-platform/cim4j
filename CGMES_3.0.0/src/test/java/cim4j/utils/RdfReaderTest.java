@@ -26,6 +26,8 @@ import cim4j.EnergySource;
 import cim4j.Location;
 import cim4j.Logging;
 import cim4j.OperationalLimitType;
+import cim4j.PowerTransformer;
+import cim4j.PowerTransformerEnd;
 import cim4j.Season;
 import cim4j.SvVoltage;
 import cim4j.Terminal;
@@ -76,27 +78,27 @@ class RdfReaderTest {
         var attributeNames = voltageLevel.getAttributeNames();
         assertTrue(attributeNames.contains("BaseVoltage"));
         assertTrue(attributeNames.contains("name"));
-        assertEquals("BaseVoltage.20", voltageLevel.getAttribute("BaseVoltage"));
         assertEquals("98", voltageLevel.getAttribute("name"));
+        assertEquals("98", voltageLevel.getName());
 
         var baseVoltage = voltageLevel.getBaseVoltage();
         assertNotNull(baseVoltage);
+        assertEquals(baseVoltage, voltageLevel.getAttribute("BaseVoltage"));
         assertEquals(BaseVoltage.class, baseVoltage.getClass());
         assertEquals("BaseVoltage", baseVoltage.getCimType());
         assertEquals("BaseVoltage.20", baseVoltage.getRdfid());
         assertEquals(baseVoltage, cimData.get("BaseVoltage.20"));
-        assertEquals(baseVoltage.getRdfid(), voltageLevel.BaseVoltageToString());
 
         attributeNames = baseVoltage.getAttributeNames();
         assertTrue(attributeNames.contains("VoltageLevel"));
         assertTrue(attributeNames.contains("nominalVoltage"));
-        assertEquals("VoltageLevel.98", baseVoltage.getAttribute("VoltageLevel"));
-        assertEquals("20.0", baseVoltage.getAttribute("nominalVoltage"));
+        assertEquals(20.0, baseVoltage.getAttribute("nominalVoltage"));
 
-        var voltageLevelSet = baseVoltage.getVoltageLevel();
-        assertNotNull(voltageLevelSet);
-        assertEquals(1, voltageLevelSet.size());
-        assertTrue(voltageLevelSet.contains(voltageLevel));
+        var voltageLevels = baseVoltage.getVoltageLevel();
+        assertNotNull(voltageLevels);
+        assertEquals(voltageLevels, baseVoltage.getAttribute("VoltageLevel"));
+        assertEquals(1, voltageLevels.size());
+        assertTrue(voltageLevels.contains(voltageLevel));
 
         var nominalVoltage = baseVoltage.getNominalVoltage();
         assertNotNull(nominalVoltage);
@@ -124,15 +126,14 @@ class RdfReaderTest {
 
         var attributeNames = analogValue.getAttributeNames();
         assertTrue(attributeNames.contains("Analog"));
-        assertEquals("Analog.N0.Voltage", analogValue.getAttribute("Analog"));
 
         var analog = analogValue.getAnalog();
         assertNotNull(analog);
+        assertEquals(analog, analogValue.getAttribute("Analog"));
         assertEquals(Analog.class, analog.getClass());
         assertEquals("Analog", analog.getCimType());
         assertEquals("Analog.N0.Voltage", analog.getRdfid());
         assertEquals(analog, cimData.get("Analog.N0.Voltage"));
-        assertEquals(analog.getRdfid(), analogValue.AnalogToString());
 
         attributeNames = analog.getAttributeNames();
         assertTrue(attributeNames.contains("measurementType"));
@@ -140,9 +141,9 @@ class RdfReaderTest {
         assertTrue(attributeNames.contains("unitSymbol"));
         assertTrue(attributeNames.contains("name"));
         assertEquals("Voltage", analog.getAttribute("measurementType"));
-        assertTrue(analog.getAttribute("unitMultiplier").endsWith("#UnitMultiplier.k"));
-        assertTrue(analog.getAttribute("unitSymbol").endsWith("#UnitSymbol.V"));
+        assertEquals("Voltage", analog.getMeasurementType());
         assertEquals("Voltage Magnitude Measurement at N0", analog.getAttribute("name"));
+        assertEquals("Voltage Magnitude Measurement at N0", analog.getName());
 
         var unitMultiplier = analog.getUnitMultiplier();
         assertNotNull(unitMultiplier);
@@ -179,19 +180,19 @@ class RdfReaderTest {
 
         var attributeNames = terminal.getAttributeNames();
         assertTrue(attributeNames.contains("TopologicalNode"));
-        assertEquals("N0", terminal.getAttribute("TopologicalNode"));
 
         var topologicalNode = terminal.getTopologicalNode();
         assertNotNull(topologicalNode);
+        assertEquals(topologicalNode, terminal.getAttribute("TopologicalNode"));
         assertEquals(TopologicalNode.class, topologicalNode.getClass());
         assertEquals("TopologicalNode", topologicalNode.getCimType());
         assertEquals("N0", topologicalNode.getRdfid());
         assertEquals(topologicalNode, cimData.get("N0"));
-        assertEquals(topologicalNode.getRdfid(), terminal.TopologicalNodeToString());
 
         attributeNames = topologicalNode.getAttributeNames();
         assertTrue(attributeNames.contains("name"));
         assertEquals("N0", topologicalNode.getAttribute("name"));
+        assertEquals("N0", topologicalNode.getName());
     }
 
     @Test
@@ -203,8 +204,10 @@ class RdfReaderTest {
 
         assertTrue(cimData.containsKey("BaseVoltage.20"));
 
-        var baseVoltage = cimData.get("BaseVoltage.20");
-        assertNotNull(baseVoltage);
+        var obj = cimData.get("BaseVoltage.20");
+        assertNotNull(obj);
+        assertTrue(obj instanceof BaseVoltage);
+        var baseVoltage = (BaseVoltage) obj;
         assertEquals(BaseVoltage.class, baseVoltage.getClass());
         assertEquals("BaseVoltage", baseVoltage.getCimType());
         assertEquals("BaseVoltage.20", baseVoltage.getRdfid());
@@ -212,6 +215,7 @@ class RdfReaderTest {
         var attributeNames = baseVoltage.getAttributeNames();
         assertTrue(attributeNames.contains("shortName"));
         assertEquals("20", baseVoltage.getAttribute("shortName"));
+        assertEquals("20", baseVoltage.getShortName());
     }
 
     @Test
@@ -234,13 +238,9 @@ class RdfReaderTest {
             var attributeNames = energySource.getAttributeNames();
             assertTrue(attributeNames.contains("EnergySchedulingType"));
 
-            var energySchedulingTypeId = energySource.getAttribute("EnergySchedulingType");
-            assertEquals("EST", energySchedulingTypeId);
-            var obj = cimData.get(energySchedulingTypeId);
-            assertNotNull(obj);
-            assertTrue(obj instanceof EnergySchedulingType);
-
-            var energySchedulingType = (EnergySchedulingType) obj;
+            var energySchedulingType = cimData.get("EST");
+            assertNotNull(energySchedulingType);
+            assertEquals(energySchedulingType, energySource.getAttribute("EnergySchedulingType"));
             assertEquals(EnergySchedulingType.class, energySchedulingType.getClass());
             assertEquals("EnergySchedulingType", energySchedulingType.getCimType());
             assertEquals("EST", energySchedulingType.getRdfid());
@@ -264,9 +264,7 @@ class RdfReaderTest {
             var attributeNames = boundaryPoint.getAttributeNames();
             assertTrue(attributeNames.contains("ConnectivityNode"));
 
-            var connectivityNodeId = boundaryPoint.getAttribute("ConnectivityNode");
-            assertEquals("N0", connectivityNodeId);
-            var obj = cimData.get(connectivityNodeId);
+            var obj = boundaryPoint.getAttribute("ConnectivityNode");
             assertNotNull(obj);
             assertTrue(obj instanceof ConnectivityNode);
 
@@ -278,6 +276,7 @@ class RdfReaderTest {
             attributeNames = connectivityNode.getAttributeNames();
             assertTrue(attributeNames.contains("name"));
             assertEquals("N0", connectivityNode.getAttribute("name"));
+            assertEquals("N0", connectivityNode.getName());
         }
     }
 
@@ -302,8 +301,10 @@ class RdfReaderTest {
             assertTrue(attributeNames.contains("name"));
             assertEquals("High Voltage", operationalLimitType.getAttribute("name"));
 
-            var limitType = operationalLimitType.getAttribute("limitType");
-            assertNotNull(limitType);
+            var attr = operationalLimitType.getAttribute("limitType");
+            assertNotNull(attr);
+            assertTrue(attr instanceof String);
+            var limitType = (String) attr;
             String[] parts = limitType.split("#");
             assertEquals(2, parts.length);
             assertEquals("LimitTypeKind.highVoltage", parts[1]);
@@ -325,8 +326,10 @@ class RdfReaderTest {
             assertTrue(attributeNames.contains("name"));
             assertEquals("High Voltage", operationalLimitType.getAttribute("name"));
 
-            var kind = operationalLimitType.getAttribute("kind");
-            assertNotNull(kind);
+            var attr = operationalLimitType.getAttribute("kind");
+            assertNotNull(attr);
+            assertTrue(attr instanceof String);
+            var kind = (String) attr;
             String[] parts = kind.split("#");
             assertEquals(2, parts.length);
             assertEquals("LimitKind.highVoltage", parts[1]);
@@ -356,7 +359,6 @@ class RdfReaderTest {
         assertEquals("BaseVoltage", baseVoltage.getCimType());
         assertEquals("BaseVoltage.20", baseVoltage.getRdfid());
         assertEquals(baseVoltage, cimData.get("BaseVoltage.20"));
-        assertEquals(baseVoltage.getRdfid(), voltageLevel.BaseVoltageToString());
 
         obj = cimData.get("VoltageLevel.97");
         assertNotNull(obj);
@@ -414,20 +416,20 @@ class RdfReaderTest {
         var attributeNames = terminal.getAttributeNames();
         assertTrue(attributeNames.contains("TopologicalNode"));
         assertTrue(attributeNames.contains("name"));
-        assertEquals("N0", terminal.getAttribute("TopologicalNode"));
         assertEquals("Terminal.N0", terminal.getAttribute("name"));
 
         var topologicalNode = terminal.getTopologicalNode();
         assertNotNull(topologicalNode);
+        assertEquals(topologicalNode, terminal.getAttribute("TopologicalNode"));
         assertEquals(TopologicalNode.class, topologicalNode.getClass());
         assertEquals("TopologicalNode", topologicalNode.getCimType());
         assertEquals("N0", topologicalNode.getRdfid());
         assertEquals(topologicalNode, cimData.get("N0"));
-        assertEquals(topologicalNode.getRdfid(), terminal.TopologicalNodeToString());
 
         attributeNames = topologicalNode.getAttributeNames();
         assertTrue(attributeNames.contains("name"));
         assertEquals("N0", topologicalNode.getAttribute("name"));
+        assertEquals("N0", topologicalNode.getName());
     }
 
     @Test
@@ -494,10 +496,9 @@ class RdfReaderTest {
             var attributeNames = location.getAttributeNames();
             assertTrue(attributeNames.contains("mainAddress"));
 
-            var addressId = location.getAttribute("mainAddress");
-            assertEquals("_Address", addressId);
-            var address = cimData.get(addressId);
+            var address = cimData.get("_Address");
             assertNotNull(address);
+            assertEquals(address, location.getAttribute("mainAddress"));
             assertEquals("StreetAddress", address.getCimType());
             assertEquals("_Address", address.getRdfid());
 
@@ -506,24 +507,21 @@ class RdfReaderTest {
             assertTrue(attributeNames.contains("streetDetail"));
             assertTrue(attributeNames.contains("townDetail"));
 
-            var statusId = address.getAttribute("status");
-            assertEquals("_Status", statusId);
-            var status = cimData.get(statusId);
+            var status = cimData.get("_Status");
             assertNotNull(status);
+            assertEquals(status, address.getAttribute("status"));
             assertEquals("Status", status.getCimType());
             assertEquals("_Status", status.getRdfid());
 
-            var streetDetailId = address.getAttribute("streetDetail");
-            assertEquals("_Street", streetDetailId);
-            var streetDetail = cimData.get(streetDetailId);
+            var streetDetail = cimData.get("_Street");
             assertNotNull(streetDetail);
+            assertEquals(streetDetail, address.getAttribute("streetDetail"));
             assertEquals("StreetDetail", streetDetail.getCimType());
             assertEquals("_Street", streetDetail.getRdfid());
 
-            var townDetailId = address.getAttribute("townDetail");
-            assertEquals("_Town", townDetailId);
-            var townDetail = cimData.get(townDetailId);
+            var townDetail = cimData.get("_Town");
             assertNotNull(townDetail);
+            assertEquals(townDetail, address.getAttribute("townDetail"));
             assertEquals("TownDetail", townDetail.getCimType());
             assertEquals("_Town", townDetail.getRdfid());
 
@@ -545,7 +543,7 @@ class RdfReaderTest {
 
             var withinTownLimits = streetDetail.getAttribute("withinTownLimits");
             assertNotNull(withinTownLimits);
-            assertEquals("true", withinTownLimits);
+            assertEquals(true, withinTownLimits);
 
             attributeNames = townDetail.getAttributeNames();
             assertTrue(attributeNames.contains("country"));
@@ -644,15 +642,15 @@ class RdfReaderTest {
         assertEquals("TopologicalNode", topologicalNode2.getCimType());
         assertEquals("N1", topologicalNode2.getRdfid());
 
-        assertEquals("TopologicalIsland.N", topologicalNode1.getAttribute("TopologicalIsland"));
-        assertEquals("TopologicalIsland.N", topologicalNode2.getAttribute("TopologicalIsland"));
-        assertEquals("N0 N1", topologicalIsland.getAttribute("TopologicalNodes"));
-
         var topologicalNodes = topologicalIsland.getTopologicalNodes();
         assertNotNull(topologicalNodes);
+        assertEquals(topologicalNodes, topologicalIsland.getAttribute("TopologicalNodes"));
         assertEquals(2, topologicalNodes.size());
         assertTrue(topologicalNodes.contains(topologicalNode1));
         assertTrue(topologicalNodes.contains(topologicalNode2));
+
+        assertEquals(topologicalIsland, topologicalNode1.getAttribute("TopologicalIsland"));
+        assertEquals(topologicalIsland, topologicalNode2.getAttribute("TopologicalIsland"));
         assertEquals(topologicalIsland, topologicalNode1.getTopologicalIsland());
         assertEquals(topologicalIsland, topologicalNode2.getTopologicalIsland());
     }
@@ -723,24 +721,23 @@ class RdfReaderTest {
 
         var attributeNames = energyConsumer.getAttributeNames();
         assertTrue(attributeNames.contains("EquipmentContainer"));
-        assertEquals("VoltageLevel.98", energyConsumer.getAttribute("EquipmentContainer"));
 
         var voltageLevel = energyConsumer.getEquipmentContainer();
         assertNotNull(voltageLevel);
+        assertEquals(voltageLevel, energyConsumer.getAttribute("EquipmentContainer"));
         assertEquals(VoltageLevel.class, voltageLevel.getClass());
         assertEquals("VoltageLevel", voltageLevel.getCimType());
         assertEquals("VoltageLevel.98", voltageLevel.getRdfid());
         assertEquals(voltageLevel, cimData.get("VoltageLevel.98"));
-        assertEquals(voltageLevel.getRdfid(), energyConsumer.EquipmentContainerToString());
 
         attributeNames = voltageLevel.getAttributeNames();
         assertTrue(attributeNames.contains("Equipments"));
         assertTrue(attributeNames.contains("name"));
-        assertEquals("EnergyConsumer.H-5", voltageLevel.getAttribute("Equipments"));
         assertEquals("98", voltageLevel.getAttribute("name"));
 
         var equipments = voltageLevel.getEquipments();
         assertNotNull(equipments);
+        assertEquals(equipments, voltageLevel.getAttribute("Equipments"));
         assertEquals(1, equipments.size());
         assertTrue(equipments.contains(energyConsumer));
     }
@@ -748,6 +745,7 @@ class RdfReaderTest {
     @Test
     @Order(340)
     void testRead021() {
+        Logging.setEnabled(false);
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test021.xml")));
         assertEquals(1, cimData.size());
@@ -767,6 +765,8 @@ class RdfReaderTest {
         assertTrue(attributeNames.contains("name"));
         assertNull(voltageLevel.getAttribute("BaseVoltage"));
         assertEquals("98", voltageLevel.getAttribute("name"));
+        assertEquals("98", voltageLevel.getName());
+        Logging.setEnabled(true);
     }
 
     @Test
@@ -791,12 +791,12 @@ class RdfReaderTest {
         assertTrue(attributeNames.contains("TopologicalNodes"));
         assertTrue(attributeNames.contains("description"));
         assertTrue(attributeNames.contains("name"));
-        assertNull(topologicalIsland.getAttribute("TopologicalNodes"));
         assertEquals("Island N", topologicalIsland.getAttribute("description"));
         assertEquals("N", topologicalIsland.getAttribute("name"));
 
         var topologicalNodes = topologicalIsland.getTopologicalNodes();
         assertNotNull(topologicalNodes);
+        assertEquals(topologicalNodes, topologicalIsland.getAttribute("TopologicalNodes"));
         assertEquals(0, topologicalNodes.size());
 
         obj = cimData.get("TopologicalIsland.N2");
@@ -811,12 +811,12 @@ class RdfReaderTest {
         assertTrue(attributeNames.contains("TopologicalNodes"));
         assertTrue(attributeNames.contains("description"));
         assertTrue(attributeNames.contains("name"));
-        assertNull(topologicalIsland.getAttribute("TopologicalNodes"));
         assertNull(topologicalIsland.getAttribute("description"));
         assertNull(topologicalIsland.getAttribute("name"));
 
         topologicalNodes = topologicalIsland.getTopologicalNodes();
         assertNotNull(topologicalNodes);
+        assertEquals(topologicalNodes, topologicalIsland.getAttribute("TopologicalNodes"));
         assertEquals(0, topologicalNodes.size());
     }
 
@@ -837,6 +837,137 @@ class RdfReaderTest {
         assertTrue(attributeNames.contains("name"));
         assertEquals("<&> <&> <&>", baseVoltage.getAttribute("description"));
         assertEquals("unknown entity reference: &nbsp;", baseVoltage.getAttribute("name"));
+    }
+
+    @Test
+    @Order(370)
+    void testRead024() {
+        testRead_024_025_026_027_028("rdf/test024.xml");
+    }
+
+    @Test
+    @Order(380)
+    void testRead025() {
+        testRead_024_025_026_027_028("rdf/test025.xml");
+    }
+
+    @Test
+    @Order(390)
+    void testRead026() {
+        testRead_024_025_026_027_028("rdf/test026.xml");
+    }
+
+    @Test
+    @Order(400)
+    void testRead027() {
+        testRead_024_025_026_027_028("rdf/test027.xml");
+    }
+
+    @Test
+    @Order(410)
+    void testRead028() {
+        testRead_024_025_026_027_028("rdf/test028.xml");
+    }
+
+    private void testRead_024_025_026_027_028(String test_024_025_026_027_028) {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath(test_024_025_026_027_028)));
+        assertEquals(3, cimData.size());
+
+        assertTrue(cimData.containsKey("_VL"));
+        assertTrue(cimData.containsKey("_PT"));
+        assertTrue(cimData.containsKey("_PTE"));
+
+        var obj = cimData.get("_VL");
+        assertNotNull(obj);
+        assertTrue(obj instanceof VoltageLevel);
+        var voltageLevel = (VoltageLevel) obj;
+        assertEquals(VoltageLevel.class, voltageLevel.getClass());
+        assertEquals("VoltageLevel", voltageLevel.getCimType());
+        assertEquals("_VL", voltageLevel.getRdfid());
+        assertEquals("VL", voltageLevel.getName());
+
+        obj = cimData.get("_PT");
+        assertNotNull(obj);
+        assertTrue(obj instanceof PowerTransformer);
+        var powerTransformer = (PowerTransformer) obj;
+        assertEquals(PowerTransformer.class, powerTransformer.getClass());
+        assertEquals("PowerTransformer", powerTransformer.getCimType());
+        assertEquals("_PT", powerTransformer.getRdfid());
+        assertEquals("PT", powerTransformer.getName());
+        assertEquals("PowerTransformer", powerTransformer.getDescription());
+
+        obj = cimData.get("_PTE");
+        assertNotNull(obj);
+        assertTrue(obj instanceof PowerTransformerEnd);
+        var powerTransformerEnd = (PowerTransformerEnd) obj;
+        assertEquals(PowerTransformerEnd.class, powerTransformerEnd.getClass());
+        assertEquals("PowerTransformerEnd", powerTransformerEnd.getCimType());
+        assertEquals("_PTE", powerTransformerEnd.getRdfid());
+
+        assertEquals(powerTransformer, powerTransformerEnd.getPowerTransformer());
+        var powerTransformerEnds = powerTransformer.getPowerTransformerEnd();
+        assertNotNull(powerTransformerEnds);
+        assertEquals(1, powerTransformerEnds.size());
+        assertTrue(powerTransformerEnds.contains(powerTransformerEnd));
+
+        assertEquals(voltageLevel, powerTransformer.getEquipmentContainer());
+        var equipments = voltageLevel.getEquipments();
+        assertNotNull(equipments);
+        assertEquals(1, equipments.size());
+        assertTrue(equipments.contains(powerTransformer));
+    }
+
+    @Test
+    @Order(420)
+    void testRead029() {
+        testRead_029_030_031_032("rdf/test029.xml");
+    }
+
+    @Test
+    @Order(430)
+    void testRead030() {
+        testRead_029_030_031_032("rdf/test030.xml");
+    }
+
+    @Test
+    @Order(440)
+    void testRead031() {
+        testRead_029_030_031_032("rdf/test031.xml");
+    }
+
+    @Test
+    @Order(450)
+    void testRead032() {
+        testRead_029_030_031_032("rdf/test032.xml");
+    }
+
+    private void testRead_029_030_031_032(String test_029_030_031_032) {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath(test_029_030_031_032)));
+        assertEquals(3, cimData.size());
+
+        assertTrue(cimData.containsKey("_VL0"));
+        assertTrue(cimData.containsKey("_VL"));
+        assertTrue(cimData.containsKey("_PT"));
+
+        var obj = cimData.get("_VL");
+        assertNotNull(obj);
+        assertTrue(obj instanceof VoltageLevel);
+        var voltageLevel = (VoltageLevel) obj;
+
+        obj = cimData.get("_PT");
+        assertNotNull(obj);
+        assertTrue(obj instanceof PowerTransformer);
+        var powerTransformer = (PowerTransformer) obj;
+
+        assertEquals("PT", powerTransformer.getName());
+        assertEquals(voltageLevel, powerTransformer.getEquipmentContainer());
+
+        var equipments = voltageLevel.getEquipments();
+        assertNotNull(equipments);
+        assertEquals(1, equipments.size());
+        assertTrue(equipments.contains(powerTransformer));
     }
 
     private String getPath(String aResource) {

@@ -23,10 +23,17 @@ public class WindProtectionIEC extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(WindProtectionIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindProtectionIEC() {
-        setCimType("WindProtectionIEC");
+    public WindProtectionIEC(String rdfid) {
+        super("WindProtectionIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindProtectionIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class WindProtectionIEC extends IdentifiedObject {
         return WindTurbineType1or2IEC;
     }
 
-    public void setWindTurbineType1or2IEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindTurbineType1or2IEC)) {
-            throw new IllegalArgumentException("Object is not WindTurbineType1or2IEC");
-        }
+    public void setWindTurbineType1or2IEC(WindTurbineType1or2IEC _object_) {
         if (WindTurbineType1or2IEC != _object_) {
-            WindTurbineType1or2IEC = (WindTurbineType1or2IEC) _object_;
+            WindTurbineType1or2IEC = _object_;
             WindTurbineType1or2IEC.setWindProtectionIEC(this);
         }
     }
 
-    public String WindTurbineType1or2IECToString() {
-        return WindTurbineType1or2IEC != null ? WindTurbineType1or2IEC.getRdfid() : null;
+    private static Object getWindTurbineType1or2IEC(BaseClass _this_) {
+        return ((WindProtectionIEC) _this_).getWindTurbineType1or2IEC();
+    }
+
+    private static void setWindTurbineType1or2IEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindTurbineType1or2IEC) {
+            ((WindProtectionIEC) _this_).setWindTurbineType1or2IEC((WindTurbineType1or2IEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindTurbineType1or2IEC");
+        }
     }
 
     /**
@@ -65,18 +77,23 @@ public class WindProtectionIEC extends IdentifiedObject {
         return WindTurbineType3or4IEC;
     }
 
-    public void setWindTurbineType3or4IEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindTurbineType3or4IEC)) {
-            throw new IllegalArgumentException("Object is not WindTurbineType3or4IEC");
-        }
+    public void setWindTurbineType3or4IEC(WindTurbineType3or4IEC _object_) {
         if (WindTurbineType3or4IEC != _object_) {
-            WindTurbineType3or4IEC = (WindTurbineType3or4IEC) _object_;
+            WindTurbineType3or4IEC = _object_;
             WindTurbineType3or4IEC.setWindProtectionIEC(this);
         }
     }
 
-    public String WindTurbineType3or4IECToString() {
-        return WindTurbineType3or4IEC != null ? WindTurbineType3or4IEC.getRdfid() : null;
+    private static Object getWindTurbineType3or4IEC(BaseClass _this_) {
+        return ((WindProtectionIEC) _this_).getWindTurbineType3or4IEC();
+    }
+
+    private static void setWindTurbineType3or4IEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindTurbineType3or4IEC) {
+            ((WindProtectionIEC) _this_).setWindTurbineType3or4IEC((WindTurbineType3or4IEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindTurbineType3or4IEC");
+        }
     }
 
     /**
@@ -92,12 +109,18 @@ public class WindProtectionIEC extends IdentifiedObject {
         fover = _value_;
     }
 
-    public void setFover(String _value_) {
-        fover = getDoubleFromString(_value_);
+    private static Object getFover(BaseClass _this_) {
+        return ((WindProtectionIEC) _this_).getFover();
     }
 
-    public String foverToString() {
-        return fover != null ? fover.toString() : null;
+    private static void setFover(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindProtectionIEC) _this_).setFover((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindProtectionIEC) _this_).setFover(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -113,12 +136,18 @@ public class WindProtectionIEC extends IdentifiedObject {
         funder = _value_;
     }
 
-    public void setFunder(String _value_) {
-        funder = getDoubleFromString(_value_);
+    private static Object getFunder(BaseClass _this_) {
+        return ((WindProtectionIEC) _this_).getFunder();
     }
 
-    public String funderToString() {
-        return funder != null ? funder.toString() : null;
+    private static void setFunder(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindProtectionIEC) _this_).setFunder((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindProtectionIEC) _this_).setFunder(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -134,12 +163,18 @@ public class WindProtectionIEC extends IdentifiedObject {
         tfover = _value_;
     }
 
-    public void setTfover(String _value_) {
-        tfover = getDoubleFromString(_value_);
+    private static Object getTfover(BaseClass _this_) {
+        return ((WindProtectionIEC) _this_).getTfover();
     }
 
-    public String tfoverToString() {
-        return tfover != null ? tfover.toString() : null;
+    private static void setTfover(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindProtectionIEC) _this_).setTfover((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindProtectionIEC) _this_).setTfover(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -155,12 +190,18 @@ public class WindProtectionIEC extends IdentifiedObject {
         tfunder = _value_;
     }
 
-    public void setTfunder(String _value_) {
-        tfunder = getDoubleFromString(_value_);
+    private static Object getTfunder(BaseClass _this_) {
+        return ((WindProtectionIEC) _this_).getTfunder();
     }
 
-    public String tfunderToString() {
-        return tfunder != null ? tfunder.toString() : null;
+    private static void setTfunder(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindProtectionIEC) _this_).setTfunder((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindProtectionIEC) _this_).setTfunder(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -176,12 +217,18 @@ public class WindProtectionIEC extends IdentifiedObject {
         tuover = _value_;
     }
 
-    public void setTuover(String _value_) {
-        tuover = getDoubleFromString(_value_);
+    private static Object getTuover(BaseClass _this_) {
+        return ((WindProtectionIEC) _this_).getTuover();
     }
 
-    public String tuoverToString() {
-        return tuover != null ? tuover.toString() : null;
+    private static void setTuover(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindProtectionIEC) _this_).setTuover((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindProtectionIEC) _this_).setTuover(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -197,12 +244,18 @@ public class WindProtectionIEC extends IdentifiedObject {
         tuunder = _value_;
     }
 
-    public void setTuunder(String _value_) {
-        tuunder = getDoubleFromString(_value_);
+    private static Object getTuunder(BaseClass _this_) {
+        return ((WindProtectionIEC) _this_).getTuunder();
     }
 
-    public String tuunderToString() {
-        return tuunder != null ? tuunder.toString() : null;
+    private static void setTuunder(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindProtectionIEC) _this_).setTuunder((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindProtectionIEC) _this_).setTuunder(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -218,12 +271,18 @@ public class WindProtectionIEC extends IdentifiedObject {
         uover = _value_;
     }
 
-    public void setUover(String _value_) {
-        uover = getDoubleFromString(_value_);
+    private static Object getUover(BaseClass _this_) {
+        return ((WindProtectionIEC) _this_).getUover();
     }
 
-    public String uoverToString() {
-        return uover != null ? uover.toString() : null;
+    private static void setUover(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindProtectionIEC) _this_).setUover((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindProtectionIEC) _this_).setUover(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -239,12 +298,18 @@ public class WindProtectionIEC extends IdentifiedObject {
         uunder = _value_;
     }
 
-    public void setUunder(String _value_) {
-        uunder = getDoubleFromString(_value_);
+    private static Object getUunder(BaseClass _this_) {
+        return ((WindProtectionIEC) _this_).getUunder();
     }
 
-    public String uunderToString() {
-        return uunder != null ? uunder.toString() : null;
+    private static void setUunder(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindProtectionIEC) _this_).setUunder((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindProtectionIEC) _this_).setUunder(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -281,64 +346,35 @@ public class WindProtectionIEC extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindProtectionIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindProtectionIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindProtectionIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindProtectionIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindProtectionIEC", attrName, value));
         }
     }
 
@@ -462,72 +498,56 @@ public class WindProtectionIEC extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindTurbineType1or2IEC", new AttrDetails("WindProtectionIEC.WindTurbineType1or2IEC", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("WindTurbineType1or2IEC", new AttrDetails("WindProtectionIEC.WindTurbineType1or2IEC", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, WindProtectionIEC::getWindTurbineType1or2IEC, WindProtectionIEC::setWindTurbineType1or2IEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindTurbineType3or4IEC", new AttrDetails("WindProtectionIEC.WindTurbineType3or4IEC", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("WindTurbineType3or4IEC", new AttrDetails("WindProtectionIEC.WindTurbineType3or4IEC", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, WindProtectionIEC::getWindTurbineType3or4IEC, WindProtectionIEC::setWindTurbineType3or4IEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("fover", new AttrDetails("WindProtectionIEC.fover", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("fover", new AttrDetails("WindProtectionIEC.fover", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindProtectionIEC::getFover, WindProtectionIEC::setFover));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("funder", new AttrDetails("WindProtectionIEC.funder", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("funder", new AttrDetails("WindProtectionIEC.funder", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindProtectionIEC::getFunder, WindProtectionIEC::setFunder));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tfover", new AttrDetails("WindProtectionIEC.tfover", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tfover", new AttrDetails("WindProtectionIEC.tfover", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindProtectionIEC::getTfover, WindProtectionIEC::setTfover));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tfunder", new AttrDetails("WindProtectionIEC.tfunder", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tfunder", new AttrDetails("WindProtectionIEC.tfunder", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindProtectionIEC::getTfunder, WindProtectionIEC::setTfunder));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tuover", new AttrDetails("WindProtectionIEC.tuover", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tuover", new AttrDetails("WindProtectionIEC.tuover", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindProtectionIEC::getTuover, WindProtectionIEC::setTuover));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tuunder", new AttrDetails("WindProtectionIEC.tuunder", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tuunder", new AttrDetails("WindProtectionIEC.tuunder", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindProtectionIEC::getTuunder, WindProtectionIEC::setTuunder));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("uover", new AttrDetails("WindProtectionIEC.uover", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("uover", new AttrDetails("WindProtectionIEC.uover", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindProtectionIEC::getUover, WindProtectionIEC::setUover));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("uunder", new AttrDetails("WindProtectionIEC.uunder", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("uunder", new AttrDetails("WindProtectionIEC.uunder", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindProtectionIEC::getUunder, WindProtectionIEC::setUunder));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindProtectionIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindProtectionIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("WindTurbineType1or2IEC", new GetterSetter(this::WindTurbineType1or2IECToString, this::setWindTurbineType1or2IEC, null));
-        map.put("WindTurbineType3or4IEC", new GetterSetter(this::WindTurbineType3or4IECToString, this::setWindTurbineType3or4IEC, null));
-        map.put("fover", new GetterSetter(this::foverToString, null, this::setFover));
-        map.put("funder", new GetterSetter(this::funderToString, null, this::setFunder));
-        map.put("tfover", new GetterSetter(this::tfoverToString, null, this::setTfover));
-        map.put("tfunder", new GetterSetter(this::tfunderToString, null, this::setTfunder));
-        map.put("tuover", new GetterSetter(this::tuoverToString, null, this::setTuover));
-        map.put("tuunder", new GetterSetter(this::tuunderToString, null, this::setTuunder));
-        map.put("uover", new GetterSetter(this::uoverToString, null, this::setUover));
-        map.put("uunder", new GetterSetter(this::uunderToString, null, this::setUunder));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

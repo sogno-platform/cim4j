@@ -23,10 +23,17 @@ public class CsConverter extends ACDCConverter {
     private static final Logging LOG = Logging.getLogger(CsConverter.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public CsConverter() {
-        setCimType("CsConverter");
+    public CsConverter(String rdfid) {
+        super("CsConverter", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected CsConverter(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class CsConverter extends ACDCConverter {
         return CSCDynamics;
     }
 
-    public void setCSCDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof CSCDynamics)) {
-            throw new IllegalArgumentException("Object is not CSCDynamics");
-        }
+    public void setCSCDynamics(CSCDynamics _object_) {
         if (CSCDynamics != _object_) {
-            CSCDynamics = (CSCDynamics) _object_;
+            CSCDynamics = _object_;
             CSCDynamics.setCSConverter(this);
         }
     }
 
-    public String CSCDynamicsToString() {
-        return CSCDynamics != null ? CSCDynamics.getRdfid() : null;
+    private static Object getCSCDynamics(BaseClass _this_) {
+        return ((CsConverter) _this_).getCSCDynamics();
+    }
+
+    private static void setCSCDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof CSCDynamics) {
+            ((CsConverter) _this_).setCSCDynamics((CSCDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not CSCDynamics");
+        }
     }
 
     /**
@@ -67,12 +79,18 @@ public class CsConverter extends ACDCConverter {
         alpha = _value_;
     }
 
-    public void setAlpha(String _value_) {
-        alpha = getDoubleFromString(_value_);
+    private static Object getAlpha(BaseClass _this_) {
+        return ((CsConverter) _this_).getAlpha();
     }
 
-    public String alphaToString() {
-        return alpha != null ? alpha.toString() : null;
+    private static void setAlpha(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((CsConverter) _this_).setAlpha((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((CsConverter) _this_).setAlpha(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -88,12 +106,18 @@ public class CsConverter extends ACDCConverter {
         gamma = _value_;
     }
 
-    public void setGamma(String _value_) {
-        gamma = getDoubleFromString(_value_);
+    private static Object getGamma(BaseClass _this_) {
+        return ((CsConverter) _this_).getGamma();
     }
 
-    public String gammaToString() {
-        return gamma != null ? gamma.toString() : null;
+    private static void setGamma(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((CsConverter) _this_).setGamma((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((CsConverter) _this_).setGamma(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -109,12 +133,18 @@ public class CsConverter extends ACDCConverter {
         maxAlpha = _value_;
     }
 
-    public void setMaxAlpha(String _value_) {
-        maxAlpha = getDoubleFromString(_value_);
+    private static Object getMaxAlpha(BaseClass _this_) {
+        return ((CsConverter) _this_).getMaxAlpha();
     }
 
-    public String maxAlphaToString() {
-        return maxAlpha != null ? maxAlpha.toString() : null;
+    private static void setMaxAlpha(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((CsConverter) _this_).setMaxAlpha((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((CsConverter) _this_).setMaxAlpha(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -130,12 +160,18 @@ public class CsConverter extends ACDCConverter {
         maxGamma = _value_;
     }
 
-    public void setMaxGamma(String _value_) {
-        maxGamma = getDoubleFromString(_value_);
+    private static Object getMaxGamma(BaseClass _this_) {
+        return ((CsConverter) _this_).getMaxGamma();
     }
 
-    public String maxGammaToString() {
-        return maxGamma != null ? maxGamma.toString() : null;
+    private static void setMaxGamma(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((CsConverter) _this_).setMaxGamma((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((CsConverter) _this_).setMaxGamma(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -151,12 +187,18 @@ public class CsConverter extends ACDCConverter {
         maxIdc = _value_;
     }
 
-    public void setMaxIdc(String _value_) {
-        maxIdc = getDoubleFromString(_value_);
+    private static Object getMaxIdc(BaseClass _this_) {
+        return ((CsConverter) _this_).getMaxIdc();
     }
 
-    public String maxIdcToString() {
-        return maxIdc != null ? maxIdc.toString() : null;
+    private static void setMaxIdc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((CsConverter) _this_).setMaxIdc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((CsConverter) _this_).setMaxIdc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -172,12 +214,18 @@ public class CsConverter extends ACDCConverter {
         minAlpha = _value_;
     }
 
-    public void setMinAlpha(String _value_) {
-        minAlpha = getDoubleFromString(_value_);
+    private static Object getMinAlpha(BaseClass _this_) {
+        return ((CsConverter) _this_).getMinAlpha();
     }
 
-    public String minAlphaToString() {
-        return minAlpha != null ? minAlpha.toString() : null;
+    private static void setMinAlpha(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((CsConverter) _this_).setMinAlpha((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((CsConverter) _this_).setMinAlpha(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -193,12 +241,18 @@ public class CsConverter extends ACDCConverter {
         minGamma = _value_;
     }
 
-    public void setMinGamma(String _value_) {
-        minGamma = getDoubleFromString(_value_);
+    private static Object getMinGamma(BaseClass _this_) {
+        return ((CsConverter) _this_).getMinGamma();
     }
 
-    public String minGammaToString() {
-        return minGamma != null ? minGamma.toString() : null;
+    private static void setMinGamma(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((CsConverter) _this_).setMinGamma((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((CsConverter) _this_).setMinGamma(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -214,12 +268,18 @@ public class CsConverter extends ACDCConverter {
         minIdc = _value_;
     }
 
-    public void setMinIdc(String _value_) {
-        minIdc = getDoubleFromString(_value_);
+    private static Object getMinIdc(BaseClass _this_) {
+        return ((CsConverter) _this_).getMinIdc();
     }
 
-    public String minIdcToString() {
-        return minIdc != null ? minIdc.toString() : null;
+    private static void setMinIdc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((CsConverter) _this_).setMinIdc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((CsConverter) _this_).setMinIdc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -235,8 +295,16 @@ public class CsConverter extends ACDCConverter {
         operatingMode = _value_;
     }
 
-    public String operatingModeToString() {
-        return operatingMode;
+    private static Object getOperatingMode(BaseClass _this_) {
+        return ((CsConverter) _this_).getOperatingMode();
+    }
+
+    private static void setOperatingMode(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((CsConverter) _this_).setOperatingMode((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -252,8 +320,16 @@ public class CsConverter extends ACDCConverter {
         pPccControl = _value_;
     }
 
-    public String pPccControlToString() {
-        return pPccControl;
+    private static Object getPPccControl(BaseClass _this_) {
+        return ((CsConverter) _this_).getPPccControl();
+    }
+
+    private static void setPPccControl(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((CsConverter) _this_).setPPccControl((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -269,16 +345,22 @@ public class CsConverter extends ACDCConverter {
         ratedIdc = _value_;
     }
 
-    public void setRatedIdc(String _value_) {
-        ratedIdc = getDoubleFromString(_value_);
+    private static Object getRatedIdc(BaseClass _this_) {
+        return ((CsConverter) _this_).getRatedIdc();
     }
 
-    public String ratedIdcToString() {
-        return ratedIdc != null ? ratedIdc.toString() : null;
+    private static void setRatedIdc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((CsConverter) _this_).setRatedIdc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((CsConverter) _this_).setRatedIdc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Target firing angle. It is converter`s control variable used in power flow. It is only applicable for rectifier if continuous tap changer control is used. Allowed values are within the range minAlpha&amp;lt;=targetAlpha&amp;lt;=maxAlpha. The attribute shall be a positive value.
+     * Target firing angle. It is converter`s control variable used in power flow. It is only applicable for rectifier if continuous tap changer control is used. Allowed values are within the range minAlpha&lt;=targetAlpha&lt;=maxAlpha. The attribute shall be a positive value.
      */
     private Double targetAlpha; // AngleDegrees
 
@@ -290,16 +372,22 @@ public class CsConverter extends ACDCConverter {
         targetAlpha = _value_;
     }
 
-    public void setTargetAlpha(String _value_) {
-        targetAlpha = getDoubleFromString(_value_);
+    private static Object getTargetAlpha(BaseClass _this_) {
+        return ((CsConverter) _this_).getTargetAlpha();
     }
 
-    public String targetAlphaToString() {
-        return targetAlpha != null ? targetAlpha.toString() : null;
+    private static void setTargetAlpha(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((CsConverter) _this_).setTargetAlpha((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((CsConverter) _this_).setTargetAlpha(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Target extinction angle. It is converter`s control variable used in power flow. It is only applicable for inverter if continuous tap changer control is used. Allowed values are within the range minGamma&amp;lt;=targetGamma&amp;lt;=maxGamma. The attribute shall be a positive value.
+     * Target extinction angle. It is converter`s control variable used in power flow. It is only applicable for inverter if continuous tap changer control is used. Allowed values are within the range minGamma&lt;=targetGamma&lt;=maxGamma. The attribute shall be a positive value.
      */
     private Double targetGamma; // AngleDegrees
 
@@ -311,12 +399,18 @@ public class CsConverter extends ACDCConverter {
         targetGamma = _value_;
     }
 
-    public void setTargetGamma(String _value_) {
-        targetGamma = getDoubleFromString(_value_);
+    private static Object getTargetGamma(BaseClass _this_) {
+        return ((CsConverter) _this_).getTargetGamma();
     }
 
-    public String targetGammaToString() {
-        return targetGamma != null ? targetGamma.toString() : null;
+    private static void setTargetGamma(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((CsConverter) _this_).setTargetGamma((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((CsConverter) _this_).setTargetGamma(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -332,12 +426,18 @@ public class CsConverter extends ACDCConverter {
         targetIdc = _value_;
     }
 
-    public void setTargetIdc(String _value_) {
-        targetIdc = getDoubleFromString(_value_);
+    private static Object getTargetIdc(BaseClass _this_) {
+        return ((CsConverter) _this_).getTargetIdc();
     }
 
-    public String targetIdcToString() {
-        return targetIdc != null ? targetIdc.toString() : null;
+    private static void setTargetIdc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((CsConverter) _this_).setTargetIdc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((CsConverter) _this_).setTargetIdc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -374,64 +474,35 @@ public class CsConverter extends ACDCConverter {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("CsConverter", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "CsConverter", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("CsConverter", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("CsConverter", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "CsConverter", attrName, value));
         }
     }
 
@@ -555,102 +626,81 @@ public class CsConverter extends ACDCConverter {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("CSCDynamics", new AttrDetails("CsConverter.CSCDynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("CSCDynamics", new AttrDetails("CsConverter.CSCDynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, CsConverter::getCSCDynamics, CsConverter::setCSCDynamics));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("alpha", new AttrDetails("CsConverter.alpha", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("alpha", new AttrDetails("CsConverter.alpha", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CsConverter::getAlpha, CsConverter::setAlpha));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("gamma", new AttrDetails("CsConverter.gamma", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("gamma", new AttrDetails("CsConverter.gamma", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CsConverter::getGamma, CsConverter::setGamma));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxAlpha", new AttrDetails("CsConverter.maxAlpha", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("maxAlpha", new AttrDetails("CsConverter.maxAlpha", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CsConverter::getMaxAlpha, CsConverter::setMaxAlpha));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxGamma", new AttrDetails("CsConverter.maxGamma", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("maxGamma", new AttrDetails("CsConverter.maxGamma", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CsConverter::getMaxGamma, CsConverter::setMaxGamma));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxIdc", new AttrDetails("CsConverter.maxIdc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("maxIdc", new AttrDetails("CsConverter.maxIdc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CsConverter::getMaxIdc, CsConverter::setMaxIdc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("minAlpha", new AttrDetails("CsConverter.minAlpha", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("minAlpha", new AttrDetails("CsConverter.minAlpha", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CsConverter::getMinAlpha, CsConverter::setMinAlpha));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("minGamma", new AttrDetails("CsConverter.minGamma", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("minGamma", new AttrDetails("CsConverter.minGamma", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CsConverter::getMinGamma, CsConverter::setMinGamma));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("minIdc", new AttrDetails("CsConverter.minIdc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("minIdc", new AttrDetails("CsConverter.minIdc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CsConverter::getMinIdc, CsConverter::setMinIdc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("operatingMode", new AttrDetails("CsConverter.operatingMode", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("operatingMode", new AttrDetails("CsConverter.operatingMode", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, CsConverter::getOperatingMode, CsConverter::setOperatingMode));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("pPccControl", new AttrDetails("CsConverter.pPccControl", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("pPccControl", new AttrDetails("CsConverter.pPccControl", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, CsConverter::getPPccControl, CsConverter::setPPccControl));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedIdc", new AttrDetails("CsConverter.ratedIdc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ratedIdc", new AttrDetails("CsConverter.ratedIdc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CsConverter::getRatedIdc, CsConverter::setRatedIdc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetAlpha", new AttrDetails("CsConverter.targetAlpha", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("targetAlpha", new AttrDetails("CsConverter.targetAlpha", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CsConverter::getTargetAlpha, CsConverter::setTargetAlpha));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetGamma", new AttrDetails("CsConverter.targetGamma", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("targetGamma", new AttrDetails("CsConverter.targetGamma", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CsConverter::getTargetGamma, CsConverter::setTargetGamma));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetIdc", new AttrDetails("CsConverter.targetIdc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("targetIdc", new AttrDetails("CsConverter.targetIdc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CsConverter::getTargetIdc, CsConverter::setTargetIdc));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new CsConverter().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new CsConverter(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("CSCDynamics", new GetterSetter(this::CSCDynamicsToString, this::setCSCDynamics, null));
-        map.put("alpha", new GetterSetter(this::alphaToString, null, this::setAlpha));
-        map.put("gamma", new GetterSetter(this::gammaToString, null, this::setGamma));
-        map.put("maxAlpha", new GetterSetter(this::maxAlphaToString, null, this::setMaxAlpha));
-        map.put("maxGamma", new GetterSetter(this::maxGammaToString, null, this::setMaxGamma));
-        map.put("maxIdc", new GetterSetter(this::maxIdcToString, null, this::setMaxIdc));
-        map.put("minAlpha", new GetterSetter(this::minAlphaToString, null, this::setMinAlpha));
-        map.put("minGamma", new GetterSetter(this::minGammaToString, null, this::setMinGamma));
-        map.put("minIdc", new GetterSetter(this::minIdcToString, null, this::setMinIdc));
-        map.put("operatingMode", new GetterSetter(this::operatingModeToString, null, this::setOperatingMode));
-        map.put("pPccControl", new GetterSetter(this::pPccControlToString, null, this::setPPccControl));
-        map.put("ratedIdc", new GetterSetter(this::ratedIdcToString, null, this::setRatedIdc));
-        map.put("targetAlpha", new GetterSetter(this::targetAlphaToString, null, this::setTargetAlpha));
-        map.put("targetGamma", new GetterSetter(this::targetGammaToString, null, this::setTargetGamma));
-        map.put("targetIdc", new GetterSetter(this::targetIdcToString, null, this::setTargetIdc));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

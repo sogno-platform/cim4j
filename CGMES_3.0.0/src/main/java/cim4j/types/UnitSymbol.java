@@ -21,7 +21,7 @@ public enum UnitSymbol {
      */
     _m("m"),
     /**
-     * Mass in kilograms.  Note: multiplier &quot;k&quot; is included in this unit symbol for compatibility with IEC 61850-7-3.
+     * Mass in kilograms.  Note: multiplier "k" is included in this unit symbol for compatibility with IEC 61850-7-3.
      */
     _kg("kg"),
     /**
@@ -125,7 +125,7 @@ public enum UnitSymbol {
      */
     _T("T"),
     /**
-     * Real power in watts (J/s). Electrical power may have real and reactive components. The real portion of electrical power (I&amp;#178;R or VIcos(phi)), is expressed in Watts. See also apparent power and reactive power.
+     * Real power in watts (J/s). Electrical power may have real and reactive components. The real portion of electrical power (I&#178;R or VIcos(phi)), is expressed in Watts. See also apparent power and reactive power.
      */
     _W("W"),
     /**
@@ -157,11 +157,11 @@ public enum UnitSymbol {
      */
     _mPerm3("mPerm3"),
     /**
-     * Moment of mass in kilogram metres (kg·m) (first moment of mass). Note: multiplier &quot;k&quot; is included in this unit symbol for compatibility with IEC 61850-7-3.
+     * Moment of mass in kilogram metres (kg·m) (first moment of mass). Note: multiplier "k" is included in this unit symbol for compatibility with IEC 61850-7-3.
      */
     _kgm("kgm"),
     /**
-     * Density in kilogram/cubic metres (kg/m³). Note: multiplier &quot;k&quot; is included in this unit symbol for compatibility with IEC 61850-7-3.
+     * Density in kilogram/cubic metres (kg/m³). Note: multiplier "k" is included in this unit symbol for compatibility with IEC 61850-7-3.
      */
     _kgPerm3("kgPerm3"),
     /**
@@ -217,7 +217,7 @@ public enum UnitSymbol {
      */
     _VA("VA"),
     /**
-     * Reactive power in volt amperes reactive. The &quot;reactive&quot; or &quot;imaginary&quot; component of electrical power (VIsin(phi)). (See also real power and apparent power). Note: Different meter designs use different methods to arrive at their results. Some meters may compute reactive power as an arithmetic value, while others compute the value vectorially. The data consumer should determine the method in use and the suitability of the measurement for the intended purpose.
+     * Reactive power in volt amperes reactive. The "reactive" or "imaginary" component of electrical power (VIsin(phi)). (See also real power and apparent power). Note: Different meter designs use different methods to arrive at their results. Some meters may compute reactive power as an arithmetic value, while others compute the value vectorially. The data consumer should determine the method in use and the suitability of the measurement for the intended purpose.
      */
     _VAr("VAr"),
     /**
@@ -273,11 +273,11 @@ public enum UnitSymbol {
      */
     _charPers("charPers"),
     /**
-     * Moment of mass in kilogram square metres (kg·m²) (Second moment of mass, commonly called the moment of inertia). Note: multiplier &quot;k&quot; is included in this unit symbol for compatibility with IEC 61850-7-3.
+     * Moment of mass in kilogram square metres (kg·m²) (Second moment of mass, commonly called the moment of inertia). Note: multiplier "k" is included in this unit symbol for compatibility with IEC 61850-7-3.
      */
     _kgm2("kgm2"),
     /**
-     * Sound pressure level in decibels. Note:  multiplier &quot;d&quot; is included in this unit symbol for compatibility with IEC 61850-7-3.
+     * Sound pressure level in decibels. Note:  multiplier "d" is included in this unit symbol for compatibility with IEC 61850-7-3.
      */
     _dB("dB"),
     /**
@@ -289,7 +289,7 @@ public enum UnitSymbol {
      */
     _lPers("lPers"),
     /**
-     * Power level (logarithmic ratio of signal strength , Bel-mW), normalized to 1mW. Note:  multiplier &quot;d&quot; is included in this unit symbol for compatibility with IEC 61850-7-3.
+     * Power level (logarithmic ratio of signal strength , Bel-mW), normalized to 1mW. Note:  multiplier "d" is included in this unit symbol for compatibility with IEC 61850-7-3.
      */
     _dBm("dBm"),
     /**
@@ -377,7 +377,7 @@ public enum UnitSymbol {
      */
     _molPerkg("molPerkg"),
     /**
-     * Time, Ratio of time.  Note: Users may need to supply a prefix such as ‘&amp;#181;' to show rates such as ‘&amp;#181;s/s'.
+     * Time, Ratio of time.  Note: Users may need to supply a prefix such as ‘&#181;' to show rates such as ‘&#181;s/s'.
      */
     _sPers("sPers"),
     /**
@@ -517,7 +517,7 @@ public enum UnitSymbol {
      */
     _ha("ha"),
     /**
-     * Mass in tons, &quot;tonne&quot; or &quot;metric  ton&quot; (1000 kg = 1 Mg).
+     * Mass in tons, "tonne" or "metric  ton" (1000 kg = 1 Mg).
      */
     _tonne("tonne"),
     /**
@@ -569,7 +569,7 @@ public enum UnitSymbol {
      */
     _ohmPerm("ohmPerm"),
     /**
-     * Weight per energy in kilograms per joule (kg/J). Note: multiplier &quot;k&quot; is included in this unit symbol for compatibility with IEC 61850-7-3.
+     * Weight per energy in kilograms per joule (kg/J). Note: multiplier "k" is included in this unit symbol for compatibility with IEC 61850-7-3.
      */
     _kgPerJ("kgPerJ"),
     /**

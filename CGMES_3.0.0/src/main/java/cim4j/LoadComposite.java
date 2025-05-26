@@ -23,14 +23,21 @@ public class LoadComposite extends LoadDynamics {
     private static final Logging LOG = Logging.getLogger(LoadComposite.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public LoadComposite() {
-        setCimType("LoadComposite");
+    public LoadComposite(String rdfid) {
+        super("LoadComposite", rdfid);
     }
 
     /**
-     * Active load-frequency dependence index (dynamic) (&lt;i&gt;Epfd&lt;/i&gt;).  Typical value = 1,5.
+     * Constructor for subclasses.
+     */
+    protected LoadComposite(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Active load-frequency dependence index (dynamic) (<i>Epfd</i>).  Typical value = 1,5.
      */
     private Float epfd; // Float
 
@@ -42,16 +49,22 @@ public class LoadComposite extends LoadDynamics {
         epfd = _value_;
     }
 
-    public void setEpfd(String _value_) {
-        epfd = getFloatFromString(_value_);
+    private static Object getEpfd(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEpfd();
     }
 
-    public String epfdToString() {
-        return epfd != null ? epfd.toString() : null;
+    private static void setEpfd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadComposite) _this_).setEpfd((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEpfd(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Active load-frequency dependence index (static) (&lt;i&gt;Epfs&lt;/i&gt;).  Typical value = 1,5.
+     * Active load-frequency dependence index (static) (<i>Epfs</i>).  Typical value = 1,5.
      */
     private Float epfs; // Float
 
@@ -63,16 +76,22 @@ public class LoadComposite extends LoadDynamics {
         epfs = _value_;
     }
 
-    public void setEpfs(String _value_) {
-        epfs = getFloatFromString(_value_);
+    private static Object getEpfs(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEpfs();
     }
 
-    public String epfsToString() {
-        return epfs != null ? epfs.toString() : null;
+    private static void setEpfs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadComposite) _this_).setEpfs((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEpfs(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Active load-voltage dependence index (dynamic) (&lt;i&gt;Epvd&lt;/i&gt;).  Typical value = 0,7.
+     * Active load-voltage dependence index (dynamic) (<i>Epvd</i>).  Typical value = 0,7.
      */
     private Float epvd; // Float
 
@@ -84,16 +103,22 @@ public class LoadComposite extends LoadDynamics {
         epvd = _value_;
     }
 
-    public void setEpvd(String _value_) {
-        epvd = getFloatFromString(_value_);
+    private static Object getEpvd(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEpvd();
     }
 
-    public String epvdToString() {
-        return epvd != null ? epvd.toString() : null;
+    private static void setEpvd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadComposite) _this_).setEpvd((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEpvd(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Active load-voltage dependence index (static) (&lt;i&gt;Epvs&lt;/i&gt;).  Typical value = 0,7.
+     * Active load-voltage dependence index (static) (<i>Epvs</i>).  Typical value = 0,7.
      */
     private Float epvs; // Float
 
@@ -105,16 +130,22 @@ public class LoadComposite extends LoadDynamics {
         epvs = _value_;
     }
 
-    public void setEpvs(String _value_) {
-        epvs = getFloatFromString(_value_);
+    private static Object getEpvs(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEpvs();
     }
 
-    public String epvsToString() {
-        return epvs != null ? epvs.toString() : null;
+    private static void setEpvs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadComposite) _this_).setEpvs((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEpvs(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Reactive load-frequency dependence index (dynamic) (&lt;i&gt;Eqfd&lt;/i&gt;).  Typical value = 0.
+     * Reactive load-frequency dependence index (dynamic) (<i>Eqfd</i>).  Typical value = 0.
      */
     private Float eqfd; // Float
 
@@ -126,16 +157,22 @@ public class LoadComposite extends LoadDynamics {
         eqfd = _value_;
     }
 
-    public void setEqfd(String _value_) {
-        eqfd = getFloatFromString(_value_);
+    private static Object getEqfd(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEqfd();
     }
 
-    public String eqfdToString() {
-        return eqfd != null ? eqfd.toString() : null;
+    private static void setEqfd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadComposite) _this_).setEqfd((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEqfd(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Reactive load-frequency dependence index (static) (&lt;i&gt;Eqfs&lt;/i&gt;).  Typical value = 0.
+     * Reactive load-frequency dependence index (static) (<i>Eqfs</i>).  Typical value = 0.
      */
     private Float eqfs; // Float
 
@@ -147,16 +184,22 @@ public class LoadComposite extends LoadDynamics {
         eqfs = _value_;
     }
 
-    public void setEqfs(String _value_) {
-        eqfs = getFloatFromString(_value_);
+    private static Object getEqfs(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEqfs();
     }
 
-    public String eqfsToString() {
-        return eqfs != null ? eqfs.toString() : null;
+    private static void setEqfs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadComposite) _this_).setEqfs((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEqfs(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Reactive load-voltage dependence index (dynamic) (&lt;i&gt;Eqvd&lt;/i&gt;).  Typical value = 2.
+     * Reactive load-voltage dependence index (dynamic) (<i>Eqvd</i>).  Typical value = 2.
      */
     private Float eqvd; // Float
 
@@ -168,16 +211,22 @@ public class LoadComposite extends LoadDynamics {
         eqvd = _value_;
     }
 
-    public void setEqvd(String _value_) {
-        eqvd = getFloatFromString(_value_);
+    private static Object getEqvd(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEqvd();
     }
 
-    public String eqvdToString() {
-        return eqvd != null ? eqvd.toString() : null;
+    private static void setEqvd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadComposite) _this_).setEqvd((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEqvd(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Reactive load-voltage dependence index (static) (&lt;i&gt;Eqvs&lt;/i&gt;).  Typical value = 2.
+     * Reactive load-voltage dependence index (static) (<i>Eqvs</i>).  Typical value = 2.
      */
     private Float eqvs; // Float
 
@@ -189,16 +238,22 @@ public class LoadComposite extends LoadDynamics {
         eqvs = _value_;
     }
 
-    public void setEqvs(String _value_) {
-        eqvs = getFloatFromString(_value_);
+    private static Object getEqvs(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEqvs();
     }
 
-    public String eqvsToString() {
-        return eqvs != null ? eqvs.toString() : null;
+    private static void setEqvs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadComposite) _this_).setEqvs((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEqvs(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Inertia constant (&lt;i&gt;H&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 2,5.
+     * Inertia constant (<i>H</i>) (&gt;= 0).  Typical value = 2,5.
      */
     private Double h; // Seconds
 
@@ -210,16 +265,22 @@ public class LoadComposite extends LoadDynamics {
         h = _value_;
     }
 
-    public void setH(String _value_) {
-        h = getDoubleFromString(_value_);
+    private static Object getH(BaseClass _this_) {
+        return ((LoadComposite) _this_).getH();
     }
 
-    public String hToString() {
-        return h != null ? h.toString() : null;
+    private static void setH(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadComposite) _this_).setH((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setH(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Loading factor (&lt;i&gt;L&lt;/i&gt;&lt;i&gt;&lt;sub&gt;fac&lt;/sub&gt;&lt;/i&gt;). The ratio of initial &lt;i&gt;P&lt;/i&gt; to motor MVA base.  Typical value = 0,8.
+     * Loading factor (<i>L</i><i><sub>fac</sub></i>). The ratio of initial <i>P</i> to motor MVA base.  Typical value = 0,8.
      */
     private Float lfac; // Float
 
@@ -231,16 +292,22 @@ public class LoadComposite extends LoadDynamics {
         lfac = _value_;
     }
 
-    public void setLfac(String _value_) {
-        lfac = getFloatFromString(_value_);
+    private static Object getLfac(BaseClass _this_) {
+        return ((LoadComposite) _this_).getLfac();
     }
 
-    public String lfacToString() {
-        return lfac != null ? lfac.toString() : null;
+    private static void setLfac(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadComposite) _this_).setLfac((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setLfac(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Fraction of constant-power load to be represented by this motor model (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FRAC&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0,0 and &amp;lt;= 1,0).  Typical value = 0,5.
+     * Fraction of constant-power load to be represented by this motor model (<i>P</i><i><sub>FRAC</sub></i>) (&gt;= 0,0 and &lt;= 1,0).  Typical value = 0,5.
      */
     private Float pfrac; // Float
 
@@ -252,12 +319,18 @@ public class LoadComposite extends LoadDynamics {
         pfrac = _value_;
     }
 
-    public void setPfrac(String _value_) {
-        pfrac = getFloatFromString(_value_);
+    private static Object getPfrac(BaseClass _this_) {
+        return ((LoadComposite) _this_).getPfrac();
     }
 
-    public String pfracToString() {
-        return pfrac != null ? pfrac.toString() : null;
+    private static void setPfrac(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadComposite) _this_).setPfrac((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setPfrac(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -294,64 +367,35 @@ public class LoadComposite extends LoadDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("LoadComposite", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "LoadComposite", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("LoadComposite", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("LoadComposite", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "LoadComposite", attrName, value));
         }
     }
 
@@ -475,78 +519,61 @@ public class LoadComposite extends LoadDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("epfd", new AttrDetails("LoadComposite.epfd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("epfd", new AttrDetails("LoadComposite.epfd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadComposite::getEpfd, LoadComposite::setEpfd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("epfs", new AttrDetails("LoadComposite.epfs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("epfs", new AttrDetails("LoadComposite.epfs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadComposite::getEpfs, LoadComposite::setEpfs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("epvd", new AttrDetails("LoadComposite.epvd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("epvd", new AttrDetails("LoadComposite.epvd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadComposite::getEpvd, LoadComposite::setEpvd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("epvs", new AttrDetails("LoadComposite.epvs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("epvs", new AttrDetails("LoadComposite.epvs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadComposite::getEpvs, LoadComposite::setEpvs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eqfd", new AttrDetails("LoadComposite.eqfd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("eqfd", new AttrDetails("LoadComposite.eqfd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadComposite::getEqfd, LoadComposite::setEqfd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eqfs", new AttrDetails("LoadComposite.eqfs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("eqfs", new AttrDetails("LoadComposite.eqfs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadComposite::getEqfs, LoadComposite::setEqfs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eqvd", new AttrDetails("LoadComposite.eqvd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("eqvd", new AttrDetails("LoadComposite.eqvd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadComposite::getEqvd, LoadComposite::setEqvd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eqvs", new AttrDetails("LoadComposite.eqvs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("eqvs", new AttrDetails("LoadComposite.eqvs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadComposite::getEqvs, LoadComposite::setEqvs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("h", new AttrDetails("LoadComposite.h", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("h", new AttrDetails("LoadComposite.h", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadComposite::getH, LoadComposite::setH));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("lfac", new AttrDetails("LoadComposite.lfac", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("lfac", new AttrDetails("LoadComposite.lfac", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadComposite::getLfac, LoadComposite::setLfac));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pfrac", new AttrDetails("LoadComposite.pfrac", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pfrac", new AttrDetails("LoadComposite.pfrac", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadComposite::getPfrac, LoadComposite::setPfrac));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadComposite().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadComposite(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("epfd", new GetterSetter(this::epfdToString, null, this::setEpfd));
-        map.put("epfs", new GetterSetter(this::epfsToString, null, this::setEpfs));
-        map.put("epvd", new GetterSetter(this::epvdToString, null, this::setEpvd));
-        map.put("epvs", new GetterSetter(this::epvsToString, null, this::setEpvs));
-        map.put("eqfd", new GetterSetter(this::eqfdToString, null, this::setEqfd));
-        map.put("eqfs", new GetterSetter(this::eqfsToString, null, this::setEqfs));
-        map.put("eqvd", new GetterSetter(this::eqvdToString, null, this::setEqvd));
-        map.put("eqvs", new GetterSetter(this::eqvsToString, null, this::setEqvs));
-        map.put("h", new GetterSetter(this::hToString, null, this::setH));
-        map.put("lfac", new GetterSetter(this::lfacToString, null, this::setLfac));
-        map.put("pfrac", new GetterSetter(this::pfracToString, null, this::setPfrac));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

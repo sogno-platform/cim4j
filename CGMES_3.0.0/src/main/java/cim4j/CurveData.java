@@ -23,10 +23,17 @@ public class CurveData extends BaseClass {
     private static final Logging LOG = Logging.getLogger(CurveData.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public CurveData() {
-        setCimType("CurveData");
+    public CurveData(String rdfid) {
+        super("CurveData", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected CurveData(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class CurveData extends BaseClass {
         return Curve;
     }
 
-    public void setCurve(BaseClass _object_) {
-        if (!(_object_ instanceof Curve)) {
-            throw new IllegalArgumentException("Object is not Curve");
-        }
+    public void setCurve(Curve _object_) {
         if (Curve != _object_) {
-            Curve = (Curve) _object_;
+            Curve = _object_;
             Curve.setCurveDatas(this);
         }
     }
 
-    public String CurveToString() {
-        return Curve != null ? Curve.getRdfid() : null;
+    private static Object getCurve(BaseClass _this_) {
+        return ((CurveData) _this_).getCurve();
+    }
+
+    private static void setCurve(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Curve) {
+            ((CurveData) _this_).setCurve((Curve) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Curve");
+        }
     }
 
     /**
@@ -65,12 +77,18 @@ public class CurveData extends BaseClass {
         xvalue = _value_;
     }
 
-    public void setXvalue(String _value_) {
-        xvalue = getFloatFromString(_value_);
+    private static Object getXvalue(BaseClass _this_) {
+        return ((CurveData) _this_).getXvalue();
     }
 
-    public String xvalueToString() {
-        return xvalue != null ? xvalue.toString() : null;
+    private static void setXvalue(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((CurveData) _this_).setXvalue((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((CurveData) _this_).setXvalue(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -86,12 +104,18 @@ public class CurveData extends BaseClass {
         y1value = _value_;
     }
 
-    public void setY1value(String _value_) {
-        y1value = getFloatFromString(_value_);
+    private static Object getY1value(BaseClass _this_) {
+        return ((CurveData) _this_).getY1value();
     }
 
-    public String y1valueToString() {
-        return y1value != null ? y1value.toString() : null;
+    private static void setY1value(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((CurveData) _this_).setY1value((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((CurveData) _this_).setY1value(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -107,12 +131,18 @@ public class CurveData extends BaseClass {
         y2value = _value_;
     }
 
-    public void setY2value(String _value_) {
-        y2value = getFloatFromString(_value_);
+    private static Object getY2value(BaseClass _this_) {
+        return ((CurveData) _this_).getY2value();
     }
 
-    public String y2valueToString() {
-        return y2value != null ? y2value.toString() : null;
+    private static void setY2value(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((CurveData) _this_).setY2value((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((CurveData) _this_).setY2value(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -149,64 +179,35 @@ public class CurveData extends BaseClass {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("CurveData", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "CurveData", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("CurveData", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("CurveData", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "CurveData", attrName, value));
         }
     }
 
@@ -330,36 +331,26 @@ public class CurveData extends BaseClass {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Curve", new AttrDetails("CurveData.Curve", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("Curve", new AttrDetails("CurveData.Curve", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, CurveData::getCurve, CurveData::setCurve));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("xvalue", new AttrDetails("CurveData.xvalue", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xvalue", new AttrDetails("CurveData.xvalue", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CurveData::getXvalue, CurveData::setXvalue));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("y1value", new AttrDetails("CurveData.y1value", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("y1value", new AttrDetails("CurveData.y1value", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CurveData::getY1value, CurveData::setY1value));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("y2value", new AttrDetails("CurveData.y2value", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("y2value", new AttrDetails("CurveData.y2value", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, CurveData::getY2value, CurveData::setY2value));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new CurveData().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new CurveData(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("Curve", new GetterSetter(this::CurveToString, this::setCurve, null));
-        map.put("xvalue", new GetterSetter(this::xvalueToString, null, this::setXvalue));
-        map.put("y1value", new GetterSetter(this::y1valueToString, null, this::setY1value));
-        map.put("y2value", new GetterSetter(this::y2valueToString, null, this::setY2value));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

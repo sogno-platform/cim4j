@@ -23,10 +23,17 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(WindPitchContPowerIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindPitchContPowerIEC() {
-        setCimType("WindPitchContPowerIEC");
+    public WindPitchContPowerIEC(String rdfid) {
+        super("WindPitchContPowerIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindPitchContPowerIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
         return WindDynamicsLookupTable;
     }
 
-    public void setWindDynamicsLookupTable(BaseClass _object_) {
-        if (!(_object_ instanceof WindDynamicsLookupTable)) {
-            throw new IllegalArgumentException("Object is not WindDynamicsLookupTable");
-        }
+    public void setWindDynamicsLookupTable(WindDynamicsLookupTable _object_) {
         if (!WindDynamicsLookupTable.contains(_object_)) {
-            WindDynamicsLookupTable.add((WindDynamicsLookupTable) _object_);
-            ((WindDynamicsLookupTable) _object_).setWindPitchContPowerIEC(this);
+            WindDynamicsLookupTable.add(_object_);
+            _object_.setWindPitchContPowerIEC(this);
         }
     }
 
-    public String WindDynamicsLookupTableToString() {
-        return getStringFromSet(WindDynamicsLookupTable);
+    private static Object getWindDynamicsLookupTable(BaseClass _this_) {
+        return ((WindPitchContPowerIEC) _this_).getWindDynamicsLookupTable();
+    }
+
+    private static void setWindDynamicsLookupTable(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindDynamicsLookupTable) {
+            ((WindPitchContPowerIEC) _this_).setWindDynamicsLookupTable((WindDynamicsLookupTable) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindDynamicsLookupTable");
+        }
     }
 
     /**
@@ -65,18 +77,23 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
         return WindGenTurbineType1bIEC;
     }
 
-    public void setWindGenTurbineType1bIEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindGenTurbineType1bIEC)) {
-            throw new IllegalArgumentException("Object is not WindGenTurbineType1bIEC");
-        }
+    public void setWindGenTurbineType1bIEC(WindGenTurbineType1bIEC _object_) {
         if (WindGenTurbineType1bIEC != _object_) {
-            WindGenTurbineType1bIEC = (WindGenTurbineType1bIEC) _object_;
+            WindGenTurbineType1bIEC = _object_;
             WindGenTurbineType1bIEC.setWindPitchContPowerIEC(this);
         }
     }
 
-    public String WindGenTurbineType1bIECToString() {
-        return WindGenTurbineType1bIEC != null ? WindGenTurbineType1bIEC.getRdfid() : null;
+    private static Object getWindGenTurbineType1bIEC(BaseClass _this_) {
+        return ((WindPitchContPowerIEC) _this_).getWindGenTurbineType1bIEC();
+    }
+
+    private static void setWindGenTurbineType1bIEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindGenTurbineType1bIEC) {
+            ((WindPitchContPowerIEC) _this_).setWindGenTurbineType1bIEC((WindGenTurbineType1bIEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindGenTurbineType1bIEC");
+        }
     }
 
     /**
@@ -90,22 +107,27 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
         return WindGenTurbineType2IEC;
     }
 
-    public void setWindGenTurbineType2IEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindGenTurbineType2IEC)) {
-            throw new IllegalArgumentException("Object is not WindGenTurbineType2IEC");
-        }
+    public void setWindGenTurbineType2IEC(WindGenTurbineType2IEC _object_) {
         if (WindGenTurbineType2IEC != _object_) {
-            WindGenTurbineType2IEC = (WindGenTurbineType2IEC) _object_;
+            WindGenTurbineType2IEC = _object_;
             WindGenTurbineType2IEC.setWindPitchContPowerIEC(this);
         }
     }
 
-    public String WindGenTurbineType2IECToString() {
-        return WindGenTurbineType2IEC != null ? WindGenTurbineType2IEC.getRdfid() : null;
+    private static Object getWindGenTurbineType2IEC(BaseClass _this_) {
+        return ((WindPitchContPowerIEC) _this_).getWindGenTurbineType2IEC();
+    }
+
+    private static void setWindGenTurbineType2IEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindGenTurbineType2IEC) {
+            ((WindPitchContPowerIEC) _this_).setWindGenTurbineType2IEC((WindGenTurbineType2IEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindGenTurbineType2IEC");
+        }
     }
 
     /**
-     * Rate limit for increasing power (&lt;i&gt;dp&lt;/i&gt;&lt;i&gt;&lt;sub&gt;max&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; WindPitchContPowerIEC.dpmin). It is a type-dependent parameter.
+     * Rate limit for increasing power (<i>dp</i><i><sub>max</sub></i>) (&gt; WindPitchContPowerIEC.dpmin). It is a type-dependent parameter.
      */
     private Double dpmax; // PU
 
@@ -117,16 +139,22 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
         dpmax = _value_;
     }
 
-    public void setDpmax(String _value_) {
-        dpmax = getDoubleFromString(_value_);
+    private static Object getDpmax(BaseClass _this_) {
+        return ((WindPitchContPowerIEC) _this_).getDpmax();
     }
 
-    public String dpmaxToString() {
-        return dpmax != null ? dpmax.toString() : null;
+    private static void setDpmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContPowerIEC) _this_).setDpmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContPowerIEC) _this_).setDpmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Rate limit for decreasing power (&lt;i&gt;dp&lt;/i&gt;&lt;i&gt;&lt;sub&gt;min&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; WindPitchContPowerIEC.dpmax). It is a type-dependent parameter.
+     * Rate limit for decreasing power (<i>dp</i><i><sub>min</sub></i>) (&lt; WindPitchContPowerIEC.dpmax). It is a type-dependent parameter.
      */
     private Double dpmin; // PU
 
@@ -138,16 +166,22 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
         dpmin = _value_;
     }
 
-    public void setDpmin(String _value_) {
-        dpmin = getDoubleFromString(_value_);
+    private static Object getDpmin(BaseClass _this_) {
+        return ((WindPitchContPowerIEC) _this_).getDpmin();
     }
 
-    public String dpminToString() {
-        return dpmin != null ? dpmin.toString() : null;
+    private static void setDpmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContPowerIEC) _this_).setDpmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContPowerIEC) _this_).setDpmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum power setting (&lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;min&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Minimum power setting (<i>p</i><i><sub>min</sub></i>). It is a type-dependent parameter.
      */
     private Double pmin; // PU
 
@@ -159,16 +193,22 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
         pmin = _value_;
     }
 
-    public void setPmin(String _value_) {
-        pmin = getDoubleFromString(_value_);
+    private static Object getPmin(BaseClass _this_) {
+        return ((WindPitchContPowerIEC) _this_).getPmin();
     }
 
-    public String pminToString() {
-        return pmin != null ? pmin.toString() : null;
+    private static void setPmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContPowerIEC) _this_).setPmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContPowerIEC) _this_).setPmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * If &lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;init&lt;/sub&gt;&lt;/i&gt;&lt;sub&gt; &lt;/sub&gt;&amp;lt; &lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;set&lt;/sub&gt;&lt;/i&gt;&lt;sub&gt; &lt;/sub&gt;then power will be ramped down to &lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;min&lt;/sub&gt;&lt;/i&gt;. It is (&lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;set&lt;/sub&gt;&lt;/i&gt;) in the IEC 61400-27-1:2015. It is a type-dependent parameter.
+     * If <i>p</i><i><sub>init</sub></i><sub> </sub>&lt; <i>p</i><i><sub>set</sub></i><sub> </sub>then power will be ramped down to <i>p</i><i><sub>min</sub></i>. It is (<i>p</i><i><sub>set</sub></i>) in the IEC 61400-27-1:2015. It is a type-dependent parameter.
      */
     private Double pset; // PU
 
@@ -180,16 +220,22 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
         pset = _value_;
     }
 
-    public void setPset(String _value_) {
-        pset = getDoubleFromString(_value_);
+    private static Object getPset(BaseClass _this_) {
+        return ((WindPitchContPowerIEC) _this_).getPset();
     }
 
-    public String psetToString() {
-        return pset != null ? pset.toString() : null;
+    private static void setPset(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContPowerIEC) _this_).setPset((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContPowerIEC) _this_).setPset(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Lag time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     * Lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0). It is a type-dependent parameter.
      */
     private Double t1; // Seconds
 
@@ -201,16 +247,22 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
         t1 = _value_;
     }
 
-    public void setT1(String _value_) {
-        t1 = getDoubleFromString(_value_);
+    private static Object getT1(BaseClass _this_) {
+        return ((WindPitchContPowerIEC) _this_).getT1();
     }
 
-    public String t1ToString() {
-        return t1 != null ? t1.toString() : null;
+    private static void setT1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContPowerIEC) _this_).setT1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContPowerIEC) _this_).setT1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage measurement time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;r&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     * Voltage measurement time constant (<i>T</i><i><sub>r</sub></i>) (&gt;= 0). It is a type-dependent parameter.
      */
     private Double tr; // Seconds
 
@@ -222,16 +274,22 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
         tr = _value_;
     }
 
-    public void setTr(String _value_) {
-        tr = getDoubleFromString(_value_);
+    private static Object getTr(BaseClass _this_) {
+        return ((WindPitchContPowerIEC) _this_).getTr();
     }
 
-    public String trToString() {
-        return tr != null ? tr.toString() : null;
+    private static void setTr(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContPowerIEC) _this_).setTr((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContPowerIEC) _this_).setTr(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Dip detection threshold (&lt;i&gt;u&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UVRT&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Dip detection threshold (<i>u</i><i><sub>UVRT</sub></i>). It is a type-dependent parameter.
      */
     private Double uuvrt; // PU
 
@@ -243,12 +301,18 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
         uuvrt = _value_;
     }
 
-    public void setUuvrt(String _value_) {
-        uuvrt = getDoubleFromString(_value_);
+    private static Object getUuvrt(BaseClass _this_) {
+        return ((WindPitchContPowerIEC) _this_).getUuvrt();
     }
 
-    public String uuvrtToString() {
-        return uuvrt != null ? uuvrt.toString() : null;
+    private static void setUuvrt(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContPowerIEC) _this_).setUuvrt((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContPowerIEC) _this_).setUuvrt(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -285,64 +349,35 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindPitchContPowerIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindPitchContPowerIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindPitchContPowerIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindPitchContPowerIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindPitchContPowerIEC", attrName, value));
         }
     }
 
@@ -466,72 +501,56 @@ public class WindPitchContPowerIEC extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindDynamicsLookupTable", new AttrDetails("WindPitchContPowerIEC.WindDynamicsLookupTable", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindDynamicsLookupTable", new AttrDetails("WindPitchContPowerIEC.WindDynamicsLookupTable", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindPitchContPowerIEC::getWindDynamicsLookupTable, WindPitchContPowerIEC::setWindDynamicsLookupTable));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindGenTurbineType1bIEC", new AttrDetails("WindPitchContPowerIEC.WindGenTurbineType1bIEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindGenTurbineType1bIEC", new AttrDetails("WindPitchContPowerIEC.WindGenTurbineType1bIEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindPitchContPowerIEC::getWindGenTurbineType1bIEC, WindPitchContPowerIEC::setWindGenTurbineType1bIEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindGenTurbineType2IEC", new AttrDetails("WindPitchContPowerIEC.WindGenTurbineType2IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindGenTurbineType2IEC", new AttrDetails("WindPitchContPowerIEC.WindGenTurbineType2IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindPitchContPowerIEC::getWindGenTurbineType2IEC, WindPitchContPowerIEC::setWindGenTurbineType2IEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dpmax", new AttrDetails("WindPitchContPowerIEC.dpmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("dpmax", new AttrDetails("WindPitchContPowerIEC.dpmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPitchContPowerIEC::getDpmax, WindPitchContPowerIEC::setDpmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dpmin", new AttrDetails("WindPitchContPowerIEC.dpmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("dpmin", new AttrDetails("WindPitchContPowerIEC.dpmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPitchContPowerIEC::getDpmin, WindPitchContPowerIEC::setDpmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmin", new AttrDetails("WindPitchContPowerIEC.pmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pmin", new AttrDetails("WindPitchContPowerIEC.pmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPitchContPowerIEC::getPmin, WindPitchContPowerIEC::setPmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pset", new AttrDetails("WindPitchContPowerIEC.pset", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pset", new AttrDetails("WindPitchContPowerIEC.pset", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPitchContPowerIEC::getPset, WindPitchContPowerIEC::setPset));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t1", new AttrDetails("WindPitchContPowerIEC.t1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t1", new AttrDetails("WindPitchContPowerIEC.t1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPitchContPowerIEC::getT1, WindPitchContPowerIEC::setT1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tr", new AttrDetails("WindPitchContPowerIEC.tr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tr", new AttrDetails("WindPitchContPowerIEC.tr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPitchContPowerIEC::getTr, WindPitchContPowerIEC::setTr));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("uuvrt", new AttrDetails("WindPitchContPowerIEC.uuvrt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("uuvrt", new AttrDetails("WindPitchContPowerIEC.uuvrt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPitchContPowerIEC::getUuvrt, WindPitchContPowerIEC::setUuvrt));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindPitchContPowerIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindPitchContPowerIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("WindDynamicsLookupTable", new GetterSetter(this::WindDynamicsLookupTableToString, this::setWindDynamicsLookupTable, null));
-        map.put("WindGenTurbineType1bIEC", new GetterSetter(this::WindGenTurbineType1bIECToString, this::setWindGenTurbineType1bIEC, null));
-        map.put("WindGenTurbineType2IEC", new GetterSetter(this::WindGenTurbineType2IECToString, this::setWindGenTurbineType2IEC, null));
-        map.put("dpmax", new GetterSetter(this::dpmaxToString, null, this::setDpmax));
-        map.put("dpmin", new GetterSetter(this::dpminToString, null, this::setDpmin));
-        map.put("pmin", new GetterSetter(this::pminToString, null, this::setPmin));
-        map.put("pset", new GetterSetter(this::psetToString, null, this::setPset));
-        map.put("t1", new GetterSetter(this::t1ToString, null, this::setT1));
-        map.put("tr", new GetterSetter(this::trToString, null, this::setTr));
-        map.put("uuvrt", new GetterSetter(this::uuvrtToString, null, this::setUuvrt));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

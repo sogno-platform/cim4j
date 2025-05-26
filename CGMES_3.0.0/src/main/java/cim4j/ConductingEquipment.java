@@ -23,10 +23,17 @@ public class ConductingEquipment extends Equipment {
     private static final Logging LOG = Logging.getLogger(ConductingEquipment.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ConductingEquipment() {
-        setCimType("ConductingEquipment");
+    public ConductingEquipment(String rdfid) {
+        super("ConductingEquipment", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ConductingEquipment(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class ConductingEquipment extends Equipment {
         return BaseVoltage;
     }
 
-    public void setBaseVoltage(BaseClass _object_) {
-        if (!(_object_ instanceof BaseVoltage)) {
-            throw new IllegalArgumentException("Object is not BaseVoltage");
-        }
+    public void setBaseVoltage(BaseVoltage _object_) {
         if (BaseVoltage != _object_) {
-            BaseVoltage = (BaseVoltage) _object_;
+            BaseVoltage = _object_;
             BaseVoltage.setConductingEquipment(this);
         }
     }
 
-    public String BaseVoltageToString() {
-        return BaseVoltage != null ? BaseVoltage.getRdfid() : null;
+    private static Object getBaseVoltage(BaseClass _this_) {
+        return ((ConductingEquipment) _this_).getBaseVoltage();
+    }
+
+    private static void setBaseVoltage(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof BaseVoltage) {
+            ((ConductingEquipment) _this_).setBaseVoltage((BaseVoltage) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not BaseVoltage");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class ConductingEquipment extends Equipment {
         return SvStatus;
     }
 
-    public void setSvStatus(BaseClass _object_) {
-        if (!(_object_ instanceof SvStatus)) {
-            throw new IllegalArgumentException("Object is not SvStatus");
-        }
+    public void setSvStatus(SvStatus _object_) {
         if (SvStatus != _object_) {
-            SvStatus = (SvStatus) _object_;
+            SvStatus = _object_;
             SvStatus.setConductingEquipment(this);
         }
     }
 
-    public String SvStatusToString() {
-        return SvStatus != null ? SvStatus.getRdfid() : null;
+    private static Object getSvStatus(BaseClass _this_) {
+        return ((ConductingEquipment) _this_).getSvStatus();
+    }
+
+    private static void setSvStatus(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof SvStatus) {
+            ((ConductingEquipment) _this_).setSvStatus((SvStatus) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not SvStatus");
+        }
     }
 
     /**
@@ -88,18 +105,23 @@ public class ConductingEquipment extends Equipment {
         return Terminals;
     }
 
-    public void setTerminals(BaseClass _object_) {
-        if (!(_object_ instanceof Terminal)) {
-            throw new IllegalArgumentException("Object is not Terminal");
-        }
+    public void setTerminals(Terminal _object_) {
         if (!Terminals.contains(_object_)) {
-            Terminals.add((Terminal) _object_);
-            ((Terminal) _object_).setConductingEquipment(this);
+            Terminals.add(_object_);
+            _object_.setConductingEquipment(this);
         }
     }
 
-    public String TerminalsToString() {
-        return getStringFromSet(Terminals);
+    private static Object getTerminals(BaseClass _this_) {
+        return ((ConductingEquipment) _this_).getTerminals();
+    }
+
+    private static void setTerminals(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Terminal) {
+            ((ConductingEquipment) _this_).setTerminals((Terminal) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Terminal");
+        }
     }
 
     /**
@@ -136,64 +158,35 @@ public class ConductingEquipment extends Equipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ConductingEquipment", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ConductingEquipment", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ConductingEquipment", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ConductingEquipment", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ConductingEquipment", attrName, value));
         }
     }
 
@@ -317,32 +310,23 @@ public class ConductingEquipment extends Equipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("BaseVoltage", new AttrDetails("ConductingEquipment.BaseVoltage", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("BaseVoltage", new AttrDetails("ConductingEquipment.BaseVoltage", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, ConductingEquipment::getBaseVoltage, ConductingEquipment::setBaseVoltage));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("SvStatus", new AttrDetails("ConductingEquipment.SvStatus", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("SvStatus", new AttrDetails("ConductingEquipment.SvStatus", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, ConductingEquipment::getSvStatus, ConductingEquipment::setSvStatus));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
             profiles.add(CGMESProfile.EQ);
             profiles.add(CGMESProfile.EQBD);
-            map.put("Terminals", new AttrDetails("ConductingEquipment.Terminals", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("Terminals", new AttrDetails("ConductingEquipment.Terminals", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, ConductingEquipment::getTerminals, ConductingEquipment::setTerminals));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ConductingEquipment().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ConductingEquipment(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("BaseVoltage", new GetterSetter(this::BaseVoltageToString, this::setBaseVoltage, null));
-        map.put("SvStatus", new GetterSetter(this::SvStatusToString, this::setSvStatus, null));
-        map.put("Terminals", new GetterSetter(this::TerminalsToString, this::setTerminals, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

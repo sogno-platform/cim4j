@@ -23,10 +23,17 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
     private static final Logging LOG = Logging.getLogger(DiscExcContIEEEDEC1A.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public DiscExcContIEEEDEC1A() {
-        setCimType("DiscExcContIEEEDEC1A");
+    public DiscExcContIEEEDEC1A(String rdfid) {
+        super("DiscExcContIEEEDEC1A", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected DiscExcContIEEEDEC1A(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         esc = _value_;
     }
 
-    public void setEsc(String _value_) {
-        esc = getDoubleFromString(_value_);
+    private static Object getEsc(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getEsc();
     }
 
-    public String escToString() {
-        return esc != null ? esc.toString() : null;
+    private static void setEsc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setEsc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setEsc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         kan = _value_;
     }
 
-    public void setKan(String _value_) {
-        kan = getDoubleFromString(_value_);
+    private static Object getKan(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getKan();
     }
 
-    public String kanToString() {
-        return kan != null ? kan.toString() : null;
+    private static void setKan(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setKan((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setKan(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         ketl = _value_;
     }
 
-    public void setKetl(String _value_) {
-        ketl = getDoubleFromString(_value_);
+    private static Object getKetl(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getKetl();
     }
 
-    public String ketlToString() {
-        return ketl != null ? ketl.toString() : null;
+    private static void setKetl(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setKetl((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setKetl(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         tan = _value_;
     }
 
-    public void setTan(String _value_) {
-        tan = getDoubleFromString(_value_);
+    private static Object getTan(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getTan();
     }
 
-    public String tanToString() {
-        return tan != null ? tan.toString() : null;
+    private static void setTan(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setTan((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setTan(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         td = _value_;
     }
 
-    public void setTd(String _value_) {
-        td = getDoubleFromString(_value_);
+    private static Object getTd(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getTd();
     }
 
-    public String tdToString() {
-        return td != null ? td.toString() : null;
+    private static void setTd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setTd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setTd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,12 +184,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         tl1 = _value_;
     }
 
-    public void setTl1(String _value_) {
-        tl1 = getDoubleFromString(_value_);
+    private static Object getTl1(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getTl1();
     }
 
-    public String tl1ToString() {
-        return tl1 != null ? tl1.toString() : null;
+    private static void setTl1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setTl1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setTl1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,12 +211,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         tl2 = _value_;
     }
 
-    public void setTl2(String _value_) {
-        tl2 = getDoubleFromString(_value_);
+    private static Object getTl2(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getTl2();
     }
 
-    public String tl2ToString() {
-        return tl2 != null ? tl2.toString() : null;
+    private static void setTl2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setTl2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setTl2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,12 +238,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         tw5 = _value_;
     }
 
-    public void setTw5(String _value_) {
-        tw5 = getDoubleFromString(_value_);
+    private static Object getTw5(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getTw5();
     }
 
-    public String tw5ToString() {
-        return tw5 != null ? tw5.toString() : null;
+    private static void setTw5(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setTw5((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setTw5(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -210,12 +265,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         val = _value_;
     }
 
-    public void setVal(String _value_) {
-        val = getDoubleFromString(_value_);
+    private static Object getVal(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getVal();
     }
 
-    public String valToString() {
-        return val != null ? val.toString() : null;
+    private static void setVal(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setVal((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setVal(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -231,12 +292,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         vanmax = _value_;
     }
 
-    public void setVanmax(String _value_) {
-        vanmax = getDoubleFromString(_value_);
+    private static Object getVanmax(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getVanmax();
     }
 
-    public String vanmaxToString() {
-        return vanmax != null ? vanmax.toString() : null;
+    private static void setVanmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setVanmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setVanmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -252,12 +319,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         vomax = _value_;
     }
 
-    public void setVomax(String _value_) {
-        vomax = getDoubleFromString(_value_);
+    private static Object getVomax(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getVomax();
     }
 
-    public String vomaxToString() {
-        return vomax != null ? vomax.toString() : null;
+    private static void setVomax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setVomax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setVomax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -273,12 +346,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         vomin = _value_;
     }
 
-    public void setVomin(String _value_) {
-        vomin = getDoubleFromString(_value_);
+    private static Object getVomin(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getVomin();
     }
 
-    public String vominToString() {
-        return vomin != null ? vomin.toString() : null;
+    private static void setVomin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setVomin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setVomin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -294,12 +373,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         vsmax = _value_;
     }
 
-    public void setVsmax(String _value_) {
-        vsmax = getDoubleFromString(_value_);
+    private static Object getVsmax(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getVsmax();
     }
 
-    public String vsmaxToString() {
-        return vsmax != null ? vsmax.toString() : null;
+    private static void setVsmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setVsmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setVsmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -315,12 +400,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         vsmin = _value_;
     }
 
-    public void setVsmin(String _value_) {
-        vsmin = getDoubleFromString(_value_);
+    private static Object getVsmin(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getVsmin();
     }
 
-    public String vsminToString() {
-        return vsmin != null ? vsmin.toString() : null;
+    private static void setVsmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setVsmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setVsmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -336,12 +427,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         vtc = _value_;
     }
 
-    public void setVtc(String _value_) {
-        vtc = getDoubleFromString(_value_);
+    private static Object getVtc(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getVtc();
     }
 
-    public String vtcToString() {
-        return vtc != null ? vtc.toString() : null;
+    private static void setVtc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setVtc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setVtc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -357,12 +454,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         vtlmt = _value_;
     }
 
-    public void setVtlmt(String _value_) {
-        vtlmt = getDoubleFromString(_value_);
+    private static Object getVtlmt(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getVtlmt();
     }
 
-    public String vtlmtToString() {
-        return vtlmt != null ? vtlmt.toString() : null;
+    private static void setVtlmt(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setVtlmt((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setVtlmt(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -378,12 +481,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         vtm = _value_;
     }
 
-    public void setVtm(String _value_) {
-        vtm = getDoubleFromString(_value_);
+    private static Object getVtm(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getVtm();
     }
 
-    public String vtmToString() {
-        return vtm != null ? vtm.toString() : null;
+    private static void setVtm(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setVtm((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setVtm(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -399,12 +508,18 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         vtn = _value_;
     }
 
-    public void setVtn(String _value_) {
-        vtn = getDoubleFromString(_value_);
+    private static Object getVtn(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC1A) _this_).getVtn();
     }
 
-    public String vtnToString() {
-        return vtn != null ? vtn.toString() : null;
+    private static void setVtn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC1A) _this_).setVtn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC1A) _this_).setVtn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -441,64 +556,35 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("DiscExcContIEEEDEC1A", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "DiscExcContIEEEDEC1A", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("DiscExcContIEEEDEC1A", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("DiscExcContIEEEDEC1A", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "DiscExcContIEEEDEC1A", attrName, value));
         }
     }
 
@@ -622,120 +708,96 @@ public class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("esc", new AttrDetails("DiscExcContIEEEDEC1A.esc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("esc", new AttrDetails("DiscExcContIEEEDEC1A.esc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getEsc, DiscExcContIEEEDEC1A::setEsc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kan", new AttrDetails("DiscExcContIEEEDEC1A.kan", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kan", new AttrDetails("DiscExcContIEEEDEC1A.kan", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getKan, DiscExcContIEEEDEC1A::setKan));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ketl", new AttrDetails("DiscExcContIEEEDEC1A.ketl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ketl", new AttrDetails("DiscExcContIEEEDEC1A.ketl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getKetl, DiscExcContIEEEDEC1A::setKetl));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tan", new AttrDetails("DiscExcContIEEEDEC1A.tan", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tan", new AttrDetails("DiscExcContIEEEDEC1A.tan", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getTan, DiscExcContIEEEDEC1A::setTan));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("td", new AttrDetails("DiscExcContIEEEDEC1A.td", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("td", new AttrDetails("DiscExcContIEEEDEC1A.td", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getTd, DiscExcContIEEEDEC1A::setTd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl1", new AttrDetails("DiscExcContIEEEDEC1A.tl1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tl1", new AttrDetails("DiscExcContIEEEDEC1A.tl1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getTl1, DiscExcContIEEEDEC1A::setTl1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl2", new AttrDetails("DiscExcContIEEEDEC1A.tl2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tl2", new AttrDetails("DiscExcContIEEEDEC1A.tl2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getTl2, DiscExcContIEEEDEC1A::setTl2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tw5", new AttrDetails("DiscExcContIEEEDEC1A.tw5", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tw5", new AttrDetails("DiscExcContIEEEDEC1A.tw5", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getTw5, DiscExcContIEEEDEC1A::setTw5));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("val", new AttrDetails("DiscExcContIEEEDEC1A.val", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("val", new AttrDetails("DiscExcContIEEEDEC1A.val", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getVal, DiscExcContIEEEDEC1A::setVal));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vanmax", new AttrDetails("DiscExcContIEEEDEC1A.vanmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vanmax", new AttrDetails("DiscExcContIEEEDEC1A.vanmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getVanmax, DiscExcContIEEEDEC1A::setVanmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vomax", new AttrDetails("DiscExcContIEEEDEC1A.vomax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vomax", new AttrDetails("DiscExcContIEEEDEC1A.vomax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getVomax, DiscExcContIEEEDEC1A::setVomax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vomin", new AttrDetails("DiscExcContIEEEDEC1A.vomin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vomin", new AttrDetails("DiscExcContIEEEDEC1A.vomin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getVomin, DiscExcContIEEEDEC1A::setVomin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vsmax", new AttrDetails("DiscExcContIEEEDEC1A.vsmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vsmax", new AttrDetails("DiscExcContIEEEDEC1A.vsmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getVsmax, DiscExcContIEEEDEC1A::setVsmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vsmin", new AttrDetails("DiscExcContIEEEDEC1A.vsmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vsmin", new AttrDetails("DiscExcContIEEEDEC1A.vsmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getVsmin, DiscExcContIEEEDEC1A::setVsmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vtc", new AttrDetails("DiscExcContIEEEDEC1A.vtc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vtc", new AttrDetails("DiscExcContIEEEDEC1A.vtc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getVtc, DiscExcContIEEEDEC1A::setVtc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vtlmt", new AttrDetails("DiscExcContIEEEDEC1A.vtlmt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vtlmt", new AttrDetails("DiscExcContIEEEDEC1A.vtlmt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getVtlmt, DiscExcContIEEEDEC1A::setVtlmt));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vtm", new AttrDetails("DiscExcContIEEEDEC1A.vtm", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vtm", new AttrDetails("DiscExcContIEEEDEC1A.vtm", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getVtm, DiscExcContIEEEDEC1A::setVtm));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vtn", new AttrDetails("DiscExcContIEEEDEC1A.vtn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vtn", new AttrDetails("DiscExcContIEEEDEC1A.vtn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC1A::getVtn, DiscExcContIEEEDEC1A::setVtn));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DiscExcContIEEEDEC1A().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DiscExcContIEEEDEC1A(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("esc", new GetterSetter(this::escToString, null, this::setEsc));
-        map.put("kan", new GetterSetter(this::kanToString, null, this::setKan));
-        map.put("ketl", new GetterSetter(this::ketlToString, null, this::setKetl));
-        map.put("tan", new GetterSetter(this::tanToString, null, this::setTan));
-        map.put("td", new GetterSetter(this::tdToString, null, this::setTd));
-        map.put("tl1", new GetterSetter(this::tl1ToString, null, this::setTl1));
-        map.put("tl2", new GetterSetter(this::tl2ToString, null, this::setTl2));
-        map.put("tw5", new GetterSetter(this::tw5ToString, null, this::setTw5));
-        map.put("val", new GetterSetter(this::valToString, null, this::setVal));
-        map.put("vanmax", new GetterSetter(this::vanmaxToString, null, this::setVanmax));
-        map.put("vomax", new GetterSetter(this::vomaxToString, null, this::setVomax));
-        map.put("vomin", new GetterSetter(this::vominToString, null, this::setVomin));
-        map.put("vsmax", new GetterSetter(this::vsmaxToString, null, this::setVsmax));
-        map.put("vsmin", new GetterSetter(this::vsminToString, null, this::setVsmin));
-        map.put("vtc", new GetterSetter(this::vtcToString, null, this::setVtc));
-        map.put("vtlmt", new GetterSetter(this::vtlmtToString, null, this::setVtlmt));
-        map.put("vtm", new GetterSetter(this::vtmToString, null, this::setVtm));
-        map.put("vtn", new GetterSetter(this::vtnToString, null, this::setVtn));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

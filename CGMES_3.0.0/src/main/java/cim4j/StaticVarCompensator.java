@@ -23,10 +23,17 @@ public class StaticVarCompensator extends RegulatingCondEq {
     private static final Logging LOG = Logging.getLogger(StaticVarCompensator.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public StaticVarCompensator() {
-        setCimType("StaticVarCompensator");
+    public StaticVarCompensator(String rdfid) {
+        super("StaticVarCompensator", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected StaticVarCompensator(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class StaticVarCompensator extends RegulatingCondEq {
         return StaticVarCompensatorDynamics;
     }
 
-    public void setStaticVarCompensatorDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof StaticVarCompensatorDynamics)) {
-            throw new IllegalArgumentException("Object is not StaticVarCompensatorDynamics");
-        }
+    public void setStaticVarCompensatorDynamics(StaticVarCompensatorDynamics _object_) {
         if (StaticVarCompensatorDynamics != _object_) {
-            StaticVarCompensatorDynamics = (StaticVarCompensatorDynamics) _object_;
+            StaticVarCompensatorDynamics = _object_;
             StaticVarCompensatorDynamics.setStaticVarCompensator(this);
         }
     }
 
-    public String StaticVarCompensatorDynamicsToString() {
-        return StaticVarCompensatorDynamics != null ? StaticVarCompensatorDynamics.getRdfid() : null;
+    private static Object getStaticVarCompensatorDynamics(BaseClass _this_) {
+        return ((StaticVarCompensator) _this_).getStaticVarCompensatorDynamics();
+    }
+
+    private static void setStaticVarCompensatorDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof StaticVarCompensatorDynamics) {
+            ((StaticVarCompensator) _this_).setStaticVarCompensatorDynamics((StaticVarCompensatorDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not StaticVarCompensatorDynamics");
+        }
     }
 
     /**
@@ -67,12 +79,18 @@ public class StaticVarCompensator extends RegulatingCondEq {
         capacitiveRating = _value_;
     }
 
-    public void setCapacitiveRating(String _value_) {
-        capacitiveRating = getDoubleFromString(_value_);
+    private static Object getCapacitiveRating(BaseClass _this_) {
+        return ((StaticVarCompensator) _this_).getCapacitiveRating();
     }
 
-    public String capacitiveRatingToString() {
-        return capacitiveRating != null ? capacitiveRating.toString() : null;
+    private static void setCapacitiveRating(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((StaticVarCompensator) _this_).setCapacitiveRating((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((StaticVarCompensator) _this_).setCapacitiveRating(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -88,12 +106,18 @@ public class StaticVarCompensator extends RegulatingCondEq {
         inductiveRating = _value_;
     }
 
-    public void setInductiveRating(String _value_) {
-        inductiveRating = getDoubleFromString(_value_);
+    private static Object getInductiveRating(BaseClass _this_) {
+        return ((StaticVarCompensator) _this_).getInductiveRating();
     }
 
-    public String inductiveRatingToString() {
-        return inductiveRating != null ? inductiveRating.toString() : null;
+    private static void setInductiveRating(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((StaticVarCompensator) _this_).setInductiveRating((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((StaticVarCompensator) _this_).setInductiveRating(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -109,12 +133,18 @@ public class StaticVarCompensator extends RegulatingCondEq {
         q = _value_;
     }
 
-    public void setQ(String _value_) {
-        q = getDoubleFromString(_value_);
+    private static Object getQ(BaseClass _this_) {
+        return ((StaticVarCompensator) _this_).getQ();
     }
 
-    public String qToString() {
-        return q != null ? q.toString() : null;
+    private static void setQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((StaticVarCompensator) _this_).setQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((StaticVarCompensator) _this_).setQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -130,8 +160,16 @@ public class StaticVarCompensator extends RegulatingCondEq {
         sVCControlMode = _value_;
     }
 
-    public String sVCControlModeToString() {
-        return sVCControlMode;
+    private static Object getSVCControlMode(BaseClass _this_) {
+        return ((StaticVarCompensator) _this_).getSVCControlMode();
+    }
+
+    private static void setSVCControlMode(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((StaticVarCompensator) _this_).setSVCControlMode((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -147,12 +185,18 @@ public class StaticVarCompensator extends RegulatingCondEq {
         slope = _value_;
     }
 
-    public void setSlope(String _value_) {
-        slope = getDoubleFromString(_value_);
+    private static Object getSlope(BaseClass _this_) {
+        return ((StaticVarCompensator) _this_).getSlope();
     }
 
-    public String slopeToString() {
-        return slope != null ? slope.toString() : null;
+    private static void setSlope(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((StaticVarCompensator) _this_).setSlope((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((StaticVarCompensator) _this_).setSlope(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,12 +212,18 @@ public class StaticVarCompensator extends RegulatingCondEq {
         voltageSetPoint = _value_;
     }
 
-    public void setVoltageSetPoint(String _value_) {
-        voltageSetPoint = getDoubleFromString(_value_);
+    private static Object getVoltageSetPoint(BaseClass _this_) {
+        return ((StaticVarCompensator) _this_).getVoltageSetPoint();
     }
 
-    public String voltageSetPointToString() {
-        return voltageSetPoint != null ? voltageSetPoint.toString() : null;
+    private static void setVoltageSetPoint(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((StaticVarCompensator) _this_).setVoltageSetPoint((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((StaticVarCompensator) _this_).setVoltageSetPoint(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -210,64 +260,35 @@ public class StaticVarCompensator extends RegulatingCondEq {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("StaticVarCompensator", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "StaticVarCompensator", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("StaticVarCompensator", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("StaticVarCompensator", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "StaticVarCompensator", attrName, value));
         }
     }
 
@@ -391,54 +412,41 @@ public class StaticVarCompensator extends RegulatingCondEq {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("StaticVarCompensatorDynamics", new AttrDetails("StaticVarCompensator.StaticVarCompensatorDynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("StaticVarCompensatorDynamics", new AttrDetails("StaticVarCompensator.StaticVarCompensatorDynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, StaticVarCompensator::getStaticVarCompensatorDynamics, StaticVarCompensator::setStaticVarCompensatorDynamics));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("capacitiveRating", new AttrDetails("StaticVarCompensator.capacitiveRating", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("capacitiveRating", new AttrDetails("StaticVarCompensator.capacitiveRating", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StaticVarCompensator::getCapacitiveRating, StaticVarCompensator::setCapacitiveRating));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("inductiveRating", new AttrDetails("StaticVarCompensator.inductiveRating", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("inductiveRating", new AttrDetails("StaticVarCompensator.inductiveRating", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StaticVarCompensator::getInductiveRating, StaticVarCompensator::setInductiveRating));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("q", new AttrDetails("StaticVarCompensator.q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q", new AttrDetails("StaticVarCompensator.q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StaticVarCompensator::getQ, StaticVarCompensator::setQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("sVCControlMode", new AttrDetails("StaticVarCompensator.sVCControlMode", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("sVCControlMode", new AttrDetails("StaticVarCompensator.sVCControlMode", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, StaticVarCompensator::getSVCControlMode, StaticVarCompensator::setSVCControlMode));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("slope", new AttrDetails("StaticVarCompensator.slope", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("slope", new AttrDetails("StaticVarCompensator.slope", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StaticVarCompensator::getSlope, StaticVarCompensator::setSlope));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("voltageSetPoint", new AttrDetails("StaticVarCompensator.voltageSetPoint", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("voltageSetPoint", new AttrDetails("StaticVarCompensator.voltageSetPoint", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StaticVarCompensator::getVoltageSetPoint, StaticVarCompensator::setVoltageSetPoint));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new StaticVarCompensator().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new StaticVarCompensator(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("StaticVarCompensatorDynamics", new GetterSetter(this::StaticVarCompensatorDynamicsToString, this::setStaticVarCompensatorDynamics, null));
-        map.put("capacitiveRating", new GetterSetter(this::capacitiveRatingToString, null, this::setCapacitiveRating));
-        map.put("inductiveRating", new GetterSetter(this::inductiveRatingToString, null, this::setInductiveRating));
-        map.put("q", new GetterSetter(this::qToString, null, this::setQ));
-        map.put("sVCControlMode", new GetterSetter(this::sVCControlModeToString, null, this::setSVCControlMode));
-        map.put("slope", new GetterSetter(this::slopeToString, null, this::setSlope));
-        map.put("voltageSetPoint", new GetterSetter(this::voltageSetPointToString, null, this::setVoltageSetPoint));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

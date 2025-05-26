@@ -23,14 +23,21 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
     private static final Logging LOG = Logging.getLogger(GovSteamSGO.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public GovSteamSGO() {
-        setCimType("GovSteamSGO");
+    public GovSteamSGO(String rdfid) {
+        super("GovSteamSGO", rdfid);
     }
 
     /**
-     * One / PU regulation (&lt;i&gt;K1&lt;/i&gt;).
+     * Constructor for subclasses.
+     */
+    protected GovSteamSGO(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * One / PU regulation (<i>K1</i>).
      */
     private Double k1; // PU
 
@@ -42,16 +49,22 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
         k1 = _value_;
     }
 
-    public void setK1(String _value_) {
-        k1 = getDoubleFromString(_value_);
+    private static Object getK1(BaseClass _this_) {
+        return ((GovSteamSGO) _this_).getK1();
     }
 
-    public String k1ToString() {
-        return k1 != null ? k1.toString() : null;
+    private static void setK1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamSGO) _this_).setK1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamSGO) _this_).setK1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Fraction (&lt;i&gt;K2&lt;/i&gt;).
+     * Fraction (<i>K2</i>).
      */
     private Double k2; // PU
 
@@ -63,16 +76,22 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
         k2 = _value_;
     }
 
-    public void setK2(String _value_) {
-        k2 = getDoubleFromString(_value_);
+    private static Object getK2(BaseClass _this_) {
+        return ((GovSteamSGO) _this_).getK2();
     }
 
-    public String k2ToString() {
-        return k2 != null ? k2.toString() : null;
+    private static void setK2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamSGO) _this_).setK2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamSGO) _this_).setK2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Fraction (&lt;i&gt;K3&lt;/i&gt;).
+     * Fraction (<i>K3</i>).
      */
     private Double k3; // PU
 
@@ -84,16 +103,22 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
         k3 = _value_;
     }
 
-    public void setK3(String _value_) {
-        k3 = getDoubleFromString(_value_);
+    private static Object getK3(BaseClass _this_) {
+        return ((GovSteamSGO) _this_).getK3();
     }
 
-    public String k3ToString() {
-        return k3 != null ? k3.toString() : null;
+    private static void setK3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamSGO) _this_).setK3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamSGO) _this_).setK3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Base for power values (&lt;i&gt;MWbase&lt;/i&gt;) (&amp;gt; 0).  Unit = MW.
+     * Base for power values (<i>MWbase</i>) (&gt; 0).  Unit = MW.
      */
     private Double mwbase; // ActivePower
 
@@ -105,16 +130,22 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
         mwbase = _value_;
     }
 
-    public void setMwbase(String _value_) {
-        mwbase = getDoubleFromString(_value_);
+    private static Object getMwbase(BaseClass _this_) {
+        return ((GovSteamSGO) _this_).getMwbase();
     }
 
-    public String mwbaseToString() {
-        return mwbase != null ? mwbase.toString() : null;
+    private static void setMwbase(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamSGO) _this_).setMwbase((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamSGO) _this_).setMwbase(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Upper power limit (&lt;i&gt;Pmax&lt;/i&gt;) (&amp;gt; GovSteamSGO.pmin).
+     * Upper power limit (<i>Pmax</i>) (&gt; GovSteamSGO.pmin).
      */
     private Double pmax; // PU
 
@@ -126,16 +157,22 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
         pmax = _value_;
     }
 
-    public void setPmax(String _value_) {
-        pmax = getDoubleFromString(_value_);
+    private static Object getPmax(BaseClass _this_) {
+        return ((GovSteamSGO) _this_).getPmax();
     }
 
-    public String pmaxToString() {
-        return pmax != null ? pmax.toString() : null;
+    private static void setPmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamSGO) _this_).setPmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamSGO) _this_).setPmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Lower power limit (&lt;i&gt;Pmin&lt;/i&gt;) (&amp;gt;= 0 and &amp;lt; GovSteamSGO.pmax).
+     * Lower power limit (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteamSGO.pmax).
      */
     private Double pmin; // Seconds
 
@@ -147,16 +184,22 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
         pmin = _value_;
     }
 
-    public void setPmin(String _value_) {
-        pmin = getDoubleFromString(_value_);
+    private static Object getPmin(BaseClass _this_) {
+        return ((GovSteamSGO) _this_).getPmin();
     }
 
-    public String pminToString() {
-        return pmin != null ? pmin.toString() : null;
+    private static void setPmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamSGO) _this_).setPmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamSGO) _this_).setPmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Controller lag (&lt;i&gt;T1&lt;/i&gt;) (&amp;gt;= 0).
+     * Controller lag (<i>T1</i>) (&gt;= 0).
      */
     private Double t1; // Seconds
 
@@ -168,16 +211,22 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
         t1 = _value_;
     }
 
-    public void setT1(String _value_) {
-        t1 = getDoubleFromString(_value_);
+    private static Object getT1(BaseClass _this_) {
+        return ((GovSteamSGO) _this_).getT1();
     }
 
-    public String t1ToString() {
-        return t1 != null ? t1.toString() : null;
+    private static void setT1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamSGO) _this_).setT1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamSGO) _this_).setT1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Controller lead compensation (&lt;i&gt;T2&lt;/i&gt;) (&amp;gt;= 0).
+     * Controller lead compensation (<i>T2</i>) (&gt;= 0).
      */
     private Double t2; // Seconds
 
@@ -189,16 +238,22 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
         t2 = _value_;
     }
 
-    public void setT2(String _value_) {
-        t2 = getDoubleFromString(_value_);
+    private static Object getT2(BaseClass _this_) {
+        return ((GovSteamSGO) _this_).getT2();
     }
 
-    public String t2ToString() {
-        return t2 != null ? t2.toString() : null;
+    private static void setT2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamSGO) _this_).setT2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamSGO) _this_).setT2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Governor lag (&lt;i&gt;T3&lt;/i&gt;) (&amp;gt; 0).
+     * Governor lag (<i>T3</i>) (&gt; 0).
      */
     private Double t3; // Seconds
 
@@ -210,16 +265,22 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
         t3 = _value_;
     }
 
-    public void setT3(String _value_) {
-        t3 = getDoubleFromString(_value_);
+    private static Object getT3(BaseClass _this_) {
+        return ((GovSteamSGO) _this_).getT3();
     }
 
-    public String t3ToString() {
-        return t3 != null ? t3.toString() : null;
+    private static void setT3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamSGO) _this_).setT3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamSGO) _this_).setT3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Delay due to steam inlet volumes associated with steam chest and inlet piping (&lt;i&gt;T4&lt;/i&gt;) (&amp;gt;= 0).
+     * Delay due to steam inlet volumes associated with steam chest and inlet piping (<i>T4</i>) (&gt;= 0).
      */
     private Double t4; // Seconds
 
@@ -231,16 +292,22 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
         t4 = _value_;
     }
 
-    public void setT4(String _value_) {
-        t4 = getDoubleFromString(_value_);
+    private static Object getT4(BaseClass _this_) {
+        return ((GovSteamSGO) _this_).getT4();
     }
 
-    public String t4ToString() {
-        return t4 != null ? t4.toString() : null;
+    private static void setT4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamSGO) _this_).setT4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamSGO) _this_).setT4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reheater delay including hot and cold leads (&lt;i&gt;T5&lt;/i&gt;) (&amp;gt;= 0).
+     * Reheater delay including hot and cold leads (<i>T5</i>) (&gt;= 0).
      */
     private Double t5; // Seconds
 
@@ -252,16 +319,22 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
         t5 = _value_;
     }
 
-    public void setT5(String _value_) {
-        t5 = getDoubleFromString(_value_);
+    private static Object getT5(BaseClass _this_) {
+        return ((GovSteamSGO) _this_).getT5();
     }
 
-    public String t5ToString() {
-        return t5 != null ? t5.toString() : null;
+    private static void setT5(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamSGO) _this_).setT5((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamSGO) _this_).setT5(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Delay due to IP-LP turbine, crossover pipes and LP end hoods (&lt;i&gt;T6&lt;/i&gt;) (&amp;gt;= 0).
+     * Delay due to IP-LP turbine, crossover pipes and LP end hoods (<i>T6</i>) (&gt;= 0).
      */
     private Double t6; // Seconds
 
@@ -273,12 +346,18 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
         t6 = _value_;
     }
 
-    public void setT6(String _value_) {
-        t6 = getDoubleFromString(_value_);
+    private static Object getT6(BaseClass _this_) {
+        return ((GovSteamSGO) _this_).getT6();
     }
 
-    public String t6ToString() {
-        return t6 != null ? t6.toString() : null;
+    private static void setT6(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamSGO) _this_).setT6((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamSGO) _this_).setT6(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -315,64 +394,35 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("GovSteamSGO", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "GovSteamSGO", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("GovSteamSGO", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("GovSteamSGO", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "GovSteamSGO", attrName, value));
         }
     }
 
@@ -496,84 +546,66 @@ public class GovSteamSGO extends TurbineGovernorDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k1", new AttrDetails("GovSteamSGO.k1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("k1", new AttrDetails("GovSteamSGO.k1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamSGO::getK1, GovSteamSGO::setK1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k2", new AttrDetails("GovSteamSGO.k2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("k2", new AttrDetails("GovSteamSGO.k2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamSGO::getK2, GovSteamSGO::setK2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k3", new AttrDetails("GovSteamSGO.k3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("k3", new AttrDetails("GovSteamSGO.k3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamSGO::getK3, GovSteamSGO::setK3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mwbase", new AttrDetails("GovSteamSGO.mwbase", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("mwbase", new AttrDetails("GovSteamSGO.mwbase", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamSGO::getMwbase, GovSteamSGO::setMwbase));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmax", new AttrDetails("GovSteamSGO.pmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pmax", new AttrDetails("GovSteamSGO.pmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamSGO::getPmax, GovSteamSGO::setPmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmin", new AttrDetails("GovSteamSGO.pmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pmin", new AttrDetails("GovSteamSGO.pmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamSGO::getPmin, GovSteamSGO::setPmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t1", new AttrDetails("GovSteamSGO.t1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t1", new AttrDetails("GovSteamSGO.t1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamSGO::getT1, GovSteamSGO::setT1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t2", new AttrDetails("GovSteamSGO.t2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t2", new AttrDetails("GovSteamSGO.t2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamSGO::getT2, GovSteamSGO::setT2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t3", new AttrDetails("GovSteamSGO.t3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t3", new AttrDetails("GovSteamSGO.t3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamSGO::getT3, GovSteamSGO::setT3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t4", new AttrDetails("GovSteamSGO.t4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t4", new AttrDetails("GovSteamSGO.t4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamSGO::getT4, GovSteamSGO::setT4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t5", new AttrDetails("GovSteamSGO.t5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t5", new AttrDetails("GovSteamSGO.t5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamSGO::getT5, GovSteamSGO::setT5));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t6", new AttrDetails("GovSteamSGO.t6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t6", new AttrDetails("GovSteamSGO.t6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamSGO::getT6, GovSteamSGO::setT6));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovSteamSGO().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovSteamSGO(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("k1", new GetterSetter(this::k1ToString, null, this::setK1));
-        map.put("k2", new GetterSetter(this::k2ToString, null, this::setK2));
-        map.put("k3", new GetterSetter(this::k3ToString, null, this::setK3));
-        map.put("mwbase", new GetterSetter(this::mwbaseToString, null, this::setMwbase));
-        map.put("pmax", new GetterSetter(this::pmaxToString, null, this::setPmax));
-        map.put("pmin", new GetterSetter(this::pminToString, null, this::setPmin));
-        map.put("t1", new GetterSetter(this::t1ToString, null, this::setT1));
-        map.put("t2", new GetterSetter(this::t2ToString, null, this::setT2));
-        map.put("t3", new GetterSetter(this::t3ToString, null, this::setT3));
-        map.put("t4", new GetterSetter(this::t4ToString, null, this::setT4));
-        map.put("t5", new GetterSetter(this::t5ToString, null, this::setT5));
-        map.put("t6", new GetterSetter(this::t6ToString, null, this::setT6));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

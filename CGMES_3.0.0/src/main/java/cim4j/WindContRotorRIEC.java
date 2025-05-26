@@ -23,10 +23,17 @@ public class WindContRotorRIEC extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(WindContRotorRIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindContRotorRIEC() {
-        setCimType("WindContRotorRIEC");
+    public WindContRotorRIEC(String rdfid) {
+        super("WindContRotorRIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindContRotorRIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class WindContRotorRIEC extends IdentifiedObject {
         return WindDynamicsLookupTable;
     }
 
-    public void setWindDynamicsLookupTable(BaseClass _object_) {
-        if (!(_object_ instanceof WindDynamicsLookupTable)) {
-            throw new IllegalArgumentException("Object is not WindDynamicsLookupTable");
-        }
+    public void setWindDynamicsLookupTable(WindDynamicsLookupTable _object_) {
         if (!WindDynamicsLookupTable.contains(_object_)) {
-            WindDynamicsLookupTable.add((WindDynamicsLookupTable) _object_);
-            ((WindDynamicsLookupTable) _object_).setWindContRotorRIEC(this);
+            WindDynamicsLookupTable.add(_object_);
+            _object_.setWindContRotorRIEC(this);
         }
     }
 
-    public String WindDynamicsLookupTableToString() {
-        return getStringFromSet(WindDynamicsLookupTable);
+    private static Object getWindDynamicsLookupTable(BaseClass _this_) {
+        return ((WindContRotorRIEC) _this_).getWindDynamicsLookupTable();
+    }
+
+    private static void setWindDynamicsLookupTable(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindDynamicsLookupTable) {
+            ((WindContRotorRIEC) _this_).setWindDynamicsLookupTable((WindDynamicsLookupTable) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindDynamicsLookupTable");
+        }
     }
 
     /**
@@ -65,22 +77,27 @@ public class WindContRotorRIEC extends IdentifiedObject {
         return WindGenTurbineType2IEC;
     }
 
-    public void setWindGenTurbineType2IEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindGenTurbineType2IEC)) {
-            throw new IllegalArgumentException("Object is not WindGenTurbineType2IEC");
-        }
+    public void setWindGenTurbineType2IEC(WindGenTurbineType2IEC _object_) {
         if (WindGenTurbineType2IEC != _object_) {
-            WindGenTurbineType2IEC = (WindGenTurbineType2IEC) _object_;
+            WindGenTurbineType2IEC = _object_;
             WindGenTurbineType2IEC.setWindContRotorRIEC(this);
         }
     }
 
-    public String WindGenTurbineType2IECToString() {
-        return WindGenTurbineType2IEC != null ? WindGenTurbineType2IEC.getRdfid() : null;
+    private static Object getWindGenTurbineType2IEC(BaseClass _this_) {
+        return ((WindContRotorRIEC) _this_).getWindGenTurbineType2IEC();
+    }
+
+    private static void setWindGenTurbineType2IEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindGenTurbineType2IEC) {
+            ((WindContRotorRIEC) _this_).setWindGenTurbineType2IEC((WindGenTurbineType2IEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindGenTurbineType2IEC");
+        }
     }
 
     /**
-     * Integral gain in rotor resistance PI controller (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;Irr&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Integral gain in rotor resistance PI controller (<i>K</i><i><sub>Irr</sub></i>). It is a type-dependent parameter.
      */
     private Double kirr; // PU
 
@@ -92,16 +109,22 @@ public class WindContRotorRIEC extends IdentifiedObject {
         kirr = _value_;
     }
 
-    public void setKirr(String _value_) {
-        kirr = getDoubleFromString(_value_);
+    private static Object getKirr(BaseClass _this_) {
+        return ((WindContRotorRIEC) _this_).getKirr();
     }
 
-    public String kirrToString() {
-        return kirr != null ? kirr.toString() : null;
+    private static void setKirr(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContRotorRIEC) _this_).setKirr((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContRotorRIEC) _this_).setKirr(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Filter gain for generator speed measurement (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;omegafilt&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Filter gain for generator speed measurement (<i>K</i><i><sub>omegafilt</sub></i>). It is a type-dependent parameter.
      */
     private Float komegafilt; // Float
 
@@ -113,16 +136,22 @@ public class WindContRotorRIEC extends IdentifiedObject {
         komegafilt = _value_;
     }
 
-    public void setKomegafilt(String _value_) {
-        komegafilt = getFloatFromString(_value_);
+    private static Object getKomegafilt(BaseClass _this_) {
+        return ((WindContRotorRIEC) _this_).getKomegafilt();
     }
 
-    public String komegafiltToString() {
-        return komegafilt != null ? komegafilt.toString() : null;
+    private static void setKomegafilt(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((WindContRotorRIEC) _this_).setKomegafilt((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContRotorRIEC) _this_).setKomegafilt(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Filter gain for power measurement (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;pfilt&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Filter gain for power measurement (<i>K</i><i><sub>pfilt</sub></i>). It is a type-dependent parameter.
      */
     private Float kpfilt; // Float
 
@@ -134,16 +163,22 @@ public class WindContRotorRIEC extends IdentifiedObject {
         kpfilt = _value_;
     }
 
-    public void setKpfilt(String _value_) {
-        kpfilt = getFloatFromString(_value_);
+    private static Object getKpfilt(BaseClass _this_) {
+        return ((WindContRotorRIEC) _this_).getKpfilt();
     }
 
-    public String kpfiltToString() {
-        return kpfilt != null ? kpfilt.toString() : null;
+    private static void setKpfilt(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((WindContRotorRIEC) _this_).setKpfilt((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContRotorRIEC) _this_).setKpfilt(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Proportional gain in rotor resistance PI controller (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;Prr&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Proportional gain in rotor resistance PI controller (<i>K</i><i><sub>Prr</sub></i>). It is a type-dependent parameter.
      */
     private Double kprr; // PU
 
@@ -155,16 +190,22 @@ public class WindContRotorRIEC extends IdentifiedObject {
         kprr = _value_;
     }
 
-    public void setKprr(String _value_) {
-        kprr = getDoubleFromString(_value_);
+    private static Object getKprr(BaseClass _this_) {
+        return ((WindContRotorRIEC) _this_).getKprr();
     }
 
-    public String kprrToString() {
-        return kprr != null ? kprr.toString() : null;
+    private static void setKprr(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContRotorRIEC) _this_).setKprr((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContRotorRIEC) _this_).setKprr(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum rotor resistance (&lt;i&gt;r&lt;/i&gt;&lt;i&gt;&lt;sub&gt;max&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; WindContRotorRIEC.rmin). It is a type-dependent parameter.
+     * Maximum rotor resistance (<i>r</i><i><sub>max</sub></i>) (&gt; WindContRotorRIEC.rmin). It is a type-dependent parameter.
      */
     private Double rmax; // PU
 
@@ -176,16 +217,22 @@ public class WindContRotorRIEC extends IdentifiedObject {
         rmax = _value_;
     }
 
-    public void setRmax(String _value_) {
-        rmax = getDoubleFromString(_value_);
+    private static Object getRmax(BaseClass _this_) {
+        return ((WindContRotorRIEC) _this_).getRmax();
     }
 
-    public String rmaxToString() {
-        return rmax != null ? rmax.toString() : null;
+    private static void setRmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContRotorRIEC) _this_).setRmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContRotorRIEC) _this_).setRmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum rotor resistance (&lt;i&gt;r&lt;/i&gt;&lt;i&gt;&lt;sub&gt;min&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; WindContRotorRIEC.rmax). It is a type-dependent parameter.
+     * Minimum rotor resistance (<i>r</i><i><sub>min</sub></i>) (&lt; WindContRotorRIEC.rmax). It is a type-dependent parameter.
      */
     private Double rmin; // PU
 
@@ -197,16 +244,22 @@ public class WindContRotorRIEC extends IdentifiedObject {
         rmin = _value_;
     }
 
-    public void setRmin(String _value_) {
-        rmin = getDoubleFromString(_value_);
+    private static Object getRmin(BaseClass _this_) {
+        return ((WindContRotorRIEC) _this_).getRmin();
     }
 
-    public String rminToString() {
-        return rmin != null ? rmin.toString() : null;
+    private static void setRmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContRotorRIEC) _this_).setRmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContRotorRIEC) _this_).setRmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Filter time constant for generator speed measurement (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;omegafiltrr&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     * Filter time constant for generator speed measurement (<i>T</i><i><sub>omegafiltrr</sub></i>) (&gt;= 0). It is a type-dependent parameter.
      */
     private Double tomegafiltrr; // Seconds
 
@@ -218,16 +271,22 @@ public class WindContRotorRIEC extends IdentifiedObject {
         tomegafiltrr = _value_;
     }
 
-    public void setTomegafiltrr(String _value_) {
-        tomegafiltrr = getDoubleFromString(_value_);
+    private static Object getTomegafiltrr(BaseClass _this_) {
+        return ((WindContRotorRIEC) _this_).getTomegafiltrr();
     }
 
-    public String tomegafiltrrToString() {
-        return tomegafiltrr != null ? tomegafiltrr.toString() : null;
+    private static void setTomegafiltrr(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContRotorRIEC) _this_).setTomegafiltrr((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContRotorRIEC) _this_).setTomegafiltrr(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Filter time constant for power measurement (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;pfiltrr&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     * Filter time constant for power measurement (<i>T</i><i><sub>pfiltrr</sub></i>) (&gt;= 0). It is a type-dependent parameter.
      */
     private Double tpfiltrr; // Seconds
 
@@ -239,12 +298,18 @@ public class WindContRotorRIEC extends IdentifiedObject {
         tpfiltrr = _value_;
     }
 
-    public void setTpfiltrr(String _value_) {
-        tpfiltrr = getDoubleFromString(_value_);
+    private static Object getTpfiltrr(BaseClass _this_) {
+        return ((WindContRotorRIEC) _this_).getTpfiltrr();
     }
 
-    public String tpfiltrrToString() {
-        return tpfiltrr != null ? tpfiltrr.toString() : null;
+    private static void setTpfiltrr(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContRotorRIEC) _this_).setTpfiltrr((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContRotorRIEC) _this_).setTpfiltrr(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -281,64 +346,35 @@ public class WindContRotorRIEC extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindContRotorRIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindContRotorRIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindContRotorRIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindContRotorRIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindContRotorRIEC", attrName, value));
         }
     }
 
@@ -462,72 +498,56 @@ public class WindContRotorRIEC extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindDynamicsLookupTable", new AttrDetails("WindContRotorRIEC.WindDynamicsLookupTable", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindDynamicsLookupTable", new AttrDetails("WindContRotorRIEC.WindDynamicsLookupTable", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindContRotorRIEC::getWindDynamicsLookupTable, WindContRotorRIEC::setWindDynamicsLookupTable));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindGenTurbineType2IEC", new AttrDetails("WindContRotorRIEC.WindGenTurbineType2IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindGenTurbineType2IEC", new AttrDetails("WindContRotorRIEC.WindGenTurbineType2IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindContRotorRIEC::getWindGenTurbineType2IEC, WindContRotorRIEC::setWindGenTurbineType2IEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kirr", new AttrDetails("WindContRotorRIEC.kirr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kirr", new AttrDetails("WindContRotorRIEC.kirr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContRotorRIEC::getKirr, WindContRotorRIEC::setKirr));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("komegafilt", new AttrDetails("WindContRotorRIEC.komegafilt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("komegafilt", new AttrDetails("WindContRotorRIEC.komegafilt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContRotorRIEC::getKomegafilt, WindContRotorRIEC::setKomegafilt));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpfilt", new AttrDetails("WindContRotorRIEC.kpfilt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kpfilt", new AttrDetails("WindContRotorRIEC.kpfilt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContRotorRIEC::getKpfilt, WindContRotorRIEC::setKpfilt));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kprr", new AttrDetails("WindContRotorRIEC.kprr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kprr", new AttrDetails("WindContRotorRIEC.kprr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContRotorRIEC::getKprr, WindContRotorRIEC::setKprr));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rmax", new AttrDetails("WindContRotorRIEC.rmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rmax", new AttrDetails("WindContRotorRIEC.rmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContRotorRIEC::getRmax, WindContRotorRIEC::setRmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rmin", new AttrDetails("WindContRotorRIEC.rmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rmin", new AttrDetails("WindContRotorRIEC.rmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContRotorRIEC::getRmin, WindContRotorRIEC::setRmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tomegafiltrr", new AttrDetails("WindContRotorRIEC.tomegafiltrr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tomegafiltrr", new AttrDetails("WindContRotorRIEC.tomegafiltrr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContRotorRIEC::getTomegafiltrr, WindContRotorRIEC::setTomegafiltrr));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpfiltrr", new AttrDetails("WindContRotorRIEC.tpfiltrr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tpfiltrr", new AttrDetails("WindContRotorRIEC.tpfiltrr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContRotorRIEC::getTpfiltrr, WindContRotorRIEC::setTpfiltrr));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindContRotorRIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindContRotorRIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("WindDynamicsLookupTable", new GetterSetter(this::WindDynamicsLookupTableToString, this::setWindDynamicsLookupTable, null));
-        map.put("WindGenTurbineType2IEC", new GetterSetter(this::WindGenTurbineType2IECToString, this::setWindGenTurbineType2IEC, null));
-        map.put("kirr", new GetterSetter(this::kirrToString, null, this::setKirr));
-        map.put("komegafilt", new GetterSetter(this::komegafiltToString, null, this::setKomegafilt));
-        map.put("kpfilt", new GetterSetter(this::kpfiltToString, null, this::setKpfilt));
-        map.put("kprr", new GetterSetter(this::kprrToString, null, this::setKprr));
-        map.put("rmax", new GetterSetter(this::rmaxToString, null, this::setRmax));
-        map.put("rmin", new GetterSetter(this::rminToString, null, this::setRmin));
-        map.put("tomegafiltrr", new GetterSetter(this::tomegafiltrrToString, null, this::setTomegafiltrr));
-        map.put("tpfiltrr", new GetterSetter(this::tpfiltrrToString, null, this::setTpfiltrr));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

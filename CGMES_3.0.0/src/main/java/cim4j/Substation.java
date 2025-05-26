@@ -23,10 +23,17 @@ public class Substation extends EquipmentContainer {
     private static final Logging LOG = Logging.getLogger(Substation.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public Substation() {
-        setCimType("Substation");
+    public Substation(String rdfid) {
+        super("Substation", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected Substation(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class Substation extends EquipmentContainer {
         return DCConverterUnit;
     }
 
-    public void setDCConverterUnit(BaseClass _object_) {
-        if (!(_object_ instanceof DCConverterUnit)) {
-            throw new IllegalArgumentException("Object is not DCConverterUnit");
-        }
+    public void setDCConverterUnit(DCConverterUnit _object_) {
         if (!DCConverterUnit.contains(_object_)) {
-            DCConverterUnit.add((DCConverterUnit) _object_);
-            ((DCConverterUnit) _object_).setSubstation(this);
+            DCConverterUnit.add(_object_);
+            _object_.setSubstation(this);
         }
     }
 
-    public String DCConverterUnitToString() {
-        return getStringFromSet(DCConverterUnit);
+    private static Object getDCConverterUnit(BaseClass _this_) {
+        return ((Substation) _this_).getDCConverterUnit();
+    }
+
+    private static void setDCConverterUnit(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof DCConverterUnit) {
+            ((Substation) _this_).setDCConverterUnit((DCConverterUnit) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not DCConverterUnit");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class Substation extends EquipmentContainer {
         return Region;
     }
 
-    public void setRegion(BaseClass _object_) {
-        if (!(_object_ instanceof SubGeographicalRegion)) {
-            throw new IllegalArgumentException("Object is not SubGeographicalRegion");
-        }
+    public void setRegion(SubGeographicalRegion _object_) {
         if (Region != _object_) {
-            Region = (SubGeographicalRegion) _object_;
+            Region = _object_;
             Region.setSubstations(this);
         }
     }
 
-    public String RegionToString() {
-        return Region != null ? Region.getRdfid() : null;
+    private static Object getRegion(BaseClass _this_) {
+        return ((Substation) _this_).getRegion();
+    }
+
+    private static void setRegion(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof SubGeographicalRegion) {
+            ((Substation) _this_).setRegion((SubGeographicalRegion) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not SubGeographicalRegion");
+        }
     }
 
     /**
@@ -88,18 +105,23 @@ public class Substation extends EquipmentContainer {
         return VoltageLevels;
     }
 
-    public void setVoltageLevels(BaseClass _object_) {
-        if (!(_object_ instanceof VoltageLevel)) {
-            throw new IllegalArgumentException("Object is not VoltageLevel");
-        }
+    public void setVoltageLevels(VoltageLevel _object_) {
         if (!VoltageLevels.contains(_object_)) {
-            VoltageLevels.add((VoltageLevel) _object_);
-            ((VoltageLevel) _object_).setSubstation(this);
+            VoltageLevels.add(_object_);
+            _object_.setSubstation(this);
         }
     }
 
-    public String VoltageLevelsToString() {
-        return getStringFromSet(VoltageLevels);
+    private static Object getVoltageLevels(BaseClass _this_) {
+        return ((Substation) _this_).getVoltageLevels();
+    }
+
+    private static void setVoltageLevels(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof VoltageLevel) {
+            ((Substation) _this_).setVoltageLevels((VoltageLevel) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not VoltageLevel");
+        }
     }
 
     /**
@@ -136,64 +158,35 @@ public class Substation extends EquipmentContainer {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("Substation", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "Substation", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("Substation", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("Substation", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "Substation", attrName, value));
         }
     }
 
@@ -317,32 +310,23 @@ public class Substation extends EquipmentContainer {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("DCConverterUnit", new AttrDetails("Substation.DCConverterUnit", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("DCConverterUnit", new AttrDetails("Substation.DCConverterUnit", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, Substation::getDCConverterUnit, Substation::setDCConverterUnit));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
             profiles.add(CGMESProfile.EQBD);
-            map.put("Region", new AttrDetails("Substation.Region", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("Region", new AttrDetails("Substation.Region", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, Substation::getRegion, Substation::setRegion));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
             profiles.add(CGMESProfile.EQBD);
-            map.put("VoltageLevels", new AttrDetails("Substation.VoltageLevels", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("VoltageLevels", new AttrDetails("Substation.VoltageLevels", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, Substation::getVoltageLevels, Substation::setVoltageLevels));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Substation().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Substation(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("DCConverterUnit", new GetterSetter(this::DCConverterUnitToString, this::setDCConverterUnit, null));
-        map.put("Region", new GetterSetter(this::RegionToString, this::setRegion, null));
-        map.put("VoltageLevels", new GetterSetter(this::VoltageLevelsToString, this::setVoltageLevels, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

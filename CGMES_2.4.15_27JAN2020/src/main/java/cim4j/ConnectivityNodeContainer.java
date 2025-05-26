@@ -23,10 +23,17 @@ public class ConnectivityNodeContainer extends PowerSystemResource {
     private static final Logging LOG = Logging.getLogger(ConnectivityNodeContainer.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ConnectivityNodeContainer() {
-        setCimType("ConnectivityNodeContainer");
+    public ConnectivityNodeContainer(String rdfid) {
+        super("ConnectivityNodeContainer", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ConnectivityNodeContainer(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class ConnectivityNodeContainer extends PowerSystemResource {
         return ConnectivityNodes;
     }
 
-    public void setConnectivityNodes(BaseClass _object_) {
-        if (!(_object_ instanceof ConnectivityNode)) {
-            throw new IllegalArgumentException("Object is not ConnectivityNode");
-        }
+    public void setConnectivityNodes(ConnectivityNode _object_) {
         if (!ConnectivityNodes.contains(_object_)) {
-            ConnectivityNodes.add((ConnectivityNode) _object_);
-            ((ConnectivityNode) _object_).setConnectivityNodeContainer(this);
+            ConnectivityNodes.add(_object_);
+            _object_.setConnectivityNodeContainer(this);
         }
     }
 
-    public String ConnectivityNodesToString() {
-        return getStringFromSet(ConnectivityNodes);
+    private static Object getConnectivityNodes(BaseClass _this_) {
+        return ((ConnectivityNodeContainer) _this_).getConnectivityNodes();
+    }
+
+    private static void setConnectivityNodes(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ConnectivityNode) {
+            ((ConnectivityNodeContainer) _this_).setConnectivityNodes((ConnectivityNode) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ConnectivityNode");
+        }
     }
 
     /**
@@ -65,18 +77,23 @@ public class ConnectivityNodeContainer extends PowerSystemResource {
         return TopologicalNode;
     }
 
-    public void setTopologicalNode(BaseClass _object_) {
-        if (!(_object_ instanceof TopologicalNode)) {
-            throw new IllegalArgumentException("Object is not TopologicalNode");
-        }
+    public void setTopologicalNode(TopologicalNode _object_) {
         if (!TopologicalNode.contains(_object_)) {
-            TopologicalNode.add((TopologicalNode) _object_);
-            ((TopologicalNode) _object_).setConnectivityNodeContainer(this);
+            TopologicalNode.add(_object_);
+            _object_.setConnectivityNodeContainer(this);
         }
     }
 
-    public String TopologicalNodeToString() {
-        return getStringFromSet(TopologicalNode);
+    private static Object getTopologicalNode(BaseClass _this_) {
+        return ((ConnectivityNodeContainer) _this_).getTopologicalNode();
+    }
+
+    private static void setTopologicalNode(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof TopologicalNode) {
+            ((ConnectivityNodeContainer) _this_).setTopologicalNode((TopologicalNode) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not TopologicalNode");
+        }
     }
 
     /**
@@ -113,64 +130,35 @@ public class ConnectivityNodeContainer extends PowerSystemResource {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ConnectivityNodeContainer", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ConnectivityNodeContainer", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ConnectivityNodeContainer", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ConnectivityNodeContainer", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ConnectivityNodeContainer", attrName, value));
         }
     }
 
@@ -295,25 +283,17 @@ public class ConnectivityNodeContainer extends PowerSystemResource {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ_BD);
             profiles.add(CGMESProfile.EQ);
-            map.put("ConnectivityNodes", new AttrDetails("ConnectivityNodeContainer.ConnectivityNodes", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("ConnectivityNodes", new AttrDetails("ConnectivityNodeContainer.ConnectivityNodes", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ConnectivityNodeContainer::getConnectivityNodes, ConnectivityNodeContainer::setConnectivityNodes));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.TP_BD);
             profiles.add(CGMESProfile.TP);
-            map.put("TopologicalNode", new AttrDetails("ConnectivityNodeContainer.TopologicalNode", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("TopologicalNode", new AttrDetails("ConnectivityNodeContainer.TopologicalNode", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ConnectivityNodeContainer::getTopologicalNode, ConnectivityNodeContainer::setTopologicalNode));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ConnectivityNodeContainer().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ConnectivityNodeContainer(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ConnectivityNodes", new GetterSetter(this::ConnectivityNodesToString, this::setConnectivityNodes, null));
-        map.put("TopologicalNode", new GetterSetter(this::TopologicalNodeToString, this::setTopologicalNode, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

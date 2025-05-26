@@ -23,10 +23,17 @@ public class AsynchronousMachine extends RotatingMachine {
     private static final Logging LOG = Logging.getLogger(AsynchronousMachine.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public AsynchronousMachine() {
-        setCimType("AsynchronousMachine");
+    public AsynchronousMachine(String rdfid) {
+        super("AsynchronousMachine", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected AsynchronousMachine(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class AsynchronousMachine extends RotatingMachine {
         return AsynchronousMachineDynamics;
     }
 
-    public void setAsynchronousMachineDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof AsynchronousMachineDynamics)) {
-            throw new IllegalArgumentException("Object is not AsynchronousMachineDynamics");
-        }
+    public void setAsynchronousMachineDynamics(AsynchronousMachineDynamics _object_) {
         if (AsynchronousMachineDynamics != _object_) {
-            AsynchronousMachineDynamics = (AsynchronousMachineDynamics) _object_;
+            AsynchronousMachineDynamics = _object_;
             AsynchronousMachineDynamics.setAsynchronousMachine(this);
         }
     }
 
-    public String AsynchronousMachineDynamicsToString() {
-        return AsynchronousMachineDynamics != null ? AsynchronousMachineDynamics.getRdfid() : null;
+    private static Object getAsynchronousMachineDynamics(BaseClass _this_) {
+        return ((AsynchronousMachine) _this_).getAsynchronousMachineDynamics();
+    }
+
+    private static void setAsynchronousMachineDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof AsynchronousMachineDynamics) {
+            ((AsynchronousMachine) _this_).setAsynchronousMachineDynamics((AsynchronousMachineDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not AsynchronousMachineDynamics");
+        }
     }
 
     /**
@@ -67,8 +79,16 @@ public class AsynchronousMachine extends RotatingMachine {
         asynchronousMachineType = _value_;
     }
 
-    public String asynchronousMachineTypeToString() {
-        return asynchronousMachineType;
+    private static Object getAsynchronousMachineType(BaseClass _this_) {
+        return ((AsynchronousMachine) _this_).getAsynchronousMachineType();
+    }
+
+    private static void setAsynchronousMachineType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((AsynchronousMachine) _this_).setAsynchronousMachineType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -84,12 +104,18 @@ public class AsynchronousMachine extends RotatingMachine {
         converterFedDrive = _value_;
     }
 
-    public void setConverterFedDrive(String _value_) {
-        converterFedDrive = getBooleanFromString(_value_);
+    private static Object getConverterFedDrive(BaseClass _this_) {
+        return ((AsynchronousMachine) _this_).getConverterFedDrive();
     }
 
-    public String converterFedDriveToString() {
-        return converterFedDrive != null ? converterFedDrive.toString() : null;
+    private static void setConverterFedDrive(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((AsynchronousMachine) _this_).setConverterFedDrive((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachine) _this_).setConverterFedDrive(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -105,12 +131,18 @@ public class AsynchronousMachine extends RotatingMachine {
         efficiency = _value_;
     }
 
-    public void setEfficiency(String _value_) {
-        efficiency = getDoubleFromString(_value_);
+    private static Object getEfficiency(BaseClass _this_) {
+        return ((AsynchronousMachine) _this_).getEfficiency();
     }
 
-    public String efficiencyToString() {
-        return efficiency != null ? efficiency.toString() : null;
+    private static void setEfficiency(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((AsynchronousMachine) _this_).setEfficiency((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachine) _this_).setEfficiency(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +158,18 @@ public class AsynchronousMachine extends RotatingMachine {
         iaIrRatio = _value_;
     }
 
-    public void setIaIrRatio(String _value_) {
-        iaIrRatio = getFloatFromString(_value_);
+    private static Object getIaIrRatio(BaseClass _this_) {
+        return ((AsynchronousMachine) _this_).getIaIrRatio();
     }
 
-    public String iaIrRatioToString() {
-        return iaIrRatio != null ? iaIrRatio.toString() : null;
+    private static void setIaIrRatio(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((AsynchronousMachine) _this_).setIaIrRatio((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachine) _this_).setIaIrRatio(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -147,12 +185,18 @@ public class AsynchronousMachine extends RotatingMachine {
         nominalFrequency = _value_;
     }
 
-    public void setNominalFrequency(String _value_) {
-        nominalFrequency = getDoubleFromString(_value_);
+    private static Object getNominalFrequency(BaseClass _this_) {
+        return ((AsynchronousMachine) _this_).getNominalFrequency();
     }
 
-    public String nominalFrequencyToString() {
-        return nominalFrequency != null ? nominalFrequency.toString() : null;
+    private static void setNominalFrequency(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((AsynchronousMachine) _this_).setNominalFrequency((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachine) _this_).setNominalFrequency(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,12 +212,18 @@ public class AsynchronousMachine extends RotatingMachine {
         nominalSpeed = _value_;
     }
 
-    public void setNominalSpeed(String _value_) {
-        nominalSpeed = getDoubleFromString(_value_);
+    private static Object getNominalSpeed(BaseClass _this_) {
+        return ((AsynchronousMachine) _this_).getNominalSpeed();
     }
 
-    public String nominalSpeedToString() {
-        return nominalSpeed != null ? nominalSpeed.toString() : null;
+    private static void setNominalSpeed(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((AsynchronousMachine) _this_).setNominalSpeed((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachine) _this_).setNominalSpeed(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,12 +239,18 @@ public class AsynchronousMachine extends RotatingMachine {
         polePairNumber = _value_;
     }
 
-    public void setPolePairNumber(String _value_) {
-        polePairNumber = getIntegerFromString(_value_);
+    private static Object getPolePairNumber(BaseClass _this_) {
+        return ((AsynchronousMachine) _this_).getPolePairNumber();
     }
 
-    public String polePairNumberToString() {
-        return polePairNumber != null ? polePairNumber.toString() : null;
+    private static void setPolePairNumber(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((AsynchronousMachine) _this_).setPolePairNumber((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachine) _this_).setPolePairNumber(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -210,12 +266,18 @@ public class AsynchronousMachine extends RotatingMachine {
         ratedMechanicalPower = _value_;
     }
 
-    public void setRatedMechanicalPower(String _value_) {
-        ratedMechanicalPower = getDoubleFromString(_value_);
+    private static Object getRatedMechanicalPower(BaseClass _this_) {
+        return ((AsynchronousMachine) _this_).getRatedMechanicalPower();
     }
 
-    public String ratedMechanicalPowerToString() {
-        return ratedMechanicalPower != null ? ratedMechanicalPower.toString() : null;
+    private static void setRatedMechanicalPower(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((AsynchronousMachine) _this_).setRatedMechanicalPower((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachine) _this_).setRatedMechanicalPower(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -231,12 +293,18 @@ public class AsynchronousMachine extends RotatingMachine {
         reversible = _value_;
     }
 
-    public void setReversible(String _value_) {
-        reversible = getBooleanFromString(_value_);
+    private static Object getReversible(BaseClass _this_) {
+        return ((AsynchronousMachine) _this_).getReversible();
     }
 
-    public String reversibleToString() {
-        return reversible != null ? reversible.toString() : null;
+    private static void setReversible(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((AsynchronousMachine) _this_).setReversible((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachine) _this_).setReversible(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -252,12 +320,18 @@ public class AsynchronousMachine extends RotatingMachine {
         rxLockedRotorRatio = _value_;
     }
 
-    public void setRxLockedRotorRatio(String _value_) {
-        rxLockedRotorRatio = getFloatFromString(_value_);
+    private static Object getRxLockedRotorRatio(BaseClass _this_) {
+        return ((AsynchronousMachine) _this_).getRxLockedRotorRatio();
     }
 
-    public String rxLockedRotorRatioToString() {
-        return rxLockedRotorRatio != null ? rxLockedRotorRatio.toString() : null;
+    private static void setRxLockedRotorRatio(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((AsynchronousMachine) _this_).setRxLockedRotorRatio((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachine) _this_).setRxLockedRotorRatio(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -294,64 +368,35 @@ public class AsynchronousMachine extends RotatingMachine {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("AsynchronousMachine", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "AsynchronousMachine", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("AsynchronousMachine", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("AsynchronousMachine", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "AsynchronousMachine", attrName, value));
         }
     }
 
@@ -475,78 +520,61 @@ public class AsynchronousMachine extends RotatingMachine {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("AsynchronousMachineDynamics", new AttrDetails("AsynchronousMachine.AsynchronousMachineDynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("AsynchronousMachineDynamics", new AttrDetails("AsynchronousMachine.AsynchronousMachineDynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, AsynchronousMachine::getAsynchronousMachineDynamics, AsynchronousMachine::setAsynchronousMachineDynamics));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("asynchronousMachineType", new AttrDetails("AsynchronousMachine.asynchronousMachineType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("asynchronousMachineType", new AttrDetails("AsynchronousMachine.asynchronousMachineType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, AsynchronousMachine::getAsynchronousMachineType, AsynchronousMachine::setAsynchronousMachineType));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("converterFedDrive", new AttrDetails("AsynchronousMachine.converterFedDrive", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("converterFedDrive", new AttrDetails("AsynchronousMachine.converterFedDrive", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachine::getConverterFedDrive, AsynchronousMachine::setConverterFedDrive));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("efficiency", new AttrDetails("AsynchronousMachine.efficiency", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("efficiency", new AttrDetails("AsynchronousMachine.efficiency", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachine::getEfficiency, AsynchronousMachine::setEfficiency));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("iaIrRatio", new AttrDetails("AsynchronousMachine.iaIrRatio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("iaIrRatio", new AttrDetails("AsynchronousMachine.iaIrRatio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachine::getIaIrRatio, AsynchronousMachine::setIaIrRatio));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("nominalFrequency", new AttrDetails("AsynchronousMachine.nominalFrequency", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("nominalFrequency", new AttrDetails("AsynchronousMachine.nominalFrequency", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachine::getNominalFrequency, AsynchronousMachine::setNominalFrequency));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("nominalSpeed", new AttrDetails("AsynchronousMachine.nominalSpeed", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("nominalSpeed", new AttrDetails("AsynchronousMachine.nominalSpeed", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachine::getNominalSpeed, AsynchronousMachine::setNominalSpeed));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("polePairNumber", new AttrDetails("AsynchronousMachine.polePairNumber", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("polePairNumber", new AttrDetails("AsynchronousMachine.polePairNumber", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachine::getPolePairNumber, AsynchronousMachine::setPolePairNumber));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("ratedMechanicalPower", new AttrDetails("AsynchronousMachine.ratedMechanicalPower", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ratedMechanicalPower", new AttrDetails("AsynchronousMachine.ratedMechanicalPower", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachine::getRatedMechanicalPower, AsynchronousMachine::setRatedMechanicalPower));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("reversible", new AttrDetails("AsynchronousMachine.reversible", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("reversible", new AttrDetails("AsynchronousMachine.reversible", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachine::getReversible, AsynchronousMachine::setReversible));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("rxLockedRotorRatio", new AttrDetails("AsynchronousMachine.rxLockedRotorRatio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rxLockedRotorRatio", new AttrDetails("AsynchronousMachine.rxLockedRotorRatio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachine::getRxLockedRotorRatio, AsynchronousMachine::setRxLockedRotorRatio));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AsynchronousMachine().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AsynchronousMachine(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("AsynchronousMachineDynamics", new GetterSetter(this::AsynchronousMachineDynamicsToString, this::setAsynchronousMachineDynamics, null));
-        map.put("asynchronousMachineType", new GetterSetter(this::asynchronousMachineTypeToString, null, this::setAsynchronousMachineType));
-        map.put("converterFedDrive", new GetterSetter(this::converterFedDriveToString, null, this::setConverterFedDrive));
-        map.put("efficiency", new GetterSetter(this::efficiencyToString, null, this::setEfficiency));
-        map.put("iaIrRatio", new GetterSetter(this::iaIrRatioToString, null, this::setIaIrRatio));
-        map.put("nominalFrequency", new GetterSetter(this::nominalFrequencyToString, null, this::setNominalFrequency));
-        map.put("nominalSpeed", new GetterSetter(this::nominalSpeedToString, null, this::setNominalSpeed));
-        map.put("polePairNumber", new GetterSetter(this::polePairNumberToString, null, this::setPolePairNumber));
-        map.put("ratedMechanicalPower", new GetterSetter(this::ratedMechanicalPowerToString, null, this::setRatedMechanicalPower));
-        map.put("reversible", new GetterSetter(this::reversibleToString, null, this::setReversible));
-        map.put("rxLockedRotorRatio", new GetterSetter(this::rxLockedRotorRatioToString, null, this::setRxLockedRotorRatio));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

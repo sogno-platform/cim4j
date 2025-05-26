@@ -23,10 +23,17 @@ public class DynamicsVersion extends BaseClass {
     private static final Logging LOG = Logging.getLogger(DynamicsVersion.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public DynamicsVersion() {
-        setCimType("DynamicsVersion");
+    public DynamicsVersion(String rdfid) {
+        super("DynamicsVersion", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected DynamicsVersion(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,8 +49,16 @@ public class DynamicsVersion extends BaseClass {
         baseUML = _value_;
     }
 
-    public String baseUMLToString() {
-        return baseUML != null ? baseUML.toString() : null;
+    private static Object getBaseUML(BaseClass _this_) {
+        return ((DynamicsVersion) _this_).getBaseUML();
+    }
+
+    private static void setBaseUML(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((DynamicsVersion) _this_).setBaseUML((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -59,8 +74,16 @@ public class DynamicsVersion extends BaseClass {
         baseURI = _value_;
     }
 
-    public String baseURIToString() {
-        return baseURI != null ? baseURI.toString() : null;
+    private static Object getBaseURI(BaseClass _this_) {
+        return ((DynamicsVersion) _this_).getBaseURI();
+    }
+
+    private static void setBaseURI(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((DynamicsVersion) _this_).setBaseURI((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -76,8 +99,16 @@ public class DynamicsVersion extends BaseClass {
         date = _value_;
     }
 
-    public String dateToString() {
-        return date != null ? date.toString() : null;
+    private static Object getDate(BaseClass _this_) {
+        return ((DynamicsVersion) _this_).getDate();
+    }
+
+    private static void setDate(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((DynamicsVersion) _this_).setDate((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -93,8 +124,16 @@ public class DynamicsVersion extends BaseClass {
         differenceModelURI = _value_;
     }
 
-    public String differenceModelURIToString() {
-        return differenceModelURI != null ? differenceModelURI.toString() : null;
+    private static Object getDifferenceModelURI(BaseClass _this_) {
+        return ((DynamicsVersion) _this_).getDifferenceModelURI();
+    }
+
+    private static void setDifferenceModelURI(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((DynamicsVersion) _this_).setDifferenceModelURI((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -110,8 +149,16 @@ public class DynamicsVersion extends BaseClass {
         entsoeUML = _value_;
     }
 
-    public String entsoeUMLToString() {
-        return entsoeUML != null ? entsoeUML.toString() : null;
+    private static Object getEntsoeUML(BaseClass _this_) {
+        return ((DynamicsVersion) _this_).getEntsoeUML();
+    }
+
+    private static void setEntsoeUML(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((DynamicsVersion) _this_).setEntsoeUML((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -127,8 +174,16 @@ public class DynamicsVersion extends BaseClass {
         entsoeURI = _value_;
     }
 
-    public String entsoeURIToString() {
-        return entsoeURI != null ? entsoeURI.toString() : null;
+    private static Object getEntsoeURI(BaseClass _this_) {
+        return ((DynamicsVersion) _this_).getEntsoeURI();
+    }
+
+    private static void setEntsoeURI(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((DynamicsVersion) _this_).setEntsoeURI((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -144,8 +199,16 @@ public class DynamicsVersion extends BaseClass {
         modelDescriptionURI = _value_;
     }
 
-    public String modelDescriptionURIToString() {
-        return modelDescriptionURI != null ? modelDescriptionURI.toString() : null;
+    private static Object getModelDescriptionURI(BaseClass _this_) {
+        return ((DynamicsVersion) _this_).getModelDescriptionURI();
+    }
+
+    private static void setModelDescriptionURI(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((DynamicsVersion) _this_).setModelDescriptionURI((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -161,8 +224,16 @@ public class DynamicsVersion extends BaseClass {
         namespaceRDF = _value_;
     }
 
-    public String namespaceRDFToString() {
-        return namespaceRDF != null ? namespaceRDF.toString() : null;
+    private static Object getNamespaceRDF(BaseClass _this_) {
+        return ((DynamicsVersion) _this_).getNamespaceRDF();
+    }
+
+    private static void setNamespaceRDF(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((DynamicsVersion) _this_).setNamespaceRDF((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -178,8 +249,16 @@ public class DynamicsVersion extends BaseClass {
         namespaceUML = _value_;
     }
 
-    public String namespaceUMLToString() {
-        return namespaceUML != null ? namespaceUML.toString() : null;
+    private static Object getNamespaceUML(BaseClass _this_) {
+        return ((DynamicsVersion) _this_).getNamespaceUML();
+    }
+
+    private static void setNamespaceUML(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((DynamicsVersion) _this_).setNamespaceUML((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -195,8 +274,16 @@ public class DynamicsVersion extends BaseClass {
         shortName = _value_;
     }
 
-    public String shortNameToString() {
-        return shortName != null ? shortName.toString() : null;
+    private static Object getShortName(BaseClass _this_) {
+        return ((DynamicsVersion) _this_).getShortName();
+    }
+
+    private static void setShortName(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((DynamicsVersion) _this_).setShortName((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -233,64 +320,35 @@ public class DynamicsVersion extends BaseClass {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("DynamicsVersion", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "DynamicsVersion", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("DynamicsVersion", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("DynamicsVersion", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "DynamicsVersion", attrName, value));
         }
     }
 
@@ -414,72 +472,56 @@ public class DynamicsVersion extends BaseClass {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("baseUML", new AttrDetails("DynamicsVersion.baseUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("baseUML", new AttrDetails("DynamicsVersion.baseUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, DynamicsVersion::getBaseUML, DynamicsVersion::setBaseUML));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("baseURI", new AttrDetails("DynamicsVersion.baseURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("baseURI", new AttrDetails("DynamicsVersion.baseURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, DynamicsVersion::getBaseURI, DynamicsVersion::setBaseURI));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("date", new AttrDetails("DynamicsVersion.date", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("date", new AttrDetails("DynamicsVersion.date", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, DynamicsVersion::getDate, DynamicsVersion::setDate));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("differenceModelURI", new AttrDetails("DynamicsVersion.differenceModelURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("differenceModelURI", new AttrDetails("DynamicsVersion.differenceModelURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, DynamicsVersion::getDifferenceModelURI, DynamicsVersion::setDifferenceModelURI));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("entsoeUML", new AttrDetails("DynamicsVersion.entsoeUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("entsoeUML", new AttrDetails("DynamicsVersion.entsoeUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, DynamicsVersion::getEntsoeUML, DynamicsVersion::setEntsoeUML));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("entsoeURI", new AttrDetails("DynamicsVersion.entsoeURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("entsoeURI", new AttrDetails("DynamicsVersion.entsoeURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, DynamicsVersion::getEntsoeURI, DynamicsVersion::setEntsoeURI));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("modelDescriptionURI", new AttrDetails("DynamicsVersion.modelDescriptionURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("modelDescriptionURI", new AttrDetails("DynamicsVersion.modelDescriptionURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, DynamicsVersion::getModelDescriptionURI, DynamicsVersion::setModelDescriptionURI));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("namespaceRDF", new AttrDetails("DynamicsVersion.namespaceRDF", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("namespaceRDF", new AttrDetails("DynamicsVersion.namespaceRDF", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, DynamicsVersion::getNamespaceRDF, DynamicsVersion::setNamespaceRDF));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("namespaceUML", new AttrDetails("DynamicsVersion.namespaceUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("namespaceUML", new AttrDetails("DynamicsVersion.namespaceUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, DynamicsVersion::getNamespaceUML, DynamicsVersion::setNamespaceUML));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("shortName", new AttrDetails("DynamicsVersion.shortName", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("shortName", new AttrDetails("DynamicsVersion.shortName", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, DynamicsVersion::getShortName, DynamicsVersion::setShortName));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DynamicsVersion().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DynamicsVersion(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("baseUML", new GetterSetter(this::baseUMLToString, null, this::setBaseUML));
-        map.put("baseURI", new GetterSetter(this::baseURIToString, null, this::setBaseURI));
-        map.put("date", new GetterSetter(this::dateToString, null, this::setDate));
-        map.put("differenceModelURI", new GetterSetter(this::differenceModelURIToString, null, this::setDifferenceModelURI));
-        map.put("entsoeUML", new GetterSetter(this::entsoeUMLToString, null, this::setEntsoeUML));
-        map.put("entsoeURI", new GetterSetter(this::entsoeURIToString, null, this::setEntsoeURI));
-        map.put("modelDescriptionURI", new GetterSetter(this::modelDescriptionURIToString, null, this::setModelDescriptionURI));
-        map.put("namespaceRDF", new GetterSetter(this::namespaceRDFToString, null, this::setNamespaceRDF));
-        map.put("namespaceUML", new GetterSetter(this::namespaceUMLToString, null, this::setNamespaceUML));
-        map.put("shortName", new GetterSetter(this::shortNameToString, null, this::setShortName));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

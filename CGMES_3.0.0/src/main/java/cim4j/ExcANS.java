@@ -23,14 +23,21 @@ public class ExcANS extends ExcitationSystemDynamics {
     private static final Logging LOG = Logging.getLogger(ExcANS.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ExcANS() {
-        setCimType("ExcANS");
+    public ExcANS(String rdfid) {
+        super("ExcANS", rdfid);
     }
 
     /**
-     * Governor control flag (&lt;i&gt;BLINT&lt;/i&gt;).  0 = lead-lag regulator 1 = proportional integral regulator. Typical value = 0.
+     * Constructor for subclasses.
+     */
+    protected ExcANS(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Governor control flag (<i>BLINT</i>).  0 = lead-lag regulator 1 = proportional integral regulator. Typical value = 0.
      */
     private Integer blint; // Integer
 
@@ -42,16 +49,22 @@ public class ExcANS extends ExcitationSystemDynamics {
         blint = _value_;
     }
 
-    public void setBlint(String _value_) {
-        blint = getIntegerFromString(_value_);
+    private static Object getBlint(BaseClass _this_) {
+        return ((ExcANS) _this_).getBlint();
     }
 
-    public String blintToString() {
-        return blint != null ? blint.toString() : null;
+    private static void setBlint(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((ExcANS) _this_).setBlint((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setBlint(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
-     * Minimum exciter current (&lt;i&gt;I&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FMN&lt;/sub&gt;&lt;/i&gt;).  Typical value = -5,2.
+     * Minimum exciter current (<i>I</i><i><sub>FMN</sub></i>).  Typical value = -5,2.
      */
     private Double ifmn; // PU
 
@@ -63,16 +76,22 @@ public class ExcANS extends ExcitationSystemDynamics {
         ifmn = _value_;
     }
 
-    public void setIfmn(String _value_) {
-        ifmn = getDoubleFromString(_value_);
+    private static Object getIfmn(BaseClass _this_) {
+        return ((ExcANS) _this_).getIfmn();
     }
 
-    public String ifmnToString() {
-        return ifmn != null ? ifmn.toString() : null;
+    private static void setIfmn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcANS) _this_).setIfmn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setIfmn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum exciter current (&lt;i&gt;I&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FMX&lt;/sub&gt;&lt;/i&gt;).  Typical value = 6,5.
+     * Maximum exciter current (<i>I</i><i><sub>FMX</sub></i>).  Typical value = 6,5.
      */
     private Double ifmx; // PU
 
@@ -84,16 +103,22 @@ public class ExcANS extends ExcitationSystemDynamics {
         ifmx = _value_;
     }
 
-    public void setIfmx(String _value_) {
-        ifmx = getDoubleFromString(_value_);
+    private static Object getIfmx(BaseClass _this_) {
+        return ((ExcANS) _this_).getIfmx();
     }
 
-    public String ifmxToString() {
-        return ifmx != null ? ifmx.toString() : null;
+    private static void setIfmx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcANS) _this_).setIfmx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setIfmx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Exciter gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/i&gt;).  Typical value = 20.
+     * Exciter gain (<i>K</i><i><sub>2</sub></i>).  Typical value = 20.
      */
     private Float k2; // Float
 
@@ -105,16 +130,22 @@ public class ExcANS extends ExcitationSystemDynamics {
         k2 = _value_;
     }
 
-    public void setK2(String _value_) {
-        k2 = getFloatFromString(_value_);
+    private static Object getK2(BaseClass _this_) {
+        return ((ExcANS) _this_).getK2();
     }
 
-    public String k2ToString() {
-        return k2 != null ? k2.toString() : null;
+    private static void setK2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExcANS) _this_).setK2((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setK2(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * AVR gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;3&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1000.
+     * AVR gain (<i>K</i><i><sub>3</sub></i>).  Typical value = 1000.
      */
     private Float k3; // Float
 
@@ -126,16 +157,22 @@ public class ExcANS extends ExcitationSystemDynamics {
         k3 = _value_;
     }
 
-    public void setK3(String _value_) {
-        k3 = getFloatFromString(_value_);
+    private static Object getK3(BaseClass _this_) {
+        return ((ExcANS) _this_).getK3();
     }
 
-    public String k3ToString() {
-        return k3 != null ? k3.toString() : null;
+    private static void setK3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExcANS) _this_).setK3((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setK3(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Ceiling factor (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;CE&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1.
+     * Ceiling factor (<i>K</i><i><sub>CE</sub></i>).  Typical value = 1.
      */
     private Float kce; // Float
 
@@ -147,16 +184,22 @@ public class ExcANS extends ExcitationSystemDynamics {
         kce = _value_;
     }
 
-    public void setKce(String _value_) {
-        kce = getFloatFromString(_value_);
+    private static Object getKce(BaseClass _this_) {
+        return ((ExcANS) _this_).getKce();
     }
 
-    public String kceToString() {
-        return kce != null ? kce.toString() : null;
+    private static void setKce(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExcANS) _this_).setKce((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setKce(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Feedback enabling (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;RVECC&lt;/sub&gt;&lt;/i&gt;).  0 = open loop control 1 = closed loop control. Typical value = 1.
+     * Feedback enabling (<i>K</i><i><sub>RVECC</sub></i>).  0 = open loop control 1 = closed loop control. Typical value = 1.
      */
     private Integer krvecc; // Integer
 
@@ -168,16 +211,22 @@ public class ExcANS extends ExcitationSystemDynamics {
         krvecc = _value_;
     }
 
-    public void setKrvecc(String _value_) {
-        krvecc = getIntegerFromString(_value_);
+    private static Object getKrvecc(BaseClass _this_) {
+        return ((ExcANS) _this_).getKrvecc();
     }
 
-    public String krveccToString() {
-        return krvecc != null ? krvecc.toString() : null;
+    private static void setKrvecc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((ExcANS) _this_).setKrvecc((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setKrvecc(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
-     * Rate feedback signal flag (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;VFIF&lt;/sub&gt;&lt;/i&gt;).  0 = output voltage of the exciter 1 = exciter field current. Typical value = 0.
+     * Rate feedback signal flag (<i>K</i><i><sub>VFIF</sub></i>).  0 = output voltage of the exciter 1 = exciter field current. Typical value = 0.
      */
     private Integer kvfif; // Integer
 
@@ -189,16 +238,22 @@ public class ExcANS extends ExcitationSystemDynamics {
         kvfif = _value_;
     }
 
-    public void setKvfif(String _value_) {
-        kvfif = getIntegerFromString(_value_);
+    private static Object getKvfif(BaseClass _this_) {
+        return ((ExcANS) _this_).getKvfif();
     }
 
-    public String kvfifToString() {
-        return kvfif != null ? kvfif.toString() : null;
+    private static void setKvfif(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((ExcANS) _this_).setKvfif((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setKvfif(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
-     * Time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 20.
+     * Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).  Typical value = 20.
      */
     private Double t1; // Seconds
 
@@ -210,16 +265,22 @@ public class ExcANS extends ExcitationSystemDynamics {
         t1 = _value_;
     }
 
-    public void setT1(String _value_) {
-        t1 = getDoubleFromString(_value_);
+    private static Object getT1(BaseClass _this_) {
+        return ((ExcANS) _this_).getT1();
     }
 
-    public String t1ToString() {
-        return t1 != null ? t1.toString() : null;
+    private static void setT1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcANS) _this_).setT1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setT1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,05.
+     * Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).  Typical value = 0,05.
      */
     private Double t2; // Seconds
 
@@ -231,16 +292,22 @@ public class ExcANS extends ExcitationSystemDynamics {
         t2 = _value_;
     }
 
-    public void setT2(String _value_) {
-        t2 = getDoubleFromString(_value_);
+    private static Object getT2(BaseClass _this_) {
+        return ((ExcANS) _this_).getT2();
     }
 
-    public String t2ToString() {
-        return t2 != null ? t2.toString() : null;
+    private static void setT2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcANS) _this_).setT2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setT2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;3&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 1,6.
+     * Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).  Typical value = 1,6.
      */
     private Double t3; // Seconds
 
@@ -252,16 +319,22 @@ public class ExcANS extends ExcitationSystemDynamics {
         t3 = _value_;
     }
 
-    public void setT3(String _value_) {
-        t3 = getDoubleFromString(_value_);
+    private static Object getT3(BaseClass _this_) {
+        return ((ExcANS) _this_).getT3();
     }
 
-    public String t3ToString() {
-        return t3 != null ? t3.toString() : null;
+    private static void setT3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcANS) _this_).setT3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setT3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Exciter time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;B&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,04.
+     * Exciter time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).  Typical value = 0,04.
      */
     private Double tb; // Seconds
 
@@ -273,16 +346,22 @@ public class ExcANS extends ExcitationSystemDynamics {
         tb = _value_;
     }
 
-    public void setTb(String _value_) {
-        tb = getDoubleFromString(_value_);
+    private static Object getTb(BaseClass _this_) {
+        return ((ExcANS) _this_).getTb();
     }
 
-    public String tbToString() {
-        return tb != null ? tb.toString() : null;
+    private static void setTb(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcANS) _this_).setTb((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setTb(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum AVR output (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;RMN&lt;/sub&gt;&lt;/i&gt;).  Typical value = -5,2.
+     * Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).  Typical value = -5,2.
      */
     private Double vrmn; // PU
 
@@ -294,16 +373,22 @@ public class ExcANS extends ExcitationSystemDynamics {
         vrmn = _value_;
     }
 
-    public void setVrmn(String _value_) {
-        vrmn = getDoubleFromString(_value_);
+    private static Object getVrmn(BaseClass _this_) {
+        return ((ExcANS) _this_).getVrmn();
     }
 
-    public String vrmnToString() {
-        return vrmn != null ? vrmn.toString() : null;
+    private static void setVrmn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcANS) _this_).setVrmn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setVrmn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum AVR output (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;RMX&lt;/sub&gt;&lt;/i&gt;).  Typical value = 6,5.
+     * Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).  Typical value = 6,5.
      */
     private Double vrmx; // PU
 
@@ -315,12 +400,18 @@ public class ExcANS extends ExcitationSystemDynamics {
         vrmx = _value_;
     }
 
-    public void setVrmx(String _value_) {
-        vrmx = getDoubleFromString(_value_);
+    private static Object getVrmx(BaseClass _this_) {
+        return ((ExcANS) _this_).getVrmx();
     }
 
-    public String vrmxToString() {
-        return vrmx != null ? vrmx.toString() : null;
+    private static void setVrmx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcANS) _this_).setVrmx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcANS) _this_).setVrmx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -357,64 +448,35 @@ public class ExcANS extends ExcitationSystemDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ExcANS", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ExcANS", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ExcANS", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ExcANS", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ExcANS", attrName, value));
         }
     }
 
@@ -538,96 +600,76 @@ public class ExcANS extends ExcitationSystemDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("blint", new AttrDetails("ExcANS.blint", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("blint", new AttrDetails("ExcANS.blint", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getBlint, ExcANS::setBlint));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ifmn", new AttrDetails("ExcANS.ifmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ifmn", new AttrDetails("ExcANS.ifmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getIfmn, ExcANS::setIfmn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ifmx", new AttrDetails("ExcANS.ifmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ifmx", new AttrDetails("ExcANS.ifmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getIfmx, ExcANS::setIfmx));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k2", new AttrDetails("ExcANS.k2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("k2", new AttrDetails("ExcANS.k2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getK2, ExcANS::setK2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k3", new AttrDetails("ExcANS.k3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("k3", new AttrDetails("ExcANS.k3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getK3, ExcANS::setK3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kce", new AttrDetails("ExcANS.kce", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kce", new AttrDetails("ExcANS.kce", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getKce, ExcANS::setKce));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("krvecc", new AttrDetails("ExcANS.krvecc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("krvecc", new AttrDetails("ExcANS.krvecc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getKrvecc, ExcANS::setKrvecc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kvfif", new AttrDetails("ExcANS.kvfif", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kvfif", new AttrDetails("ExcANS.kvfif", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getKvfif, ExcANS::setKvfif));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t1", new AttrDetails("ExcANS.t1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t1", new AttrDetails("ExcANS.t1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getT1, ExcANS::setT1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t2", new AttrDetails("ExcANS.t2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t2", new AttrDetails("ExcANS.t2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getT2, ExcANS::setT2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t3", new AttrDetails("ExcANS.t3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t3", new AttrDetails("ExcANS.t3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getT3, ExcANS::setT3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tb", new AttrDetails("ExcANS.tb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tb", new AttrDetails("ExcANS.tb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getTb, ExcANS::setTb));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmn", new AttrDetails("ExcANS.vrmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vrmn", new AttrDetails("ExcANS.vrmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getVrmn, ExcANS::setVrmn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmx", new AttrDetails("ExcANS.vrmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vrmx", new AttrDetails("ExcANS.vrmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcANS::getVrmx, ExcANS::setVrmx));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcANS().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcANS(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("blint", new GetterSetter(this::blintToString, null, this::setBlint));
-        map.put("ifmn", new GetterSetter(this::ifmnToString, null, this::setIfmn));
-        map.put("ifmx", new GetterSetter(this::ifmxToString, null, this::setIfmx));
-        map.put("k2", new GetterSetter(this::k2ToString, null, this::setK2));
-        map.put("k3", new GetterSetter(this::k3ToString, null, this::setK3));
-        map.put("kce", new GetterSetter(this::kceToString, null, this::setKce));
-        map.put("krvecc", new GetterSetter(this::krveccToString, null, this::setKrvecc));
-        map.put("kvfif", new GetterSetter(this::kvfifToString, null, this::setKvfif));
-        map.put("t1", new GetterSetter(this::t1ToString, null, this::setT1));
-        map.put("t2", new GetterSetter(this::t2ToString, null, this::setT2));
-        map.put("t3", new GetterSetter(this::t3ToString, null, this::setT3));
-        map.put("tb", new GetterSetter(this::tbToString, null, this::setTb));
-        map.put("vrmn", new GetterSetter(this::vrmnToString, null, this::setVrmn));
-        map.put("vrmx", new GetterSetter(this::vrmxToString, null, this::setVrmx));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

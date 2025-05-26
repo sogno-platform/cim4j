@@ -23,10 +23,17 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(WindPlantFreqPcontrolIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindPlantFreqPcontrolIEC() {
-        setCimType("WindPlantFreqPcontrolIEC");
+    public WindPlantFreqPcontrolIEC(String rdfid) {
+        super("WindPlantFreqPcontrolIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindPlantFreqPcontrolIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         return WindDynamicsLookupTable;
     }
 
-    public void setWindDynamicsLookupTable(BaseClass _object_) {
-        if (!(_object_ instanceof WindDynamicsLookupTable)) {
-            throw new IllegalArgumentException("Object is not WindDynamicsLookupTable");
-        }
+    public void setWindDynamicsLookupTable(WindDynamicsLookupTable _object_) {
         if (!WindDynamicsLookupTable.contains(_object_)) {
-            WindDynamicsLookupTable.add((WindDynamicsLookupTable) _object_);
-            ((WindDynamicsLookupTable) _object_).setWindPlantFreqPcontrolIEC(this);
+            WindDynamicsLookupTable.add(_object_);
+            _object_.setWindPlantFreqPcontrolIEC(this);
         }
     }
 
-    public String WindDynamicsLookupTableToString() {
-        return getStringFromSet(WindDynamicsLookupTable);
+    private static Object getWindDynamicsLookupTable(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getWindDynamicsLookupTable();
+    }
+
+    private static void setWindDynamicsLookupTable(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindDynamicsLookupTable) {
+            ((WindPlantFreqPcontrolIEC) _this_).setWindDynamicsLookupTable((WindDynamicsLookupTable) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindDynamicsLookupTable");
+        }
     }
 
     /**
@@ -65,22 +77,27 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         return WindPlantIEC;
     }
 
-    public void setWindPlantIEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindPlantIEC)) {
-            throw new IllegalArgumentException("Object is not WindPlantIEC");
-        }
+    public void setWindPlantIEC(WindPlantIEC _object_) {
         if (WindPlantIEC != _object_) {
-            WindPlantIEC = (WindPlantIEC) _object_;
+            WindPlantIEC = _object_;
             WindPlantIEC.setWindPlantFreqPcontrolIEC(this);
         }
     }
 
-    public String WindPlantIECToString() {
-        return WindPlantIEC != null ? WindPlantIEC.getRdfid() : null;
+    private static Object getWindPlantIEC(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getWindPlantIEC();
+    }
+
+    private static void setWindPlantIEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindPlantIEC) {
+            ((WindPlantFreqPcontrolIEC) _this_).setWindPlantIEC((WindPlantIEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindPlantIEC");
+        }
     }
 
     /**
-     * Maximum ramp rate of &lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;WTref&lt;/sub&gt;&lt;/i&gt; request from the plant controller to the wind turbines (&lt;i&gt;dp&lt;/i&gt;&lt;i&gt;&lt;sub&gt;refmax&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; WindPlantFreqPcontrolIEC.dprefmin). It is a case-dependent parameter.
+     * Maximum ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dprefmin). It is a case-dependent parameter.
      */
     private Double dprefmax; // PU
 
@@ -92,16 +109,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         dprefmax = _value_;
     }
 
-    public void setDprefmax(String _value_) {
-        dprefmax = getDoubleFromString(_value_);
+    private static Object getDprefmax(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getDprefmax();
     }
 
-    public String dprefmaxToString() {
-        return dprefmax != null ? dprefmax.toString() : null;
+    private static void setDprefmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantFreqPcontrolIEC) _this_).setDprefmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setDprefmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum (negative) ramp rate of &lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;WTref&lt;/sub&gt;&lt;/i&gt; request from the plant controller to the wind turbines (&lt;i&gt;dp&lt;/i&gt;&lt;i&gt;&lt;sub&gt;refmin&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; WindPlantFreqPcontrolIEC.dprefmax). It is a project-dependent parameter.
+     * Minimum (negative) ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dprefmax). It is a project-dependent parameter.
      */
     private Double dprefmin; // PU
 
@@ -113,16 +136,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         dprefmin = _value_;
     }
 
-    public void setDprefmin(String _value_) {
-        dprefmin = getDoubleFromString(_value_);
+    private static Object getDprefmin(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getDprefmin();
     }
 
-    public String dprefminToString() {
-        return dprefmin != null ? dprefmin.toString() : null;
+    private static void setDprefmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantFreqPcontrolIEC) _this_).setDprefmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setDprefmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum positive ramp rate for wind plant power reference (&lt;i&gt;dp&lt;/i&gt;&lt;i&gt;&lt;sub&gt;WPrefmax&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; WindPlantFreqPcontrolIEC.dpwprefmin). It is a project-dependent parameter.
+     * Maximum positive ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dpwprefmin). It is a project-dependent parameter.
      */
     private Double dpwprefmax; // PU
 
@@ -134,16 +163,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         dpwprefmax = _value_;
     }
 
-    public void setDpwprefmax(String _value_) {
-        dpwprefmax = getDoubleFromString(_value_);
+    private static Object getDpwprefmax(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getDpwprefmax();
     }
 
-    public String dpwprefmaxToString() {
-        return dpwprefmax != null ? dpwprefmax.toString() : null;
+    private static void setDpwprefmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantFreqPcontrolIEC) _this_).setDpwprefmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setDpwprefmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum negative ramp rate for wind plant power reference (&lt;i&gt;dp&lt;/i&gt;&lt;i&gt;&lt;sub&gt;WPrefmin&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; WindPlantFreqPcontrolIEC.dpwprefmax). It is a project-dependent parameter.
+     * Maximum negative ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dpwprefmax). It is a project-dependent parameter.
      */
     private Double dpwprefmin; // PU
 
@@ -155,16 +190,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         dpwprefmin = _value_;
     }
 
-    public void setDpwprefmin(String _value_) {
-        dpwprefmin = getDoubleFromString(_value_);
+    private static Object getDpwprefmin(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getDpwprefmin();
     }
 
-    public String dpwprefminToString() {
-        return dpwprefmin != null ? dpwprefmin.toString() : null;
+    private static void setDpwprefmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantFreqPcontrolIEC) _this_).setDpwprefmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setDpwprefmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Plant P controller integral gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;IWPp&lt;/sub&gt;&lt;/i&gt;). It is a project-dependent parameter.
+     * Plant P controller integral gain (<i>K</i><i><sub>IWPp</sub></i>). It is a project-dependent parameter.
      */
     private Float kiwpp; // Float
 
@@ -176,16 +217,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         kiwpp = _value_;
     }
 
-    public void setKiwpp(String _value_) {
-        kiwpp = getFloatFromString(_value_);
+    private static Object getKiwpp(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getKiwpp();
     }
 
-    public String kiwppToString() {
-        return kiwpp != null ? kiwpp.toString() : null;
+    private static void setKiwpp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((WindPlantFreqPcontrolIEC) _this_).setKiwpp((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setKiwpp(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Maximum PI integrator term (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;IWPpmax&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; WindPlantFreqPcontrolIEC.kiwppmin). It is a project-dependent parameter.
+     * Maximum PI integrator term (<i>K</i><i><sub>IWPpmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.kiwppmin). It is a project-dependent parameter.
      */
     private Double kiwppmax; // PU
 
@@ -197,16 +244,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         kiwppmax = _value_;
     }
 
-    public void setKiwppmax(String _value_) {
-        kiwppmax = getDoubleFromString(_value_);
+    private static Object getKiwppmax(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getKiwppmax();
     }
 
-    public String kiwppmaxToString() {
-        return kiwppmax != null ? kiwppmax.toString() : null;
+    private static void setKiwppmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantFreqPcontrolIEC) _this_).setKiwppmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setKiwppmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum PI integrator term (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;IWPpmin&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; WindPlantFreqPcontrolIEC.kiwppmax). It is a project-dependent parameter.
+     * Minimum PI integrator term (<i>K</i><i><sub>IWPpmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.kiwppmax). It is a project-dependent parameter.
      */
     private Double kiwppmin; // PU
 
@@ -218,16 +271,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         kiwppmin = _value_;
     }
 
-    public void setKiwppmin(String _value_) {
-        kiwppmin = getDoubleFromString(_value_);
+    private static Object getKiwppmin(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getKiwppmin();
     }
 
-    public String kiwppminToString() {
-        return kiwppmin != null ? kiwppmin.toString() : null;
+    private static void setKiwppmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantFreqPcontrolIEC) _this_).setKiwppmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setKiwppmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Plant P controller proportional gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;PWPp&lt;/sub&gt;&lt;/i&gt;). It is a project-dependent parameter.
+     * Plant P controller proportional gain (<i>K</i><i><sub>PWPp</sub></i>). It is a project-dependent parameter.
      */
     private Float kpwpp; // Float
 
@@ -239,16 +298,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         kpwpp = _value_;
     }
 
-    public void setKpwpp(String _value_) {
-        kpwpp = getFloatFromString(_value_);
+    private static Object getKpwpp(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getKpwpp();
     }
 
-    public String kpwppToString() {
-        return kpwpp != null ? kpwpp.toString() : null;
+    private static void setKpwpp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((WindPlantFreqPcontrolIEC) _this_).setKpwpp((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setKpwpp(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Power reference gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;WPpref&lt;/sub&gt;&lt;/i&gt;). It is a project-dependent parameter.
+     * Power reference gain (<i>K</i><i><sub>WPpref</sub></i>). It is a project-dependent parameter.
      */
     private Double kwppref; // PU
 
@@ -260,16 +325,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         kwppref = _value_;
     }
 
-    public void setKwppref(String _value_) {
-        kwppref = getDoubleFromString(_value_);
+    private static Object getKwppref(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getKwppref();
     }
 
-    public String kwpprefToString() {
-        return kwppref != null ? kwppref.toString() : null;
+    private static void setKwppref(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantFreqPcontrolIEC) _this_).setKwppref((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setKwppref(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum &lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;WTref&lt;/sub&gt;&lt;/i&gt; request from the plant controller to the wind turbines (&lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;refmax&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; WindPlantFreqPcontrolIEC.prefmin). It is a project-dependent parameter.
+     * Maximum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.prefmin). It is a project-dependent parameter.
      */
     private Double prefmax; // PU
 
@@ -281,16 +352,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         prefmax = _value_;
     }
 
-    public void setPrefmax(String _value_) {
-        prefmax = getDoubleFromString(_value_);
+    private static Object getPrefmax(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getPrefmax();
     }
 
-    public String prefmaxToString() {
-        return prefmax != null ? prefmax.toString() : null;
+    private static void setPrefmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantFreqPcontrolIEC) _this_).setPrefmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setPrefmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum &lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;WTref&lt;/sub&gt;&lt;/i&gt; request from the plant controller to the wind turbines (&lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;refmin&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; WindPlantFreqPcontrolIEC.prefmax). It is a project-dependent parameter.
+     * Minimum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.prefmax). It is a project-dependent parameter.
      */
     private Double prefmin; // PU
 
@@ -302,16 +379,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         prefmin = _value_;
     }
 
-    public void setPrefmin(String _value_) {
-        prefmin = getDoubleFromString(_value_);
+    private static Object getPrefmin(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getPrefmin();
     }
 
-    public String prefminToString() {
-        return prefmin != null ? prefmin.toString() : null;
+    private static void setPrefmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantFreqPcontrolIEC) _this_).setPrefmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setPrefmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Lead time constant in reference value transfer function (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;pft&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a project-dependent parameter.
+     * Lead time constant in reference value transfer function (<i>T</i><i><sub>pft</sub></i>) (&gt;= 0). It is a project-dependent parameter.
      */
     private Double tpft; // Seconds
 
@@ -323,16 +406,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         tpft = _value_;
     }
 
-    public void setTpft(String _value_) {
-        tpft = getDoubleFromString(_value_);
+    private static Object getTpft(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getTpft();
     }
 
-    public String tpftToString() {
-        return tpft != null ? tpft.toString() : null;
+    private static void setTpft(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantFreqPcontrolIEC) _this_).setTpft((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setTpft(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Lag time constant in reference value transfer function (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;pfv&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a project-dependent parameter.
+     * Lag time constant in reference value transfer function (<i>T</i><i><sub>pfv</sub></i>) (&gt;= 0). It is a project-dependent parameter.
      */
     private Double tpfv; // Seconds
 
@@ -344,16 +433,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         tpfv = _value_;
     }
 
-    public void setTpfv(String _value_) {
-        tpfv = getDoubleFromString(_value_);
+    private static Object getTpfv(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getTpfv();
     }
 
-    public String tpfvToString() {
-        return tpfv != null ? tpfv.toString() : null;
+    private static void setTpfv(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantFreqPcontrolIEC) _this_).setTpfv((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setTpfv(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Filter time constant for frequency measurement (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;WPffiltp&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a project-dependent parameter.
+     * Filter time constant for frequency measurement (<i>T</i><i><sub>WPffiltp</sub></i>) (&gt;= 0). It is a project-dependent parameter.
      */
     private Double twpffiltp; // Seconds
 
@@ -365,16 +460,22 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         twpffiltp = _value_;
     }
 
-    public void setTwpffiltp(String _value_) {
-        twpffiltp = getDoubleFromString(_value_);
+    private static Object getTwpffiltp(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getTwpffiltp();
     }
 
-    public String twpffiltpToString() {
-        return twpffiltp != null ? twpffiltp.toString() : null;
+    private static void setTwpffiltp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantFreqPcontrolIEC) _this_).setTwpffiltp((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setTwpffiltp(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Filter time constant for active power measurement (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;WPpfiltp&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a project-dependent parameter.
+     * Filter time constant for active power measurement (<i>T</i><i><sub>WPpfiltp</sub></i>) (&gt;= 0). It is a project-dependent parameter.
      */
     private Double twppfiltp; // Seconds
 
@@ -386,12 +487,18 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         twppfiltp = _value_;
     }
 
-    public void setTwppfiltp(String _value_) {
-        twppfiltp = getDoubleFromString(_value_);
+    private static Object getTwppfiltp(BaseClass _this_) {
+        return ((WindPlantFreqPcontrolIEC) _this_).getTwppfiltp();
     }
 
-    public String twppfiltpToString() {
-        return twppfiltp != null ? twppfiltp.toString() : null;
+    private static void setTwppfiltp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantFreqPcontrolIEC) _this_).setTwppfiltp((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).setTwppfiltp(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -428,64 +535,35 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindPlantFreqPcontrolIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindPlantFreqPcontrolIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindPlantFreqPcontrolIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindPlantFreqPcontrolIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindPlantFreqPcontrolIEC", attrName, value));
         }
     }
 
@@ -609,114 +687,91 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindDynamicsLookupTable", new AttrDetails("WindPlantFreqPcontrolIEC.WindDynamicsLookupTable", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindDynamicsLookupTable", new AttrDetails("WindPlantFreqPcontrolIEC.WindDynamicsLookupTable", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindPlantFreqPcontrolIEC::getWindDynamicsLookupTable, WindPlantFreqPcontrolIEC::setWindDynamicsLookupTable));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindPlantIEC", new AttrDetails("WindPlantFreqPcontrolIEC.WindPlantIEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindPlantIEC", new AttrDetails("WindPlantFreqPcontrolIEC.WindPlantIEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindPlantFreqPcontrolIEC::getWindPlantIEC, WindPlantFreqPcontrolIEC::setWindPlantIEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dprefmax", new AttrDetails("WindPlantFreqPcontrolIEC.dprefmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("dprefmax", new AttrDetails("WindPlantFreqPcontrolIEC.dprefmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getDprefmax, WindPlantFreqPcontrolIEC::setDprefmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dprefmin", new AttrDetails("WindPlantFreqPcontrolIEC.dprefmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("dprefmin", new AttrDetails("WindPlantFreqPcontrolIEC.dprefmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getDprefmin, WindPlantFreqPcontrolIEC::setDprefmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dpwprefmax", new AttrDetails("WindPlantFreqPcontrolIEC.dpwprefmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("dpwprefmax", new AttrDetails("WindPlantFreqPcontrolIEC.dpwprefmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getDpwprefmax, WindPlantFreqPcontrolIEC::setDpwprefmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dpwprefmin", new AttrDetails("WindPlantFreqPcontrolIEC.dpwprefmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("dpwprefmin", new AttrDetails("WindPlantFreqPcontrolIEC.dpwprefmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getDpwprefmin, WindPlantFreqPcontrolIEC::setDpwprefmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kiwpp", new AttrDetails("WindPlantFreqPcontrolIEC.kiwpp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kiwpp", new AttrDetails("WindPlantFreqPcontrolIEC.kiwpp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getKiwpp, WindPlantFreqPcontrolIEC::setKiwpp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kiwppmax", new AttrDetails("WindPlantFreqPcontrolIEC.kiwppmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kiwppmax", new AttrDetails("WindPlantFreqPcontrolIEC.kiwppmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getKiwppmax, WindPlantFreqPcontrolIEC::setKiwppmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kiwppmin", new AttrDetails("WindPlantFreqPcontrolIEC.kiwppmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kiwppmin", new AttrDetails("WindPlantFreqPcontrolIEC.kiwppmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getKiwppmin, WindPlantFreqPcontrolIEC::setKiwppmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpwpp", new AttrDetails("WindPlantFreqPcontrolIEC.kpwpp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kpwpp", new AttrDetails("WindPlantFreqPcontrolIEC.kpwpp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getKpwpp, WindPlantFreqPcontrolIEC::setKpwpp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kwppref", new AttrDetails("WindPlantFreqPcontrolIEC.kwppref", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kwppref", new AttrDetails("WindPlantFreqPcontrolIEC.kwppref", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getKwppref, WindPlantFreqPcontrolIEC::setKwppref));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("prefmax", new AttrDetails("WindPlantFreqPcontrolIEC.prefmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("prefmax", new AttrDetails("WindPlantFreqPcontrolIEC.prefmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getPrefmax, WindPlantFreqPcontrolIEC::setPrefmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("prefmin", new AttrDetails("WindPlantFreqPcontrolIEC.prefmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("prefmin", new AttrDetails("WindPlantFreqPcontrolIEC.prefmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getPrefmin, WindPlantFreqPcontrolIEC::setPrefmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpft", new AttrDetails("WindPlantFreqPcontrolIEC.tpft", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tpft", new AttrDetails("WindPlantFreqPcontrolIEC.tpft", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getTpft, WindPlantFreqPcontrolIEC::setTpft));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpfv", new AttrDetails("WindPlantFreqPcontrolIEC.tpfv", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tpfv", new AttrDetails("WindPlantFreqPcontrolIEC.tpfv", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getTpfv, WindPlantFreqPcontrolIEC::setTpfv));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("twpffiltp", new AttrDetails("WindPlantFreqPcontrolIEC.twpffiltp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("twpffiltp", new AttrDetails("WindPlantFreqPcontrolIEC.twpffiltp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getTwpffiltp, WindPlantFreqPcontrolIEC::setTwpffiltp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("twppfiltp", new AttrDetails("WindPlantFreqPcontrolIEC.twppfiltp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("twppfiltp", new AttrDetails("WindPlantFreqPcontrolIEC.twppfiltp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindPlantFreqPcontrolIEC::getTwppfiltp, WindPlantFreqPcontrolIEC::setTwppfiltp));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindPlantFreqPcontrolIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindPlantFreqPcontrolIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("WindDynamicsLookupTable", new GetterSetter(this::WindDynamicsLookupTableToString, this::setWindDynamicsLookupTable, null));
-        map.put("WindPlantIEC", new GetterSetter(this::WindPlantIECToString, this::setWindPlantIEC, null));
-        map.put("dprefmax", new GetterSetter(this::dprefmaxToString, null, this::setDprefmax));
-        map.put("dprefmin", new GetterSetter(this::dprefminToString, null, this::setDprefmin));
-        map.put("dpwprefmax", new GetterSetter(this::dpwprefmaxToString, null, this::setDpwprefmax));
-        map.put("dpwprefmin", new GetterSetter(this::dpwprefminToString, null, this::setDpwprefmin));
-        map.put("kiwpp", new GetterSetter(this::kiwppToString, null, this::setKiwpp));
-        map.put("kiwppmax", new GetterSetter(this::kiwppmaxToString, null, this::setKiwppmax));
-        map.put("kiwppmin", new GetterSetter(this::kiwppminToString, null, this::setKiwppmin));
-        map.put("kpwpp", new GetterSetter(this::kpwppToString, null, this::setKpwpp));
-        map.put("kwppref", new GetterSetter(this::kwpprefToString, null, this::setKwppref));
-        map.put("prefmax", new GetterSetter(this::prefmaxToString, null, this::setPrefmax));
-        map.put("prefmin", new GetterSetter(this::prefminToString, null, this::setPrefmin));
-        map.put("tpft", new GetterSetter(this::tpftToString, null, this::setTpft));
-        map.put("tpfv", new GetterSetter(this::tpfvToString, null, this::setTpfv));
-        map.put("twpffiltp", new GetterSetter(this::twpffiltpToString, null, this::setTwpffiltp));
-        map.put("twppfiltp", new GetterSetter(this::twppfiltpToString, null, this::setTwppfiltp));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

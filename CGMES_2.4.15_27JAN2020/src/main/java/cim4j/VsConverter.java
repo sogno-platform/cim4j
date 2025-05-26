@@ -23,10 +23,17 @@ public class VsConverter extends ACDCConverter {
     private static final Logging LOG = Logging.getLogger(VsConverter.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public VsConverter() {
-        setCimType("VsConverter");
+    public VsConverter(String rdfid) {
+        super("VsConverter", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected VsConverter(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class VsConverter extends ACDCConverter {
         return CapabilityCurve;
     }
 
-    public void setCapabilityCurve(BaseClass _object_) {
-        if (!(_object_ instanceof VsCapabilityCurve)) {
-            throw new IllegalArgumentException("Object is not VsCapabilityCurve");
-        }
+    public void setCapabilityCurve(VsCapabilityCurve _object_) {
         if (CapabilityCurve != _object_) {
-            CapabilityCurve = (VsCapabilityCurve) _object_;
+            CapabilityCurve = _object_;
             CapabilityCurve.setVsConverterDCSides(this);
         }
     }
 
-    public String CapabilityCurveToString() {
-        return CapabilityCurve != null ? CapabilityCurve.getRdfid() : null;
+    private static Object getCapabilityCurve(BaseClass _this_) {
+        return ((VsConverter) _this_).getCapabilityCurve();
+    }
+
+    private static void setCapabilityCurve(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof VsCapabilityCurve) {
+            ((VsConverter) _this_).setCapabilityCurve((VsCapabilityCurve) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not VsCapabilityCurve");
+        }
     }
 
     /**
@@ -65,12 +77,18 @@ public class VsConverter extends ACDCConverter {
         delta = _value_;
     }
 
-    public void setDelta(String _value_) {
-        delta = getDoubleFromString(_value_);
+    private static Object getDelta(BaseClass _this_) {
+        return ((VsConverter) _this_).getDelta();
     }
 
-    public String deltaToString() {
-        return delta != null ? delta.toString() : null;
+    private static void setDelta(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VsConverter) _this_).setDelta((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VsConverter) _this_).setDelta(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -86,12 +104,18 @@ public class VsConverter extends ACDCConverter {
         droop = _value_;
     }
 
-    public void setDroop(String _value_) {
-        droop = getDoubleFromString(_value_);
+    private static Object getDroop(BaseClass _this_) {
+        return ((VsConverter) _this_).getDroop();
     }
 
-    public String droopToString() {
-        return droop != null ? droop.toString() : null;
+    private static void setDroop(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VsConverter) _this_).setDroop((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VsConverter) _this_).setDroop(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -107,12 +131,18 @@ public class VsConverter extends ACDCConverter {
         droopCompensation = _value_;
     }
 
-    public void setDroopCompensation(String _value_) {
-        droopCompensation = getDoubleFromString(_value_);
+    private static Object getDroopCompensation(BaseClass _this_) {
+        return ((VsConverter) _this_).getDroopCompensation();
     }
 
-    public String droopCompensationToString() {
-        return droopCompensation != null ? droopCompensation.toString() : null;
+    private static void setDroopCompensation(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VsConverter) _this_).setDroopCompensation((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VsConverter) _this_).setDroopCompensation(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -128,12 +158,18 @@ public class VsConverter extends ACDCConverter {
         maxModulationIndex = _value_;
     }
 
-    public void setMaxModulationIndex(String _value_) {
-        maxModulationIndex = getDoubleFromString(_value_);
+    private static Object getMaxModulationIndex(BaseClass _this_) {
+        return ((VsConverter) _this_).getMaxModulationIndex();
     }
 
-    public String maxModulationIndexToString() {
-        return maxModulationIndex != null ? maxModulationIndex.toString() : null;
+    private static void setMaxModulationIndex(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VsConverter) _this_).setMaxModulationIndex((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VsConverter) _this_).setMaxModulationIndex(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -149,12 +185,18 @@ public class VsConverter extends ACDCConverter {
         maxValveCurrent = _value_;
     }
 
-    public void setMaxValveCurrent(String _value_) {
-        maxValveCurrent = getDoubleFromString(_value_);
+    private static Object getMaxValveCurrent(BaseClass _this_) {
+        return ((VsConverter) _this_).getMaxValveCurrent();
     }
 
-    public String maxValveCurrentToString() {
-        return maxValveCurrent != null ? maxValveCurrent.toString() : null;
+    private static void setMaxValveCurrent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VsConverter) _this_).setMaxValveCurrent((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VsConverter) _this_).setMaxValveCurrent(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -170,8 +212,16 @@ public class VsConverter extends ACDCConverter {
         pPccControl = _value_;
     }
 
-    public String pPccControlToString() {
-        return pPccControl;
+    private static Object getPPccControl(BaseClass _this_) {
+        return ((VsConverter) _this_).getPPccControl();
+    }
+
+    private static void setPPccControl(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((VsConverter) _this_).setPPccControl((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -186,8 +236,16 @@ public class VsConverter extends ACDCConverter {
         qPccControl = _value_;
     }
 
-    public String qPccControlToString() {
-        return qPccControl;
+    private static Object getQPccControl(BaseClass _this_) {
+        return ((VsConverter) _this_).getQPccControl();
+    }
+
+    private static void setQPccControl(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((VsConverter) _this_).setQPccControl((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -203,12 +261,18 @@ public class VsConverter extends ACDCConverter {
         qShare = _value_;
     }
 
-    public void setQShare(String _value_) {
-        qShare = getDoubleFromString(_value_);
+    private static Object getQShare(BaseClass _this_) {
+        return ((VsConverter) _this_).getQShare();
     }
 
-    public String qShareToString() {
-        return qShare != null ? qShare.toString() : null;
+    private static void setQShare(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VsConverter) _this_).setQShare((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VsConverter) _this_).setQShare(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -224,12 +288,18 @@ public class VsConverter extends ACDCConverter {
         targetQpcc = _value_;
     }
 
-    public void setTargetQpcc(String _value_) {
-        targetQpcc = getDoubleFromString(_value_);
+    private static Object getTargetQpcc(BaseClass _this_) {
+        return ((VsConverter) _this_).getTargetQpcc();
     }
 
-    public String targetQpccToString() {
-        return targetQpcc != null ? targetQpcc.toString() : null;
+    private static void setTargetQpcc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VsConverter) _this_).setTargetQpcc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VsConverter) _this_).setTargetQpcc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -245,12 +315,18 @@ public class VsConverter extends ACDCConverter {
         targetUpcc = _value_;
     }
 
-    public void setTargetUpcc(String _value_) {
-        targetUpcc = getDoubleFromString(_value_);
+    private static Object getTargetUpcc(BaseClass _this_) {
+        return ((VsConverter) _this_).getTargetUpcc();
     }
 
-    public String targetUpccToString() {
-        return targetUpcc != null ? targetUpcc.toString() : null;
+    private static void setTargetUpcc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VsConverter) _this_).setTargetUpcc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VsConverter) _this_).setTargetUpcc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -266,12 +342,18 @@ public class VsConverter extends ACDCConverter {
         uf = _value_;
     }
 
-    public void setUf(String _value_) {
-        uf = getDoubleFromString(_value_);
+    private static Object getUf(BaseClass _this_) {
+        return ((VsConverter) _this_).getUf();
     }
 
-    public String ufToString() {
-        return uf != null ? uf.toString() : null;
+    private static void setUf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VsConverter) _this_).setUf((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VsConverter) _this_).setUf(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -308,64 +390,35 @@ public class VsConverter extends ACDCConverter {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("VsConverter", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "VsConverter", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("VsConverter", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("VsConverter", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "VsConverter", attrName, value));
         }
     }
 
@@ -489,84 +542,66 @@ public class VsConverter extends ACDCConverter {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("CapabilityCurve", new AttrDetails("VsConverter.CapabilityCurve", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("CapabilityCurve", new AttrDetails("VsConverter.CapabilityCurve", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, VsConverter::getCapabilityCurve, VsConverter::setCapabilityCurve));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("delta", new AttrDetails("VsConverter.delta", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("delta", new AttrDetails("VsConverter.delta", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, VsConverter::getDelta, VsConverter::setDelta));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("droop", new AttrDetails("VsConverter.droop", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("droop", new AttrDetails("VsConverter.droop", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, VsConverter::getDroop, VsConverter::setDroop));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("droopCompensation", new AttrDetails("VsConverter.droopCompensation", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("droopCompensation", new AttrDetails("VsConverter.droopCompensation", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, VsConverter::getDroopCompensation, VsConverter::setDroopCompensation));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxModulationIndex", new AttrDetails("VsConverter.maxModulationIndex", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("maxModulationIndex", new AttrDetails("VsConverter.maxModulationIndex", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, VsConverter::getMaxModulationIndex, VsConverter::setMaxModulationIndex));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxValveCurrent", new AttrDetails("VsConverter.maxValveCurrent", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("maxValveCurrent", new AttrDetails("VsConverter.maxValveCurrent", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, VsConverter::getMaxValveCurrent, VsConverter::setMaxValveCurrent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("pPccControl", new AttrDetails("VsConverter.pPccControl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
+            map.put("pPccControl", new AttrDetails("VsConverter.pPccControl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true, VsConverter::getPPccControl, VsConverter::setPPccControl));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("qPccControl", new AttrDetails("VsConverter.qPccControl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
+            map.put("qPccControl", new AttrDetails("VsConverter.qPccControl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true, VsConverter::getQPccControl, VsConverter::setQPccControl));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("qShare", new AttrDetails("VsConverter.qShare", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("qShare", new AttrDetails("VsConverter.qShare", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, VsConverter::getQShare, VsConverter::setQShare));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetQpcc", new AttrDetails("VsConverter.targetQpcc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("targetQpcc", new AttrDetails("VsConverter.targetQpcc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, VsConverter::getTargetQpcc, VsConverter::setTargetQpcc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetUpcc", new AttrDetails("VsConverter.targetUpcc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("targetUpcc", new AttrDetails("VsConverter.targetUpcc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, VsConverter::getTargetUpcc, VsConverter::setTargetUpcc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("uf", new AttrDetails("VsConverter.uf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("uf", new AttrDetails("VsConverter.uf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, VsConverter::getUf, VsConverter::setUf));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new VsConverter().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new VsConverter(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("CapabilityCurve", new GetterSetter(this::CapabilityCurveToString, this::setCapabilityCurve, null));
-        map.put("delta", new GetterSetter(this::deltaToString, null, this::setDelta));
-        map.put("droop", new GetterSetter(this::droopToString, null, this::setDroop));
-        map.put("droopCompensation", new GetterSetter(this::droopCompensationToString, null, this::setDroopCompensation));
-        map.put("maxModulationIndex", new GetterSetter(this::maxModulationIndexToString, null, this::setMaxModulationIndex));
-        map.put("maxValveCurrent", new GetterSetter(this::maxValveCurrentToString, null, this::setMaxValveCurrent));
-        map.put("pPccControl", new GetterSetter(this::pPccControlToString, null, this::setPPccControl));
-        map.put("qPccControl", new GetterSetter(this::qPccControlToString, null, this::setQPccControl));
-        map.put("qShare", new GetterSetter(this::qShareToString, null, this::setQShare));
-        map.put("targetQpcc", new GetterSetter(this::targetQpccToString, null, this::setTargetQpcc));
-        map.put("targetUpcc", new GetterSetter(this::targetUpccToString, null, this::setTargetUpcc));
-        map.put("uf", new GetterSetter(this::ufToString, null, this::setUf));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

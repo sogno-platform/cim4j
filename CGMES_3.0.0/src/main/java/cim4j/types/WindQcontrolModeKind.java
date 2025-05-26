@@ -13,23 +13,23 @@ import java.util.Map;
  */
 public enum WindQcontrolModeKind {
     /**
-     * Voltage control (&lt;i&gt;M&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qG&lt;/sub&gt;&lt;/i&gt; equals 0).
+     * Voltage control (<i>M</i><i><sub>qG</sub></i> equals 0).
      */
     _voltage("voltage"),
     /**
-     * Reactive power control (&lt;i&gt;M&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qG&lt;/sub&gt;&lt;/i&gt; equals 1).
+     * Reactive power control (<i>M</i><i><sub>qG</sub></i> equals 1).
      */
     _reactivePower("reactivePower"),
     /**
-     * Open loop reactive power control (only used with closed loop at plant level) (&lt;i&gt;M&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qG&lt;/sub&gt;&lt;/i&gt;&lt;sub&gt; &lt;/sub&gt;equals 2).
+     * Open loop reactive power control (only used with closed loop at plant level) (<i>M</i><i><sub>qG</sub></i><sub> </sub>equals 2).
      */
     _openLoopReactivePower("openLoopReactivePower"),
     /**
-     * Power factor control (&lt;i&gt;M&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qG&lt;/sub&gt;&lt;/i&gt;&lt;sub&gt; &lt;/sub&gt;equals 3).
+     * Power factor control (<i>M</i><i><sub>qG</sub></i><sub> </sub>equals 3).
      */
     _powerFactor("powerFactor"),
     /**
-     * Open loop power factor control (&lt;i&gt;M&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qG&lt;/sub&gt;&lt;/i&gt;&lt;sub&gt; &lt;/sub&gt;equals 4).
+     * Open loop power factor control (<i>M</i><i><sub>qG</sub></i><sub> </sub>equals 4).
      */
     _openLooppowerFactor("openLooppowerFactor"),
     ;

@@ -23,10 +23,17 @@ public class BusNameMarker extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(BusNameMarker.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public BusNameMarker() {
-        setCimType("BusNameMarker");
+    public BusNameMarker(String rdfid) {
+        super("BusNameMarker", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected BusNameMarker(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class BusNameMarker extends IdentifiedObject {
         return ReportingGroup;
     }
 
-    public void setReportingGroup(BaseClass _object_) {
-        if (!(_object_ instanceof ReportingGroup)) {
-            throw new IllegalArgumentException("Object is not ReportingGroup");
-        }
+    public void setReportingGroup(ReportingGroup _object_) {
         if (ReportingGroup != _object_) {
-            ReportingGroup = (ReportingGroup) _object_;
+            ReportingGroup = _object_;
             ReportingGroup.setBusNameMarker(this);
         }
     }
 
-    public String ReportingGroupToString() {
-        return ReportingGroup != null ? ReportingGroup.getRdfid() : null;
+    private static Object getReportingGroup(BaseClass _this_) {
+        return ((BusNameMarker) _this_).getReportingGroup();
+    }
+
+    private static void setReportingGroup(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ReportingGroup) {
+            ((BusNameMarker) _this_).setReportingGroup((ReportingGroup) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ReportingGroup");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class BusNameMarker extends IdentifiedObject {
         return Terminal;
     }
 
-    public void setTerminal(BaseClass _object_) {
-        if (!(_object_ instanceof ACDCTerminal)) {
-            throw new IllegalArgumentException("Object is not ACDCTerminal");
-        }
+    public void setTerminal(ACDCTerminal _object_) {
         if (!Terminal.contains(_object_)) {
-            Terminal.add((ACDCTerminal) _object_);
-            ((ACDCTerminal) _object_).setBusNameMarker(this);
+            Terminal.add(_object_);
+            _object_.setBusNameMarker(this);
         }
     }
 
-    public String TerminalToString() {
-        return getStringFromSet(Terminal);
+    private static Object getTerminal(BaseClass _this_) {
+        return ((BusNameMarker) _this_).getTerminal();
+    }
+
+    private static void setTerminal(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ACDCTerminal) {
+            ((BusNameMarker) _this_).setTerminal((ACDCTerminal) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ACDCTerminal");
+        }
     }
 
     /**
@@ -90,12 +107,18 @@ public class BusNameMarker extends IdentifiedObject {
         priority = _value_;
     }
 
-    public void setPriority(String _value_) {
-        priority = getIntegerFromString(_value_);
+    private static Object getPriority(BaseClass _this_) {
+        return ((BusNameMarker) _this_).getPriority();
     }
 
-    public String priorityToString() {
-        return priority != null ? priority.toString() : null;
+    private static void setPriority(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((BusNameMarker) _this_).setPriority((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((BusNameMarker) _this_).setPriority(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -132,64 +155,35 @@ public class BusNameMarker extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("BusNameMarker", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "BusNameMarker", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("BusNameMarker", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("BusNameMarker", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "BusNameMarker", attrName, value));
         }
     }
 
@@ -313,30 +307,21 @@ public class BusNameMarker extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ReportingGroup", new AttrDetails("BusNameMarker.ReportingGroup", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("ReportingGroup", new AttrDetails("BusNameMarker.ReportingGroup", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, BusNameMarker::getReportingGroup, BusNameMarker::setReportingGroup));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Terminal", new AttrDetails("BusNameMarker.Terminal", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("Terminal", new AttrDetails("BusNameMarker.Terminal", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, BusNameMarker::getTerminal, BusNameMarker::setTerminal));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("priority", new AttrDetails("BusNameMarker.priority", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("priority", new AttrDetails("BusNameMarker.priority", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, BusNameMarker::getPriority, BusNameMarker::setPriority));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new BusNameMarker().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new BusNameMarker(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ReportingGroup", new GetterSetter(this::ReportingGroupToString, this::setReportingGroup, null));
-        map.put("Terminal", new GetterSetter(this::TerminalToString, this::setTerminal, null));
-        map.put("priority", new GetterSetter(this::priorityToString, null, this::setPriority));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

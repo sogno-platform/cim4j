@@ -23,10 +23,17 @@ public class TransformerEnd extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(TransformerEnd.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public TransformerEnd() {
-        setCimType("TransformerEnd");
+    public TransformerEnd(String rdfid) {
+        super("TransformerEnd", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected TransformerEnd(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class TransformerEnd extends IdentifiedObject {
         return BaseVoltage;
     }
 
-    public void setBaseVoltage(BaseClass _object_) {
-        if (!(_object_ instanceof BaseVoltage)) {
-            throw new IllegalArgumentException("Object is not BaseVoltage");
-        }
+    public void setBaseVoltage(BaseVoltage _object_) {
         if (BaseVoltage != _object_) {
-            BaseVoltage = (BaseVoltage) _object_;
+            BaseVoltage = _object_;
             BaseVoltage.setTransformerEnds(this);
         }
     }
 
-    public String BaseVoltageToString() {
-        return BaseVoltage != null ? BaseVoltage.getRdfid() : null;
+    private static Object getBaseVoltage(BaseClass _this_) {
+        return ((TransformerEnd) _this_).getBaseVoltage();
+    }
+
+    private static void setBaseVoltage(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof BaseVoltage) {
+            ((TransformerEnd) _this_).setBaseVoltage((BaseVoltage) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not BaseVoltage");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class TransformerEnd extends IdentifiedObject {
         return PhaseTapChanger;
     }
 
-    public void setPhaseTapChanger(BaseClass _object_) {
-        if (!(_object_ instanceof PhaseTapChanger)) {
-            throw new IllegalArgumentException("Object is not PhaseTapChanger");
-        }
+    public void setPhaseTapChanger(PhaseTapChanger _object_) {
         if (PhaseTapChanger != _object_) {
-            PhaseTapChanger = (PhaseTapChanger) _object_;
+            PhaseTapChanger = _object_;
             PhaseTapChanger.setTransformerEnd(this);
         }
     }
 
-    public String PhaseTapChangerToString() {
-        return PhaseTapChanger != null ? PhaseTapChanger.getRdfid() : null;
+    private static Object getPhaseTapChanger(BaseClass _this_) {
+        return ((TransformerEnd) _this_).getPhaseTapChanger();
+    }
+
+    private static void setPhaseTapChanger(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof PhaseTapChanger) {
+            ((TransformerEnd) _this_).setPhaseTapChanger((PhaseTapChanger) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not PhaseTapChanger");
+        }
     }
 
     /**
@@ -88,18 +105,23 @@ public class TransformerEnd extends IdentifiedObject {
         return RatioTapChanger;
     }
 
-    public void setRatioTapChanger(BaseClass _object_) {
-        if (!(_object_ instanceof RatioTapChanger)) {
-            throw new IllegalArgumentException("Object is not RatioTapChanger");
-        }
+    public void setRatioTapChanger(RatioTapChanger _object_) {
         if (RatioTapChanger != _object_) {
-            RatioTapChanger = (RatioTapChanger) _object_;
+            RatioTapChanger = _object_;
             RatioTapChanger.setTransformerEnd(this);
         }
     }
 
-    public String RatioTapChangerToString() {
-        return RatioTapChanger != null ? RatioTapChanger.getRdfid() : null;
+    private static Object getRatioTapChanger(BaseClass _this_) {
+        return ((TransformerEnd) _this_).getRatioTapChanger();
+    }
+
+    private static void setRatioTapChanger(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof RatioTapChanger) {
+            ((TransformerEnd) _this_).setRatioTapChanger((RatioTapChanger) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not RatioTapChanger");
+        }
     }
 
     /**
@@ -111,18 +133,23 @@ public class TransformerEnd extends IdentifiedObject {
         return Terminal;
     }
 
-    public void setTerminal(BaseClass _object_) {
-        if (!(_object_ instanceof Terminal)) {
-            throw new IllegalArgumentException("Object is not Terminal");
-        }
+    public void setTerminal(Terminal _object_) {
         if (Terminal != _object_) {
-            Terminal = (Terminal) _object_;
+            Terminal = _object_;
             Terminal.setTransformerEnd(this);
         }
     }
 
-    public String TerminalToString() {
-        return Terminal != null ? Terminal.getRdfid() : null;
+    private static Object getTerminal(BaseClass _this_) {
+        return ((TransformerEnd) _this_).getTerminal();
+    }
+
+    private static void setTerminal(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Terminal) {
+            ((TransformerEnd) _this_).setTerminal((Terminal) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Terminal");
+        }
     }
 
     /**
@@ -138,12 +165,18 @@ public class TransformerEnd extends IdentifiedObject {
         endNumber = _value_;
     }
 
-    public void setEndNumber(String _value_) {
-        endNumber = getIntegerFromString(_value_);
+    private static Object getEndNumber(BaseClass _this_) {
+        return ((TransformerEnd) _this_).getEndNumber();
     }
 
-    public String endNumberToString() {
-        return endNumber != null ? endNumber.toString() : null;
+    private static void setEndNumber(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((TransformerEnd) _this_).setEndNumber((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((TransformerEnd) _this_).setEndNumber(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -159,12 +192,18 @@ public class TransformerEnd extends IdentifiedObject {
         grounded = _value_;
     }
 
-    public void setGrounded(String _value_) {
-        grounded = getBooleanFromString(_value_);
+    private static Object getGrounded(BaseClass _this_) {
+        return ((TransformerEnd) _this_).getGrounded();
     }
 
-    public String groundedToString() {
-        return grounded != null ? grounded.toString() : null;
+    private static void setGrounded(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((TransformerEnd) _this_).setGrounded((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((TransformerEnd) _this_).setGrounded(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -180,12 +219,18 @@ public class TransformerEnd extends IdentifiedObject {
         rground = _value_;
     }
 
-    public void setRground(String _value_) {
-        rground = getDoubleFromString(_value_);
+    private static Object getRground(BaseClass _this_) {
+        return ((TransformerEnd) _this_).getRground();
     }
 
-    public String rgroundToString() {
-        return rground != null ? rground.toString() : null;
+    private static void setRground(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((TransformerEnd) _this_).setRground((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((TransformerEnd) _this_).setRground(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -201,12 +246,18 @@ public class TransformerEnd extends IdentifiedObject {
         xground = _value_;
     }
 
-    public void setXground(String _value_) {
-        xground = getDoubleFromString(_value_);
+    private static Object getXground(BaseClass _this_) {
+        return ((TransformerEnd) _this_).getXground();
     }
 
-    public String xgroundToString() {
-        return xground != null ? xground.toString() : null;
+    private static void setXground(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((TransformerEnd) _this_).setXground((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((TransformerEnd) _this_).setXground(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -243,64 +294,35 @@ public class TransformerEnd extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("TransformerEnd", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "TransformerEnd", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("TransformerEnd", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("TransformerEnd", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "TransformerEnd", attrName, value));
         }
     }
 
@@ -424,60 +446,46 @@ public class TransformerEnd extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("BaseVoltage", new AttrDetails("TransformerEnd.BaseVoltage", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("BaseVoltage", new AttrDetails("TransformerEnd.BaseVoltage", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, TransformerEnd::getBaseVoltage, TransformerEnd::setBaseVoltage));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("PhaseTapChanger", new AttrDetails("TransformerEnd.PhaseTapChanger", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("PhaseTapChanger", new AttrDetails("TransformerEnd.PhaseTapChanger", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, TransformerEnd::getPhaseTapChanger, TransformerEnd::setPhaseTapChanger));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("RatioTapChanger", new AttrDetails("TransformerEnd.RatioTapChanger", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("RatioTapChanger", new AttrDetails("TransformerEnd.RatioTapChanger", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, TransformerEnd::getRatioTapChanger, TransformerEnd::setRatioTapChanger));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Terminal", new AttrDetails("TransformerEnd.Terminal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("Terminal", new AttrDetails("TransformerEnd.Terminal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, TransformerEnd::getTerminal, TransformerEnd::setTerminal));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("endNumber", new AttrDetails("TransformerEnd.endNumber", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("endNumber", new AttrDetails("TransformerEnd.endNumber", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, TransformerEnd::getEndNumber, TransformerEnd::setEndNumber));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("grounded", new AttrDetails("TransformerEnd.grounded", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("grounded", new AttrDetails("TransformerEnd.grounded", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, TransformerEnd::getGrounded, TransformerEnd::setGrounded));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("rground", new AttrDetails("TransformerEnd.rground", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("rground", new AttrDetails("TransformerEnd.rground", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, TransformerEnd::getRground, TransformerEnd::setRground));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("xground", new AttrDetails("TransformerEnd.xground", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("xground", new AttrDetails("TransformerEnd.xground", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, TransformerEnd::getXground, TransformerEnd::setXground));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TransformerEnd().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TransformerEnd(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("BaseVoltage", new GetterSetter(this::BaseVoltageToString, this::setBaseVoltage, null));
-        map.put("PhaseTapChanger", new GetterSetter(this::PhaseTapChangerToString, this::setPhaseTapChanger, null));
-        map.put("RatioTapChanger", new GetterSetter(this::RatioTapChangerToString, this::setRatioTapChanger, null));
-        map.put("Terminal", new GetterSetter(this::TerminalToString, this::setTerminal, null));
-        map.put("endNumber", new GetterSetter(this::endNumberToString, null, this::setEndNumber));
-        map.put("grounded", new GetterSetter(this::groundedToString, null, this::setGrounded));
-        map.put("rground", new GetterSetter(this::rgroundToString, null, this::setRground));
-        map.put("xground", new GetterSetter(this::xgroundToString, null, this::setXground));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

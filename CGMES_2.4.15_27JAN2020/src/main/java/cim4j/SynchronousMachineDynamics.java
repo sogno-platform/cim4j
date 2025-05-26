@@ -23,10 +23,17 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
     private static final Logging LOG = Logging.getLogger(SynchronousMachineDynamics.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public SynchronousMachineDynamics() {
-        setCimType("SynchronousMachineDynamics");
+    public SynchronousMachineDynamics(String rdfid) {
+        super("SynchronousMachineDynamics", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected SynchronousMachineDynamics(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
         return ExcitationSystemDynamics;
     }
 
-    public void setExcitationSystemDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof ExcitationSystemDynamics)) {
-            throw new IllegalArgumentException("Object is not ExcitationSystemDynamics");
-        }
+    public void setExcitationSystemDynamics(ExcitationSystemDynamics _object_) {
         if (ExcitationSystemDynamics != _object_) {
-            ExcitationSystemDynamics = (ExcitationSystemDynamics) _object_;
+            ExcitationSystemDynamics = _object_;
             ExcitationSystemDynamics.setSynchronousMachineDynamics(this);
         }
     }
 
-    public String ExcitationSystemDynamicsToString() {
-        return ExcitationSystemDynamics != null ? ExcitationSystemDynamics.getRdfid() : null;
+    private static Object getExcitationSystemDynamics(BaseClass _this_) {
+        return ((SynchronousMachineDynamics) _this_).getExcitationSystemDynamics();
+    }
+
+    private static void setExcitationSystemDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ExcitationSystemDynamics) {
+            ((SynchronousMachineDynamics) _this_).setExcitationSystemDynamics((ExcitationSystemDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ExcitationSystemDynamics");
+        }
     }
 
     /**
@@ -65,18 +77,23 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
         return GenICompensationForGenJ;
     }
 
-    public void setGenICompensationForGenJ(BaseClass _object_) {
-        if (!(_object_ instanceof GenICompensationForGenJ)) {
-            throw new IllegalArgumentException("Object is not GenICompensationForGenJ");
-        }
+    public void setGenICompensationForGenJ(GenICompensationForGenJ _object_) {
         if (!GenICompensationForGenJ.contains(_object_)) {
-            GenICompensationForGenJ.add((GenICompensationForGenJ) _object_);
-            ((GenICompensationForGenJ) _object_).setSynchronousMachineDynamics(this);
+            GenICompensationForGenJ.add(_object_);
+            _object_.setSynchronousMachineDynamics(this);
         }
     }
 
-    public String GenICompensationForGenJToString() {
-        return getStringFromSet(GenICompensationForGenJ);
+    private static Object getGenICompensationForGenJ(BaseClass _this_) {
+        return ((SynchronousMachineDynamics) _this_).getGenICompensationForGenJ();
+    }
+
+    private static void setGenICompensationForGenJ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof GenICompensationForGenJ) {
+            ((SynchronousMachineDynamics) _this_).setGenICompensationForGenJ((GenICompensationForGenJ) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not GenICompensationForGenJ");
+        }
     }
 
     /**
@@ -90,18 +107,23 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
         return MechanicalLoadDynamics;
     }
 
-    public void setMechanicalLoadDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof MechanicalLoadDynamics)) {
-            throw new IllegalArgumentException("Object is not MechanicalLoadDynamics");
-        }
+    public void setMechanicalLoadDynamics(MechanicalLoadDynamics _object_) {
         if (MechanicalLoadDynamics != _object_) {
-            MechanicalLoadDynamics = (MechanicalLoadDynamics) _object_;
+            MechanicalLoadDynamics = _object_;
             MechanicalLoadDynamics.setSynchronousMachineDynamics(this);
         }
     }
 
-    public String MechanicalLoadDynamicsToString() {
-        return MechanicalLoadDynamics != null ? MechanicalLoadDynamics.getRdfid() : null;
+    private static Object getMechanicalLoadDynamics(BaseClass _this_) {
+        return ((SynchronousMachineDynamics) _this_).getMechanicalLoadDynamics();
+    }
+
+    private static void setMechanicalLoadDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof MechanicalLoadDynamics) {
+            ((SynchronousMachineDynamics) _this_).setMechanicalLoadDynamics((MechanicalLoadDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not MechanicalLoadDynamics");
+        }
     }
 
     /**
@@ -113,18 +135,23 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
         return SynchronousMachine;
     }
 
-    public void setSynchronousMachine(BaseClass _object_) {
-        if (!(_object_ instanceof SynchronousMachine)) {
-            throw new IllegalArgumentException("Object is not SynchronousMachine");
-        }
+    public void setSynchronousMachine(SynchronousMachine _object_) {
         if (SynchronousMachine != _object_) {
-            SynchronousMachine = (SynchronousMachine) _object_;
+            SynchronousMachine = _object_;
             SynchronousMachine.setSynchronousMachineDynamics(this);
         }
     }
 
-    public String SynchronousMachineToString() {
-        return SynchronousMachine != null ? SynchronousMachine.getRdfid() : null;
+    private static Object getSynchronousMachine(BaseClass _this_) {
+        return ((SynchronousMachineDynamics) _this_).getSynchronousMachine();
+    }
+
+    private static void setSynchronousMachine(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof SynchronousMachine) {
+            ((SynchronousMachineDynamics) _this_).setSynchronousMachine((SynchronousMachine) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not SynchronousMachine");
+        }
     }
 
     /**
@@ -138,18 +165,23 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
         return TurbineGovernorDynamics;
     }
 
-    public void setTurbineGovernorDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof TurbineGovernorDynamics)) {
-            throw new IllegalArgumentException("Object is not TurbineGovernorDynamics");
-        }
+    public void setTurbineGovernorDynamics(TurbineGovernorDynamics _object_) {
         if (!TurbineGovernorDynamics.contains(_object_)) {
-            TurbineGovernorDynamics.add((TurbineGovernorDynamics) _object_);
-            ((TurbineGovernorDynamics) _object_).setSynchronousMachineDynamics(this);
+            TurbineGovernorDynamics.add(_object_);
+            _object_.setSynchronousMachineDynamics(this);
         }
     }
 
-    public String TurbineGovernorDynamicsToString() {
-        return getStringFromSet(TurbineGovernorDynamics);
+    private static Object getTurbineGovernorDynamics(BaseClass _this_) {
+        return ((SynchronousMachineDynamics) _this_).getTurbineGovernorDynamics();
+    }
+
+    private static void setTurbineGovernorDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof TurbineGovernorDynamics) {
+            ((SynchronousMachineDynamics) _this_).setTurbineGovernorDynamics((TurbineGovernorDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not TurbineGovernorDynamics");
+        }
     }
 
     /**
@@ -186,64 +218,35 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("SynchronousMachineDynamics", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "SynchronousMachineDynamics", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("SynchronousMachineDynamics", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("SynchronousMachineDynamics", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "SynchronousMachineDynamics", attrName, value));
         }
     }
 
@@ -367,42 +370,31 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ExcitationSystemDynamics", new AttrDetails("SynchronousMachineDynamics.ExcitationSystemDynamics", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("ExcitationSystemDynamics", new AttrDetails("SynchronousMachineDynamics.ExcitationSystemDynamics", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, SynchronousMachineDynamics::getExcitationSystemDynamics, SynchronousMachineDynamics::setExcitationSystemDynamics));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("GenICompensationForGenJ", new AttrDetails("SynchronousMachineDynamics.GenICompensationForGenJ", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("GenICompensationForGenJ", new AttrDetails("SynchronousMachineDynamics.GenICompensationForGenJ", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, SynchronousMachineDynamics::getGenICompensationForGenJ, SynchronousMachineDynamics::setGenICompensationForGenJ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("MechanicalLoadDynamics", new AttrDetails("SynchronousMachineDynamics.MechanicalLoadDynamics", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("MechanicalLoadDynamics", new AttrDetails("SynchronousMachineDynamics.MechanicalLoadDynamics", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, SynchronousMachineDynamics::getMechanicalLoadDynamics, SynchronousMachineDynamics::setMechanicalLoadDynamics));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("SynchronousMachine", new AttrDetails("SynchronousMachineDynamics.SynchronousMachine", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("SynchronousMachine", new AttrDetails("SynchronousMachineDynamics.SynchronousMachine", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, SynchronousMachineDynamics::getSynchronousMachine, SynchronousMachineDynamics::setSynchronousMachine));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("TurbineGovernorDynamics", new AttrDetails("SynchronousMachineDynamics.TurbineGovernorDynamics", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("TurbineGovernorDynamics", new AttrDetails("SynchronousMachineDynamics.TurbineGovernorDynamics", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, SynchronousMachineDynamics::getTurbineGovernorDynamics, SynchronousMachineDynamics::setTurbineGovernorDynamics));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SynchronousMachineDynamics().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SynchronousMachineDynamics(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ExcitationSystemDynamics", new GetterSetter(this::ExcitationSystemDynamicsToString, this::setExcitationSystemDynamics, null));
-        map.put("GenICompensationForGenJ", new GetterSetter(this::GenICompensationForGenJToString, this::setGenICompensationForGenJ, null));
-        map.put("MechanicalLoadDynamics", new GetterSetter(this::MechanicalLoadDynamicsToString, this::setMechanicalLoadDynamics, null));
-        map.put("SynchronousMachine", new GetterSetter(this::SynchronousMachineToString, this::setSynchronousMachine, null));
-        map.put("TurbineGovernorDynamics", new GetterSetter(this::TurbineGovernorDynamicsToString, this::setTurbineGovernorDynamics, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

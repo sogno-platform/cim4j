@@ -23,10 +23,17 @@ public class DiscExcContIEEEDEC2A extends DiscontinuousExcitationControlDynamics
     private static final Logging LOG = Logging.getLogger(DiscExcContIEEEDEC2A.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public DiscExcContIEEEDEC2A() {
-        setCimType("DiscExcContIEEEDEC2A");
+    public DiscExcContIEEEDEC2A(String rdfid) {
+        super("DiscExcContIEEEDEC2A", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected DiscExcContIEEEDEC2A(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class DiscExcContIEEEDEC2A extends DiscontinuousExcitationControlDynamics
         td1 = _value_;
     }
 
-    public void setTd1(String _value_) {
-        td1 = getDoubleFromString(_value_);
+    private static Object getTd1(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC2A) _this_).getTd1();
     }
 
-    public String td1ToString() {
-        return td1 != null ? td1.toString() : null;
+    private static void setTd1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC2A) _this_).setTd1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC2A) _this_).setTd1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class DiscExcContIEEEDEC2A extends DiscontinuousExcitationControlDynamics
         td2 = _value_;
     }
 
-    public void setTd2(String _value_) {
-        td2 = getDoubleFromString(_value_);
+    private static Object getTd2(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC2A) _this_).getTd2();
     }
 
-    public String td2ToString() {
-        return td2 != null ? td2.toString() : null;
+    private static void setTd2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC2A) _this_).setTd2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC2A) _this_).setTd2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class DiscExcContIEEEDEC2A extends DiscontinuousExcitationControlDynamics
         vdmax = _value_;
     }
 
-    public void setVdmax(String _value_) {
-        vdmax = getDoubleFromString(_value_);
+    private static Object getVdmax(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC2A) _this_).getVdmax();
     }
 
-    public String vdmaxToString() {
-        return vdmax != null ? vdmax.toString() : null;
+    private static void setVdmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC2A) _this_).setVdmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC2A) _this_).setVdmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class DiscExcContIEEEDEC2A extends DiscontinuousExcitationControlDynamics
         vdmin = _value_;
     }
 
-    public void setVdmin(String _value_) {
-        vdmin = getDoubleFromString(_value_);
+    private static Object getVdmin(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC2A) _this_).getVdmin();
     }
 
-    public String vdminToString() {
-        return vdmin != null ? vdmin.toString() : null;
+    private static void setVdmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC2A) _this_).setVdmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC2A) _this_).setVdmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class DiscExcContIEEEDEC2A extends DiscontinuousExcitationControlDynamics
         vk = _value_;
     }
 
-    public void setVk(String _value_) {
-        vk = getDoubleFromString(_value_);
+    private static Object getVk(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC2A) _this_).getVk();
     }
 
-    public String vkToString() {
-        return vk != null ? vk.toString() : null;
+    private static void setVk(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC2A) _this_).setVk((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC2A) _this_).setVk(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,64 +205,35 @@ public class DiscExcContIEEEDEC2A extends DiscontinuousExcitationControlDynamics
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("DiscExcContIEEEDEC2A", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "DiscExcContIEEEDEC2A", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("DiscExcContIEEEDEC2A", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("DiscExcContIEEEDEC2A", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "DiscExcContIEEEDEC2A", attrName, value));
         }
     }
 
@@ -349,42 +357,31 @@ public class DiscExcContIEEEDEC2A extends DiscontinuousExcitationControlDynamics
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("td1", new AttrDetails("DiscExcContIEEEDEC2A.td1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("td1", new AttrDetails("DiscExcContIEEEDEC2A.td1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC2A::getTd1, DiscExcContIEEEDEC2A::setTd1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("td2", new AttrDetails("DiscExcContIEEEDEC2A.td2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("td2", new AttrDetails("DiscExcContIEEEDEC2A.td2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC2A::getTd2, DiscExcContIEEEDEC2A::setTd2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vdmax", new AttrDetails("DiscExcContIEEEDEC2A.vdmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vdmax", new AttrDetails("DiscExcContIEEEDEC2A.vdmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC2A::getVdmax, DiscExcContIEEEDEC2A::setVdmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vdmin", new AttrDetails("DiscExcContIEEEDEC2A.vdmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vdmin", new AttrDetails("DiscExcContIEEEDEC2A.vdmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC2A::getVdmin, DiscExcContIEEEDEC2A::setVdmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vk", new AttrDetails("DiscExcContIEEEDEC2A.vk", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vk", new AttrDetails("DiscExcContIEEEDEC2A.vk", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiscExcContIEEEDEC2A::getVk, DiscExcContIEEEDEC2A::setVk));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DiscExcContIEEEDEC2A().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DiscExcContIEEEDEC2A(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("td1", new GetterSetter(this::td1ToString, null, this::setTd1));
-        map.put("td2", new GetterSetter(this::td2ToString, null, this::setTd2));
-        map.put("vdmax", new GetterSetter(this::vdmaxToString, null, this::setVdmax));
-        map.put("vdmin", new GetterSetter(this::vdminToString, null, this::setVdmin));
-        map.put("vk", new GetterSetter(this::vkToString, null, this::setVk));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

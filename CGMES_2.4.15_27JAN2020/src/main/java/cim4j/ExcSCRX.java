@@ -23,10 +23,17 @@ public class ExcSCRX extends ExcitationSystemDynamics {
     private static final Logging LOG = Logging.getLogger(ExcSCRX.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ExcSCRX() {
-        setCimType("ExcSCRX");
+    public ExcSCRX(String rdfid) {
+        super("ExcSCRX", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ExcSCRX(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class ExcSCRX extends ExcitationSystemDynamics {
         cswitch = _value_;
     }
 
-    public void setCswitch(String _value_) {
-        cswitch = getBooleanFromString(_value_);
+    private static Object getCswitch(BaseClass _this_) {
+        return ((ExcSCRX) _this_).getCswitch();
     }
 
-    public String cswitchToString() {
-        return cswitch != null ? cswitch.toString() : null;
+    private static void setCswitch(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ExcSCRX) _this_).setCswitch((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcSCRX) _this_).setCswitch(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class ExcSCRX extends ExcitationSystemDynamics {
         emax = _value_;
     }
 
-    public void setEmax(String _value_) {
-        emax = getDoubleFromString(_value_);
+    private static Object getEmax(BaseClass _this_) {
+        return ((ExcSCRX) _this_).getEmax();
     }
 
-    public String emaxToString() {
-        return emax != null ? emax.toString() : null;
+    private static void setEmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcSCRX) _this_).setEmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcSCRX) _this_).setEmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,16 +103,22 @@ public class ExcSCRX extends ExcitationSystemDynamics {
         emin = _value_;
     }
 
-    public void setEmin(String _value_) {
-        emin = getDoubleFromString(_value_);
+    private static Object getEmin(BaseClass _this_) {
+        return ((ExcSCRX) _this_).getEmin();
     }
 
-    public String eminToString() {
-        return emin != null ? emin.toString() : null;
+    private static void setEmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcSCRX) _this_).setEmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcSCRX) _this_).setEmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Gain (K) (&gt;0).  Typical Value = 200.
+     * Gain (K) (>0).  Typical Value = 200.
      */
     private Double k; // PU
 
@@ -105,12 +130,18 @@ public class ExcSCRX extends ExcitationSystemDynamics {
         k = _value_;
     }
 
-    public void setK(String _value_) {
-        k = getDoubleFromString(_value_);
+    private static Object getK(BaseClass _this_) {
+        return ((ExcSCRX) _this_).getK();
     }
 
-    public String kToString() {
-        return k != null ? k.toString() : null;
+    private static void setK(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcSCRX) _this_).setK((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcSCRX) _this_).setK(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class ExcSCRX extends ExcitationSystemDynamics {
         rcrfd = _value_;
     }
 
-    public void setRcrfd(String _value_) {
-        rcrfd = getDoubleFromString(_value_);
+    private static Object getRcrfd(BaseClass _this_) {
+        return ((ExcSCRX) _this_).getRcrfd();
     }
 
-    public String rcrfdToString() {
-        return rcrfd != null ? rcrfd.toString() : null;
+    private static void setRcrfd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcSCRX) _this_).setRcrfd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcSCRX) _this_).setRcrfd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,12 +184,18 @@ public class ExcSCRX extends ExcitationSystemDynamics {
         tatb = _value_;
     }
 
-    public void setTatb(String _value_) {
-        tatb = getDoubleFromString(_value_);
+    private static Object getTatb(BaseClass _this_) {
+        return ((ExcSCRX) _this_).getTatb();
     }
 
-    public String tatbToString() {
-        return tatb != null ? tatb.toString() : null;
+    private static void setTatb(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcSCRX) _this_).setTatb((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcSCRX) _this_).setTatb(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,16 +211,22 @@ public class ExcSCRX extends ExcitationSystemDynamics {
         tb = _value_;
     }
 
-    public void setTb(String _value_) {
-        tb = getDoubleFromString(_value_);
+    private static Object getTb(BaseClass _this_) {
+        return ((ExcSCRX) _this_).getTb();
     }
 
-    public String tbToString() {
-        return tb != null ? tb.toString() : null;
+    private static void setTb(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcSCRX) _this_).setTb((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcSCRX) _this_).setTb(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Time constant of gain block (Te) (&gt;0).  Typical Value = 0.02.
+     * Time constant of gain block (Te) (>0).  Typical Value = 0.02.
      */
     private Double te; // Seconds
 
@@ -189,12 +238,18 @@ public class ExcSCRX extends ExcitationSystemDynamics {
         te = _value_;
     }
 
-    public void setTe(String _value_) {
-        te = getDoubleFromString(_value_);
+    private static Object getTe(BaseClass _this_) {
+        return ((ExcSCRX) _this_).getTe();
     }
 
-    public String teToString() {
-        return te != null ? te.toString() : null;
+    private static void setTe(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcSCRX) _this_).setTe((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcSCRX) _this_).setTe(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -231,64 +286,35 @@ public class ExcSCRX extends ExcitationSystemDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ExcSCRX", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ExcSCRX", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ExcSCRX", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ExcSCRX", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ExcSCRX", attrName, value));
         }
     }
 
@@ -412,60 +438,46 @@ public class ExcSCRX extends ExcitationSystemDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("cswitch", new AttrDetails("ExcSCRX.cswitch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("cswitch", new AttrDetails("ExcSCRX.cswitch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcSCRX::getCswitch, ExcSCRX::setCswitch));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("emax", new AttrDetails("ExcSCRX.emax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("emax", new AttrDetails("ExcSCRX.emax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcSCRX::getEmax, ExcSCRX::setEmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("emin", new AttrDetails("ExcSCRX.emin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("emin", new AttrDetails("ExcSCRX.emin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcSCRX::getEmin, ExcSCRX::setEmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k", new AttrDetails("ExcSCRX.k", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("k", new AttrDetails("ExcSCRX.k", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcSCRX::getK, ExcSCRX::setK));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rcrfd", new AttrDetails("ExcSCRX.rcrfd", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("rcrfd", new AttrDetails("ExcSCRX.rcrfd", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcSCRX::getRcrfd, ExcSCRX::setRcrfd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tatb", new AttrDetails("ExcSCRX.tatb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tatb", new AttrDetails("ExcSCRX.tatb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcSCRX::getTatb, ExcSCRX::setTatb));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tb", new AttrDetails("ExcSCRX.tb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tb", new AttrDetails("ExcSCRX.tb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcSCRX::getTb, ExcSCRX::setTb));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("te", new AttrDetails("ExcSCRX.te", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("te", new AttrDetails("ExcSCRX.te", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcSCRX::getTe, ExcSCRX::setTe));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcSCRX().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcSCRX(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("cswitch", new GetterSetter(this::cswitchToString, null, this::setCswitch));
-        map.put("emax", new GetterSetter(this::emaxToString, null, this::setEmax));
-        map.put("emin", new GetterSetter(this::eminToString, null, this::setEmin));
-        map.put("k", new GetterSetter(this::kToString, null, this::setK));
-        map.put("rcrfd", new GetterSetter(this::rcrfdToString, null, this::setRcrfd));
-        map.put("tatb", new GetterSetter(this::tatbToString, null, this::setTatb));
-        map.put("tb", new GetterSetter(this::tbToString, null, this::setTb));
-        map.put("te", new GetterSetter(this::teToString, null, this::setTe));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,10 +23,17 @@ public class WindAeroTwoDimIEC extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(WindAeroTwoDimIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindAeroTwoDimIEC() {
-        setCimType("WindAeroTwoDimIEC");
+    public WindAeroTwoDimIEC(String rdfid) {
+        super("WindAeroTwoDimIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindAeroTwoDimIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,22 +47,27 @@ public class WindAeroTwoDimIEC extends IdentifiedObject {
         return WindTurbineType3IEC;
     }
 
-    public void setWindTurbineType3IEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindTurbineType3IEC)) {
-            throw new IllegalArgumentException("Object is not WindTurbineType3IEC");
-        }
+    public void setWindTurbineType3IEC(WindTurbineType3IEC _object_) {
         if (WindTurbineType3IEC != _object_) {
-            WindTurbineType3IEC = (WindTurbineType3IEC) _object_;
+            WindTurbineType3IEC = _object_;
             WindTurbineType3IEC.setWindAeroTwoDimIEC(this);
         }
     }
 
-    public String WindTurbineType3IECToString() {
-        return WindTurbineType3IEC != null ? WindTurbineType3IEC.getRdfid() : null;
+    private static Object getWindTurbineType3IEC(BaseClass _this_) {
+        return ((WindAeroTwoDimIEC) _this_).getWindTurbineType3IEC();
+    }
+
+    private static void setWindTurbineType3IEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindTurbineType3IEC) {
+            ((WindAeroTwoDimIEC) _this_).setWindTurbineType3IEC((WindTurbineType3IEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindTurbineType3IEC");
+        }
     }
 
     /**
-     * Partial derivative of aerodynamic power with respect to changes in WTR speed (&lt;i&gt;dp&lt;/i&gt;&lt;i&gt;&lt;sub&gt;omega&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Partial derivative of aerodynamic power with respect to changes in WTR speed (<i>dp</i><i><sub>omega</sub></i>). It is a type-dependent parameter.
      */
     private Double dpomega; // PU
 
@@ -67,16 +79,22 @@ public class WindAeroTwoDimIEC extends IdentifiedObject {
         dpomega = _value_;
     }
 
-    public void setDpomega(String _value_) {
-        dpomega = getDoubleFromString(_value_);
+    private static Object getDpomega(BaseClass _this_) {
+        return ((WindAeroTwoDimIEC) _this_).getDpomega();
     }
 
-    public String dpomegaToString() {
-        return dpomega != null ? dpomega.toString() : null;
+    private static void setDpomega(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindAeroTwoDimIEC) _this_).setDpomega((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindAeroTwoDimIEC) _this_).setDpomega(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Partial derivative of aerodynamic power with respect to changes in pitch angle (&lt;i&gt;dp&lt;/i&gt;&lt;i&gt;&lt;sub&gt;theta&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>). It is a type-dependent parameter.
      */
     private Double dptheta; // PU
 
@@ -88,16 +106,22 @@ public class WindAeroTwoDimIEC extends IdentifiedObject {
         dptheta = _value_;
     }
 
-    public void setDptheta(String _value_) {
-        dptheta = getDoubleFromString(_value_);
+    private static Object getDptheta(BaseClass _this_) {
+        return ((WindAeroTwoDimIEC) _this_).getDptheta();
     }
 
-    public String dpthetaToString() {
-        return dptheta != null ? dptheta.toString() : null;
+    private static void setDptheta(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindAeroTwoDimIEC) _this_).setDptheta((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindAeroTwoDimIEC) _this_).setDptheta(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Partial derivative (&lt;i&gt;dp&lt;/i&gt;&lt;i&gt;&lt;sub&gt;v1&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Partial derivative (<i>dp</i><i><sub>v1</sub></i>). It is a type-dependent parameter.
      */
     private Double dpv1; // PU
 
@@ -109,16 +133,22 @@ public class WindAeroTwoDimIEC extends IdentifiedObject {
         dpv1 = _value_;
     }
 
-    public void setDpv1(String _value_) {
-        dpv1 = getDoubleFromString(_value_);
+    private static Object getDpv1(BaseClass _this_) {
+        return ((WindAeroTwoDimIEC) _this_).getDpv1();
     }
 
-    public String dpv1ToString() {
-        return dpv1 != null ? dpv1.toString() : null;
+    private static void setDpv1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindAeroTwoDimIEC) _this_).setDpv1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindAeroTwoDimIEC) _this_).setDpv1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Rotor speed if the wind turbine is not derated (&lt;i&gt;omega&lt;/i&gt;&lt;i&gt;&lt;sub&gt;0&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Rotor speed if the wind turbine is not derated (<i>omega</i><i><sub>0</sub></i>). It is a type-dependent parameter.
      */
     private Double omegazero; // PU
 
@@ -130,16 +160,22 @@ public class WindAeroTwoDimIEC extends IdentifiedObject {
         omegazero = _value_;
     }
 
-    public void setOmegazero(String _value_) {
-        omegazero = getDoubleFromString(_value_);
+    private static Object getOmegazero(BaseClass _this_) {
+        return ((WindAeroTwoDimIEC) _this_).getOmegazero();
     }
 
-    public String omegazeroToString() {
-        return omegazero != null ? omegazero.toString() : null;
+    private static void setOmegazero(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindAeroTwoDimIEC) _this_).setOmegazero((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindAeroTwoDimIEC) _this_).setOmegazero(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Available aerodynamic power (&lt;i&gt;p&lt;/i&gt;&lt;i&gt;&lt;sub&gt;avail&lt;/sub&gt;&lt;/i&gt;&lt;i&gt;)&lt;/i&gt;. It is a case-dependent parameter.
+     * Available aerodynamic power (<i>p</i><i><sub>avail</sub></i><i>)</i>. It is a case-dependent parameter.
      */
     private Double pavail; // PU
 
@@ -151,16 +187,22 @@ public class WindAeroTwoDimIEC extends IdentifiedObject {
         pavail = _value_;
     }
 
-    public void setPavail(String _value_) {
-        pavail = getDoubleFromString(_value_);
+    private static Object getPavail(BaseClass _this_) {
+        return ((WindAeroTwoDimIEC) _this_).getPavail();
     }
 
-    public String pavailToString() {
-        return pavail != null ? pavail.toString() : null;
+    private static void setPavail(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindAeroTwoDimIEC) _this_).setPavail((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindAeroTwoDimIEC) _this_).setPavail(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Blade angle at twice rated wind speed (&lt;i&gt;theta&lt;/i&gt;&lt;i&gt;&lt;sub&gt;v2&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Blade angle at twice rated wind speed (<i>theta</i><i><sub>v2</sub></i>). It is a type-dependent parameter.
      */
     private Double thetav2; // AngleDegrees
 
@@ -172,16 +214,22 @@ public class WindAeroTwoDimIEC extends IdentifiedObject {
         thetav2 = _value_;
     }
 
-    public void setThetav2(String _value_) {
-        thetav2 = getDoubleFromString(_value_);
+    private static Object getThetav2(BaseClass _this_) {
+        return ((WindAeroTwoDimIEC) _this_).getThetav2();
     }
 
-    public String thetav2ToString() {
-        return thetav2 != null ? thetav2.toString() : null;
+    private static void setThetav2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindAeroTwoDimIEC) _this_).setThetav2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindAeroTwoDimIEC) _this_).setThetav2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Pitch angle if the wind turbine is not derated (&lt;i&gt;theta&lt;/i&gt;&lt;i&gt;&lt;sub&gt;0&lt;/sub&gt;&lt;/i&gt;). It is a case-dependent parameter.
+     * Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>). It is a case-dependent parameter.
      */
     private Double thetazero; // AngleDegrees
 
@@ -193,12 +241,18 @@ public class WindAeroTwoDimIEC extends IdentifiedObject {
         thetazero = _value_;
     }
 
-    public void setThetazero(String _value_) {
-        thetazero = getDoubleFromString(_value_);
+    private static Object getThetazero(BaseClass _this_) {
+        return ((WindAeroTwoDimIEC) _this_).getThetazero();
     }
 
-    public String thetazeroToString() {
-        return thetazero != null ? thetazero.toString() : null;
+    private static void setThetazero(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindAeroTwoDimIEC) _this_).setThetazero((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindAeroTwoDimIEC) _this_).setThetazero(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -235,64 +289,35 @@ public class WindAeroTwoDimIEC extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindAeroTwoDimIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindAeroTwoDimIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindAeroTwoDimIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindAeroTwoDimIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindAeroTwoDimIEC", attrName, value));
         }
     }
 
@@ -416,60 +441,46 @@ public class WindAeroTwoDimIEC extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindTurbineType3IEC", new AttrDetails("WindAeroTwoDimIEC.WindTurbineType3IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindTurbineType3IEC", new AttrDetails("WindAeroTwoDimIEC.WindTurbineType3IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindAeroTwoDimIEC::getWindTurbineType3IEC, WindAeroTwoDimIEC::setWindTurbineType3IEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dpomega", new AttrDetails("WindAeroTwoDimIEC.dpomega", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("dpomega", new AttrDetails("WindAeroTwoDimIEC.dpomega", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindAeroTwoDimIEC::getDpomega, WindAeroTwoDimIEC::setDpomega));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dptheta", new AttrDetails("WindAeroTwoDimIEC.dptheta", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("dptheta", new AttrDetails("WindAeroTwoDimIEC.dptheta", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindAeroTwoDimIEC::getDptheta, WindAeroTwoDimIEC::setDptheta));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("dpv1", new AttrDetails("WindAeroTwoDimIEC.dpv1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("dpv1", new AttrDetails("WindAeroTwoDimIEC.dpv1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindAeroTwoDimIEC::getDpv1, WindAeroTwoDimIEC::setDpv1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("omegazero", new AttrDetails("WindAeroTwoDimIEC.omegazero", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("omegazero", new AttrDetails("WindAeroTwoDimIEC.omegazero", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindAeroTwoDimIEC::getOmegazero, WindAeroTwoDimIEC::setOmegazero));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pavail", new AttrDetails("WindAeroTwoDimIEC.pavail", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pavail", new AttrDetails("WindAeroTwoDimIEC.pavail", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindAeroTwoDimIEC::getPavail, WindAeroTwoDimIEC::setPavail));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("thetav2", new AttrDetails("WindAeroTwoDimIEC.thetav2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("thetav2", new AttrDetails("WindAeroTwoDimIEC.thetav2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindAeroTwoDimIEC::getThetav2, WindAeroTwoDimIEC::setThetav2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("thetazero", new AttrDetails("WindAeroTwoDimIEC.thetazero", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("thetazero", new AttrDetails("WindAeroTwoDimIEC.thetazero", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindAeroTwoDimIEC::getThetazero, WindAeroTwoDimIEC::setThetazero));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindAeroTwoDimIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindAeroTwoDimIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("WindTurbineType3IEC", new GetterSetter(this::WindTurbineType3IECToString, this::setWindTurbineType3IEC, null));
-        map.put("dpomega", new GetterSetter(this::dpomegaToString, null, this::setDpomega));
-        map.put("dptheta", new GetterSetter(this::dpthetaToString, null, this::setDptheta));
-        map.put("dpv1", new GetterSetter(this::dpv1ToString, null, this::setDpv1));
-        map.put("omegazero", new GetterSetter(this::omegazeroToString, null, this::setOmegazero));
-        map.put("pavail", new GetterSetter(this::pavailToString, null, this::setPavail));
-        map.put("thetav2", new GetterSetter(this::thetav2ToString, null, this::setThetav2));
-        map.put("thetazero", new GetterSetter(this::thetazeroToString, null, this::setThetazero));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

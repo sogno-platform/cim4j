@@ -23,10 +23,17 @@ public class FossilFuel extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(FossilFuel.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public FossilFuel() {
-        setCimType("FossilFuel");
+    public FossilFuel(String rdfid) {
+        super("FossilFuel", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected FossilFuel(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class FossilFuel extends IdentifiedObject {
         return ThermalGeneratingUnit;
     }
 
-    public void setThermalGeneratingUnit(BaseClass _object_) {
-        if (!(_object_ instanceof ThermalGeneratingUnit)) {
-            throw new IllegalArgumentException("Object is not ThermalGeneratingUnit");
-        }
+    public void setThermalGeneratingUnit(ThermalGeneratingUnit _object_) {
         if (ThermalGeneratingUnit != _object_) {
-            ThermalGeneratingUnit = (ThermalGeneratingUnit) _object_;
+            ThermalGeneratingUnit = _object_;
             ThermalGeneratingUnit.setFossilFuels(this);
         }
     }
 
-    public String ThermalGeneratingUnitToString() {
-        return ThermalGeneratingUnit != null ? ThermalGeneratingUnit.getRdfid() : null;
+    private static Object getThermalGeneratingUnit(BaseClass _this_) {
+        return ((FossilFuel) _this_).getThermalGeneratingUnit();
+    }
+
+    private static void setThermalGeneratingUnit(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ThermalGeneratingUnit) {
+            ((FossilFuel) _this_).setThermalGeneratingUnit((ThermalGeneratingUnit) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ThermalGeneratingUnit");
+        }
     }
 
     /**
@@ -65,8 +77,16 @@ public class FossilFuel extends IdentifiedObject {
         fossilFuelType = _value_;
     }
 
-    public String fossilFuelTypeToString() {
-        return fossilFuelType;
+    private static Object getFossilFuelType(BaseClass _this_) {
+        return ((FossilFuel) _this_).getFossilFuelType();
+    }
+
+    private static void setFossilFuelType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((FossilFuel) _this_).setFossilFuelType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -103,64 +123,35 @@ public class FossilFuel extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("FossilFuel", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "FossilFuel", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("FossilFuel", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("FossilFuel", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "FossilFuel", attrName, value));
         }
     }
 
@@ -284,24 +275,16 @@ public class FossilFuel extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ThermalGeneratingUnit", new AttrDetails("FossilFuel.ThermalGeneratingUnit", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("ThermalGeneratingUnit", new AttrDetails("FossilFuel.ThermalGeneratingUnit", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, FossilFuel::getThermalGeneratingUnit, FossilFuel::setThermalGeneratingUnit));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("fossilFuelType", new AttrDetails("FossilFuel.fossilFuelType", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
+            map.put("fossilFuelType", new AttrDetails("FossilFuel.fossilFuelType", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true, FossilFuel::getFossilFuelType, FossilFuel::setFossilFuelType));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new FossilFuel().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new FossilFuel(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ThermalGeneratingUnit", new GetterSetter(this::ThermalGeneratingUnitToString, this::setThermalGeneratingUnit, null));
-        map.put("fossilFuelType", new GetterSetter(this::fossilFuelTypeToString, null, this::setFossilFuelType));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

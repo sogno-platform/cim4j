@@ -23,10 +23,17 @@ public class DiscreteValue extends MeasurementValue {
     private static final Logging LOG = Logging.getLogger(DiscreteValue.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public DiscreteValue() {
-        setCimType("DiscreteValue");
+    public DiscreteValue(String rdfid) {
+        super("DiscreteValue", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected DiscreteValue(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class DiscreteValue extends MeasurementValue {
         return Command;
     }
 
-    public void setCommand(BaseClass _object_) {
-        if (!(_object_ instanceof Command)) {
-            throw new IllegalArgumentException("Object is not Command");
-        }
+    public void setCommand(Command _object_) {
         if (Command != _object_) {
-            Command = (Command) _object_;
+            Command = _object_;
             Command.setDiscreteValue(this);
         }
     }
 
-    public String CommandToString() {
-        return Command != null ? Command.getRdfid() : null;
+    private static Object getCommand(BaseClass _this_) {
+        return ((DiscreteValue) _this_).getCommand();
+    }
+
+    private static void setCommand(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Command) {
+            ((DiscreteValue) _this_).setCommand((Command) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Command");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class DiscreteValue extends MeasurementValue {
         return Discrete;
     }
 
-    public void setDiscrete(BaseClass _object_) {
-        if (!(_object_ instanceof Discrete)) {
-            throw new IllegalArgumentException("Object is not Discrete");
-        }
+    public void setDiscrete(Discrete _object_) {
         if (Discrete != _object_) {
-            Discrete = (Discrete) _object_;
+            Discrete = _object_;
             Discrete.setDiscreteValues(this);
         }
     }
 
-    public String DiscreteToString() {
-        return Discrete != null ? Discrete.getRdfid() : null;
+    private static Object getDiscrete(BaseClass _this_) {
+        return ((DiscreteValue) _this_).getDiscrete();
+    }
+
+    private static void setDiscrete(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Discrete) {
+            ((DiscreteValue) _this_).setDiscrete((Discrete) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Discrete");
+        }
     }
 
     /**
@@ -111,64 +128,35 @@ public class DiscreteValue extends MeasurementValue {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("DiscreteValue", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "DiscreteValue", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("DiscreteValue", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("DiscreteValue", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "DiscreteValue", attrName, value));
         }
     }
 
@@ -292,24 +280,16 @@ public class DiscreteValue extends MeasurementValue {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("Command", new AttrDetails("DiscreteValue.Command", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("Command", new AttrDetails("DiscreteValue.Command", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, DiscreteValue::getCommand, DiscreteValue::setCommand));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("Discrete", new AttrDetails("DiscreteValue.Discrete", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("Discrete", new AttrDetails("DiscreteValue.Discrete", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, DiscreteValue::getDiscrete, DiscreteValue::setDiscrete));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DiscreteValue().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DiscreteValue(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("Command", new GetterSetter(this::CommandToString, this::setCommand, null));
-        map.put("Discrete", new GetterSetter(this::DiscreteToString, this::setDiscrete, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

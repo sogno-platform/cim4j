@@ -23,10 +23,17 @@ public class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDyn
     private static final Logging LOG = Logging.getLogger(AsynchronousMachineEquivalentCircuit.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public AsynchronousMachineEquivalentCircuit() {
-        setCimType("AsynchronousMachineEquivalentCircuit");
+    public AsynchronousMachineEquivalentCircuit(String rdfid) {
+        super("AsynchronousMachineEquivalentCircuit", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected AsynchronousMachineEquivalentCircuit(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDyn
         rr1 = _value_;
     }
 
-    public void setRr1(String _value_) {
-        rr1 = getDoubleFromString(_value_);
+    private static Object getRr1(BaseClass _this_) {
+        return ((AsynchronousMachineEquivalentCircuit) _this_).getRr1();
     }
 
-    public String rr1ToString() {
-        return rr1 != null ? rr1.toString() : null;
+    private static void setRr1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((AsynchronousMachineEquivalentCircuit) _this_).setRr1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachineEquivalentCircuit) _this_).setRr1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDyn
         rr2 = _value_;
     }
 
-    public void setRr2(String _value_) {
-        rr2 = getDoubleFromString(_value_);
+    private static Object getRr2(BaseClass _this_) {
+        return ((AsynchronousMachineEquivalentCircuit) _this_).getRr2();
     }
 
-    public String rr2ToString() {
-        return rr2 != null ? rr2.toString() : null;
+    private static void setRr2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((AsynchronousMachineEquivalentCircuit) _this_).setRr2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachineEquivalentCircuit) _this_).setRr2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDyn
         xlr1 = _value_;
     }
 
-    public void setXlr1(String _value_) {
-        xlr1 = getDoubleFromString(_value_);
+    private static Object getXlr1(BaseClass _this_) {
+        return ((AsynchronousMachineEquivalentCircuit) _this_).getXlr1();
     }
 
-    public String xlr1ToString() {
-        return xlr1 != null ? xlr1.toString() : null;
+    private static void setXlr1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((AsynchronousMachineEquivalentCircuit) _this_).setXlr1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachineEquivalentCircuit) _this_).setXlr1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDyn
         xlr2 = _value_;
     }
 
-    public void setXlr2(String _value_) {
-        xlr2 = getDoubleFromString(_value_);
+    private static Object getXlr2(BaseClass _this_) {
+        return ((AsynchronousMachineEquivalentCircuit) _this_).getXlr2();
     }
 
-    public String xlr2ToString() {
-        return xlr2 != null ? xlr2.toString() : null;
+    private static void setXlr2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((AsynchronousMachineEquivalentCircuit) _this_).setXlr2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachineEquivalentCircuit) _this_).setXlr2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDyn
         xm = _value_;
     }
 
-    public void setXm(String _value_) {
-        xm = getDoubleFromString(_value_);
+    private static Object getXm(BaseClass _this_) {
+        return ((AsynchronousMachineEquivalentCircuit) _this_).getXm();
     }
 
-    public String xmToString() {
-        return xm != null ? xm.toString() : null;
+    private static void setXm(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((AsynchronousMachineEquivalentCircuit) _this_).setXm((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((AsynchronousMachineEquivalentCircuit) _this_).setXm(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,64 +205,35 @@ public class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDyn
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("AsynchronousMachineEquivalentCircuit", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "AsynchronousMachineEquivalentCircuit", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("AsynchronousMachineEquivalentCircuit", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("AsynchronousMachineEquivalentCircuit", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "AsynchronousMachineEquivalentCircuit", attrName, value));
         }
     }
 
@@ -349,42 +357,31 @@ public class AsynchronousMachineEquivalentCircuit extends AsynchronousMachineDyn
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rr1", new AttrDetails("AsynchronousMachineEquivalentCircuit.rr1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rr1", new AttrDetails("AsynchronousMachineEquivalentCircuit.rr1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachineEquivalentCircuit::getRr1, AsynchronousMachineEquivalentCircuit::setRr1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rr2", new AttrDetails("AsynchronousMachineEquivalentCircuit.rr2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rr2", new AttrDetails("AsynchronousMachineEquivalentCircuit.rr2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachineEquivalentCircuit::getRr2, AsynchronousMachineEquivalentCircuit::setRr2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xlr1", new AttrDetails("AsynchronousMachineEquivalentCircuit.xlr1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xlr1", new AttrDetails("AsynchronousMachineEquivalentCircuit.xlr1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachineEquivalentCircuit::getXlr1, AsynchronousMachineEquivalentCircuit::setXlr1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xlr2", new AttrDetails("AsynchronousMachineEquivalentCircuit.xlr2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xlr2", new AttrDetails("AsynchronousMachineEquivalentCircuit.xlr2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachineEquivalentCircuit::getXlr2, AsynchronousMachineEquivalentCircuit::setXlr2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xm", new AttrDetails("AsynchronousMachineEquivalentCircuit.xm", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xm", new AttrDetails("AsynchronousMachineEquivalentCircuit.xm", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AsynchronousMachineEquivalentCircuit::getXm, AsynchronousMachineEquivalentCircuit::setXm));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AsynchronousMachineEquivalentCircuit().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AsynchronousMachineEquivalentCircuit(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("rr1", new GetterSetter(this::rr1ToString, null, this::setRr1));
-        map.put("rr2", new GetterSetter(this::rr2ToString, null, this::setRr2));
-        map.put("xlr1", new GetterSetter(this::xlr1ToString, null, this::setXlr1));
-        map.put("xlr2", new GetterSetter(this::xlr2ToString, null, this::setXlr2));
-        map.put("xm", new GetterSetter(this::xmToString, null, this::setXm));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

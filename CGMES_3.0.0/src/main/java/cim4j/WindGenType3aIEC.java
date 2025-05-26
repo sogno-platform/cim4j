@@ -23,10 +23,17 @@ public class WindGenType3aIEC extends WindGenType3IEC {
     private static final Logging LOG = Logging.getLogger(WindGenType3aIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindGenType3aIEC() {
-        setCimType("WindGenType3aIEC");
+    public WindGenType3aIEC(String rdfid) {
+        super("WindGenType3aIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindGenType3aIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,22 +47,27 @@ public class WindGenType3aIEC extends WindGenType3IEC {
         return WindTurbineType4IEC;
     }
 
-    public void setWindTurbineType4IEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindTurbineType4IEC)) {
-            throw new IllegalArgumentException("Object is not WindTurbineType4IEC");
-        }
+    public void setWindTurbineType4IEC(WindTurbineType4IEC _object_) {
         if (WindTurbineType4IEC != _object_) {
-            WindTurbineType4IEC = (WindTurbineType4IEC) _object_;
+            WindTurbineType4IEC = _object_;
             WindTurbineType4IEC.setWindGenType3aIEC(this);
         }
     }
 
-    public String WindTurbineType4IECToString() {
-        return WindTurbineType4IEC != null ? WindTurbineType4IEC.getRdfid() : null;
+    private static Object getWindTurbineType4IEC(BaseClass _this_) {
+        return ((WindGenType3aIEC) _this_).getWindTurbineType4IEC();
+    }
+
+    private static void setWindTurbineType4IEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindTurbineType4IEC) {
+            ((WindGenType3aIEC) _this_).setWindTurbineType4IEC((WindTurbineType4IEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindTurbineType4IEC");
+        }
     }
 
     /**
-     * Current PI controller proportional gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;Pc&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Current PI controller proportional gain (<i>K</i><i><sub>Pc</sub></i>). It is a type-dependent parameter.
      */
     private Float kpc; // Float
 
@@ -67,16 +79,22 @@ public class WindGenType3aIEC extends WindGenType3IEC {
         kpc = _value_;
     }
 
-    public void setKpc(String _value_) {
-        kpc = getFloatFromString(_value_);
+    private static Object getKpc(BaseClass _this_) {
+        return ((WindGenType3aIEC) _this_).getKpc();
     }
 
-    public String kpcToString() {
-        return kpc != null ? kpc.toString() : null;
+    private static void setKpc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((WindGenType3aIEC) _this_).setKpc((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindGenType3aIEC) _this_).setKpc(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Current PI controller integration time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;Ic&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     * Current PI controller integration time constant (<i>T</i><i><sub>Ic</sub></i>) (&gt;= 0). It is a type-dependent parameter.
      */
     private Double tic; // Seconds
 
@@ -88,12 +106,18 @@ public class WindGenType3aIEC extends WindGenType3IEC {
         tic = _value_;
     }
 
-    public void setTic(String _value_) {
-        tic = getDoubleFromString(_value_);
+    private static Object getTic(BaseClass _this_) {
+        return ((WindGenType3aIEC) _this_).getTic();
     }
 
-    public String ticToString() {
-        return tic != null ? tic.toString() : null;
+    private static void setTic(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindGenType3aIEC) _this_).setTic((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindGenType3aIEC) _this_).setTic(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -130,64 +154,35 @@ public class WindGenType3aIEC extends WindGenType3IEC {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindGenType3aIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindGenType3aIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindGenType3aIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindGenType3aIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindGenType3aIEC", attrName, value));
         }
     }
 
@@ -311,30 +306,21 @@ public class WindGenType3aIEC extends WindGenType3IEC {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindTurbineType4IEC", new AttrDetails("WindGenType3aIEC.WindTurbineType4IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindTurbineType4IEC", new AttrDetails("WindGenType3aIEC.WindTurbineType4IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindGenType3aIEC::getWindTurbineType4IEC, WindGenType3aIEC::setWindTurbineType4IEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpc", new AttrDetails("WindGenType3aIEC.kpc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kpc", new AttrDetails("WindGenType3aIEC.kpc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindGenType3aIEC::getKpc, WindGenType3aIEC::setKpc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tic", new AttrDetails("WindGenType3aIEC.tic", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tic", new AttrDetails("WindGenType3aIEC.tic", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindGenType3aIEC::getTic, WindGenType3aIEC::setTic));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindGenType3aIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindGenType3aIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("WindTurbineType4IEC", new GetterSetter(this::WindTurbineType4IECToString, this::setWindTurbineType4IEC, null));
-        map.put("kpc", new GetterSetter(this::kpcToString, null, this::setKpc));
-        map.put("tic", new GetterSetter(this::ticToString, null, this::setTic));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

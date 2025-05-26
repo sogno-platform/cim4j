@@ -23,10 +23,17 @@ public class Equipment extends PowerSystemResource {
     private static final Logging LOG = Logging.getLogger(Equipment.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public Equipment() {
-        setCimType("Equipment");
+    public Equipment(String rdfid) {
+        super("Equipment", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected Equipment(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class Equipment extends PowerSystemResource {
         return EquipmentContainer;
     }
 
-    public void setEquipmentContainer(BaseClass _object_) {
-        if (!(_object_ instanceof EquipmentContainer)) {
-            throw new IllegalArgumentException("Object is not EquipmentContainer");
-        }
+    public void setEquipmentContainer(EquipmentContainer _object_) {
         if (EquipmentContainer != _object_) {
-            EquipmentContainer = (EquipmentContainer) _object_;
+            EquipmentContainer = _object_;
             EquipmentContainer.setEquipments(this);
         }
     }
 
-    public String EquipmentContainerToString() {
-        return EquipmentContainer != null ? EquipmentContainer.getRdfid() : null;
+    private static Object getEquipmentContainer(BaseClass _this_) {
+        return ((Equipment) _this_).getEquipmentContainer();
+    }
+
+    private static void setEquipmentContainer(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof EquipmentContainer) {
+            ((Equipment) _this_).setEquipmentContainer((EquipmentContainer) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not EquipmentContainer");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class Equipment extends PowerSystemResource {
         return OperationalLimitSet;
     }
 
-    public void setOperationalLimitSet(BaseClass _object_) {
-        if (!(_object_ instanceof OperationalLimitSet)) {
-            throw new IllegalArgumentException("Object is not OperationalLimitSet");
-        }
+    public void setOperationalLimitSet(OperationalLimitSet _object_) {
         if (!OperationalLimitSet.contains(_object_)) {
-            OperationalLimitSet.add((OperationalLimitSet) _object_);
-            ((OperationalLimitSet) _object_).setEquipment(this);
+            OperationalLimitSet.add(_object_);
+            _object_.setEquipment(this);
         }
     }
 
-    public String OperationalLimitSetToString() {
-        return getStringFromSet(OperationalLimitSet);
+    private static Object getOperationalLimitSet(BaseClass _this_) {
+        return ((Equipment) _this_).getOperationalLimitSet();
+    }
+
+    private static void setOperationalLimitSet(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof OperationalLimitSet) {
+            ((Equipment) _this_).setOperationalLimitSet((OperationalLimitSet) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not OperationalLimitSet");
+        }
     }
 
     /**
@@ -90,12 +107,18 @@ public class Equipment extends PowerSystemResource {
         aggregate = _value_;
     }
 
-    public void setAggregate(String _value_) {
-        aggregate = getBooleanFromString(_value_);
+    private static Object getAggregate(BaseClass _this_) {
+        return ((Equipment) _this_).getAggregate();
     }
 
-    public String aggregateToString() {
-        return aggregate != null ? aggregate.toString() : null;
+    private static void setAggregate(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Equipment) _this_).setAggregate((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Equipment) _this_).setAggregate(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -132,64 +155,35 @@ public class Equipment extends PowerSystemResource {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("Equipment", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "Equipment", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("Equipment", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("Equipment", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "Equipment", attrName, value));
         }
     }
 
@@ -314,30 +308,21 @@ public class Equipment extends PowerSystemResource {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ_BD);
             profiles.add(CGMESProfile.EQ);
-            map.put("EquipmentContainer", new AttrDetails("Equipment.EquipmentContainer", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("EquipmentContainer", new AttrDetails("Equipment.EquipmentContainer", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, Equipment::getEquipmentContainer, Equipment::setEquipmentContainer));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("OperationalLimitSet", new AttrDetails("Equipment.OperationalLimitSet", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("OperationalLimitSet", new AttrDetails("Equipment.OperationalLimitSet", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, Equipment::getOperationalLimitSet, Equipment::setOperationalLimitSet));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("aggregate", new AttrDetails("Equipment.aggregate", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("aggregate", new AttrDetails("Equipment.aggregate", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, Equipment::getAggregate, Equipment::setAggregate));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Equipment().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Equipment(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("EquipmentContainer", new GetterSetter(this::EquipmentContainerToString, this::setEquipmentContainer, null));
-        map.put("OperationalLimitSet", new GetterSetter(this::OperationalLimitSetToString, this::setOperationalLimitSet, null));
-        map.put("aggregate", new GetterSetter(this::aggregateToString, null, this::setAggregate));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

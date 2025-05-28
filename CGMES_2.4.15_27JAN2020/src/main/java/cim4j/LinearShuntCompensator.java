@@ -23,10 +23,17 @@ public class LinearShuntCompensator extends ShuntCompensator {
     private static final Logging LOG = Logging.getLogger(LinearShuntCompensator.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public LinearShuntCompensator() {
-        setCimType("LinearShuntCompensator");
+    public LinearShuntCompensator(String rdfid) {
+        super("LinearShuntCompensator", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected LinearShuntCompensator(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class LinearShuntCompensator extends ShuntCompensator {
         b0PerSection = _value_;
     }
 
-    public void setB0PerSection(String _value_) {
-        b0PerSection = getDoubleFromString(_value_);
+    private static Object getB0PerSection(BaseClass _this_) {
+        return ((LinearShuntCompensator) _this_).getB0PerSection();
     }
 
-    public String b0PerSectionToString() {
-        return b0PerSection != null ? b0PerSection.toString() : null;
+    private static void setB0PerSection(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LinearShuntCompensator) _this_).setB0PerSection((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LinearShuntCompensator) _this_).setB0PerSection(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class LinearShuntCompensator extends ShuntCompensator {
         bPerSection = _value_;
     }
 
-    public void setBPerSection(String _value_) {
-        bPerSection = getDoubleFromString(_value_);
+    private static Object getBPerSection(BaseClass _this_) {
+        return ((LinearShuntCompensator) _this_).getBPerSection();
     }
 
-    public String bPerSectionToString() {
-        return bPerSection != null ? bPerSection.toString() : null;
+    private static void setBPerSection(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LinearShuntCompensator) _this_).setBPerSection((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LinearShuntCompensator) _this_).setBPerSection(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class LinearShuntCompensator extends ShuntCompensator {
         g0PerSection = _value_;
     }
 
-    public void setG0PerSection(String _value_) {
-        g0PerSection = getDoubleFromString(_value_);
+    private static Object getG0PerSection(BaseClass _this_) {
+        return ((LinearShuntCompensator) _this_).getG0PerSection();
     }
 
-    public String g0PerSectionToString() {
-        return g0PerSection != null ? g0PerSection.toString() : null;
+    private static void setG0PerSection(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LinearShuntCompensator) _this_).setG0PerSection((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LinearShuntCompensator) _this_).setG0PerSection(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class LinearShuntCompensator extends ShuntCompensator {
         gPerSection = _value_;
     }
 
-    public void setGPerSection(String _value_) {
-        gPerSection = getDoubleFromString(_value_);
+    private static Object getGPerSection(BaseClass _this_) {
+        return ((LinearShuntCompensator) _this_).getGPerSection();
     }
 
-    public String gPerSectionToString() {
-        return gPerSection != null ? gPerSection.toString() : null;
+    private static void setGPerSection(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LinearShuntCompensator) _this_).setGPerSection((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LinearShuntCompensator) _this_).setGPerSection(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,64 +178,35 @@ public class LinearShuntCompensator extends ShuntCompensator {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("LinearShuntCompensator", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "LinearShuntCompensator", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("LinearShuntCompensator", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("LinearShuntCompensator", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "LinearShuntCompensator", attrName, value));
         }
     }
 
@@ -328,36 +330,26 @@ public class LinearShuntCompensator extends ShuntCompensator {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("b0PerSection", new AttrDetails("LinearShuntCompensator.b0PerSection", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("b0PerSection", new AttrDetails("LinearShuntCompensator.b0PerSection", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LinearShuntCompensator::getB0PerSection, LinearShuntCompensator::setB0PerSection));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("bPerSection", new AttrDetails("LinearShuntCompensator.bPerSection", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("bPerSection", new AttrDetails("LinearShuntCompensator.bPerSection", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LinearShuntCompensator::getBPerSection, LinearShuntCompensator::setBPerSection));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("g0PerSection", new AttrDetails("LinearShuntCompensator.g0PerSection", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("g0PerSection", new AttrDetails("LinearShuntCompensator.g0PerSection", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LinearShuntCompensator::getG0PerSection, LinearShuntCompensator::setG0PerSection));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("gPerSection", new AttrDetails("LinearShuntCompensator.gPerSection", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("gPerSection", new AttrDetails("LinearShuntCompensator.gPerSection", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LinearShuntCompensator::getGPerSection, LinearShuntCompensator::setGPerSection));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LinearShuntCompensator().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LinearShuntCompensator(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("b0PerSection", new GetterSetter(this::b0PerSectionToString, null, this::setB0PerSection));
-        map.put("bPerSection", new GetterSetter(this::bPerSectionToString, null, this::setBPerSection));
-        map.put("g0PerSection", new GetterSetter(this::g0PerSectionToString, null, this::setG0PerSection));
-        map.put("gPerSection", new GetterSetter(this::gPerSectionToString, null, this::setGPerSection));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

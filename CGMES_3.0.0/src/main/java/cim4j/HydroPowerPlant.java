@@ -23,10 +23,17 @@ public class HydroPowerPlant extends PowerSystemResource {
     private static final Logging LOG = Logging.getLogger(HydroPowerPlant.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public HydroPowerPlant() {
-        setCimType("HydroPowerPlant");
+    public HydroPowerPlant(String rdfid) {
+        super("HydroPowerPlant", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected HydroPowerPlant(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class HydroPowerPlant extends PowerSystemResource {
         return HydroGeneratingUnits;
     }
 
-    public void setHydroGeneratingUnits(BaseClass _object_) {
-        if (!(_object_ instanceof HydroGeneratingUnit)) {
-            throw new IllegalArgumentException("Object is not HydroGeneratingUnit");
-        }
+    public void setHydroGeneratingUnits(HydroGeneratingUnit _object_) {
         if (!HydroGeneratingUnits.contains(_object_)) {
-            HydroGeneratingUnits.add((HydroGeneratingUnit) _object_);
-            ((HydroGeneratingUnit) _object_).setHydroPowerPlant(this);
+            HydroGeneratingUnits.add(_object_);
+            _object_.setHydroPowerPlant(this);
         }
     }
 
-    public String HydroGeneratingUnitsToString() {
-        return getStringFromSet(HydroGeneratingUnits);
+    private static Object getHydroGeneratingUnits(BaseClass _this_) {
+        return ((HydroPowerPlant) _this_).getHydroGeneratingUnits();
+    }
+
+    private static void setHydroGeneratingUnits(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof HydroGeneratingUnit) {
+            ((HydroPowerPlant) _this_).setHydroGeneratingUnits((HydroGeneratingUnit) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not HydroGeneratingUnit");
+        }
     }
 
     /**
@@ -65,18 +77,23 @@ public class HydroPowerPlant extends PowerSystemResource {
         return HydroPumps;
     }
 
-    public void setHydroPumps(BaseClass _object_) {
-        if (!(_object_ instanceof HydroPump)) {
-            throw new IllegalArgumentException("Object is not HydroPump");
-        }
+    public void setHydroPumps(HydroPump _object_) {
         if (!HydroPumps.contains(_object_)) {
-            HydroPumps.add((HydroPump) _object_);
-            ((HydroPump) _object_).setHydroPowerPlant(this);
+            HydroPumps.add(_object_);
+            _object_.setHydroPowerPlant(this);
         }
     }
 
-    public String HydroPumpsToString() {
-        return getStringFromSet(HydroPumps);
+    private static Object getHydroPumps(BaseClass _this_) {
+        return ((HydroPowerPlant) _this_).getHydroPumps();
+    }
+
+    private static void setHydroPumps(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof HydroPump) {
+            ((HydroPowerPlant) _this_).setHydroPumps((HydroPump) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not HydroPump");
+        }
     }
 
     /**
@@ -92,8 +109,16 @@ public class HydroPowerPlant extends PowerSystemResource {
         hydroPlantStorageType = _value_;
     }
 
-    public String hydroPlantStorageTypeToString() {
-        return hydroPlantStorageType;
+    private static Object getHydroPlantStorageType(BaseClass _this_) {
+        return ((HydroPowerPlant) _this_).getHydroPlantStorageType();
+    }
+
+    private static void setHydroPlantStorageType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((HydroPowerPlant) _this_).setHydroPlantStorageType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -130,64 +155,35 @@ public class HydroPowerPlant extends PowerSystemResource {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("HydroPowerPlant", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "HydroPowerPlant", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("HydroPowerPlant", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("HydroPowerPlant", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "HydroPowerPlant", attrName, value));
         }
     }
 
@@ -311,30 +307,21 @@ public class HydroPowerPlant extends PowerSystemResource {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("HydroGeneratingUnits", new AttrDetails("HydroPowerPlant.HydroGeneratingUnits", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("HydroGeneratingUnits", new AttrDetails("HydroPowerPlant.HydroGeneratingUnits", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, HydroPowerPlant::getHydroGeneratingUnits, HydroPowerPlant::setHydroGeneratingUnits));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("HydroPumps", new AttrDetails("HydroPowerPlant.HydroPumps", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("HydroPumps", new AttrDetails("HydroPowerPlant.HydroPumps", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, HydroPowerPlant::getHydroPumps, HydroPowerPlant::setHydroPumps));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("hydroPlantStorageType", new AttrDetails("HydroPowerPlant.hydroPlantStorageType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("hydroPlantStorageType", new AttrDetails("HydroPowerPlant.hydroPlantStorageType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, HydroPowerPlant::getHydroPlantStorageType, HydroPowerPlant::setHydroPlantStorageType));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new HydroPowerPlant().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new HydroPowerPlant(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("HydroGeneratingUnits", new GetterSetter(this::HydroGeneratingUnitsToString, this::setHydroGeneratingUnits, null));
-        map.put("HydroPumps", new GetterSetter(this::HydroPumpsToString, this::setHydroPumps, null));
-        map.put("hydroPlantStorageType", new GetterSetter(this::hydroPlantStorageTypeToString, null, this::setHydroPlantStorageType));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

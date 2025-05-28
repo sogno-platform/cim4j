@@ -23,10 +23,17 @@ public class MechanicalLoadDynamics extends DynamicsFunctionBlock {
     private static final Logging LOG = Logging.getLogger(MechanicalLoadDynamics.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public MechanicalLoadDynamics() {
-        setCimType("MechanicalLoadDynamics");
+    public MechanicalLoadDynamics(String rdfid) {
+        super("MechanicalLoadDynamics", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected MechanicalLoadDynamics(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class MechanicalLoadDynamics extends DynamicsFunctionBlock {
         return AsynchronousMachineDynamics;
     }
 
-    public void setAsynchronousMachineDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof AsynchronousMachineDynamics)) {
-            throw new IllegalArgumentException("Object is not AsynchronousMachineDynamics");
-        }
+    public void setAsynchronousMachineDynamics(AsynchronousMachineDynamics _object_) {
         if (AsynchronousMachineDynamics != _object_) {
-            AsynchronousMachineDynamics = (AsynchronousMachineDynamics) _object_;
+            AsynchronousMachineDynamics = _object_;
             AsynchronousMachineDynamics.setMechanicalLoadDynamics(this);
         }
     }
 
-    public String AsynchronousMachineDynamicsToString() {
-        return AsynchronousMachineDynamics != null ? AsynchronousMachineDynamics.getRdfid() : null;
+    private static Object getAsynchronousMachineDynamics(BaseClass _this_) {
+        return ((MechanicalLoadDynamics) _this_).getAsynchronousMachineDynamics();
+    }
+
+    private static void setAsynchronousMachineDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof AsynchronousMachineDynamics) {
+            ((MechanicalLoadDynamics) _this_).setAsynchronousMachineDynamics((AsynchronousMachineDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not AsynchronousMachineDynamics");
+        }
     }
 
     /**
@@ -61,18 +73,23 @@ public class MechanicalLoadDynamics extends DynamicsFunctionBlock {
         return SynchronousMachineDynamics;
     }
 
-    public void setSynchronousMachineDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof SynchronousMachineDynamics)) {
-            throw new IllegalArgumentException("Object is not SynchronousMachineDynamics");
-        }
+    public void setSynchronousMachineDynamics(SynchronousMachineDynamics _object_) {
         if (SynchronousMachineDynamics != _object_) {
-            SynchronousMachineDynamics = (SynchronousMachineDynamics) _object_;
+            SynchronousMachineDynamics = _object_;
             SynchronousMachineDynamics.setMechanicalLoadDynamics(this);
         }
     }
 
-    public String SynchronousMachineDynamicsToString() {
-        return SynchronousMachineDynamics != null ? SynchronousMachineDynamics.getRdfid() : null;
+    private static Object getSynchronousMachineDynamics(BaseClass _this_) {
+        return ((MechanicalLoadDynamics) _this_).getSynchronousMachineDynamics();
+    }
+
+    private static void setSynchronousMachineDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof SynchronousMachineDynamics) {
+            ((MechanicalLoadDynamics) _this_).setSynchronousMachineDynamics((SynchronousMachineDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not SynchronousMachineDynamics");
+        }
     }
 
     /**
@@ -109,64 +126,35 @@ public class MechanicalLoadDynamics extends DynamicsFunctionBlock {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("MechanicalLoadDynamics", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "MechanicalLoadDynamics", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("MechanicalLoadDynamics", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("MechanicalLoadDynamics", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "MechanicalLoadDynamics", attrName, value));
         }
     }
 
@@ -290,24 +278,16 @@ public class MechanicalLoadDynamics extends DynamicsFunctionBlock {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("AsynchronousMachineDynamics", new AttrDetails("MechanicalLoadDynamics.AsynchronousMachineDynamics", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("AsynchronousMachineDynamics", new AttrDetails("MechanicalLoadDynamics.AsynchronousMachineDynamics", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, MechanicalLoadDynamics::getAsynchronousMachineDynamics, MechanicalLoadDynamics::setAsynchronousMachineDynamics));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("SynchronousMachineDynamics", new AttrDetails("MechanicalLoadDynamics.SynchronousMachineDynamics", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("SynchronousMachineDynamics", new AttrDetails("MechanicalLoadDynamics.SynchronousMachineDynamics", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, MechanicalLoadDynamics::getSynchronousMachineDynamics, MechanicalLoadDynamics::setSynchronousMachineDynamics));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new MechanicalLoadDynamics().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new MechanicalLoadDynamics(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("AsynchronousMachineDynamics", new GetterSetter(this::AsynchronousMachineDynamicsToString, this::setAsynchronousMachineDynamics, null));
-        map.put("SynchronousMachineDynamics", new GetterSetter(this::SynchronousMachineDynamicsToString, this::setSynchronousMachineDynamics, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

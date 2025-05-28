@@ -23,14 +23,21 @@ public class OverexcLimIEEE extends OverexcitationLimiterDynamics {
     private static final Logging LOG = Logging.getLogger(OverexcLimIEEE.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public OverexcLimIEEE() {
-        setCimType("OverexcLimIEEE");
+    public OverexcLimIEEE(String rdfid) {
+        super("OverexcLimIEEE", rdfid);
     }
 
     /**
-     * OEL pickup/drop-out hysteresis (&lt;i&gt;HYST&lt;/i&gt;).  Typical value = 0,03.
+     * Constructor for subclasses.
+     */
+    protected OverexcLimIEEE(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * OEL pickup/drop-out hysteresis (<i>HYST</i>).  Typical value = 0,03.
      */
     private Double hyst; // PU
 
@@ -42,16 +49,22 @@ public class OverexcLimIEEE extends OverexcitationLimiterDynamics {
         hyst = _value_;
     }
 
-    public void setHyst(String _value_) {
-        hyst = getDoubleFromString(_value_);
+    private static Object getHyst(BaseClass _this_) {
+        return ((OverexcLimIEEE) _this_).getHyst();
     }
 
-    public String hystToString() {
-        return hyst != null ? hyst.toString() : null;
+    private static void setHyst(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((OverexcLimIEEE) _this_).setHyst((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((OverexcLimIEEE) _this_).setHyst(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * OEL timed field current limit (&lt;i&gt;I&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FDLIM&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1,05.
+     * OEL timed field current limit (<i>I</i><i><sub>FDLIM</sub></i>).  Typical value = 1,05.
      */
     private Double ifdlim; // PU
 
@@ -63,16 +76,22 @@ public class OverexcLimIEEE extends OverexcitationLimiterDynamics {
         ifdlim = _value_;
     }
 
-    public void setIfdlim(String _value_) {
-        ifdlim = getDoubleFromString(_value_);
+    private static Object getIfdlim(BaseClass _this_) {
+        return ((OverexcLimIEEE) _this_).getIfdlim();
     }
 
-    public String ifdlimToString() {
-        return ifdlim != null ? ifdlim.toString() : null;
+    private static void setIfdlim(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((OverexcLimIEEE) _this_).setIfdlim((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((OverexcLimIEEE) _this_).setIfdlim(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * OEL instantaneous field current limit (&lt;i&gt;I&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FDMAX&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1,5.
+     * OEL instantaneous field current limit (<i>I</i><i><sub>FDMAX</sub></i>).  Typical value = 1,5.
      */
     private Double ifdmax; // PU
 
@@ -84,16 +103,22 @@ public class OverexcLimIEEE extends OverexcitationLimiterDynamics {
         ifdmax = _value_;
     }
 
-    public void setIfdmax(String _value_) {
-        ifdmax = getDoubleFromString(_value_);
+    private static Object getIfdmax(BaseClass _this_) {
+        return ((OverexcLimIEEE) _this_).getIfdmax();
     }
 
-    public String ifdmaxToString() {
-        return ifdmax != null ? ifdmax.toString() : null;
+    private static void setIfdmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((OverexcLimIEEE) _this_).setIfdmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((OverexcLimIEEE) _this_).setIfdmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * OEL timed field current limiter pickup level (&lt;i&gt;I&lt;/i&gt;&lt;i&gt;&lt;sub&gt;TFPU&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1,05.
+     * OEL timed field current limiter pickup level (<i>I</i><i><sub>TFPU</sub></i>).  Typical value = 1,05.
      */
     private Double itfpu; // PU
 
@@ -105,16 +130,22 @@ public class OverexcLimIEEE extends OverexcitationLimiterDynamics {
         itfpu = _value_;
     }
 
-    public void setItfpu(String _value_) {
-        itfpu = getDoubleFromString(_value_);
+    private static Object getItfpu(BaseClass _this_) {
+        return ((OverexcLimIEEE) _this_).getItfpu();
     }
 
-    public String itfpuToString() {
-        return itfpu != null ? itfpu.toString() : null;
+    private static void setItfpu(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((OverexcLimIEEE) _this_).setItfpu((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((OverexcLimIEEE) _this_).setItfpu(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * OEL cooldown gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;CD&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1.
+     * OEL cooldown gain (<i>K</i><i><sub>CD</sub></i>).  Typical value = 1.
      */
     private Double kcd; // PU
 
@@ -126,16 +157,22 @@ public class OverexcLimIEEE extends OverexcitationLimiterDynamics {
         kcd = _value_;
     }
 
-    public void setKcd(String _value_) {
-        kcd = getDoubleFromString(_value_);
+    private static Object getKcd(BaseClass _this_) {
+        return ((OverexcLimIEEE) _this_).getKcd();
     }
 
-    public String kcdToString() {
-        return kcd != null ? kcd.toString() : null;
+    private static void setKcd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((OverexcLimIEEE) _this_).setKcd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((OverexcLimIEEE) _this_).setKcd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * OEL ramped limit rate (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;RAMP&lt;/sub&gt;&lt;/i&gt;).  Unit = PU / s.  Typical value = 10.
+     * OEL ramped limit rate (<i>K</i><i><sub>RAMP</sub></i>).  Unit = PU / s.  Typical value = 10.
      */
     private Float kramp; // Float
 
@@ -147,12 +184,18 @@ public class OverexcLimIEEE extends OverexcitationLimiterDynamics {
         kramp = _value_;
     }
 
-    public void setKramp(String _value_) {
-        kramp = getFloatFromString(_value_);
+    private static Object getKramp(BaseClass _this_) {
+        return ((OverexcLimIEEE) _this_).getKramp();
     }
 
-    public String krampToString() {
-        return kramp != null ? kramp.toString() : null;
+    private static void setKramp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((OverexcLimIEEE) _this_).setKramp((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((OverexcLimIEEE) _this_).setKramp(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -189,64 +232,35 @@ public class OverexcLimIEEE extends OverexcitationLimiterDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("OverexcLimIEEE", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "OverexcLimIEEE", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("OverexcLimIEEE", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("OverexcLimIEEE", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "OverexcLimIEEE", attrName, value));
         }
     }
 
@@ -370,48 +384,36 @@ public class OverexcLimIEEE extends OverexcitationLimiterDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("hyst", new AttrDetails("OverexcLimIEEE.hyst", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("hyst", new AttrDetails("OverexcLimIEEE.hyst", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, OverexcLimIEEE::getHyst, OverexcLimIEEE::setHyst));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ifdlim", new AttrDetails("OverexcLimIEEE.ifdlim", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ifdlim", new AttrDetails("OverexcLimIEEE.ifdlim", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, OverexcLimIEEE::getIfdlim, OverexcLimIEEE::setIfdlim));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ifdmax", new AttrDetails("OverexcLimIEEE.ifdmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ifdmax", new AttrDetails("OverexcLimIEEE.ifdmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, OverexcLimIEEE::getIfdmax, OverexcLimIEEE::setIfdmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("itfpu", new AttrDetails("OverexcLimIEEE.itfpu", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("itfpu", new AttrDetails("OverexcLimIEEE.itfpu", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, OverexcLimIEEE::getItfpu, OverexcLimIEEE::setItfpu));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kcd", new AttrDetails("OverexcLimIEEE.kcd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kcd", new AttrDetails("OverexcLimIEEE.kcd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, OverexcLimIEEE::getKcd, OverexcLimIEEE::setKcd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kramp", new AttrDetails("OverexcLimIEEE.kramp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kramp", new AttrDetails("OverexcLimIEEE.kramp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, OverexcLimIEEE::getKramp, OverexcLimIEEE::setKramp));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new OverexcLimIEEE().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new OverexcLimIEEE(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("hyst", new GetterSetter(this::hystToString, null, this::setHyst));
-        map.put("ifdlim", new GetterSetter(this::ifdlimToString, null, this::setIfdlim));
-        map.put("ifdmax", new GetterSetter(this::ifdmaxToString, null, this::setIfdmax));
-        map.put("itfpu", new GetterSetter(this::itfpuToString, null, this::setItfpu));
-        map.put("kcd", new GetterSetter(this::kcdToString, null, this::setKcd));
-        map.put("kramp", new GetterSetter(this::krampToString, null, this::setKramp));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

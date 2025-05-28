@@ -23,10 +23,17 @@ public class Conductor extends ConductingEquipment {
     private static final Logging LOG = Logging.getLogger(Conductor.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public Conductor() {
-        setCimType("Conductor");
+    public Conductor(String rdfid) {
+        super("Conductor", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected Conductor(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class Conductor extends ConductingEquipment {
         length = _value_;
     }
 
-    public void setLength(String _value_) {
-        length = getDoubleFromString(_value_);
+    private static Object getLength(BaseClass _this_) {
+        return ((Conductor) _this_).getLength();
     }
 
-    public String lengthToString() {
-        return length != null ? length.toString() : null;
+    private static void setLength(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((Conductor) _this_).setLength((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((Conductor) _this_).setLength(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,64 +97,35 @@ public class Conductor extends ConductingEquipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("Conductor", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "Conductor", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("Conductor", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("Conductor", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "Conductor", attrName, value));
         }
     }
 
@@ -265,18 +249,11 @@ public class Conductor extends ConductingEquipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("length", new AttrDetails("Conductor.length", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("length", new AttrDetails("Conductor.length", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Conductor::getLength, Conductor::setLength));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Conductor().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Conductor(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("length", new GetterSetter(this::lengthToString, null, this::setLength));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

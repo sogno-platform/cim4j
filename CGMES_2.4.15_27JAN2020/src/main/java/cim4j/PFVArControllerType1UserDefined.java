@@ -23,10 +23,17 @@ public class PFVArControllerType1UserDefined extends PFVArControllerType1Dynamic
     private static final Logging LOG = Logging.getLogger(PFVArControllerType1UserDefined.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public PFVArControllerType1UserDefined() {
-        setCimType("PFVArControllerType1UserDefined");
+    public PFVArControllerType1UserDefined(String rdfid) {
+        super("PFVArControllerType1UserDefined", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected PFVArControllerType1UserDefined(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class PFVArControllerType1UserDefined extends PFVArControllerType1Dynamic
         return ProprietaryParameterDynamics;
     }
 
-    public void setProprietaryParameterDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof ProprietaryParameterDynamics)) {
-            throw new IllegalArgumentException("Object is not ProprietaryParameterDynamics");
-        }
+    public void setProprietaryParameterDynamics(ProprietaryParameterDynamics _object_) {
         if (!ProprietaryParameterDynamics.contains(_object_)) {
-            ProprietaryParameterDynamics.add((ProprietaryParameterDynamics) _object_);
-            ((ProprietaryParameterDynamics) _object_).setPFVArControllerType1UserDefined(this);
+            ProprietaryParameterDynamics.add(_object_);
+            _object_.setPFVArControllerType1UserDefined(this);
         }
     }
 
-    public String ProprietaryParameterDynamicsToString() {
-        return getStringFromSet(ProprietaryParameterDynamics);
+    private static Object getProprietaryParameterDynamics(BaseClass _this_) {
+        return ((PFVArControllerType1UserDefined) _this_).getProprietaryParameterDynamics();
+    }
+
+    private static void setProprietaryParameterDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ProprietaryParameterDynamics) {
+            ((PFVArControllerType1UserDefined) _this_).setProprietaryParameterDynamics((ProprietaryParameterDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ProprietaryParameterDynamics");
+        }
     }
 
     /**
@@ -67,12 +79,18 @@ public class PFVArControllerType1UserDefined extends PFVArControllerType1Dynamic
         proprietary = _value_;
     }
 
-    public void setProprietary(String _value_) {
-        proprietary = getBooleanFromString(_value_);
+    private static Object getProprietary(BaseClass _this_) {
+        return ((PFVArControllerType1UserDefined) _this_).getProprietary();
     }
 
-    public String proprietaryToString() {
-        return proprietary != null ? proprietary.toString() : null;
+    private static void setProprietary(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((PFVArControllerType1UserDefined) _this_).setProprietary((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArControllerType1UserDefined) _this_).setProprietary(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -109,64 +127,35 @@ public class PFVArControllerType1UserDefined extends PFVArControllerType1Dynamic
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("PFVArControllerType1UserDefined", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "PFVArControllerType1UserDefined", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("PFVArControllerType1UserDefined", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("PFVArControllerType1UserDefined", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "PFVArControllerType1UserDefined", attrName, value));
         }
     }
 
@@ -290,24 +279,16 @@ public class PFVArControllerType1UserDefined extends PFVArControllerType1Dynamic
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ProprietaryParameterDynamics", new AttrDetails("PFVArControllerType1UserDefined.ProprietaryParameterDynamics", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("ProprietaryParameterDynamics", new AttrDetails("PFVArControllerType1UserDefined.ProprietaryParameterDynamics", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, PFVArControllerType1UserDefined::getProprietaryParameterDynamics, PFVArControllerType1UserDefined::setProprietaryParameterDynamics));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("proprietary", new AttrDetails("PFVArControllerType1UserDefined.proprietary", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("proprietary", new AttrDetails("PFVArControllerType1UserDefined.proprietary", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PFVArControllerType1UserDefined::getProprietary, PFVArControllerType1UserDefined::setProprietary));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PFVArControllerType1UserDefined().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PFVArControllerType1UserDefined(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ProprietaryParameterDynamics", new GetterSetter(this::ProprietaryParameterDynamicsToString, this::setProprietaryParameterDynamics, null));
-        map.put("proprietary", new GetterSetter(this::proprietaryToString, null, this::setProprietary));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

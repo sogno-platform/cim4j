@@ -23,10 +23,17 @@ public class GovHydroDD extends TurbineGovernorDynamics {
     private static final Logging LOG = Logging.getLogger(GovHydroDD.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public GovHydroDD() {
-        setCimType("GovHydroDD");
+    public GovHydroDD(String rdfid) {
+        super("GovHydroDD", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected GovHydroDD(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         aturb = _value_;
     }
 
-    public void setAturb(String _value_) {
-        aturb = getDoubleFromString(_value_);
+    private static Object getAturb(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getAturb();
     }
 
-    public String aturbToString() {
-        return aturb != null ? aturb.toString() : null;
+    private static void setAturb(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setAturb((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setAturb(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         bturb = _value_;
     }
 
-    public void setBturb(String _value_) {
-        bturb = getDoubleFromString(_value_);
+    private static Object getBturb(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getBturb();
     }
 
-    public String bturbToString() {
-        return bturb != null ? bturb.toString() : null;
+    private static void setBturb(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setBturb((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setBturb(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         db1 = _value_;
     }
 
-    public void setDb1(String _value_) {
-        db1 = getDoubleFromString(_value_);
+    private static Object getDb1(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getDb1();
     }
 
-    public String db1ToString() {
-        return db1 != null ? db1.toString() : null;
+    private static void setDb1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setDb1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setDb1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         db2 = _value_;
     }
 
-    public void setDb2(String _value_) {
-        db2 = getDoubleFromString(_value_);
+    private static Object getDb2(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getDb2();
     }
 
-    public String db2ToString() {
-        return db2 != null ? db2.toString() : null;
+    private static void setDb2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setDb2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setDb2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         eps = _value_;
     }
 
-    public void setEps(String _value_) {
-        eps = getDoubleFromString(_value_);
+    private static Object getEps(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getEps();
     }
 
-    public String epsToString() {
-        return eps != null ? eps.toString() : null;
+    private static void setEps(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setEps((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setEps(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,12 +184,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         gmax = _value_;
     }
 
-    public void setGmax(String _value_) {
-        gmax = getDoubleFromString(_value_);
+    private static Object getGmax(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getGmax();
     }
 
-    public String gmaxToString() {
-        return gmax != null ? gmax.toString() : null;
+    private static void setGmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setGmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setGmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,12 +211,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         gmin = _value_;
     }
 
-    public void setGmin(String _value_) {
-        gmin = getDoubleFromString(_value_);
+    private static Object getGmin(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getGmin();
     }
 
-    public String gminToString() {
-        return gmin != null ? gmin.toString() : null;
+    private static void setGmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setGmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setGmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,12 +238,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         gv1 = _value_;
     }
 
-    public void setGv1(String _value_) {
-        gv1 = getDoubleFromString(_value_);
+    private static Object getGv1(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getGv1();
     }
 
-    public String gv1ToString() {
-        return gv1 != null ? gv1.toString() : null;
+    private static void setGv1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setGv1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setGv1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -210,12 +265,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         gv2 = _value_;
     }
 
-    public void setGv2(String _value_) {
-        gv2 = getDoubleFromString(_value_);
+    private static Object getGv2(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getGv2();
     }
 
-    public String gv2ToString() {
-        return gv2 != null ? gv2.toString() : null;
+    private static void setGv2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setGv2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setGv2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -231,12 +292,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         gv3 = _value_;
     }
 
-    public void setGv3(String _value_) {
-        gv3 = getDoubleFromString(_value_);
+    private static Object getGv3(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getGv3();
     }
 
-    public String gv3ToString() {
-        return gv3 != null ? gv3.toString() : null;
+    private static void setGv3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setGv3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setGv3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -252,12 +319,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         gv4 = _value_;
     }
 
-    public void setGv4(String _value_) {
-        gv4 = getDoubleFromString(_value_);
+    private static Object getGv4(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getGv4();
     }
 
-    public String gv4ToString() {
-        return gv4 != null ? gv4.toString() : null;
+    private static void setGv4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setGv4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setGv4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -273,12 +346,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         gv5 = _value_;
     }
 
-    public void setGv5(String _value_) {
-        gv5 = getDoubleFromString(_value_);
+    private static Object getGv5(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getGv5();
     }
 
-    public String gv5ToString() {
-        return gv5 != null ? gv5.toString() : null;
+    private static void setGv5(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setGv5((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setGv5(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -294,12 +373,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         gv6 = _value_;
     }
 
-    public void setGv6(String _value_) {
-        gv6 = getDoubleFromString(_value_);
+    private static Object getGv6(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getGv6();
     }
 
-    public String gv6ToString() {
-        return gv6 != null ? gv6.toString() : null;
+    private static void setGv6(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setGv6((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setGv6(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -315,12 +400,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         inputSignal = _value_;
     }
 
-    public void setInputSignal(String _value_) {
-        inputSignal = getBooleanFromString(_value_);
+    private static Object getInputSignal(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getInputSignal();
     }
 
-    public String inputSignalToString() {
-        return inputSignal != null ? inputSignal.toString() : null;
+    private static void setInputSignal(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((GovHydroDD) _this_).setInputSignal((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setInputSignal(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -336,12 +427,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         k1 = _value_;
     }
 
-    public void setK1(String _value_) {
-        k1 = getDoubleFromString(_value_);
+    private static Object getK1(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getK1();
     }
 
-    public String k1ToString() {
-        return k1 != null ? k1.toString() : null;
+    private static void setK1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setK1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setK1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -357,12 +454,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         k2 = _value_;
     }
 
-    public void setK2(String _value_) {
-        k2 = getDoubleFromString(_value_);
+    private static Object getK2(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getK2();
     }
 
-    public String k2ToString() {
-        return k2 != null ? k2.toString() : null;
+    private static void setK2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setK2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setK2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -378,12 +481,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         kg = _value_;
     }
 
-    public void setKg(String _value_) {
-        kg = getDoubleFromString(_value_);
+    private static Object getKg(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getKg();
     }
 
-    public String kgToString() {
-        return kg != null ? kg.toString() : null;
+    private static void setKg(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setKg((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setKg(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -399,16 +508,22 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         ki = _value_;
     }
 
-    public void setKi(String _value_) {
-        ki = getDoubleFromString(_value_);
+    private static Object getKi(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getKi();
     }
 
-    public String kiToString() {
-        return ki != null ? ki.toString() : null;
+    private static void setKi(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setKi((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setKi(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Base for power values (MWbase) (&gt;0).  Unit = MW.
+     * Base for power values (MWbase) (>0).  Unit = MW.
      */
     private Double mwbase; // ActivePower
 
@@ -420,12 +535,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         mwbase = _value_;
     }
 
-    public void setMwbase(String _value_) {
-        mwbase = getDoubleFromString(_value_);
+    private static Object getMwbase(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getMwbase();
     }
 
-    public String mwbaseToString() {
-        return mwbase != null ? mwbase.toString() : null;
+    private static void setMwbase(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setMwbase((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setMwbase(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -441,12 +562,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         pgv1 = _value_;
     }
 
-    public void setPgv1(String _value_) {
-        pgv1 = getDoubleFromString(_value_);
+    private static Object getPgv1(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getPgv1();
     }
 
-    public String pgv1ToString() {
-        return pgv1 != null ? pgv1.toString() : null;
+    private static void setPgv1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setPgv1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setPgv1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -462,12 +589,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         pgv2 = _value_;
     }
 
-    public void setPgv2(String _value_) {
-        pgv2 = getDoubleFromString(_value_);
+    private static Object getPgv2(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getPgv2();
     }
 
-    public String pgv2ToString() {
-        return pgv2 != null ? pgv2.toString() : null;
+    private static void setPgv2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setPgv2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setPgv2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -483,12 +616,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         pgv3 = _value_;
     }
 
-    public void setPgv3(String _value_) {
-        pgv3 = getDoubleFromString(_value_);
+    private static Object getPgv3(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getPgv3();
     }
 
-    public String pgv3ToString() {
-        return pgv3 != null ? pgv3.toString() : null;
+    private static void setPgv3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setPgv3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setPgv3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -504,12 +643,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         pgv4 = _value_;
     }
 
-    public void setPgv4(String _value_) {
-        pgv4 = getDoubleFromString(_value_);
+    private static Object getPgv4(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getPgv4();
     }
 
-    public String pgv4ToString() {
-        return pgv4 != null ? pgv4.toString() : null;
+    private static void setPgv4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setPgv4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setPgv4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -525,12 +670,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         pgv5 = _value_;
     }
 
-    public void setPgv5(String _value_) {
-        pgv5 = getDoubleFromString(_value_);
+    private static Object getPgv5(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getPgv5();
     }
 
-    public String pgv5ToString() {
-        return pgv5 != null ? pgv5.toString() : null;
+    private static void setPgv5(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setPgv5((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setPgv5(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -546,12 +697,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         pgv6 = _value_;
     }
 
-    public void setPgv6(String _value_) {
-        pgv6 = getDoubleFromString(_value_);
+    private static Object getPgv6(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getPgv6();
     }
 
-    public String pgv6ToString() {
-        return pgv6 != null ? pgv6.toString() : null;
+    private static void setPgv6(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setPgv6((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setPgv6(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -567,12 +724,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         pmax = _value_;
     }
 
-    public void setPmax(String _value_) {
-        pmax = getDoubleFromString(_value_);
+    private static Object getPmax(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getPmax();
     }
 
-    public String pmaxToString() {
-        return pmax != null ? pmax.toString() : null;
+    private static void setPmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setPmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setPmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -588,12 +751,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         pmin = _value_;
     }
 
-    public void setPmin(String _value_) {
-        pmin = getDoubleFromString(_value_);
+    private static Object getPmin(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getPmin();
     }
 
-    public String pminToString() {
-        return pmin != null ? pmin.toString() : null;
+    private static void setPmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setPmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setPmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -609,12 +778,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         r = _value_;
     }
 
-    public void setR(String _value_) {
-        r = getDoubleFromString(_value_);
+    private static Object getR(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getR();
     }
 
-    public String rToString() {
-        return r != null ? r.toString() : null;
+    private static void setR(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setR((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setR(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -630,12 +805,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         td = _value_;
     }
 
-    public void setTd(String _value_) {
-        td = getDoubleFromString(_value_);
+    private static Object getTd(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getTd();
     }
 
-    public String tdToString() {
-        return td != null ? td.toString() : null;
+    private static void setTd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setTd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setTd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -651,12 +832,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         tf = _value_;
     }
 
-    public void setTf(String _value_) {
-        tf = getDoubleFromString(_value_);
+    private static Object getTf(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getTf();
     }
 
-    public String tfToString() {
-        return tf != null ? tf.toString() : null;
+    private static void setTf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setTf((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setTf(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -672,12 +859,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         tp = _value_;
     }
 
-    public void setTp(String _value_) {
-        tp = getDoubleFromString(_value_);
+    private static Object getTp(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getTp();
     }
 
-    public String tpToString() {
-        return tp != null ? tp.toString() : null;
+    private static void setTp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setTp((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setTp(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -693,12 +886,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         tt = _value_;
     }
 
-    public void setTt(String _value_) {
-        tt = getDoubleFromString(_value_);
+    private static Object getTt(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getTt();
     }
 
-    public String ttToString() {
-        return tt != null ? tt.toString() : null;
+    private static void setTt(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setTt((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setTt(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -714,12 +913,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         tturb = _value_;
     }
 
-    public void setTturb(String _value_) {
-        tturb = getDoubleFromString(_value_);
+    private static Object getTturb(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getTturb();
     }
 
-    public String tturbToString() {
-        return tturb != null ? tturb.toString() : null;
+    private static void setTturb(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setTturb((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setTturb(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -735,12 +940,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         velcl = _value_;
     }
 
-    public void setVelcl(String _value_) {
-        velcl = getDoubleFromString(_value_);
+    private static Object getVelcl(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getVelcl();
     }
 
-    public String velclToString() {
-        return velcl != null ? velcl.toString() : null;
+    private static void setVelcl(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setVelcl((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setVelcl(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -756,12 +967,18 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         velop = _value_;
     }
 
-    public void setVelop(String _value_) {
-        velop = getDoubleFromString(_value_);
+    private static Object getVelop(BaseClass _this_) {
+        return ((GovHydroDD) _this_).getVelop();
     }
 
-    public String velopToString() {
-        return velop != null ? velop.toString() : null;
+    private static void setVelop(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydroDD) _this_).setVelop((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydroDD) _this_).setVelop(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -798,64 +1015,35 @@ public class GovHydroDD extends TurbineGovernorDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("GovHydroDD", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "GovHydroDD", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("GovHydroDD", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("GovHydroDD", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "GovHydroDD", attrName, value));
         }
     }
 
@@ -979,222 +1167,181 @@ public class GovHydroDD extends TurbineGovernorDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("aturb", new AttrDetails("GovHydroDD.aturb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("aturb", new AttrDetails("GovHydroDD.aturb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getAturb, GovHydroDD::setAturb));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("bturb", new AttrDetails("GovHydroDD.bturb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("bturb", new AttrDetails("GovHydroDD.bturb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getBturb, GovHydroDD::setBturb));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("db1", new AttrDetails("GovHydroDD.db1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("db1", new AttrDetails("GovHydroDD.db1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getDb1, GovHydroDD::setDb1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("db2", new AttrDetails("GovHydroDD.db2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("db2", new AttrDetails("GovHydroDD.db2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getDb2, GovHydroDD::setDb2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eps", new AttrDetails("GovHydroDD.eps", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("eps", new AttrDetails("GovHydroDD.eps", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getEps, GovHydroDD::setEps));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gmax", new AttrDetails("GovHydroDD.gmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("gmax", new AttrDetails("GovHydroDD.gmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getGmax, GovHydroDD::setGmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gmin", new AttrDetails("GovHydroDD.gmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("gmin", new AttrDetails("GovHydroDD.gmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getGmin, GovHydroDD::setGmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gv1", new AttrDetails("GovHydroDD.gv1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("gv1", new AttrDetails("GovHydroDD.gv1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getGv1, GovHydroDD::setGv1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gv2", new AttrDetails("GovHydroDD.gv2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("gv2", new AttrDetails("GovHydroDD.gv2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getGv2, GovHydroDD::setGv2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gv3", new AttrDetails("GovHydroDD.gv3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("gv3", new AttrDetails("GovHydroDD.gv3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getGv3, GovHydroDD::setGv3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gv4", new AttrDetails("GovHydroDD.gv4", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("gv4", new AttrDetails("GovHydroDD.gv4", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getGv4, GovHydroDD::setGv4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gv5", new AttrDetails("GovHydroDD.gv5", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("gv5", new AttrDetails("GovHydroDD.gv5", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getGv5, GovHydroDD::setGv5));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gv6", new AttrDetails("GovHydroDD.gv6", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("gv6", new AttrDetails("GovHydroDD.gv6", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getGv6, GovHydroDD::setGv6));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("inputSignal", new AttrDetails("GovHydroDD.inputSignal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("inputSignal", new AttrDetails("GovHydroDD.inputSignal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getInputSignal, GovHydroDD::setInputSignal));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k1", new AttrDetails("GovHydroDD.k1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("k1", new AttrDetails("GovHydroDD.k1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getK1, GovHydroDD::setK1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k2", new AttrDetails("GovHydroDD.k2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("k2", new AttrDetails("GovHydroDD.k2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getK2, GovHydroDD::setK2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kg", new AttrDetails("GovHydroDD.kg", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kg", new AttrDetails("GovHydroDD.kg", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getKg, GovHydroDD::setKg));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki", new AttrDetails("GovHydroDD.ki", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ki", new AttrDetails("GovHydroDD.ki", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getKi, GovHydroDD::setKi));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mwbase", new AttrDetails("GovHydroDD.mwbase", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("mwbase", new AttrDetails("GovHydroDD.mwbase", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getMwbase, GovHydroDD::setMwbase));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pgv1", new AttrDetails("GovHydroDD.pgv1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("pgv1", new AttrDetails("GovHydroDD.pgv1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getPgv1, GovHydroDD::setPgv1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pgv2", new AttrDetails("GovHydroDD.pgv2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("pgv2", new AttrDetails("GovHydroDD.pgv2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getPgv2, GovHydroDD::setPgv2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pgv3", new AttrDetails("GovHydroDD.pgv3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("pgv3", new AttrDetails("GovHydroDD.pgv3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getPgv3, GovHydroDD::setPgv3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pgv4", new AttrDetails("GovHydroDD.pgv4", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("pgv4", new AttrDetails("GovHydroDD.pgv4", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getPgv4, GovHydroDD::setPgv4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pgv5", new AttrDetails("GovHydroDD.pgv5", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("pgv5", new AttrDetails("GovHydroDD.pgv5", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getPgv5, GovHydroDD::setPgv5));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pgv6", new AttrDetails("GovHydroDD.pgv6", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("pgv6", new AttrDetails("GovHydroDD.pgv6", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getPgv6, GovHydroDD::setPgv6));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmax", new AttrDetails("GovHydroDD.pmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("pmax", new AttrDetails("GovHydroDD.pmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getPmax, GovHydroDD::setPmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmin", new AttrDetails("GovHydroDD.pmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("pmin", new AttrDetails("GovHydroDD.pmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getPmin, GovHydroDD::setPmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("r", new AttrDetails("GovHydroDD.r", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("r", new AttrDetails("GovHydroDD.r", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getR, GovHydroDD::setR));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("td", new AttrDetails("GovHydroDD.td", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("td", new AttrDetails("GovHydroDD.td", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getTd, GovHydroDD::setTd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf", new AttrDetails("GovHydroDD.tf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tf", new AttrDetails("GovHydroDD.tf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getTf, GovHydroDD::setTf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tp", new AttrDetails("GovHydroDD.tp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tp", new AttrDetails("GovHydroDD.tp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getTp, GovHydroDD::setTp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tt", new AttrDetails("GovHydroDD.tt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tt", new AttrDetails("GovHydroDD.tt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getTt, GovHydroDD::setTt));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tturb", new AttrDetails("GovHydroDD.tturb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tturb", new AttrDetails("GovHydroDD.tturb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getTturb, GovHydroDD::setTturb));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("velcl", new AttrDetails("GovHydroDD.velcl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("velcl", new AttrDetails("GovHydroDD.velcl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getVelcl, GovHydroDD::setVelcl));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("velop", new AttrDetails("GovHydroDD.velop", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("velop", new AttrDetails("GovHydroDD.velop", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GovHydroDD::getVelop, GovHydroDD::setVelop));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovHydroDD().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovHydroDD(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("aturb", new GetterSetter(this::aturbToString, null, this::setAturb));
-        map.put("bturb", new GetterSetter(this::bturbToString, null, this::setBturb));
-        map.put("db1", new GetterSetter(this::db1ToString, null, this::setDb1));
-        map.put("db2", new GetterSetter(this::db2ToString, null, this::setDb2));
-        map.put("eps", new GetterSetter(this::epsToString, null, this::setEps));
-        map.put("gmax", new GetterSetter(this::gmaxToString, null, this::setGmax));
-        map.put("gmin", new GetterSetter(this::gminToString, null, this::setGmin));
-        map.put("gv1", new GetterSetter(this::gv1ToString, null, this::setGv1));
-        map.put("gv2", new GetterSetter(this::gv2ToString, null, this::setGv2));
-        map.put("gv3", new GetterSetter(this::gv3ToString, null, this::setGv3));
-        map.put("gv4", new GetterSetter(this::gv4ToString, null, this::setGv4));
-        map.put("gv5", new GetterSetter(this::gv5ToString, null, this::setGv5));
-        map.put("gv6", new GetterSetter(this::gv6ToString, null, this::setGv6));
-        map.put("inputSignal", new GetterSetter(this::inputSignalToString, null, this::setInputSignal));
-        map.put("k1", new GetterSetter(this::k1ToString, null, this::setK1));
-        map.put("k2", new GetterSetter(this::k2ToString, null, this::setK2));
-        map.put("kg", new GetterSetter(this::kgToString, null, this::setKg));
-        map.put("ki", new GetterSetter(this::kiToString, null, this::setKi));
-        map.put("mwbase", new GetterSetter(this::mwbaseToString, null, this::setMwbase));
-        map.put("pgv1", new GetterSetter(this::pgv1ToString, null, this::setPgv1));
-        map.put("pgv2", new GetterSetter(this::pgv2ToString, null, this::setPgv2));
-        map.put("pgv3", new GetterSetter(this::pgv3ToString, null, this::setPgv3));
-        map.put("pgv4", new GetterSetter(this::pgv4ToString, null, this::setPgv4));
-        map.put("pgv5", new GetterSetter(this::pgv5ToString, null, this::setPgv5));
-        map.put("pgv6", new GetterSetter(this::pgv6ToString, null, this::setPgv6));
-        map.put("pmax", new GetterSetter(this::pmaxToString, null, this::setPmax));
-        map.put("pmin", new GetterSetter(this::pminToString, null, this::setPmin));
-        map.put("r", new GetterSetter(this::rToString, null, this::setR));
-        map.put("td", new GetterSetter(this::tdToString, null, this::setTd));
-        map.put("tf", new GetterSetter(this::tfToString, null, this::setTf));
-        map.put("tp", new GetterSetter(this::tpToString, null, this::setTp));
-        map.put("tt", new GetterSetter(this::ttToString, null, this::setTt));
-        map.put("tturb", new GetterSetter(this::tturbToString, null, this::setTturb));
-        map.put("velcl", new GetterSetter(this::velclToString, null, this::setVelcl));
-        map.put("velop", new GetterSetter(this::velopToString, null, this::setVelop));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,10 +23,17 @@ public class ExcitationSystemUserDefined extends ExcitationSystemDynamics {
     private static final Logging LOG = Logging.getLogger(ExcitationSystemUserDefined.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ExcitationSystemUserDefined() {
-        setCimType("ExcitationSystemUserDefined");
+    public ExcitationSystemUserDefined(String rdfid) {
+        super("ExcitationSystemUserDefined", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ExcitationSystemUserDefined(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class ExcitationSystemUserDefined extends ExcitationSystemDynamics {
         return ProprietaryParameterDynamics;
     }
 
-    public void setProprietaryParameterDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof ProprietaryParameterDynamics)) {
-            throw new IllegalArgumentException("Object is not ProprietaryParameterDynamics");
-        }
+    public void setProprietaryParameterDynamics(ProprietaryParameterDynamics _object_) {
         if (!ProprietaryParameterDynamics.contains(_object_)) {
-            ProprietaryParameterDynamics.add((ProprietaryParameterDynamics) _object_);
-            ((ProprietaryParameterDynamics) _object_).setExcitationSystemUserDefined(this);
+            ProprietaryParameterDynamics.add(_object_);
+            _object_.setExcitationSystemUserDefined(this);
         }
     }
 
-    public String ProprietaryParameterDynamicsToString() {
-        return getStringFromSet(ProprietaryParameterDynamics);
+    private static Object getProprietaryParameterDynamics(BaseClass _this_) {
+        return ((ExcitationSystemUserDefined) _this_).getProprietaryParameterDynamics();
+    }
+
+    private static void setProprietaryParameterDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ProprietaryParameterDynamics) {
+            ((ExcitationSystemUserDefined) _this_).setProprietaryParameterDynamics((ProprietaryParameterDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ProprietaryParameterDynamics");
+        }
     }
 
     /**
@@ -67,12 +79,18 @@ public class ExcitationSystemUserDefined extends ExcitationSystemDynamics {
         proprietary = _value_;
     }
 
-    public void setProprietary(String _value_) {
-        proprietary = getBooleanFromString(_value_);
+    private static Object getProprietary(BaseClass _this_) {
+        return ((ExcitationSystemUserDefined) _this_).getProprietary();
     }
 
-    public String proprietaryToString() {
-        return proprietary != null ? proprietary.toString() : null;
+    private static void setProprietary(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ExcitationSystemUserDefined) _this_).setProprietary((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcitationSystemUserDefined) _this_).setProprietary(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -109,64 +127,35 @@ public class ExcitationSystemUserDefined extends ExcitationSystemDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ExcitationSystemUserDefined", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ExcitationSystemUserDefined", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ExcitationSystemUserDefined", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ExcitationSystemUserDefined", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ExcitationSystemUserDefined", attrName, value));
         }
     }
 
@@ -290,24 +279,16 @@ public class ExcitationSystemUserDefined extends ExcitationSystemDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ProprietaryParameterDynamics", new AttrDetails("ExcitationSystemUserDefined.ProprietaryParameterDynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("ProprietaryParameterDynamics", new AttrDetails("ExcitationSystemUserDefined.ProprietaryParameterDynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, ExcitationSystemUserDefined::getProprietaryParameterDynamics, ExcitationSystemUserDefined::setProprietaryParameterDynamics));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("proprietary", new AttrDetails("ExcitationSystemUserDefined.proprietary", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("proprietary", new AttrDetails("ExcitationSystemUserDefined.proprietary", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcitationSystemUserDefined::getProprietary, ExcitationSystemUserDefined::setProprietary));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcitationSystemUserDefined().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcitationSystemUserDefined(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ProprietaryParameterDynamics", new GetterSetter(this::ProprietaryParameterDynamicsToString, this::setProprietaryParameterDynamics, null));
-        map.put("proprietary", new GetterSetter(this::proprietaryToString, null, this::setProprietary));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,10 +23,17 @@ public class RegulatingCondEq extends ConductingEquipment {
     private static final Logging LOG = Logging.getLogger(RegulatingCondEq.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public RegulatingCondEq() {
-        setCimType("RegulatingCondEq");
+    public RegulatingCondEq(String rdfid) {
+        super("RegulatingCondEq", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected RegulatingCondEq(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class RegulatingCondEq extends ConductingEquipment {
         return RegulatingControl;
     }
 
-    public void setRegulatingControl(BaseClass _object_) {
-        if (!(_object_ instanceof RegulatingControl)) {
-            throw new IllegalArgumentException("Object is not RegulatingControl");
-        }
+    public void setRegulatingControl(RegulatingControl _object_) {
         if (RegulatingControl != _object_) {
-            RegulatingControl = (RegulatingControl) _object_;
+            RegulatingControl = _object_;
             RegulatingControl.setRegulatingCondEq(this);
         }
     }
 
-    public String RegulatingControlToString() {
-        return RegulatingControl != null ? RegulatingControl.getRdfid() : null;
+    private static Object getRegulatingControl(BaseClass _this_) {
+        return ((RegulatingCondEq) _this_).getRegulatingControl();
+    }
+
+    private static void setRegulatingControl(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof RegulatingControl) {
+            ((RegulatingCondEq) _this_).setRegulatingControl((RegulatingControl) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not RegulatingControl");
+        }
     }
 
     /**
@@ -65,12 +77,18 @@ public class RegulatingCondEq extends ConductingEquipment {
         controlEnabled = _value_;
     }
 
-    public void setControlEnabled(String _value_) {
-        controlEnabled = getBooleanFromString(_value_);
+    private static Object getControlEnabled(BaseClass _this_) {
+        return ((RegulatingCondEq) _this_).getControlEnabled();
     }
 
-    public String controlEnabledToString() {
-        return controlEnabled != null ? controlEnabled.toString() : null;
+    private static void setControlEnabled(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((RegulatingCondEq) _this_).setControlEnabled((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((RegulatingCondEq) _this_).setControlEnabled(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -107,64 +125,35 @@ public class RegulatingCondEq extends ConductingEquipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("RegulatingCondEq", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "RegulatingCondEq", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("RegulatingCondEq", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("RegulatingCondEq", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "RegulatingCondEq", attrName, value));
         }
     }
 
@@ -288,24 +277,16 @@ public class RegulatingCondEq extends ConductingEquipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("RegulatingControl", new AttrDetails("RegulatingCondEq.RegulatingControl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("RegulatingControl", new AttrDetails("RegulatingCondEq.RegulatingControl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, RegulatingCondEq::getRegulatingControl, RegulatingCondEq::setRegulatingControl));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("controlEnabled", new AttrDetails("RegulatingCondEq.controlEnabled", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("controlEnabled", new AttrDetails("RegulatingCondEq.controlEnabled", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, RegulatingCondEq::getControlEnabled, RegulatingCondEq::setControlEnabled));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RegulatingCondEq().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RegulatingCondEq(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("RegulatingControl", new GetterSetter(this::RegulatingControlToString, this::setRegulatingControl, null));
-        map.put("controlEnabled", new GetterSetter(this::controlEnabledToString, null, this::setControlEnabled));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

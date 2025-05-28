@@ -23,10 +23,17 @@ public class AnalogControl extends Control {
     private static final Logging LOG = Logging.getLogger(AnalogControl.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public AnalogControl() {
-        setCimType("AnalogControl");
+    public AnalogControl(String rdfid) {
+        super("AnalogControl", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected AnalogControl(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class AnalogControl extends Control {
         return AnalogValue;
     }
 
-    public void setAnalogValue(BaseClass _object_) {
-        if (!(_object_ instanceof AnalogValue)) {
-            throw new IllegalArgumentException("Object is not AnalogValue");
-        }
+    public void setAnalogValue(AnalogValue _object_) {
         if (AnalogValue != _object_) {
-            AnalogValue = (AnalogValue) _object_;
+            AnalogValue = _object_;
             AnalogValue.setAnalogControl(this);
         }
     }
 
-    public String AnalogValueToString() {
-        return AnalogValue != null ? AnalogValue.getRdfid() : null;
+    private static Object getAnalogValue(BaseClass _this_) {
+        return ((AnalogControl) _this_).getAnalogValue();
+    }
+
+    private static void setAnalogValue(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof AnalogValue) {
+            ((AnalogControl) _this_).setAnalogValue((AnalogValue) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not AnalogValue");
+        }
     }
 
     /**
@@ -65,12 +77,18 @@ public class AnalogControl extends Control {
         maxValue = _value_;
     }
 
-    public void setMaxValue(String _value_) {
-        maxValue = getDoubleFromString(_value_);
+    private static Object getMaxValue(BaseClass _this_) {
+        return ((AnalogControl) _this_).getMaxValue();
     }
 
-    public String maxValueToString() {
-        return maxValue != null ? maxValue.toString() : null;
+    private static void setMaxValue(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((AnalogControl) _this_).setMaxValue((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((AnalogControl) _this_).setMaxValue(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -86,12 +104,18 @@ public class AnalogControl extends Control {
         minValue = _value_;
     }
 
-    public void setMinValue(String _value_) {
-        minValue = getDoubleFromString(_value_);
+    private static Object getMinValue(BaseClass _this_) {
+        return ((AnalogControl) _this_).getMinValue();
     }
 
-    public String minValueToString() {
-        return minValue != null ? minValue.toString() : null;
+    private static void setMinValue(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((AnalogControl) _this_).setMinValue((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((AnalogControl) _this_).setMinValue(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -128,64 +152,35 @@ public class AnalogControl extends Control {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("AnalogControl", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "AnalogControl", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("AnalogControl", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("AnalogControl", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "AnalogControl", attrName, value));
         }
     }
 
@@ -309,30 +304,21 @@ public class AnalogControl extends Control {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("AnalogValue", new AttrDetails("AnalogControl.AnalogValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("AnalogValue", new AttrDetails("AnalogControl.AnalogValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, AnalogControl::getAnalogValue, AnalogControl::setAnalogValue));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxValue", new AttrDetails("AnalogControl.maxValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("maxValue", new AttrDetails("AnalogControl.maxValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, AnalogControl::getMaxValue, AnalogControl::setMaxValue));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("minValue", new AttrDetails("AnalogControl.minValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("minValue", new AttrDetails("AnalogControl.minValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, AnalogControl::getMinValue, AnalogControl::setMinValue));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AnalogControl().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AnalogControl(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("AnalogValue", new GetterSetter(this::AnalogValueToString, this::setAnalogValue, null));
-        map.put("maxValue", new GetterSetter(this::maxValueToString, null, this::setMaxValue));
-        map.put("minValue", new GetterSetter(this::minValueToString, null, this::setMinValue));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

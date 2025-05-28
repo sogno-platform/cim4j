@@ -23,10 +23,17 @@ public class ACDCTerminal extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(ACDCTerminal.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ACDCTerminal() {
-        setCimType("ACDCTerminal");
+    public ACDCTerminal(String rdfid) {
+        super("ACDCTerminal", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ACDCTerminal(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class ACDCTerminal extends IdentifiedObject {
         return BusNameMarker;
     }
 
-    public void setBusNameMarker(BaseClass _object_) {
-        if (!(_object_ instanceof BusNameMarker)) {
-            throw new IllegalArgumentException("Object is not BusNameMarker");
-        }
+    public void setBusNameMarker(BusNameMarker _object_) {
         if (BusNameMarker != _object_) {
-            BusNameMarker = (BusNameMarker) _object_;
+            BusNameMarker = _object_;
             BusNameMarker.setTerminal(this);
         }
     }
 
-    public String BusNameMarkerToString() {
-        return BusNameMarker != null ? BusNameMarker.getRdfid() : null;
+    private static Object getBusNameMarker(BaseClass _this_) {
+        return ((ACDCTerminal) _this_).getBusNameMarker();
+    }
+
+    private static void setBusNameMarker(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof BusNameMarker) {
+            ((ACDCTerminal) _this_).setBusNameMarker((BusNameMarker) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not BusNameMarker");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class ACDCTerminal extends IdentifiedObject {
         return Measurements;
     }
 
-    public void setMeasurements(BaseClass _object_) {
-        if (!(_object_ instanceof Measurement)) {
-            throw new IllegalArgumentException("Object is not Measurement");
-        }
+    public void setMeasurements(Measurement _object_) {
         if (!Measurements.contains(_object_)) {
-            Measurements.add((Measurement) _object_);
-            ((Measurement) _object_).setTerminal(this);
+            Measurements.add(_object_);
+            _object_.setTerminal(this);
         }
     }
 
-    public String MeasurementsToString() {
-        return getStringFromSet(Measurements);
+    private static Object getMeasurements(BaseClass _this_) {
+        return ((ACDCTerminal) _this_).getMeasurements();
+    }
+
+    private static void setMeasurements(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Measurement) {
+            ((ACDCTerminal) _this_).setMeasurements((Measurement) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Measurement");
+        }
     }
 
     /**
@@ -88,18 +105,23 @@ public class ACDCTerminal extends IdentifiedObject {
         return OperationalLimitSet;
     }
 
-    public void setOperationalLimitSet(BaseClass _object_) {
-        if (!(_object_ instanceof OperationalLimitSet)) {
-            throw new IllegalArgumentException("Object is not OperationalLimitSet");
-        }
+    public void setOperationalLimitSet(OperationalLimitSet _object_) {
         if (!OperationalLimitSet.contains(_object_)) {
-            OperationalLimitSet.add((OperationalLimitSet) _object_);
-            ((OperationalLimitSet) _object_).setTerminal(this);
+            OperationalLimitSet.add(_object_);
+            _object_.setTerminal(this);
         }
     }
 
-    public String OperationalLimitSetToString() {
-        return getStringFromSet(OperationalLimitSet);
+    private static Object getOperationalLimitSet(BaseClass _this_) {
+        return ((ACDCTerminal) _this_).getOperationalLimitSet();
+    }
+
+    private static void setOperationalLimitSet(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof OperationalLimitSet) {
+            ((ACDCTerminal) _this_).setOperationalLimitSet((OperationalLimitSet) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not OperationalLimitSet");
+        }
     }
 
     /**
@@ -115,12 +137,18 @@ public class ACDCTerminal extends IdentifiedObject {
         connected = _value_;
     }
 
-    public void setConnected(String _value_) {
-        connected = getBooleanFromString(_value_);
+    private static Object getConnected(BaseClass _this_) {
+        return ((ACDCTerminal) _this_).getConnected();
     }
 
-    public String connectedToString() {
-        return connected != null ? connected.toString() : null;
+    private static void setConnected(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ACDCTerminal) _this_).setConnected((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCTerminal) _this_).setConnected(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -136,12 +164,18 @@ public class ACDCTerminal extends IdentifiedObject {
         sequenceNumber = _value_;
     }
 
-    public void setSequenceNumber(String _value_) {
-        sequenceNumber = getIntegerFromString(_value_);
+    private static Object getSequenceNumber(BaseClass _this_) {
+        return ((ACDCTerminal) _this_).getSequenceNumber();
     }
 
-    public String sequenceNumberToString() {
-        return sequenceNumber != null ? sequenceNumber.toString() : null;
+    private static void setSequenceNumber(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((ACDCTerminal) _this_).setSequenceNumber((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCTerminal) _this_).setSequenceNumber(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -178,64 +212,35 @@ public class ACDCTerminal extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ACDCTerminal", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ACDCTerminal", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ACDCTerminal", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ACDCTerminal", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ACDCTerminal", attrName, value));
         }
     }
 
@@ -359,42 +364,31 @@ public class ACDCTerminal extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("BusNameMarker", new AttrDetails("ACDCTerminal.BusNameMarker", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("BusNameMarker", new AttrDetails("ACDCTerminal.BusNameMarker", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, ACDCTerminal::getBusNameMarker, ACDCTerminal::setBusNameMarker));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("Measurements", new AttrDetails("ACDCTerminal.Measurements", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("Measurements", new AttrDetails("ACDCTerminal.Measurements", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, ACDCTerminal::getMeasurements, ACDCTerminal::setMeasurements));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("OperationalLimitSet", new AttrDetails("ACDCTerminal.OperationalLimitSet", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("OperationalLimitSet", new AttrDetails("ACDCTerminal.OperationalLimitSet", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, ACDCTerminal::getOperationalLimitSet, ACDCTerminal::setOperationalLimitSet));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("connected", new AttrDetails("ACDCTerminal.connected", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("connected", new AttrDetails("ACDCTerminal.connected", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ACDCTerminal::getConnected, ACDCTerminal::setConnected));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("sequenceNumber", new AttrDetails("ACDCTerminal.sequenceNumber", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("sequenceNumber", new AttrDetails("ACDCTerminal.sequenceNumber", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ACDCTerminal::getSequenceNumber, ACDCTerminal::setSequenceNumber));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ACDCTerminal().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ACDCTerminal(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("BusNameMarker", new GetterSetter(this::BusNameMarkerToString, this::setBusNameMarker, null));
-        map.put("Measurements", new GetterSetter(this::MeasurementsToString, this::setMeasurements, null));
-        map.put("OperationalLimitSet", new GetterSetter(this::OperationalLimitSetToString, this::setOperationalLimitSet, null));
-        map.put("connected", new GetterSetter(this::connectedToString, null, this::setConnected));
-        map.put("sequenceNumber", new GetterSetter(this::sequenceNumberToString, null, this::setSequenceNumber));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

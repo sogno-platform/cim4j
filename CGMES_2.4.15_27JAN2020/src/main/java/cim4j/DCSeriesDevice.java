@@ -23,10 +23,17 @@ public class DCSeriesDevice extends DCConductingEquipment {
     private static final Logging LOG = Logging.getLogger(DCSeriesDevice.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public DCSeriesDevice() {
-        setCimType("DCSeriesDevice");
+    public DCSeriesDevice(String rdfid) {
+        super("DCSeriesDevice", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected DCSeriesDevice(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class DCSeriesDevice extends DCConductingEquipment {
         inductance = _value_;
     }
 
-    public void setInductance(String _value_) {
-        inductance = getDoubleFromString(_value_);
+    private static Object getInductance(BaseClass _this_) {
+        return ((DCSeriesDevice) _this_).getInductance();
     }
 
-    public String inductanceToString() {
-        return inductance != null ? inductance.toString() : null;
+    private static void setInductance(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DCSeriesDevice) _this_).setInductance((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DCSeriesDevice) _this_).setInductance(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class DCSeriesDevice extends DCConductingEquipment {
         ratedUdc = _value_;
     }
 
-    public void setRatedUdc(String _value_) {
-        ratedUdc = getDoubleFromString(_value_);
+    private static Object getRatedUdc(BaseClass _this_) {
+        return ((DCSeriesDevice) _this_).getRatedUdc();
     }
 
-    public String ratedUdcToString() {
-        return ratedUdc != null ? ratedUdc.toString() : null;
+    private static void setRatedUdc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DCSeriesDevice) _this_).setRatedUdc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DCSeriesDevice) _this_).setRatedUdc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class DCSeriesDevice extends DCConductingEquipment {
         resistance = _value_;
     }
 
-    public void setResistance(String _value_) {
-        resistance = getDoubleFromString(_value_);
+    private static Object getResistance(BaseClass _this_) {
+        return ((DCSeriesDevice) _this_).getResistance();
     }
 
-    public String resistanceToString() {
-        return resistance != null ? resistance.toString() : null;
+    private static void setResistance(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DCSeriesDevice) _this_).setResistance((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DCSeriesDevice) _this_).setResistance(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,64 +151,35 @@ public class DCSeriesDevice extends DCConductingEquipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("DCSeriesDevice", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "DCSeriesDevice", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("DCSeriesDevice", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("DCSeriesDevice", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "DCSeriesDevice", attrName, value));
         }
     }
 
@@ -307,30 +303,21 @@ public class DCSeriesDevice extends DCConductingEquipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("inductance", new AttrDetails("DCSeriesDevice.inductance", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("inductance", new AttrDetails("DCSeriesDevice.inductance", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DCSeriesDevice::getInductance, DCSeriesDevice::setInductance));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedUdc", new AttrDetails("DCSeriesDevice.ratedUdc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ratedUdc", new AttrDetails("DCSeriesDevice.ratedUdc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DCSeriesDevice::getRatedUdc, DCSeriesDevice::setRatedUdc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("resistance", new AttrDetails("DCSeriesDevice.resistance", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("resistance", new AttrDetails("DCSeriesDevice.resistance", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DCSeriesDevice::getResistance, DCSeriesDevice::setResistance));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DCSeriesDevice().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DCSeriesDevice(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("inductance", new GetterSetter(this::inductanceToString, null, this::setInductance));
-        map.put("ratedUdc", new GetterSetter(this::ratedUdcToString, null, this::setRatedUdc));
-        map.put("resistance", new GetterSetter(this::resistanceToString, null, this::setResistance));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

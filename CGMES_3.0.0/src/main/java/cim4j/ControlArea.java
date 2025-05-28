@@ -23,10 +23,17 @@ public class ControlArea extends PowerSystemResource {
     private static final Logging LOG = Logging.getLogger(ControlArea.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ControlArea() {
-        setCimType("ControlArea");
+    public ControlArea(String rdfid) {
+        super("ControlArea", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ControlArea(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class ControlArea extends PowerSystemResource {
         return ControlAreaGeneratingUnit;
     }
 
-    public void setControlAreaGeneratingUnit(BaseClass _object_) {
-        if (!(_object_ instanceof ControlAreaGeneratingUnit)) {
-            throw new IllegalArgumentException("Object is not ControlAreaGeneratingUnit");
-        }
+    public void setControlAreaGeneratingUnit(ControlAreaGeneratingUnit _object_) {
         if (!ControlAreaGeneratingUnit.contains(_object_)) {
-            ControlAreaGeneratingUnit.add((ControlAreaGeneratingUnit) _object_);
-            ((ControlAreaGeneratingUnit) _object_).setControlArea(this);
+            ControlAreaGeneratingUnit.add(_object_);
+            _object_.setControlArea(this);
         }
     }
 
-    public String ControlAreaGeneratingUnitToString() {
-        return getStringFromSet(ControlAreaGeneratingUnit);
+    private static Object getControlAreaGeneratingUnit(BaseClass _this_) {
+        return ((ControlArea) _this_).getControlAreaGeneratingUnit();
+    }
+
+    private static void setControlAreaGeneratingUnit(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ControlAreaGeneratingUnit) {
+            ((ControlArea) _this_).setControlAreaGeneratingUnit((ControlAreaGeneratingUnit) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ControlAreaGeneratingUnit");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class ControlArea extends PowerSystemResource {
         return EnergyArea;
     }
 
-    public void setEnergyArea(BaseClass _object_) {
-        if (!(_object_ instanceof EnergyArea)) {
-            throw new IllegalArgumentException("Object is not EnergyArea");
-        }
+    public void setEnergyArea(EnergyArea _object_) {
         if (EnergyArea != _object_) {
-            EnergyArea = (EnergyArea) _object_;
+            EnergyArea = _object_;
             EnergyArea.setControlArea(this);
         }
     }
 
-    public String EnergyAreaToString() {
-        return EnergyArea != null ? EnergyArea.getRdfid() : null;
+    private static Object getEnergyArea(BaseClass _this_) {
+        return ((ControlArea) _this_).getEnergyArea();
+    }
+
+    private static void setEnergyArea(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof EnergyArea) {
+            ((ControlArea) _this_).setEnergyArea((EnergyArea) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not EnergyArea");
+        }
     }
 
     /**
@@ -88,18 +105,23 @@ public class ControlArea extends PowerSystemResource {
         return TieFlow;
     }
 
-    public void setTieFlow(BaseClass _object_) {
-        if (!(_object_ instanceof TieFlow)) {
-            throw new IllegalArgumentException("Object is not TieFlow");
-        }
+    public void setTieFlow(TieFlow _object_) {
         if (!TieFlow.contains(_object_)) {
-            TieFlow.add((TieFlow) _object_);
-            ((TieFlow) _object_).setControlArea(this);
+            TieFlow.add(_object_);
+            _object_.setControlArea(this);
         }
     }
 
-    public String TieFlowToString() {
-        return getStringFromSet(TieFlow);
+    private static Object getTieFlow(BaseClass _this_) {
+        return ((ControlArea) _this_).getTieFlow();
+    }
+
+    private static void setTieFlow(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof TieFlow) {
+            ((ControlArea) _this_).setTieFlow((TieFlow) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not TieFlow");
+        }
     }
 
     /**
@@ -115,12 +137,18 @@ public class ControlArea extends PowerSystemResource {
         netInterchange = _value_;
     }
 
-    public void setNetInterchange(String _value_) {
-        netInterchange = getDoubleFromString(_value_);
+    private static Object getNetInterchange(BaseClass _this_) {
+        return ((ControlArea) _this_).getNetInterchange();
     }
 
-    public String netInterchangeToString() {
-        return netInterchange != null ? netInterchange.toString() : null;
+    private static void setNetInterchange(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ControlArea) _this_).setNetInterchange((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ControlArea) _this_).setNetInterchange(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -136,12 +164,18 @@ public class ControlArea extends PowerSystemResource {
         pTolerance = _value_;
     }
 
-    public void setPTolerance(String _value_) {
-        pTolerance = getDoubleFromString(_value_);
+    private static Object getPTolerance(BaseClass _this_) {
+        return ((ControlArea) _this_).getPTolerance();
     }
 
-    public String pToleranceToString() {
-        return pTolerance != null ? pTolerance.toString() : null;
+    private static void setPTolerance(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ControlArea) _this_).setPTolerance((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ControlArea) _this_).setPTolerance(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -157,8 +191,16 @@ public class ControlArea extends PowerSystemResource {
         type = _value_;
     }
 
-    public String typeToString() {
-        return type;
+    private static Object getType(BaseClass _this_) {
+        return ((ControlArea) _this_).getType();
+    }
+
+    private static void setType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((ControlArea) _this_).setType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -195,64 +237,35 @@ public class ControlArea extends PowerSystemResource {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ControlArea", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ControlArea", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ControlArea", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ControlArea", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ControlArea", attrName, value));
         }
     }
 
@@ -376,48 +389,36 @@ public class ControlArea extends PowerSystemResource {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ControlAreaGeneratingUnit", new AttrDetails("ControlArea.ControlAreaGeneratingUnit", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("ControlAreaGeneratingUnit", new AttrDetails("ControlArea.ControlAreaGeneratingUnit", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, ControlArea::getControlAreaGeneratingUnit, ControlArea::setControlAreaGeneratingUnit));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("EnergyArea", new AttrDetails("ControlArea.EnergyArea", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("EnergyArea", new AttrDetails("ControlArea.EnergyArea", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, ControlArea::getEnergyArea, ControlArea::setEnergyArea));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("TieFlow", new AttrDetails("ControlArea.TieFlow", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("TieFlow", new AttrDetails("ControlArea.TieFlow", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, ControlArea::getTieFlow, ControlArea::setTieFlow));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("netInterchange", new AttrDetails("ControlArea.netInterchange", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("netInterchange", new AttrDetails("ControlArea.netInterchange", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ControlArea::getNetInterchange, ControlArea::setNetInterchange));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("pTolerance", new AttrDetails("ControlArea.pTolerance", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pTolerance", new AttrDetails("ControlArea.pTolerance", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ControlArea::getPTolerance, ControlArea::setPTolerance));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("type", new AttrDetails("ControlArea.type", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("type", new AttrDetails("ControlArea.type", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, ControlArea::getType, ControlArea::setType));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ControlArea().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ControlArea(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ControlAreaGeneratingUnit", new GetterSetter(this::ControlAreaGeneratingUnitToString, this::setControlAreaGeneratingUnit, null));
-        map.put("EnergyArea", new GetterSetter(this::EnergyAreaToString, this::setEnergyArea, null));
-        map.put("TieFlow", new GetterSetter(this::TieFlowToString, this::setTieFlow, null));
-        map.put("netInterchange", new GetterSetter(this::netInterchangeToString, null, this::setNetInterchange));
-        map.put("pTolerance", new GetterSetter(this::pToleranceToString, null, this::setPTolerance));
-        map.put("type", new GetterSetter(this::typeToString, null, this::setType));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

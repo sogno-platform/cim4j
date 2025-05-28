@@ -23,10 +23,17 @@ public class RatioTapChangerTable extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(RatioTapChangerTable.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public RatioTapChangerTable() {
-        setCimType("RatioTapChangerTable");
+    public RatioTapChangerTable(String rdfid) {
+        super("RatioTapChangerTable", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected RatioTapChangerTable(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class RatioTapChangerTable extends IdentifiedObject {
         return RatioTapChanger;
     }
 
-    public void setRatioTapChanger(BaseClass _object_) {
-        if (!(_object_ instanceof RatioTapChanger)) {
-            throw new IllegalArgumentException("Object is not RatioTapChanger");
-        }
+    public void setRatioTapChanger(RatioTapChanger _object_) {
         if (!RatioTapChanger.contains(_object_)) {
-            RatioTapChanger.add((RatioTapChanger) _object_);
-            ((RatioTapChanger) _object_).setRatioTapChangerTable(this);
+            RatioTapChanger.add(_object_);
+            _object_.setRatioTapChangerTable(this);
         }
     }
 
-    public String RatioTapChangerToString() {
-        return getStringFromSet(RatioTapChanger);
+    private static Object getRatioTapChanger(BaseClass _this_) {
+        return ((RatioTapChangerTable) _this_).getRatioTapChanger();
+    }
+
+    private static void setRatioTapChanger(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof RatioTapChanger) {
+            ((RatioTapChangerTable) _this_).setRatioTapChanger((RatioTapChanger) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not RatioTapChanger");
+        }
     }
 
     /**
@@ -65,18 +77,23 @@ public class RatioTapChangerTable extends IdentifiedObject {
         return RatioTapChangerTablePoint;
     }
 
-    public void setRatioTapChangerTablePoint(BaseClass _object_) {
-        if (!(_object_ instanceof RatioTapChangerTablePoint)) {
-            throw new IllegalArgumentException("Object is not RatioTapChangerTablePoint");
-        }
+    public void setRatioTapChangerTablePoint(RatioTapChangerTablePoint _object_) {
         if (!RatioTapChangerTablePoint.contains(_object_)) {
-            RatioTapChangerTablePoint.add((RatioTapChangerTablePoint) _object_);
-            ((RatioTapChangerTablePoint) _object_).setRatioTapChangerTable(this);
+            RatioTapChangerTablePoint.add(_object_);
+            _object_.setRatioTapChangerTable(this);
         }
     }
 
-    public String RatioTapChangerTablePointToString() {
-        return getStringFromSet(RatioTapChangerTablePoint);
+    private static Object getRatioTapChangerTablePoint(BaseClass _this_) {
+        return ((RatioTapChangerTable) _this_).getRatioTapChangerTablePoint();
+    }
+
+    private static void setRatioTapChangerTablePoint(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof RatioTapChangerTablePoint) {
+            ((RatioTapChangerTable) _this_).setRatioTapChangerTablePoint((RatioTapChangerTablePoint) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not RatioTapChangerTablePoint");
+        }
     }
 
     /**
@@ -113,64 +130,35 @@ public class RatioTapChangerTable extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("RatioTapChangerTable", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "RatioTapChangerTable", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("RatioTapChangerTable", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("RatioTapChangerTable", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "RatioTapChangerTable", attrName, value));
         }
     }
 
@@ -294,24 +282,16 @@ public class RatioTapChangerTable extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("RatioTapChanger", new AttrDetails("RatioTapChangerTable.RatioTapChanger", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("RatioTapChanger", new AttrDetails("RatioTapChangerTable.RatioTapChanger", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, RatioTapChangerTable::getRatioTapChanger, RatioTapChangerTable::setRatioTapChanger));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("RatioTapChangerTablePoint", new AttrDetails("RatioTapChangerTable.RatioTapChangerTablePoint", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("RatioTapChangerTablePoint", new AttrDetails("RatioTapChangerTable.RatioTapChangerTablePoint", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, RatioTapChangerTable::getRatioTapChangerTablePoint, RatioTapChangerTable::setRatioTapChangerTablePoint));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RatioTapChangerTable().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RatioTapChangerTable(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("RatioTapChanger", new GetterSetter(this::RatioTapChangerToString, this::setRatioTapChanger, null));
-        map.put("RatioTapChangerTablePoint", new GetterSetter(this::RatioTapChangerTablePointToString, this::setRatioTapChangerTablePoint, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

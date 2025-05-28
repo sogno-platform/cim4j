@@ -23,10 +23,17 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
     private static final Logging LOG = Logging.getLogger(PssELIN2.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public PssELIN2() {
-        setCimType("PssELIN2");
+    public PssELIN2(String rdfid) {
+        super("PssELIN2", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected PssELIN2(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
         apss = _value_;
     }
 
-    public void setApss(String _value_) {
-        apss = getDoubleFromString(_value_);
+    private static Object getApss(BaseClass _this_) {
+        return ((PssELIN2) _this_).getApss();
     }
 
-    public String apssToString() {
-        return apss != null ? apss.toString() : null;
+    private static void setApss(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssELIN2) _this_).setApss((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssELIN2) _this_).setApss(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
         ks1 = _value_;
     }
 
-    public void setKs1(String _value_) {
-        ks1 = getDoubleFromString(_value_);
+    private static Object getKs1(BaseClass _this_) {
+        return ((PssELIN2) _this_).getKs1();
     }
 
-    public String ks1ToString() {
-        return ks1 != null ? ks1.toString() : null;
+    private static void setKs1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssELIN2) _this_).setKs1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssELIN2) _this_).setKs1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,16 +103,22 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
         ks2 = _value_;
     }
 
-    public void setKs2(String _value_) {
-        ks2 = getDoubleFromString(_value_);
+    private static Object getKs2(BaseClass _this_) {
+        return ((PssELIN2) _this_).getKs2();
     }
 
-    public String ks2ToString() {
-        return ks2 != null ? ks2.toString() : null;
+    private static void setKs2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssELIN2) _this_).setKs2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssELIN2) _this_).setKs2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Coefficient (p_PSS) (&gt;=0 and &lt;=4).  Typical Value = 0.1.
+     * Coefficient (p_PSS) (>=0 and <=4).  Typical Value = 0.1.
      */
     private Double ppss; // PU
 
@@ -105,12 +130,18 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
         ppss = _value_;
     }
 
-    public void setPpss(String _value_) {
-        ppss = getDoubleFromString(_value_);
+    private static Object getPpss(BaseClass _this_) {
+        return ((PssELIN2) _this_).getPpss();
     }
 
-    public String ppssToString() {
-        return ppss != null ? ppss.toString() : null;
+    private static void setPpss(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssELIN2) _this_).setPpss((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssELIN2) _this_).setPpss(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
         psslim = _value_;
     }
 
-    public void setPsslim(String _value_) {
-        psslim = getDoubleFromString(_value_);
+    private static Object getPsslim(BaseClass _this_) {
+        return ((PssELIN2) _this_).getPsslim();
     }
 
-    public String psslimToString() {
-        return psslim != null ? psslim.toString() : null;
+    private static void setPsslim(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssELIN2) _this_).setPsslim((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssELIN2) _this_).setPsslim(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,12 +184,18 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
         ts1 = _value_;
     }
 
-    public void setTs1(String _value_) {
-        ts1 = getDoubleFromString(_value_);
+    private static Object getTs1(BaseClass _this_) {
+        return ((PssELIN2) _this_).getTs1();
     }
 
-    public String ts1ToString() {
-        return ts1 != null ? ts1.toString() : null;
+    private static void setTs1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssELIN2) _this_).setTs1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssELIN2) _this_).setTs1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,12 +211,18 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
         ts2 = _value_;
     }
 
-    public void setTs2(String _value_) {
-        ts2 = getDoubleFromString(_value_);
+    private static Object getTs2(BaseClass _this_) {
+        return ((PssELIN2) _this_).getTs2();
     }
 
-    public String ts2ToString() {
-        return ts2 != null ? ts2.toString() : null;
+    private static void setTs2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssELIN2) _this_).setTs2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssELIN2) _this_).setTs2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,12 +238,18 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
         ts3 = _value_;
     }
 
-    public void setTs3(String _value_) {
-        ts3 = getDoubleFromString(_value_);
+    private static Object getTs3(BaseClass _this_) {
+        return ((PssELIN2) _this_).getTs3();
     }
 
-    public String ts3ToString() {
-        return ts3 != null ? ts3.toString() : null;
+    private static void setTs3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssELIN2) _this_).setTs3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssELIN2) _this_).setTs3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -210,12 +265,18 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
         ts4 = _value_;
     }
 
-    public void setTs4(String _value_) {
-        ts4 = getDoubleFromString(_value_);
+    private static Object getTs4(BaseClass _this_) {
+        return ((PssELIN2) _this_).getTs4();
     }
 
-    public String ts4ToString() {
-        return ts4 != null ? ts4.toString() : null;
+    private static void setTs4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssELIN2) _this_).setTs4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssELIN2) _this_).setTs4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -231,12 +292,18 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
         ts5 = _value_;
     }
 
-    public void setTs5(String _value_) {
-        ts5 = getDoubleFromString(_value_);
+    private static Object getTs5(BaseClass _this_) {
+        return ((PssELIN2) _this_).getTs5();
     }
 
-    public String ts5ToString() {
-        return ts5 != null ? ts5.toString() : null;
+    private static void setTs5(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssELIN2) _this_).setTs5((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssELIN2) _this_).setTs5(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -252,12 +319,18 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
         ts6 = _value_;
     }
 
-    public void setTs6(String _value_) {
-        ts6 = getDoubleFromString(_value_);
+    private static Object getTs6(BaseClass _this_) {
+        return ((PssELIN2) _this_).getTs6();
     }
 
-    public String ts6ToString() {
-        return ts6 != null ? ts6.toString() : null;
+    private static void setTs6(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssELIN2) _this_).setTs6((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssELIN2) _this_).setTs6(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -294,64 +367,35 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("PssELIN2", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "PssELIN2", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("PssELIN2", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("PssELIN2", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "PssELIN2", attrName, value));
         }
     }
 
@@ -475,78 +519,61 @@ public class PssELIN2 extends PowerSystemStabilizerDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("apss", new AttrDetails("PssELIN2.apss", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("apss", new AttrDetails("PssELIN2.apss", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PssELIN2::getApss, PssELIN2::setApss));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ks1", new AttrDetails("PssELIN2.ks1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ks1", new AttrDetails("PssELIN2.ks1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PssELIN2::getKs1, PssELIN2::setKs1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ks2", new AttrDetails("PssELIN2.ks2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ks2", new AttrDetails("PssELIN2.ks2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PssELIN2::getKs2, PssELIN2::setKs2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ppss", new AttrDetails("PssELIN2.ppss", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ppss", new AttrDetails("PssELIN2.ppss", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PssELIN2::getPpss, PssELIN2::setPpss));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("psslim", new AttrDetails("PssELIN2.psslim", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("psslim", new AttrDetails("PssELIN2.psslim", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PssELIN2::getPsslim, PssELIN2::setPsslim));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ts1", new AttrDetails("PssELIN2.ts1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ts1", new AttrDetails("PssELIN2.ts1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PssELIN2::getTs1, PssELIN2::setTs1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ts2", new AttrDetails("PssELIN2.ts2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ts2", new AttrDetails("PssELIN2.ts2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PssELIN2::getTs2, PssELIN2::setTs2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ts3", new AttrDetails("PssELIN2.ts3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ts3", new AttrDetails("PssELIN2.ts3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PssELIN2::getTs3, PssELIN2::setTs3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ts4", new AttrDetails("PssELIN2.ts4", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ts4", new AttrDetails("PssELIN2.ts4", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PssELIN2::getTs4, PssELIN2::setTs4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ts5", new AttrDetails("PssELIN2.ts5", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ts5", new AttrDetails("PssELIN2.ts5", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PssELIN2::getTs5, PssELIN2::setTs5));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ts6", new AttrDetails("PssELIN2.ts6", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ts6", new AttrDetails("PssELIN2.ts6", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PssELIN2::getTs6, PssELIN2::setTs6));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PssELIN2().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PssELIN2(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("apss", new GetterSetter(this::apssToString, null, this::setApss));
-        map.put("ks1", new GetterSetter(this::ks1ToString, null, this::setKs1));
-        map.put("ks2", new GetterSetter(this::ks2ToString, null, this::setKs2));
-        map.put("ppss", new GetterSetter(this::ppssToString, null, this::setPpss));
-        map.put("psslim", new GetterSetter(this::psslimToString, null, this::setPsslim));
-        map.put("ts1", new GetterSetter(this::ts1ToString, null, this::setTs1));
-        map.put("ts2", new GetterSetter(this::ts2ToString, null, this::setTs2));
-        map.put("ts3", new GetterSetter(this::ts3ToString, null, this::setTs3));
-        map.put("ts4", new GetterSetter(this::ts4ToString, null, this::setTs4));
-        map.put("ts5", new GetterSetter(this::ts5ToString, null, this::setTs5));
-        map.put("ts6", new GetterSetter(this::ts6ToString, null, this::setTs6));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

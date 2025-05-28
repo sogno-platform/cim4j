@@ -23,10 +23,17 @@ public class RotatingMachine extends RegulatingCondEq {
     private static final Logging LOG = Logging.getLogger(RotatingMachine.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public RotatingMachine() {
-        setCimType("RotatingMachine");
+    public RotatingMachine(String rdfid) {
+        super("RotatingMachine", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected RotatingMachine(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class RotatingMachine extends RegulatingCondEq {
         return GeneratingUnit;
     }
 
-    public void setGeneratingUnit(BaseClass _object_) {
-        if (!(_object_ instanceof GeneratingUnit)) {
-            throw new IllegalArgumentException("Object is not GeneratingUnit");
-        }
+    public void setGeneratingUnit(GeneratingUnit _object_) {
         if (GeneratingUnit != _object_) {
-            GeneratingUnit = (GeneratingUnit) _object_;
+            GeneratingUnit = _object_;
             GeneratingUnit.setRotatingMachine(this);
         }
     }
 
-    public String GeneratingUnitToString() {
-        return GeneratingUnit != null ? GeneratingUnit.getRdfid() : null;
+    private static Object getGeneratingUnit(BaseClass _this_) {
+        return ((RotatingMachine) _this_).getGeneratingUnit();
+    }
+
+    private static void setGeneratingUnit(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof GeneratingUnit) {
+            ((RotatingMachine) _this_).setGeneratingUnit((GeneratingUnit) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not GeneratingUnit");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class RotatingMachine extends RegulatingCondEq {
         return HydroPump;
     }
 
-    public void setHydroPump(BaseClass _object_) {
-        if (!(_object_ instanceof HydroPump)) {
-            throw new IllegalArgumentException("Object is not HydroPump");
-        }
+    public void setHydroPump(HydroPump _object_) {
         if (HydroPump != _object_) {
-            HydroPump = (HydroPump) _object_;
+            HydroPump = _object_;
             HydroPump.setRotatingMachine(this);
         }
     }
 
-    public String HydroPumpToString() {
-        return HydroPump != null ? HydroPump.getRdfid() : null;
+    private static Object getHydroPump(BaseClass _this_) {
+        return ((RotatingMachine) _this_).getHydroPump();
+    }
+
+    private static void setHydroPump(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof HydroPump) {
+            ((RotatingMachine) _this_).setHydroPump((HydroPump) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not HydroPump");
+        }
     }
 
     /**
@@ -90,12 +107,18 @@ public class RotatingMachine extends RegulatingCondEq {
         p = _value_;
     }
 
-    public void setP(String _value_) {
-        p = getDoubleFromString(_value_);
+    private static Object getP(BaseClass _this_) {
+        return ((RotatingMachine) _this_).getP();
     }
 
-    public String pToString() {
-        return p != null ? p.toString() : null;
+    private static void setP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((RotatingMachine) _this_).setP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((RotatingMachine) _this_).setP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -111,12 +134,18 @@ public class RotatingMachine extends RegulatingCondEq {
         q = _value_;
     }
 
-    public void setQ(String _value_) {
-        q = getDoubleFromString(_value_);
+    private static Object getQ(BaseClass _this_) {
+        return ((RotatingMachine) _this_).getQ();
     }
 
-    public String qToString() {
-        return q != null ? q.toString() : null;
+    private static void setQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((RotatingMachine) _this_).setQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((RotatingMachine) _this_).setQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -132,12 +161,18 @@ public class RotatingMachine extends RegulatingCondEq {
         ratedPowerFactor = _value_;
     }
 
-    public void setRatedPowerFactor(String _value_) {
-        ratedPowerFactor = getFloatFromString(_value_);
+    private static Object getRatedPowerFactor(BaseClass _this_) {
+        return ((RotatingMachine) _this_).getRatedPowerFactor();
     }
 
-    public String ratedPowerFactorToString() {
-        return ratedPowerFactor != null ? ratedPowerFactor.toString() : null;
+    private static void setRatedPowerFactor(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((RotatingMachine) _this_).setRatedPowerFactor((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((RotatingMachine) _this_).setRatedPowerFactor(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -153,12 +188,18 @@ public class RotatingMachine extends RegulatingCondEq {
         ratedS = _value_;
     }
 
-    public void setRatedS(String _value_) {
-        ratedS = getDoubleFromString(_value_);
+    private static Object getRatedS(BaseClass _this_) {
+        return ((RotatingMachine) _this_).getRatedS();
     }
 
-    public String ratedSToString() {
-        return ratedS != null ? ratedS.toString() : null;
+    private static void setRatedS(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((RotatingMachine) _this_).setRatedS((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((RotatingMachine) _this_).setRatedS(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -174,12 +215,18 @@ public class RotatingMachine extends RegulatingCondEq {
         ratedU = _value_;
     }
 
-    public void setRatedU(String _value_) {
-        ratedU = getDoubleFromString(_value_);
+    private static Object getRatedU(BaseClass _this_) {
+        return ((RotatingMachine) _this_).getRatedU();
     }
 
-    public String ratedUToString() {
-        return ratedU != null ? ratedU.toString() : null;
+    private static void setRatedU(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((RotatingMachine) _this_).setRatedU((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((RotatingMachine) _this_).setRatedU(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -216,64 +263,35 @@ public class RotatingMachine extends RegulatingCondEq {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("RotatingMachine", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "RotatingMachine", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("RotatingMachine", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("RotatingMachine", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "RotatingMachine", attrName, value));
         }
     }
 
@@ -397,54 +415,41 @@ public class RotatingMachine extends RegulatingCondEq {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("GeneratingUnit", new AttrDetails("RotatingMachine.GeneratingUnit", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("GeneratingUnit", new AttrDetails("RotatingMachine.GeneratingUnit", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, RotatingMachine::getGeneratingUnit, RotatingMachine::setGeneratingUnit));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("HydroPump", new AttrDetails("RotatingMachine.HydroPump", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("HydroPump", new AttrDetails("RotatingMachine.HydroPump", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, RotatingMachine::getHydroPump, RotatingMachine::setHydroPump));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("p", new AttrDetails("RotatingMachine.p", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p", new AttrDetails("RotatingMachine.p", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, RotatingMachine::getP, RotatingMachine::setP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("q", new AttrDetails("RotatingMachine.q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q", new AttrDetails("RotatingMachine.q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, RotatingMachine::getQ, RotatingMachine::setQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedPowerFactor", new AttrDetails("RotatingMachine.ratedPowerFactor", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ratedPowerFactor", new AttrDetails("RotatingMachine.ratedPowerFactor", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, RotatingMachine::getRatedPowerFactor, RotatingMachine::setRatedPowerFactor));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedS", new AttrDetails("RotatingMachine.ratedS", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ratedS", new AttrDetails("RotatingMachine.ratedS", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, RotatingMachine::getRatedS, RotatingMachine::setRatedS));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedU", new AttrDetails("RotatingMachine.ratedU", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ratedU", new AttrDetails("RotatingMachine.ratedU", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, RotatingMachine::getRatedU, RotatingMachine::setRatedU));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RotatingMachine().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RotatingMachine(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("GeneratingUnit", new GetterSetter(this::GeneratingUnitToString, this::setGeneratingUnit, null));
-        map.put("HydroPump", new GetterSetter(this::HydroPumpToString, this::setHydroPump, null));
-        map.put("p", new GetterSetter(this::pToString, null, this::setP));
-        map.put("q", new GetterSetter(this::qToString, null, this::setQ));
-        map.put("ratedPowerFactor", new GetterSetter(this::ratedPowerFactorToString, null, this::setRatedPowerFactor));
-        map.put("ratedS", new GetterSetter(this::ratedSToString, null, this::setRatedS));
-        map.put("ratedU", new GetterSetter(this::ratedUToString, null, this::setRatedU));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

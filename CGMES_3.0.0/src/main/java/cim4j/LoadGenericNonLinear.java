@@ -23,14 +23,21 @@ public class LoadGenericNonLinear extends LoadDynamics {
     private static final Logging LOG = Logging.getLogger(LoadGenericNonLinear.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public LoadGenericNonLinear() {
-        setCimType("LoadGenericNonLinear");
+    public LoadGenericNonLinear(String rdfid) {
+        super("LoadGenericNonLinear", rdfid);
     }
 
     /**
-     * Steady state voltage index for reactive power (&lt;i&gt;BS&lt;/i&gt;).
+     * Constructor for subclasses.
+     */
+    protected LoadGenericNonLinear(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Steady state voltage index for reactive power (<i>BS</i>).
      */
     private Float bs; // Float
 
@@ -42,16 +49,22 @@ public class LoadGenericNonLinear extends LoadDynamics {
         bs = _value_;
     }
 
-    public void setBs(String _value_) {
-        bs = getFloatFromString(_value_);
+    private static Object getBs(BaseClass _this_) {
+        return ((LoadGenericNonLinear) _this_).getBs();
     }
 
-    public String bsToString() {
-        return bs != null ? bs.toString() : null;
+    private static void setBs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadGenericNonLinear) _this_).setBs((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadGenericNonLinear) _this_).setBs(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Transient voltage index for reactive power (&lt;i&gt;BT&lt;/i&gt;).
+     * Transient voltage index for reactive power (<i>BT</i>).
      */
     private Float bt; // Float
 
@@ -63,12 +76,18 @@ public class LoadGenericNonLinear extends LoadDynamics {
         bt = _value_;
     }
 
-    public void setBt(String _value_) {
-        bt = getFloatFromString(_value_);
+    private static Object getBt(BaseClass _this_) {
+        return ((LoadGenericNonLinear) _this_).getBt();
     }
 
-    public String btToString() {
-        return bt != null ? bt.toString() : null;
+    private static void setBt(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadGenericNonLinear) _this_).setBt((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadGenericNonLinear) _this_).setBt(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -84,12 +103,20 @@ public class LoadGenericNonLinear extends LoadDynamics {
         genericNonLinearLoadModelType = _value_;
     }
 
-    public String genericNonLinearLoadModelTypeToString() {
-        return genericNonLinearLoadModelType;
+    private static Object getGenericNonLinearLoadModelType(BaseClass _this_) {
+        return ((LoadGenericNonLinear) _this_).getGenericNonLinearLoadModelType();
+    }
+
+    private static void setGenericNonLinearLoadModelType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((LoadGenericNonLinear) _this_).setGenericNonLinearLoadModelType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
-     * Steady state voltage index for active power (&lt;i&gt;LS&lt;/i&gt;).
+     * Steady state voltage index for active power (<i>LS</i>).
      */
     private Float ls; // Float
 
@@ -101,16 +128,22 @@ public class LoadGenericNonLinear extends LoadDynamics {
         ls = _value_;
     }
 
-    public void setLs(String _value_) {
-        ls = getFloatFromString(_value_);
+    private static Object getLs(BaseClass _this_) {
+        return ((LoadGenericNonLinear) _this_).getLs();
     }
 
-    public String lsToString() {
-        return ls != null ? ls.toString() : null;
+    private static void setLs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadGenericNonLinear) _this_).setLs((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadGenericNonLinear) _this_).setLs(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Transient voltage index for active power (&lt;i&gt;LT&lt;/i&gt;).
+     * Transient voltage index for active power (<i>LT</i>).
      */
     private Float lt; // Float
 
@@ -122,16 +155,22 @@ public class LoadGenericNonLinear extends LoadDynamics {
         lt = _value_;
     }
 
-    public void setLt(String _value_) {
-        lt = getFloatFromString(_value_);
+    private static Object getLt(BaseClass _this_) {
+        return ((LoadGenericNonLinear) _this_).getLt();
     }
 
-    public String ltToString() {
-        return lt != null ? lt.toString() : null;
+    private static void setLt(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadGenericNonLinear) _this_).setLt((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadGenericNonLinear) _this_).setLt(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Time constant of lag function of active power (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;P&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; 0).
+     * Time constant of lag function of active power (<i>T</i><i><sub>P</sub></i>) (&gt; 0).
      */
     private Double tp; // Seconds
 
@@ -143,16 +182,22 @@ public class LoadGenericNonLinear extends LoadDynamics {
         tp = _value_;
     }
 
-    public void setTp(String _value_) {
-        tp = getDoubleFromString(_value_);
+    private static Object getTp(BaseClass _this_) {
+        return ((LoadGenericNonLinear) _this_).getTp();
     }
 
-    public String tpToString() {
-        return tp != null ? tp.toString() : null;
+    private static void setTp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadGenericNonLinear) _this_).setTp((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadGenericNonLinear) _this_).setTp(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Time constant of lag function of reactive power (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;Q&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; 0).
+     * Time constant of lag function of reactive power (<i>T</i><i><sub>Q</sub></i>) (&gt; 0).
      */
     private Double tq; // Seconds
 
@@ -164,12 +209,18 @@ public class LoadGenericNonLinear extends LoadDynamics {
         tq = _value_;
     }
 
-    public void setTq(String _value_) {
-        tq = getDoubleFromString(_value_);
+    private static Object getTq(BaseClass _this_) {
+        return ((LoadGenericNonLinear) _this_).getTq();
     }
 
-    public String tqToString() {
-        return tq != null ? tq.toString() : null;
+    private static void setTq(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadGenericNonLinear) _this_).setTq((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadGenericNonLinear) _this_).setTq(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -206,64 +257,35 @@ public class LoadGenericNonLinear extends LoadDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("LoadGenericNonLinear", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "LoadGenericNonLinear", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("LoadGenericNonLinear", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("LoadGenericNonLinear", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "LoadGenericNonLinear", attrName, value));
         }
     }
 
@@ -387,54 +409,41 @@ public class LoadGenericNonLinear extends LoadDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("bs", new AttrDetails("LoadGenericNonLinear.bs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("bs", new AttrDetails("LoadGenericNonLinear.bs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadGenericNonLinear::getBs, LoadGenericNonLinear::setBs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("bt", new AttrDetails("LoadGenericNonLinear.bt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("bt", new AttrDetails("LoadGenericNonLinear.bt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadGenericNonLinear::getBt, LoadGenericNonLinear::setBt));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("genericNonLinearLoadModelType", new AttrDetails("LoadGenericNonLinear.genericNonLinearLoadModelType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("genericNonLinearLoadModelType", new AttrDetails("LoadGenericNonLinear.genericNonLinearLoadModelType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, LoadGenericNonLinear::getGenericNonLinearLoadModelType, LoadGenericNonLinear::setGenericNonLinearLoadModelType));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ls", new AttrDetails("LoadGenericNonLinear.ls", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ls", new AttrDetails("LoadGenericNonLinear.ls", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadGenericNonLinear::getLs, LoadGenericNonLinear::setLs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("lt", new AttrDetails("LoadGenericNonLinear.lt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("lt", new AttrDetails("LoadGenericNonLinear.lt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadGenericNonLinear::getLt, LoadGenericNonLinear::setLt));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tp", new AttrDetails("LoadGenericNonLinear.tp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tp", new AttrDetails("LoadGenericNonLinear.tp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadGenericNonLinear::getTp, LoadGenericNonLinear::setTp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tq", new AttrDetails("LoadGenericNonLinear.tq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tq", new AttrDetails("LoadGenericNonLinear.tq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadGenericNonLinear::getTq, LoadGenericNonLinear::setTq));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadGenericNonLinear().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadGenericNonLinear(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("bs", new GetterSetter(this::bsToString, null, this::setBs));
-        map.put("bt", new GetterSetter(this::btToString, null, this::setBt));
-        map.put("genericNonLinearLoadModelType", new GetterSetter(this::genericNonLinearLoadModelTypeToString, null, this::setGenericNonLinearLoadModelType));
-        map.put("ls", new GetterSetter(this::lsToString, null, this::setLs));
-        map.put("lt", new GetterSetter(this::ltToString, null, this::setLt));
-        map.put("tp", new GetterSetter(this::tpToString, null, this::setTp));
-        map.put("tq", new GetterSetter(this::tqToString, null, this::setTq));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

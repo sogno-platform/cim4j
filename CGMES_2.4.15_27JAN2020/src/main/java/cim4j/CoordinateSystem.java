@@ -23,10 +23,17 @@ public class CoordinateSystem extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(CoordinateSystem.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public CoordinateSystem() {
-        setCimType("CoordinateSystem");
+    public CoordinateSystem(String rdfid) {
+        super("CoordinateSystem", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected CoordinateSystem(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class CoordinateSystem extends IdentifiedObject {
         return Location;
     }
 
-    public void setLocation(BaseClass _object_) {
-        if (!(_object_ instanceof Location)) {
-            throw new IllegalArgumentException("Object is not Location");
-        }
+    public void setLocation(Location _object_) {
         if (!Location.contains(_object_)) {
-            Location.add((Location) _object_);
-            ((Location) _object_).setCoordinateSystem(this);
+            Location.add(_object_);
+            _object_.setCoordinateSystem(this);
         }
     }
 
-    public String LocationToString() {
-        return getStringFromSet(Location);
+    private static Object getLocation(BaseClass _this_) {
+        return ((CoordinateSystem) _this_).getLocation();
+    }
+
+    private static void setLocation(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Location) {
+            ((CoordinateSystem) _this_).setLocation((Location) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Location");
+        }
     }
 
     /**
@@ -67,8 +79,16 @@ public class CoordinateSystem extends IdentifiedObject {
         crsUrn = _value_;
     }
 
-    public String crsUrnToString() {
-        return crsUrn != null ? crsUrn.toString() : null;
+    private static Object getCrsUrn(BaseClass _this_) {
+        return ((CoordinateSystem) _this_).getCrsUrn();
+    }
+
+    private static void setCrsUrn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((CoordinateSystem) _this_).setCrsUrn((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -105,64 +125,35 @@ public class CoordinateSystem extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("CoordinateSystem", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "CoordinateSystem", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("CoordinateSystem", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("CoordinateSystem", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "CoordinateSystem", attrName, value));
         }
     }
 
@@ -286,24 +277,16 @@ public class CoordinateSystem extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("Location", new AttrDetails("CoordinateSystem.Location", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("Location", new AttrDetails("CoordinateSystem.Location", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, CoordinateSystem::getLocation, CoordinateSystem::setLocation));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("crsUrn", new AttrDetails("CoordinateSystem.crsUrn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("crsUrn", new AttrDetails("CoordinateSystem.crsUrn", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, CoordinateSystem::getCrsUrn, CoordinateSystem::setCrsUrn));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new CoordinateSystem().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new CoordinateSystem(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("Location", new GetterSetter(this::LocationToString, this::setLocation, null));
-        map.put("crsUrn", new GetterSetter(this::crsUrnToString, null, this::setCrsUrn));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

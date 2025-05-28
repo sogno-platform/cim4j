@@ -23,14 +23,21 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
     private static final Logging LOG = Logging.getLogger(Pss1.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public Pss1() {
-        setCimType("Pss1");
+    public Pss1(String rdfid) {
+        super("Pss1", rdfid);
     }
 
     /**
-     * Frequency power input gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;F&lt;/sub&gt;&lt;/i&gt;).  Typical value = 5.
+     * Constructor for subclasses.
+     */
+    protected Pss1(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Frequency power input gain (<i>K</i><i><sub>F</sub></i>).  Typical value = 5.
      */
     private Float kf; // Float
 
@@ -42,16 +49,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         kf = _value_;
     }
 
-    public void setKf(String _value_) {
-        kf = getFloatFromString(_value_);
+    private static Object getKf(BaseClass _this_) {
+        return ((Pss1) _this_).getKf();
     }
 
-    public String kfToString() {
-        return kf != null ? kf.toString() : null;
+    private static void setKf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((Pss1) _this_).setKf((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setKf(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Shaft speed power input gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;omega&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0.
+     * Shaft speed power input gain (<i>K</i><i><sub>omega</sub></i>).  Typical value = 0.
      */
     private Float komega; // Float
 
@@ -63,16 +76,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         komega = _value_;
     }
 
-    public void setKomega(String _value_) {
-        komega = getFloatFromString(_value_);
+    private static Object getKomega(BaseClass _this_) {
+        return ((Pss1) _this_).getKomega();
     }
 
-    public String komegaToString() {
-        return komega != null ? komega.toString() : null;
+    private static void setKomega(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((Pss1) _this_).setKomega((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setKomega(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Electric power input gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;PE&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0,3.
+     * Electric power input gain (<i>K</i><i><sub>PE</sub></i>).  Typical value = 0,3.
      */
     private Float kpe; // Float
 
@@ -84,16 +103,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         kpe = _value_;
     }
 
-    public void setKpe(String _value_) {
-        kpe = getFloatFromString(_value_);
+    private static Object getKpe(BaseClass _this_) {
+        return ((Pss1) _this_).getKpe();
     }
 
-    public String kpeToString() {
-        return kpe != null ? kpe.toString() : null;
+    private static void setKpe(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((Pss1) _this_).setKpe((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setKpe(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * PSS gain (&lt;i&gt;Ks&lt;/i&gt;).  Typical value = 1.
+     * PSS gain (<i>Ks</i>).  Typical value = 1.
      */
     private Float ks; // Float
 
@@ -105,16 +130,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         ks = _value_;
     }
 
-    public void setKs(String _value_) {
-        ks = getFloatFromString(_value_);
+    private static Object getKs(BaseClass _this_) {
+        return ((Pss1) _this_).getKs();
     }
 
-    public String ksToString() {
-        return ks != null ? ks.toString() : null;
+    private static void setKs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((Pss1) _this_).setKs((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setKs(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Minimum power PSS enabling (&lt;i&gt;Pmin&lt;/i&gt;).  Typical value = 0,25.
+     * Minimum power PSS enabling (<i>Pmin</i>).  Typical value = 0,25.
      */
     private Double pmin; // PU
 
@@ -126,16 +157,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         pmin = _value_;
     }
 
-    public void setPmin(String _value_) {
-        pmin = getDoubleFromString(_value_);
+    private static Object getPmin(BaseClass _this_) {
+        return ((Pss1) _this_).getPmin();
     }
 
-    public String pminToString() {
-        return pmin != null ? pmin.toString() : null;
+    private static void setPmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((Pss1) _this_).setPmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setPmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Lead/lag time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;10&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Lead/lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double t10; // Seconds
 
@@ -147,16 +184,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         t10 = _value_;
     }
 
-    public void setT10(String _value_) {
-        t10 = getDoubleFromString(_value_);
+    private static Object getT10(BaseClass _this_) {
+        return ((Pss1) _this_).getT10();
     }
 
-    public String t10ToString() {
-        return t10 != null ? t10.toString() : null;
+    private static void setT10(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((Pss1) _this_).setT10((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setT10(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Washout (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;5&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 3,5.
+     * Washout (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).  Typical value = 3,5.
      */
     private Double t5; // Seconds
 
@@ -168,16 +211,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         t5 = _value_;
     }
 
-    public void setT5(String _value_) {
-        t5 = getDoubleFromString(_value_);
+    private static Object getT5(BaseClass _this_) {
+        return ((Pss1) _this_).getT5();
     }
 
-    public String t5ToString() {
-        return t5 != null ? t5.toString() : null;
+    private static void setT5(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((Pss1) _this_).setT5((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setT5(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Filter time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;6&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double t6; // Seconds
 
@@ -189,16 +238,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         t6 = _value_;
     }
 
-    public void setT6(String _value_) {
-        t6 = getDoubleFromString(_value_);
+    private static Object getT6(BaseClass _this_) {
+        return ((Pss1) _this_).getT6();
     }
 
-    public String t6ToString() {
-        return t6 != null ? t6.toString() : null;
+    private static void setT6(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((Pss1) _this_).setT6((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setT6(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Lead/lag time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;7&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). If = 0, both blocks are bypassed.  Typical value = 0.
+     * Lead/lag time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0). If = 0, both blocks are bypassed.  Typical value = 0.
      */
     private Double t7; // Seconds
 
@@ -210,16 +265,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         t7 = _value_;
     }
 
-    public void setT7(String _value_) {
-        t7 = getDoubleFromString(_value_);
+    private static Object getT7(BaseClass _this_) {
+        return ((Pss1) _this_).getT7();
     }
 
-    public String t7ToString() {
-        return t7 != null ? t7.toString() : null;
+    private static void setT7(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((Pss1) _this_).setT7((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setT7(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Lead/lag time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;8&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Lead/lag time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double t8; // Seconds
 
@@ -231,16 +292,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         t8 = _value_;
     }
 
-    public void setT8(String _value_) {
-        t8 = getDoubleFromString(_value_);
+    private static Object getT8(BaseClass _this_) {
+        return ((Pss1) _this_).getT8();
     }
 
-    public String t8ToString() {
-        return t8 != null ? t8.toString() : null;
+    private static void setT8(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((Pss1) _this_).setT8((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setT8(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Lead/lag time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;9&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  If = 0, both blocks are bypassed.  Typical value = 0.
+     * Lead/lag time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).  If = 0, both blocks are bypassed.  Typical value = 0.
      */
     private Double t9; // Seconds
 
@@ -252,16 +319,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         t9 = _value_;
     }
 
-    public void setT9(String _value_) {
-        t9 = getDoubleFromString(_value_);
+    private static Object getT9(BaseClass _this_) {
+        return ((Pss1) _this_).getT9();
     }
 
-    public String t9ToString() {
-        return t9 != null ? t9.toString() : null;
+    private static void setT9(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((Pss1) _this_).setT9((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setT9(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Electric power filter time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;PE&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,05.
+     * Electric power filter time constant (<i>T</i><i><sub>PE</sub></i>) (&gt;= 0).  Typical value = 0,05.
      */
     private Double tpe; // Seconds
 
@@ -273,16 +346,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         tpe = _value_;
     }
 
-    public void setTpe(String _value_) {
-        tpe = getDoubleFromString(_value_);
+    private static Object getTpe(BaseClass _this_) {
+        return ((Pss1) _this_).getTpe();
     }
 
-    public String tpeToString() {
-        return tpe != null ? tpe.toString() : null;
+    private static void setTpe(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((Pss1) _this_).setTpe((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setTpe(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * &lt;font color=`#0f0f0f`&gt;Signal selector (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ADAT&lt;/sub&gt;&lt;/i&gt;).&lt;/font&gt; &lt;font color=`#0f0f0f`&gt;true = closed (generator power is greater than &lt;i&gt;Pmin&lt;/i&gt;)&lt;/font&gt; &lt;font color=`#0f0f0f`&gt;false = open (&lt;i&gt;Pe&lt;/i&gt; is smaller than &lt;i&gt;Pmin&lt;/i&gt;).&lt;/font&gt; &lt;font color=`#0f0f0f`&gt;Typical value = true.&lt;/font&gt;
+     * <font color=`#0f0f0f`>Signal selector (<i>V</i><i><sub>ADAT</sub></i>).</font> <font color=`#0f0f0f`>true = closed (generator power is greater than <i>Pmin</i>)</font> <font color=`#0f0f0f`>false = open (<i>Pe</i> is smaller than <i>Pmin</i>).</font> <font color=`#0f0f0f`>Typical value = true.</font>
      */
     private Boolean vadat; // Boolean
 
@@ -294,16 +373,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         vadat = _value_;
     }
 
-    public void setVadat(String _value_) {
-        vadat = getBooleanFromString(_value_);
+    private static Object getVadat(BaseClass _this_) {
+        return ((Pss1) _this_).getVadat();
     }
 
-    public String vadatToString() {
-        return vadat != null ? vadat.toString() : null;
+    private static void setVadat(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Pss1) _this_).setVadat((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setVadat(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
-     * Stabilizer output maximum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;SMN&lt;/sub&gt;&lt;/i&gt;).  Typical value = -0,06.
+     * Stabilizer output maximum limit (<i>V</i><i><sub>SMN</sub></i>).  Typical value = -0,06.
      */
     private Double vsmn; // PU
 
@@ -315,16 +400,22 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         vsmn = _value_;
     }
 
-    public void setVsmn(String _value_) {
-        vsmn = getDoubleFromString(_value_);
+    private static Object getVsmn(BaseClass _this_) {
+        return ((Pss1) _this_).getVsmn();
     }
 
-    public String vsmnToString() {
-        return vsmn != null ? vsmn.toString() : null;
+    private static void setVsmn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((Pss1) _this_).setVsmn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setVsmn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Stabilizer output minimum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;SMX&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0,06.
+     * Stabilizer output minimum limit (<i>V</i><i><sub>SMX</sub></i>).  Typical value = 0,06.
      */
     private Double vsmx; // PU
 
@@ -336,12 +427,18 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         vsmx = _value_;
     }
 
-    public void setVsmx(String _value_) {
-        vsmx = getDoubleFromString(_value_);
+    private static Object getVsmx(BaseClass _this_) {
+        return ((Pss1) _this_).getVsmx();
     }
 
-    public String vsmxToString() {
-        return vsmx != null ? vsmx.toString() : null;
+    private static void setVsmx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((Pss1) _this_).setVsmx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((Pss1) _this_).setVsmx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -378,64 +475,35 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("Pss1", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "Pss1", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("Pss1", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("Pss1", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "Pss1", attrName, value));
         }
     }
 
@@ -559,102 +627,81 @@ public class Pss1 extends PowerSystemStabilizerDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kf", new AttrDetails("Pss1.kf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kf", new AttrDetails("Pss1.kf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getKf, Pss1::setKf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("komega", new AttrDetails("Pss1.komega", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("komega", new AttrDetails("Pss1.komega", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getKomega, Pss1::setKomega));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpe", new AttrDetails("Pss1.kpe", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kpe", new AttrDetails("Pss1.kpe", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getKpe, Pss1::setKpe));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ks", new AttrDetails("Pss1.ks", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ks", new AttrDetails("Pss1.ks", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getKs, Pss1::setKs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmin", new AttrDetails("Pss1.pmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pmin", new AttrDetails("Pss1.pmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getPmin, Pss1::setPmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t10", new AttrDetails("Pss1.t10", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t10", new AttrDetails("Pss1.t10", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getT10, Pss1::setT10));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t5", new AttrDetails("Pss1.t5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t5", new AttrDetails("Pss1.t5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getT5, Pss1::setT5));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t6", new AttrDetails("Pss1.t6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t6", new AttrDetails("Pss1.t6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getT6, Pss1::setT6));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t7", new AttrDetails("Pss1.t7", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t7", new AttrDetails("Pss1.t7", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getT7, Pss1::setT7));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t8", new AttrDetails("Pss1.t8", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t8", new AttrDetails("Pss1.t8", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getT8, Pss1::setT8));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t9", new AttrDetails("Pss1.t9", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t9", new AttrDetails("Pss1.t9", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getT9, Pss1::setT9));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpe", new AttrDetails("Pss1.tpe", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tpe", new AttrDetails("Pss1.tpe", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getTpe, Pss1::setTpe));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vadat", new AttrDetails("Pss1.vadat", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vadat", new AttrDetails("Pss1.vadat", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getVadat, Pss1::setVadat));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vsmn", new AttrDetails("Pss1.vsmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vsmn", new AttrDetails("Pss1.vsmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getVsmn, Pss1::setVsmn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vsmx", new AttrDetails("Pss1.vsmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vsmx", new AttrDetails("Pss1.vsmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Pss1::getVsmx, Pss1::setVsmx));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Pss1().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Pss1(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("kf", new GetterSetter(this::kfToString, null, this::setKf));
-        map.put("komega", new GetterSetter(this::komegaToString, null, this::setKomega));
-        map.put("kpe", new GetterSetter(this::kpeToString, null, this::setKpe));
-        map.put("ks", new GetterSetter(this::ksToString, null, this::setKs));
-        map.put("pmin", new GetterSetter(this::pminToString, null, this::setPmin));
-        map.put("t10", new GetterSetter(this::t10ToString, null, this::setT10));
-        map.put("t5", new GetterSetter(this::t5ToString, null, this::setT5));
-        map.put("t6", new GetterSetter(this::t6ToString, null, this::setT6));
-        map.put("t7", new GetterSetter(this::t7ToString, null, this::setT7));
-        map.put("t8", new GetterSetter(this::t8ToString, null, this::setT8));
-        map.put("t9", new GetterSetter(this::t9ToString, null, this::setT9));
-        map.put("tpe", new GetterSetter(this::tpeToString, null, this::setTpe));
-        map.put("vadat", new GetterSetter(this::vadatToString, null, this::setVadat));
-        map.put("vsmn", new GetterSetter(this::vsmnToString, null, this::setVsmn));
-        map.put("vsmx", new GetterSetter(this::vsmxToString, null, this::setVsmx));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

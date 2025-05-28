@@ -23,10 +23,17 @@ public class SeriesCompensator extends ConductingEquipment {
     private static final Logging LOG = Logging.getLogger(SeriesCompensator.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public SeriesCompensator() {
-        setCimType("SeriesCompensator");
+    public SeriesCompensator(String rdfid) {
+        super("SeriesCompensator", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected SeriesCompensator(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class SeriesCompensator extends ConductingEquipment {
         r = _value_;
     }
 
-    public void setR(String _value_) {
-        r = getDoubleFromString(_value_);
+    private static Object getR(BaseClass _this_) {
+        return ((SeriesCompensator) _this_).getR();
     }
 
-    public String rToString() {
-        return r != null ? r.toString() : null;
+    private static void setR(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SeriesCompensator) _this_).setR((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SeriesCompensator) _this_).setR(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class SeriesCompensator extends ConductingEquipment {
         r0 = _value_;
     }
 
-    public void setR0(String _value_) {
-        r0 = getDoubleFromString(_value_);
+    private static Object getR0(BaseClass _this_) {
+        return ((SeriesCompensator) _this_).getR0();
     }
 
-    public String r0ToString() {
-        return r0 != null ? r0.toString() : null;
+    private static void setR0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SeriesCompensator) _this_).setR0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SeriesCompensator) _this_).setR0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class SeriesCompensator extends ConductingEquipment {
         varistorPresent = _value_;
     }
 
-    public void setVaristorPresent(String _value_) {
-        varistorPresent = getBooleanFromString(_value_);
+    private static Object getVaristorPresent(BaseClass _this_) {
+        return ((SeriesCompensator) _this_).getVaristorPresent();
     }
 
-    public String varistorPresentToString() {
-        return varistorPresent != null ? varistorPresent.toString() : null;
+    private static void setVaristorPresent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((SeriesCompensator) _this_).setVaristorPresent((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((SeriesCompensator) _this_).setVaristorPresent(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class SeriesCompensator extends ConductingEquipment {
         varistorRatedCurrent = _value_;
     }
 
-    public void setVaristorRatedCurrent(String _value_) {
-        varistorRatedCurrent = getDoubleFromString(_value_);
+    private static Object getVaristorRatedCurrent(BaseClass _this_) {
+        return ((SeriesCompensator) _this_).getVaristorRatedCurrent();
     }
 
-    public String varistorRatedCurrentToString() {
-        return varistorRatedCurrent != null ? varistorRatedCurrent.toString() : null;
+    private static void setVaristorRatedCurrent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SeriesCompensator) _this_).setVaristorRatedCurrent((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SeriesCompensator) _this_).setVaristorRatedCurrent(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class SeriesCompensator extends ConductingEquipment {
         varistorVoltageThreshold = _value_;
     }
 
-    public void setVaristorVoltageThreshold(String _value_) {
-        varistorVoltageThreshold = getDoubleFromString(_value_);
+    private static Object getVaristorVoltageThreshold(BaseClass _this_) {
+        return ((SeriesCompensator) _this_).getVaristorVoltageThreshold();
     }
 
-    public String varistorVoltageThresholdToString() {
-        return varistorVoltageThreshold != null ? varistorVoltageThreshold.toString() : null;
+    private static void setVaristorVoltageThreshold(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SeriesCompensator) _this_).setVaristorVoltageThreshold((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SeriesCompensator) _this_).setVaristorVoltageThreshold(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,12 +184,18 @@ public class SeriesCompensator extends ConductingEquipment {
         x = _value_;
     }
 
-    public void setX(String _value_) {
-        x = getDoubleFromString(_value_);
+    private static Object getX(BaseClass _this_) {
+        return ((SeriesCompensator) _this_).getX();
     }
 
-    public String xToString() {
-        return x != null ? x.toString() : null;
+    private static void setX(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SeriesCompensator) _this_).setX((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SeriesCompensator) _this_).setX(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,12 +211,18 @@ public class SeriesCompensator extends ConductingEquipment {
         x0 = _value_;
     }
 
-    public void setX0(String _value_) {
-        x0 = getDoubleFromString(_value_);
+    private static Object getX0(BaseClass _this_) {
+        return ((SeriesCompensator) _this_).getX0();
     }
 
-    public String x0ToString() {
-        return x0 != null ? x0.toString() : null;
+    private static void setX0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SeriesCompensator) _this_).setX0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SeriesCompensator) _this_).setX0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -210,64 +259,35 @@ public class SeriesCompensator extends ConductingEquipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("SeriesCompensator", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "SeriesCompensator", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("SeriesCompensator", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("SeriesCompensator", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "SeriesCompensator", attrName, value));
         }
     }
 
@@ -391,54 +411,41 @@ public class SeriesCompensator extends ConductingEquipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r", new AttrDetails("SeriesCompensator.r", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("r", new AttrDetails("SeriesCompensator.r", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SeriesCompensator::getR, SeriesCompensator::setR));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("r0", new AttrDetails("SeriesCompensator.r0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("r0", new AttrDetails("SeriesCompensator.r0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SeriesCompensator::getR0, SeriesCompensator::setR0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("varistorPresent", new AttrDetails("SeriesCompensator.varistorPresent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("varistorPresent", new AttrDetails("SeriesCompensator.varistorPresent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SeriesCompensator::getVaristorPresent, SeriesCompensator::setVaristorPresent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("varistorRatedCurrent", new AttrDetails("SeriesCompensator.varistorRatedCurrent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("varistorRatedCurrent", new AttrDetails("SeriesCompensator.varistorRatedCurrent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SeriesCompensator::getVaristorRatedCurrent, SeriesCompensator::setVaristorRatedCurrent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("varistorVoltageThreshold", new AttrDetails("SeriesCompensator.varistorVoltageThreshold", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("varistorVoltageThreshold", new AttrDetails("SeriesCompensator.varistorVoltageThreshold", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SeriesCompensator::getVaristorVoltageThreshold, SeriesCompensator::setVaristorVoltageThreshold));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x", new AttrDetails("SeriesCompensator.x", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("x", new AttrDetails("SeriesCompensator.x", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SeriesCompensator::getX, SeriesCompensator::setX));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("x0", new AttrDetails("SeriesCompensator.x0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("x0", new AttrDetails("SeriesCompensator.x0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SeriesCompensator::getX0, SeriesCompensator::setX0));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SeriesCompensator().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SeriesCompensator(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("r", new GetterSetter(this::rToString, null, this::setR));
-        map.put("r0", new GetterSetter(this::r0ToString, null, this::setR0));
-        map.put("varistorPresent", new GetterSetter(this::varistorPresentToString, null, this::setVaristorPresent));
-        map.put("varistorRatedCurrent", new GetterSetter(this::varistorRatedCurrentToString, null, this::setVaristorRatedCurrent));
-        map.put("varistorVoltageThreshold", new GetterSetter(this::varistorVoltageThresholdToString, null, this::setVaristorVoltageThreshold));
-        map.put("x", new GetterSetter(this::xToString, null, this::setX));
-        map.put("x0", new GetterSetter(this::x0ToString, null, this::setX0));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

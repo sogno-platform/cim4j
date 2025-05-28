@@ -23,10 +23,17 @@ public class EquivalentNetwork extends ConnectivityNodeContainer {
     private static final Logging LOG = Logging.getLogger(EquivalentNetwork.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public EquivalentNetwork() {
-        setCimType("EquivalentNetwork");
+    public EquivalentNetwork(String rdfid) {
+        super("EquivalentNetwork", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected EquivalentNetwork(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class EquivalentNetwork extends ConnectivityNodeContainer {
         return EquivalentEquipments;
     }
 
-    public void setEquivalentEquipments(BaseClass _object_) {
-        if (!(_object_ instanceof EquivalentEquipment)) {
-            throw new IllegalArgumentException("Object is not EquivalentEquipment");
-        }
+    public void setEquivalentEquipments(EquivalentEquipment _object_) {
         if (!EquivalentEquipments.contains(_object_)) {
-            EquivalentEquipments.add((EquivalentEquipment) _object_);
-            ((EquivalentEquipment) _object_).setEquivalentNetwork(this);
+            EquivalentEquipments.add(_object_);
+            _object_.setEquivalentNetwork(this);
         }
     }
 
-    public String EquivalentEquipmentsToString() {
-        return getStringFromSet(EquivalentEquipments);
+    private static Object getEquivalentEquipments(BaseClass _this_) {
+        return ((EquivalentNetwork) _this_).getEquivalentEquipments();
+    }
+
+    private static void setEquivalentEquipments(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof EquivalentEquipment) {
+            ((EquivalentNetwork) _this_).setEquivalentEquipments((EquivalentEquipment) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not EquivalentEquipment");
+        }
     }
 
     /**
@@ -88,64 +100,35 @@ public class EquivalentNetwork extends ConnectivityNodeContainer {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("EquivalentNetwork", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "EquivalentNetwork", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("EquivalentNetwork", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("EquivalentNetwork", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "EquivalentNetwork", attrName, value));
         }
     }
 
@@ -269,18 +252,11 @@ public class EquivalentNetwork extends ConnectivityNodeContainer {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("EquivalentEquipments", new AttrDetails("EquivalentNetwork.EquivalentEquipments", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("EquivalentEquipments", new AttrDetails("EquivalentNetwork.EquivalentEquipments", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, EquivalentNetwork::getEquivalentEquipments, EquivalentNetwork::setEquivalentEquipments));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EquivalentNetwork().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EquivalentNetwork(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("EquivalentEquipments", new GetterSetter(this::EquivalentEquipmentsToString, this::setEquivalentEquipments, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

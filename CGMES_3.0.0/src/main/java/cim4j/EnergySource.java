@@ -23,10 +23,17 @@ public class EnergySource extends EnergyConnection {
     private static final Logging LOG = Logging.getLogger(EnergySource.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public EnergySource() {
-        setCimType("EnergySource");
+    public EnergySource(String rdfid) {
+        super("EnergySource", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected EnergySource(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class EnergySource extends EnergyConnection {
         return EnergySchedulingType;
     }
 
-    public void setEnergySchedulingType(BaseClass _object_) {
-        if (!(_object_ instanceof EnergySchedulingType)) {
-            throw new IllegalArgumentException("Object is not EnergySchedulingType");
-        }
+    public void setEnergySchedulingType(EnergySchedulingType _object_) {
         if (EnergySchedulingType != _object_) {
-            EnergySchedulingType = (EnergySchedulingType) _object_;
+            EnergySchedulingType = _object_;
             EnergySchedulingType.setEnergySource(this);
         }
     }
 
-    public String EnergySchedulingTypeToString() {
-        return EnergySchedulingType != null ? EnergySchedulingType.getRdfid() : null;
+    private static Object getEnergySchedulingType(BaseClass _this_) {
+        return ((EnergySource) _this_).getEnergySchedulingType();
+    }
+
+    private static void setEnergySchedulingType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof EnergySchedulingType) {
+            ((EnergySource) _this_).setEnergySchedulingType((EnergySchedulingType) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not EnergySchedulingType");
+        }
     }
 
     /**
@@ -65,12 +77,18 @@ public class EnergySource extends EnergyConnection {
         activePower = _value_;
     }
 
-    public void setActivePower(String _value_) {
-        activePower = getDoubleFromString(_value_);
+    private static Object getActivePower(BaseClass _this_) {
+        return ((EnergySource) _this_).getActivePower();
     }
 
-    public String activePowerToString() {
-        return activePower != null ? activePower.toString() : null;
+    private static void setActivePower(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergySource) _this_).setActivePower((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergySource) _this_).setActivePower(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -86,12 +104,18 @@ public class EnergySource extends EnergyConnection {
         nominalVoltage = _value_;
     }
 
-    public void setNominalVoltage(String _value_) {
-        nominalVoltage = getDoubleFromString(_value_);
+    private static Object getNominalVoltage(BaseClass _this_) {
+        return ((EnergySource) _this_).getNominalVoltage();
     }
 
-    public String nominalVoltageToString() {
-        return nominalVoltage != null ? nominalVoltage.toString() : null;
+    private static void setNominalVoltage(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergySource) _this_).setNominalVoltage((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergySource) _this_).setNominalVoltage(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -107,12 +131,18 @@ public class EnergySource extends EnergyConnection {
         pMax = _value_;
     }
 
-    public void setPMax(String _value_) {
-        pMax = getDoubleFromString(_value_);
+    private static Object getPMax(BaseClass _this_) {
+        return ((EnergySource) _this_).getPMax();
     }
 
-    public String pMaxToString() {
-        return pMax != null ? pMax.toString() : null;
+    private static void setPMax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergySource) _this_).setPMax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergySource) _this_).setPMax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -128,12 +158,18 @@ public class EnergySource extends EnergyConnection {
         pMin = _value_;
     }
 
-    public void setPMin(String _value_) {
-        pMin = getDoubleFromString(_value_);
+    private static Object getPMin(BaseClass _this_) {
+        return ((EnergySource) _this_).getPMin();
     }
 
-    public String pMinToString() {
-        return pMin != null ? pMin.toString() : null;
+    private static void setPMin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergySource) _this_).setPMin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergySource) _this_).setPMin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -149,12 +185,18 @@ public class EnergySource extends EnergyConnection {
         r = _value_;
     }
 
-    public void setR(String _value_) {
-        r = getDoubleFromString(_value_);
+    private static Object getR(BaseClass _this_) {
+        return ((EnergySource) _this_).getR();
     }
 
-    public String rToString() {
-        return r != null ? r.toString() : null;
+    private static void setR(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergySource) _this_).setR((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergySource) _this_).setR(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -170,12 +212,18 @@ public class EnergySource extends EnergyConnection {
         r0 = _value_;
     }
 
-    public void setR0(String _value_) {
-        r0 = getDoubleFromString(_value_);
+    private static Object getR0(BaseClass _this_) {
+        return ((EnergySource) _this_).getR0();
     }
 
-    public String r0ToString() {
-        return r0 != null ? r0.toString() : null;
+    private static void setR0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergySource) _this_).setR0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergySource) _this_).setR0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -191,12 +239,18 @@ public class EnergySource extends EnergyConnection {
         reactivePower = _value_;
     }
 
-    public void setReactivePower(String _value_) {
-        reactivePower = getDoubleFromString(_value_);
+    private static Object getReactivePower(BaseClass _this_) {
+        return ((EnergySource) _this_).getReactivePower();
     }
 
-    public String reactivePowerToString() {
-        return reactivePower != null ? reactivePower.toString() : null;
+    private static void setReactivePower(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergySource) _this_).setReactivePower((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergySource) _this_).setReactivePower(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -212,12 +266,18 @@ public class EnergySource extends EnergyConnection {
         rn = _value_;
     }
 
-    public void setRn(String _value_) {
-        rn = getDoubleFromString(_value_);
+    private static Object getRn(BaseClass _this_) {
+        return ((EnergySource) _this_).getRn();
     }
 
-    public String rnToString() {
-        return rn != null ? rn.toString() : null;
+    private static void setRn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergySource) _this_).setRn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergySource) _this_).setRn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -233,12 +293,18 @@ public class EnergySource extends EnergyConnection {
         voltageAngle = _value_;
     }
 
-    public void setVoltageAngle(String _value_) {
-        voltageAngle = getDoubleFromString(_value_);
+    private static Object getVoltageAngle(BaseClass _this_) {
+        return ((EnergySource) _this_).getVoltageAngle();
     }
 
-    public String voltageAngleToString() {
-        return voltageAngle != null ? voltageAngle.toString() : null;
+    private static void setVoltageAngle(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergySource) _this_).setVoltageAngle((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergySource) _this_).setVoltageAngle(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -254,12 +320,18 @@ public class EnergySource extends EnergyConnection {
         voltageMagnitude = _value_;
     }
 
-    public void setVoltageMagnitude(String _value_) {
-        voltageMagnitude = getDoubleFromString(_value_);
+    private static Object getVoltageMagnitude(BaseClass _this_) {
+        return ((EnergySource) _this_).getVoltageMagnitude();
     }
 
-    public String voltageMagnitudeToString() {
-        return voltageMagnitude != null ? voltageMagnitude.toString() : null;
+    private static void setVoltageMagnitude(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergySource) _this_).setVoltageMagnitude((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergySource) _this_).setVoltageMagnitude(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -275,12 +347,18 @@ public class EnergySource extends EnergyConnection {
         x = _value_;
     }
 
-    public void setX(String _value_) {
-        x = getDoubleFromString(_value_);
+    private static Object getX(BaseClass _this_) {
+        return ((EnergySource) _this_).getX();
     }
 
-    public String xToString() {
-        return x != null ? x.toString() : null;
+    private static void setX(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergySource) _this_).setX((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergySource) _this_).setX(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -296,12 +374,18 @@ public class EnergySource extends EnergyConnection {
         x0 = _value_;
     }
 
-    public void setX0(String _value_) {
-        x0 = getDoubleFromString(_value_);
+    private static Object getX0(BaseClass _this_) {
+        return ((EnergySource) _this_).getX0();
     }
 
-    public String x0ToString() {
-        return x0 != null ? x0.toString() : null;
+    private static void setX0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergySource) _this_).setX0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergySource) _this_).setX0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -317,12 +401,18 @@ public class EnergySource extends EnergyConnection {
         xn = _value_;
     }
 
-    public void setXn(String _value_) {
-        xn = getDoubleFromString(_value_);
+    private static Object getXn(BaseClass _this_) {
+        return ((EnergySource) _this_).getXn();
     }
 
-    public String xnToString() {
-        return xn != null ? xn.toString() : null;
+    private static void setXn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergySource) _this_).setXn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergySource) _this_).setXn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -359,64 +449,35 @@ public class EnergySource extends EnergyConnection {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("EnergySource", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "EnergySource", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("EnergySource", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("EnergySource", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "EnergySource", attrName, value));
         }
     }
 
@@ -540,96 +601,76 @@ public class EnergySource extends EnergyConnection {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("EnergySchedulingType", new AttrDetails("EnergySource.EnergySchedulingType", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("EnergySchedulingType", new AttrDetails("EnergySource.EnergySchedulingType", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, EnergySource::getEnergySchedulingType, EnergySource::setEnergySchedulingType));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("activePower", new AttrDetails("EnergySource.activePower", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("activePower", new AttrDetails("EnergySource.activePower", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, EnergySource::getActivePower, EnergySource::setActivePower));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("nominalVoltage", new AttrDetails("EnergySource.nominalVoltage", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("nominalVoltage", new AttrDetails("EnergySource.nominalVoltage", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, EnergySource::getNominalVoltage, EnergySource::setNominalVoltage));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("pMax", new AttrDetails("EnergySource.pMax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pMax", new AttrDetails("EnergySource.pMax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, EnergySource::getPMax, EnergySource::setPMax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("pMin", new AttrDetails("EnergySource.pMin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pMin", new AttrDetails("EnergySource.pMin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, EnergySource::getPMin, EnergySource::setPMin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("r", new AttrDetails("EnergySource.r", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("r", new AttrDetails("EnergySource.r", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, EnergySource::getR, EnergySource::setR));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("r0", new AttrDetails("EnergySource.r0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("r0", new AttrDetails("EnergySource.r0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, EnergySource::getR0, EnergySource::setR0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("reactivePower", new AttrDetails("EnergySource.reactivePower", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("reactivePower", new AttrDetails("EnergySource.reactivePower", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, EnergySource::getReactivePower, EnergySource::setReactivePower));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("rn", new AttrDetails("EnergySource.rn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rn", new AttrDetails("EnergySource.rn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, EnergySource::getRn, EnergySource::setRn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("voltageAngle", new AttrDetails("EnergySource.voltageAngle", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("voltageAngle", new AttrDetails("EnergySource.voltageAngle", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, EnergySource::getVoltageAngle, EnergySource::setVoltageAngle));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("voltageMagnitude", new AttrDetails("EnergySource.voltageMagnitude", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("voltageMagnitude", new AttrDetails("EnergySource.voltageMagnitude", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, EnergySource::getVoltageMagnitude, EnergySource::setVoltageMagnitude));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("x", new AttrDetails("EnergySource.x", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("x", new AttrDetails("EnergySource.x", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, EnergySource::getX, EnergySource::setX));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("x0", new AttrDetails("EnergySource.x0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("x0", new AttrDetails("EnergySource.x0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, EnergySource::getX0, EnergySource::setX0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("xn", new AttrDetails("EnergySource.xn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xn", new AttrDetails("EnergySource.xn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, EnergySource::getXn, EnergySource::setXn));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EnergySource().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EnergySource(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("EnergySchedulingType", new GetterSetter(this::EnergySchedulingTypeToString, this::setEnergySchedulingType, null));
-        map.put("activePower", new GetterSetter(this::activePowerToString, null, this::setActivePower));
-        map.put("nominalVoltage", new GetterSetter(this::nominalVoltageToString, null, this::setNominalVoltage));
-        map.put("pMax", new GetterSetter(this::pMaxToString, null, this::setPMax));
-        map.put("pMin", new GetterSetter(this::pMinToString, null, this::setPMin));
-        map.put("r", new GetterSetter(this::rToString, null, this::setR));
-        map.put("r0", new GetterSetter(this::r0ToString, null, this::setR0));
-        map.put("reactivePower", new GetterSetter(this::reactivePowerToString, null, this::setReactivePower));
-        map.put("rn", new GetterSetter(this::rnToString, null, this::setRn));
-        map.put("voltageAngle", new GetterSetter(this::voltageAngleToString, null, this::setVoltageAngle));
-        map.put("voltageMagnitude", new GetterSetter(this::voltageMagnitudeToString, null, this::setVoltageMagnitude));
-        map.put("x", new GetterSetter(this::xToString, null, this::setX));
-        map.put("x0", new GetterSetter(this::x0ToString, null, this::setX0));
-        map.put("xn", new GetterSetter(this::xnToString, null, this::setXn));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

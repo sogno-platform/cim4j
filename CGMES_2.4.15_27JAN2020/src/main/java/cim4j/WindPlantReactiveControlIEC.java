@@ -23,10 +23,17 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(WindPlantReactiveControlIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindPlantReactiveControlIEC() {
-        setCimType("WindPlantReactiveControlIEC");
+    public WindPlantReactiveControlIEC(String rdfid) {
+        super("WindPlantReactiveControlIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindPlantReactiveControlIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         return WindPlantIEC;
     }
 
-    public void setWindPlantIEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindPlantIEC)) {
-            throw new IllegalArgumentException("Object is not WindPlantIEC");
-        }
+    public void setWindPlantIEC(WindPlantIEC _object_) {
         if (WindPlantIEC != _object_) {
-            WindPlantIEC = (WindPlantIEC) _object_;
+            WindPlantIEC = _object_;
             WindPlantIEC.setWindPlantReactiveControlIEC(this);
         }
     }
 
-    public String WindPlantIECToString() {
-        return WindPlantIEC != null ? WindPlantIEC.getRdfid() : null;
+    private static Object getWindPlantIEC(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getWindPlantIEC();
+    }
+
+    private static void setWindPlantIEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindPlantIEC) {
+            ((WindPlantReactiveControlIEC) _this_).setWindPlantIEC((WindPlantIEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindPlantIEC");
+        }
     }
 
     /**
@@ -67,12 +79,18 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         kiwpx = _value_;
     }
 
-    public void setKiwpx(String _value_) {
-        kiwpx = getDoubleFromString(_value_);
+    private static Object getKiwpx(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getKiwpx();
     }
 
-    public String kiwpxToString() {
-        return kiwpx != null ? kiwpx.toString() : null;
+    private static void setKiwpx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantReactiveControlIEC) _this_).setKiwpx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantReactiveControlIEC) _this_).setKiwpx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -88,12 +106,18 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         kpwpx = _value_;
     }
 
-    public void setKpwpx(String _value_) {
-        kpwpx = getDoubleFromString(_value_);
+    private static Object getKpwpx(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getKpwpx();
     }
 
-    public String kpwpxToString() {
-        return kpwpx != null ? kpwpx.toString() : null;
+    private static void setKpwpx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantReactiveControlIEC) _this_).setKpwpx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantReactiveControlIEC) _this_).setKpwpx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -109,12 +133,18 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         kwpqu = _value_;
     }
 
-    public void setKwpqu(String _value_) {
-        kwpqu = getDoubleFromString(_value_);
+    private static Object getKwpqu(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getKwpqu();
     }
 
-    public String kwpquToString() {
-        return kwpqu != null ? kwpqu.toString() : null;
+    private static void setKwpqu(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantReactiveControlIEC) _this_).setKwpqu((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantReactiveControlIEC) _this_).setKwpqu(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -130,12 +160,18 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         mwppf = _value_;
     }
 
-    public void setMwppf(String _value_) {
-        mwppf = getBooleanFromString(_value_);
+    private static Object getMwppf(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getMwppf();
     }
 
-    public String mwppfToString() {
-        return mwppf != null ? mwppf.toString() : null;
+    private static void setMwppf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((WindPlantReactiveControlIEC) _this_).setMwppf((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantReactiveControlIEC) _this_).setMwppf(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -151,12 +187,18 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         mwpu = _value_;
     }
 
-    public void setMwpu(String _value_) {
-        mwpu = getBooleanFromString(_value_);
+    private static Object getMwpu(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getMwpu();
     }
 
-    public String mwpuToString() {
-        return mwpu != null ? mwpu.toString() : null;
+    private static void setMwpu(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((WindPlantReactiveControlIEC) _this_).setMwpu((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantReactiveControlIEC) _this_).setMwpu(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -172,12 +214,18 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         twppfilt = _value_;
     }
 
-    public void setTwppfilt(String _value_) {
-        twppfilt = getDoubleFromString(_value_);
+    private static Object getTwppfilt(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getTwppfilt();
     }
 
-    public String twppfiltToString() {
-        return twppfilt != null ? twppfilt.toString() : null;
+    private static void setTwppfilt(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantReactiveControlIEC) _this_).setTwppfilt((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantReactiveControlIEC) _this_).setTwppfilt(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -193,12 +241,18 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         twpqfilt = _value_;
     }
 
-    public void setTwpqfilt(String _value_) {
-        twpqfilt = getDoubleFromString(_value_);
+    private static Object getTwpqfilt(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getTwpqfilt();
     }
 
-    public String twpqfiltToString() {
-        return twpqfilt != null ? twpqfilt.toString() : null;
+    private static void setTwpqfilt(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantReactiveControlIEC) _this_).setTwpqfilt((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantReactiveControlIEC) _this_).setTwpqfilt(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -214,12 +268,18 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         twpufilt = _value_;
     }
 
-    public void setTwpufilt(String _value_) {
-        twpufilt = getDoubleFromString(_value_);
+    private static Object getTwpufilt(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getTwpufilt();
     }
 
-    public String twpufiltToString() {
-        return twpufilt != null ? twpufilt.toString() : null;
+    private static void setTwpufilt(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantReactiveControlIEC) _this_).setTwpufilt((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantReactiveControlIEC) _this_).setTwpufilt(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -235,12 +295,18 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         txft = _value_;
     }
 
-    public void setTxft(String _value_) {
-        txft = getDoubleFromString(_value_);
+    private static Object getTxft(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getTxft();
     }
 
-    public String txftToString() {
-        return txft != null ? txft.toString() : null;
+    private static void setTxft(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantReactiveControlIEC) _this_).setTxft((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantReactiveControlIEC) _this_).setTxft(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -256,12 +322,18 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         txfv = _value_;
     }
 
-    public void setTxfv(String _value_) {
-        txfv = getDoubleFromString(_value_);
+    private static Object getTxfv(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getTxfv();
     }
 
-    public String txfvToString() {
-        return txfv != null ? txfv.toString() : null;
+    private static void setTxfv(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantReactiveControlIEC) _this_).setTxfv((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantReactiveControlIEC) _this_).setTxfv(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -277,12 +349,18 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         uwpqdip = _value_;
     }
 
-    public void setUwpqdip(String _value_) {
-        uwpqdip = getDoubleFromString(_value_);
+    private static Object getUwpqdip(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getUwpqdip();
     }
 
-    public String uwpqdipToString() {
-        return uwpqdip != null ? uwpqdip.toString() : null;
+    private static void setUwpqdip(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantReactiveControlIEC) _this_).setUwpqdip((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantReactiveControlIEC) _this_).setUwpqdip(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -298,12 +376,18 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         xrefmax = _value_;
     }
 
-    public void setXrefmax(String _value_) {
-        xrefmax = getDoubleFromString(_value_);
+    private static Object getXrefmax(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getXrefmax();
     }
 
-    public String xrefmaxToString() {
-        return xrefmax != null ? xrefmax.toString() : null;
+    private static void setXrefmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantReactiveControlIEC) _this_).setXrefmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantReactiveControlIEC) _this_).setXrefmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -319,12 +403,18 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         xrefmin = _value_;
     }
 
-    public void setXrefmin(String _value_) {
-        xrefmin = getDoubleFromString(_value_);
+    private static Object getXrefmin(BaseClass _this_) {
+        return ((WindPlantReactiveControlIEC) _this_).getXrefmin();
     }
 
-    public String xrefminToString() {
-        return xrefmin != null ? xrefmin.toString() : null;
+    private static void setXrefmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPlantReactiveControlIEC) _this_).setXrefmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPlantReactiveControlIEC) _this_).setXrefmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -361,64 +451,35 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindPlantReactiveControlIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindPlantReactiveControlIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindPlantReactiveControlIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindPlantReactiveControlIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindPlantReactiveControlIEC", attrName, value));
         }
     }
 
@@ -542,96 +603,76 @@ public class WindPlantReactiveControlIEC extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindPlantIEC", new AttrDetails("WindPlantReactiveControlIEC.WindPlantIEC", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("WindPlantIEC", new AttrDetails("WindPlantReactiveControlIEC.WindPlantIEC", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, WindPlantReactiveControlIEC::getWindPlantIEC, WindPlantReactiveControlIEC::setWindPlantIEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kiwpx", new AttrDetails("WindPlantReactiveControlIEC.kiwpx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kiwpx", new AttrDetails("WindPlantReactiveControlIEC.kiwpx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPlantReactiveControlIEC::getKiwpx, WindPlantReactiveControlIEC::setKiwpx));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpwpx", new AttrDetails("WindPlantReactiveControlIEC.kpwpx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kpwpx", new AttrDetails("WindPlantReactiveControlIEC.kpwpx", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPlantReactiveControlIEC::getKpwpx, WindPlantReactiveControlIEC::setKpwpx));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kwpqu", new AttrDetails("WindPlantReactiveControlIEC.kwpqu", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kwpqu", new AttrDetails("WindPlantReactiveControlIEC.kwpqu", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPlantReactiveControlIEC::getKwpqu, WindPlantReactiveControlIEC::setKwpqu));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mwppf", new AttrDetails("WindPlantReactiveControlIEC.mwppf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("mwppf", new AttrDetails("WindPlantReactiveControlIEC.mwppf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPlantReactiveControlIEC::getMwppf, WindPlantReactiveControlIEC::setMwppf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mwpu", new AttrDetails("WindPlantReactiveControlIEC.mwpu", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("mwpu", new AttrDetails("WindPlantReactiveControlIEC.mwpu", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPlantReactiveControlIEC::getMwpu, WindPlantReactiveControlIEC::setMwpu));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("twppfilt", new AttrDetails("WindPlantReactiveControlIEC.twppfilt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("twppfilt", new AttrDetails("WindPlantReactiveControlIEC.twppfilt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPlantReactiveControlIEC::getTwppfilt, WindPlantReactiveControlIEC::setTwppfilt));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("twpqfilt", new AttrDetails("WindPlantReactiveControlIEC.twpqfilt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("twpqfilt", new AttrDetails("WindPlantReactiveControlIEC.twpqfilt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPlantReactiveControlIEC::getTwpqfilt, WindPlantReactiveControlIEC::setTwpqfilt));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("twpufilt", new AttrDetails("WindPlantReactiveControlIEC.twpufilt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("twpufilt", new AttrDetails("WindPlantReactiveControlIEC.twpufilt", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPlantReactiveControlIEC::getTwpufilt, WindPlantReactiveControlIEC::setTwpufilt));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("txft", new AttrDetails("WindPlantReactiveControlIEC.txft", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("txft", new AttrDetails("WindPlantReactiveControlIEC.txft", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPlantReactiveControlIEC::getTxft, WindPlantReactiveControlIEC::setTxft));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("txfv", new AttrDetails("WindPlantReactiveControlIEC.txfv", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("txfv", new AttrDetails("WindPlantReactiveControlIEC.txfv", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPlantReactiveControlIEC::getTxfv, WindPlantReactiveControlIEC::setTxfv));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("uwpqdip", new AttrDetails("WindPlantReactiveControlIEC.uwpqdip", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("uwpqdip", new AttrDetails("WindPlantReactiveControlIEC.uwpqdip", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPlantReactiveControlIEC::getUwpqdip, WindPlantReactiveControlIEC::setUwpqdip));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xrefmax", new AttrDetails("WindPlantReactiveControlIEC.xrefmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("xrefmax", new AttrDetails("WindPlantReactiveControlIEC.xrefmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPlantReactiveControlIEC::getXrefmax, WindPlantReactiveControlIEC::setXrefmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xrefmin", new AttrDetails("WindPlantReactiveControlIEC.xrefmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("xrefmin", new AttrDetails("WindPlantReactiveControlIEC.xrefmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPlantReactiveControlIEC::getXrefmin, WindPlantReactiveControlIEC::setXrefmin));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindPlantReactiveControlIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindPlantReactiveControlIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("WindPlantIEC", new GetterSetter(this::WindPlantIECToString, this::setWindPlantIEC, null));
-        map.put("kiwpx", new GetterSetter(this::kiwpxToString, null, this::setKiwpx));
-        map.put("kpwpx", new GetterSetter(this::kpwpxToString, null, this::setKpwpx));
-        map.put("kwpqu", new GetterSetter(this::kwpquToString, null, this::setKwpqu));
-        map.put("mwppf", new GetterSetter(this::mwppfToString, null, this::setMwppf));
-        map.put("mwpu", new GetterSetter(this::mwpuToString, null, this::setMwpu));
-        map.put("twppfilt", new GetterSetter(this::twppfiltToString, null, this::setTwppfilt));
-        map.put("twpqfilt", new GetterSetter(this::twpqfiltToString, null, this::setTwpqfilt));
-        map.put("twpufilt", new GetterSetter(this::twpufiltToString, null, this::setTwpufilt));
-        map.put("txft", new GetterSetter(this::txftToString, null, this::setTxft));
-        map.put("txfv", new GetterSetter(this::txfvToString, null, this::setTxfv));
-        map.put("uwpqdip", new GetterSetter(this::uwpqdipToString, null, this::setUwpqdip));
-        map.put("xrefmax", new GetterSetter(this::xrefmaxToString, null, this::setXrefmax));
-        map.put("xrefmin", new GetterSetter(this::xrefminToString, null, this::setXrefmin));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

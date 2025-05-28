@@ -23,10 +23,17 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
     private static final Logging LOG = Logging.getLogger(ExternalNetworkInjection.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ExternalNetworkInjection() {
-        setCimType("ExternalNetworkInjection");
+    public ExternalNetworkInjection(String rdfid) {
+        super("ExternalNetworkInjection", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ExternalNetworkInjection(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         governorSCD = _value_;
     }
 
-    public void setGovernorSCD(String _value_) {
-        governorSCD = getDoubleFromString(_value_);
+    private static Object getGovernorSCD(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getGovernorSCD();
     }
 
-    public String governorSCDToString() {
-        return governorSCD != null ? governorSCD.toString() : null;
+    private static void setGovernorSCD(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExternalNetworkInjection) _this_).setGovernorSCD((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setGovernorSCD(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         ikSecond = _value_;
     }
 
-    public void setIkSecond(String _value_) {
-        ikSecond = getBooleanFromString(_value_);
+    private static Object getIkSecond(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getIkSecond();
     }
 
-    public String ikSecondToString() {
-        return ikSecond != null ? ikSecond.toString() : null;
+    private static void setIkSecond(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ExternalNetworkInjection) _this_).setIkSecond((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setIkSecond(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         maxInitialSymShCCurrent = _value_;
     }
 
-    public void setMaxInitialSymShCCurrent(String _value_) {
-        maxInitialSymShCCurrent = getDoubleFromString(_value_);
+    private static Object getMaxInitialSymShCCurrent(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getMaxInitialSymShCCurrent();
     }
 
-    public String maxInitialSymShCCurrentToString() {
-        return maxInitialSymShCCurrent != null ? maxInitialSymShCCurrent.toString() : null;
+    private static void setMaxInitialSymShCCurrent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExternalNetworkInjection) _this_).setMaxInitialSymShCCurrent((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setMaxInitialSymShCCurrent(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         maxP = _value_;
     }
 
-    public void setMaxP(String _value_) {
-        maxP = getDoubleFromString(_value_);
+    private static Object getMaxP(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getMaxP();
     }
 
-    public String maxPToString() {
-        return maxP != null ? maxP.toString() : null;
+    private static void setMaxP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExternalNetworkInjection) _this_).setMaxP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setMaxP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         maxQ = _value_;
     }
 
-    public void setMaxQ(String _value_) {
-        maxQ = getDoubleFromString(_value_);
+    private static Object getMaxQ(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getMaxQ();
     }
 
-    public String maxQToString() {
-        return maxQ != null ? maxQ.toString() : null;
+    private static void setMaxQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExternalNetworkInjection) _this_).setMaxQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setMaxQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,12 +184,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         maxR0ToX0Ratio = _value_;
     }
 
-    public void setMaxR0ToX0Ratio(String _value_) {
-        maxR0ToX0Ratio = getFloatFromString(_value_);
+    private static Object getMaxR0ToX0Ratio(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getMaxR0ToX0Ratio();
     }
 
-    public String maxR0ToX0RatioToString() {
-        return maxR0ToX0Ratio != null ? maxR0ToX0Ratio.toString() : null;
+    private static void setMaxR0ToX0Ratio(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExternalNetworkInjection) _this_).setMaxR0ToX0Ratio((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setMaxR0ToX0Ratio(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -168,12 +211,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         maxR1ToX1Ratio = _value_;
     }
 
-    public void setMaxR1ToX1Ratio(String _value_) {
-        maxR1ToX1Ratio = getFloatFromString(_value_);
+    private static Object getMaxR1ToX1Ratio(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getMaxR1ToX1Ratio();
     }
 
-    public String maxR1ToX1RatioToString() {
-        return maxR1ToX1Ratio != null ? maxR1ToX1Ratio.toString() : null;
+    private static void setMaxR1ToX1Ratio(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExternalNetworkInjection) _this_).setMaxR1ToX1Ratio((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setMaxR1ToX1Ratio(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -189,12 +238,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         maxZ0ToZ1Ratio = _value_;
     }
 
-    public void setMaxZ0ToZ1Ratio(String _value_) {
-        maxZ0ToZ1Ratio = getFloatFromString(_value_);
+    private static Object getMaxZ0ToZ1Ratio(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getMaxZ0ToZ1Ratio();
     }
 
-    public String maxZ0ToZ1RatioToString() {
-        return maxZ0ToZ1Ratio != null ? maxZ0ToZ1Ratio.toString() : null;
+    private static void setMaxZ0ToZ1Ratio(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExternalNetworkInjection) _this_).setMaxZ0ToZ1Ratio((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setMaxZ0ToZ1Ratio(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -210,12 +265,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         minInitialSymShCCurrent = _value_;
     }
 
-    public void setMinInitialSymShCCurrent(String _value_) {
-        minInitialSymShCCurrent = getDoubleFromString(_value_);
+    private static Object getMinInitialSymShCCurrent(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getMinInitialSymShCCurrent();
     }
 
-    public String minInitialSymShCCurrentToString() {
-        return minInitialSymShCCurrent != null ? minInitialSymShCCurrent.toString() : null;
+    private static void setMinInitialSymShCCurrent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExternalNetworkInjection) _this_).setMinInitialSymShCCurrent((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setMinInitialSymShCCurrent(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -231,12 +292,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         minP = _value_;
     }
 
-    public void setMinP(String _value_) {
-        minP = getDoubleFromString(_value_);
+    private static Object getMinP(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getMinP();
     }
 
-    public String minPToString() {
-        return minP != null ? minP.toString() : null;
+    private static void setMinP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExternalNetworkInjection) _this_).setMinP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setMinP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -252,12 +319,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         minQ = _value_;
     }
 
-    public void setMinQ(String _value_) {
-        minQ = getDoubleFromString(_value_);
+    private static Object getMinQ(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getMinQ();
     }
 
-    public String minQToString() {
-        return minQ != null ? minQ.toString() : null;
+    private static void setMinQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExternalNetworkInjection) _this_).setMinQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setMinQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -273,12 +346,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         minR0ToX0Ratio = _value_;
     }
 
-    public void setMinR0ToX0Ratio(String _value_) {
-        minR0ToX0Ratio = getFloatFromString(_value_);
+    private static Object getMinR0ToX0Ratio(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getMinR0ToX0Ratio();
     }
 
-    public String minR0ToX0RatioToString() {
-        return minR0ToX0Ratio != null ? minR0ToX0Ratio.toString() : null;
+    private static void setMinR0ToX0Ratio(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExternalNetworkInjection) _this_).setMinR0ToX0Ratio((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setMinR0ToX0Ratio(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -294,12 +373,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         minR1ToX1Ratio = _value_;
     }
 
-    public void setMinR1ToX1Ratio(String _value_) {
-        minR1ToX1Ratio = getFloatFromString(_value_);
+    private static Object getMinR1ToX1Ratio(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getMinR1ToX1Ratio();
     }
 
-    public String minR1ToX1RatioToString() {
-        return minR1ToX1Ratio != null ? minR1ToX1Ratio.toString() : null;
+    private static void setMinR1ToX1Ratio(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExternalNetworkInjection) _this_).setMinR1ToX1Ratio((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setMinR1ToX1Ratio(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -315,12 +400,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         minZ0ToZ1Ratio = _value_;
     }
 
-    public void setMinZ0ToZ1Ratio(String _value_) {
-        minZ0ToZ1Ratio = getFloatFromString(_value_);
+    private static Object getMinZ0ToZ1Ratio(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getMinZ0ToZ1Ratio();
     }
 
-    public String minZ0ToZ1RatioToString() {
-        return minZ0ToZ1Ratio != null ? minZ0ToZ1Ratio.toString() : null;
+    private static void setMinZ0ToZ1Ratio(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExternalNetworkInjection) _this_).setMinZ0ToZ1Ratio((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setMinZ0ToZ1Ratio(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -336,12 +427,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         p = _value_;
     }
 
-    public void setP(String _value_) {
-        p = getDoubleFromString(_value_);
+    private static Object getP(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getP();
     }
 
-    public String pToString() {
-        return p != null ? p.toString() : null;
+    private static void setP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExternalNetworkInjection) _this_).setP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -357,12 +454,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         q = _value_;
     }
 
-    public void setQ(String _value_) {
-        q = getDoubleFromString(_value_);
+    private static Object getQ(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getQ();
     }
 
-    public String qToString() {
-        return q != null ? q.toString() : null;
+    private static void setQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExternalNetworkInjection) _this_).setQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -378,12 +481,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         referencePriority = _value_;
     }
 
-    public void setReferencePriority(String _value_) {
-        referencePriority = getIntegerFromString(_value_);
+    private static Object getReferencePriority(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getReferencePriority();
     }
 
-    public String referencePriorityToString() {
-        return referencePriority != null ? referencePriority.toString() : null;
+    private static void setReferencePriority(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((ExternalNetworkInjection) _this_).setReferencePriority((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setReferencePriority(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -399,12 +508,18 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         voltageFactor = _value_;
     }
 
-    public void setVoltageFactor(String _value_) {
-        voltageFactor = getDoubleFromString(_value_);
+    private static Object getVoltageFactor(BaseClass _this_) {
+        return ((ExternalNetworkInjection) _this_).getVoltageFactor();
     }
 
-    public String voltageFactorToString() {
-        return voltageFactor != null ? voltageFactor.toString() : null;
+    private static void setVoltageFactor(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExternalNetworkInjection) _this_).setVoltageFactor((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExternalNetworkInjection) _this_).setVoltageFactor(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -441,64 +556,35 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ExternalNetworkInjection", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ExternalNetworkInjection", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ExternalNetworkInjection", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ExternalNetworkInjection", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ExternalNetworkInjection", attrName, value));
         }
     }
 
@@ -622,120 +708,96 @@ public class ExternalNetworkInjection extends RegulatingCondEq {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("governorSCD", new AttrDetails("ExternalNetworkInjection.governorSCD", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("governorSCD", new AttrDetails("ExternalNetworkInjection.governorSCD", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getGovernorSCD, ExternalNetworkInjection::setGovernorSCD));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("ikSecond", new AttrDetails("ExternalNetworkInjection.ikSecond", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ikSecond", new AttrDetails("ExternalNetworkInjection.ikSecond", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getIkSecond, ExternalNetworkInjection::setIkSecond));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("maxInitialSymShCCurrent", new AttrDetails("ExternalNetworkInjection.maxInitialSymShCCurrent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("maxInitialSymShCCurrent", new AttrDetails("ExternalNetworkInjection.maxInitialSymShCCurrent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getMaxInitialSymShCCurrent, ExternalNetworkInjection::setMaxInitialSymShCCurrent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxP", new AttrDetails("ExternalNetworkInjection.maxP", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("maxP", new AttrDetails("ExternalNetworkInjection.maxP", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getMaxP, ExternalNetworkInjection::setMaxP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxQ", new AttrDetails("ExternalNetworkInjection.maxQ", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("maxQ", new AttrDetails("ExternalNetworkInjection.maxQ", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getMaxQ, ExternalNetworkInjection::setMaxQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("maxR0ToX0Ratio", new AttrDetails("ExternalNetworkInjection.maxR0ToX0Ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("maxR0ToX0Ratio", new AttrDetails("ExternalNetworkInjection.maxR0ToX0Ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getMaxR0ToX0Ratio, ExternalNetworkInjection::setMaxR0ToX0Ratio));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("maxR1ToX1Ratio", new AttrDetails("ExternalNetworkInjection.maxR1ToX1Ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("maxR1ToX1Ratio", new AttrDetails("ExternalNetworkInjection.maxR1ToX1Ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getMaxR1ToX1Ratio, ExternalNetworkInjection::setMaxR1ToX1Ratio));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("maxZ0ToZ1Ratio", new AttrDetails("ExternalNetworkInjection.maxZ0ToZ1Ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("maxZ0ToZ1Ratio", new AttrDetails("ExternalNetworkInjection.maxZ0ToZ1Ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getMaxZ0ToZ1Ratio, ExternalNetworkInjection::setMaxZ0ToZ1Ratio));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("minInitialSymShCCurrent", new AttrDetails("ExternalNetworkInjection.minInitialSymShCCurrent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("minInitialSymShCCurrent", new AttrDetails("ExternalNetworkInjection.minInitialSymShCCurrent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getMinInitialSymShCCurrent, ExternalNetworkInjection::setMinInitialSymShCCurrent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("minP", new AttrDetails("ExternalNetworkInjection.minP", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("minP", new AttrDetails("ExternalNetworkInjection.minP", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getMinP, ExternalNetworkInjection::setMinP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("minQ", new AttrDetails("ExternalNetworkInjection.minQ", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("minQ", new AttrDetails("ExternalNetworkInjection.minQ", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getMinQ, ExternalNetworkInjection::setMinQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("minR0ToX0Ratio", new AttrDetails("ExternalNetworkInjection.minR0ToX0Ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("minR0ToX0Ratio", new AttrDetails("ExternalNetworkInjection.minR0ToX0Ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getMinR0ToX0Ratio, ExternalNetworkInjection::setMinR0ToX0Ratio));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("minR1ToX1Ratio", new AttrDetails("ExternalNetworkInjection.minR1ToX1Ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("minR1ToX1Ratio", new AttrDetails("ExternalNetworkInjection.minR1ToX1Ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getMinR1ToX1Ratio, ExternalNetworkInjection::setMinR1ToX1Ratio));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("minZ0ToZ1Ratio", new AttrDetails("ExternalNetworkInjection.minZ0ToZ1Ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("minZ0ToZ1Ratio", new AttrDetails("ExternalNetworkInjection.minZ0ToZ1Ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getMinZ0ToZ1Ratio, ExternalNetworkInjection::setMinZ0ToZ1Ratio));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("p", new AttrDetails("ExternalNetworkInjection.p", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p", new AttrDetails("ExternalNetworkInjection.p", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getP, ExternalNetworkInjection::setP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("q", new AttrDetails("ExternalNetworkInjection.q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q", new AttrDetails("ExternalNetworkInjection.q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getQ, ExternalNetworkInjection::setQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("referencePriority", new AttrDetails("ExternalNetworkInjection.referencePriority", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("referencePriority", new AttrDetails("ExternalNetworkInjection.referencePriority", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getReferencePriority, ExternalNetworkInjection::setReferencePriority));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("voltageFactor", new AttrDetails("ExternalNetworkInjection.voltageFactor", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("voltageFactor", new AttrDetails("ExternalNetworkInjection.voltageFactor", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExternalNetworkInjection::getVoltageFactor, ExternalNetworkInjection::setVoltageFactor));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExternalNetworkInjection().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExternalNetworkInjection(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("governorSCD", new GetterSetter(this::governorSCDToString, null, this::setGovernorSCD));
-        map.put("ikSecond", new GetterSetter(this::ikSecondToString, null, this::setIkSecond));
-        map.put("maxInitialSymShCCurrent", new GetterSetter(this::maxInitialSymShCCurrentToString, null, this::setMaxInitialSymShCCurrent));
-        map.put("maxP", new GetterSetter(this::maxPToString, null, this::setMaxP));
-        map.put("maxQ", new GetterSetter(this::maxQToString, null, this::setMaxQ));
-        map.put("maxR0ToX0Ratio", new GetterSetter(this::maxR0ToX0RatioToString, null, this::setMaxR0ToX0Ratio));
-        map.put("maxR1ToX1Ratio", new GetterSetter(this::maxR1ToX1RatioToString, null, this::setMaxR1ToX1Ratio));
-        map.put("maxZ0ToZ1Ratio", new GetterSetter(this::maxZ0ToZ1RatioToString, null, this::setMaxZ0ToZ1Ratio));
-        map.put("minInitialSymShCCurrent", new GetterSetter(this::minInitialSymShCCurrentToString, null, this::setMinInitialSymShCCurrent));
-        map.put("minP", new GetterSetter(this::minPToString, null, this::setMinP));
-        map.put("minQ", new GetterSetter(this::minQToString, null, this::setMinQ));
-        map.put("minR0ToX0Ratio", new GetterSetter(this::minR0ToX0RatioToString, null, this::setMinR0ToX0Ratio));
-        map.put("minR1ToX1Ratio", new GetterSetter(this::minR1ToX1RatioToString, null, this::setMinR1ToX1Ratio));
-        map.put("minZ0ToZ1Ratio", new GetterSetter(this::minZ0ToZ1RatioToString, null, this::setMinZ0ToZ1Ratio));
-        map.put("p", new GetterSetter(this::pToString, null, this::setP));
-        map.put("q", new GetterSetter(this::qToString, null, this::setQ));
-        map.put("referencePriority", new GetterSetter(this::referencePriorityToString, null, this::setReferencePriority));
-        map.put("voltageFactor", new GetterSetter(this::voltageFactorToString, null, this::setVoltageFactor));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

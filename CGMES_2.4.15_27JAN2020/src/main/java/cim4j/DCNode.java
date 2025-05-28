@@ -23,10 +23,17 @@ public class DCNode extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(DCNode.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public DCNode() {
-        setCimType("DCNode");
+    public DCNode(String rdfid) {
+        super("DCNode", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected DCNode(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -37,18 +44,23 @@ public class DCNode extends IdentifiedObject {
         return DCEquipmentContainer;
     }
 
-    public void setDCEquipmentContainer(BaseClass _object_) {
-        if (!(_object_ instanceof DCEquipmentContainer)) {
-            throw new IllegalArgumentException("Object is not DCEquipmentContainer");
-        }
+    public void setDCEquipmentContainer(DCEquipmentContainer _object_) {
         if (DCEquipmentContainer != _object_) {
-            DCEquipmentContainer = (DCEquipmentContainer) _object_;
+            DCEquipmentContainer = _object_;
             DCEquipmentContainer.setDCNodes(this);
         }
     }
 
-    public String DCEquipmentContainerToString() {
-        return DCEquipmentContainer != null ? DCEquipmentContainer.getRdfid() : null;
+    private static Object getDCEquipmentContainer(BaseClass _this_) {
+        return ((DCNode) _this_).getDCEquipmentContainer();
+    }
+
+    private static void setDCEquipmentContainer(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof DCEquipmentContainer) {
+            ((DCNode) _this_).setDCEquipmentContainer((DCEquipmentContainer) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not DCEquipmentContainer");
+        }
     }
 
     /**
@@ -61,18 +73,23 @@ public class DCNode extends IdentifiedObject {
         return DCTerminals;
     }
 
-    public void setDCTerminals(BaseClass _object_) {
-        if (!(_object_ instanceof DCBaseTerminal)) {
-            throw new IllegalArgumentException("Object is not DCBaseTerminal");
-        }
+    public void setDCTerminals(DCBaseTerminal _object_) {
         if (!DCTerminals.contains(_object_)) {
-            DCTerminals.add((DCBaseTerminal) _object_);
-            ((DCBaseTerminal) _object_).setDCNode(this);
+            DCTerminals.add(_object_);
+            _object_.setDCNode(this);
         }
     }
 
-    public String DCTerminalsToString() {
-        return getStringFromSet(DCTerminals);
+    private static Object getDCTerminals(BaseClass _this_) {
+        return ((DCNode) _this_).getDCTerminals();
+    }
+
+    private static void setDCTerminals(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof DCBaseTerminal) {
+            ((DCNode) _this_).setDCTerminals((DCBaseTerminal) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not DCBaseTerminal");
+        }
     }
 
     /**
@@ -84,18 +101,23 @@ public class DCNode extends IdentifiedObject {
         return DCTopologicalNode;
     }
 
-    public void setDCTopologicalNode(BaseClass _object_) {
-        if (!(_object_ instanceof DCTopologicalNode)) {
-            throw new IllegalArgumentException("Object is not DCTopologicalNode");
-        }
+    public void setDCTopologicalNode(DCTopologicalNode _object_) {
         if (DCTopologicalNode != _object_) {
-            DCTopologicalNode = (DCTopologicalNode) _object_;
+            DCTopologicalNode = _object_;
             DCTopologicalNode.setDCNodes(this);
         }
     }
 
-    public String DCTopologicalNodeToString() {
-        return DCTopologicalNode != null ? DCTopologicalNode.getRdfid() : null;
+    private static Object getDCTopologicalNode(BaseClass _this_) {
+        return ((DCNode) _this_).getDCTopologicalNode();
+    }
+
+    private static void setDCTopologicalNode(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof DCTopologicalNode) {
+            ((DCNode) _this_).setDCTopologicalNode((DCTopologicalNode) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not DCTopologicalNode");
+        }
     }
 
     /**
@@ -132,64 +154,35 @@ public class DCNode extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("DCNode", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "DCNode", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("DCNode", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("DCNode", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "DCNode", attrName, value));
         }
     }
 
@@ -313,30 +306,21 @@ public class DCNode extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("DCEquipmentContainer", new AttrDetails("DCNode.DCEquipmentContainer", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("DCEquipmentContainer", new AttrDetails("DCNode.DCEquipmentContainer", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, DCNode::getDCEquipmentContainer, DCNode::setDCEquipmentContainer));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("DCTerminals", new AttrDetails("DCNode.DCTerminals", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("DCTerminals", new AttrDetails("DCNode.DCTerminals", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, DCNode::getDCTerminals, DCNode::setDCTerminals));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.TP);
-            map.put("DCTopologicalNode", new AttrDetails("DCNode.DCTopologicalNode", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("DCTopologicalNode", new AttrDetails("DCNode.DCTopologicalNode", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, DCNode::getDCTopologicalNode, DCNode::setDCTopologicalNode));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DCNode().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DCNode(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("DCEquipmentContainer", new GetterSetter(this::DCEquipmentContainerToString, this::setDCEquipmentContainer, null));
-        map.put("DCTerminals", new GetterSetter(this::DCTerminalsToString, this::setDCTerminals, null));
-        map.put("DCTopologicalNode", new GetterSetter(this::DCTopologicalNodeToString, this::setDCTopologicalNode, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

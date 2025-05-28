@@ -23,10 +23,17 @@ public class PhaseTapChangerNonLinear extends PhaseTapChanger {
     private static final Logging LOG = Logging.getLogger(PhaseTapChangerNonLinear.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public PhaseTapChangerNonLinear() {
-        setCimType("PhaseTapChangerNonLinear");
+    public PhaseTapChangerNonLinear(String rdfid) {
+        super("PhaseTapChangerNonLinear", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected PhaseTapChangerNonLinear(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class PhaseTapChangerNonLinear extends PhaseTapChanger {
         voltageStepIncrement = _value_;
     }
 
-    public void setVoltageStepIncrement(String _value_) {
-        voltageStepIncrement = getDoubleFromString(_value_);
+    private static Object getVoltageStepIncrement(BaseClass _this_) {
+        return ((PhaseTapChangerNonLinear) _this_).getVoltageStepIncrement();
     }
 
-    public String voltageStepIncrementToString() {
-        return voltageStepIncrement != null ? voltageStepIncrement.toString() : null;
+    private static void setVoltageStepIncrement(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PhaseTapChangerNonLinear) _this_).setVoltageStepIncrement((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PhaseTapChangerNonLinear) _this_).setVoltageStepIncrement(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class PhaseTapChangerNonLinear extends PhaseTapChanger {
         xMax = _value_;
     }
 
-    public void setXMax(String _value_) {
-        xMax = getDoubleFromString(_value_);
+    private static Object getXMax(BaseClass _this_) {
+        return ((PhaseTapChangerNonLinear) _this_).getXMax();
     }
 
-    public String xMaxToString() {
-        return xMax != null ? xMax.toString() : null;
+    private static void setXMax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PhaseTapChangerNonLinear) _this_).setXMax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PhaseTapChangerNonLinear) _this_).setXMax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class PhaseTapChangerNonLinear extends PhaseTapChanger {
         xMin = _value_;
     }
 
-    public void setXMin(String _value_) {
-        xMin = getDoubleFromString(_value_);
+    private static Object getXMin(BaseClass _this_) {
+        return ((PhaseTapChangerNonLinear) _this_).getXMin();
     }
 
-    public String xMinToString() {
-        return xMin != null ? xMin.toString() : null;
+    private static void setXMin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PhaseTapChangerNonLinear) _this_).setXMin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PhaseTapChangerNonLinear) _this_).setXMin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,64 +151,35 @@ public class PhaseTapChangerNonLinear extends PhaseTapChanger {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("PhaseTapChangerNonLinear", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "PhaseTapChangerNonLinear", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("PhaseTapChangerNonLinear", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("PhaseTapChangerNonLinear", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "PhaseTapChangerNonLinear", attrName, value));
         }
     }
 
@@ -307,30 +303,21 @@ public class PhaseTapChangerNonLinear extends PhaseTapChanger {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("voltageStepIncrement", new AttrDetails("PhaseTapChangerNonLinear.voltageStepIncrement", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("voltageStepIncrement", new AttrDetails("PhaseTapChangerNonLinear.voltageStepIncrement", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PhaseTapChangerNonLinear::getVoltageStepIncrement, PhaseTapChangerNonLinear::setVoltageStepIncrement));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("xMax", new AttrDetails("PhaseTapChangerNonLinear.xMax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xMax", new AttrDetails("PhaseTapChangerNonLinear.xMax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PhaseTapChangerNonLinear::getXMax, PhaseTapChangerNonLinear::setXMax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("xMin", new AttrDetails("PhaseTapChangerNonLinear.xMin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xMin", new AttrDetails("PhaseTapChangerNonLinear.xMin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PhaseTapChangerNonLinear::getXMin, PhaseTapChangerNonLinear::setXMin));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PhaseTapChangerNonLinear().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PhaseTapChangerNonLinear(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("voltageStepIncrement", new GetterSetter(this::voltageStepIncrementToString, null, this::setVoltageStepIncrement));
-        map.put("xMax", new GetterSetter(this::xMaxToString, null, this::setXMax));
-        map.put("xMin", new GetterSetter(this::xMinToString, null, this::setXMin));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

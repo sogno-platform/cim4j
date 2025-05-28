@@ -23,14 +23,21 @@ public class VAdjIEEE extends VoltageAdjusterDynamics {
     private static final Logging LOG = Logging.getLogger(VAdjIEEE.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public VAdjIEEE() {
-        setCimType("VAdjIEEE");
+    public VAdjIEEE(String rdfid) {
+        super("VAdjIEEE", rdfid);
     }
 
     /**
-     * Rate at which output of adjuster changes (&lt;i&gt;ADJ_SLEW&lt;/i&gt;).  Unit = s / PU.  Typical value = 300.
+     * Constructor for subclasses.
+     */
+    protected VAdjIEEE(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).  Unit = s / PU.  Typical value = 300.
      */
     private Float adjslew; // Float
 
@@ -42,16 +49,22 @@ public class VAdjIEEE extends VoltageAdjusterDynamics {
         adjslew = _value_;
     }
 
-    public void setAdjslew(String _value_) {
-        adjslew = getFloatFromString(_value_);
+    private static Object getAdjslew(BaseClass _this_) {
+        return ((VAdjIEEE) _this_).getAdjslew();
     }
 
-    public String adjslewToString() {
-        return adjslew != null ? adjslew.toString() : null;
+    private static void setAdjslew(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((VAdjIEEE) _this_).setAdjslew((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((VAdjIEEE) _this_).setAdjslew(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Time that adjuster pulses are off (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;AOFF&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,5.
+     * Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>) (&gt;= 0).  Typical value = 0,5.
      */
     private Double taoff; // Seconds
 
@@ -63,16 +76,22 @@ public class VAdjIEEE extends VoltageAdjusterDynamics {
         taoff = _value_;
     }
 
-    public void setTaoff(String _value_) {
-        taoff = getDoubleFromString(_value_);
+    private static Object getTaoff(BaseClass _this_) {
+        return ((VAdjIEEE) _this_).getTaoff();
     }
 
-    public String taoffToString() {
-        return taoff != null ? taoff.toString() : null;
+    private static void setTaoff(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VAdjIEEE) _this_).setTaoff((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VAdjIEEE) _this_).setTaoff(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Time that adjuster pulses are on (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;AON&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,1.
+     * Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>) (&gt;= 0).  Typical value = 0,1.
      */
     private Double taon; // Seconds
 
@@ -84,16 +103,22 @@ public class VAdjIEEE extends VoltageAdjusterDynamics {
         taon = _value_;
     }
 
-    public void setTaon(String _value_) {
-        taon = getDoubleFromString(_value_);
+    private static Object getTaon(BaseClass _this_) {
+        return ((VAdjIEEE) _this_).getTaon();
     }
 
-    public String taonToString() {
-        return taon != null ? taon.toString() : null;
+    private static void setTaon(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VAdjIEEE) _this_).setTaon((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VAdjIEEE) _this_).setTaon(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Set high to provide a continuous raise or lower (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ADJF&lt;/sub&gt;&lt;/i&gt;).
+     * Set high to provide a continuous raise or lower (<i>V</i><i><sub>ADJF</sub></i>).
      */
     private Float vadjf; // Float
 
@@ -105,16 +130,22 @@ public class VAdjIEEE extends VoltageAdjusterDynamics {
         vadjf = _value_;
     }
 
-    public void setVadjf(String _value_) {
-        vadjf = getFloatFromString(_value_);
+    private static Object getVadjf(BaseClass _this_) {
+        return ((VAdjIEEE) _this_).getVadjf();
     }
 
-    public String vadjfToString() {
-        return vadjf != null ? vadjf.toString() : null;
+    private static void setVadjf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((VAdjIEEE) _this_).setVadjf((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((VAdjIEEE) _this_).setVadjf(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Maximum output of the adjuster (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ADJMAX&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; VAdjIEEE.vadjmin).  Typical value = 1,1.
+     * Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>) (&gt; VAdjIEEE.vadjmin).  Typical value = 1,1.
      */
     private Double vadjmax; // PU
 
@@ -126,16 +157,22 @@ public class VAdjIEEE extends VoltageAdjusterDynamics {
         vadjmax = _value_;
     }
 
-    public void setVadjmax(String _value_) {
-        vadjmax = getDoubleFromString(_value_);
+    private static Object getVadjmax(BaseClass _this_) {
+        return ((VAdjIEEE) _this_).getVadjmax();
     }
 
-    public String vadjmaxToString() {
-        return vadjmax != null ? vadjmax.toString() : null;
+    private static void setVadjmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VAdjIEEE) _this_).setVadjmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VAdjIEEE) _this_).setVadjmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum output of the adjuster (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ADJMIN&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; VAdjIEEE.vadjmax).  Typical value = 0,9.
+     * Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>) (&lt; VAdjIEEE.vadjmax).  Typical value = 0,9.
      */
     private Double vadjmin; // PU
 
@@ -147,12 +184,18 @@ public class VAdjIEEE extends VoltageAdjusterDynamics {
         vadjmin = _value_;
     }
 
-    public void setVadjmin(String _value_) {
-        vadjmin = getDoubleFromString(_value_);
+    private static Object getVadjmin(BaseClass _this_) {
+        return ((VAdjIEEE) _this_).getVadjmin();
     }
 
-    public String vadjminToString() {
-        return vadjmin != null ? vadjmin.toString() : null;
+    private static void setVadjmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VAdjIEEE) _this_).setVadjmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VAdjIEEE) _this_).setVadjmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,64 +232,35 @@ public class VAdjIEEE extends VoltageAdjusterDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("VAdjIEEE", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "VAdjIEEE", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("VAdjIEEE", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("VAdjIEEE", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "VAdjIEEE", attrName, value));
         }
     }
 
@@ -370,48 +384,36 @@ public class VAdjIEEE extends VoltageAdjusterDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("adjslew", new AttrDetails("VAdjIEEE.adjslew", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("adjslew", new AttrDetails("VAdjIEEE.adjslew", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, VAdjIEEE::getAdjslew, VAdjIEEE::setAdjslew));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("taoff", new AttrDetails("VAdjIEEE.taoff", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("taoff", new AttrDetails("VAdjIEEE.taoff", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, VAdjIEEE::getTaoff, VAdjIEEE::setTaoff));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("taon", new AttrDetails("VAdjIEEE.taon", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("taon", new AttrDetails("VAdjIEEE.taon", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, VAdjIEEE::getTaon, VAdjIEEE::setTaon));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vadjf", new AttrDetails("VAdjIEEE.vadjf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vadjf", new AttrDetails("VAdjIEEE.vadjf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, VAdjIEEE::getVadjf, VAdjIEEE::setVadjf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vadjmax", new AttrDetails("VAdjIEEE.vadjmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vadjmax", new AttrDetails("VAdjIEEE.vadjmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, VAdjIEEE::getVadjmax, VAdjIEEE::setVadjmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vadjmin", new AttrDetails("VAdjIEEE.vadjmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vadjmin", new AttrDetails("VAdjIEEE.vadjmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, VAdjIEEE::getVadjmin, VAdjIEEE::setVadjmin));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new VAdjIEEE().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new VAdjIEEE(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("adjslew", new GetterSetter(this::adjslewToString, null, this::setAdjslew));
-        map.put("taoff", new GetterSetter(this::taoffToString, null, this::setTaoff));
-        map.put("taon", new GetterSetter(this::taonToString, null, this::setTaon));
-        map.put("vadjf", new GetterSetter(this::vadjfToString, null, this::setVadjf));
-        map.put("vadjmax", new GetterSetter(this::vadjmaxToString, null, this::setVadjmax));
-        map.put("vadjmin", new GetterSetter(this::vadjminToString, null, this::setVadjmin));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

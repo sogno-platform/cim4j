@@ -13,15 +13,15 @@ import java.util.Map;
  */
 public enum ExcST6BOELselectorKind {
     /**
-     * No OEL input is used. Corresponds to &lt;i&gt;OELin&lt;/i&gt; not = 1 and not = 2 on the ExcST6B diagram. Original ExcST6B model would have called this &lt;i&gt;OELin&lt;/i&gt; = 0.
+     * No OEL input is used. Corresponds to <i>OELin</i> not = 1 and not = 2 on the ExcST6B diagram. Original ExcST6B model would have called this <i>OELin</i> = 0.
      */
     _noOELinput("noOELinput"),
     /**
-     * The connection is before UEL. Corresponds to &lt;i&gt;OELin&lt;/i&gt; = 1 on the ExcST6B diagram.
+     * The connection is before UEL. Corresponds to <i>OELin</i> = 1 on the ExcST6B diagram.
      */
     _beforeUEL("beforeUEL"),
     /**
-     * The connection is after UEL. Corresponds to &lt;i&gt;OELin&lt;/i&gt; = 2 on the ExcST6B diagram.
+     * The connection is after UEL. Corresponds to <i>OELin</i> = 2 on the ExcST6B diagram.
      */
     _afterUEL("afterUEL"),
     ;

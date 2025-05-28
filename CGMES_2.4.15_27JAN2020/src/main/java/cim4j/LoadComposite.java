@@ -23,10 +23,17 @@ public class LoadComposite extends LoadDynamics {
     private static final Logging LOG = Logging.getLogger(LoadComposite.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public LoadComposite() {
-        setCimType("LoadComposite");
+    public LoadComposite(String rdfid) {
+        super("LoadComposite", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected LoadComposite(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class LoadComposite extends LoadDynamics {
         epfd = _value_;
     }
 
-    public void setEpfd(String _value_) {
-        epfd = getDoubleFromString(_value_);
+    private static Object getEpfd(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEpfd();
     }
 
-    public String epfdToString() {
-        return epfd != null ? epfd.toString() : null;
+    private static void setEpfd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadComposite) _this_).setEpfd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEpfd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class LoadComposite extends LoadDynamics {
         epfs = _value_;
     }
 
-    public void setEpfs(String _value_) {
-        epfs = getDoubleFromString(_value_);
+    private static Object getEpfs(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEpfs();
     }
 
-    public String epfsToString() {
-        return epfs != null ? epfs.toString() : null;
+    private static void setEpfs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadComposite) _this_).setEpfs((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEpfs(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class LoadComposite extends LoadDynamics {
         epvd = _value_;
     }
 
-    public void setEpvd(String _value_) {
-        epvd = getDoubleFromString(_value_);
+    private static Object getEpvd(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEpvd();
     }
 
-    public String epvdToString() {
-        return epvd != null ? epvd.toString() : null;
+    private static void setEpvd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadComposite) _this_).setEpvd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEpvd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class LoadComposite extends LoadDynamics {
         epvs = _value_;
     }
 
-    public void setEpvs(String _value_) {
-        epvs = getDoubleFromString(_value_);
+    private static Object getEpvs(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEpvs();
     }
 
-    public String epvsToString() {
-        return epvs != null ? epvs.toString() : null;
+    private static void setEpvs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadComposite) _this_).setEpvs((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEpvs(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class LoadComposite extends LoadDynamics {
         eqfd = _value_;
     }
 
-    public void setEqfd(String _value_) {
-        eqfd = getDoubleFromString(_value_);
+    private static Object getEqfd(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEqfd();
     }
 
-    public String eqfdToString() {
-        return eqfd != null ? eqfd.toString() : null;
+    private static void setEqfd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadComposite) _this_).setEqfd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEqfd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,12 +184,18 @@ public class LoadComposite extends LoadDynamics {
         eqfs = _value_;
     }
 
-    public void setEqfs(String _value_) {
-        eqfs = getDoubleFromString(_value_);
+    private static Object getEqfs(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEqfs();
     }
 
-    public String eqfsToString() {
-        return eqfs != null ? eqfs.toString() : null;
+    private static void setEqfs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadComposite) _this_).setEqfs((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEqfs(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,12 +211,18 @@ public class LoadComposite extends LoadDynamics {
         eqvd = _value_;
     }
 
-    public void setEqvd(String _value_) {
-        eqvd = getDoubleFromString(_value_);
+    private static Object getEqvd(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEqvd();
     }
 
-    public String eqvdToString() {
-        return eqvd != null ? eqvd.toString() : null;
+    private static void setEqvd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadComposite) _this_).setEqvd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEqvd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,12 +238,18 @@ public class LoadComposite extends LoadDynamics {
         eqvs = _value_;
     }
 
-    public void setEqvs(String _value_) {
-        eqvs = getDoubleFromString(_value_);
+    private static Object getEqvs(BaseClass _this_) {
+        return ((LoadComposite) _this_).getEqvs();
     }
 
-    public String eqvsToString() {
-        return eqvs != null ? eqvs.toString() : null;
+    private static void setEqvs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadComposite) _this_).setEqvs((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setEqvs(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -210,12 +265,18 @@ public class LoadComposite extends LoadDynamics {
         h = _value_;
     }
 
-    public void setH(String _value_) {
-        h = getDoubleFromString(_value_);
+    private static Object getH(BaseClass _this_) {
+        return ((LoadComposite) _this_).getH();
     }
 
-    public String hToString() {
-        return h != null ? h.toString() : null;
+    private static void setH(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadComposite) _this_).setH((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setH(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -231,16 +292,22 @@ public class LoadComposite extends LoadDynamics {
         lfrac = _value_;
     }
 
-    public void setLfrac(String _value_) {
-        lfrac = getDoubleFromString(_value_);
+    private static Object getLfrac(BaseClass _this_) {
+        return ((LoadComposite) _this_).getLfrac();
     }
 
-    public String lfracToString() {
-        return lfrac != null ? lfrac.toString() : null;
+    private static void setLfrac(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadComposite) _this_).setLfrac((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setLfrac(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Fraction of constant-power load to be represented by this motor model (Pfrac) (&gt;=0.0 and &lt;=1.0).  Typical Value = 0.5.
+     * Fraction of constant-power load to be represented by this motor model (Pfrac) (>=0.0 and <=1.0).  Typical Value = 0.5.
      */
     private Double pfrac; // Simple_Float
 
@@ -252,12 +319,18 @@ public class LoadComposite extends LoadDynamics {
         pfrac = _value_;
     }
 
-    public void setPfrac(String _value_) {
-        pfrac = getDoubleFromString(_value_);
+    private static Object getPfrac(BaseClass _this_) {
+        return ((LoadComposite) _this_).getPfrac();
     }
 
-    public String pfracToString() {
-        return pfrac != null ? pfrac.toString() : null;
+    private static void setPfrac(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadComposite) _this_).setPfrac((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadComposite) _this_).setPfrac(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -294,64 +367,35 @@ public class LoadComposite extends LoadDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("LoadComposite", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "LoadComposite", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("LoadComposite", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("LoadComposite", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "LoadComposite", attrName, value));
         }
     }
 
@@ -475,78 +519,61 @@ public class LoadComposite extends LoadDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("epfd", new AttrDetails("LoadComposite.epfd", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("epfd", new AttrDetails("LoadComposite.epfd", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadComposite::getEpfd, LoadComposite::setEpfd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("epfs", new AttrDetails("LoadComposite.epfs", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("epfs", new AttrDetails("LoadComposite.epfs", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadComposite::getEpfs, LoadComposite::setEpfs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("epvd", new AttrDetails("LoadComposite.epvd", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("epvd", new AttrDetails("LoadComposite.epvd", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadComposite::getEpvd, LoadComposite::setEpvd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("epvs", new AttrDetails("LoadComposite.epvs", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("epvs", new AttrDetails("LoadComposite.epvs", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadComposite::getEpvs, LoadComposite::setEpvs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eqfd", new AttrDetails("LoadComposite.eqfd", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("eqfd", new AttrDetails("LoadComposite.eqfd", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadComposite::getEqfd, LoadComposite::setEqfd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eqfs", new AttrDetails("LoadComposite.eqfs", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("eqfs", new AttrDetails("LoadComposite.eqfs", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadComposite::getEqfs, LoadComposite::setEqfs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eqvd", new AttrDetails("LoadComposite.eqvd", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("eqvd", new AttrDetails("LoadComposite.eqvd", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadComposite::getEqvd, LoadComposite::setEqvd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eqvs", new AttrDetails("LoadComposite.eqvs", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("eqvs", new AttrDetails("LoadComposite.eqvs", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadComposite::getEqvs, LoadComposite::setEqvs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("h", new AttrDetails("LoadComposite.h", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("h", new AttrDetails("LoadComposite.h", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadComposite::getH, LoadComposite::setH));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("lfrac", new AttrDetails("LoadComposite.lfrac", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("lfrac", new AttrDetails("LoadComposite.lfrac", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadComposite::getLfrac, LoadComposite::setLfrac));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pfrac", new AttrDetails("LoadComposite.pfrac", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("pfrac", new AttrDetails("LoadComposite.pfrac", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadComposite::getPfrac, LoadComposite::setPfrac));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadComposite().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadComposite(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("epfd", new GetterSetter(this::epfdToString, null, this::setEpfd));
-        map.put("epfs", new GetterSetter(this::epfsToString, null, this::setEpfs));
-        map.put("epvd", new GetterSetter(this::epvdToString, null, this::setEpvd));
-        map.put("epvs", new GetterSetter(this::epvsToString, null, this::setEpvs));
-        map.put("eqfd", new GetterSetter(this::eqfdToString, null, this::setEqfd));
-        map.put("eqfs", new GetterSetter(this::eqfsToString, null, this::setEqfs));
-        map.put("eqvd", new GetterSetter(this::eqvdToString, null, this::setEqvd));
-        map.put("eqvs", new GetterSetter(this::eqvsToString, null, this::setEqvs));
-        map.put("h", new GetterSetter(this::hToString, null, this::setH));
-        map.put("lfrac", new GetterSetter(this::lfracToString, null, this::setLfrac));
-        map.put("pfrac", new GetterSetter(this::pfracToString, null, this::setPfrac));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

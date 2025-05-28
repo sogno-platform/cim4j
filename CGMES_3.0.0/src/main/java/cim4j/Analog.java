@@ -23,10 +23,17 @@ public class Analog extends Measurement {
     private static final Logging LOG = Logging.getLogger(Analog.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public Analog() {
-        setCimType("Analog");
+    public Analog(String rdfid) {
+        super("Analog", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected Analog(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class Analog extends Measurement {
         return AnalogValues;
     }
 
-    public void setAnalogValues(BaseClass _object_) {
-        if (!(_object_ instanceof AnalogValue)) {
-            throw new IllegalArgumentException("Object is not AnalogValue");
-        }
+    public void setAnalogValues(AnalogValue _object_) {
         if (!AnalogValues.contains(_object_)) {
-            AnalogValues.add((AnalogValue) _object_);
-            ((AnalogValue) _object_).setAnalog(this);
+            AnalogValues.add(_object_);
+            _object_.setAnalog(this);
         }
     }
 
-    public String AnalogValuesToString() {
-        return getStringFromSet(AnalogValues);
+    private static Object getAnalogValues(BaseClass _this_) {
+        return ((Analog) _this_).getAnalogValues();
+    }
+
+    private static void setAnalogValues(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof AnalogValue) {
+            ((Analog) _this_).setAnalogValues((AnalogValue) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not AnalogValue");
+        }
     }
 
     /**
@@ -65,18 +77,23 @@ public class Analog extends Measurement {
         return LimitSets;
     }
 
-    public void setLimitSets(BaseClass _object_) {
-        if (!(_object_ instanceof AnalogLimitSet)) {
-            throw new IllegalArgumentException("Object is not AnalogLimitSet");
-        }
+    public void setLimitSets(AnalogLimitSet _object_) {
         if (!LimitSets.contains(_object_)) {
-            LimitSets.add((AnalogLimitSet) _object_);
-            ((AnalogLimitSet) _object_).setMeasurements(this);
+            LimitSets.add(_object_);
+            _object_.setMeasurements(this);
         }
     }
 
-    public String LimitSetsToString() {
-        return getStringFromSet(LimitSets);
+    private static Object getLimitSets(BaseClass _this_) {
+        return ((Analog) _this_).getLimitSets();
+    }
+
+    private static void setLimitSets(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof AnalogLimitSet) {
+            ((Analog) _this_).setLimitSets((AnalogLimitSet) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not AnalogLimitSet");
+        }
     }
 
     /**
@@ -92,12 +109,18 @@ public class Analog extends Measurement {
         positiveFlowIn = _value_;
     }
 
-    public void setPositiveFlowIn(String _value_) {
-        positiveFlowIn = getBooleanFromString(_value_);
+    private static Object getPositiveFlowIn(BaseClass _this_) {
+        return ((Analog) _this_).getPositiveFlowIn();
     }
 
-    public String positiveFlowInToString() {
-        return positiveFlowIn != null ? positiveFlowIn.toString() : null;
+    private static void setPositiveFlowIn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Analog) _this_).setPositiveFlowIn((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Analog) _this_).setPositiveFlowIn(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -134,64 +157,35 @@ public class Analog extends Measurement {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("Analog", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "Analog", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("Analog", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("Analog", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "Analog", attrName, value));
         }
     }
 
@@ -315,30 +309,21 @@ public class Analog extends Measurement {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("AnalogValues", new AttrDetails("Analog.AnalogValues", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("AnalogValues", new AttrDetails("Analog.AnalogValues", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, Analog::getAnalogValues, Analog::setAnalogValues));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("LimitSets", new AttrDetails("Analog.LimitSets", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("LimitSets", new AttrDetails("Analog.LimitSets", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, Analog::getLimitSets, Analog::setLimitSets));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("positiveFlowIn", new AttrDetails("Analog.positiveFlowIn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("positiveFlowIn", new AttrDetails("Analog.positiveFlowIn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Analog::getPositiveFlowIn, Analog::setPositiveFlowIn));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Analog().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Analog(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("AnalogValues", new GetterSetter(this::AnalogValuesToString, this::setAnalogValues, null));
-        map.put("LimitSets", new GetterSetter(this::LimitSetsToString, this::setLimitSets, null));
-        map.put("positiveFlowIn", new GetterSetter(this::positiveFlowInToString, null, this::setPositiveFlowIn));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

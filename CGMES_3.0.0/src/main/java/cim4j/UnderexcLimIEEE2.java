@@ -23,14 +23,21 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
     private static final Logging LOG = Logging.getLogger(UnderexcLimIEEE2.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public UnderexcLimIEEE2() {
-        setCimType("UnderexcLimIEEE2");
+    public UnderexcLimIEEE2(String rdfid) {
+        super("UnderexcLimIEEE2", rdfid);
     }
 
     /**
-     * UEL terminal voltage exponent applied to real power input to UEL limit look-up table (&lt;i&gt;k1&lt;/i&gt;).  Typical value = 2.
+     * Constructor for subclasses.
+     */
+    protected UnderexcLimIEEE2(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * UEL terminal voltage exponent applied to real power input to UEL limit look-up table (<i>k1</i>).  Typical value = 2.
      */
     private Float k1; // Float
 
@@ -42,16 +49,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         k1 = _value_;
     }
 
-    public void setK1(String _value_) {
-        k1 = getFloatFromString(_value_);
+    private static Object getK1(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getK1();
     }
 
-    public String k1ToString() {
-        return k1 != null ? k1.toString() : null;
+    private static void setK1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((UnderexcLimIEEE2) _this_).setK1((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setK1(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * UEL terminal voltage exponent applied to reactive power output from UEL limit look-up table (&lt;i&gt;k2&lt;/i&gt;).  Typical value = 2.
+     * UEL terminal voltage exponent applied to reactive power output from UEL limit look-up table (<i>k2</i>).  Typical value = 2.
      */
     private Float k2; // Float
 
@@ -63,16 +76,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         k2 = _value_;
     }
 
-    public void setK2(String _value_) {
-        k2 = getFloatFromString(_value_);
+    private static Object getK2(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getK2();
     }
 
-    public String k2ToString() {
-        return k2 != null ? k2.toString() : null;
+    private static void setK2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((UnderexcLimIEEE2) _this_).setK2((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setK2(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Gain associated with optional integrator feedback input signal to UEL (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FB&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0.
+     * Gain associated with optional integrator feedback input signal to UEL (<i>K</i><i><sub>FB</sub></i>).  Typical value = 0.
      */
     private Double kfb; // PU
 
@@ -84,16 +103,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         kfb = _value_;
     }
 
-    public void setKfb(String _value_) {
-        kfb = getDoubleFromString(_value_);
+    private static Object getKfb(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getKfb();
     }
 
-    public String kfbToString() {
-        return kfb != null ? kfb.toString() : null;
+    private static void setKfb(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setKfb((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setKfb(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * UEL excitation system stabilizer gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UF&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0.
+     * UEL excitation system stabilizer gain (<i>K</i><i><sub>UF</sub></i>).  Typical value = 0.
      */
     private Double kuf; // PU
 
@@ -105,16 +130,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         kuf = _value_;
     }
 
-    public void setKuf(String _value_) {
-        kuf = getDoubleFromString(_value_);
+    private static Object getKuf(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getKuf();
     }
 
-    public String kufToString() {
-        return kuf != null ? kuf.toString() : null;
+    private static void setKuf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setKuf((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setKuf(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * UEL integral gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UI&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0,5.
+     * UEL integral gain (<i>K</i><i><sub>UI</sub></i>).  Typical value = 0,5.
      */
     private Double kui; // PU
 
@@ -126,16 +157,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         kui = _value_;
     }
 
-    public void setKui(String _value_) {
-        kui = getDoubleFromString(_value_);
+    private static Object getKui(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getKui();
     }
 
-    public String kuiToString() {
-        return kui != null ? kui.toString() : null;
+    private static void setKui(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setKui((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setKui(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * UEL proportional gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UL&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0,8.
+     * UEL proportional gain (<i>K</i><i><sub>UL</sub></i>).  Typical value = 0,8.
      */
     private Double kul; // PU
 
@@ -147,16 +184,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         kul = _value_;
     }
 
-    public void setKul(String _value_) {
-        kul = getDoubleFromString(_value_);
+    private static Object getKul(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getKul();
     }
 
-    public String kulToString() {
-        return kul != null ? kul.toString() : null;
+    private static void setKul(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setKul((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setKul(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Real power values for endpoints (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;0&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0.
+     * Real power values for endpoints (<i>P</i><i><sub>0</sub></i>).  Typical value = 0.
      */
     private Double p0; // PU
 
@@ -168,16 +211,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         p0 = _value_;
     }
 
-    public void setP0(String _value_) {
-        p0 = getDoubleFromString(_value_);
+    private static Object getP0(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getP0();
     }
 
-    public String p0ToString() {
-        return p0 != null ? p0.toString() : null;
+    private static void setP0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setP0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setP0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Real power values for endpoints (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0,3.
+     * Real power values for endpoints (<i>P</i><i><sub>1</sub></i>).  Typical value = 0,3.
      */
     private Double p1; // PU
 
@@ -189,16 +238,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         p1 = _value_;
     }
 
-    public void setP1(String _value_) {
-        p1 = getDoubleFromString(_value_);
+    private static Object getP1(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getP1();
     }
 
-    public String p1ToString() {
-        return p1 != null ? p1.toString() : null;
+    private static void setP1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setP1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setP1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Real power values for endpoints (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;10&lt;/sub&gt;&lt;/i&gt;).
+     * Real power values for endpoints (<i>P</i><i><sub>10</sub></i>).
      */
     private Double p10; // PU
 
@@ -210,16 +265,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         p10 = _value_;
     }
 
-    public void setP10(String _value_) {
-        p10 = getDoubleFromString(_value_);
+    private static Object getP10(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getP10();
     }
 
-    public String p10ToString() {
-        return p10 != null ? p10.toString() : null;
+    private static void setP10(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setP10((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setP10(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Real power values for endpoints (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0,6.
+     * Real power values for endpoints (<i>P</i><i><sub>2</sub></i>).  Typical value = 0,6.
      */
     private Double p2; // PU
 
@@ -231,16 +292,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         p2 = _value_;
     }
 
-    public void setP2(String _value_) {
-        p2 = getDoubleFromString(_value_);
+    private static Object getP2(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getP2();
     }
 
-    public String p2ToString() {
-        return p2 != null ? p2.toString() : null;
+    private static void setP2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setP2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setP2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Real power values for endpoints (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;3&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0,9.
+     * Real power values for endpoints (<i>P</i><i><sub>3</sub></i>).  Typical value = 0,9.
      */
     private Double p3; // PU
 
@@ -252,16 +319,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         p3 = _value_;
     }
 
-    public void setP3(String _value_) {
-        p3 = getDoubleFromString(_value_);
+    private static Object getP3(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getP3();
     }
 
-    public String p3ToString() {
-        return p3 != null ? p3.toString() : null;
+    private static void setP3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setP3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setP3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Real power values for endpoints (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;4&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1,02.
+     * Real power values for endpoints (<i>P</i><i><sub>4</sub></i>).  Typical value = 1,02.
      */
     private Double p4; // PU
 
@@ -273,16 +346,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         p4 = _value_;
     }
 
-    public void setP4(String _value_) {
-        p4 = getDoubleFromString(_value_);
+    private static Object getP4(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getP4();
     }
 
-    public String p4ToString() {
-        return p4 != null ? p4.toString() : null;
+    private static void setP4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setP4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setP4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Real power values for endpoints (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;5&lt;/sub&gt;&lt;/i&gt;).
+     * Real power values for endpoints (<i>P</i><i><sub>5</sub></i>).
      */
     private Double p5; // PU
 
@@ -294,16 +373,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         p5 = _value_;
     }
 
-    public void setP5(String _value_) {
-        p5 = getDoubleFromString(_value_);
+    private static Object getP5(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getP5();
     }
 
-    public String p5ToString() {
-        return p5 != null ? p5.toString() : null;
+    private static void setP5(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setP5((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setP5(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Real power values for endpoints (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;6&lt;/sub&gt;&lt;/i&gt;).
+     * Real power values for endpoints (<i>P</i><i><sub>6</sub></i>).
      */
     private Double p6; // PU
 
@@ -315,16 +400,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         p6 = _value_;
     }
 
-    public void setP6(String _value_) {
-        p6 = getDoubleFromString(_value_);
+    private static Object getP6(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getP6();
     }
 
-    public String p6ToString() {
-        return p6 != null ? p6.toString() : null;
+    private static void setP6(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setP6((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setP6(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Real power values for endpoints (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;7&lt;/sub&gt;&lt;/i&gt;).
+     * Real power values for endpoints (<i>P</i><i><sub>7</sub></i>).
      */
     private Double p7; // PU
 
@@ -336,16 +427,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         p7 = _value_;
     }
 
-    public void setP7(String _value_) {
-        p7 = getDoubleFromString(_value_);
+    private static Object getP7(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getP7();
     }
 
-    public String p7ToString() {
-        return p7 != null ? p7.toString() : null;
+    private static void setP7(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setP7((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setP7(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Real power values for endpoints (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;8&lt;/sub&gt;&lt;/i&gt;).
+     * Real power values for endpoints (<i>P</i><i><sub>8</sub></i>).
      */
     private Double p8; // PU
 
@@ -357,16 +454,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         p8 = _value_;
     }
 
-    public void setP8(String _value_) {
-        p8 = getDoubleFromString(_value_);
+    private static Object getP8(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getP8();
     }
 
-    public String p8ToString() {
-        return p8 != null ? p8.toString() : null;
+    private static void setP8(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setP8((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setP8(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Real power values for endpoints (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;9&lt;/sub&gt;&lt;/i&gt;).
+     * Real power values for endpoints (<i>P</i><i><sub>9</sub></i>).
      */
     private Double p9; // PU
 
@@ -378,16 +481,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         p9 = _value_;
     }
 
-    public void setP9(String _value_) {
-        p9 = getDoubleFromString(_value_);
+    private static Object getP9(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getP9();
     }
 
-    public String p9ToString() {
-        return p9 != null ? p9.toString() : null;
+    private static void setP9(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setP9((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setP9(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power values for endpoints (&lt;i&gt;Q&lt;/i&gt;&lt;i&gt;&lt;sub&gt;0&lt;/sub&gt;&lt;/i&gt;).  Typical value = -0,31.
+     * Reactive power values for endpoints (<i>Q</i><i><sub>0</sub></i>).  Typical value = -0,31.
      */
     private Double q0; // PU
 
@@ -399,16 +508,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         q0 = _value_;
     }
 
-    public void setQ0(String _value_) {
-        q0 = getDoubleFromString(_value_);
+    private static Object getQ0(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getQ0();
     }
 
-    public String q0ToString() {
-        return q0 != null ? q0.toString() : null;
+    private static void setQ0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setQ0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setQ0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power values for endpoints (&lt;i&gt;Q&lt;/i&gt;&lt;i&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/i&gt;).  Typical value = -0,31.
+     * Reactive power values for endpoints (<i>Q</i><i><sub>1</sub></i>).  Typical value = -0,31.
      */
     private Double q1; // PU
 
@@ -420,16 +535,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         q1 = _value_;
     }
 
-    public void setQ1(String _value_) {
-        q1 = getDoubleFromString(_value_);
+    private static Object getQ1(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getQ1();
     }
 
-    public String q1ToString() {
-        return q1 != null ? q1.toString() : null;
+    private static void setQ1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setQ1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setQ1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power values for endpoints (&lt;i&gt;Q&lt;/i&gt;&lt;i&gt;&lt;sub&gt;10&lt;/sub&gt;&lt;/i&gt;).
+     * Reactive power values for endpoints (<i>Q</i><i><sub>10</sub></i>).
      */
     private Double q10; // PU
 
@@ -441,16 +562,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         q10 = _value_;
     }
 
-    public void setQ10(String _value_) {
-        q10 = getDoubleFromString(_value_);
+    private static Object getQ10(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getQ10();
     }
 
-    public String q10ToString() {
-        return q10 != null ? q10.toString() : null;
+    private static void setQ10(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setQ10((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setQ10(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power values for endpoints (&lt;i&gt;Q&lt;/i&gt;&lt;i&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/i&gt;).  Typical value = -0,28.
+     * Reactive power values for endpoints (<i>Q</i><i><sub>2</sub></i>).  Typical value = -0,28.
      */
     private Double q2; // PU
 
@@ -462,16 +589,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         q2 = _value_;
     }
 
-    public void setQ2(String _value_) {
-        q2 = getDoubleFromString(_value_);
+    private static Object getQ2(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getQ2();
     }
 
-    public String q2ToString() {
-        return q2 != null ? q2.toString() : null;
+    private static void setQ2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setQ2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setQ2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power values for endpoints (&lt;i&gt;Q&lt;/i&gt;&lt;i&gt;&lt;sub&gt;3&lt;/sub&gt;&lt;/i&gt;).  Typical value = -0,21.
+     * Reactive power values for endpoints (<i>Q</i><i><sub>3</sub></i>).  Typical value = -0,21.
      */
     private Double q3; // PU
 
@@ -483,16 +616,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         q3 = _value_;
     }
 
-    public void setQ3(String _value_) {
-        q3 = getDoubleFromString(_value_);
+    private static Object getQ3(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getQ3();
     }
 
-    public String q3ToString() {
-        return q3 != null ? q3.toString() : null;
+    private static void setQ3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setQ3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setQ3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power values for endpoints (&lt;i&gt;Q&lt;/i&gt;&lt;i&gt;&lt;sub&gt;4&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0.
+     * Reactive power values for endpoints (<i>Q</i><i><sub>4</sub></i>).  Typical value = 0.
      */
     private Double q4; // PU
 
@@ -504,16 +643,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         q4 = _value_;
     }
 
-    public void setQ4(String _value_) {
-        q4 = getDoubleFromString(_value_);
+    private static Object getQ4(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getQ4();
     }
 
-    public String q4ToString() {
-        return q4 != null ? q4.toString() : null;
+    private static void setQ4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setQ4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setQ4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power values for endpoints (&lt;i&gt;Q&lt;/i&gt;&lt;i&gt;&lt;sub&gt;5&lt;/sub&gt;&lt;/i&gt;).
+     * Reactive power values for endpoints (<i>Q</i><i><sub>5</sub></i>).
      */
     private Double q5; // PU
 
@@ -525,16 +670,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         q5 = _value_;
     }
 
-    public void setQ5(String _value_) {
-        q5 = getDoubleFromString(_value_);
+    private static Object getQ5(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getQ5();
     }
 
-    public String q5ToString() {
-        return q5 != null ? q5.toString() : null;
+    private static void setQ5(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setQ5((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setQ5(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power values for endpoints (&lt;i&gt;Q&lt;/i&gt;&lt;i&gt;&lt;sub&gt;6&lt;/sub&gt;&lt;/i&gt;).
+     * Reactive power values for endpoints (<i>Q</i><i><sub>6</sub></i>).
      */
     private Double q6; // PU
 
@@ -546,16 +697,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         q6 = _value_;
     }
 
-    public void setQ6(String _value_) {
-        q6 = getDoubleFromString(_value_);
+    private static Object getQ6(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getQ6();
     }
 
-    public String q6ToString() {
-        return q6 != null ? q6.toString() : null;
+    private static void setQ6(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setQ6((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setQ6(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power values for endpoints (&lt;i&gt;Q&lt;/i&gt;&lt;i&gt;&lt;sub&gt;7&lt;/sub&gt;&lt;/i&gt;).
+     * Reactive power values for endpoints (<i>Q</i><i><sub>7</sub></i>).
      */
     private Double q7; // PU
 
@@ -567,16 +724,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         q7 = _value_;
     }
 
-    public void setQ7(String _value_) {
-        q7 = getDoubleFromString(_value_);
+    private static Object getQ7(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getQ7();
     }
 
-    public String q7ToString() {
-        return q7 != null ? q7.toString() : null;
+    private static void setQ7(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setQ7((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setQ7(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power values for endpoints (&lt;i&gt;Q&lt;/i&gt;&lt;i&gt;&lt;sub&gt;8&lt;/sub&gt;&lt;/i&gt;).
+     * Reactive power values for endpoints (<i>Q</i><i><sub>8</sub></i>).
      */
     private Double q8; // PU
 
@@ -588,16 +751,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         q8 = _value_;
     }
 
-    public void setQ8(String _value_) {
-        q8 = getDoubleFromString(_value_);
+    private static Object getQ8(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getQ8();
     }
 
-    public String q8ToString() {
-        return q8 != null ? q8.toString() : null;
+    private static void setQ8(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setQ8((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setQ8(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power values for endpoints (&lt;i&gt;Q&lt;/i&gt;&lt;i&gt;&lt;sub&gt;9&lt;/sub&gt;&lt;/i&gt;).
+     * Reactive power values for endpoints (<i>Q</i><i><sub>9</sub></i>).
      */
     private Double q9; // PU
 
@@ -609,16 +778,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         q9 = _value_;
     }
 
-    public void setQ9(String _value_) {
-        q9 = getDoubleFromString(_value_);
+    private static Object getQ9(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getQ9();
     }
 
-    public String q9ToString() {
-        return q9 != null ? q9.toString() : null;
+    private static void setQ9(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setQ9((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setQ9(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * UEL lead time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;U1&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * UEL lead time constant (<i>T</i><i><sub>U1</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tu1; // Seconds
 
@@ -630,16 +805,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         tu1 = _value_;
     }
 
-    public void setTu1(String _value_) {
-        tu1 = getDoubleFromString(_value_);
+    private static Object getTu1(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getTu1();
     }
 
-    public String tu1ToString() {
-        return tu1 != null ? tu1.toString() : null;
+    private static void setTu1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setTu1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setTu1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * UEL lag time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;U2&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * UEL lag time constant (<i>T</i><i><sub>U2</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tu2; // Seconds
 
@@ -651,16 +832,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         tu2 = _value_;
     }
 
-    public void setTu2(String _value_) {
-        tu2 = getDoubleFromString(_value_);
+    private static Object getTu2(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getTu2();
     }
 
-    public String tu2ToString() {
-        return tu2 != null ? tu2.toString() : null;
+    private static void setTu2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setTu2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setTu2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * UEL lead time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;U3&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * UEL lead time constant (<i>T</i><i><sub>U3</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tu3; // Seconds
 
@@ -672,16 +859,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         tu3 = _value_;
     }
 
-    public void setTu3(String _value_) {
-        tu3 = getDoubleFromString(_value_);
+    private static Object getTu3(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getTu3();
     }
 
-    public String tu3ToString() {
-        return tu3 != null ? tu3.toString() : null;
+    private static void setTu3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setTu3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setTu3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * UEL lag time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;U4&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * UEL lag time constant (<i>T</i><i><sub>U4</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tu4; // Seconds
 
@@ -693,16 +886,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         tu4 = _value_;
     }
 
-    public void setTu4(String _value_) {
-        tu4 = getDoubleFromString(_value_);
+    private static Object getTu4(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getTu4();
     }
 
-    public String tu4ToString() {
-        return tu4 != null ? tu4.toString() : null;
+    private static void setTu4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setTu4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setTu4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Time constant associated with optional integrator feedback input signal to UEL (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UL&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Time constant associated with optional integrator feedback input signal to UEL (<i>T</i><i><sub>UL</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tul; // Seconds
 
@@ -714,16 +913,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         tul = _value_;
     }
 
-    public void setTul(String _value_) {
-        tul = getDoubleFromString(_value_);
+    private static Object getTul(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getTul();
     }
 
-    public String tulToString() {
-        return tul != null ? tul.toString() : null;
+    private static void setTul(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setTul((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setTul(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Real power filter time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UP&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 5.
+     * Real power filter time constant (<i>T</i><i><sub>UP</sub></i>) (&gt;= 0).  Typical value = 5.
      */
     private Double tup; // Seconds
 
@@ -735,16 +940,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         tup = _value_;
     }
 
-    public void setTup(String _value_) {
-        tup = getDoubleFromString(_value_);
+    private static Object getTup(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getTup();
     }
 
-    public String tupToString() {
-        return tup != null ? tup.toString() : null;
+    private static void setTup(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setTup((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setTup(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power filter time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UQ&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Reactive power filter time constant (<i>T</i><i><sub>UQ</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tuq; // Seconds
 
@@ -756,16 +967,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         tuq = _value_;
     }
 
-    public void setTuq(String _value_) {
-        tuq = getDoubleFromString(_value_);
+    private static Object getTuq(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getTuq();
     }
 
-    public String tuqToString() {
-        return tuq != null ? tuq.toString() : null;
+    private static void setTuq(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setTuq((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setTuq(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage filter time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UV&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 5.
+     * Voltage filter time constant (<i>T</i><i><sub>UV</sub></i>) (&gt;= 0).  Typical value = 5.
      */
     private Double tuv; // Seconds
 
@@ -777,16 +994,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         tuv = _value_;
     }
 
-    public void setTuv(String _value_) {
-        tuv = getDoubleFromString(_value_);
+    private static Object getTuv(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getTuv();
     }
 
-    public String tuvToString() {
-        return tuv != null ? tuv.toString() : null;
+    private static void setTuv(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setTuv((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setTuv(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * UEL integrator output maximum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UIMAX&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; UnderexcLimIEEE2.vuimin).  Typical value = 0,25.
+     * UEL integrator output maximum limit (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLimIEEE2.vuimin).  Typical value = 0,25.
      */
     private Double vuimax; // PU
 
@@ -798,16 +1021,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         vuimax = _value_;
     }
 
-    public void setVuimax(String _value_) {
-        vuimax = getDoubleFromString(_value_);
+    private static Object getVuimax(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getVuimax();
     }
 
-    public String vuimaxToString() {
-        return vuimax != null ? vuimax.toString() : null;
+    private static void setVuimax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setVuimax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setVuimax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * UEL integrator output minimum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UIMIN&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; UnderexcLimIEEE2.vuimax).  Typical value = 0.
+     * UEL integrator output minimum limit (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLimIEEE2.vuimax).  Typical value = 0.
      */
     private Double vuimin; // PU
 
@@ -819,16 +1048,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         vuimin = _value_;
     }
 
-    public void setVuimin(String _value_) {
-        vuimin = getDoubleFromString(_value_);
+    private static Object getVuimin(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getVuimin();
     }
 
-    public String vuiminToString() {
-        return vuimin != null ? vuimin.toString() : null;
+    private static void setVuimin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setVuimin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setVuimin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * UEL output maximum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ULMAX&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; UnderexcLimIEEE2.vulmin).  Typical value = 0,25.
+     * UEL output maximum limit (<i>V</i><i><sub>ULMAX</sub></i>) (&gt; UnderexcLimIEEE2.vulmin).  Typical value = 0,25.
      */
     private Double vulmax; // PU
 
@@ -840,16 +1075,22 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         vulmax = _value_;
     }
 
-    public void setVulmax(String _value_) {
-        vulmax = getDoubleFromString(_value_);
+    private static Object getVulmax(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getVulmax();
     }
 
-    public String vulmaxToString() {
-        return vulmax != null ? vulmax.toString() : null;
+    private static void setVulmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setVulmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setVulmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * UEL output minimum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ULMIN&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; UnderexcLimIEEE2.vulmax).  Typical value = 0.
+     * UEL output minimum limit (<i>V</i><i><sub>ULMIN</sub></i>) (&lt; UnderexcLimIEEE2.vulmax).  Typical value = 0.
      */
     private Double vulmin; // PU
 
@@ -861,12 +1102,18 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         vulmin = _value_;
     }
 
-    public void setVulmin(String _value_) {
-        vulmin = getDoubleFromString(_value_);
+    private static Object getVulmin(BaseClass _this_) {
+        return ((UnderexcLimIEEE2) _this_).getVulmin();
     }
 
-    public String vulminToString() {
-        return vulmin != null ? vulmin.toString() : null;
+    private static void setVulmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimIEEE2) _this_).setVulmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimIEEE2) _this_).setVulmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -903,64 +1150,35 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("UnderexcLimIEEE2", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "UnderexcLimIEEE2", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("UnderexcLimIEEE2", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("UnderexcLimIEEE2", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "UnderexcLimIEEE2", attrName, value));
         }
     }
 
@@ -1084,252 +1302,206 @@ public class UnderexcLimIEEE2 extends UnderexcitationLimiterDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k1", new AttrDetails("UnderexcLimIEEE2.k1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("k1", new AttrDetails("UnderexcLimIEEE2.k1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getK1, UnderexcLimIEEE2::setK1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k2", new AttrDetails("UnderexcLimIEEE2.k2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("k2", new AttrDetails("UnderexcLimIEEE2.k2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getK2, UnderexcLimIEEE2::setK2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kfb", new AttrDetails("UnderexcLimIEEE2.kfb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kfb", new AttrDetails("UnderexcLimIEEE2.kfb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getKfb, UnderexcLimIEEE2::setKfb));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kuf", new AttrDetails("UnderexcLimIEEE2.kuf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kuf", new AttrDetails("UnderexcLimIEEE2.kuf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getKuf, UnderexcLimIEEE2::setKuf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kui", new AttrDetails("UnderexcLimIEEE2.kui", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kui", new AttrDetails("UnderexcLimIEEE2.kui", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getKui, UnderexcLimIEEE2::setKui));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kul", new AttrDetails("UnderexcLimIEEE2.kul", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kul", new AttrDetails("UnderexcLimIEEE2.kul", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getKul, UnderexcLimIEEE2::setKul));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("p0", new AttrDetails("UnderexcLimIEEE2.p0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p0", new AttrDetails("UnderexcLimIEEE2.p0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getP0, UnderexcLimIEEE2::setP0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("p1", new AttrDetails("UnderexcLimIEEE2.p1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p1", new AttrDetails("UnderexcLimIEEE2.p1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getP1, UnderexcLimIEEE2::setP1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("p10", new AttrDetails("UnderexcLimIEEE2.p10", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p10", new AttrDetails("UnderexcLimIEEE2.p10", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getP10, UnderexcLimIEEE2::setP10));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("p2", new AttrDetails("UnderexcLimIEEE2.p2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p2", new AttrDetails("UnderexcLimIEEE2.p2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getP2, UnderexcLimIEEE2::setP2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("p3", new AttrDetails("UnderexcLimIEEE2.p3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p3", new AttrDetails("UnderexcLimIEEE2.p3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getP3, UnderexcLimIEEE2::setP3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("p4", new AttrDetails("UnderexcLimIEEE2.p4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p4", new AttrDetails("UnderexcLimIEEE2.p4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getP4, UnderexcLimIEEE2::setP4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("p5", new AttrDetails("UnderexcLimIEEE2.p5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p5", new AttrDetails("UnderexcLimIEEE2.p5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getP5, UnderexcLimIEEE2::setP5));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("p6", new AttrDetails("UnderexcLimIEEE2.p6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p6", new AttrDetails("UnderexcLimIEEE2.p6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getP6, UnderexcLimIEEE2::setP6));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("p7", new AttrDetails("UnderexcLimIEEE2.p7", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p7", new AttrDetails("UnderexcLimIEEE2.p7", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getP7, UnderexcLimIEEE2::setP7));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("p8", new AttrDetails("UnderexcLimIEEE2.p8", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p8", new AttrDetails("UnderexcLimIEEE2.p8", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getP8, UnderexcLimIEEE2::setP8));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("p9", new AttrDetails("UnderexcLimIEEE2.p9", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p9", new AttrDetails("UnderexcLimIEEE2.p9", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getP9, UnderexcLimIEEE2::setP9));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("q0", new AttrDetails("UnderexcLimIEEE2.q0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q0", new AttrDetails("UnderexcLimIEEE2.q0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getQ0, UnderexcLimIEEE2::setQ0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("q1", new AttrDetails("UnderexcLimIEEE2.q1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q1", new AttrDetails("UnderexcLimIEEE2.q1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getQ1, UnderexcLimIEEE2::setQ1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("q10", new AttrDetails("UnderexcLimIEEE2.q10", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q10", new AttrDetails("UnderexcLimIEEE2.q10", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getQ10, UnderexcLimIEEE2::setQ10));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("q2", new AttrDetails("UnderexcLimIEEE2.q2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q2", new AttrDetails("UnderexcLimIEEE2.q2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getQ2, UnderexcLimIEEE2::setQ2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("q3", new AttrDetails("UnderexcLimIEEE2.q3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q3", new AttrDetails("UnderexcLimIEEE2.q3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getQ3, UnderexcLimIEEE2::setQ3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("q4", new AttrDetails("UnderexcLimIEEE2.q4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q4", new AttrDetails("UnderexcLimIEEE2.q4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getQ4, UnderexcLimIEEE2::setQ4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("q5", new AttrDetails("UnderexcLimIEEE2.q5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q5", new AttrDetails("UnderexcLimIEEE2.q5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getQ5, UnderexcLimIEEE2::setQ5));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("q6", new AttrDetails("UnderexcLimIEEE2.q6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q6", new AttrDetails("UnderexcLimIEEE2.q6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getQ6, UnderexcLimIEEE2::setQ6));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("q7", new AttrDetails("UnderexcLimIEEE2.q7", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q7", new AttrDetails("UnderexcLimIEEE2.q7", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getQ7, UnderexcLimIEEE2::setQ7));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("q8", new AttrDetails("UnderexcLimIEEE2.q8", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q8", new AttrDetails("UnderexcLimIEEE2.q8", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getQ8, UnderexcLimIEEE2::setQ8));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("q9", new AttrDetails("UnderexcLimIEEE2.q9", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q9", new AttrDetails("UnderexcLimIEEE2.q9", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getQ9, UnderexcLimIEEE2::setQ9));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tu1", new AttrDetails("UnderexcLimIEEE2.tu1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tu1", new AttrDetails("UnderexcLimIEEE2.tu1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getTu1, UnderexcLimIEEE2::setTu1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tu2", new AttrDetails("UnderexcLimIEEE2.tu2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tu2", new AttrDetails("UnderexcLimIEEE2.tu2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getTu2, UnderexcLimIEEE2::setTu2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tu3", new AttrDetails("UnderexcLimIEEE2.tu3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tu3", new AttrDetails("UnderexcLimIEEE2.tu3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getTu3, UnderexcLimIEEE2::setTu3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tu4", new AttrDetails("UnderexcLimIEEE2.tu4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tu4", new AttrDetails("UnderexcLimIEEE2.tu4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getTu4, UnderexcLimIEEE2::setTu4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tul", new AttrDetails("UnderexcLimIEEE2.tul", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tul", new AttrDetails("UnderexcLimIEEE2.tul", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getTul, UnderexcLimIEEE2::setTul));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tup", new AttrDetails("UnderexcLimIEEE2.tup", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tup", new AttrDetails("UnderexcLimIEEE2.tup", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getTup, UnderexcLimIEEE2::setTup));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tuq", new AttrDetails("UnderexcLimIEEE2.tuq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tuq", new AttrDetails("UnderexcLimIEEE2.tuq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getTuq, UnderexcLimIEEE2::setTuq));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tuv", new AttrDetails("UnderexcLimIEEE2.tuv", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tuv", new AttrDetails("UnderexcLimIEEE2.tuv", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getTuv, UnderexcLimIEEE2::setTuv));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vuimax", new AttrDetails("UnderexcLimIEEE2.vuimax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vuimax", new AttrDetails("UnderexcLimIEEE2.vuimax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getVuimax, UnderexcLimIEEE2::setVuimax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vuimin", new AttrDetails("UnderexcLimIEEE2.vuimin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vuimin", new AttrDetails("UnderexcLimIEEE2.vuimin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getVuimin, UnderexcLimIEEE2::setVuimin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vulmax", new AttrDetails("UnderexcLimIEEE2.vulmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vulmax", new AttrDetails("UnderexcLimIEEE2.vulmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getVulmax, UnderexcLimIEEE2::setVulmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vulmin", new AttrDetails("UnderexcLimIEEE2.vulmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vulmin", new AttrDetails("UnderexcLimIEEE2.vulmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimIEEE2::getVulmin, UnderexcLimIEEE2::setVulmin));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new UnderexcLimIEEE2().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new UnderexcLimIEEE2(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("k1", new GetterSetter(this::k1ToString, null, this::setK1));
-        map.put("k2", new GetterSetter(this::k2ToString, null, this::setK2));
-        map.put("kfb", new GetterSetter(this::kfbToString, null, this::setKfb));
-        map.put("kuf", new GetterSetter(this::kufToString, null, this::setKuf));
-        map.put("kui", new GetterSetter(this::kuiToString, null, this::setKui));
-        map.put("kul", new GetterSetter(this::kulToString, null, this::setKul));
-        map.put("p0", new GetterSetter(this::p0ToString, null, this::setP0));
-        map.put("p1", new GetterSetter(this::p1ToString, null, this::setP1));
-        map.put("p10", new GetterSetter(this::p10ToString, null, this::setP10));
-        map.put("p2", new GetterSetter(this::p2ToString, null, this::setP2));
-        map.put("p3", new GetterSetter(this::p3ToString, null, this::setP3));
-        map.put("p4", new GetterSetter(this::p4ToString, null, this::setP4));
-        map.put("p5", new GetterSetter(this::p5ToString, null, this::setP5));
-        map.put("p6", new GetterSetter(this::p6ToString, null, this::setP6));
-        map.put("p7", new GetterSetter(this::p7ToString, null, this::setP7));
-        map.put("p8", new GetterSetter(this::p8ToString, null, this::setP8));
-        map.put("p9", new GetterSetter(this::p9ToString, null, this::setP9));
-        map.put("q0", new GetterSetter(this::q0ToString, null, this::setQ0));
-        map.put("q1", new GetterSetter(this::q1ToString, null, this::setQ1));
-        map.put("q10", new GetterSetter(this::q10ToString, null, this::setQ10));
-        map.put("q2", new GetterSetter(this::q2ToString, null, this::setQ2));
-        map.put("q3", new GetterSetter(this::q3ToString, null, this::setQ3));
-        map.put("q4", new GetterSetter(this::q4ToString, null, this::setQ4));
-        map.put("q5", new GetterSetter(this::q5ToString, null, this::setQ5));
-        map.put("q6", new GetterSetter(this::q6ToString, null, this::setQ6));
-        map.put("q7", new GetterSetter(this::q7ToString, null, this::setQ7));
-        map.put("q8", new GetterSetter(this::q8ToString, null, this::setQ8));
-        map.put("q9", new GetterSetter(this::q9ToString, null, this::setQ9));
-        map.put("tu1", new GetterSetter(this::tu1ToString, null, this::setTu1));
-        map.put("tu2", new GetterSetter(this::tu2ToString, null, this::setTu2));
-        map.put("tu3", new GetterSetter(this::tu3ToString, null, this::setTu3));
-        map.put("tu4", new GetterSetter(this::tu4ToString, null, this::setTu4));
-        map.put("tul", new GetterSetter(this::tulToString, null, this::setTul));
-        map.put("tup", new GetterSetter(this::tupToString, null, this::setTup));
-        map.put("tuq", new GetterSetter(this::tuqToString, null, this::setTuq));
-        map.put("tuv", new GetterSetter(this::tuvToString, null, this::setTuv));
-        map.put("vuimax", new GetterSetter(this::vuimaxToString, null, this::setVuimax));
-        map.put("vuimin", new GetterSetter(this::vuiminToString, null, this::setVuimin));
-        map.put("vulmax", new GetterSetter(this::vulmaxToString, null, this::setVulmax));
-        map.put("vulmin", new GetterSetter(this::vulminToString, null, this::setVulmin));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

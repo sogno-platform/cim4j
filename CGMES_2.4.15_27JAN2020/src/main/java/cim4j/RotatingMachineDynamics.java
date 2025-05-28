@@ -23,10 +23,17 @@ public class RotatingMachineDynamics extends DynamicsFunctionBlock {
     private static final Logging LOG = Logging.getLogger(RotatingMachineDynamics.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public RotatingMachineDynamics() {
-        setCimType("RotatingMachineDynamics");
+    public RotatingMachineDynamics(String rdfid) {
+        super("RotatingMachineDynamics", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected RotatingMachineDynamics(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,16 +49,22 @@ public class RotatingMachineDynamics extends DynamicsFunctionBlock {
         damping = _value_;
     }
 
-    public void setDamping(String _value_) {
-        damping = getDoubleFromString(_value_);
+    private static Object getDamping(BaseClass _this_) {
+        return ((RotatingMachineDynamics) _this_).getDamping();
     }
 
-    public String dampingToString() {
-        return damping != null ? damping.toString() : null;
+    private static void setDamping(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((RotatingMachineDynamics) _this_).setDamping((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((RotatingMachineDynamics) _this_).setDamping(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Inertia constant of generator or motor and mechanical load (H) (&gt;0).  This is the specification for the stored energy in the rotating mass when operating at rated speed.  For a generator, this includes the generator plus all other elements (turbine, exciter) on the same shaft and has units of MW*sec.  For a motor, it includes the motor plus its mechanical load. Conventional units are per unit on the generator MVA base, usually expressed as MW*second/MVA or just second.   This value is used in the accelerating power reference frame for operator training simulator solutions.  Typical Value = 3.
+     * Inertia constant of generator or motor and mechanical load (H) (>0).  This is the specification for the stored energy in the rotating mass when operating at rated speed.  For a generator, this includes the generator plus all other elements (turbine, exciter) on the same shaft and has units of MW*sec.  For a motor, it includes the motor plus its mechanical load. Conventional units are per unit on the generator MVA base, usually expressed as MW*second/MVA or just second.   This value is used in the accelerating power reference frame for operator training simulator solutions.  Typical Value = 3.
      */
     private Double inertia; // Seconds
 
@@ -63,16 +76,22 @@ public class RotatingMachineDynamics extends DynamicsFunctionBlock {
         inertia = _value_;
     }
 
-    public void setInertia(String _value_) {
-        inertia = getDoubleFromString(_value_);
+    private static Object getInertia(BaseClass _this_) {
+        return ((RotatingMachineDynamics) _this_).getInertia();
     }
 
-    public String inertiaToString() {
-        return inertia != null ? inertia.toString() : null;
+    private static void setInertia(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((RotatingMachineDynamics) _this_).setInertia((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((RotatingMachineDynamics) _this_).setInertia(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Saturation factor at rated terminal voltage (S1) (&gt; or =0).  Not used by simplified model.  Defined by defined by S(E1) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.02.
+     * Saturation factor at rated terminal voltage (S1) (> or =0).  Not used by simplified model.  Defined by defined by S(E1) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.02.
      */
     private Double saturationFactor; // Simple_Float
 
@@ -84,16 +103,22 @@ public class RotatingMachineDynamics extends DynamicsFunctionBlock {
         saturationFactor = _value_;
     }
 
-    public void setSaturationFactor(String _value_) {
-        saturationFactor = getDoubleFromString(_value_);
+    private static Object getSaturationFactor(BaseClass _this_) {
+        return ((RotatingMachineDynamics) _this_).getSaturationFactor();
     }
 
-    public String saturationFactorToString() {
-        return saturationFactor != null ? saturationFactor.toString() : null;
+    private static void setSaturationFactor(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((RotatingMachineDynamics) _this_).setSaturationFactor((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((RotatingMachineDynamics) _this_).setSaturationFactor(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Saturation factor at 120% of rated terminal voltage (S12) (&gt; or =S1). Not used by the simplified model, defined by S(E2) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.12.
+     * Saturation factor at 120% of rated terminal voltage (S12) (> or =S1). Not used by the simplified model, defined by S(E2) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.12.
      */
     private Double saturationFactor120; // Simple_Float
 
@@ -105,16 +130,22 @@ public class RotatingMachineDynamics extends DynamicsFunctionBlock {
         saturationFactor120 = _value_;
     }
 
-    public void setSaturationFactor120(String _value_) {
-        saturationFactor120 = getDoubleFromString(_value_);
+    private static Object getSaturationFactor120(BaseClass _this_) {
+        return ((RotatingMachineDynamics) _this_).getSaturationFactor120();
     }
 
-    public String saturationFactor120ToString() {
-        return saturationFactor120 != null ? saturationFactor120.toString() : null;
+    private static void setSaturationFactor120(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((RotatingMachineDynamics) _this_).setSaturationFactor120((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((RotatingMachineDynamics) _this_).setSaturationFactor120(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Stator leakage reactance (Xl) (&gt; or =0). Typical Value = 0.15.
+     * Stator leakage reactance (Xl) (> or =0). Typical Value = 0.15.
      */
     private Double statorLeakageReactance; // PU
 
@@ -126,16 +157,22 @@ public class RotatingMachineDynamics extends DynamicsFunctionBlock {
         statorLeakageReactance = _value_;
     }
 
-    public void setStatorLeakageReactance(String _value_) {
-        statorLeakageReactance = getDoubleFromString(_value_);
+    private static Object getStatorLeakageReactance(BaseClass _this_) {
+        return ((RotatingMachineDynamics) _this_).getStatorLeakageReactance();
     }
 
-    public String statorLeakageReactanceToString() {
-        return statorLeakageReactance != null ? statorLeakageReactance.toString() : null;
+    private static void setStatorLeakageReactance(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((RotatingMachineDynamics) _this_).setStatorLeakageReactance((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((RotatingMachineDynamics) _this_).setStatorLeakageReactance(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Stator (armature) resistance (Rs) (&gt; or =0). Typical Value = 0.005.
+     * Stator (armature) resistance (Rs) (> or =0). Typical Value = 0.005.
      */
     private Double statorResistance; // PU
 
@@ -147,12 +184,18 @@ public class RotatingMachineDynamics extends DynamicsFunctionBlock {
         statorResistance = _value_;
     }
 
-    public void setStatorResistance(String _value_) {
-        statorResistance = getDoubleFromString(_value_);
+    private static Object getStatorResistance(BaseClass _this_) {
+        return ((RotatingMachineDynamics) _this_).getStatorResistance();
     }
 
-    public String statorResistanceToString() {
-        return statorResistance != null ? statorResistance.toString() : null;
+    private static void setStatorResistance(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((RotatingMachineDynamics) _this_).setStatorResistance((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((RotatingMachineDynamics) _this_).setStatorResistance(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,64 +232,35 @@ public class RotatingMachineDynamics extends DynamicsFunctionBlock {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("RotatingMachineDynamics", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "RotatingMachineDynamics", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("RotatingMachineDynamics", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("RotatingMachineDynamics", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "RotatingMachineDynamics", attrName, value));
         }
     }
 
@@ -370,48 +384,36 @@ public class RotatingMachineDynamics extends DynamicsFunctionBlock {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("damping", new AttrDetails("RotatingMachineDynamics.damping", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("damping", new AttrDetails("RotatingMachineDynamics.damping", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, RotatingMachineDynamics::getDamping, RotatingMachineDynamics::setDamping));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("inertia", new AttrDetails("RotatingMachineDynamics.inertia", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("inertia", new AttrDetails("RotatingMachineDynamics.inertia", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, RotatingMachineDynamics::getInertia, RotatingMachineDynamics::setInertia));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("saturationFactor", new AttrDetails("RotatingMachineDynamics.saturationFactor", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("saturationFactor", new AttrDetails("RotatingMachineDynamics.saturationFactor", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, RotatingMachineDynamics::getSaturationFactor, RotatingMachineDynamics::setSaturationFactor));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("saturationFactor120", new AttrDetails("RotatingMachineDynamics.saturationFactor120", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("saturationFactor120", new AttrDetails("RotatingMachineDynamics.saturationFactor120", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, RotatingMachineDynamics::getSaturationFactor120, RotatingMachineDynamics::setSaturationFactor120));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("statorLeakageReactance", new AttrDetails("RotatingMachineDynamics.statorLeakageReactance", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("statorLeakageReactance", new AttrDetails("RotatingMachineDynamics.statorLeakageReactance", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, RotatingMachineDynamics::getStatorLeakageReactance, RotatingMachineDynamics::setStatorLeakageReactance));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("statorResistance", new AttrDetails("RotatingMachineDynamics.statorResistance", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("statorResistance", new AttrDetails("RotatingMachineDynamics.statorResistance", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, RotatingMachineDynamics::getStatorResistance, RotatingMachineDynamics::setStatorResistance));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RotatingMachineDynamics().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RotatingMachineDynamics(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("damping", new GetterSetter(this::dampingToString, null, this::setDamping));
-        map.put("inertia", new GetterSetter(this::inertiaToString, null, this::setInertia));
-        map.put("saturationFactor", new GetterSetter(this::saturationFactorToString, null, this::setSaturationFactor));
-        map.put("saturationFactor120", new GetterSetter(this::saturationFactor120ToString, null, this::setSaturationFactor120));
-        map.put("statorLeakageReactance", new GetterSetter(this::statorLeakageReactanceToString, null, this::setStatorLeakageReactance));
-        map.put("statorResistance", new GetterSetter(this::statorResistanceToString, null, this::setStatorResistance));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

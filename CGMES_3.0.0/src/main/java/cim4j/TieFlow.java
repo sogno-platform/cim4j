@@ -23,10 +23,17 @@ public class TieFlow extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(TieFlow.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public TieFlow() {
-        setCimType("TieFlow");
+    public TieFlow(String rdfid) {
+        super("TieFlow", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected TieFlow(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class TieFlow extends IdentifiedObject {
         return ControlArea;
     }
 
-    public void setControlArea(BaseClass _object_) {
-        if (!(_object_ instanceof ControlArea)) {
-            throw new IllegalArgumentException("Object is not ControlArea");
-        }
+    public void setControlArea(ControlArea _object_) {
         if (ControlArea != _object_) {
-            ControlArea = (ControlArea) _object_;
+            ControlArea = _object_;
             ControlArea.setTieFlow(this);
         }
     }
 
-    public String ControlAreaToString() {
-        return ControlArea != null ? ControlArea.getRdfid() : null;
+    private static Object getControlArea(BaseClass _this_) {
+        return ((TieFlow) _this_).getControlArea();
+    }
+
+    private static void setControlArea(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ControlArea) {
+            ((TieFlow) _this_).setControlArea((ControlArea) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ControlArea");
+        }
     }
 
     /**
@@ -61,18 +73,23 @@ public class TieFlow extends IdentifiedObject {
         return Terminal;
     }
 
-    public void setTerminal(BaseClass _object_) {
-        if (!(_object_ instanceof Terminal)) {
-            throw new IllegalArgumentException("Object is not Terminal");
-        }
+    public void setTerminal(Terminal _object_) {
         if (Terminal != _object_) {
-            Terminal = (Terminal) _object_;
+            Terminal = _object_;
             Terminal.setTieFlow(this);
         }
     }
 
-    public String TerminalToString() {
-        return Terminal != null ? Terminal.getRdfid() : null;
+    private static Object getTerminal(BaseClass _this_) {
+        return ((TieFlow) _this_).getTerminal();
+    }
+
+    private static void setTerminal(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Terminal) {
+            ((TieFlow) _this_).setTerminal((Terminal) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Terminal");
+        }
     }
 
     /**
@@ -88,12 +105,18 @@ public class TieFlow extends IdentifiedObject {
         positiveFlowIn = _value_;
     }
 
-    public void setPositiveFlowIn(String _value_) {
-        positiveFlowIn = getBooleanFromString(_value_);
+    private static Object getPositiveFlowIn(BaseClass _this_) {
+        return ((TieFlow) _this_).getPositiveFlowIn();
     }
 
-    public String positiveFlowInToString() {
-        return positiveFlowIn != null ? positiveFlowIn.toString() : null;
+    private static void setPositiveFlowIn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((TieFlow) _this_).setPositiveFlowIn((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((TieFlow) _this_).setPositiveFlowIn(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -130,64 +153,35 @@ public class TieFlow extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("TieFlow", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "TieFlow", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("TieFlow", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("TieFlow", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "TieFlow", attrName, value));
         }
     }
 
@@ -311,30 +305,21 @@ public class TieFlow extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ControlArea", new AttrDetails("TieFlow.ControlArea", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("ControlArea", new AttrDetails("TieFlow.ControlArea", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, TieFlow::getControlArea, TieFlow::setControlArea));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Terminal", new AttrDetails("TieFlow.Terminal", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("Terminal", new AttrDetails("TieFlow.Terminal", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, TieFlow::getTerminal, TieFlow::setTerminal));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("positiveFlowIn", new AttrDetails("TieFlow.positiveFlowIn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("positiveFlowIn", new AttrDetails("TieFlow.positiveFlowIn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, TieFlow::getPositiveFlowIn, TieFlow::setPositiveFlowIn));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TieFlow().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TieFlow(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ControlArea", new GetterSetter(this::ControlAreaToString, this::setControlArea, null));
-        map.put("Terminal", new GetterSetter(this::TerminalToString, this::setTerminal, null));
-        map.put("positiveFlowIn", new GetterSetter(this::positiveFlowInToString, null, this::setPositiveFlowIn));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

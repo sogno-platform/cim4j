@@ -23,10 +23,17 @@ public class SubGeographicalRegion extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(SubGeographicalRegion.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public SubGeographicalRegion() {
-        setCimType("SubGeographicalRegion");
+    public SubGeographicalRegion(String rdfid) {
+        super("SubGeographicalRegion", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected SubGeographicalRegion(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -39,18 +46,23 @@ public class SubGeographicalRegion extends IdentifiedObject {
         return DCLines;
     }
 
-    public void setDCLines(BaseClass _object_) {
-        if (!(_object_ instanceof DCLine)) {
-            throw new IllegalArgumentException("Object is not DCLine");
-        }
+    public void setDCLines(DCLine _object_) {
         if (!DCLines.contains(_object_)) {
-            DCLines.add((DCLine) _object_);
-            ((DCLine) _object_).setRegion(this);
+            DCLines.add(_object_);
+            _object_.setRegion(this);
         }
     }
 
-    public String DCLinesToString() {
-        return getStringFromSet(DCLines);
+    private static Object getDCLines(BaseClass _this_) {
+        return ((SubGeographicalRegion) _this_).getDCLines();
+    }
+
+    private static void setDCLines(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof DCLine) {
+            ((SubGeographicalRegion) _this_).setDCLines((DCLine) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not DCLine");
+        }
     }
 
     /**
@@ -64,18 +76,23 @@ public class SubGeographicalRegion extends IdentifiedObject {
         return Lines;
     }
 
-    public void setLines(BaseClass _object_) {
-        if (!(_object_ instanceof Line)) {
-            throw new IllegalArgumentException("Object is not Line");
-        }
+    public void setLines(Line _object_) {
         if (!Lines.contains(_object_)) {
-            Lines.add((Line) _object_);
-            ((Line) _object_).setRegion(this);
+            Lines.add(_object_);
+            _object_.setRegion(this);
         }
     }
 
-    public String LinesToString() {
-        return getStringFromSet(Lines);
+    private static Object getLines(BaseClass _this_) {
+        return ((SubGeographicalRegion) _this_).getLines();
+    }
+
+    private static void setLines(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Line) {
+            ((SubGeographicalRegion) _this_).setLines((Line) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Line");
+        }
     }
 
     /**
@@ -87,18 +104,23 @@ public class SubGeographicalRegion extends IdentifiedObject {
         return Region;
     }
 
-    public void setRegion(BaseClass _object_) {
-        if (!(_object_ instanceof GeographicalRegion)) {
-            throw new IllegalArgumentException("Object is not GeographicalRegion");
-        }
+    public void setRegion(GeographicalRegion _object_) {
         if (Region != _object_) {
-            Region = (GeographicalRegion) _object_;
+            Region = _object_;
             Region.setRegions(this);
         }
     }
 
-    public String RegionToString() {
-        return Region != null ? Region.getRdfid() : null;
+    private static Object getRegion(BaseClass _this_) {
+        return ((SubGeographicalRegion) _this_).getRegion();
+    }
+
+    private static void setRegion(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof GeographicalRegion) {
+            ((SubGeographicalRegion) _this_).setRegion((GeographicalRegion) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not GeographicalRegion");
+        }
     }
 
     /**
@@ -112,18 +134,23 @@ public class SubGeographicalRegion extends IdentifiedObject {
         return Substations;
     }
 
-    public void setSubstations(BaseClass _object_) {
-        if (!(_object_ instanceof Substation)) {
-            throw new IllegalArgumentException("Object is not Substation");
-        }
+    public void setSubstations(Substation _object_) {
         if (!Substations.contains(_object_)) {
-            Substations.add((Substation) _object_);
-            ((Substation) _object_).setRegion(this);
+            Substations.add(_object_);
+            _object_.setRegion(this);
         }
     }
 
-    public String SubstationsToString() {
-        return getStringFromSet(Substations);
+    private static Object getSubstations(BaseClass _this_) {
+        return ((SubGeographicalRegion) _this_).getSubstations();
+    }
+
+    private static void setSubstations(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Substation) {
+            ((SubGeographicalRegion) _this_).setSubstations((Substation) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Substation");
+        }
     }
 
     /**
@@ -160,64 +187,35 @@ public class SubGeographicalRegion extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("SubGeographicalRegion", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "SubGeographicalRegion", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("SubGeographicalRegion", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("SubGeographicalRegion", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "SubGeographicalRegion", attrName, value));
         }
     }
 
@@ -341,38 +339,28 @@ public class SubGeographicalRegion extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("DCLines", new AttrDetails("SubGeographicalRegion.DCLines", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("DCLines", new AttrDetails("SubGeographicalRegion.DCLines", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, SubGeographicalRegion::getDCLines, SubGeographicalRegion::setDCLines));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ_BD);
             profiles.add(CGMESProfile.EQ);
-            map.put("Lines", new AttrDetails("SubGeographicalRegion.Lines", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("Lines", new AttrDetails("SubGeographicalRegion.Lines", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, SubGeographicalRegion::getLines, SubGeographicalRegion::setLines));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ_BD);
             profiles.add(CGMESProfile.EQ);
-            map.put("Region", new AttrDetails("SubGeographicalRegion.Region", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("Region", new AttrDetails("SubGeographicalRegion.Region", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, SubGeographicalRegion::getRegion, SubGeographicalRegion::setRegion));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Substations", new AttrDetails("SubGeographicalRegion.Substations", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("Substations", new AttrDetails("SubGeographicalRegion.Substations", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, SubGeographicalRegion::getSubstations, SubGeographicalRegion::setSubstations));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SubGeographicalRegion().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SubGeographicalRegion(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("DCLines", new GetterSetter(this::DCLinesToString, this::setDCLines, null));
-        map.put("Lines", new GetterSetter(this::LinesToString, this::setLines, null));
-        map.put("Region", new GetterSetter(this::RegionToString, this::setRegion, null));
-        map.put("Substations", new GetterSetter(this::SubstationsToString, this::setSubstations, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,10 +23,17 @@ public class OperationalLimitType extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(OperationalLimitType.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public OperationalLimitType() {
-        setCimType("OperationalLimitType");
+    public OperationalLimitType(String rdfid) {
+        super("OperationalLimitType", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected OperationalLimitType(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class OperationalLimitType extends IdentifiedObject {
         return OperationalLimit;
     }
 
-    public void setOperationalLimit(BaseClass _object_) {
-        if (!(_object_ instanceof OperationalLimit)) {
-            throw new IllegalArgumentException("Object is not OperationalLimit");
-        }
+    public void setOperationalLimit(OperationalLimit _object_) {
         if (!OperationalLimit.contains(_object_)) {
-            OperationalLimit.add((OperationalLimit) _object_);
-            ((OperationalLimit) _object_).setOperationalLimitType(this);
+            OperationalLimit.add(_object_);
+            _object_.setOperationalLimitType(this);
         }
     }
 
-    public String OperationalLimitToString() {
-        return getStringFromSet(OperationalLimit);
+    private static Object getOperationalLimit(BaseClass _this_) {
+        return ((OperationalLimitType) _this_).getOperationalLimit();
+    }
+
+    private static void setOperationalLimit(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof OperationalLimit) {
+            ((OperationalLimitType) _this_).setOperationalLimit((OperationalLimit) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not OperationalLimit");
+        }
     }
 
     /**
@@ -67,12 +79,18 @@ public class OperationalLimitType extends IdentifiedObject {
         acceptableDuration = _value_;
     }
 
-    public void setAcceptableDuration(String _value_) {
-        acceptableDuration = getDoubleFromString(_value_);
+    private static Object getAcceptableDuration(BaseClass _this_) {
+        return ((OperationalLimitType) _this_).getAcceptableDuration();
     }
 
-    public String acceptableDurationToString() {
-        return acceptableDuration != null ? acceptableDuration.toString() : null;
+    private static void setAcceptableDuration(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((OperationalLimitType) _this_).setAcceptableDuration((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((OperationalLimitType) _this_).setAcceptableDuration(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -88,8 +106,16 @@ public class OperationalLimitType extends IdentifiedObject {
         direction = _value_;
     }
 
-    public String directionToString() {
-        return direction;
+    private static Object getDirection(BaseClass _this_) {
+        return ((OperationalLimitType) _this_).getDirection();
+    }
+
+    private static void setDirection(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((OperationalLimitType) _this_).setDirection((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -105,12 +131,18 @@ public class OperationalLimitType extends IdentifiedObject {
         isInfiniteDuration = _value_;
     }
 
-    public void setIsInfiniteDuration(String _value_) {
-        isInfiniteDuration = getBooleanFromString(_value_);
+    private static Object getIsInfiniteDuration(BaseClass _this_) {
+        return ((OperationalLimitType) _this_).getIsInfiniteDuration();
     }
 
-    public String isInfiniteDurationToString() {
-        return isInfiniteDuration != null ? isInfiniteDuration.toString() : null;
+    private static void setIsInfiniteDuration(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((OperationalLimitType) _this_).setIsInfiniteDuration((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((OperationalLimitType) _this_).setIsInfiniteDuration(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -126,8 +158,16 @@ public class OperationalLimitType extends IdentifiedObject {
         kind = _value_;
     }
 
-    public String kindToString() {
-        return kind;
+    private static Object getKind(BaseClass _this_) {
+        return ((OperationalLimitType) _this_).getKind();
+    }
+
+    private static void setKind(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((OperationalLimitType) _this_).setKind((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -164,64 +204,35 @@ public class OperationalLimitType extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("OperationalLimitType", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "OperationalLimitType", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("OperationalLimitType", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("OperationalLimitType", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "OperationalLimitType", attrName, value));
         }
     }
 
@@ -345,42 +356,31 @@ public class OperationalLimitType extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("OperationalLimit", new AttrDetails("OperationalLimitType.OperationalLimit", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("OperationalLimit", new AttrDetails("OperationalLimitType.OperationalLimit", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, OperationalLimitType::getOperationalLimit, OperationalLimitType::setOperationalLimit));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("acceptableDuration", new AttrDetails("OperationalLimitType.acceptableDuration", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("acceptableDuration", new AttrDetails("OperationalLimitType.acceptableDuration", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, OperationalLimitType::getAcceptableDuration, OperationalLimitType::setAcceptableDuration));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("direction", new AttrDetails("OperationalLimitType.direction", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("direction", new AttrDetails("OperationalLimitType.direction", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, OperationalLimitType::getDirection, OperationalLimitType::setDirection));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("isInfiniteDuration", new AttrDetails("OperationalLimitType.isInfiniteDuration", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("isInfiniteDuration", new AttrDetails("OperationalLimitType.isInfiniteDuration", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, OperationalLimitType::getIsInfiniteDuration, OperationalLimitType::setIsInfiniteDuration));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("kind", new AttrDetails("OperationalLimitType.kind", true, "http://iec.ch/TC57/CIM100-European#", profiles, false, true));
+            map.put("kind", new AttrDetails("OperationalLimitType.kind", true, "http://iec.ch/TC57/CIM100-European#", profiles, false, true, OperationalLimitType::getKind, OperationalLimitType::setKind));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new OperationalLimitType().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new OperationalLimitType(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("OperationalLimit", new GetterSetter(this::OperationalLimitToString, this::setOperationalLimit, null));
-        map.put("acceptableDuration", new GetterSetter(this::acceptableDurationToString, null, this::setAcceptableDuration));
-        map.put("direction", new GetterSetter(this::directionToString, null, this::setDirection));
-        map.put("isInfiniteDuration", new GetterSetter(this::isInfiniteDurationToString, null, this::setIsInfiniteDuration));
-        map.put("kind", new GetterSetter(this::kindToString, null, this::setKind));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

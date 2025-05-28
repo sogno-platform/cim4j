@@ -23,10 +23,17 @@ public class BatteryUnit extends PowerElectronicsUnit {
     private static final Logging LOG = Logging.getLogger(BatteryUnit.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public BatteryUnit() {
-        setCimType("BatteryUnit");
+    public BatteryUnit(String rdfid) {
+        super("BatteryUnit", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected BatteryUnit(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,8 +49,16 @@ public class BatteryUnit extends PowerElectronicsUnit {
         batteryState = _value_;
     }
 
-    public String batteryStateToString() {
-        return batteryState;
+    private static Object getBatteryState(BaseClass _this_) {
+        return ((BatteryUnit) _this_).getBatteryState();
+    }
+
+    private static void setBatteryState(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((BatteryUnit) _this_).setBatteryState((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -59,12 +74,18 @@ public class BatteryUnit extends PowerElectronicsUnit {
         ratedE = _value_;
     }
 
-    public void setRatedE(String _value_) {
-        ratedE = getDoubleFromString(_value_);
+    private static Object getRatedE(BaseClass _this_) {
+        return ((BatteryUnit) _this_).getRatedE();
     }
 
-    public String ratedEToString() {
-        return ratedE != null ? ratedE.toString() : null;
+    private static void setRatedE(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((BatteryUnit) _this_).setRatedE((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((BatteryUnit) _this_).setRatedE(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -80,12 +101,18 @@ public class BatteryUnit extends PowerElectronicsUnit {
         storedE = _value_;
     }
 
-    public void setStoredE(String _value_) {
-        storedE = getDoubleFromString(_value_);
+    private static Object getStoredE(BaseClass _this_) {
+        return ((BatteryUnit) _this_).getStoredE();
     }
 
-    public String storedEToString() {
-        return storedE != null ? storedE.toString() : null;
+    private static void setStoredE(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((BatteryUnit) _this_).setStoredE((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((BatteryUnit) _this_).setStoredE(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -122,64 +149,35 @@ public class BatteryUnit extends PowerElectronicsUnit {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("BatteryUnit", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "BatteryUnit", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("BatteryUnit", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("BatteryUnit", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "BatteryUnit", attrName, value));
         }
     }
 
@@ -303,30 +301,21 @@ public class BatteryUnit extends PowerElectronicsUnit {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("batteryState", new AttrDetails("BatteryUnit.batteryState", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("batteryState", new AttrDetails("BatteryUnit.batteryState", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, BatteryUnit::getBatteryState, BatteryUnit::setBatteryState));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedE", new AttrDetails("BatteryUnit.ratedE", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ratedE", new AttrDetails("BatteryUnit.ratedE", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, BatteryUnit::getRatedE, BatteryUnit::setRatedE));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("storedE", new AttrDetails("BatteryUnit.storedE", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("storedE", new AttrDetails("BatteryUnit.storedE", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, BatteryUnit::getStoredE, BatteryUnit::setStoredE));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new BatteryUnit().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new BatteryUnit(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("batteryState", new GetterSetter(this::batteryStateToString, null, this::setBatteryState));
-        map.put("ratedE", new GetterSetter(this::ratedEToString, null, this::setRatedE));
-        map.put("storedE", new GetterSetter(this::storedEToString, null, this::setStoredE));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

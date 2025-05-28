@@ -23,10 +23,17 @@ public class ConformLoadSchedule extends SeasonDayTypeSchedule {
     private static final Logging LOG = Logging.getLogger(ConformLoadSchedule.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ConformLoadSchedule() {
-        setCimType("ConformLoadSchedule");
+    public ConformLoadSchedule(String rdfid) {
+        super("ConformLoadSchedule", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ConformLoadSchedule(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class ConformLoadSchedule extends SeasonDayTypeSchedule {
         return ConformLoadGroup;
     }
 
-    public void setConformLoadGroup(BaseClass _object_) {
-        if (!(_object_ instanceof ConformLoadGroup)) {
-            throw new IllegalArgumentException("Object is not ConformLoadGroup");
-        }
+    public void setConformLoadGroup(ConformLoadGroup _object_) {
         if (ConformLoadGroup != _object_) {
-            ConformLoadGroup = (ConformLoadGroup) _object_;
+            ConformLoadGroup = _object_;
             ConformLoadGroup.setConformLoadSchedules(this);
         }
     }
 
-    public String ConformLoadGroupToString() {
-        return ConformLoadGroup != null ? ConformLoadGroup.getRdfid() : null;
+    private static Object getConformLoadGroup(BaseClass _this_) {
+        return ((ConformLoadSchedule) _this_).getConformLoadGroup();
+    }
+
+    private static void setConformLoadGroup(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ConformLoadGroup) {
+            ((ConformLoadSchedule) _this_).setConformLoadGroup((ConformLoadGroup) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ConformLoadGroup");
+        }
     }
 
     /**
@@ -86,64 +98,35 @@ public class ConformLoadSchedule extends SeasonDayTypeSchedule {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ConformLoadSchedule", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ConformLoadSchedule", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ConformLoadSchedule", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ConformLoadSchedule", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ConformLoadSchedule", attrName, value));
         }
     }
 
@@ -267,18 +250,11 @@ public class ConformLoadSchedule extends SeasonDayTypeSchedule {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ConformLoadGroup", new AttrDetails("ConformLoadSchedule.ConformLoadGroup", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("ConformLoadGroup", new AttrDetails("ConformLoadSchedule.ConformLoadGroup", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ConformLoadSchedule::getConformLoadGroup, ConformLoadSchedule::setConformLoadGroup));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ConformLoadSchedule().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ConformLoadSchedule(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ConformLoadGroup", new GetterSetter(this::ConformLoadGroupToString, this::setConformLoadGroup, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

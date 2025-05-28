@@ -23,10 +23,17 @@ public class Clamp extends ConductingEquipment {
     private static final Logging LOG = Logging.getLogger(Clamp.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public Clamp() {
-        setCimType("Clamp");
+    public Clamp(String rdfid) {
+        super("Clamp", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected Clamp(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class Clamp extends ConductingEquipment {
         return ACLineSegment;
     }
 
-    public void setACLineSegment(BaseClass _object_) {
-        if (!(_object_ instanceof ACLineSegment)) {
-            throw new IllegalArgumentException("Object is not ACLineSegment");
-        }
+    public void setACLineSegment(ACLineSegment _object_) {
         if (ACLineSegment != _object_) {
-            ACLineSegment = (ACLineSegment) _object_;
+            ACLineSegment = _object_;
             ACLineSegment.setClamp(this);
         }
     }
 
-    public String ACLineSegmentToString() {
-        return ACLineSegment != null ? ACLineSegment.getRdfid() : null;
+    private static Object getACLineSegment(BaseClass _this_) {
+        return ((Clamp) _this_).getACLineSegment();
+    }
+
+    private static void setACLineSegment(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ACLineSegment) {
+            ((Clamp) _this_).setACLineSegment((ACLineSegment) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ACLineSegment");
+        }
     }
 
     /**
@@ -65,12 +77,18 @@ public class Clamp extends ConductingEquipment {
         lengthFromTerminal1 = _value_;
     }
 
-    public void setLengthFromTerminal1(String _value_) {
-        lengthFromTerminal1 = getDoubleFromString(_value_);
+    private static Object getLengthFromTerminal1(BaseClass _this_) {
+        return ((Clamp) _this_).getLengthFromTerminal1();
     }
 
-    public String lengthFromTerminal1ToString() {
-        return lengthFromTerminal1 != null ? lengthFromTerminal1.toString() : null;
+    private static void setLengthFromTerminal1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((Clamp) _this_).setLengthFromTerminal1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((Clamp) _this_).setLengthFromTerminal1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -107,64 +125,35 @@ public class Clamp extends ConductingEquipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("Clamp", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "Clamp", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("Clamp", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("Clamp", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "Clamp", attrName, value));
         }
     }
 
@@ -288,24 +277,16 @@ public class Clamp extends ConductingEquipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ACLineSegment", new AttrDetails("Clamp.ACLineSegment", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("ACLineSegment", new AttrDetails("Clamp.ACLineSegment", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, Clamp::getACLineSegment, Clamp::setACLineSegment));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("lengthFromTerminal1", new AttrDetails("Clamp.lengthFromTerminal1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("lengthFromTerminal1", new AttrDetails("Clamp.lengthFromTerminal1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Clamp::getLengthFromTerminal1, Clamp::setLengthFromTerminal1));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Clamp().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Clamp(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ACLineSegment", new GetterSetter(this::ACLineSegmentToString, this::setACLineSegment, null));
-        map.put("lengthFromTerminal1", new GetterSetter(this::lengthFromTerminal1ToString, null, this::setLengthFromTerminal1));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

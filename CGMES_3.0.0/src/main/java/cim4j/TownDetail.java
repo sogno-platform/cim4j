@@ -23,10 +23,17 @@ public class TownDetail extends BaseClass {
     private static final Logging LOG = Logging.getLogger(TownDetail.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public TownDetail() {
-        setCimType("TownDetail");
+    public TownDetail(String rdfid) {
+        super("TownDetail", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected TownDetail(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,8 +49,16 @@ public class TownDetail extends BaseClass {
         code = _value_;
     }
 
-    public String codeToString() {
-        return code != null ? code.toString() : null;
+    private static Object getCode(BaseClass _this_) {
+        return ((TownDetail) _this_).getCode();
+    }
+
+    private static void setCode(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((TownDetail) _this_).setCode((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -59,8 +74,16 @@ public class TownDetail extends BaseClass {
         country = _value_;
     }
 
-    public String countryToString() {
-        return country != null ? country.toString() : null;
+    private static Object getCountry(BaseClass _this_) {
+        return ((TownDetail) _this_).getCountry();
+    }
+
+    private static void setCountry(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((TownDetail) _this_).setCountry((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -76,8 +99,16 @@ public class TownDetail extends BaseClass {
         name = _value_;
     }
 
-    public String nameToString() {
-        return name != null ? name.toString() : null;
+    private static Object getName(BaseClass _this_) {
+        return ((TownDetail) _this_).getName();
+    }
+
+    private static void setName(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((TownDetail) _this_).setName((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -93,8 +124,16 @@ public class TownDetail extends BaseClass {
         section = _value_;
     }
 
-    public String sectionToString() {
-        return section != null ? section.toString() : null;
+    private static Object getSection(BaseClass _this_) {
+        return ((TownDetail) _this_).getSection();
+    }
+
+    private static void setSection(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((TownDetail) _this_).setSection((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -110,8 +149,16 @@ public class TownDetail extends BaseClass {
         stateOrProvince = _value_;
     }
 
-    public String stateOrProvinceToString() {
-        return stateOrProvince != null ? stateOrProvince.toString() : null;
+    private static Object getStateOrProvince(BaseClass _this_) {
+        return ((TownDetail) _this_).getStateOrProvince();
+    }
+
+    private static void setStateOrProvince(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((TownDetail) _this_).setStateOrProvince((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -148,64 +195,35 @@ public class TownDetail extends BaseClass {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("TownDetail", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "TownDetail", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("TownDetail", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("TownDetail", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "TownDetail", attrName, value));
         }
     }
 
@@ -329,42 +347,31 @@ public class TownDetail extends BaseClass {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("code", new AttrDetails("TownDetail.code", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("code", new AttrDetails("TownDetail.code", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, TownDetail::getCode, TownDetail::setCode));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("country", new AttrDetails("TownDetail.country", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("country", new AttrDetails("TownDetail.country", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, TownDetail::getCountry, TownDetail::setCountry));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("name", new AttrDetails("TownDetail.name", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("name", new AttrDetails("TownDetail.name", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, TownDetail::getName, TownDetail::setName));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("section", new AttrDetails("TownDetail.section", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("section", new AttrDetails("TownDetail.section", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, TownDetail::getSection, TownDetail::setSection));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("stateOrProvince", new AttrDetails("TownDetail.stateOrProvince", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("stateOrProvince", new AttrDetails("TownDetail.stateOrProvince", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, TownDetail::getStateOrProvince, TownDetail::setStateOrProvince));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TownDetail().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TownDetail(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("code", new GetterSetter(this::codeToString, null, this::setCode));
-        map.put("country", new GetterSetter(this::countryToString, null, this::setCountry));
-        map.put("name", new GetterSetter(this::nameToString, null, this::setName));
-        map.put("section", new GetterSetter(this::sectionToString, null, this::setSection));
-        map.put("stateOrProvince", new GetterSetter(this::stateOrProvinceToString, null, this::setStateOrProvince));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,14 +23,21 @@ public class UnderexcLim2Simplified extends UnderexcitationLimiterDynamics {
     private static final Logging LOG = Logging.getLogger(UnderexcLim2Simplified.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public UnderexcLim2Simplified() {
-        setCimType("UnderexcLim2Simplified");
+    public UnderexcLim2Simplified(String rdfid) {
+        super("UnderexcLim2Simplified", rdfid);
     }
 
     /**
-     * Gain Under excitation limiter (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UI&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0,1.
+     * Constructor for subclasses.
+     */
+    protected UnderexcLim2Simplified(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Gain Under excitation limiter (<i>K</i><i><sub>UI</sub></i>).  Typical value = 0,1.
      */
     private Double kui; // PU
 
@@ -42,16 +49,22 @@ public class UnderexcLim2Simplified extends UnderexcitationLimiterDynamics {
         kui = _value_;
     }
 
-    public void setKui(String _value_) {
-        kui = getDoubleFromString(_value_);
+    private static Object getKui(BaseClass _this_) {
+        return ((UnderexcLim2Simplified) _this_).getKui();
     }
 
-    public String kuiToString() {
-        return kui != null ? kui.toString() : null;
+    private static void setKui(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLim2Simplified) _this_).setKui((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLim2Simplified) _this_).setKui(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Segment P initial point (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;0&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0.
+     * Segment P initial point (<i>P</i><i><sub>0</sub></i>).  Typical value = 0.
      */
     private Double p0; // PU
 
@@ -63,16 +76,22 @@ public class UnderexcLim2Simplified extends UnderexcitationLimiterDynamics {
         p0 = _value_;
     }
 
-    public void setP0(String _value_) {
-        p0 = getDoubleFromString(_value_);
+    private static Object getP0(BaseClass _this_) {
+        return ((UnderexcLim2Simplified) _this_).getP0();
     }
 
-    public String p0ToString() {
-        return p0 != null ? p0.toString() : null;
+    private static void setP0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLim2Simplified) _this_).setP0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLim2Simplified) _this_).setP0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Segment P end point (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1.
+     * Segment P end point (<i>P</i><i><sub>1</sub></i>).  Typical value = 1.
      */
     private Double p1; // PU
 
@@ -84,16 +103,22 @@ public class UnderexcLim2Simplified extends UnderexcitationLimiterDynamics {
         p1 = _value_;
     }
 
-    public void setP1(String _value_) {
-        p1 = getDoubleFromString(_value_);
+    private static Object getP1(BaseClass _this_) {
+        return ((UnderexcLim2Simplified) _this_).getP1();
     }
 
-    public String p1ToString() {
-        return p1 != null ? p1.toString() : null;
+    private static void setP1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLim2Simplified) _this_).setP1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLim2Simplified) _this_).setP1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Segment Q initial point (&lt;i&gt;Q&lt;/i&gt;&lt;i&gt;&lt;sub&gt;0&lt;/sub&gt;&lt;/i&gt;).  Typical value = -0,31.
+     * Segment Q initial point (<i>Q</i><i><sub>0</sub></i>).  Typical value = -0,31.
      */
     private Double q0; // PU
 
@@ -105,16 +130,22 @@ public class UnderexcLim2Simplified extends UnderexcitationLimiterDynamics {
         q0 = _value_;
     }
 
-    public void setQ0(String _value_) {
-        q0 = getDoubleFromString(_value_);
+    private static Object getQ0(BaseClass _this_) {
+        return ((UnderexcLim2Simplified) _this_).getQ0();
     }
 
-    public String q0ToString() {
-        return q0 != null ? q0.toString() : null;
+    private static void setQ0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLim2Simplified) _this_).setQ0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLim2Simplified) _this_).setQ0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Segment Q end point (&lt;i&gt;Q&lt;/i&gt;&lt;i&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/i&gt;).  Typical value = -0,1.
+     * Segment Q end point (<i>Q</i><i><sub>1</sub></i>).  Typical value = -0,1.
      */
     private Double q1; // PU
 
@@ -126,16 +157,22 @@ public class UnderexcLim2Simplified extends UnderexcitationLimiterDynamics {
         q1 = _value_;
     }
 
-    public void setQ1(String _value_) {
-        q1 = getDoubleFromString(_value_);
+    private static Object getQ1(BaseClass _this_) {
+        return ((UnderexcLim2Simplified) _this_).getQ1();
     }
 
-    public String q1ToString() {
-        return q1 != null ? q1.toString() : null;
+    private static void setQ1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLim2Simplified) _this_).setQ1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLim2Simplified) _this_).setQ1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum error signal (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UIMAX&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; UnderexcLim2Simplified.vuimin).  Typical value = 1.
+     * Maximum error signal (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLim2Simplified.vuimin).  Typical value = 1.
      */
     private Double vuimax; // PU
 
@@ -147,16 +184,22 @@ public class UnderexcLim2Simplified extends UnderexcitationLimiterDynamics {
         vuimax = _value_;
     }
 
-    public void setVuimax(String _value_) {
-        vuimax = getDoubleFromString(_value_);
+    private static Object getVuimax(BaseClass _this_) {
+        return ((UnderexcLim2Simplified) _this_).getVuimax();
     }
 
-    public String vuimaxToString() {
-        return vuimax != null ? vuimax.toString() : null;
+    private static void setVuimax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLim2Simplified) _this_).setVuimax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLim2Simplified) _this_).setVuimax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum error signal (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;UIMIN&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; UnderexcLim2Simplified.vuimax).  Typical value = 0.
+     * Minimum error signal (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLim2Simplified.vuimax).  Typical value = 0.
      */
     private Double vuimin; // PU
 
@@ -168,12 +211,18 @@ public class UnderexcLim2Simplified extends UnderexcitationLimiterDynamics {
         vuimin = _value_;
     }
 
-    public void setVuimin(String _value_) {
-        vuimin = getDoubleFromString(_value_);
+    private static Object getVuimin(BaseClass _this_) {
+        return ((UnderexcLim2Simplified) _this_).getVuimin();
     }
 
-    public String vuiminToString() {
-        return vuimin != null ? vuimin.toString() : null;
+    private static void setVuimin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLim2Simplified) _this_).setVuimin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLim2Simplified) _this_).setVuimin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -210,64 +259,35 @@ public class UnderexcLim2Simplified extends UnderexcitationLimiterDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("UnderexcLim2Simplified", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "UnderexcLim2Simplified", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("UnderexcLim2Simplified", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("UnderexcLim2Simplified", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "UnderexcLim2Simplified", attrName, value));
         }
     }
 
@@ -391,54 +411,41 @@ public class UnderexcLim2Simplified extends UnderexcitationLimiterDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kui", new AttrDetails("UnderexcLim2Simplified.kui", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kui", new AttrDetails("UnderexcLim2Simplified.kui", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLim2Simplified::getKui, UnderexcLim2Simplified::setKui));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("p0", new AttrDetails("UnderexcLim2Simplified.p0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p0", new AttrDetails("UnderexcLim2Simplified.p0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLim2Simplified::getP0, UnderexcLim2Simplified::setP0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("p1", new AttrDetails("UnderexcLim2Simplified.p1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p1", new AttrDetails("UnderexcLim2Simplified.p1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLim2Simplified::getP1, UnderexcLim2Simplified::setP1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("q0", new AttrDetails("UnderexcLim2Simplified.q0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q0", new AttrDetails("UnderexcLim2Simplified.q0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLim2Simplified::getQ0, UnderexcLim2Simplified::setQ0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("q1", new AttrDetails("UnderexcLim2Simplified.q1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q1", new AttrDetails("UnderexcLim2Simplified.q1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLim2Simplified::getQ1, UnderexcLim2Simplified::setQ1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vuimax", new AttrDetails("UnderexcLim2Simplified.vuimax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vuimax", new AttrDetails("UnderexcLim2Simplified.vuimax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLim2Simplified::getVuimax, UnderexcLim2Simplified::setVuimax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vuimin", new AttrDetails("UnderexcLim2Simplified.vuimin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vuimin", new AttrDetails("UnderexcLim2Simplified.vuimin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLim2Simplified::getVuimin, UnderexcLim2Simplified::setVuimin));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new UnderexcLim2Simplified().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new UnderexcLim2Simplified(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("kui", new GetterSetter(this::kuiToString, null, this::setKui));
-        map.put("p0", new GetterSetter(this::p0ToString, null, this::setP0));
-        map.put("p1", new GetterSetter(this::p1ToString, null, this::setP1));
-        map.put("q0", new GetterSetter(this::q0ToString, null, this::setQ0));
-        map.put("q1", new GetterSetter(this::q1ToString, null, this::setQ1));
-        map.put("vuimax", new GetterSetter(this::vuimaxToString, null, this::setVuimax));
-        map.put("vuimin", new GetterSetter(this::vuiminToString, null, this::setVuimin));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

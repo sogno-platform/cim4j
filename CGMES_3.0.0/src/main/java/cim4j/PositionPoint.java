@@ -23,10 +23,17 @@ public class PositionPoint extends BaseClass {
     private static final Logging LOG = Logging.getLogger(PositionPoint.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public PositionPoint() {
-        setCimType("PositionPoint");
+    public PositionPoint(String rdfid) {
+        super("PositionPoint", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected PositionPoint(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class PositionPoint extends BaseClass {
         return Location;
     }
 
-    public void setLocation(BaseClass _object_) {
-        if (!(_object_ instanceof Location)) {
-            throw new IllegalArgumentException("Object is not Location");
-        }
+    public void setLocation(Location _object_) {
         if (Location != _object_) {
-            Location = (Location) _object_;
+            Location = _object_;
             Location.setPositionPoints(this);
         }
     }
 
-    public String LocationToString() {
-        return Location != null ? Location.getRdfid() : null;
+    private static Object getLocation(BaseClass _this_) {
+        return ((PositionPoint) _this_).getLocation();
+    }
+
+    private static void setLocation(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Location) {
+            ((PositionPoint) _this_).setLocation((Location) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Location");
+        }
     }
 
     /**
@@ -65,12 +77,18 @@ public class PositionPoint extends BaseClass {
         sequenceNumber = _value_;
     }
 
-    public void setSequenceNumber(String _value_) {
-        sequenceNumber = getIntegerFromString(_value_);
+    private static Object getSequenceNumber(BaseClass _this_) {
+        return ((PositionPoint) _this_).getSequenceNumber();
     }
 
-    public String sequenceNumberToString() {
-        return sequenceNumber != null ? sequenceNumber.toString() : null;
+    private static void setSequenceNumber(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((PositionPoint) _this_).setSequenceNumber((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((PositionPoint) _this_).setSequenceNumber(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -86,8 +104,16 @@ public class PositionPoint extends BaseClass {
         xPosition = _value_;
     }
 
-    public String xPositionToString() {
-        return xPosition != null ? xPosition.toString() : null;
+    private static Object getXPosition(BaseClass _this_) {
+        return ((PositionPoint) _this_).getXPosition();
+    }
+
+    private static void setXPosition(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((PositionPoint) _this_).setXPosition((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -103,8 +129,16 @@ public class PositionPoint extends BaseClass {
         yPosition = _value_;
     }
 
-    public String yPositionToString() {
-        return yPosition != null ? yPosition.toString() : null;
+    private static Object getYPosition(BaseClass _this_) {
+        return ((PositionPoint) _this_).getYPosition();
+    }
+
+    private static void setYPosition(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((PositionPoint) _this_).setYPosition((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -120,8 +154,16 @@ public class PositionPoint extends BaseClass {
         zPosition = _value_;
     }
 
-    public String zPositionToString() {
-        return zPosition != null ? zPosition.toString() : null;
+    private static Object getZPosition(BaseClass _this_) {
+        return ((PositionPoint) _this_).getZPosition();
+    }
+
+    private static void setZPosition(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((PositionPoint) _this_).setZPosition((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -158,64 +200,35 @@ public class PositionPoint extends BaseClass {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("PositionPoint", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "PositionPoint", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("PositionPoint", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("PositionPoint", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "PositionPoint", attrName, value));
         }
     }
 
@@ -339,42 +352,31 @@ public class PositionPoint extends BaseClass {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("Location", new AttrDetails("PositionPoint.Location", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("Location", new AttrDetails("PositionPoint.Location", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, PositionPoint::getLocation, PositionPoint::setLocation));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("sequenceNumber", new AttrDetails("PositionPoint.sequenceNumber", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("sequenceNumber", new AttrDetails("PositionPoint.sequenceNumber", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PositionPoint::getSequenceNumber, PositionPoint::setSequenceNumber));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("xPosition", new AttrDetails("PositionPoint.xPosition", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xPosition", new AttrDetails("PositionPoint.xPosition", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PositionPoint::getXPosition, PositionPoint::setXPosition));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("yPosition", new AttrDetails("PositionPoint.yPosition", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("yPosition", new AttrDetails("PositionPoint.yPosition", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PositionPoint::getYPosition, PositionPoint::setYPosition));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("zPosition", new AttrDetails("PositionPoint.zPosition", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("zPosition", new AttrDetails("PositionPoint.zPosition", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PositionPoint::getZPosition, PositionPoint::setZPosition));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PositionPoint().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PositionPoint(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("Location", new GetterSetter(this::LocationToString, this::setLocation, null));
-        map.put("sequenceNumber", new GetterSetter(this::sequenceNumberToString, null, this::setSequenceNumber));
-        map.put("xPosition", new GetterSetter(this::xPositionToString, null, this::setXPosition));
-        map.put("yPosition", new GetterSetter(this::yPositionToString, null, this::setYPosition));
-        map.put("zPosition", new GetterSetter(this::zPositionToString, null, this::setZPosition));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,10 +23,17 @@ public class ACDCConverterDCTerminal extends DCBaseTerminal {
     private static final Logging LOG = Logging.getLogger(ACDCConverterDCTerminal.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ACDCConverterDCTerminal() {
-        setCimType("ACDCConverterDCTerminal");
+    public ACDCConverterDCTerminal(String rdfid) {
+        super("ACDCConverterDCTerminal", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ACDCConverterDCTerminal(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class ACDCConverterDCTerminal extends DCBaseTerminal {
         return DCConductingEquipment;
     }
 
-    public void setDCConductingEquipment(BaseClass _object_) {
-        if (!(_object_ instanceof ACDCConverter)) {
-            throw new IllegalArgumentException("Object is not ACDCConverter");
-        }
+    public void setDCConductingEquipment(ACDCConverter _object_) {
         if (DCConductingEquipment != _object_) {
-            DCConductingEquipment = (ACDCConverter) _object_;
+            DCConductingEquipment = _object_;
             DCConductingEquipment.setDCTerminals(this);
         }
     }
 
-    public String DCConductingEquipmentToString() {
-        return DCConductingEquipment != null ? DCConductingEquipment.getRdfid() : null;
+    private static Object getDCConductingEquipment(BaseClass _this_) {
+        return ((ACDCConverterDCTerminal) _this_).getDCConductingEquipment();
+    }
+
+    private static void setDCConductingEquipment(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ACDCConverter) {
+            ((ACDCConverterDCTerminal) _this_).setDCConductingEquipment((ACDCConverter) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ACDCConverter");
+        }
     }
 
     /**
@@ -65,8 +77,16 @@ public class ACDCConverterDCTerminal extends DCBaseTerminal {
         polarity = _value_;
     }
 
-    public String polarityToString() {
-        return polarity;
+    private static Object getPolarity(BaseClass _this_) {
+        return ((ACDCConverterDCTerminal) _this_).getPolarity();
+    }
+
+    private static void setPolarity(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((ACDCConverterDCTerminal) _this_).setPolarity((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -103,64 +123,35 @@ public class ACDCConverterDCTerminal extends DCBaseTerminal {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ACDCConverterDCTerminal", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ACDCConverterDCTerminal", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ACDCConverterDCTerminal", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ACDCConverterDCTerminal", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ACDCConverterDCTerminal", attrName, value));
         }
     }
 
@@ -284,24 +275,16 @@ public class ACDCConverterDCTerminal extends DCBaseTerminal {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("DCConductingEquipment", new AttrDetails("ACDCConverterDCTerminal.DCConductingEquipment", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("DCConductingEquipment", new AttrDetails("ACDCConverterDCTerminal.DCConductingEquipment", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, ACDCConverterDCTerminal::getDCConductingEquipment, ACDCConverterDCTerminal::setDCConductingEquipment));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("polarity", new AttrDetails("ACDCConverterDCTerminal.polarity", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("polarity", new AttrDetails("ACDCConverterDCTerminal.polarity", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, ACDCConverterDCTerminal::getPolarity, ACDCConverterDCTerminal::setPolarity));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ACDCConverterDCTerminal().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ACDCConverterDCTerminal(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("DCConductingEquipment", new GetterSetter(this::DCConductingEquipmentToString, this::setDCConductingEquipment, null));
-        map.put("polarity", new GetterSetter(this::polarityToString, null, this::setPolarity));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -21,6 +21,7 @@ import cim4j.BaseVoltage;
 import cim4j.CGMESProfile;
 import cim4j.CimClassMap;
 import cim4j.CimConstants;
+import cim4j.Logging;
 import cim4j.SvVoltage;
 import cim4j.TopologicalIsland;
 import cim4j.TopologicalNode;
@@ -66,16 +67,15 @@ class RdfWriterTest {
     void testAddCimData() {
         var rdfWriter = new RdfWriter();
 
-        var cimObj = CimClassMap.createCimObject("Location");
-        cimObj.setRdfid("ee.ORT:E_2785017863");
-        rdfWriter.addCimData(Map.of("ee.ORT:E_2785017863", cimObj));
+        var cimObj = CimClassMap.createCimObject("Location", "rdfid");
+        rdfWriter.addCimData(Map.of("rdfid", cimObj));
 
         var cimData = rdfWriter.getCimData();
         assertEquals(1, cimData.size());
 
-        var cimObj2 = cimData.get("ee.ORT:E_2785017863");
+        var cimObj2 = cimData.get("rdfid");
         assertNotNull(cimObj2);
-        assertEquals("ee.ORT:E_2785017863", cimObj2.getRdfid());
+        assertEquals("rdfid", cimObj2.getRdfid());
     }
 
     @Test
@@ -737,6 +737,7 @@ class RdfWriterTest {
     @Test
     @Order(350)
     void testWrite021() {
+        Logging.setEnabled(false);
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test021.xml")));
         assertEquals(1, cimData.size());
@@ -759,12 +760,13 @@ class RdfWriterTest {
         assertEquals("    <cim:IdentifiedObject.name>98</cim:IdentifiedObject.name>", lines[3]);
         assertEquals("  </cim:VoltageLevel>", lines[4]);
         assertEquals("</rdf:RDF>", lines[5]);
+        Logging.setEnabled(true);
     }
 
     @Test
     @Order(360)
     void testIsClassMatchingProfile() {
-        BaseClass cimObj = new BaseVoltage();
+        BaseClass cimObj = new BaseVoltage("rdfid1");
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.EQ));
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.TP));
 
@@ -776,7 +778,7 @@ class RdfWriterTest {
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SSH));
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SV));
 
-        cimObj = new VoltageLevel();
+        cimObj = new VoltageLevel("rdfid2");
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.EQ));
 
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.DL));
@@ -786,7 +788,7 @@ class RdfWriterTest {
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SV));
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.TP));
 
-        cimObj = new TopologicalNode();
+        cimObj = new TopologicalNode("rdfid3");
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SV));
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.TP));
 
@@ -796,7 +798,7 @@ class RdfWriterTest {
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.GL));
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SSH));
 
-        cimObj = new TopologicalIsland();
+        cimObj = new TopologicalIsland("rdfid4");
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SV));
 
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.EQ));
@@ -806,7 +808,7 @@ class RdfWriterTest {
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SSH));
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.TP));
 
-        cimObj = new SvVoltage();
+        cimObj = new SvVoltage("rdfid5");
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.SV));
         assertFalse(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.EQ));
         assertFalse(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.TP));
@@ -824,16 +826,17 @@ class RdfWriterTest {
     @Test
     @Order(370)
     void testGetClassProfile() {
-        assertEquals(CGMESProfile.EQ, RdfWriter.getClassProfile(new BaseVoltage()));
-        assertEquals(CGMESProfile.EQ, RdfWriter.getClassProfile(new VoltageLevel()));
-        assertEquals(CGMESProfile.TP, RdfWriter.getClassProfile(new TopologicalNode()));
-        assertEquals(CGMESProfile.SV, RdfWriter.getClassProfile(new TopologicalIsland()));
+        assertEquals(CGMESProfile.EQ, RdfWriter.getClassProfile(new BaseVoltage("rdfid1")));
+        assertEquals(CGMESProfile.EQ, RdfWriter.getClassProfile(new VoltageLevel("rdfid2")));
+        assertEquals(CGMESProfile.TP, RdfWriter.getClassProfile(new TopologicalNode("rdfid3")));
+        assertEquals(CGMESProfile.SV, RdfWriter.getClassProfile(new TopologicalIsland("rdfid4")));
     }
 
     @Test
     @Order(380)
     void testGetClassProfileMap() {
-        List<BaseClass> cimList = List.of(new BaseVoltage(), new TopologicalNode(), new BaseVoltage());
+        List<BaseClass> cimList = List.of(new BaseVoltage("rdfid1"), new TopologicalNode("rdfid2"),
+                new BaseVoltage("rdfid3"));
         var profileMap = RdfWriter.getClassProfileMap(cimList);
         assertEquals(2, profileMap.size());
 
@@ -847,7 +850,7 @@ class RdfWriterTest {
     @Test
     @Order(390)
     void testGetAttributeProfile() {
-        BaseClass cimObj = new BaseVoltage();
+        BaseClass cimObj = new BaseVoltage("rdfid1");
         var profile = CGMESProfile.EQ;
         assertEquals(CGMESProfile.EQ, RdfWriter.getAttributeProfile(cimObj, "nominalVoltage", profile));
         assertEquals(CGMESProfile.EQ, RdfWriter.getAttributeProfile(cimObj, "VoltageLevel", profile));
@@ -861,13 +864,13 @@ class RdfWriterTest {
         assertEquals(CGMESProfile.TP, RdfWriter.getAttributeProfile(cimObj, "name", profile));
         assertEquals(CGMESProfile.TP, RdfWriter.getAttributeProfile(cimObj, "description", profile));
 
-        cimObj = new VoltageLevel();
+        cimObj = new VoltageLevel("rdfid2");
         profile = CGMESProfile.EQ;
         assertEquals(CGMESProfile.EQ, RdfWriter.getAttributeProfile(cimObj, "BaseVoltage", profile));
         assertEquals(CGMESProfile.EQ, RdfWriter.getAttributeProfile(cimObj, "name", profile));
         assertEquals(CGMESProfile.EQ, RdfWriter.getAttributeProfile(cimObj, "description", profile));
 
-        cimObj = new TopologicalNode();
+        cimObj = new TopologicalNode("rdfid3");
         profile = CGMESProfile.TP;
         assertEquals(CGMESProfile.TP, RdfWriter.getAttributeProfile(cimObj, "BaseVoltage", profile));
         assertEquals(CGMESProfile.SV, RdfWriter.getAttributeProfile(cimObj, "TopologicalIsland", profile));
@@ -879,7 +882,7 @@ class RdfWriterTest {
         assertEquals(CGMESProfile.SV, RdfWriter.getAttributeProfile(cimObj, "name", profile));
         assertEquals(CGMESProfile.EQ, RdfWriter.getAttributeProfile(cimObj, "description", profile));
 
-        cimObj = new TopologicalIsland();
+        cimObj = new TopologicalIsland("rdfid4");
         profile = CGMESProfile.SV;
         assertEquals(CGMESProfile.SV, RdfWriter.getAttributeProfile(cimObj, "TopologicalNodes", profile));
         assertEquals(CGMESProfile.SV, RdfWriter.getAttributeProfile(cimObj, "name", profile));
@@ -1082,6 +1085,158 @@ class RdfWriterTest {
                 lines[4]);
         assertEquals("  </cim:BaseVoltage>", lines[5]);
         assertEquals("</rdf:RDF>", lines[6]);
+    }
+
+    @Test
+    @Order(470)
+    void testWrite024() {
+        testWrite_024_025_026_027("rdf/test024.xml");
+    }
+
+    @Test
+    @Order(480)
+    void testWrite025() {
+        testWrite_024_025_026_027("rdf/test025.xml");
+    }
+
+    @Test
+    @Order(490)
+    void testWrite026() {
+        testWrite_024_025_026_027("rdf/test026.xml");
+    }
+
+    @Test
+    @Order(500)
+    void testWrite027() {
+        testWrite_024_025_026_027("rdf/test027.xml");
+    }
+
+    private void testWrite_024_025_026_027(String test_024_025_026_027) {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath(test_024_025_026_027)));
+        assertEquals(3, cimData.size());
+
+        assertTrue(cimData.containsKey("_VL"));
+        assertTrue(cimData.containsKey("_PT"));
+        assertTrue(cimData.containsKey("_PTE"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(14, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:VoltageLevel rdf:ID=\"_VL\">", lines[2]);
+        assertEquals("    <cim:IdentifiedObject.name>VL</cim:IdentifiedObject.name>", lines[3]);
+        assertEquals("  </cim:VoltageLevel>", lines[4]);
+        assertEquals("  <cim:PowerTransformer rdf:ID=\"_PT\">", lines[5]);
+        assertEquals("    <cim:Equipment.EquipmentContainer rdf:resource=\"#_VL\"/>", lines[6]);
+        assertEquals("    <cim:IdentifiedObject.description>PowerTransformer</cim:IdentifiedObject.description>",
+                lines[7]);
+        assertEquals("    <cim:IdentifiedObject.name>PT</cim:IdentifiedObject.name>", lines[8]);
+        assertEquals("  </cim:PowerTransformer>", lines[9]);
+        assertEquals("  <cim:PowerTransformerEnd rdf:ID=\"_PTE\">", lines[10]);
+        assertEquals("    <cim:PowerTransformerEnd.PowerTransformer rdf:resource=\"#_PT\"/>", lines[11]);
+        assertEquals("  </cim:PowerTransformerEnd>", lines[12]);
+        assertEquals("</rdf:RDF>", lines[13]);
+    }
+
+    @Test
+    @Order(500)
+    void testWrite028() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test028.xml")));
+        assertEquals(3, cimData.size());
+
+        assertTrue(cimData.containsKey("_VL"));
+        assertTrue(cimData.containsKey("_PT"));
+        assertTrue(cimData.containsKey("_PTE"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(14, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:PowerTransformer rdf:ID=\"_PT\">", lines[2]);
+        assertEquals("    <cim:Equipment.EquipmentContainer rdf:resource=\"#_VL\"/>", lines[3]);
+        assertEquals("    <cim:IdentifiedObject.description>PowerTransformer</cim:IdentifiedObject.description>",
+                lines[4]);
+        assertEquals("    <cim:IdentifiedObject.name>PT</cim:IdentifiedObject.name>", lines[5]);
+        assertEquals("  </cim:PowerTransformer>", lines[6]);
+        assertEquals("  <cim:VoltageLevel rdf:ID=\"_VL\">", lines[7]);
+        assertEquals("    <cim:IdentifiedObject.name>VL</cim:IdentifiedObject.name>", lines[8]);
+        assertEquals("  </cim:VoltageLevel>", lines[9]);
+        assertEquals("  <cim:PowerTransformerEnd rdf:ID=\"_PTE\">", lines[10]);
+        assertEquals("    <cim:PowerTransformerEnd.PowerTransformer rdf:resource=\"#_PT\"/>", lines[11]);
+        assertEquals("  </cim:PowerTransformerEnd>", lines[12]);
+        assertEquals("</rdf:RDF>", lines[13]);
+    }
+
+    @Test
+    @Order(510)
+    void testWrite029() {
+        testWrite_029_030_031_032("rdf/test029.xml", 6);
+    }
+
+    @Test
+    @Order(510)
+    void testWrite030() {
+        testWrite_029_030_031_032("rdf/test030.xml", 4);
+    }
+
+    @Test
+    @Order(510)
+    void testWrite031() {
+        testWrite_029_030_031_032("rdf/test031.xml", 2);
+    }
+
+    @Test
+    @Order(510)
+    void testWrite032() {
+        testWrite_029_030_031_032("rdf/test032.xml", 4);
+    }
+
+    private void testWrite_029_030_031_032(String test_029_030_031_032, int offset) {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath(test_029_030_031_032)));
+        assertEquals(3, cimData.size());
+
+        assertTrue(cimData.containsKey("_VL0"));
+        assertTrue(cimData.containsKey("_VL"));
+        assertTrue(cimData.containsKey("_PT"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(11, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        // ...
+        assertEquals("  <cim:PowerTransformer rdf:ID=\"_PT\">", lines[offset]);
+        assertEquals("    <cim:Equipment.EquipmentContainer rdf:resource=\"#_VL\"/>", lines[offset + 1]);
+        assertEquals("    <cim:IdentifiedObject.name>PT</cim:IdentifiedObject.name>", lines[offset + 2]);
+        assertEquals("  </cim:PowerTransformer>", lines[offset + 3]);
+        // ...
+        assertEquals("</rdf:RDF>", lines[10]);
     }
 
     @Test

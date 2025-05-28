@@ -23,10 +23,17 @@ public class WindContQPQULimIEC extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(WindContQPQULimIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindContQPQULimIEC() {
-        setCimType("WindContQPQULimIEC");
+    public WindContQPQULimIEC(String rdfid) {
+        super("WindContQPQULimIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindContQPQULimIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class WindContQPQULimIEC extends IdentifiedObject {
         return WindDynamicsLookupTable;
     }
 
-    public void setWindDynamicsLookupTable(BaseClass _object_) {
-        if (!(_object_ instanceof WindDynamicsLookupTable)) {
-            throw new IllegalArgumentException("Object is not WindDynamicsLookupTable");
-        }
+    public void setWindDynamicsLookupTable(WindDynamicsLookupTable _object_) {
         if (!WindDynamicsLookupTable.contains(_object_)) {
-            WindDynamicsLookupTable.add((WindDynamicsLookupTable) _object_);
-            ((WindDynamicsLookupTable) _object_).setWindContQPQULimIEC(this);
+            WindDynamicsLookupTable.add(_object_);
+            _object_.setWindContQPQULimIEC(this);
         }
     }
 
-    public String WindDynamicsLookupTableToString() {
-        return getStringFromSet(WindDynamicsLookupTable);
+    private static Object getWindDynamicsLookupTable(BaseClass _this_) {
+        return ((WindContQPQULimIEC) _this_).getWindDynamicsLookupTable();
+    }
+
+    private static void setWindDynamicsLookupTable(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindDynamicsLookupTable) {
+            ((WindContQPQULimIEC) _this_).setWindDynamicsLookupTable((WindDynamicsLookupTable) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindDynamicsLookupTable");
+        }
     }
 
     /**
@@ -65,22 +77,27 @@ public class WindContQPQULimIEC extends IdentifiedObject {
         return WindTurbineType3or4IEC;
     }
 
-    public void setWindTurbineType3or4IEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindTurbineType3or4IEC)) {
-            throw new IllegalArgumentException("Object is not WindTurbineType3or4IEC");
-        }
+    public void setWindTurbineType3or4IEC(WindTurbineType3or4IEC _object_) {
         if (WindTurbineType3or4IEC != _object_) {
-            WindTurbineType3or4IEC = (WindTurbineType3or4IEC) _object_;
+            WindTurbineType3or4IEC = _object_;
             WindTurbineType3or4IEC.setWindContQPQULimIEC(this);
         }
     }
 
-    public String WindTurbineType3or4IECToString() {
-        return WindTurbineType3or4IEC != null ? WindTurbineType3or4IEC.getRdfid() : null;
+    private static Object getWindTurbineType3or4IEC(BaseClass _this_) {
+        return ((WindContQPQULimIEC) _this_).getWindTurbineType3or4IEC();
+    }
+
+    private static void setWindTurbineType3or4IEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindTurbineType3or4IEC) {
+            ((WindContQPQULimIEC) _this_).setWindTurbineType3or4IEC((WindTurbineType3or4IEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindTurbineType3or4IEC");
+        }
     }
 
     /**
-     * Power measurement filter time constant for Q capacity (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;pfiltql&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     * Power measurement filter time constant for Q capacity (<i>T</i><i><sub>pfiltql</sub></i>) (&gt;= 0). It is a type-dependent parameter.
      */
     private Double tpfiltql; // Seconds
 
@@ -92,16 +109,22 @@ public class WindContQPQULimIEC extends IdentifiedObject {
         tpfiltql = _value_;
     }
 
-    public void setTpfiltql(String _value_) {
-        tpfiltql = getDoubleFromString(_value_);
+    private static Object getTpfiltql(BaseClass _this_) {
+        return ((WindContQPQULimIEC) _this_).getTpfiltql();
     }
 
-    public String tpfiltqlToString() {
-        return tpfiltql != null ? tpfiltql.toString() : null;
+    private static void setTpfiltql(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQPQULimIEC) _this_).setTpfiltql((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQPQULimIEC) _this_).setTpfiltql(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage measurement filter time constant for Q capacity (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ufiltql&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     * Voltage measurement filter time constant for Q capacity (<i>T</i><i><sub>ufiltql</sub></i>) (&gt;= 0). It is a type-dependent parameter.
      */
     private Double tufiltql; // Seconds
 
@@ -113,12 +136,18 @@ public class WindContQPQULimIEC extends IdentifiedObject {
         tufiltql = _value_;
     }
 
-    public void setTufiltql(String _value_) {
-        tufiltql = getDoubleFromString(_value_);
+    private static Object getTufiltql(BaseClass _this_) {
+        return ((WindContQPQULimIEC) _this_).getTufiltql();
     }
 
-    public String tufiltqlToString() {
-        return tufiltql != null ? tufiltql.toString() : null;
+    private static void setTufiltql(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQPQULimIEC) _this_).setTufiltql((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQPQULimIEC) _this_).setTufiltql(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -155,64 +184,35 @@ public class WindContQPQULimIEC extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindContQPQULimIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindContQPQULimIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindContQPQULimIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindContQPQULimIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindContQPQULimIEC", attrName, value));
         }
     }
 
@@ -336,36 +336,26 @@ public class WindContQPQULimIEC extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindDynamicsLookupTable", new AttrDetails("WindContQPQULimIEC.WindDynamicsLookupTable", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindDynamicsLookupTable", new AttrDetails("WindContQPQULimIEC.WindDynamicsLookupTable", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindContQPQULimIEC::getWindDynamicsLookupTable, WindContQPQULimIEC::setWindDynamicsLookupTable));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindTurbineType3or4IEC", new AttrDetails("WindContQPQULimIEC.WindTurbineType3or4IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindTurbineType3or4IEC", new AttrDetails("WindContQPQULimIEC.WindTurbineType3or4IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindContQPQULimIEC::getWindTurbineType3or4IEC, WindContQPQULimIEC::setWindTurbineType3or4IEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpfiltql", new AttrDetails("WindContQPQULimIEC.tpfiltql", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tpfiltql", new AttrDetails("WindContQPQULimIEC.tpfiltql", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQPQULimIEC::getTpfiltql, WindContQPQULimIEC::setTpfiltql));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tufiltql", new AttrDetails("WindContQPQULimIEC.tufiltql", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tufiltql", new AttrDetails("WindContQPQULimIEC.tufiltql", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQPQULimIEC::getTufiltql, WindContQPQULimIEC::setTufiltql));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindContQPQULimIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindContQPQULimIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("WindDynamicsLookupTable", new GetterSetter(this::WindDynamicsLookupTableToString, this::setWindDynamicsLookupTable, null));
-        map.put("WindTurbineType3or4IEC", new GetterSetter(this::WindTurbineType3or4IECToString, this::setWindTurbineType3or4IEC, null));
-        map.put("tpfiltql", new GetterSetter(this::tpfiltqlToString, null, this::setTpfiltql));
-        map.put("tufiltql", new GetterSetter(this::tufiltqlToString, null, this::setTufiltql));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

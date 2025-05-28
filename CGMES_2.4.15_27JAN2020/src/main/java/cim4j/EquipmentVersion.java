@@ -23,10 +23,17 @@ public class EquipmentVersion extends BaseClass {
     private static final Logging LOG = Logging.getLogger(EquipmentVersion.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public EquipmentVersion() {
-        setCimType("EquipmentVersion");
+    public EquipmentVersion(String rdfid) {
+        super("EquipmentVersion", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected EquipmentVersion(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,8 +49,16 @@ public class EquipmentVersion extends BaseClass {
         baseUML = _value_;
     }
 
-    public String baseUMLToString() {
-        return baseUML != null ? baseUML.toString() : null;
+    private static Object getBaseUML(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getBaseUML();
+    }
+
+    private static void setBaseUML(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setBaseUML((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -59,8 +74,16 @@ public class EquipmentVersion extends BaseClass {
         baseURIcore = _value_;
     }
 
-    public String baseURIcoreToString() {
-        return baseURIcore != null ? baseURIcore.toString() : null;
+    private static Object getBaseURIcore(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getBaseURIcore();
+    }
+
+    private static void setBaseURIcore(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setBaseURIcore((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -76,8 +99,16 @@ public class EquipmentVersion extends BaseClass {
         baseURIoperation = _value_;
     }
 
-    public String baseURIoperationToString() {
-        return baseURIoperation != null ? baseURIoperation.toString() : null;
+    private static Object getBaseURIoperation(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getBaseURIoperation();
+    }
+
+    private static void setBaseURIoperation(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setBaseURIoperation((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -93,8 +124,16 @@ public class EquipmentVersion extends BaseClass {
         baseURIshortCircuit = _value_;
     }
 
-    public String baseURIshortCircuitToString() {
-        return baseURIshortCircuit != null ? baseURIshortCircuit.toString() : null;
+    private static Object getBaseURIshortCircuit(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getBaseURIshortCircuit();
+    }
+
+    private static void setBaseURIshortCircuit(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setBaseURIshortCircuit((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -110,8 +149,16 @@ public class EquipmentVersion extends BaseClass {
         date = _value_;
     }
 
-    public String dateToString() {
-        return date != null ? date.toString() : null;
+    private static Object getDate(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getDate();
+    }
+
+    private static void setDate(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setDate((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -127,8 +174,16 @@ public class EquipmentVersion extends BaseClass {
         differenceModelURI = _value_;
     }
 
-    public String differenceModelURIToString() {
-        return differenceModelURI != null ? differenceModelURI.toString() : null;
+    private static Object getDifferenceModelURI(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getDifferenceModelURI();
+    }
+
+    private static void setDifferenceModelURI(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setDifferenceModelURI((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -144,8 +199,16 @@ public class EquipmentVersion extends BaseClass {
         entsoeUML = _value_;
     }
 
-    public String entsoeUMLToString() {
-        return entsoeUML != null ? entsoeUML.toString() : null;
+    private static Object getEntsoeUML(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getEntsoeUML();
+    }
+
+    private static void setEntsoeUML(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setEntsoeUML((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -161,8 +224,16 @@ public class EquipmentVersion extends BaseClass {
         entsoeURIcore = _value_;
     }
 
-    public String entsoeURIcoreToString() {
-        return entsoeURIcore != null ? entsoeURIcore.toString() : null;
+    private static Object getEntsoeURIcore(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getEntsoeURIcore();
+    }
+
+    private static void setEntsoeURIcore(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setEntsoeURIcore((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -178,8 +249,16 @@ public class EquipmentVersion extends BaseClass {
         entsoeURIoperation = _value_;
     }
 
-    public String entsoeURIoperationToString() {
-        return entsoeURIoperation != null ? entsoeURIoperation.toString() : null;
+    private static Object getEntsoeURIoperation(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getEntsoeURIoperation();
+    }
+
+    private static void setEntsoeURIoperation(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setEntsoeURIoperation((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -195,8 +274,16 @@ public class EquipmentVersion extends BaseClass {
         entsoeURIshortCircuit = _value_;
     }
 
-    public String entsoeURIshortCircuitToString() {
-        return entsoeURIshortCircuit != null ? entsoeURIshortCircuit.toString() : null;
+    private static Object getEntsoeURIshortCircuit(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getEntsoeURIshortCircuit();
+    }
+
+    private static void setEntsoeURIshortCircuit(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setEntsoeURIshortCircuit((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -212,8 +299,16 @@ public class EquipmentVersion extends BaseClass {
         modelDescriptionURI = _value_;
     }
 
-    public String modelDescriptionURIToString() {
-        return modelDescriptionURI != null ? modelDescriptionURI.toString() : null;
+    private static Object getModelDescriptionURI(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getModelDescriptionURI();
+    }
+
+    private static void setModelDescriptionURI(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setModelDescriptionURI((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -229,8 +324,16 @@ public class EquipmentVersion extends BaseClass {
         namespaceRDF = _value_;
     }
 
-    public String namespaceRDFToString() {
-        return namespaceRDF != null ? namespaceRDF.toString() : null;
+    private static Object getNamespaceRDF(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getNamespaceRDF();
+    }
+
+    private static void setNamespaceRDF(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setNamespaceRDF((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -246,8 +349,16 @@ public class EquipmentVersion extends BaseClass {
         namespaceUML = _value_;
     }
 
-    public String namespaceUMLToString() {
-        return namespaceUML != null ? namespaceUML.toString() : null;
+    private static Object getNamespaceUML(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getNamespaceUML();
+    }
+
+    private static void setNamespaceUML(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setNamespaceUML((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -263,8 +374,16 @@ public class EquipmentVersion extends BaseClass {
         shortName = _value_;
     }
 
-    public String shortNameToString() {
-        return shortName != null ? shortName.toString() : null;
+    private static Object getShortName(BaseClass _this_) {
+        return ((EquipmentVersion) _this_).getShortName();
+    }
+
+    private static void setShortName(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((EquipmentVersion) _this_).setShortName((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -301,64 +420,35 @@ public class EquipmentVersion extends BaseClass {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("EquipmentVersion", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "EquipmentVersion", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("EquipmentVersion", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("EquipmentVersion", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "EquipmentVersion", attrName, value));
         }
     }
 
@@ -482,96 +572,76 @@ public class EquipmentVersion extends BaseClass {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("baseUML", new AttrDetails("EquipmentVersion.baseUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("baseUML", new AttrDetails("EquipmentVersion.baseUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getBaseUML, EquipmentVersion::setBaseUML));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("baseURIcore", new AttrDetails("EquipmentVersion.baseURIcore", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("baseURIcore", new AttrDetails("EquipmentVersion.baseURIcore", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getBaseURIcore, EquipmentVersion::setBaseURIcore));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("baseURIoperation", new AttrDetails("EquipmentVersion.baseURIoperation", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("baseURIoperation", new AttrDetails("EquipmentVersion.baseURIoperation", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getBaseURIoperation, EquipmentVersion::setBaseURIoperation));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("baseURIshortCircuit", new AttrDetails("EquipmentVersion.baseURIshortCircuit", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("baseURIshortCircuit", new AttrDetails("EquipmentVersion.baseURIshortCircuit", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getBaseURIshortCircuit, EquipmentVersion::setBaseURIshortCircuit));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("date", new AttrDetails("EquipmentVersion.date", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("date", new AttrDetails("EquipmentVersion.date", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getDate, EquipmentVersion::setDate));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("differenceModelURI", new AttrDetails("EquipmentVersion.differenceModelURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("differenceModelURI", new AttrDetails("EquipmentVersion.differenceModelURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getDifferenceModelURI, EquipmentVersion::setDifferenceModelURI));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("entsoeUML", new AttrDetails("EquipmentVersion.entsoeUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("entsoeUML", new AttrDetails("EquipmentVersion.entsoeUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getEntsoeUML, EquipmentVersion::setEntsoeUML));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("entsoeURIcore", new AttrDetails("EquipmentVersion.entsoeURIcore", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("entsoeURIcore", new AttrDetails("EquipmentVersion.entsoeURIcore", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getEntsoeURIcore, EquipmentVersion::setEntsoeURIcore));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("entsoeURIoperation", new AttrDetails("EquipmentVersion.entsoeURIoperation", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("entsoeURIoperation", new AttrDetails("EquipmentVersion.entsoeURIoperation", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getEntsoeURIoperation, EquipmentVersion::setEntsoeURIoperation));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("entsoeURIshortCircuit", new AttrDetails("EquipmentVersion.entsoeURIshortCircuit", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("entsoeURIshortCircuit", new AttrDetails("EquipmentVersion.entsoeURIshortCircuit", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getEntsoeURIshortCircuit, EquipmentVersion::setEntsoeURIshortCircuit));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("modelDescriptionURI", new AttrDetails("EquipmentVersion.modelDescriptionURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("modelDescriptionURI", new AttrDetails("EquipmentVersion.modelDescriptionURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getModelDescriptionURI, EquipmentVersion::setModelDescriptionURI));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("namespaceRDF", new AttrDetails("EquipmentVersion.namespaceRDF", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("namespaceRDF", new AttrDetails("EquipmentVersion.namespaceRDF", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getNamespaceRDF, EquipmentVersion::setNamespaceRDF));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("namespaceUML", new AttrDetails("EquipmentVersion.namespaceUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("namespaceUML", new AttrDetails("EquipmentVersion.namespaceUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getNamespaceUML, EquipmentVersion::setNamespaceUML));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("shortName", new AttrDetails("EquipmentVersion.shortName", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("shortName", new AttrDetails("EquipmentVersion.shortName", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, EquipmentVersion::getShortName, EquipmentVersion::setShortName));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EquipmentVersion().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EquipmentVersion(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("baseUML", new GetterSetter(this::baseUMLToString, null, this::setBaseUML));
-        map.put("baseURIcore", new GetterSetter(this::baseURIcoreToString, null, this::setBaseURIcore));
-        map.put("baseURIoperation", new GetterSetter(this::baseURIoperationToString, null, this::setBaseURIoperation));
-        map.put("baseURIshortCircuit", new GetterSetter(this::baseURIshortCircuitToString, null, this::setBaseURIshortCircuit));
-        map.put("date", new GetterSetter(this::dateToString, null, this::setDate));
-        map.put("differenceModelURI", new GetterSetter(this::differenceModelURIToString, null, this::setDifferenceModelURI));
-        map.put("entsoeUML", new GetterSetter(this::entsoeUMLToString, null, this::setEntsoeUML));
-        map.put("entsoeURIcore", new GetterSetter(this::entsoeURIcoreToString, null, this::setEntsoeURIcore));
-        map.put("entsoeURIoperation", new GetterSetter(this::entsoeURIoperationToString, null, this::setEntsoeURIoperation));
-        map.put("entsoeURIshortCircuit", new GetterSetter(this::entsoeURIshortCircuitToString, null, this::setEntsoeURIshortCircuit));
-        map.put("modelDescriptionURI", new GetterSetter(this::modelDescriptionURIToString, null, this::setModelDescriptionURI));
-        map.put("namespaceRDF", new GetterSetter(this::namespaceRDFToString, null, this::setNamespaceRDF));
-        map.put("namespaceUML", new GetterSetter(this::namespaceUMLToString, null, this::setNamespaceUML));
-        map.put("shortName", new GetterSetter(this::shortNameToString, null, this::setShortName));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

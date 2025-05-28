@@ -23,10 +23,17 @@ public class WindAeroOneDimIEC extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(WindAeroOneDimIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindAeroOneDimIEC() {
-        setCimType("WindAeroOneDimIEC");
+    public WindAeroOneDimIEC(String rdfid) {
+        super("WindAeroOneDimIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindAeroOneDimIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,22 +47,27 @@ public class WindAeroOneDimIEC extends IdentifiedObject {
         return WindTurbineType3IEC;
     }
 
-    public void setWindTurbineType3IEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindTurbineType3IEC)) {
-            throw new IllegalArgumentException("Object is not WindTurbineType3IEC");
-        }
+    public void setWindTurbineType3IEC(WindTurbineType3IEC _object_) {
         if (WindTurbineType3IEC != _object_) {
-            WindTurbineType3IEC = (WindTurbineType3IEC) _object_;
+            WindTurbineType3IEC = _object_;
             WindTurbineType3IEC.setWindAeroOneDimIEC(this);
         }
     }
 
-    public String WindTurbineType3IECToString() {
-        return WindTurbineType3IEC != null ? WindTurbineType3IEC.getRdfid() : null;
+    private static Object getWindTurbineType3IEC(BaseClass _this_) {
+        return ((WindAeroOneDimIEC) _this_).getWindTurbineType3IEC();
+    }
+
+    private static void setWindTurbineType3IEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindTurbineType3IEC) {
+            ((WindAeroOneDimIEC) _this_).setWindTurbineType3IEC((WindTurbineType3IEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindTurbineType3IEC");
+        }
     }
 
     /**
-     * Aerodynamic gain (&lt;i&gt;k&lt;/i&gt;&lt;i&gt;&lt;sub&gt;a&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Aerodynamic gain (<i>k</i><i><sub>a</sub></i>). It is a type-dependent parameter.
      */
     private Float ka; // Float
 
@@ -67,16 +79,22 @@ public class WindAeroOneDimIEC extends IdentifiedObject {
         ka = _value_;
     }
 
-    public void setKa(String _value_) {
-        ka = getFloatFromString(_value_);
+    private static Object getKa(BaseClass _this_) {
+        return ((WindAeroOneDimIEC) _this_).getKa();
     }
 
-    public String kaToString() {
-        return ka != null ? ka.toString() : null;
+    private static void setKa(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((WindAeroOneDimIEC) _this_).setKa((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindAeroOneDimIEC) _this_).setKa(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Initial pitch angle (&lt;i&gt;theta&lt;/i&gt;&lt;i&gt;&lt;sub&gt;omega0&lt;/sub&gt;&lt;/i&gt;). It is a case-dependent parameter.
+     * Initial pitch angle (<i>theta</i><i><sub>omega0</sub></i>). It is a case-dependent parameter.
      */
     private Double thetaomega; // AngleDegrees
 
@@ -88,12 +106,18 @@ public class WindAeroOneDimIEC extends IdentifiedObject {
         thetaomega = _value_;
     }
 
-    public void setThetaomega(String _value_) {
-        thetaomega = getDoubleFromString(_value_);
+    private static Object getThetaomega(BaseClass _this_) {
+        return ((WindAeroOneDimIEC) _this_).getThetaomega();
     }
 
-    public String thetaomegaToString() {
-        return thetaomega != null ? thetaomega.toString() : null;
+    private static void setThetaomega(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindAeroOneDimIEC) _this_).setThetaomega((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindAeroOneDimIEC) _this_).setThetaomega(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -130,64 +154,35 @@ public class WindAeroOneDimIEC extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindAeroOneDimIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindAeroOneDimIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindAeroOneDimIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindAeroOneDimIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindAeroOneDimIEC", attrName, value));
         }
     }
 
@@ -311,30 +306,21 @@ public class WindAeroOneDimIEC extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindTurbineType3IEC", new AttrDetails("WindAeroOneDimIEC.WindTurbineType3IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindTurbineType3IEC", new AttrDetails("WindAeroOneDimIEC.WindTurbineType3IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindAeroOneDimIEC::getWindTurbineType3IEC, WindAeroOneDimIEC::setWindTurbineType3IEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ka", new AttrDetails("WindAeroOneDimIEC.ka", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ka", new AttrDetails("WindAeroOneDimIEC.ka", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindAeroOneDimIEC::getKa, WindAeroOneDimIEC::setKa));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("thetaomega", new AttrDetails("WindAeroOneDimIEC.thetaomega", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("thetaomega", new AttrDetails("WindAeroOneDimIEC.thetaomega", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindAeroOneDimIEC::getThetaomega, WindAeroOneDimIEC::setThetaomega));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindAeroOneDimIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindAeroOneDimIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("WindTurbineType3IEC", new GetterSetter(this::WindTurbineType3IECToString, this::setWindTurbineType3IEC, null));
-        map.put("ka", new GetterSetter(this::kaToString, null, this::setKa));
-        map.put("thetaomega", new GetterSetter(this::thetaomegaToString, null, this::setThetaomega));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,14 +23,21 @@ public class GovHydro2 extends TurbineGovernorDynamics {
     private static final Logging LOG = Logging.getLogger(GovHydro2.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public GovHydro2() {
-        setCimType("GovHydro2");
+    public GovHydro2(String rdfid) {
+        super("GovHydro2", rdfid);
     }
 
     /**
-     * Turbine numerator multiplier (&lt;i&gt;Aturb&lt;/i&gt;).  Typical value = -1.
+     * Constructor for subclasses.
+     */
+    protected GovHydro2(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Turbine numerator multiplier (<i>Aturb</i>).  Typical value = -1.
      */
     private Double aturb; // PU
 
@@ -42,16 +49,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         aturb = _value_;
     }
 
-    public void setAturb(String _value_) {
-        aturb = getDoubleFromString(_value_);
+    private static Object getAturb(BaseClass _this_) {
+        return ((GovHydro2) _this_).getAturb();
     }
 
-    public String aturbToString() {
-        return aturb != null ? aturb.toString() : null;
+    private static void setAturb(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setAturb((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setAturb(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Turbine denominator multiplier (&lt;i&gt;Bturb&lt;/i&gt;) (&amp;gt; 0).  Typical value = 0,5.
+     * Turbine denominator multiplier (<i>Bturb</i>) (&gt; 0).  Typical value = 0,5.
      */
     private Double bturb; // PU
 
@@ -63,16 +76,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         bturb = _value_;
     }
 
-    public void setBturb(String _value_) {
-        bturb = getDoubleFromString(_value_);
+    private static Object getBturb(BaseClass _this_) {
+        return ((GovHydro2) _this_).getBturb();
     }
 
-    public String bturbToString() {
-        return bturb != null ? bturb.toString() : null;
+    private static void setBturb(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setBturb((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setBturb(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intentional deadband width (&lt;i&gt;db1&lt;/i&gt;).  Unit = Hz.  Typical value = 0.
+     * Intentional deadband width (<i>db1</i>).  Unit = Hz.  Typical value = 0.
      */
     private Double db1; // Frequency
 
@@ -84,16 +103,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         db1 = _value_;
     }
 
-    public void setDb1(String _value_) {
-        db1 = getDoubleFromString(_value_);
+    private static Object getDb1(BaseClass _this_) {
+        return ((GovHydro2) _this_).getDb1();
     }
 
-    public String db1ToString() {
-        return db1 != null ? db1.toString() : null;
+    private static void setDb1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setDb1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setDb1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Unintentional deadband (&lt;i&gt;db2&lt;/i&gt;).  Unit = MW.  Typical value = 0.
+     * Unintentional deadband (<i>db2</i>).  Unit = MW.  Typical value = 0.
      */
     private Double db2; // ActivePower
 
@@ -105,16 +130,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         db2 = _value_;
     }
 
-    public void setDb2(String _value_) {
-        db2 = getDoubleFromString(_value_);
+    private static Object getDb2(BaseClass _this_) {
+        return ((GovHydro2) _this_).getDb2();
     }
 
-    public String db2ToString() {
-        return db2 != null ? db2.toString() : null;
+    private static void setDb2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setDb2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setDb2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intentional db hysteresis (&lt;i&gt;eps&lt;/i&gt;).  Unit = Hz.  Typical value = 0.
+     * Intentional db hysteresis (<i>eps</i>).  Unit = Hz.  Typical value = 0.
      */
     private Double eps; // Frequency
 
@@ -126,16 +157,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         eps = _value_;
     }
 
-    public void setEps(String _value_) {
-        eps = getDoubleFromString(_value_);
+    private static Object getEps(BaseClass _this_) {
+        return ((GovHydro2) _this_).getEps();
     }
 
-    public String epsToString() {
-        return eps != null ? eps.toString() : null;
+    private static void setEps(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setEps((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setEps(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Nonlinear gain point 1, PU gv (&lt;i&gt;Gv1&lt;/i&gt;).  Typical value = 0.
+     * Nonlinear gain point 1, PU gv (<i>Gv1</i>).  Typical value = 0.
      */
     private Double gv1; // PU
 
@@ -147,16 +184,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         gv1 = _value_;
     }
 
-    public void setGv1(String _value_) {
-        gv1 = getDoubleFromString(_value_);
+    private static Object getGv1(BaseClass _this_) {
+        return ((GovHydro2) _this_).getGv1();
     }
 
-    public String gv1ToString() {
-        return gv1 != null ? gv1.toString() : null;
+    private static void setGv1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setGv1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setGv1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Nonlinear gain point 2, PU gv (&lt;i&gt;Gv2&lt;/i&gt;).  Typical value = 0.
+     * Nonlinear gain point 2, PU gv (<i>Gv2</i>).  Typical value = 0.
      */
     private Double gv2; // PU
 
@@ -168,16 +211,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         gv2 = _value_;
     }
 
-    public void setGv2(String _value_) {
-        gv2 = getDoubleFromString(_value_);
+    private static Object getGv2(BaseClass _this_) {
+        return ((GovHydro2) _this_).getGv2();
     }
 
-    public String gv2ToString() {
-        return gv2 != null ? gv2.toString() : null;
+    private static void setGv2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setGv2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setGv2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Nonlinear gain point 3, PU gv (&lt;i&gt;Gv3&lt;/i&gt;).  Typical value = 0.
+     * Nonlinear gain point 3, PU gv (<i>Gv3</i>).  Typical value = 0.
      */
     private Double gv3; // PU
 
@@ -189,16 +238,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         gv3 = _value_;
     }
 
-    public void setGv3(String _value_) {
-        gv3 = getDoubleFromString(_value_);
+    private static Object getGv3(BaseClass _this_) {
+        return ((GovHydro2) _this_).getGv3();
     }
 
-    public String gv3ToString() {
-        return gv3 != null ? gv3.toString() : null;
+    private static void setGv3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setGv3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setGv3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Nonlinear gain point 4, PU gv (&lt;i&gt;Gv4&lt;/i&gt;).  Typical value = 0.
+     * Nonlinear gain point 4, PU gv (<i>Gv4</i>).  Typical value = 0.
      */
     private Double gv4; // PU
 
@@ -210,16 +265,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         gv4 = _value_;
     }
 
-    public void setGv4(String _value_) {
-        gv4 = getDoubleFromString(_value_);
+    private static Object getGv4(BaseClass _this_) {
+        return ((GovHydro2) _this_).getGv4();
     }
 
-    public String gv4ToString() {
-        return gv4 != null ? gv4.toString() : null;
+    private static void setGv4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setGv4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setGv4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Nonlinear gain point 5, PU gv (&lt;i&gt;Gv5&lt;/i&gt;).  Typical value = 0.
+     * Nonlinear gain point 5, PU gv (<i>Gv5</i>).  Typical value = 0.
      */
     private Double gv5; // PU
 
@@ -231,16 +292,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         gv5 = _value_;
     }
 
-    public void setGv5(String _value_) {
-        gv5 = getDoubleFromString(_value_);
+    private static Object getGv5(BaseClass _this_) {
+        return ((GovHydro2) _this_).getGv5();
     }
 
-    public String gv5ToString() {
-        return gv5 != null ? gv5.toString() : null;
+    private static void setGv5(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setGv5((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setGv5(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Nonlinear gain point 6, PU gv (&lt;i&gt;Gv6&lt;/i&gt;).  Typical value = 0.
+     * Nonlinear gain point 6, PU gv (<i>Gv6</i>).  Typical value = 0.
      */
     private Double gv6; // PU
 
@@ -252,16 +319,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         gv6 = _value_;
     }
 
-    public void setGv6(String _value_) {
-        gv6 = getDoubleFromString(_value_);
+    private static Object getGv6(BaseClass _this_) {
+        return ((GovHydro2) _this_).getGv6();
     }
 
-    public String gv6ToString() {
-        return gv6 != null ? gv6.toString() : null;
+    private static void setGv6(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setGv6((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setGv6(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Turbine gain (&lt;i&gt;Kturb&lt;/i&gt;).  Typical value = 1.
+     * Turbine gain (<i>Kturb</i>).  Typical value = 1.
      */
     private Double kturb; // PU
 
@@ -273,16 +346,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         kturb = _value_;
     }
 
-    public void setKturb(String _value_) {
-        kturb = getDoubleFromString(_value_);
+    private static Object getKturb(BaseClass _this_) {
+        return ((GovHydro2) _this_).getKturb();
     }
 
-    public String kturbToString() {
-        return kturb != null ? kturb.toString() : null;
+    private static void setKturb(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setKturb((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setKturb(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Base for power values (&lt;i&gt;MWbase&lt;/i&gt;) (&amp;gt; 0).  Unit = MW.
+     * Base for power values (<i>MWbase</i>) (&gt; 0).  Unit = MW.
      */
     private Double mwbase; // ActivePower
 
@@ -294,16 +373,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         mwbase = _value_;
     }
 
-    public void setMwbase(String _value_) {
-        mwbase = getDoubleFromString(_value_);
+    private static Object getMwbase(BaseClass _this_) {
+        return ((GovHydro2) _this_).getMwbase();
     }
 
-    public String mwbaseToString() {
-        return mwbase != null ? mwbase.toString() : null;
+    private static void setMwbase(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setMwbase((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setMwbase(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Nonlinear gain point 1, PU power (&lt;i&gt;Pgv1&lt;/i&gt;).  Typical value = 0.
+     * Nonlinear gain point 1, PU power (<i>Pgv1</i>).  Typical value = 0.
      */
     private Double pgv1; // PU
 
@@ -315,16 +400,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         pgv1 = _value_;
     }
 
-    public void setPgv1(String _value_) {
-        pgv1 = getDoubleFromString(_value_);
+    private static Object getPgv1(BaseClass _this_) {
+        return ((GovHydro2) _this_).getPgv1();
     }
 
-    public String pgv1ToString() {
-        return pgv1 != null ? pgv1.toString() : null;
+    private static void setPgv1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setPgv1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setPgv1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Nonlinear gain point 2, PU power (&lt;i&gt;Pgv2&lt;/i&gt;).  Typical value = 0.
+     * Nonlinear gain point 2, PU power (<i>Pgv2</i>).  Typical value = 0.
      */
     private Double pgv2; // PU
 
@@ -336,16 +427,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         pgv2 = _value_;
     }
 
-    public void setPgv2(String _value_) {
-        pgv2 = getDoubleFromString(_value_);
+    private static Object getPgv2(BaseClass _this_) {
+        return ((GovHydro2) _this_).getPgv2();
     }
 
-    public String pgv2ToString() {
-        return pgv2 != null ? pgv2.toString() : null;
+    private static void setPgv2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setPgv2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setPgv2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Nonlinear gain point 3, PU power (&lt;i&gt;Pgv3&lt;/i&gt;).  Typical value = 0.
+     * Nonlinear gain point 3, PU power (<i>Pgv3</i>).  Typical value = 0.
      */
     private Double pgv3; // PU
 
@@ -357,16 +454,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         pgv3 = _value_;
     }
 
-    public void setPgv3(String _value_) {
-        pgv3 = getDoubleFromString(_value_);
+    private static Object getPgv3(BaseClass _this_) {
+        return ((GovHydro2) _this_).getPgv3();
     }
 
-    public String pgv3ToString() {
-        return pgv3 != null ? pgv3.toString() : null;
+    private static void setPgv3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setPgv3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setPgv3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Nonlinear gain point 4, PU power (P&lt;i&gt;gv4&lt;/i&gt;).  Typical value = 0.
+     * Nonlinear gain point 4, PU power (P<i>gv4</i>).  Typical value = 0.
      */
     private Double pgv4; // PU
 
@@ -378,16 +481,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         pgv4 = _value_;
     }
 
-    public void setPgv4(String _value_) {
-        pgv4 = getDoubleFromString(_value_);
+    private static Object getPgv4(BaseClass _this_) {
+        return ((GovHydro2) _this_).getPgv4();
     }
 
-    public String pgv4ToString() {
-        return pgv4 != null ? pgv4.toString() : null;
+    private static void setPgv4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setPgv4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setPgv4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Nonlinear gain point 5, PU power (&lt;i&gt;Pgv5&lt;/i&gt;).  Typical value = 0.
+     * Nonlinear gain point 5, PU power (<i>Pgv5</i>).  Typical value = 0.
      */
     private Double pgv5; // PU
 
@@ -399,16 +508,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         pgv5 = _value_;
     }
 
-    public void setPgv5(String _value_) {
-        pgv5 = getDoubleFromString(_value_);
+    private static Object getPgv5(BaseClass _this_) {
+        return ((GovHydro2) _this_).getPgv5();
     }
 
-    public String pgv5ToString() {
-        return pgv5 != null ? pgv5.toString() : null;
+    private static void setPgv5(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setPgv5((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setPgv5(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Nonlinear gain point 6, PU power (&lt;i&gt;Pgv6&lt;/i&gt;).  Typical value = 0.
+     * Nonlinear gain point 6, PU power (<i>Pgv6</i>).  Typical value = 0.
      */
     private Double pgv6; // PU
 
@@ -420,16 +535,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         pgv6 = _value_;
     }
 
-    public void setPgv6(String _value_) {
-        pgv6 = getDoubleFromString(_value_);
+    private static Object getPgv6(BaseClass _this_) {
+        return ((GovHydro2) _this_).getPgv6();
     }
 
-    public String pgv6ToString() {
-        return pgv6 != null ? pgv6.toString() : null;
+    private static void setPgv6(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setPgv6((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setPgv6(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum gate opening (&lt;i&gt;Pmax&lt;/i&gt;) (&amp;gt; GovHydro2.pmin).  Typical value = 1.
+     * Maximum gate opening (<i>Pmax</i>) (&gt; GovHydro2.pmin).  Typical value = 1.
      */
     private Double pmax; // PU
 
@@ -441,16 +562,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         pmax = _value_;
     }
 
-    public void setPmax(String _value_) {
-        pmax = getDoubleFromString(_value_);
+    private static Object getPmax(BaseClass _this_) {
+        return ((GovHydro2) _this_).getPmax();
     }
 
-    public String pmaxToString() {
-        return pmax != null ? pmax.toString() : null;
+    private static void setPmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setPmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setPmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum gate opening (&lt;i&gt;Pmin&lt;/i&gt;) (&amp;lt; GovHydro2.pmax).  Typical value = 0.
+     * Minimum gate opening (<i>Pmin</i>) (&lt; GovHydro2.pmax).  Typical value = 0.
      */
     private Double pmin; // PU
 
@@ -462,16 +589,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         pmin = _value_;
     }
 
-    public void setPmin(String _value_) {
-        pmin = getDoubleFromString(_value_);
+    private static Object getPmin(BaseClass _this_) {
+        return ((GovHydro2) _this_).getPmin();
     }
 
-    public String pminToString() {
-        return pmin != null ? pmin.toString() : null;
+    private static void setPmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setPmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setPmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Permanent droop (&lt;i&gt;Rperm&lt;/i&gt;).  Typical value = 0,05.
+     * Permanent droop (<i>Rperm</i>).  Typical value = 0,05.
      */
     private Double rperm; // PU
 
@@ -483,16 +616,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         rperm = _value_;
     }
 
-    public void setRperm(String _value_) {
-        rperm = getDoubleFromString(_value_);
+    private static Object getRperm(BaseClass _this_) {
+        return ((GovHydro2) _this_).getRperm();
     }
 
-    public String rpermToString() {
-        return rperm != null ? rperm.toString() : null;
+    private static void setRperm(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setRperm((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setRperm(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Temporary droop (&lt;i&gt;Rtemp&lt;/i&gt;).  Typical value = 0,5.
+     * Temporary droop (<i>Rtemp</i>).  Typical value = 0,5.
      */
     private Double rtemp; // PU
 
@@ -504,16 +643,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         rtemp = _value_;
     }
 
-    public void setRtemp(String _value_) {
-        rtemp = getDoubleFromString(_value_);
+    private static Object getRtemp(BaseClass _this_) {
+        return ((GovHydro2) _this_).getRtemp();
     }
 
-    public String rtempToString() {
-        return rtemp != null ? rtemp.toString() : null;
+    private static void setRtemp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setRtemp((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setRtemp(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Gate servo time constant (&lt;i&gt;Tg&lt;/i&gt;) (&amp;gt; 0).  Typical value = 0,5.
+     * Gate servo time constant (<i>Tg</i>) (&gt; 0).  Typical value = 0,5.
      */
     private Double tg; // Seconds
 
@@ -525,16 +670,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         tg = _value_;
     }
 
-    public void setTg(String _value_) {
-        tg = getDoubleFromString(_value_);
+    private static Object getTg(BaseClass _this_) {
+        return ((GovHydro2) _this_).getTg();
     }
 
-    public String tgToString() {
-        return tg != null ? tg.toString() : null;
+    private static void setTg(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setTg((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setTg(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Pilot servo valve time constant (&lt;i&gt;Tp&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,03.
+     * Pilot servo valve time constant (<i>Tp</i>) (&gt;= 0).  Typical value = 0,03.
      */
     private Double tp; // Seconds
 
@@ -546,16 +697,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         tp = _value_;
     }
 
-    public void setTp(String _value_) {
-        tp = getDoubleFromString(_value_);
+    private static Object getTp(BaseClass _this_) {
+        return ((GovHydro2) _this_).getTp();
     }
 
-    public String tpToString() {
-        return tp != null ? tp.toString() : null;
+    private static void setTp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setTp((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setTp(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Dashpot time constant (&lt;i&gt;Tr&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 12.
+     * Dashpot time constant (<i>Tr</i>) (&gt;= 0).  Typical value = 12.
      */
     private Double tr; // Seconds
 
@@ -567,16 +724,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         tr = _value_;
     }
 
-    public void setTr(String _value_) {
-        tr = getDoubleFromString(_value_);
+    private static Object getTr(BaseClass _this_) {
+        return ((GovHydro2) _this_).getTr();
     }
 
-    public String trToString() {
-        return tr != null ? tr.toString() : null;
+    private static void setTr(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setTr((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setTr(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Water inertia time constant (&lt;i&gt;Tw&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 2.
+     * Water inertia time constant (<i>Tw</i>) (&gt;= 0).  Typical value = 2.
      */
     private Double tw; // Seconds
 
@@ -588,16 +751,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         tw = _value_;
     }
 
-    public void setTw(String _value_) {
-        tw = getDoubleFromString(_value_);
+    private static Object getTw(BaseClass _this_) {
+        return ((GovHydro2) _this_).getTw();
     }
 
-    public String twToString() {
-        return tw != null ? tw.toString() : null;
+    private static void setTw(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovHydro2) _this_).setTw((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setTw(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum gate closing velocity (&lt;i&gt;Uc&lt;/i&gt;) (&amp;lt; 0).  Unit = PU / s.   Typical value = -0,1.
+     * Maximum gate closing velocity (<i>Uc</i>) (&lt; 0).  Unit = PU / s.   Typical value = -0,1.
      */
     private Float uc; // Float
 
@@ -609,16 +778,22 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         uc = _value_;
     }
 
-    public void setUc(String _value_) {
-        uc = getFloatFromString(_value_);
+    private static Object getUc(BaseClass _this_) {
+        return ((GovHydro2) _this_).getUc();
     }
 
-    public String ucToString() {
-        return uc != null ? uc.toString() : null;
+    private static void setUc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((GovHydro2) _this_).setUc((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setUc(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Maximum gate opening velocity (&lt;i&gt;Uo&lt;/i&gt;).  Unit = PU / s.  Typical value = 0,1.
+     * Maximum gate opening velocity (<i>Uo</i>).  Unit = PU / s.  Typical value = 0,1.
      */
     private Float uo; // Float
 
@@ -630,12 +805,18 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         uo = _value_;
     }
 
-    public void setUo(String _value_) {
-        uo = getFloatFromString(_value_);
+    private static Object getUo(BaseClass _this_) {
+        return ((GovHydro2) _this_).getUo();
     }
 
-    public String uoToString() {
-        return uo != null ? uo.toString() : null;
+    private static void setUo(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((GovHydro2) _this_).setUo((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovHydro2) _this_).setUo(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -672,64 +853,35 @@ public class GovHydro2 extends TurbineGovernorDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("GovHydro2", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "GovHydro2", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("GovHydro2", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("GovHydro2", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "GovHydro2", attrName, value));
         }
     }
 
@@ -853,186 +1005,151 @@ public class GovHydro2 extends TurbineGovernorDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("aturb", new AttrDetails("GovHydro2.aturb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("aturb", new AttrDetails("GovHydro2.aturb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getAturb, GovHydro2::setAturb));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("bturb", new AttrDetails("GovHydro2.bturb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("bturb", new AttrDetails("GovHydro2.bturb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getBturb, GovHydro2::setBturb));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("db1", new AttrDetails("GovHydro2.db1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("db1", new AttrDetails("GovHydro2.db1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getDb1, GovHydro2::setDb1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("db2", new AttrDetails("GovHydro2.db2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("db2", new AttrDetails("GovHydro2.db2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getDb2, GovHydro2::setDb2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eps", new AttrDetails("GovHydro2.eps", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("eps", new AttrDetails("GovHydro2.eps", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getEps, GovHydro2::setEps));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gv1", new AttrDetails("GovHydro2.gv1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("gv1", new AttrDetails("GovHydro2.gv1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getGv1, GovHydro2::setGv1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gv2", new AttrDetails("GovHydro2.gv2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("gv2", new AttrDetails("GovHydro2.gv2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getGv2, GovHydro2::setGv2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gv3", new AttrDetails("GovHydro2.gv3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("gv3", new AttrDetails("GovHydro2.gv3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getGv3, GovHydro2::setGv3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gv4", new AttrDetails("GovHydro2.gv4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("gv4", new AttrDetails("GovHydro2.gv4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getGv4, GovHydro2::setGv4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gv5", new AttrDetails("GovHydro2.gv5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("gv5", new AttrDetails("GovHydro2.gv5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getGv5, GovHydro2::setGv5));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("gv6", new AttrDetails("GovHydro2.gv6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("gv6", new AttrDetails("GovHydro2.gv6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getGv6, GovHydro2::setGv6));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kturb", new AttrDetails("GovHydro2.kturb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kturb", new AttrDetails("GovHydro2.kturb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getKturb, GovHydro2::setKturb));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mwbase", new AttrDetails("GovHydro2.mwbase", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("mwbase", new AttrDetails("GovHydro2.mwbase", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getMwbase, GovHydro2::setMwbase));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pgv1", new AttrDetails("GovHydro2.pgv1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pgv1", new AttrDetails("GovHydro2.pgv1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getPgv1, GovHydro2::setPgv1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pgv2", new AttrDetails("GovHydro2.pgv2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pgv2", new AttrDetails("GovHydro2.pgv2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getPgv2, GovHydro2::setPgv2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pgv3", new AttrDetails("GovHydro2.pgv3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pgv3", new AttrDetails("GovHydro2.pgv3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getPgv3, GovHydro2::setPgv3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pgv4", new AttrDetails("GovHydro2.pgv4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pgv4", new AttrDetails("GovHydro2.pgv4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getPgv4, GovHydro2::setPgv4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pgv5", new AttrDetails("GovHydro2.pgv5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pgv5", new AttrDetails("GovHydro2.pgv5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getPgv5, GovHydro2::setPgv5));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pgv6", new AttrDetails("GovHydro2.pgv6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pgv6", new AttrDetails("GovHydro2.pgv6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getPgv6, GovHydro2::setPgv6));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmax", new AttrDetails("GovHydro2.pmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pmax", new AttrDetails("GovHydro2.pmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getPmax, GovHydro2::setPmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pmin", new AttrDetails("GovHydro2.pmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pmin", new AttrDetails("GovHydro2.pmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getPmin, GovHydro2::setPmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rperm", new AttrDetails("GovHydro2.rperm", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rperm", new AttrDetails("GovHydro2.rperm", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getRperm, GovHydro2::setRperm));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rtemp", new AttrDetails("GovHydro2.rtemp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rtemp", new AttrDetails("GovHydro2.rtemp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getRtemp, GovHydro2::setRtemp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tg", new AttrDetails("GovHydro2.tg", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tg", new AttrDetails("GovHydro2.tg", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getTg, GovHydro2::setTg));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tp", new AttrDetails("GovHydro2.tp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tp", new AttrDetails("GovHydro2.tp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getTp, GovHydro2::setTp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tr", new AttrDetails("GovHydro2.tr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tr", new AttrDetails("GovHydro2.tr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getTr, GovHydro2::setTr));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tw", new AttrDetails("GovHydro2.tw", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tw", new AttrDetails("GovHydro2.tw", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getTw, GovHydro2::setTw));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("uc", new AttrDetails("GovHydro2.uc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("uc", new AttrDetails("GovHydro2.uc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getUc, GovHydro2::setUc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("uo", new AttrDetails("GovHydro2.uo", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("uo", new AttrDetails("GovHydro2.uo", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovHydro2::getUo, GovHydro2::setUo));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovHydro2().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovHydro2(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("aturb", new GetterSetter(this::aturbToString, null, this::setAturb));
-        map.put("bturb", new GetterSetter(this::bturbToString, null, this::setBturb));
-        map.put("db1", new GetterSetter(this::db1ToString, null, this::setDb1));
-        map.put("db2", new GetterSetter(this::db2ToString, null, this::setDb2));
-        map.put("eps", new GetterSetter(this::epsToString, null, this::setEps));
-        map.put("gv1", new GetterSetter(this::gv1ToString, null, this::setGv1));
-        map.put("gv2", new GetterSetter(this::gv2ToString, null, this::setGv2));
-        map.put("gv3", new GetterSetter(this::gv3ToString, null, this::setGv3));
-        map.put("gv4", new GetterSetter(this::gv4ToString, null, this::setGv4));
-        map.put("gv5", new GetterSetter(this::gv5ToString, null, this::setGv5));
-        map.put("gv6", new GetterSetter(this::gv6ToString, null, this::setGv6));
-        map.put("kturb", new GetterSetter(this::kturbToString, null, this::setKturb));
-        map.put("mwbase", new GetterSetter(this::mwbaseToString, null, this::setMwbase));
-        map.put("pgv1", new GetterSetter(this::pgv1ToString, null, this::setPgv1));
-        map.put("pgv2", new GetterSetter(this::pgv2ToString, null, this::setPgv2));
-        map.put("pgv3", new GetterSetter(this::pgv3ToString, null, this::setPgv3));
-        map.put("pgv4", new GetterSetter(this::pgv4ToString, null, this::setPgv4));
-        map.put("pgv5", new GetterSetter(this::pgv5ToString, null, this::setPgv5));
-        map.put("pgv6", new GetterSetter(this::pgv6ToString, null, this::setPgv6));
-        map.put("pmax", new GetterSetter(this::pmaxToString, null, this::setPmax));
-        map.put("pmin", new GetterSetter(this::pminToString, null, this::setPmin));
-        map.put("rperm", new GetterSetter(this::rpermToString, null, this::setRperm));
-        map.put("rtemp", new GetterSetter(this::rtempToString, null, this::setRtemp));
-        map.put("tg", new GetterSetter(this::tgToString, null, this::setTg));
-        map.put("tp", new GetterSetter(this::tpToString, null, this::setTp));
-        map.put("tr", new GetterSetter(this::trToString, null, this::setTr));
-        map.put("tw", new GetterSetter(this::twToString, null, this::setTw));
-        map.put("uc", new GetterSetter(this::ucToString, null, this::setUc));
-        map.put("uo", new GetterSetter(this::uoToString, null, this::setUo));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

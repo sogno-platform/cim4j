@@ -23,10 +23,17 @@ public class Command extends Control {
     private static final Logging LOG = Logging.getLogger(Command.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public Command() {
-        setCimType("Command");
+    public Command(String rdfid) {
+        super("Command", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected Command(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class Command extends Control {
         return DiscreteValue;
     }
 
-    public void setDiscreteValue(BaseClass _object_) {
-        if (!(_object_ instanceof DiscreteValue)) {
-            throw new IllegalArgumentException("Object is not DiscreteValue");
-        }
+    public void setDiscreteValue(DiscreteValue _object_) {
         if (DiscreteValue != _object_) {
-            DiscreteValue = (DiscreteValue) _object_;
+            DiscreteValue = _object_;
             DiscreteValue.setCommand(this);
         }
     }
 
-    public String DiscreteValueToString() {
-        return DiscreteValue != null ? DiscreteValue.getRdfid() : null;
+    private static Object getDiscreteValue(BaseClass _this_) {
+        return ((Command) _this_).getDiscreteValue();
+    }
+
+    private static void setDiscreteValue(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof DiscreteValue) {
+            ((Command) _this_).setDiscreteValue((DiscreteValue) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not DiscreteValue");
+        }
     }
 
     /**
@@ -61,18 +73,23 @@ public class Command extends Control {
         return ValueAliasSet;
     }
 
-    public void setValueAliasSet(BaseClass _object_) {
-        if (!(_object_ instanceof ValueAliasSet)) {
-            throw new IllegalArgumentException("Object is not ValueAliasSet");
-        }
+    public void setValueAliasSet(ValueAliasSet _object_) {
         if (ValueAliasSet != _object_) {
-            ValueAliasSet = (ValueAliasSet) _object_;
+            ValueAliasSet = _object_;
             ValueAliasSet.setCommands(this);
         }
     }
 
-    public String ValueAliasSetToString() {
-        return ValueAliasSet != null ? ValueAliasSet.getRdfid() : null;
+    private static Object getValueAliasSet(BaseClass _this_) {
+        return ((Command) _this_).getValueAliasSet();
+    }
+
+    private static void setValueAliasSet(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ValueAliasSet) {
+            ((Command) _this_).setValueAliasSet((ValueAliasSet) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ValueAliasSet");
+        }
     }
 
     /**
@@ -88,12 +105,18 @@ public class Command extends Control {
         normalValue = _value_;
     }
 
-    public void setNormalValue(String _value_) {
-        normalValue = getIntegerFromString(_value_);
+    private static Object getNormalValue(BaseClass _this_) {
+        return ((Command) _this_).getNormalValue();
     }
 
-    public String normalValueToString() {
-        return normalValue != null ? normalValue.toString() : null;
+    private static void setNormalValue(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((Command) _this_).setNormalValue((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((Command) _this_).setNormalValue(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -109,12 +132,18 @@ public class Command extends Control {
         value = _value_;
     }
 
-    public void setValue(String _value_) {
-        value = getIntegerFromString(_value_);
+    private static Object getValue(BaseClass _this_) {
+        return ((Command) _this_).getValue();
     }
 
-    public String valueToString() {
-        return value != null ? value.toString() : null;
+    private static void setValue(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((Command) _this_).setValue((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((Command) _this_).setValue(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -151,64 +180,35 @@ public class Command extends Control {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("Command", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "Command", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("Command", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("Command", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "Command", attrName, value));
         }
     }
 
@@ -332,36 +332,26 @@ public class Command extends Control {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("DiscreteValue", new AttrDetails("Command.DiscreteValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("DiscreteValue", new AttrDetails("Command.DiscreteValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, Command::getDiscreteValue, Command::setDiscreteValue));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ValueAliasSet", new AttrDetails("Command.ValueAliasSet", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("ValueAliasSet", new AttrDetails("Command.ValueAliasSet", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, Command::getValueAliasSet, Command::setValueAliasSet));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("normalValue", new AttrDetails("Command.normalValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("normalValue", new AttrDetails("Command.normalValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, Command::getNormalValue, Command::setNormalValue));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("value", new AttrDetails("Command.value", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("value", new AttrDetails("Command.value", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, Command::getValue, Command::setValue));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Command().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Command(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("DiscreteValue", new GetterSetter(this::DiscreteValueToString, this::setDiscreteValue, null));
-        map.put("ValueAliasSet", new GetterSetter(this::ValueAliasSetToString, this::setValueAliasSet, null));
-        map.put("normalValue", new GetterSetter(this::normalValueToString, null, this::setNormalValue));
-        map.put("value", new GetterSetter(this::valueToString, null, this::setValue));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

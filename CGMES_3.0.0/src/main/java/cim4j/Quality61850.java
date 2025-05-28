@@ -23,10 +23,17 @@ public class Quality61850 extends BaseClass {
     private static final Logging LOG = Logging.getLogger(Quality61850.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public Quality61850() {
-        setCimType("Quality61850");
+    public Quality61850(String rdfid) {
+        super("Quality61850", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected Quality61850(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class Quality61850 extends BaseClass {
         badReference = _value_;
     }
 
-    public void setBadReference(String _value_) {
-        badReference = getBooleanFromString(_value_);
+    private static Object getBadReference(BaseClass _this_) {
+        return ((Quality61850) _this_).getBadReference();
     }
 
-    public String badReferenceToString() {
-        return badReference != null ? badReference.toString() : null;
+    private static void setBadReference(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Quality61850) _this_).setBadReference((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Quality61850) _this_).setBadReference(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class Quality61850 extends BaseClass {
         estimatorReplaced = _value_;
     }
 
-    public void setEstimatorReplaced(String _value_) {
-        estimatorReplaced = getBooleanFromString(_value_);
+    private static Object getEstimatorReplaced(BaseClass _this_) {
+        return ((Quality61850) _this_).getEstimatorReplaced();
     }
 
-    public String estimatorReplacedToString() {
-        return estimatorReplaced != null ? estimatorReplaced.toString() : null;
+    private static void setEstimatorReplaced(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Quality61850) _this_).setEstimatorReplaced((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Quality61850) _this_).setEstimatorReplaced(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class Quality61850 extends BaseClass {
         failure = _value_;
     }
 
-    public void setFailure(String _value_) {
-        failure = getBooleanFromString(_value_);
+    private static Object getFailure(BaseClass _this_) {
+        return ((Quality61850) _this_).getFailure();
     }
 
-    public String failureToString() {
-        return failure != null ? failure.toString() : null;
+    private static void setFailure(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Quality61850) _this_).setFailure((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Quality61850) _this_).setFailure(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class Quality61850 extends BaseClass {
         oldData = _value_;
     }
 
-    public void setOldData(String _value_) {
-        oldData = getBooleanFromString(_value_);
+    private static Object getOldData(BaseClass _this_) {
+        return ((Quality61850) _this_).getOldData();
     }
 
-    public String oldDataToString() {
-        return oldData != null ? oldData.toString() : null;
+    private static void setOldData(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Quality61850) _this_).setOldData((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Quality61850) _this_).setOldData(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class Quality61850 extends BaseClass {
         operatorBlocked = _value_;
     }
 
-    public void setOperatorBlocked(String _value_) {
-        operatorBlocked = getBooleanFromString(_value_);
+    private static Object getOperatorBlocked(BaseClass _this_) {
+        return ((Quality61850) _this_).getOperatorBlocked();
     }
 
-    public String operatorBlockedToString() {
-        return operatorBlocked != null ? operatorBlocked.toString() : null;
+    private static void setOperatorBlocked(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Quality61850) _this_).setOperatorBlocked((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Quality61850) _this_).setOperatorBlocked(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -147,12 +184,18 @@ public class Quality61850 extends BaseClass {
         oscillatory = _value_;
     }
 
-    public void setOscillatory(String _value_) {
-        oscillatory = getBooleanFromString(_value_);
+    private static Object getOscillatory(BaseClass _this_) {
+        return ((Quality61850) _this_).getOscillatory();
     }
 
-    public String oscillatoryToString() {
-        return oscillatory != null ? oscillatory.toString() : null;
+    private static void setOscillatory(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Quality61850) _this_).setOscillatory((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Quality61850) _this_).setOscillatory(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -168,12 +211,18 @@ public class Quality61850 extends BaseClass {
         outOfRange = _value_;
     }
 
-    public void setOutOfRange(String _value_) {
-        outOfRange = getBooleanFromString(_value_);
+    private static Object getOutOfRange(BaseClass _this_) {
+        return ((Quality61850) _this_).getOutOfRange();
     }
 
-    public String outOfRangeToString() {
-        return outOfRange != null ? outOfRange.toString() : null;
+    private static void setOutOfRange(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Quality61850) _this_).setOutOfRange((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Quality61850) _this_).setOutOfRange(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -189,12 +238,18 @@ public class Quality61850 extends BaseClass {
         overFlow = _value_;
     }
 
-    public void setOverFlow(String _value_) {
-        overFlow = getBooleanFromString(_value_);
+    private static Object getOverFlow(BaseClass _this_) {
+        return ((Quality61850) _this_).getOverFlow();
     }
 
-    public String overFlowToString() {
-        return overFlow != null ? overFlow.toString() : null;
+    private static void setOverFlow(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Quality61850) _this_).setOverFlow((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Quality61850) _this_).setOverFlow(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -210,8 +265,16 @@ public class Quality61850 extends BaseClass {
         source = _value_;
     }
 
-    public String sourceToString() {
-        return source;
+    private static Object getSource(BaseClass _this_) {
+        return ((Quality61850) _this_).getSource();
+    }
+
+    private static void setSource(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((Quality61850) _this_).setSource((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -227,12 +290,18 @@ public class Quality61850 extends BaseClass {
         suspect = _value_;
     }
 
-    public void setSuspect(String _value_) {
-        suspect = getBooleanFromString(_value_);
+    private static Object getSuspect(BaseClass _this_) {
+        return ((Quality61850) _this_).getSuspect();
     }
 
-    public String suspectToString() {
-        return suspect != null ? suspect.toString() : null;
+    private static void setSuspect(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Quality61850) _this_).setSuspect((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Quality61850) _this_).setSuspect(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -248,12 +317,18 @@ public class Quality61850 extends BaseClass {
         test = _value_;
     }
 
-    public void setTest(String _value_) {
-        test = getBooleanFromString(_value_);
+    private static Object getTest(BaseClass _this_) {
+        return ((Quality61850) _this_).getTest();
     }
 
-    public String testToString() {
-        return test != null ? test.toString() : null;
+    private static void setTest(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Quality61850) _this_).setTest((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Quality61850) _this_).setTest(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -269,8 +344,16 @@ public class Quality61850 extends BaseClass {
         validity = _value_;
     }
 
-    public String validityToString() {
-        return validity;
+    private static Object getValidity(BaseClass _this_) {
+        return ((Quality61850) _this_).getValidity();
+    }
+
+    private static void setValidity(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((Quality61850) _this_).setValidity((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -307,64 +390,35 @@ public class Quality61850 extends BaseClass {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("Quality61850", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "Quality61850", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("Quality61850", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("Quality61850", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "Quality61850", attrName, value));
         }
     }
 
@@ -488,84 +542,66 @@ public class Quality61850 extends BaseClass {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("badReference", new AttrDetails("Quality61850.badReference", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("badReference", new AttrDetails("Quality61850.badReference", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Quality61850::getBadReference, Quality61850::setBadReference));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("estimatorReplaced", new AttrDetails("Quality61850.estimatorReplaced", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("estimatorReplaced", new AttrDetails("Quality61850.estimatorReplaced", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Quality61850::getEstimatorReplaced, Quality61850::setEstimatorReplaced));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("failure", new AttrDetails("Quality61850.failure", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("failure", new AttrDetails("Quality61850.failure", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Quality61850::getFailure, Quality61850::setFailure));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("oldData", new AttrDetails("Quality61850.oldData", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("oldData", new AttrDetails("Quality61850.oldData", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Quality61850::getOldData, Quality61850::setOldData));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("operatorBlocked", new AttrDetails("Quality61850.operatorBlocked", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("operatorBlocked", new AttrDetails("Quality61850.operatorBlocked", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Quality61850::getOperatorBlocked, Quality61850::setOperatorBlocked));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("oscillatory", new AttrDetails("Quality61850.oscillatory", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("oscillatory", new AttrDetails("Quality61850.oscillatory", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Quality61850::getOscillatory, Quality61850::setOscillatory));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("outOfRange", new AttrDetails("Quality61850.outOfRange", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("outOfRange", new AttrDetails("Quality61850.outOfRange", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Quality61850::getOutOfRange, Quality61850::setOutOfRange));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("overFlow", new AttrDetails("Quality61850.overFlow", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("overFlow", new AttrDetails("Quality61850.overFlow", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Quality61850::getOverFlow, Quality61850::setOverFlow));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("source", new AttrDetails("Quality61850.source", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("source", new AttrDetails("Quality61850.source", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, Quality61850::getSource, Quality61850::setSource));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("suspect", new AttrDetails("Quality61850.suspect", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("suspect", new AttrDetails("Quality61850.suspect", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Quality61850::getSuspect, Quality61850::setSuspect));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("test", new AttrDetails("Quality61850.test", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("test", new AttrDetails("Quality61850.test", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Quality61850::getTest, Quality61850::setTest));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("validity", new AttrDetails("Quality61850.validity", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("validity", new AttrDetails("Quality61850.validity", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, Quality61850::getValidity, Quality61850::setValidity));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Quality61850().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Quality61850(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("badReference", new GetterSetter(this::badReferenceToString, null, this::setBadReference));
-        map.put("estimatorReplaced", new GetterSetter(this::estimatorReplacedToString, null, this::setEstimatorReplaced));
-        map.put("failure", new GetterSetter(this::failureToString, null, this::setFailure));
-        map.put("oldData", new GetterSetter(this::oldDataToString, null, this::setOldData));
-        map.put("operatorBlocked", new GetterSetter(this::operatorBlockedToString, null, this::setOperatorBlocked));
-        map.put("oscillatory", new GetterSetter(this::oscillatoryToString, null, this::setOscillatory));
-        map.put("outOfRange", new GetterSetter(this::outOfRangeToString, null, this::setOutOfRange));
-        map.put("overFlow", new GetterSetter(this::overFlowToString, null, this::setOverFlow));
-        map.put("source", new GetterSetter(this::sourceToString, null, this::setSource));
-        map.put("suspect", new GetterSetter(this::suspectToString, null, this::setSuspect));
-        map.put("test", new GetterSetter(this::testToString, null, this::setTest));
-        map.put("validity", new GetterSetter(this::validityToString, null, this::setValidity));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

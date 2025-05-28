@@ -23,10 +23,17 @@ public class ValueAliasSet extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(ValueAliasSet.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ValueAliasSet() {
-        setCimType("ValueAliasSet");
+    public ValueAliasSet(String rdfid) {
+        super("ValueAliasSet", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ValueAliasSet(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class ValueAliasSet extends IdentifiedObject {
         return Commands;
     }
 
-    public void setCommands(BaseClass _object_) {
-        if (!(_object_ instanceof Command)) {
-            throw new IllegalArgumentException("Object is not Command");
-        }
+    public void setCommands(Command _object_) {
         if (!Commands.contains(_object_)) {
-            Commands.add((Command) _object_);
-            ((Command) _object_).setValueAliasSet(this);
+            Commands.add(_object_);
+            _object_.setValueAliasSet(this);
         }
     }
 
-    public String CommandsToString() {
-        return getStringFromSet(Commands);
+    private static Object getCommands(BaseClass _this_) {
+        return ((ValueAliasSet) _this_).getCommands();
+    }
+
+    private static void setCommands(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Command) {
+            ((ValueAliasSet) _this_).setCommands((Command) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Command");
+        }
     }
 
     /**
@@ -65,18 +77,23 @@ public class ValueAliasSet extends IdentifiedObject {
         return Discretes;
     }
 
-    public void setDiscretes(BaseClass _object_) {
-        if (!(_object_ instanceof Discrete)) {
-            throw new IllegalArgumentException("Object is not Discrete");
-        }
+    public void setDiscretes(Discrete _object_) {
         if (!Discretes.contains(_object_)) {
-            Discretes.add((Discrete) _object_);
-            ((Discrete) _object_).setValueAliasSet(this);
+            Discretes.add(_object_);
+            _object_.setValueAliasSet(this);
         }
     }
 
-    public String DiscretesToString() {
-        return getStringFromSet(Discretes);
+    private static Object getDiscretes(BaseClass _this_) {
+        return ((ValueAliasSet) _this_).getDiscretes();
+    }
+
+    private static void setDiscretes(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Discrete) {
+            ((ValueAliasSet) _this_).setDiscretes((Discrete) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Discrete");
+        }
     }
 
     /**
@@ -90,18 +107,23 @@ public class ValueAliasSet extends IdentifiedObject {
         return RaiseLowerCommands;
     }
 
-    public void setRaiseLowerCommands(BaseClass _object_) {
-        if (!(_object_ instanceof RaiseLowerCommand)) {
-            throw new IllegalArgumentException("Object is not RaiseLowerCommand");
-        }
+    public void setRaiseLowerCommands(RaiseLowerCommand _object_) {
         if (!RaiseLowerCommands.contains(_object_)) {
-            RaiseLowerCommands.add((RaiseLowerCommand) _object_);
-            ((RaiseLowerCommand) _object_).setValueAliasSet(this);
+            RaiseLowerCommands.add(_object_);
+            _object_.setValueAliasSet(this);
         }
     }
 
-    public String RaiseLowerCommandsToString() {
-        return getStringFromSet(RaiseLowerCommands);
+    private static Object getRaiseLowerCommands(BaseClass _this_) {
+        return ((ValueAliasSet) _this_).getRaiseLowerCommands();
+    }
+
+    private static void setRaiseLowerCommands(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof RaiseLowerCommand) {
+            ((ValueAliasSet) _this_).setRaiseLowerCommands((RaiseLowerCommand) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not RaiseLowerCommand");
+        }
     }
 
     /**
@@ -115,18 +137,23 @@ public class ValueAliasSet extends IdentifiedObject {
         return Values;
     }
 
-    public void setValues(BaseClass _object_) {
-        if (!(_object_ instanceof ValueToAlias)) {
-            throw new IllegalArgumentException("Object is not ValueToAlias");
-        }
+    public void setValues(ValueToAlias _object_) {
         if (!Values.contains(_object_)) {
-            Values.add((ValueToAlias) _object_);
-            ((ValueToAlias) _object_).setValueAliasSet(this);
+            Values.add(_object_);
+            _object_.setValueAliasSet(this);
         }
     }
 
-    public String ValuesToString() {
-        return getStringFromSet(Values);
+    private static Object getValues(BaseClass _this_) {
+        return ((ValueAliasSet) _this_).getValues();
+    }
+
+    private static void setValues(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ValueToAlias) {
+            ((ValueAliasSet) _this_).setValues((ValueToAlias) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ValueToAlias");
+        }
     }
 
     /**
@@ -163,64 +190,35 @@ public class ValueAliasSet extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ValueAliasSet", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ValueAliasSet", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ValueAliasSet", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ValueAliasSet", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ValueAliasSet", attrName, value));
         }
     }
 
@@ -344,36 +342,26 @@ public class ValueAliasSet extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Commands", new AttrDetails("ValueAliasSet.Commands", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("Commands", new AttrDetails("ValueAliasSet.Commands", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ValueAliasSet::getCommands, ValueAliasSet::setCommands));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Discretes", new AttrDetails("ValueAliasSet.Discretes", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("Discretes", new AttrDetails("ValueAliasSet.Discretes", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ValueAliasSet::getDiscretes, ValueAliasSet::setDiscretes));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("RaiseLowerCommands", new AttrDetails("ValueAliasSet.RaiseLowerCommands", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("RaiseLowerCommands", new AttrDetails("ValueAliasSet.RaiseLowerCommands", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ValueAliasSet::getRaiseLowerCommands, ValueAliasSet::setRaiseLowerCommands));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Values", new AttrDetails("ValueAliasSet.Values", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("Values", new AttrDetails("ValueAliasSet.Values", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ValueAliasSet::getValues, ValueAliasSet::setValues));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ValueAliasSet().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ValueAliasSet(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("Commands", new GetterSetter(this::CommandsToString, this::setCommands, null));
-        map.put("Discretes", new GetterSetter(this::DiscretesToString, this::setDiscretes, null));
-        map.put("RaiseLowerCommands", new GetterSetter(this::RaiseLowerCommandsToString, this::setRaiseLowerCommands, null));
-        map.put("Values", new GetterSetter(this::ValuesToString, this::setValues, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,10 +23,17 @@ public class ReactiveCapabilityCurve extends Curve {
     private static final Logging LOG = Logging.getLogger(ReactiveCapabilityCurve.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ReactiveCapabilityCurve() {
-        setCimType("ReactiveCapabilityCurve");
+    public ReactiveCapabilityCurve(String rdfid) {
+        super("ReactiveCapabilityCurve", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ReactiveCapabilityCurve(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class ReactiveCapabilityCurve extends Curve {
         return EquivalentInjection;
     }
 
-    public void setEquivalentInjection(BaseClass _object_) {
-        if (!(_object_ instanceof EquivalentInjection)) {
-            throw new IllegalArgumentException("Object is not EquivalentInjection");
-        }
+    public void setEquivalentInjection(EquivalentInjection _object_) {
         if (!EquivalentInjection.contains(_object_)) {
-            EquivalentInjection.add((EquivalentInjection) _object_);
-            ((EquivalentInjection) _object_).setReactiveCapabilityCurve(this);
+            EquivalentInjection.add(_object_);
+            _object_.setReactiveCapabilityCurve(this);
         }
     }
 
-    public String EquivalentInjectionToString() {
-        return getStringFromSet(EquivalentInjection);
+    private static Object getEquivalentInjection(BaseClass _this_) {
+        return ((ReactiveCapabilityCurve) _this_).getEquivalentInjection();
+    }
+
+    private static void setEquivalentInjection(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof EquivalentInjection) {
+            ((ReactiveCapabilityCurve) _this_).setEquivalentInjection((EquivalentInjection) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not EquivalentInjection");
+        }
     }
 
     /**
@@ -65,18 +77,23 @@ public class ReactiveCapabilityCurve extends Curve {
         return InitiallyUsedBySynchronousMachines;
     }
 
-    public void setInitiallyUsedBySynchronousMachines(BaseClass _object_) {
-        if (!(_object_ instanceof SynchronousMachine)) {
-            throw new IllegalArgumentException("Object is not SynchronousMachine");
-        }
+    public void setInitiallyUsedBySynchronousMachines(SynchronousMachine _object_) {
         if (!InitiallyUsedBySynchronousMachines.contains(_object_)) {
-            InitiallyUsedBySynchronousMachines.add((SynchronousMachine) _object_);
-            ((SynchronousMachine) _object_).setInitialReactiveCapabilityCurve(this);
+            InitiallyUsedBySynchronousMachines.add(_object_);
+            _object_.setInitialReactiveCapabilityCurve(this);
         }
     }
 
-    public String InitiallyUsedBySynchronousMachinesToString() {
-        return getStringFromSet(InitiallyUsedBySynchronousMachines);
+    private static Object getInitiallyUsedBySynchronousMachines(BaseClass _this_) {
+        return ((ReactiveCapabilityCurve) _this_).getInitiallyUsedBySynchronousMachines();
+    }
+
+    private static void setInitiallyUsedBySynchronousMachines(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof SynchronousMachine) {
+            ((ReactiveCapabilityCurve) _this_).setInitiallyUsedBySynchronousMachines((SynchronousMachine) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not SynchronousMachine");
+        }
     }
 
     /**
@@ -113,64 +130,35 @@ public class ReactiveCapabilityCurve extends Curve {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ReactiveCapabilityCurve", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ReactiveCapabilityCurve", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ReactiveCapabilityCurve", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ReactiveCapabilityCurve", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ReactiveCapabilityCurve", attrName, value));
         }
     }
 
@@ -294,24 +282,16 @@ public class ReactiveCapabilityCurve extends Curve {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("EquivalentInjection", new AttrDetails("ReactiveCapabilityCurve.EquivalentInjection", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("EquivalentInjection", new AttrDetails("ReactiveCapabilityCurve.EquivalentInjection", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ReactiveCapabilityCurve::getEquivalentInjection, ReactiveCapabilityCurve::setEquivalentInjection));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("InitiallyUsedBySynchronousMachines", new AttrDetails("ReactiveCapabilityCurve.InitiallyUsedBySynchronousMachines", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("InitiallyUsedBySynchronousMachines", new AttrDetails("ReactiveCapabilityCurve.InitiallyUsedBySynchronousMachines", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ReactiveCapabilityCurve::getInitiallyUsedBySynchronousMachines, ReactiveCapabilityCurve::setInitiallyUsedBySynchronousMachines));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ReactiveCapabilityCurve().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ReactiveCapabilityCurve(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("EquivalentInjection", new GetterSetter(this::EquivalentInjectionToString, this::setEquivalentInjection, null));
-        map.put("InitiallyUsedBySynchronousMachines", new GetterSetter(this::InitiallyUsedBySynchronousMachinesToString, this::setInitiallyUsedBySynchronousMachines, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

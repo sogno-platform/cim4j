@@ -23,10 +23,17 @@ public class AccumulatorLimitSet extends LimitSet {
     private static final Logging LOG = Logging.getLogger(AccumulatorLimitSet.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public AccumulatorLimitSet() {
-        setCimType("AccumulatorLimitSet");
+    public AccumulatorLimitSet(String rdfid) {
+        super("AccumulatorLimitSet", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected AccumulatorLimitSet(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class AccumulatorLimitSet extends LimitSet {
         return Limits;
     }
 
-    public void setLimits(BaseClass _object_) {
-        if (!(_object_ instanceof AccumulatorLimit)) {
-            throw new IllegalArgumentException("Object is not AccumulatorLimit");
-        }
+    public void setLimits(AccumulatorLimit _object_) {
         if (!Limits.contains(_object_)) {
-            Limits.add((AccumulatorLimit) _object_);
-            ((AccumulatorLimit) _object_).setLimitSet(this);
+            Limits.add(_object_);
+            _object_.setLimitSet(this);
         }
     }
 
-    public String LimitsToString() {
-        return getStringFromSet(Limits);
+    private static Object getLimits(BaseClass _this_) {
+        return ((AccumulatorLimitSet) _this_).getLimits();
+    }
+
+    private static void setLimits(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof AccumulatorLimit) {
+            ((AccumulatorLimitSet) _this_).setLimits((AccumulatorLimit) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not AccumulatorLimit");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class AccumulatorLimitSet extends LimitSet {
         return Measurements;
     }
 
-    public void setMeasurements(BaseClass _object_) {
-        if (!(_object_ instanceof Accumulator)) {
-            throw new IllegalArgumentException("Object is not Accumulator");
-        }
+    public void setMeasurements(Accumulator _object_) {
         if (!Measurements.contains(_object_)) {
-            Measurements.add((Accumulator) _object_);
-            ((Accumulator) _object_).setLimitSets(this);
+            Measurements.add(_object_);
+            _object_.setLimitSets(this);
         }
     }
 
-    public String MeasurementsToString() {
-        return getStringFromSet(Measurements);
+    private static Object getMeasurements(BaseClass _this_) {
+        return ((AccumulatorLimitSet) _this_).getMeasurements();
+    }
+
+    private static void setMeasurements(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Accumulator) {
+            ((AccumulatorLimitSet) _this_).setMeasurements((Accumulator) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Accumulator");
+        }
     }
 
     /**
@@ -111,64 +128,35 @@ public class AccumulatorLimitSet extends LimitSet {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("AccumulatorLimitSet", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "AccumulatorLimitSet", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("AccumulatorLimitSet", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("AccumulatorLimitSet", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "AccumulatorLimitSet", attrName, value));
         }
     }
 
@@ -292,24 +280,16 @@ public class AccumulatorLimitSet extends LimitSet {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Limits", new AttrDetails("AccumulatorLimitSet.Limits", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("Limits", new AttrDetails("AccumulatorLimitSet.Limits", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, AccumulatorLimitSet::getLimits, AccumulatorLimitSet::setLimits));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Measurements", new AttrDetails("AccumulatorLimitSet.Measurements", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("Measurements", new AttrDetails("AccumulatorLimitSet.Measurements", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, AccumulatorLimitSet::getMeasurements, AccumulatorLimitSet::setMeasurements));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AccumulatorLimitSet().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AccumulatorLimitSet(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("Limits", new GetterSetter(this::LimitsToString, this::setLimits, null));
-        map.put("Measurements", new GetterSetter(this::MeasurementsToString, this::setMeasurements, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

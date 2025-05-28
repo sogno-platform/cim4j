@@ -23,10 +23,17 @@ public class DCTerminal extends DCBaseTerminal {
     private static final Logging LOG = Logging.getLogger(DCTerminal.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public DCTerminal() {
-        setCimType("DCTerminal");
+    public DCTerminal(String rdfid) {
+        super("DCTerminal", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected DCTerminal(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class DCTerminal extends DCBaseTerminal {
         return DCConductingEquipment;
     }
 
-    public void setDCConductingEquipment(BaseClass _object_) {
-        if (!(_object_ instanceof DCConductingEquipment)) {
-            throw new IllegalArgumentException("Object is not DCConductingEquipment");
-        }
+    public void setDCConductingEquipment(DCConductingEquipment _object_) {
         if (DCConductingEquipment != _object_) {
-            DCConductingEquipment = (DCConductingEquipment) _object_;
+            DCConductingEquipment = _object_;
             DCConductingEquipment.setDCTerminals(this);
         }
     }
 
-    public String DCConductingEquipmentToString() {
-        return DCConductingEquipment != null ? DCConductingEquipment.getRdfid() : null;
+    private static Object getDCConductingEquipment(BaseClass _this_) {
+        return ((DCTerminal) _this_).getDCConductingEquipment();
+    }
+
+    private static void setDCConductingEquipment(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof DCConductingEquipment) {
+            ((DCTerminal) _this_).setDCConductingEquipment((DCConductingEquipment) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not DCConductingEquipment");
+        }
     }
 
     /**
@@ -86,64 +98,35 @@ public class DCTerminal extends DCBaseTerminal {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("DCTerminal", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "DCTerminal", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("DCTerminal", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("DCTerminal", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "DCTerminal", attrName, value));
         }
     }
 
@@ -267,18 +250,11 @@ public class DCTerminal extends DCBaseTerminal {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("DCConductingEquipment", new AttrDetails("DCTerminal.DCConductingEquipment", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("DCConductingEquipment", new AttrDetails("DCTerminal.DCConductingEquipment", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, DCTerminal::getDCConductingEquipment, DCTerminal::setDCConductingEquipment));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DCTerminal().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DCTerminal(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("DCConductingEquipment", new GetterSetter(this::DCConductingEquipmentToString, this::setDCConductingEquipment, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

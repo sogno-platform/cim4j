@@ -23,10 +23,17 @@ public class Switch extends ConductingEquipment {
     private static final Logging LOG = Logging.getLogger(Switch.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public Switch() {
-        setCimType("Switch");
+    public Switch(String rdfid) {
+        super("Switch", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected Switch(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class Switch extends ConductingEquipment {
         return SvSwitch;
     }
 
-    public void setSvSwitch(BaseClass _object_) {
-        if (!(_object_ instanceof SvSwitch)) {
-            throw new IllegalArgumentException("Object is not SvSwitch");
-        }
+    public void setSvSwitch(SvSwitch _object_) {
         if (!SvSwitch.contains(_object_)) {
-            SvSwitch.add((SvSwitch) _object_);
-            ((SvSwitch) _object_).setSwitch(this);
+            SvSwitch.add(_object_);
+            _object_.setSwitch(this);
         }
     }
 
-    public String SvSwitchToString() {
-        return getStringFromSet(SvSwitch);
+    private static Object getSvSwitch(BaseClass _this_) {
+        return ((Switch) _this_).getSvSwitch();
+    }
+
+    private static void setSvSwitch(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof SvSwitch) {
+            ((Switch) _this_).setSvSwitch((SvSwitch) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not SvSwitch");
+        }
     }
 
     /**
@@ -65,22 +77,27 @@ public class Switch extends ConductingEquipment {
         return SwitchSchedules;
     }
 
-    public void setSwitchSchedules(BaseClass _object_) {
-        if (!(_object_ instanceof SwitchSchedule)) {
-            throw new IllegalArgumentException("Object is not SwitchSchedule");
-        }
+    public void setSwitchSchedules(SwitchSchedule _object_) {
         if (!SwitchSchedules.contains(_object_)) {
-            SwitchSchedules.add((SwitchSchedule) _object_);
-            ((SwitchSchedule) _object_).setSwitch(this);
+            SwitchSchedules.add(_object_);
+            _object_.setSwitch(this);
         }
     }
 
-    public String SwitchSchedulesToString() {
-        return getStringFromSet(SwitchSchedules);
+    private static Object getSwitchSchedules(BaseClass _this_) {
+        return ((Switch) _this_).getSwitchSchedules();
+    }
+
+    private static void setSwitchSchedules(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof SwitchSchedule) {
+            ((Switch) _this_).setSwitchSchedules((SwitchSchedule) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not SwitchSchedule");
+        }
     }
 
     /**
-     * If true, the switch is locked. The resulting switch state is a combination of locked and Switch.open attributes as follows: &lt;ul&gt; 	&lt;li&gt;locked=true and Switch.open=true. The resulting state is open and locked;&lt;/li&gt; 	&lt;li&gt;locked=false and Switch.open=true. The resulting state is open;&lt;/li&gt; 	&lt;li&gt;locked=false and Switch.open=false. The resulting state is closed.&lt;/li&gt; &lt;/ul&gt;
+     * If true, the switch is locked. The resulting switch state is a combination of locked and Switch.open attributes as follows: <ul> 	<li>locked=true and Switch.open=true. The resulting state is open and locked;</li> 	<li>locked=false and Switch.open=true. The resulting state is open;</li> 	<li>locked=false and Switch.open=false. The resulting state is closed.</li> </ul>
      */
     private Boolean locked; // Boolean
 
@@ -92,12 +109,18 @@ public class Switch extends ConductingEquipment {
         locked = _value_;
     }
 
-    public void setLocked(String _value_) {
-        locked = getBooleanFromString(_value_);
+    private static Object getLocked(BaseClass _this_) {
+        return ((Switch) _this_).getLocked();
     }
 
-    public String lockedToString() {
-        return locked != null ? locked.toString() : null;
+    private static void setLocked(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Switch) _this_).setLocked((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Switch) _this_).setLocked(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -113,12 +136,18 @@ public class Switch extends ConductingEquipment {
         normalOpen = _value_;
     }
 
-    public void setNormalOpen(String _value_) {
-        normalOpen = getBooleanFromString(_value_);
+    private static Object getNormalOpen(BaseClass _this_) {
+        return ((Switch) _this_).getNormalOpen();
     }
 
-    public String normalOpenToString() {
-        return normalOpen != null ? normalOpen.toString() : null;
+    private static void setNormalOpen(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Switch) _this_).setNormalOpen((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Switch) _this_).setNormalOpen(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -134,12 +163,18 @@ public class Switch extends ConductingEquipment {
         open = _value_;
     }
 
-    public void setOpen(String _value_) {
-        open = getBooleanFromString(_value_);
+    private static Object getOpen(BaseClass _this_) {
+        return ((Switch) _this_).getOpen();
     }
 
-    public String openToString() {
-        return open != null ? open.toString() : null;
+    private static void setOpen(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Switch) _this_).setOpen((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Switch) _this_).setOpen(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -155,12 +190,18 @@ public class Switch extends ConductingEquipment {
         ratedCurrent = _value_;
     }
 
-    public void setRatedCurrent(String _value_) {
-        ratedCurrent = getDoubleFromString(_value_);
+    private static Object getRatedCurrent(BaseClass _this_) {
+        return ((Switch) _this_).getRatedCurrent();
     }
 
-    public String ratedCurrentToString() {
-        return ratedCurrent != null ? ratedCurrent.toString() : null;
+    private static void setRatedCurrent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((Switch) _this_).setRatedCurrent((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((Switch) _this_).setRatedCurrent(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -176,12 +217,18 @@ public class Switch extends ConductingEquipment {
         retained = _value_;
     }
 
-    public void setRetained(String _value_) {
-        retained = getBooleanFromString(_value_);
+    private static Object getRetained(BaseClass _this_) {
+        return ((Switch) _this_).getRetained();
     }
 
-    public String retainedToString() {
-        return retained != null ? retained.toString() : null;
+    private static void setRetained(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Switch) _this_).setRetained((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Switch) _this_).setRetained(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -218,64 +265,35 @@ public class Switch extends ConductingEquipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("Switch", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "Switch", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("Switch", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("Switch", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "Switch", attrName, value));
         }
     }
 
@@ -399,54 +417,41 @@ public class Switch extends ConductingEquipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("SvSwitch", new AttrDetails("Switch.SvSwitch", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("SvSwitch", new AttrDetails("Switch.SvSwitch", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, Switch::getSvSwitch, Switch::setSvSwitch));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("SwitchSchedules", new AttrDetails("Switch.SwitchSchedules", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("SwitchSchedules", new AttrDetails("Switch.SwitchSchedules", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, Switch::getSwitchSchedules, Switch::setSwitchSchedules));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("locked", new AttrDetails("Switch.locked", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("locked", new AttrDetails("Switch.locked", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Switch::getLocked, Switch::setLocked));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("normalOpen", new AttrDetails("Switch.normalOpen", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("normalOpen", new AttrDetails("Switch.normalOpen", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Switch::getNormalOpen, Switch::setNormalOpen));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("open", new AttrDetails("Switch.open", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("open", new AttrDetails("Switch.open", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Switch::getOpen, Switch::setOpen));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedCurrent", new AttrDetails("Switch.ratedCurrent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ratedCurrent", new AttrDetails("Switch.ratedCurrent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Switch::getRatedCurrent, Switch::setRatedCurrent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("retained", new AttrDetails("Switch.retained", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("retained", new AttrDetails("Switch.retained", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Switch::getRetained, Switch::setRetained));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Switch().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Switch(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("SvSwitch", new GetterSetter(this::SvSwitchToString, this::setSvSwitch, null));
-        map.put("SwitchSchedules", new GetterSetter(this::SwitchSchedulesToString, this::setSwitchSchedules, null));
-        map.put("locked", new GetterSetter(this::lockedToString, null, this::setLocked));
-        map.put("normalOpen", new GetterSetter(this::normalOpenToString, null, this::setNormalOpen));
-        map.put("open", new GetterSetter(this::openToString, null, this::setOpen));
-        map.put("ratedCurrent", new GetterSetter(this::ratedCurrentToString, null, this::setRatedCurrent));
-        map.put("retained", new GetterSetter(this::retainedToString, null, this::setRetained));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

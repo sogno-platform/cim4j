@@ -23,14 +23,21 @@ public class MechLoad1 extends MechanicalLoadDynamics {
     private static final Logging LOG = Logging.getLogger(MechLoad1.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public MechLoad1() {
-        setCimType("MechLoad1");
+    public MechLoad1(String rdfid) {
+        super("MechLoad1", rdfid);
     }
 
     /**
-     * Speed squared coefficient (&lt;i&gt;a&lt;/i&gt;).
+     * Constructor for subclasses.
+     */
+    protected MechLoad1(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Speed squared coefficient (<i>a</i>).
      */
     private Float a; // Float
 
@@ -42,16 +49,22 @@ public class MechLoad1 extends MechanicalLoadDynamics {
         a = _value_;
     }
 
-    public void setA(String _value_) {
-        a = getFloatFromString(_value_);
+    private static Object getA(BaseClass _this_) {
+        return ((MechLoad1) _this_).getA();
     }
 
-    public String aToString() {
-        return a != null ? a.toString() : null;
+    private static void setA(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((MechLoad1) _this_).setA((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((MechLoad1) _this_).setA(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Speed coefficient (&lt;i&gt;b&lt;/i&gt;).
+     * Speed coefficient (<i>b</i>).
      */
     private Float b; // Float
 
@@ -63,16 +76,22 @@ public class MechLoad1 extends MechanicalLoadDynamics {
         b = _value_;
     }
 
-    public void setB(String _value_) {
-        b = getFloatFromString(_value_);
+    private static Object getB(BaseClass _this_) {
+        return ((MechLoad1) _this_).getB();
     }
 
-    public String bToString() {
-        return b != null ? b.toString() : null;
+    private static void setB(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((MechLoad1) _this_).setB((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((MechLoad1) _this_).setB(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Speed to the exponent coefficient (&lt;i&gt;d&lt;/i&gt;).
+     * Speed to the exponent coefficient (<i>d</i>).
      */
     private Float d; // Float
 
@@ -84,16 +103,22 @@ public class MechLoad1 extends MechanicalLoadDynamics {
         d = _value_;
     }
 
-    public void setD(String _value_) {
-        d = getFloatFromString(_value_);
+    private static Object getD(BaseClass _this_) {
+        return ((MechLoad1) _this_).getD();
     }
 
-    public String dToString() {
-        return d != null ? d.toString() : null;
+    private static void setD(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((MechLoad1) _this_).setD((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((MechLoad1) _this_).setD(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Exponent (&lt;i&gt;e&lt;/i&gt;).
+     * Exponent (<i>e</i>).
      */
     private Float e; // Float
 
@@ -105,12 +130,18 @@ public class MechLoad1 extends MechanicalLoadDynamics {
         e = _value_;
     }
 
-    public void setE(String _value_) {
-        e = getFloatFromString(_value_);
+    private static Object getE(BaseClass _this_) {
+        return ((MechLoad1) _this_).getE();
     }
 
-    public String eToString() {
-        return e != null ? e.toString() : null;
+    private static void setE(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((MechLoad1) _this_).setE((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((MechLoad1) _this_).setE(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -147,64 +178,35 @@ public class MechLoad1 extends MechanicalLoadDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("MechLoad1", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "MechLoad1", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("MechLoad1", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("MechLoad1", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "MechLoad1", attrName, value));
         }
     }
 
@@ -328,36 +330,26 @@ public class MechLoad1 extends MechanicalLoadDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("a", new AttrDetails("MechLoad1.a", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("a", new AttrDetails("MechLoad1.a", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, MechLoad1::getA, MechLoad1::setA));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("b", new AttrDetails("MechLoad1.b", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("b", new AttrDetails("MechLoad1.b", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, MechLoad1::getB, MechLoad1::setB));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("d", new AttrDetails("MechLoad1.d", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("d", new AttrDetails("MechLoad1.d", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, MechLoad1::getD, MechLoad1::setD));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("e", new AttrDetails("MechLoad1.e", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("e", new AttrDetails("MechLoad1.e", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, MechLoad1::getE, MechLoad1::setE));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new MechLoad1().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new MechLoad1(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("a", new GetterSetter(this::aToString, null, this::setA));
-        map.put("b", new GetterSetter(this::bToString, null, this::setB));
-        map.put("d", new GetterSetter(this::dToString, null, this::setD));
-        map.put("e", new GetterSetter(this::eToString, null, this::setE));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

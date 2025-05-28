@@ -23,10 +23,17 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
     private static final Logging LOG = Logging.getLogger(ThermalGeneratingUnit.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ThermalGeneratingUnit() {
-        setCimType("ThermalGeneratingUnit");
+    public ThermalGeneratingUnit(String rdfid) {
+        super("ThermalGeneratingUnit", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ThermalGeneratingUnit(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
         return CAESPlant;
     }
 
-    public void setCAESPlant(BaseClass _object_) {
-        if (!(_object_ instanceof CAESPlant)) {
-            throw new IllegalArgumentException("Object is not CAESPlant");
-        }
+    public void setCAESPlant(CAESPlant _object_) {
         if (CAESPlant != _object_) {
-            CAESPlant = (CAESPlant) _object_;
+            CAESPlant = _object_;
             CAESPlant.setThermalGeneratingUnit(this);
         }
     }
 
-    public String CAESPlantToString() {
-        return CAESPlant != null ? CAESPlant.getRdfid() : null;
+    private static Object getCAESPlant(BaseClass _this_) {
+        return ((ThermalGeneratingUnit) _this_).getCAESPlant();
+    }
+
+    private static void setCAESPlant(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof CAESPlant) {
+            ((ThermalGeneratingUnit) _this_).setCAESPlant((CAESPlant) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not CAESPlant");
+        }
     }
 
     /**
@@ -61,18 +73,23 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
         return CogenerationPlant;
     }
 
-    public void setCogenerationPlant(BaseClass _object_) {
-        if (!(_object_ instanceof CogenerationPlant)) {
-            throw new IllegalArgumentException("Object is not CogenerationPlant");
-        }
+    public void setCogenerationPlant(CogenerationPlant _object_) {
         if (CogenerationPlant != _object_) {
-            CogenerationPlant = (CogenerationPlant) _object_;
+            CogenerationPlant = _object_;
             CogenerationPlant.setThermalGeneratingUnits(this);
         }
     }
 
-    public String CogenerationPlantToString() {
-        return CogenerationPlant != null ? CogenerationPlant.getRdfid() : null;
+    private static Object getCogenerationPlant(BaseClass _this_) {
+        return ((ThermalGeneratingUnit) _this_).getCogenerationPlant();
+    }
+
+    private static void setCogenerationPlant(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof CogenerationPlant) {
+            ((ThermalGeneratingUnit) _this_).setCogenerationPlant((CogenerationPlant) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not CogenerationPlant");
+        }
     }
 
     /**
@@ -84,18 +101,23 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
         return CombinedCyclePlant;
     }
 
-    public void setCombinedCyclePlant(BaseClass _object_) {
-        if (!(_object_ instanceof CombinedCyclePlant)) {
-            throw new IllegalArgumentException("Object is not CombinedCyclePlant");
-        }
+    public void setCombinedCyclePlant(CombinedCyclePlant _object_) {
         if (CombinedCyclePlant != _object_) {
-            CombinedCyclePlant = (CombinedCyclePlant) _object_;
+            CombinedCyclePlant = _object_;
             CombinedCyclePlant.setThermalGeneratingUnits(this);
         }
     }
 
-    public String CombinedCyclePlantToString() {
-        return CombinedCyclePlant != null ? CombinedCyclePlant.getRdfid() : null;
+    private static Object getCombinedCyclePlant(BaseClass _this_) {
+        return ((ThermalGeneratingUnit) _this_).getCombinedCyclePlant();
+    }
+
+    private static void setCombinedCyclePlant(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof CombinedCyclePlant) {
+            ((ThermalGeneratingUnit) _this_).setCombinedCyclePlant((CombinedCyclePlant) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not CombinedCyclePlant");
+        }
     }
 
     /**
@@ -109,18 +131,23 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
         return FossilFuels;
     }
 
-    public void setFossilFuels(BaseClass _object_) {
-        if (!(_object_ instanceof FossilFuel)) {
-            throw new IllegalArgumentException("Object is not FossilFuel");
-        }
+    public void setFossilFuels(FossilFuel _object_) {
         if (!FossilFuels.contains(_object_)) {
-            FossilFuels.add((FossilFuel) _object_);
-            ((FossilFuel) _object_).setThermalGeneratingUnit(this);
+            FossilFuels.add(_object_);
+            _object_.setThermalGeneratingUnit(this);
         }
     }
 
-    public String FossilFuelsToString() {
-        return getStringFromSet(FossilFuels);
+    private static Object getFossilFuels(BaseClass _this_) {
+        return ((ThermalGeneratingUnit) _this_).getFossilFuels();
+    }
+
+    private static void setFossilFuels(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof FossilFuel) {
+            ((ThermalGeneratingUnit) _this_).setFossilFuels((FossilFuel) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not FossilFuel");
+        }
     }
 
     /**
@@ -157,64 +184,35 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ThermalGeneratingUnit", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ThermalGeneratingUnit", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ThermalGeneratingUnit", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ThermalGeneratingUnit", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ThermalGeneratingUnit", attrName, value));
         }
     }
 
@@ -338,36 +336,26 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("CAESPlant", new AttrDetails("ThermalGeneratingUnit.CAESPlant", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("CAESPlant", new AttrDetails("ThermalGeneratingUnit.CAESPlant", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, ThermalGeneratingUnit::getCAESPlant, ThermalGeneratingUnit::setCAESPlant));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("CogenerationPlant", new AttrDetails("ThermalGeneratingUnit.CogenerationPlant", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("CogenerationPlant", new AttrDetails("ThermalGeneratingUnit.CogenerationPlant", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, ThermalGeneratingUnit::getCogenerationPlant, ThermalGeneratingUnit::setCogenerationPlant));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("CombinedCyclePlant", new AttrDetails("ThermalGeneratingUnit.CombinedCyclePlant", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("CombinedCyclePlant", new AttrDetails("ThermalGeneratingUnit.CombinedCyclePlant", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, ThermalGeneratingUnit::getCombinedCyclePlant, ThermalGeneratingUnit::setCombinedCyclePlant));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("FossilFuels", new AttrDetails("ThermalGeneratingUnit.FossilFuels", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("FossilFuels", new AttrDetails("ThermalGeneratingUnit.FossilFuels", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, ThermalGeneratingUnit::getFossilFuels, ThermalGeneratingUnit::setFossilFuels));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ThermalGeneratingUnit().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ThermalGeneratingUnit(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("CAESPlant", new GetterSetter(this::CAESPlantToString, this::setCAESPlant, null));
-        map.put("CogenerationPlant", new GetterSetter(this::CogenerationPlantToString, this::setCogenerationPlant, null));
-        map.put("CombinedCyclePlant", new GetterSetter(this::CombinedCyclePlantToString, this::setCombinedCyclePlant, null));
-        map.put("FossilFuels", new GetterSetter(this::FossilFuelsToString, this::setFossilFuels, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

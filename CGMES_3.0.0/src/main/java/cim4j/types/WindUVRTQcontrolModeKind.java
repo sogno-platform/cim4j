@@ -13,15 +13,15 @@ import java.util.Map;
  */
 public enum WindUVRTQcontrolModeKind {
     /**
-     * Voltage-dependent reactive current injection (&lt;i&gt;M&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qUVRT&lt;/sub&gt;&lt;/i&gt; &lt;sub&gt; &lt;/sub&gt;equals 0).
+     * Voltage-dependent reactive current injection (<i>M</i><i><sub>qUVRT</sub></i> <sub> </sub>equals 0).
      */
     _mode0("mode0"),
     /**
-     * Reactive current injection controlled as the pre-fault value plus an additional voltage dependent reactive current injection (&lt;i&gt;M&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qUVRT&lt;/sub&gt;&lt;/i&gt; equals 1).
+     * Reactive current injection controlled as the pre-fault value plus an additional voltage dependent reactive current injection (<i>M</i><i><sub>qUVRT</sub></i> equals 1).
      */
     _mode1("mode1"),
     /**
-     * Reactive current injection controlled as the pre-fault value plus an additional voltage-dependent reactive current injection during fault, and as the pre-fault value plus an additional constant reactive current injection post fault (&lt;i&gt;M&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qUVRT&lt;/sub&gt;&lt;/i&gt;&lt;sub&gt;  &lt;/sub&gt;equals 2).
+     * Reactive current injection controlled as the pre-fault value plus an additional voltage-dependent reactive current injection during fault, and as the pre-fault value plus an additional constant reactive current injection post fault (<i>M</i><i><sub>qUVRT</sub></i><sub>  </sub>equals 2).
      */
     _mode2("mode2"),
     ;

@@ -23,10 +23,17 @@ public class ExcAC2A extends ExcitationSystemDynamics {
     private static final Logging LOG = Logging.getLogger(ExcAC2A.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ExcAC2A() {
-        setCimType("ExcAC2A");
+    public ExcAC2A(String rdfid) {
+        super("ExcAC2A", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ExcAC2A(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         hvgate = _value_;
     }
 
-    public void setHvgate(String _value_) {
-        hvgate = getBooleanFromString(_value_);
+    private static Object getHvgate(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getHvgate();
     }
 
-    public String hvgateToString() {
-        return hvgate != null ? hvgate.toString() : null;
+    private static void setHvgate(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ExcAC2A) _this_).setHvgate((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setHvgate(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -63,16 +76,22 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         ka = _value_;
     }
 
-    public void setKa(String _value_) {
-        ka = getDoubleFromString(_value_);
+    private static Object getKa(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getKa();
     }
 
-    public String kaToString() {
-        return ka != null ? ka.toString() : null;
+    private static void setKa(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setKa((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setKa(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Second stage regulator gain (Kb) (&gt;0).  Exciter field current controller gain.  Typical Value = 25.
+     * Second stage regulator gain (Kb) (>0).  Exciter field current controller gain.  Typical Value = 25.
      */
     private Double kb; // PU
 
@@ -84,12 +103,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         kb = _value_;
     }
 
-    public void setKb(String _value_) {
-        kb = getDoubleFromString(_value_);
+    private static Object getKb(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getKb();
     }
 
-    public String kbToString() {
-        return kb != null ? kb.toString() : null;
+    private static void setKb(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setKb((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setKb(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         kb1 = _value_;
     }
 
-    public void setKb1(String _value_) {
-        kb1 = getDoubleFromString(_value_);
+    private static Object getKb1(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getKb1();
     }
 
-    public String kb1ToString() {
-        return kb1 != null ? kb1.toString() : null;
+    private static void setKb1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setKb1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setKb1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         kc = _value_;
     }
 
-    public void setKc(String _value_) {
-        kc = getDoubleFromString(_value_);
+    private static Object getKc(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getKc();
     }
 
-    public String kcToString() {
-        return kc != null ? kc.toString() : null;
+    private static void setKc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setKc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setKc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,12 +184,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         kd = _value_;
     }
 
-    public void setKd(String _value_) {
-        kd = getDoubleFromString(_value_);
+    private static Object getKd(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getKd();
     }
 
-    public String kdToString() {
-        return kd != null ? kd.toString() : null;
+    private static void setKd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setKd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setKd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,12 +211,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         ke = _value_;
     }
 
-    public void setKe(String _value_) {
-        ke = getDoubleFromString(_value_);
+    private static Object getKe(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getKe();
     }
 
-    public String keToString() {
-        return ke != null ? ke.toString() : null;
+    private static void setKe(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setKe((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setKe(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,12 +238,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         kf = _value_;
     }
 
-    public void setKf(String _value_) {
-        kf = getDoubleFromString(_value_);
+    private static Object getKf(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getKf();
     }
 
-    public String kfToString() {
-        return kf != null ? kf.toString() : null;
+    private static void setKf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setKf((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setKf(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -210,12 +265,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         kh = _value_;
     }
 
-    public void setKh(String _value_) {
-        kh = getDoubleFromString(_value_);
+    private static Object getKh(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getKh();
     }
 
-    public String khToString() {
-        return kh != null ? kh.toString() : null;
+    private static void setKh(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setKh((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setKh(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -231,12 +292,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         kl = _value_;
     }
 
-    public void setKl(String _value_) {
-        kl = getDoubleFromString(_value_);
+    private static Object getKl(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getKl();
     }
 
-    public String klToString() {
-        return kl != null ? kl.toString() : null;
+    private static void setKl(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setKl((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setKl(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -252,12 +319,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         kl1 = _value_;
     }
 
-    public void setKl1(String _value_) {
-        kl1 = getDoubleFromString(_value_);
+    private static Object getKl1(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getKl1();
     }
 
-    public String kl1ToString() {
-        return kl1 != null ? kl1.toString() : null;
+    private static void setKl1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setKl1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setKl1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -273,12 +346,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         ks = _value_;
     }
 
-    public void setKs(String _value_) {
-        ks = getDoubleFromString(_value_);
+    private static Object getKs(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getKs();
     }
 
-    public String ksToString() {
-        return ks != null ? ks.toString() : null;
+    private static void setKs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setKs((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setKs(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -294,12 +373,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         lvgate = _value_;
     }
 
-    public void setLvgate(String _value_) {
-        lvgate = getBooleanFromString(_value_);
+    private static Object getLvgate(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getLvgate();
     }
 
-    public String lvgateToString() {
-        return lvgate != null ? lvgate.toString() : null;
+    private static void setLvgate(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ExcAC2A) _this_).setLvgate((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setLvgate(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -315,12 +400,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         seve1 = _value_;
     }
 
-    public void setSeve1(String _value_) {
-        seve1 = getDoubleFromString(_value_);
+    private static Object getSeve1(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getSeve1();
     }
 
-    public String seve1ToString() {
-        return seve1 != null ? seve1.toString() : null;
+    private static void setSeve1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setSeve1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setSeve1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -336,12 +427,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         seve2 = _value_;
     }
 
-    public void setSeve2(String _value_) {
-        seve2 = getDoubleFromString(_value_);
+    private static Object getSeve2(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getSeve2();
     }
 
-    public String seve2ToString() {
-        return seve2 != null ? seve2.toString() : null;
+    private static void setSeve2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setSeve2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setSeve2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -357,12 +454,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         ta = _value_;
     }
 
-    public void setTa(String _value_) {
-        ta = getDoubleFromString(_value_);
+    private static Object getTa(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getTa();
     }
 
-    public String taToString() {
-        return ta != null ? ta.toString() : null;
+    private static void setTa(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setTa((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setTa(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -378,12 +481,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         tb = _value_;
     }
 
-    public void setTb(String _value_) {
-        tb = getDoubleFromString(_value_);
+    private static Object getTb(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getTb();
     }
 
-    public String tbToString() {
-        return tb != null ? tb.toString() : null;
+    private static void setTb(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setTb((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setTb(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -399,12 +508,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         tc = _value_;
     }
 
-    public void setTc(String _value_) {
-        tc = getDoubleFromString(_value_);
+    private static Object getTc(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getTc();
     }
 
-    public String tcToString() {
-        return tc != null ? tc.toString() : null;
+    private static void setTc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setTc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setTc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -420,12 +535,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         te = _value_;
     }
 
-    public void setTe(String _value_) {
-        te = getDoubleFromString(_value_);
+    private static Object getTe(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getTe();
     }
 
-    public String teToString() {
-        return te != null ? te.toString() : null;
+    private static void setTe(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setTe((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setTe(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -441,12 +562,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         tf = _value_;
     }
 
-    public void setTf(String _value_) {
-        tf = getDoubleFromString(_value_);
+    private static Object getTf(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getTf();
     }
 
-    public String tfToString() {
-        return tf != null ? tf.toString() : null;
+    private static void setTf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setTf((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setTf(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -462,12 +589,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         vamax = _value_;
     }
 
-    public void setVamax(String _value_) {
-        vamax = getDoubleFromString(_value_);
+    private static Object getVamax(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getVamax();
     }
 
-    public String vamaxToString() {
-        return vamax != null ? vamax.toString() : null;
+    private static void setVamax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setVamax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setVamax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -483,12 +616,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         vamin = _value_;
     }
 
-    public void setVamin(String _value_) {
-        vamin = getDoubleFromString(_value_);
+    private static Object getVamin(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getVamin();
     }
 
-    public String vaminToString() {
-        return vamin != null ? vamin.toString() : null;
+    private static void setVamin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setVamin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setVamin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -504,12 +643,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         ve1 = _value_;
     }
 
-    public void setVe1(String _value_) {
-        ve1 = getDoubleFromString(_value_);
+    private static Object getVe1(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getVe1();
     }
 
-    public String ve1ToString() {
-        return ve1 != null ? ve1.toString() : null;
+    private static void setVe1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setVe1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setVe1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -525,12 +670,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         ve2 = _value_;
     }
 
-    public void setVe2(String _value_) {
-        ve2 = getDoubleFromString(_value_);
+    private static Object getVe2(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getVe2();
     }
 
-    public String ve2ToString() {
-        return ve2 != null ? ve2.toString() : null;
+    private static void setVe2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setVe2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setVe2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -546,12 +697,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         vfemax = _value_;
     }
 
-    public void setVfemax(String _value_) {
-        vfemax = getDoubleFromString(_value_);
+    private static Object getVfemax(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getVfemax();
     }
 
-    public String vfemaxToString() {
-        return vfemax != null ? vfemax.toString() : null;
+    private static void setVfemax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setVfemax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setVfemax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -567,12 +724,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         vlr = _value_;
     }
 
-    public void setVlr(String _value_) {
-        vlr = getDoubleFromString(_value_);
+    private static Object getVlr(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getVlr();
     }
 
-    public String vlrToString() {
-        return vlr != null ? vlr.toString() : null;
+    private static void setVlr(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setVlr((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setVlr(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -588,12 +751,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         vrmax = _value_;
     }
 
-    public void setVrmax(String _value_) {
-        vrmax = getDoubleFromString(_value_);
+    private static Object getVrmax(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getVrmax();
     }
 
-    public String vrmaxToString() {
-        return vrmax != null ? vrmax.toString() : null;
+    private static void setVrmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setVrmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setVrmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -609,12 +778,18 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         vrmin = _value_;
     }
 
-    public void setVrmin(String _value_) {
-        vrmin = getDoubleFromString(_value_);
+    private static Object getVrmin(BaseClass _this_) {
+        return ((ExcAC2A) _this_).getVrmin();
     }
 
-    public String vrminToString() {
-        return vrmin != null ? vrmin.toString() : null;
+    private static void setVrmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAC2A) _this_).setVrmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAC2A) _this_).setVrmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -651,64 +826,35 @@ public class ExcAC2A extends ExcitationSystemDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ExcAC2A", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ExcAC2A", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ExcAC2A", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ExcAC2A", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ExcAC2A", attrName, value));
         }
     }
 
@@ -832,180 +978,146 @@ public class ExcAC2A extends ExcitationSystemDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("hvgate", new AttrDetails("ExcAC2A.hvgate", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("hvgate", new AttrDetails("ExcAC2A.hvgate", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getHvgate, ExcAC2A::setHvgate));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ka", new AttrDetails("ExcAC2A.ka", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ka", new AttrDetails("ExcAC2A.ka", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getKa, ExcAC2A::setKa));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kb", new AttrDetails("ExcAC2A.kb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kb", new AttrDetails("ExcAC2A.kb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getKb, ExcAC2A::setKb));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kb1", new AttrDetails("ExcAC2A.kb1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kb1", new AttrDetails("ExcAC2A.kb1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getKb1, ExcAC2A::setKb1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kc", new AttrDetails("ExcAC2A.kc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kc", new AttrDetails("ExcAC2A.kc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getKc, ExcAC2A::setKc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kd", new AttrDetails("ExcAC2A.kd", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kd", new AttrDetails("ExcAC2A.kd", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getKd, ExcAC2A::setKd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ke", new AttrDetails("ExcAC2A.ke", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ke", new AttrDetails("ExcAC2A.ke", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getKe, ExcAC2A::setKe));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kf", new AttrDetails("ExcAC2A.kf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kf", new AttrDetails("ExcAC2A.kf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getKf, ExcAC2A::setKf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kh", new AttrDetails("ExcAC2A.kh", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kh", new AttrDetails("ExcAC2A.kh", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getKh, ExcAC2A::setKh));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kl", new AttrDetails("ExcAC2A.kl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kl", new AttrDetails("ExcAC2A.kl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getKl, ExcAC2A::setKl));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kl1", new AttrDetails("ExcAC2A.kl1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kl1", new AttrDetails("ExcAC2A.kl1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getKl1, ExcAC2A::setKl1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ks", new AttrDetails("ExcAC2A.ks", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ks", new AttrDetails("ExcAC2A.ks", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getKs, ExcAC2A::setKs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("lvgate", new AttrDetails("ExcAC2A.lvgate", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("lvgate", new AttrDetails("ExcAC2A.lvgate", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getLvgate, ExcAC2A::setLvgate));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("seve1", new AttrDetails("ExcAC2A.seve1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("seve1", new AttrDetails("ExcAC2A.seve1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getSeve1, ExcAC2A::setSeve1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("seve2", new AttrDetails("ExcAC2A.seve2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("seve2", new AttrDetails("ExcAC2A.seve2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getSeve2, ExcAC2A::setSeve2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ta", new AttrDetails("ExcAC2A.ta", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ta", new AttrDetails("ExcAC2A.ta", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getTa, ExcAC2A::setTa));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tb", new AttrDetails("ExcAC2A.tb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tb", new AttrDetails("ExcAC2A.tb", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getTb, ExcAC2A::setTb));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tc", new AttrDetails("ExcAC2A.tc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tc", new AttrDetails("ExcAC2A.tc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getTc, ExcAC2A::setTc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("te", new AttrDetails("ExcAC2A.te", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("te", new AttrDetails("ExcAC2A.te", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getTe, ExcAC2A::setTe));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf", new AttrDetails("ExcAC2A.tf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tf", new AttrDetails("ExcAC2A.tf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getTf, ExcAC2A::setTf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vamax", new AttrDetails("ExcAC2A.vamax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vamax", new AttrDetails("ExcAC2A.vamax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getVamax, ExcAC2A::setVamax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vamin", new AttrDetails("ExcAC2A.vamin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vamin", new AttrDetails("ExcAC2A.vamin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getVamin, ExcAC2A::setVamin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ve1", new AttrDetails("ExcAC2A.ve1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ve1", new AttrDetails("ExcAC2A.ve1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getVe1, ExcAC2A::setVe1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ve2", new AttrDetails("ExcAC2A.ve2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ve2", new AttrDetails("ExcAC2A.ve2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getVe2, ExcAC2A::setVe2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vfemax", new AttrDetails("ExcAC2A.vfemax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vfemax", new AttrDetails("ExcAC2A.vfemax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getVfemax, ExcAC2A::setVfemax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vlr", new AttrDetails("ExcAC2A.vlr", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vlr", new AttrDetails("ExcAC2A.vlr", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getVlr, ExcAC2A::setVlr));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmax", new AttrDetails("ExcAC2A.vrmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vrmax", new AttrDetails("ExcAC2A.vrmax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getVrmax, ExcAC2A::setVrmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmin", new AttrDetails("ExcAC2A.vrmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("vrmin", new AttrDetails("ExcAC2A.vrmin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ExcAC2A::getVrmin, ExcAC2A::setVrmin));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcAC2A().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcAC2A(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("hvgate", new GetterSetter(this::hvgateToString, null, this::setHvgate));
-        map.put("ka", new GetterSetter(this::kaToString, null, this::setKa));
-        map.put("kb", new GetterSetter(this::kbToString, null, this::setKb));
-        map.put("kb1", new GetterSetter(this::kb1ToString, null, this::setKb1));
-        map.put("kc", new GetterSetter(this::kcToString, null, this::setKc));
-        map.put("kd", new GetterSetter(this::kdToString, null, this::setKd));
-        map.put("ke", new GetterSetter(this::keToString, null, this::setKe));
-        map.put("kf", new GetterSetter(this::kfToString, null, this::setKf));
-        map.put("kh", new GetterSetter(this::khToString, null, this::setKh));
-        map.put("kl", new GetterSetter(this::klToString, null, this::setKl));
-        map.put("kl1", new GetterSetter(this::kl1ToString, null, this::setKl1));
-        map.put("ks", new GetterSetter(this::ksToString, null, this::setKs));
-        map.put("lvgate", new GetterSetter(this::lvgateToString, null, this::setLvgate));
-        map.put("seve1", new GetterSetter(this::seve1ToString, null, this::setSeve1));
-        map.put("seve2", new GetterSetter(this::seve2ToString, null, this::setSeve2));
-        map.put("ta", new GetterSetter(this::taToString, null, this::setTa));
-        map.put("tb", new GetterSetter(this::tbToString, null, this::setTb));
-        map.put("tc", new GetterSetter(this::tcToString, null, this::setTc));
-        map.put("te", new GetterSetter(this::teToString, null, this::setTe));
-        map.put("tf", new GetterSetter(this::tfToString, null, this::setTf));
-        map.put("vamax", new GetterSetter(this::vamaxToString, null, this::setVamax));
-        map.put("vamin", new GetterSetter(this::vaminToString, null, this::setVamin));
-        map.put("ve1", new GetterSetter(this::ve1ToString, null, this::setVe1));
-        map.put("ve2", new GetterSetter(this::ve2ToString, null, this::setVe2));
-        map.put("vfemax", new GetterSetter(this::vfemaxToString, null, this::setVfemax));
-        map.put("vlr", new GetterSetter(this::vlrToString, null, this::setVlr));
-        map.put("vrmax", new GetterSetter(this::vrmaxToString, null, this::setVrmax));
-        map.put("vrmin", new GetterSetter(this::vrminToString, null, this::setVrmin));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

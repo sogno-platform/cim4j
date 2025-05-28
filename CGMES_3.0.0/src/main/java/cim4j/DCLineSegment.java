@@ -23,10 +23,17 @@ public class DCLineSegment extends DCConductingEquipment {
     private static final Logging LOG = Logging.getLogger(DCLineSegment.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public DCLineSegment() {
-        setCimType("DCLineSegment");
+    public DCLineSegment(String rdfid) {
+        super("DCLineSegment", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected DCLineSegment(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class DCLineSegment extends DCConductingEquipment {
         capacitance = _value_;
     }
 
-    public void setCapacitance(String _value_) {
-        capacitance = getDoubleFromString(_value_);
+    private static Object getCapacitance(BaseClass _this_) {
+        return ((DCLineSegment) _this_).getCapacitance();
     }
 
-    public String capacitanceToString() {
-        return capacitance != null ? capacitance.toString() : null;
+    private static void setCapacitance(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DCLineSegment) _this_).setCapacitance((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DCLineSegment) _this_).setCapacitance(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class DCLineSegment extends DCConductingEquipment {
         inductance = _value_;
     }
 
-    public void setInductance(String _value_) {
-        inductance = getDoubleFromString(_value_);
+    private static Object getInductance(BaseClass _this_) {
+        return ((DCLineSegment) _this_).getInductance();
     }
 
-    public String inductanceToString() {
-        return inductance != null ? inductance.toString() : null;
+    private static void setInductance(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DCLineSegment) _this_).setInductance((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DCLineSegment) _this_).setInductance(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class DCLineSegment extends DCConductingEquipment {
         length = _value_;
     }
 
-    public void setLength(String _value_) {
-        length = getDoubleFromString(_value_);
+    private static Object getLength(BaseClass _this_) {
+        return ((DCLineSegment) _this_).getLength();
     }
 
-    public String lengthToString() {
-        return length != null ? length.toString() : null;
+    private static void setLength(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DCLineSegment) _this_).setLength((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DCLineSegment) _this_).setLength(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class DCLineSegment extends DCConductingEquipment {
         resistance = _value_;
     }
 
-    public void setResistance(String _value_) {
-        resistance = getDoubleFromString(_value_);
+    private static Object getResistance(BaseClass _this_) {
+        return ((DCLineSegment) _this_).getResistance();
     }
 
-    public String resistanceToString() {
-        return resistance != null ? resistance.toString() : null;
+    private static void setResistance(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DCLineSegment) _this_).setResistance((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DCLineSegment) _this_).setResistance(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,64 +178,35 @@ public class DCLineSegment extends DCConductingEquipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("DCLineSegment", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "DCLineSegment", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("DCLineSegment", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("DCLineSegment", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "DCLineSegment", attrName, value));
         }
     }
 
@@ -328,36 +330,26 @@ public class DCLineSegment extends DCConductingEquipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("capacitance", new AttrDetails("DCLineSegment.capacitance", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("capacitance", new AttrDetails("DCLineSegment.capacitance", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, DCLineSegment::getCapacitance, DCLineSegment::setCapacitance));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("inductance", new AttrDetails("DCLineSegment.inductance", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("inductance", new AttrDetails("DCLineSegment.inductance", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, DCLineSegment::getInductance, DCLineSegment::setInductance));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("length", new AttrDetails("DCLineSegment.length", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("length", new AttrDetails("DCLineSegment.length", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, DCLineSegment::getLength, DCLineSegment::setLength));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("resistance", new AttrDetails("DCLineSegment.resistance", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("resistance", new AttrDetails("DCLineSegment.resistance", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, DCLineSegment::getResistance, DCLineSegment::setResistance));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DCLineSegment().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DCLineSegment(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("capacitance", new GetterSetter(this::capacitanceToString, null, this::setCapacitance));
-        map.put("inductance", new GetterSetter(this::inductanceToString, null, this::setInductance));
-        map.put("length", new GetterSetter(this::lengthToString, null, this::setLength));
-        map.put("resistance", new GetterSetter(this::resistanceToString, null, this::setResistance));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

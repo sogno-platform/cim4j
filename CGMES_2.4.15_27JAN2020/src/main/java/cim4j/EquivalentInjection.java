@@ -23,10 +23,17 @@ public class EquivalentInjection extends EquivalentEquipment {
     private static final Logging LOG = Logging.getLogger(EquivalentInjection.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public EquivalentInjection() {
-        setCimType("EquivalentInjection");
+    public EquivalentInjection(String rdfid) {
+        super("EquivalentInjection", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected EquivalentInjection(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class EquivalentInjection extends EquivalentEquipment {
         return ReactiveCapabilityCurve;
     }
 
-    public void setReactiveCapabilityCurve(BaseClass _object_) {
-        if (!(_object_ instanceof ReactiveCapabilityCurve)) {
-            throw new IllegalArgumentException("Object is not ReactiveCapabilityCurve");
-        }
+    public void setReactiveCapabilityCurve(ReactiveCapabilityCurve _object_) {
         if (ReactiveCapabilityCurve != _object_) {
-            ReactiveCapabilityCurve = (ReactiveCapabilityCurve) _object_;
+            ReactiveCapabilityCurve = _object_;
             ReactiveCapabilityCurve.setEquivalentInjection(this);
         }
     }
 
-    public String ReactiveCapabilityCurveToString() {
-        return ReactiveCapabilityCurve != null ? ReactiveCapabilityCurve.getRdfid() : null;
+    private static Object getReactiveCapabilityCurve(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getReactiveCapabilityCurve();
+    }
+
+    private static void setReactiveCapabilityCurve(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ReactiveCapabilityCurve) {
+            ((EquivalentInjection) _this_).setReactiveCapabilityCurve((ReactiveCapabilityCurve) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ReactiveCapabilityCurve");
+        }
     }
 
     /**
@@ -65,12 +77,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         maxP = _value_;
     }
 
-    public void setMaxP(String _value_) {
-        maxP = getDoubleFromString(_value_);
+    private static Object getMaxP(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getMaxP();
     }
 
-    public String maxPToString() {
-        return maxP != null ? maxP.toString() : null;
+    private static void setMaxP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentInjection) _this_).setMaxP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setMaxP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -86,12 +104,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         maxQ = _value_;
     }
 
-    public void setMaxQ(String _value_) {
-        maxQ = getDoubleFromString(_value_);
+    private static Object getMaxQ(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getMaxQ();
     }
 
-    public String maxQToString() {
-        return maxQ != null ? maxQ.toString() : null;
+    private static void setMaxQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentInjection) _this_).setMaxQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setMaxQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -107,12 +131,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         minP = _value_;
     }
 
-    public void setMinP(String _value_) {
-        minP = getDoubleFromString(_value_);
+    private static Object getMinP(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getMinP();
     }
 
-    public String minPToString() {
-        return minP != null ? minP.toString() : null;
+    private static void setMinP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentInjection) _this_).setMinP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setMinP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -128,12 +158,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         minQ = _value_;
     }
 
-    public void setMinQ(String _value_) {
-        minQ = getDoubleFromString(_value_);
+    private static Object getMinQ(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getMinQ();
     }
 
-    public String minQToString() {
-        return minQ != null ? minQ.toString() : null;
+    private static void setMinQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentInjection) _this_).setMinQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setMinQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -149,12 +185,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         p = _value_;
     }
 
-    public void setP(String _value_) {
-        p = getDoubleFromString(_value_);
+    private static Object getP(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getP();
     }
 
-    public String pToString() {
-        return p != null ? p.toString() : null;
+    private static void setP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentInjection) _this_).setP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -170,12 +212,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         q = _value_;
     }
 
-    public void setQ(String _value_) {
-        q = getDoubleFromString(_value_);
+    private static Object getQ(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getQ();
     }
 
-    public String qToString() {
-        return q != null ? q.toString() : null;
+    private static void setQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentInjection) _this_).setQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -191,12 +239,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         r = _value_;
     }
 
-    public void setR(String _value_) {
-        r = getDoubleFromString(_value_);
+    private static Object getR(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getR();
     }
 
-    public String rToString() {
-        return r != null ? r.toString() : null;
+    private static void setR(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentInjection) _this_).setR((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setR(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -212,12 +266,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         r0 = _value_;
     }
 
-    public void setR0(String _value_) {
-        r0 = getDoubleFromString(_value_);
+    private static Object getR0(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getR0();
     }
 
-    public String r0ToString() {
-        return r0 != null ? r0.toString() : null;
+    private static void setR0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentInjection) _this_).setR0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setR0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -233,12 +293,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         r2 = _value_;
     }
 
-    public void setR2(String _value_) {
-        r2 = getDoubleFromString(_value_);
+    private static Object getR2(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getR2();
     }
 
-    public String r2ToString() {
-        return r2 != null ? r2.toString() : null;
+    private static void setR2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentInjection) _this_).setR2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setR2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -254,12 +320,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         regulationCapability = _value_;
     }
 
-    public void setRegulationCapability(String _value_) {
-        regulationCapability = getBooleanFromString(_value_);
+    private static Object getRegulationCapability(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getRegulationCapability();
     }
 
-    public String regulationCapabilityToString() {
-        return regulationCapability != null ? regulationCapability.toString() : null;
+    private static void setRegulationCapability(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((EquivalentInjection) _this_).setRegulationCapability((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setRegulationCapability(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -275,12 +347,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         regulationStatus = _value_;
     }
 
-    public void setRegulationStatus(String _value_) {
-        regulationStatus = getBooleanFromString(_value_);
+    private static Object getRegulationStatus(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getRegulationStatus();
     }
 
-    public String regulationStatusToString() {
-        return regulationStatus != null ? regulationStatus.toString() : null;
+    private static void setRegulationStatus(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((EquivalentInjection) _this_).setRegulationStatus((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setRegulationStatus(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -296,12 +374,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         regulationTarget = _value_;
     }
 
-    public void setRegulationTarget(String _value_) {
-        regulationTarget = getDoubleFromString(_value_);
+    private static Object getRegulationTarget(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getRegulationTarget();
     }
 
-    public String regulationTargetToString() {
-        return regulationTarget != null ? regulationTarget.toString() : null;
+    private static void setRegulationTarget(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentInjection) _this_).setRegulationTarget((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setRegulationTarget(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -317,12 +401,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         x = _value_;
     }
 
-    public void setX(String _value_) {
-        x = getDoubleFromString(_value_);
+    private static Object getX(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getX();
     }
 
-    public String xToString() {
-        return x != null ? x.toString() : null;
+    private static void setX(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentInjection) _this_).setX((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setX(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -338,12 +428,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         x0 = _value_;
     }
 
-    public void setX0(String _value_) {
-        x0 = getDoubleFromString(_value_);
+    private static Object getX0(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getX0();
     }
 
-    public String x0ToString() {
-        return x0 != null ? x0.toString() : null;
+    private static void setX0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentInjection) _this_).setX0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setX0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -359,12 +455,18 @@ public class EquivalentInjection extends EquivalentEquipment {
         x2 = _value_;
     }
 
-    public void setX2(String _value_) {
-        x2 = getDoubleFromString(_value_);
+    private static Object getX2(BaseClass _this_) {
+        return ((EquivalentInjection) _this_).getX2();
     }
 
-    public String x2ToString() {
-        return x2 != null ? x2.toString() : null;
+    private static void setX2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentInjection) _this_).setX2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).setX2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -401,64 +503,35 @@ public class EquivalentInjection extends EquivalentEquipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("EquivalentInjection", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "EquivalentInjection", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("EquivalentInjection", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("EquivalentInjection", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "EquivalentInjection", attrName, value));
         }
     }
 
@@ -582,108 +655,86 @@ public class EquivalentInjection extends EquivalentEquipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ReactiveCapabilityCurve", new AttrDetails("EquivalentInjection.ReactiveCapabilityCurve", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("ReactiveCapabilityCurve", new AttrDetails("EquivalentInjection.ReactiveCapabilityCurve", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, EquivalentInjection::getReactiveCapabilityCurve, EquivalentInjection::setReactiveCapabilityCurve));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxP", new AttrDetails("EquivalentInjection.maxP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("maxP", new AttrDetails("EquivalentInjection.maxP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getMaxP, EquivalentInjection::setMaxP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxQ", new AttrDetails("EquivalentInjection.maxQ", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("maxQ", new AttrDetails("EquivalentInjection.maxQ", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getMaxQ, EquivalentInjection::setMaxQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("minP", new AttrDetails("EquivalentInjection.minP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("minP", new AttrDetails("EquivalentInjection.minP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getMinP, EquivalentInjection::setMinP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("minQ", new AttrDetails("EquivalentInjection.minQ", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("minQ", new AttrDetails("EquivalentInjection.minQ", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getMinQ, EquivalentInjection::setMinQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("p", new AttrDetails("EquivalentInjection.p", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("p", new AttrDetails("EquivalentInjection.p", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getP, EquivalentInjection::setP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("q", new AttrDetails("EquivalentInjection.q", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("q", new AttrDetails("EquivalentInjection.q", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getQ, EquivalentInjection::setQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r", new AttrDetails("EquivalentInjection.r", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("r", new AttrDetails("EquivalentInjection.r", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getR, EquivalentInjection::setR));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r0", new AttrDetails("EquivalentInjection.r0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("r0", new AttrDetails("EquivalentInjection.r0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getR0, EquivalentInjection::setR0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r2", new AttrDetails("EquivalentInjection.r2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("r2", new AttrDetails("EquivalentInjection.r2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getR2, EquivalentInjection::setR2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("regulationCapability", new AttrDetails("EquivalentInjection.regulationCapability", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("regulationCapability", new AttrDetails("EquivalentInjection.regulationCapability", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getRegulationCapability, EquivalentInjection::setRegulationCapability));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("regulationStatus", new AttrDetails("EquivalentInjection.regulationStatus", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("regulationStatus", new AttrDetails("EquivalentInjection.regulationStatus", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getRegulationStatus, EquivalentInjection::setRegulationStatus));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("regulationTarget", new AttrDetails("EquivalentInjection.regulationTarget", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("regulationTarget", new AttrDetails("EquivalentInjection.regulationTarget", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getRegulationTarget, EquivalentInjection::setRegulationTarget));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x", new AttrDetails("EquivalentInjection.x", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("x", new AttrDetails("EquivalentInjection.x", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getX, EquivalentInjection::setX));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x0", new AttrDetails("EquivalentInjection.x0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("x0", new AttrDetails("EquivalentInjection.x0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getX0, EquivalentInjection::setX0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x2", new AttrDetails("EquivalentInjection.x2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("x2", new AttrDetails("EquivalentInjection.x2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentInjection::getX2, EquivalentInjection::setX2));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EquivalentInjection().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EquivalentInjection(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ReactiveCapabilityCurve", new GetterSetter(this::ReactiveCapabilityCurveToString, this::setReactiveCapabilityCurve, null));
-        map.put("maxP", new GetterSetter(this::maxPToString, null, this::setMaxP));
-        map.put("maxQ", new GetterSetter(this::maxQToString, null, this::setMaxQ));
-        map.put("minP", new GetterSetter(this::minPToString, null, this::setMinP));
-        map.put("minQ", new GetterSetter(this::minQToString, null, this::setMinQ));
-        map.put("p", new GetterSetter(this::pToString, null, this::setP));
-        map.put("q", new GetterSetter(this::qToString, null, this::setQ));
-        map.put("r", new GetterSetter(this::rToString, null, this::setR));
-        map.put("r0", new GetterSetter(this::r0ToString, null, this::setR0));
-        map.put("r2", new GetterSetter(this::r2ToString, null, this::setR2));
-        map.put("regulationCapability", new GetterSetter(this::regulationCapabilityToString, null, this::setRegulationCapability));
-        map.put("regulationStatus", new GetterSetter(this::regulationStatusToString, null, this::setRegulationStatus));
-        map.put("regulationTarget", new GetterSetter(this::regulationTargetToString, null, this::setRegulationTarget));
-        map.put("x", new GetterSetter(this::xToString, null, this::setX));
-        map.put("x0", new GetterSetter(this::x0ToString, null, this::setX0));
-        map.put("x2", new GetterSetter(this::x2ToString, null, this::setX2));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

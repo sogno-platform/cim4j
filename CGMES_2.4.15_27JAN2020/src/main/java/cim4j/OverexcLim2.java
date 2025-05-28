@@ -23,10 +23,17 @@ public class OverexcLim2 extends OverexcitationLimiterDynamics {
     private static final Logging LOG = Logging.getLogger(OverexcLim2.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public OverexcLim2() {
-        setCimType("OverexcLim2");
+    public OverexcLim2(String rdfid) {
+        super("OverexcLim2", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected OverexcLim2(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class OverexcLim2 extends OverexcitationLimiterDynamics {
         ifdlim = _value_;
     }
 
-    public void setIfdlim(String _value_) {
-        ifdlim = getDoubleFromString(_value_);
+    private static Object getIfdlim(BaseClass _this_) {
+        return ((OverexcLim2) _this_).getIfdlim();
     }
 
-    public String ifdlimToString() {
-        return ifdlim != null ? ifdlim.toString() : null;
+    private static void setIfdlim(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((OverexcLim2) _this_).setIfdlim((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((OverexcLim2) _this_).setIfdlim(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class OverexcLim2 extends OverexcitationLimiterDynamics {
         koi = _value_;
     }
 
-    public void setKoi(String _value_) {
-        koi = getDoubleFromString(_value_);
+    private static Object getKoi(BaseClass _this_) {
+        return ((OverexcLim2) _this_).getKoi();
     }
 
-    public String koiToString() {
-        return koi != null ? koi.toString() : null;
+    private static void setKoi(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((OverexcLim2) _this_).setKoi((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((OverexcLim2) _this_).setKoi(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class OverexcLim2 extends OverexcitationLimiterDynamics {
         voimax = _value_;
     }
 
-    public void setVoimax(String _value_) {
-        voimax = getDoubleFromString(_value_);
+    private static Object getVoimax(BaseClass _this_) {
+        return ((OverexcLim2) _this_).getVoimax();
     }
 
-    public String voimaxToString() {
-        return voimax != null ? voimax.toString() : null;
+    private static void setVoimax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((OverexcLim2) _this_).setVoimax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((OverexcLim2) _this_).setVoimax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class OverexcLim2 extends OverexcitationLimiterDynamics {
         voimin = _value_;
     }
 
-    public void setVoimin(String _value_) {
-        voimin = getDoubleFromString(_value_);
+    private static Object getVoimin(BaseClass _this_) {
+        return ((OverexcLim2) _this_).getVoimin();
     }
 
-    public String voiminToString() {
-        return voimin != null ? voimin.toString() : null;
+    private static void setVoimin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((OverexcLim2) _this_).setVoimin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((OverexcLim2) _this_).setVoimin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,64 +178,35 @@ public class OverexcLim2 extends OverexcitationLimiterDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("OverexcLim2", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "OverexcLim2", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("OverexcLim2", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("OverexcLim2", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "OverexcLim2", attrName, value));
         }
     }
 
@@ -328,36 +330,26 @@ public class OverexcLim2 extends OverexcitationLimiterDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ifdlim", new AttrDetails("OverexcLim2.ifdlim", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ifdlim", new AttrDetails("OverexcLim2.ifdlim", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, OverexcLim2::getIfdlim, OverexcLim2::setIfdlim));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("koi", new AttrDetails("OverexcLim2.koi", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("koi", new AttrDetails("OverexcLim2.koi", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, OverexcLim2::getKoi, OverexcLim2::setKoi));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("voimax", new AttrDetails("OverexcLim2.voimax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("voimax", new AttrDetails("OverexcLim2.voimax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, OverexcLim2::getVoimax, OverexcLim2::setVoimax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("voimin", new AttrDetails("OverexcLim2.voimin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("voimin", new AttrDetails("OverexcLim2.voimin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, OverexcLim2::getVoimin, OverexcLim2::setVoimin));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new OverexcLim2().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new OverexcLim2(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ifdlim", new GetterSetter(this::ifdlimToString, null, this::setIfdlim));
-        map.put("koi", new GetterSetter(this::koiToString, null, this::setKoi));
-        map.put("voimax", new GetterSetter(this::voimaxToString, null, this::setVoimax));
-        map.put("voimin", new GetterSetter(this::voiminToString, null, this::setVoimin));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

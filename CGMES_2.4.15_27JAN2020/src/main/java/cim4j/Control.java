@@ -23,10 +23,17 @@ public class Control extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(Control.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public Control() {
-        setCimType("Control");
+    public Control(String rdfid) {
+        super("Control", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected Control(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class Control extends IdentifiedObject {
         return PowerSystemResource;
     }
 
-    public void setPowerSystemResource(BaseClass _object_) {
-        if (!(_object_ instanceof PowerSystemResource)) {
-            throw new IllegalArgumentException("Object is not PowerSystemResource");
-        }
+    public void setPowerSystemResource(PowerSystemResource _object_) {
         if (PowerSystemResource != _object_) {
-            PowerSystemResource = (PowerSystemResource) _object_;
+            PowerSystemResource = _object_;
             PowerSystemResource.setControls(this);
         }
     }
 
-    public String PowerSystemResourceToString() {
-        return PowerSystemResource != null ? PowerSystemResource.getRdfid() : null;
+    private static Object getPowerSystemResource(BaseClass _this_) {
+        return ((Control) _this_).getPowerSystemResource();
+    }
+
+    private static void setPowerSystemResource(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof PowerSystemResource) {
+            ((Control) _this_).setPowerSystemResource((PowerSystemResource) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not PowerSystemResource");
+        }
     }
 
     /**
@@ -65,8 +77,16 @@ public class Control extends IdentifiedObject {
         controlType = _value_;
     }
 
-    public String controlTypeToString() {
-        return controlType != null ? controlType.toString() : null;
+    private static Object getControlType(BaseClass _this_) {
+        return ((Control) _this_).getControlType();
+    }
+
+    private static void setControlType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((Control) _this_).setControlType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -82,12 +102,18 @@ public class Control extends IdentifiedObject {
         operationInProgress = _value_;
     }
 
-    public void setOperationInProgress(String _value_) {
-        operationInProgress = getBooleanFromString(_value_);
+    private static Object getOperationInProgress(BaseClass _this_) {
+        return ((Control) _this_).getOperationInProgress();
     }
 
-    public String operationInProgressToString() {
-        return operationInProgress != null ? operationInProgress.toString() : null;
+    private static void setOperationInProgress(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((Control) _this_).setOperationInProgress((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((Control) _this_).setOperationInProgress(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -103,8 +129,16 @@ public class Control extends IdentifiedObject {
         timeStamp = _value_;
     }
 
-    public String timeStampToString() {
-        return timeStamp != null ? timeStamp.toString() : null;
+    private static Object getTimeStamp(BaseClass _this_) {
+        return ((Control) _this_).getTimeStamp();
+    }
+
+    private static void setTimeStamp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((Control) _this_).setTimeStamp((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -120,8 +154,16 @@ public class Control extends IdentifiedObject {
         unitMultiplier = _value_;
     }
 
-    public String unitMultiplierToString() {
-        return unitMultiplier;
+    private static Object getUnitMultiplier(BaseClass _this_) {
+        return ((Control) _this_).getUnitMultiplier();
+    }
+
+    private static void setUnitMultiplier(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((Control) _this_).setUnitMultiplier((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -137,8 +179,16 @@ public class Control extends IdentifiedObject {
         unitSymbol = _value_;
     }
 
-    public String unitSymbolToString() {
-        return unitSymbol;
+    private static Object getUnitSymbol(BaseClass _this_) {
+        return ((Control) _this_).getUnitSymbol();
+    }
+
+    private static void setUnitSymbol(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((Control) _this_).setUnitSymbol((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -175,64 +225,35 @@ public class Control extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("Control", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "Control", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("Control", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("Control", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "Control", attrName, value));
         }
     }
 
@@ -356,48 +377,36 @@ public class Control extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("PowerSystemResource", new AttrDetails("Control.PowerSystemResource", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("PowerSystemResource", new AttrDetails("Control.PowerSystemResource", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, Control::getPowerSystemResource, Control::setPowerSystemResource));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("controlType", new AttrDetails("Control.controlType", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("controlType", new AttrDetails("Control.controlType", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, Control::getControlType, Control::setControlType));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("operationInProgress", new AttrDetails("Control.operationInProgress", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("operationInProgress", new AttrDetails("Control.operationInProgress", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, Control::getOperationInProgress, Control::setOperationInProgress));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("timeStamp", new AttrDetails("Control.timeStamp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("timeStamp", new AttrDetails("Control.timeStamp", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, Control::getTimeStamp, Control::setTimeStamp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("unitMultiplier", new AttrDetails("Control.unitMultiplier", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
+            map.put("unitMultiplier", new AttrDetails("Control.unitMultiplier", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true, Control::getUnitMultiplier, Control::setUnitMultiplier));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("unitSymbol", new AttrDetails("Control.unitSymbol", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
+            map.put("unitSymbol", new AttrDetails("Control.unitSymbol", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true, Control::getUnitSymbol, Control::setUnitSymbol));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Control().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Control(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("PowerSystemResource", new GetterSetter(this::PowerSystemResourceToString, this::setPowerSystemResource, null));
-        map.put("controlType", new GetterSetter(this::controlTypeToString, null, this::setControlType));
-        map.put("operationInProgress", new GetterSetter(this::operationInProgressToString, null, this::setOperationInProgress));
-        map.put("timeStamp", new GetterSetter(this::timeStampToString, null, this::setTimeStamp));
-        map.put("unitMultiplier", new GetterSetter(this::unitMultiplierToString, null, this::setUnitMultiplier));
-        map.put("unitSymbol", new GetterSetter(this::unitSymbolToString, null, this::setUnitSymbol));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,10 +23,17 @@ public class SteadyStateHypothesisVersion extends BaseClass {
     private static final Logging LOG = Logging.getLogger(SteadyStateHypothesisVersion.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public SteadyStateHypothesisVersion() {
-        setCimType("SteadyStateHypothesisVersion");
+    public SteadyStateHypothesisVersion(String rdfid) {
+        super("SteadyStateHypothesisVersion", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected SteadyStateHypothesisVersion(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,8 +49,16 @@ public class SteadyStateHypothesisVersion extends BaseClass {
         baseUML = _value_;
     }
 
-    public String baseUMLToString() {
-        return baseUML != null ? baseUML.toString() : null;
+    private static Object getBaseUML(BaseClass _this_) {
+        return ((SteadyStateHypothesisVersion) _this_).getBaseUML();
+    }
+
+    private static void setBaseUML(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SteadyStateHypothesisVersion) _this_).setBaseUML((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -59,8 +74,16 @@ public class SteadyStateHypothesisVersion extends BaseClass {
         baseURI = _value_;
     }
 
-    public String baseURIToString() {
-        return baseURI != null ? baseURI.toString() : null;
+    private static Object getBaseURI(BaseClass _this_) {
+        return ((SteadyStateHypothesisVersion) _this_).getBaseURI();
+    }
+
+    private static void setBaseURI(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SteadyStateHypothesisVersion) _this_).setBaseURI((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -76,8 +99,16 @@ public class SteadyStateHypothesisVersion extends BaseClass {
         date = _value_;
     }
 
-    public String dateToString() {
-        return date != null ? date.toString() : null;
+    private static Object getDate(BaseClass _this_) {
+        return ((SteadyStateHypothesisVersion) _this_).getDate();
+    }
+
+    private static void setDate(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SteadyStateHypothesisVersion) _this_).setDate((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -93,8 +124,16 @@ public class SteadyStateHypothesisVersion extends BaseClass {
         differenceModelURI = _value_;
     }
 
-    public String differenceModelURIToString() {
-        return differenceModelURI != null ? differenceModelURI.toString() : null;
+    private static Object getDifferenceModelURI(BaseClass _this_) {
+        return ((SteadyStateHypothesisVersion) _this_).getDifferenceModelURI();
+    }
+
+    private static void setDifferenceModelURI(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SteadyStateHypothesisVersion) _this_).setDifferenceModelURI((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -110,8 +149,16 @@ public class SteadyStateHypothesisVersion extends BaseClass {
         entsoeUML = _value_;
     }
 
-    public String entsoeUMLToString() {
-        return entsoeUML != null ? entsoeUML.toString() : null;
+    private static Object getEntsoeUML(BaseClass _this_) {
+        return ((SteadyStateHypothesisVersion) _this_).getEntsoeUML();
+    }
+
+    private static void setEntsoeUML(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SteadyStateHypothesisVersion) _this_).setEntsoeUML((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -127,8 +174,16 @@ public class SteadyStateHypothesisVersion extends BaseClass {
         entsoeURI = _value_;
     }
 
-    public String entsoeURIToString() {
-        return entsoeURI != null ? entsoeURI.toString() : null;
+    private static Object getEntsoeURI(BaseClass _this_) {
+        return ((SteadyStateHypothesisVersion) _this_).getEntsoeURI();
+    }
+
+    private static void setEntsoeURI(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SteadyStateHypothesisVersion) _this_).setEntsoeURI((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -144,8 +199,16 @@ public class SteadyStateHypothesisVersion extends BaseClass {
         modelDescriptionURI = _value_;
     }
 
-    public String modelDescriptionURIToString() {
-        return modelDescriptionURI != null ? modelDescriptionURI.toString() : null;
+    private static Object getModelDescriptionURI(BaseClass _this_) {
+        return ((SteadyStateHypothesisVersion) _this_).getModelDescriptionURI();
+    }
+
+    private static void setModelDescriptionURI(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SteadyStateHypothesisVersion) _this_).setModelDescriptionURI((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -161,8 +224,16 @@ public class SteadyStateHypothesisVersion extends BaseClass {
         namespaceRDF = _value_;
     }
 
-    public String namespaceRDFToString() {
-        return namespaceRDF != null ? namespaceRDF.toString() : null;
+    private static Object getNamespaceRDF(BaseClass _this_) {
+        return ((SteadyStateHypothesisVersion) _this_).getNamespaceRDF();
+    }
+
+    private static void setNamespaceRDF(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SteadyStateHypothesisVersion) _this_).setNamespaceRDF((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -178,8 +249,16 @@ public class SteadyStateHypothesisVersion extends BaseClass {
         namespaceUML = _value_;
     }
 
-    public String namespaceUMLToString() {
-        return namespaceUML != null ? namespaceUML.toString() : null;
+    private static Object getNamespaceUML(BaseClass _this_) {
+        return ((SteadyStateHypothesisVersion) _this_).getNamespaceUML();
+    }
+
+    private static void setNamespaceUML(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SteadyStateHypothesisVersion) _this_).setNamespaceUML((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -195,8 +274,16 @@ public class SteadyStateHypothesisVersion extends BaseClass {
         shortName = _value_;
     }
 
-    public String shortNameToString() {
-        return shortName != null ? shortName.toString() : null;
+    private static Object getShortName(BaseClass _this_) {
+        return ((SteadyStateHypothesisVersion) _this_).getShortName();
+    }
+
+    private static void setShortName(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SteadyStateHypothesisVersion) _this_).setShortName((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -233,64 +320,35 @@ public class SteadyStateHypothesisVersion extends BaseClass {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("SteadyStateHypothesisVersion", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "SteadyStateHypothesisVersion", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("SteadyStateHypothesisVersion", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("SteadyStateHypothesisVersion", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "SteadyStateHypothesisVersion", attrName, value));
         }
     }
 
@@ -414,72 +472,56 @@ public class SteadyStateHypothesisVersion extends BaseClass {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("baseUML", new AttrDetails("SteadyStateHypothesisVersion.baseUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("baseUML", new AttrDetails("SteadyStateHypothesisVersion.baseUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, SteadyStateHypothesisVersion::getBaseUML, SteadyStateHypothesisVersion::setBaseUML));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("baseURI", new AttrDetails("SteadyStateHypothesisVersion.baseURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("baseURI", new AttrDetails("SteadyStateHypothesisVersion.baseURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, SteadyStateHypothesisVersion::getBaseURI, SteadyStateHypothesisVersion::setBaseURI));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("date", new AttrDetails("SteadyStateHypothesisVersion.date", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("date", new AttrDetails("SteadyStateHypothesisVersion.date", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, SteadyStateHypothesisVersion::getDate, SteadyStateHypothesisVersion::setDate));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("differenceModelURI", new AttrDetails("SteadyStateHypothesisVersion.differenceModelURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("differenceModelURI", new AttrDetails("SteadyStateHypothesisVersion.differenceModelURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, SteadyStateHypothesisVersion::getDifferenceModelURI, SteadyStateHypothesisVersion::setDifferenceModelURI));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("entsoeUML", new AttrDetails("SteadyStateHypothesisVersion.entsoeUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("entsoeUML", new AttrDetails("SteadyStateHypothesisVersion.entsoeUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, SteadyStateHypothesisVersion::getEntsoeUML, SteadyStateHypothesisVersion::setEntsoeUML));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("entsoeURI", new AttrDetails("SteadyStateHypothesisVersion.entsoeURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("entsoeURI", new AttrDetails("SteadyStateHypothesisVersion.entsoeURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, SteadyStateHypothesisVersion::getEntsoeURI, SteadyStateHypothesisVersion::setEntsoeURI));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("modelDescriptionURI", new AttrDetails("SteadyStateHypothesisVersion.modelDescriptionURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("modelDescriptionURI", new AttrDetails("SteadyStateHypothesisVersion.modelDescriptionURI", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, SteadyStateHypothesisVersion::getModelDescriptionURI, SteadyStateHypothesisVersion::setModelDescriptionURI));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("namespaceRDF", new AttrDetails("SteadyStateHypothesisVersion.namespaceRDF", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("namespaceRDF", new AttrDetails("SteadyStateHypothesisVersion.namespaceRDF", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, SteadyStateHypothesisVersion::getNamespaceRDF, SteadyStateHypothesisVersion::setNamespaceRDF));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("namespaceUML", new AttrDetails("SteadyStateHypothesisVersion.namespaceUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("namespaceUML", new AttrDetails("SteadyStateHypothesisVersion.namespaceUML", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, SteadyStateHypothesisVersion::getNamespaceUML, SteadyStateHypothesisVersion::setNamespaceUML));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("shortName", new AttrDetails("SteadyStateHypothesisVersion.shortName", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false));
+            map.put("shortName", new AttrDetails("SteadyStateHypothesisVersion.shortName", true, "http://entsoe.eu/CIM/SchemaExtension/3/1#", profiles, true, false, SteadyStateHypothesisVersion::getShortName, SteadyStateHypothesisVersion::setShortName));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SteadyStateHypothesisVersion().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SteadyStateHypothesisVersion(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("baseUML", new GetterSetter(this::baseUMLToString, null, this::setBaseUML));
-        map.put("baseURI", new GetterSetter(this::baseURIToString, null, this::setBaseURI));
-        map.put("date", new GetterSetter(this::dateToString, null, this::setDate));
-        map.put("differenceModelURI", new GetterSetter(this::differenceModelURIToString, null, this::setDifferenceModelURI));
-        map.put("entsoeUML", new GetterSetter(this::entsoeUMLToString, null, this::setEntsoeUML));
-        map.put("entsoeURI", new GetterSetter(this::entsoeURIToString, null, this::setEntsoeURI));
-        map.put("modelDescriptionURI", new GetterSetter(this::modelDescriptionURIToString, null, this::setModelDescriptionURI));
-        map.put("namespaceRDF", new GetterSetter(this::namespaceRDFToString, null, this::setNamespaceRDF));
-        map.put("namespaceUML", new GetterSetter(this::namespaceUMLToString, null, this::setNamespaceUML));
-        map.put("shortName", new GetterSetter(this::shortNameToString, null, this::setShortName));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,10 +23,17 @@ public class PetersenCoil extends EarthFaultCompensator {
     private static final Logging LOG = Logging.getLogger(PetersenCoil.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public PetersenCoil() {
-        setCimType("PetersenCoil");
+    public PetersenCoil(String rdfid) {
+        super("PetersenCoil", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected PetersenCoil(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,8 +49,16 @@ public class PetersenCoil extends EarthFaultCompensator {
         mode = _value_;
     }
 
-    public String modeToString() {
-        return mode;
+    private static Object getMode(BaseClass _this_) {
+        return ((PetersenCoil) _this_).getMode();
+    }
+
+    private static void setMode(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((PetersenCoil) _this_).setMode((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -59,12 +74,18 @@ public class PetersenCoil extends EarthFaultCompensator {
         nominalU = _value_;
     }
 
-    public void setNominalU(String _value_) {
-        nominalU = getDoubleFromString(_value_);
+    private static Object getNominalU(BaseClass _this_) {
+        return ((PetersenCoil) _this_).getNominalU();
     }
 
-    public String nominalUToString() {
-        return nominalU != null ? nominalU.toString() : null;
+    private static void setNominalU(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PetersenCoil) _this_).setNominalU((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PetersenCoil) _this_).setNominalU(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -80,12 +101,18 @@ public class PetersenCoil extends EarthFaultCompensator {
         offsetCurrent = _value_;
     }
 
-    public void setOffsetCurrent(String _value_) {
-        offsetCurrent = getDoubleFromString(_value_);
+    private static Object getOffsetCurrent(BaseClass _this_) {
+        return ((PetersenCoil) _this_).getOffsetCurrent();
     }
 
-    public String offsetCurrentToString() {
-        return offsetCurrent != null ? offsetCurrent.toString() : null;
+    private static void setOffsetCurrent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PetersenCoil) _this_).setOffsetCurrent((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PetersenCoil) _this_).setOffsetCurrent(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -101,12 +128,18 @@ public class PetersenCoil extends EarthFaultCompensator {
         positionCurrent = _value_;
     }
 
-    public void setPositionCurrent(String _value_) {
-        positionCurrent = getDoubleFromString(_value_);
+    private static Object getPositionCurrent(BaseClass _this_) {
+        return ((PetersenCoil) _this_).getPositionCurrent();
     }
 
-    public String positionCurrentToString() {
-        return positionCurrent != null ? positionCurrent.toString() : null;
+    private static void setPositionCurrent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PetersenCoil) _this_).setPositionCurrent((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PetersenCoil) _this_).setPositionCurrent(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -122,12 +155,18 @@ public class PetersenCoil extends EarthFaultCompensator {
         xGroundMax = _value_;
     }
 
-    public void setXGroundMax(String _value_) {
-        xGroundMax = getDoubleFromString(_value_);
+    private static Object getXGroundMax(BaseClass _this_) {
+        return ((PetersenCoil) _this_).getXGroundMax();
     }
 
-    public String xGroundMaxToString() {
-        return xGroundMax != null ? xGroundMax.toString() : null;
+    private static void setXGroundMax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PetersenCoil) _this_).setXGroundMax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PetersenCoil) _this_).setXGroundMax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -143,12 +182,18 @@ public class PetersenCoil extends EarthFaultCompensator {
         xGroundMin = _value_;
     }
 
-    public void setXGroundMin(String _value_) {
-        xGroundMin = getDoubleFromString(_value_);
+    private static Object getXGroundMin(BaseClass _this_) {
+        return ((PetersenCoil) _this_).getXGroundMin();
     }
 
-    public String xGroundMinToString() {
-        return xGroundMin != null ? xGroundMin.toString() : null;
+    private static void setXGroundMin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PetersenCoil) _this_).setXGroundMin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PetersenCoil) _this_).setXGroundMin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -164,12 +209,18 @@ public class PetersenCoil extends EarthFaultCompensator {
         xGroundNominal = _value_;
     }
 
-    public void setXGroundNominal(String _value_) {
-        xGroundNominal = getDoubleFromString(_value_);
+    private static Object getXGroundNominal(BaseClass _this_) {
+        return ((PetersenCoil) _this_).getXGroundNominal();
     }
 
-    public String xGroundNominalToString() {
-        return xGroundNominal != null ? xGroundNominal.toString() : null;
+    private static void setXGroundNominal(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PetersenCoil) _this_).setXGroundNominal((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PetersenCoil) _this_).setXGroundNominal(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -206,64 +257,35 @@ public class PetersenCoil extends EarthFaultCompensator {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("PetersenCoil", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "PetersenCoil", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("PetersenCoil", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("PetersenCoil", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "PetersenCoil", attrName, value));
         }
     }
 
@@ -387,54 +409,41 @@ public class PetersenCoil extends EarthFaultCompensator {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("mode", new AttrDetails("PetersenCoil.mode", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
+            map.put("mode", new AttrDetails("PetersenCoil.mode", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true, PetersenCoil::getMode, PetersenCoil::setMode));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("nominalU", new AttrDetails("PetersenCoil.nominalU", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("nominalU", new AttrDetails("PetersenCoil.nominalU", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PetersenCoil::getNominalU, PetersenCoil::setNominalU));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("offsetCurrent", new AttrDetails("PetersenCoil.offsetCurrent", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("offsetCurrent", new AttrDetails("PetersenCoil.offsetCurrent", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PetersenCoil::getOffsetCurrent, PetersenCoil::setOffsetCurrent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("positionCurrent", new AttrDetails("PetersenCoil.positionCurrent", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("positionCurrent", new AttrDetails("PetersenCoil.positionCurrent", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PetersenCoil::getPositionCurrent, PetersenCoil::setPositionCurrent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("xGroundMax", new AttrDetails("PetersenCoil.xGroundMax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("xGroundMax", new AttrDetails("PetersenCoil.xGroundMax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PetersenCoil::getXGroundMax, PetersenCoil::setXGroundMax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("xGroundMin", new AttrDetails("PetersenCoil.xGroundMin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("xGroundMin", new AttrDetails("PetersenCoil.xGroundMin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PetersenCoil::getXGroundMin, PetersenCoil::setXGroundMin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("xGroundNominal", new AttrDetails("PetersenCoil.xGroundNominal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("xGroundNominal", new AttrDetails("PetersenCoil.xGroundNominal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, PetersenCoil::getXGroundNominal, PetersenCoil::setXGroundNominal));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PetersenCoil().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PetersenCoil(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("mode", new GetterSetter(this::modeToString, null, this::setMode));
-        map.put("nominalU", new GetterSetter(this::nominalUToString, null, this::setNominalU));
-        map.put("offsetCurrent", new GetterSetter(this::offsetCurrentToString, null, this::setOffsetCurrent));
-        map.put("positionCurrent", new GetterSetter(this::positionCurrentToString, null, this::setPositionCurrent));
-        map.put("xGroundMax", new GetterSetter(this::xGroundMaxToString, null, this::setXGroundMax));
-        map.put("xGroundMin", new GetterSetter(this::xGroundMinToString, null, this::setXGroundMin));
-        map.put("xGroundNominal", new GetterSetter(this::xGroundNominalToString, null, this::setXGroundNominal));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

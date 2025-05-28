@@ -23,10 +23,17 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
     private static final Logging LOG = Logging.getLogger(SynchronousMachineEquivalentCircuit.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public SynchronousMachineEquivalentCircuit() {
-        setCimType("SynchronousMachineEquivalentCircuit");
+    public SynchronousMachineEquivalentCircuit(String rdfid) {
+        super("SynchronousMachineEquivalentCircuit", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected SynchronousMachineEquivalentCircuit(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
         r1d = _value_;
     }
 
-    public void setR1d(String _value_) {
-        r1d = getDoubleFromString(_value_);
+    private static Object getR1d(BaseClass _this_) {
+        return ((SynchronousMachineEquivalentCircuit) _this_).getR1d();
     }
 
-    public String r1dToString() {
-        return r1d != null ? r1d.toString() : null;
+    private static void setR1d(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setR1d((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setR1d(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
         r1q = _value_;
     }
 
-    public void setR1q(String _value_) {
-        r1q = getDoubleFromString(_value_);
+    private static Object getR1q(BaseClass _this_) {
+        return ((SynchronousMachineEquivalentCircuit) _this_).getR1q();
     }
 
-    public String r1qToString() {
-        return r1q != null ? r1q.toString() : null;
+    private static void setR1q(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setR1q((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setR1q(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
         r2q = _value_;
     }
 
-    public void setR2q(String _value_) {
-        r2q = getDoubleFromString(_value_);
+    private static Object getR2q(BaseClass _this_) {
+        return ((SynchronousMachineEquivalentCircuit) _this_).getR2q();
     }
 
-    public String r2qToString() {
-        return r2q != null ? r2q.toString() : null;
+    private static void setR2q(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setR2q((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setR2q(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
         rfd = _value_;
     }
 
-    public void setRfd(String _value_) {
-        rfd = getDoubleFromString(_value_);
+    private static Object getRfd(BaseClass _this_) {
+        return ((SynchronousMachineEquivalentCircuit) _this_).getRfd();
     }
 
-    public String rfdToString() {
-        return rfd != null ? rfd.toString() : null;
+    private static void setRfd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setRfd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setRfd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
         x1d = _value_;
     }
 
-    public void setX1d(String _value_) {
-        x1d = getDoubleFromString(_value_);
+    private static Object getX1d(BaseClass _this_) {
+        return ((SynchronousMachineEquivalentCircuit) _this_).getX1d();
     }
 
-    public String x1dToString() {
-        return x1d != null ? x1d.toString() : null;
+    private static void setX1d(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setX1d((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setX1d(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,12 +184,18 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
         x1q = _value_;
     }
 
-    public void setX1q(String _value_) {
-        x1q = getDoubleFromString(_value_);
+    private static Object getX1q(BaseClass _this_) {
+        return ((SynchronousMachineEquivalentCircuit) _this_).getX1q();
     }
 
-    public String x1qToString() {
-        return x1q != null ? x1q.toString() : null;
+    private static void setX1q(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setX1q((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setX1q(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,12 +211,18 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
         x2q = _value_;
     }
 
-    public void setX2q(String _value_) {
-        x2q = getDoubleFromString(_value_);
+    private static Object getX2q(BaseClass _this_) {
+        return ((SynchronousMachineEquivalentCircuit) _this_).getX2q();
     }
 
-    public String x2qToString() {
-        return x2q != null ? x2q.toString() : null;
+    private static void setX2q(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setX2q((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setX2q(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,12 +238,18 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
         xad = _value_;
     }
 
-    public void setXad(String _value_) {
-        xad = getDoubleFromString(_value_);
+    private static Object getXad(BaseClass _this_) {
+        return ((SynchronousMachineEquivalentCircuit) _this_).getXad();
     }
 
-    public String xadToString() {
-        return xad != null ? xad.toString() : null;
+    private static void setXad(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setXad((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setXad(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -210,12 +265,18 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
         xaq = _value_;
     }
 
-    public void setXaq(String _value_) {
-        xaq = getDoubleFromString(_value_);
+    private static Object getXaq(BaseClass _this_) {
+        return ((SynchronousMachineEquivalentCircuit) _this_).getXaq();
     }
 
-    public String xaqToString() {
-        return xaq != null ? xaq.toString() : null;
+    private static void setXaq(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setXaq((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setXaq(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -231,12 +292,18 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
         xf1d = _value_;
     }
 
-    public void setXf1d(String _value_) {
-        xf1d = getDoubleFromString(_value_);
+    private static Object getXf1d(BaseClass _this_) {
+        return ((SynchronousMachineEquivalentCircuit) _this_).getXf1d();
     }
 
-    public String xf1dToString() {
-        return xf1d != null ? xf1d.toString() : null;
+    private static void setXf1d(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setXf1d((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setXf1d(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -252,12 +319,18 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
         xfd = _value_;
     }
 
-    public void setXfd(String _value_) {
-        xfd = getDoubleFromString(_value_);
+    private static Object getXfd(BaseClass _this_) {
+        return ((SynchronousMachineEquivalentCircuit) _this_).getXfd();
     }
 
-    public String xfdToString() {
-        return xfd != null ? xfd.toString() : null;
+    private static void setXfd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setXfd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineEquivalentCircuit) _this_).setXfd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -294,64 +367,35 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("SynchronousMachineEquivalentCircuit", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "SynchronousMachineEquivalentCircuit", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("SynchronousMachineEquivalentCircuit", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("SynchronousMachineEquivalentCircuit", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "SynchronousMachineEquivalentCircuit", attrName, value));
         }
     }
 
@@ -475,78 +519,61 @@ public class SynchronousMachineEquivalentCircuit extends SynchronousMachineDetai
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("r1d", new AttrDetails("SynchronousMachineEquivalentCircuit.r1d", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("r1d", new AttrDetails("SynchronousMachineEquivalentCircuit.r1d", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineEquivalentCircuit::getR1d, SynchronousMachineEquivalentCircuit::setR1d));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("r1q", new AttrDetails("SynchronousMachineEquivalentCircuit.r1q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("r1q", new AttrDetails("SynchronousMachineEquivalentCircuit.r1q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineEquivalentCircuit::getR1q, SynchronousMachineEquivalentCircuit::setR1q));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("r2q", new AttrDetails("SynchronousMachineEquivalentCircuit.r2q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("r2q", new AttrDetails("SynchronousMachineEquivalentCircuit.r2q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineEquivalentCircuit::getR2q, SynchronousMachineEquivalentCircuit::setR2q));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rfd", new AttrDetails("SynchronousMachineEquivalentCircuit.rfd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rfd", new AttrDetails("SynchronousMachineEquivalentCircuit.rfd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineEquivalentCircuit::getRfd, SynchronousMachineEquivalentCircuit::setRfd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("x1d", new AttrDetails("SynchronousMachineEquivalentCircuit.x1d", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("x1d", new AttrDetails("SynchronousMachineEquivalentCircuit.x1d", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineEquivalentCircuit::getX1d, SynchronousMachineEquivalentCircuit::setX1d));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("x1q", new AttrDetails("SynchronousMachineEquivalentCircuit.x1q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("x1q", new AttrDetails("SynchronousMachineEquivalentCircuit.x1q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineEquivalentCircuit::getX1q, SynchronousMachineEquivalentCircuit::setX1q));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("x2q", new AttrDetails("SynchronousMachineEquivalentCircuit.x2q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("x2q", new AttrDetails("SynchronousMachineEquivalentCircuit.x2q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineEquivalentCircuit::getX2q, SynchronousMachineEquivalentCircuit::setX2q));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xad", new AttrDetails("SynchronousMachineEquivalentCircuit.xad", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xad", new AttrDetails("SynchronousMachineEquivalentCircuit.xad", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineEquivalentCircuit::getXad, SynchronousMachineEquivalentCircuit::setXad));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xaq", new AttrDetails("SynchronousMachineEquivalentCircuit.xaq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xaq", new AttrDetails("SynchronousMachineEquivalentCircuit.xaq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineEquivalentCircuit::getXaq, SynchronousMachineEquivalentCircuit::setXaq));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xf1d", new AttrDetails("SynchronousMachineEquivalentCircuit.xf1d", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xf1d", new AttrDetails("SynchronousMachineEquivalentCircuit.xf1d", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineEquivalentCircuit::getXf1d, SynchronousMachineEquivalentCircuit::setXf1d));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xfd", new AttrDetails("SynchronousMachineEquivalentCircuit.xfd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xfd", new AttrDetails("SynchronousMachineEquivalentCircuit.xfd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineEquivalentCircuit::getXfd, SynchronousMachineEquivalentCircuit::setXfd));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SynchronousMachineEquivalentCircuit().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SynchronousMachineEquivalentCircuit(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("r1d", new GetterSetter(this::r1dToString, null, this::setR1d));
-        map.put("r1q", new GetterSetter(this::r1qToString, null, this::setR1q));
-        map.put("r2q", new GetterSetter(this::r2qToString, null, this::setR2q));
-        map.put("rfd", new GetterSetter(this::rfdToString, null, this::setRfd));
-        map.put("x1d", new GetterSetter(this::x1dToString, null, this::setX1d));
-        map.put("x1q", new GetterSetter(this::x1qToString, null, this::setX1q));
-        map.put("x2q", new GetterSetter(this::x2qToString, null, this::setX2q));
-        map.put("xad", new GetterSetter(this::xadToString, null, this::setXad));
-        map.put("xaq", new GetterSetter(this::xaqToString, null, this::setXaq));
-        map.put("xf1d", new GetterSetter(this::xf1dToString, null, this::setXf1d));
-        map.put("xfd", new GetterSetter(this::xfdToString, null, this::setXfd));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

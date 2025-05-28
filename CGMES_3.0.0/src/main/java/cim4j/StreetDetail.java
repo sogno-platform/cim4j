@@ -23,10 +23,17 @@ public class StreetDetail extends BaseClass {
     private static final Logging LOG = Logging.getLogger(StreetDetail.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public StreetDetail() {
-        setCimType("StreetDetail");
+    public StreetDetail(String rdfid) {
+        super("StreetDetail", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected StreetDetail(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,8 +49,16 @@ public class StreetDetail extends BaseClass {
         addressGeneral = _value_;
     }
 
-    public String addressGeneralToString() {
-        return addressGeneral != null ? addressGeneral.toString() : null;
+    private static Object getAddressGeneral(BaseClass _this_) {
+        return ((StreetDetail) _this_).getAddressGeneral();
+    }
+
+    private static void setAddressGeneral(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((StreetDetail) _this_).setAddressGeneral((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -59,8 +74,16 @@ public class StreetDetail extends BaseClass {
         addressGeneral2 = _value_;
     }
 
-    public String addressGeneral2ToString() {
-        return addressGeneral2 != null ? addressGeneral2.toString() : null;
+    private static Object getAddressGeneral2(BaseClass _this_) {
+        return ((StreetDetail) _this_).getAddressGeneral2();
+    }
+
+    private static void setAddressGeneral2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((StreetDetail) _this_).setAddressGeneral2((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -76,8 +99,16 @@ public class StreetDetail extends BaseClass {
         addressGeneral3 = _value_;
     }
 
-    public String addressGeneral3ToString() {
-        return addressGeneral3 != null ? addressGeneral3.toString() : null;
+    private static Object getAddressGeneral3(BaseClass _this_) {
+        return ((StreetDetail) _this_).getAddressGeneral3();
+    }
+
+    private static void setAddressGeneral3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((StreetDetail) _this_).setAddressGeneral3((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -93,8 +124,16 @@ public class StreetDetail extends BaseClass {
         buildingName = _value_;
     }
 
-    public String buildingNameToString() {
-        return buildingName != null ? buildingName.toString() : null;
+    private static Object getBuildingName(BaseClass _this_) {
+        return ((StreetDetail) _this_).getBuildingName();
+    }
+
+    private static void setBuildingName(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((StreetDetail) _this_).setBuildingName((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -110,8 +149,16 @@ public class StreetDetail extends BaseClass {
         code = _value_;
     }
 
-    public String codeToString() {
-        return code != null ? code.toString() : null;
+    private static Object getCode(BaseClass _this_) {
+        return ((StreetDetail) _this_).getCode();
+    }
+
+    private static void setCode(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((StreetDetail) _this_).setCode((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -127,8 +174,16 @@ public class StreetDetail extends BaseClass {
         floorIdentification = _value_;
     }
 
-    public String floorIdentificationToString() {
-        return floorIdentification != null ? floorIdentification.toString() : null;
+    private static Object getFloorIdentification(BaseClass _this_) {
+        return ((StreetDetail) _this_).getFloorIdentification();
+    }
+
+    private static void setFloorIdentification(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((StreetDetail) _this_).setFloorIdentification((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -144,8 +199,16 @@ public class StreetDetail extends BaseClass {
         name = _value_;
     }
 
-    public String nameToString() {
-        return name != null ? name.toString() : null;
+    private static Object getName(BaseClass _this_) {
+        return ((StreetDetail) _this_).getName();
+    }
+
+    private static void setName(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((StreetDetail) _this_).setName((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -161,8 +224,16 @@ public class StreetDetail extends BaseClass {
         number = _value_;
     }
 
-    public String numberToString() {
-        return number != null ? number.toString() : null;
+    private static Object getNumber(BaseClass _this_) {
+        return ((StreetDetail) _this_).getNumber();
+    }
+
+    private static void setNumber(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((StreetDetail) _this_).setNumber((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -178,8 +249,16 @@ public class StreetDetail extends BaseClass {
         prefix = _value_;
     }
 
-    public String prefixToString() {
-        return prefix != null ? prefix.toString() : null;
+    private static Object getPrefix(BaseClass _this_) {
+        return ((StreetDetail) _this_).getPrefix();
+    }
+
+    private static void setPrefix(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((StreetDetail) _this_).setPrefix((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -195,8 +274,16 @@ public class StreetDetail extends BaseClass {
         suffix = _value_;
     }
 
-    public String suffixToString() {
-        return suffix != null ? suffix.toString() : null;
+    private static Object getSuffix(BaseClass _this_) {
+        return ((StreetDetail) _this_).getSuffix();
+    }
+
+    private static void setSuffix(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((StreetDetail) _this_).setSuffix((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -212,8 +299,16 @@ public class StreetDetail extends BaseClass {
         suiteNumber = _value_;
     }
 
-    public String suiteNumberToString() {
-        return suiteNumber != null ? suiteNumber.toString() : null;
+    private static Object getSuiteNumber(BaseClass _this_) {
+        return ((StreetDetail) _this_).getSuiteNumber();
+    }
+
+    private static void setSuiteNumber(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((StreetDetail) _this_).setSuiteNumber((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -229,8 +324,16 @@ public class StreetDetail extends BaseClass {
         type = _value_;
     }
 
-    public String typeToString() {
-        return type != null ? type.toString() : null;
+    private static Object getType(BaseClass _this_) {
+        return ((StreetDetail) _this_).getType();
+    }
+
+    private static void setType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((StreetDetail) _this_).setType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -246,12 +349,18 @@ public class StreetDetail extends BaseClass {
         withinTownLimits = _value_;
     }
 
-    public void setWithinTownLimits(String _value_) {
-        withinTownLimits = getBooleanFromString(_value_);
+    private static Object getWithinTownLimits(BaseClass _this_) {
+        return ((StreetDetail) _this_).getWithinTownLimits();
     }
 
-    public String withinTownLimitsToString() {
-        return withinTownLimits != null ? withinTownLimits.toString() : null;
+    private static void setWithinTownLimits(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((StreetDetail) _this_).setWithinTownLimits((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((StreetDetail) _this_).setWithinTownLimits(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -288,64 +397,35 @@ public class StreetDetail extends BaseClass {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("StreetDetail", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "StreetDetail", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("StreetDetail", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("StreetDetail", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "StreetDetail", attrName, value));
         }
     }
 
@@ -469,90 +549,71 @@ public class StreetDetail extends BaseClass {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("addressGeneral", new AttrDetails("StreetDetail.addressGeneral", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("addressGeneral", new AttrDetails("StreetDetail.addressGeneral", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StreetDetail::getAddressGeneral, StreetDetail::setAddressGeneral));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("addressGeneral2", new AttrDetails("StreetDetail.addressGeneral2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("addressGeneral2", new AttrDetails("StreetDetail.addressGeneral2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StreetDetail::getAddressGeneral2, StreetDetail::setAddressGeneral2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("addressGeneral3", new AttrDetails("StreetDetail.addressGeneral3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("addressGeneral3", new AttrDetails("StreetDetail.addressGeneral3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StreetDetail::getAddressGeneral3, StreetDetail::setAddressGeneral3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("buildingName", new AttrDetails("StreetDetail.buildingName", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("buildingName", new AttrDetails("StreetDetail.buildingName", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StreetDetail::getBuildingName, StreetDetail::setBuildingName));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("code", new AttrDetails("StreetDetail.code", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("code", new AttrDetails("StreetDetail.code", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StreetDetail::getCode, StreetDetail::setCode));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("floorIdentification", new AttrDetails("StreetDetail.floorIdentification", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("floorIdentification", new AttrDetails("StreetDetail.floorIdentification", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StreetDetail::getFloorIdentification, StreetDetail::setFloorIdentification));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("name", new AttrDetails("StreetDetail.name", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("name", new AttrDetails("StreetDetail.name", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StreetDetail::getName, StreetDetail::setName));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("number", new AttrDetails("StreetDetail.number", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("number", new AttrDetails("StreetDetail.number", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StreetDetail::getNumber, StreetDetail::setNumber));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("prefix", new AttrDetails("StreetDetail.prefix", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("prefix", new AttrDetails("StreetDetail.prefix", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StreetDetail::getPrefix, StreetDetail::setPrefix));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("suffix", new AttrDetails("StreetDetail.suffix", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("suffix", new AttrDetails("StreetDetail.suffix", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StreetDetail::getSuffix, StreetDetail::setSuffix));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("suiteNumber", new AttrDetails("StreetDetail.suiteNumber", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("suiteNumber", new AttrDetails("StreetDetail.suiteNumber", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StreetDetail::getSuiteNumber, StreetDetail::setSuiteNumber));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("type", new AttrDetails("StreetDetail.type", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("type", new AttrDetails("StreetDetail.type", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StreetDetail::getType, StreetDetail::setType));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.GL);
-            map.put("withinTownLimits", new AttrDetails("StreetDetail.withinTownLimits", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("withinTownLimits", new AttrDetails("StreetDetail.withinTownLimits", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, StreetDetail::getWithinTownLimits, StreetDetail::setWithinTownLimits));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new StreetDetail().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new StreetDetail(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("addressGeneral", new GetterSetter(this::addressGeneralToString, null, this::setAddressGeneral));
-        map.put("addressGeneral2", new GetterSetter(this::addressGeneral2ToString, null, this::setAddressGeneral2));
-        map.put("addressGeneral3", new GetterSetter(this::addressGeneral3ToString, null, this::setAddressGeneral3));
-        map.put("buildingName", new GetterSetter(this::buildingNameToString, null, this::setBuildingName));
-        map.put("code", new GetterSetter(this::codeToString, null, this::setCode));
-        map.put("floorIdentification", new GetterSetter(this::floorIdentificationToString, null, this::setFloorIdentification));
-        map.put("name", new GetterSetter(this::nameToString, null, this::setName));
-        map.put("number", new GetterSetter(this::numberToString, null, this::setNumber));
-        map.put("prefix", new GetterSetter(this::prefixToString, null, this::setPrefix));
-        map.put("suffix", new GetterSetter(this::suffixToString, null, this::setSuffix));
-        map.put("suiteNumber", new GetterSetter(this::suiteNumberToString, null, this::setSuiteNumber));
-        map.put("type", new GetterSetter(this::typeToString, null, this::setType));
-        map.put("withinTownLimits", new GetterSetter(this::withinTownLimitsToString, null, this::setWithinTownLimits));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,10 +23,17 @@ public class Accumulator extends Measurement {
     private static final Logging LOG = Logging.getLogger(Accumulator.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public Accumulator() {
-        setCimType("Accumulator");
+    public Accumulator(String rdfid) {
+        super("Accumulator", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected Accumulator(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class Accumulator extends Measurement {
         return AccumulatorValues;
     }
 
-    public void setAccumulatorValues(BaseClass _object_) {
-        if (!(_object_ instanceof AccumulatorValue)) {
-            throw new IllegalArgumentException("Object is not AccumulatorValue");
-        }
+    public void setAccumulatorValues(AccumulatorValue _object_) {
         if (!AccumulatorValues.contains(_object_)) {
-            AccumulatorValues.add((AccumulatorValue) _object_);
-            ((AccumulatorValue) _object_).setAccumulator(this);
+            AccumulatorValues.add(_object_);
+            _object_.setAccumulator(this);
         }
     }
 
-    public String AccumulatorValuesToString() {
-        return getStringFromSet(AccumulatorValues);
+    private static Object getAccumulatorValues(BaseClass _this_) {
+        return ((Accumulator) _this_).getAccumulatorValues();
+    }
+
+    private static void setAccumulatorValues(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof AccumulatorValue) {
+            ((Accumulator) _this_).setAccumulatorValues((AccumulatorValue) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not AccumulatorValue");
+        }
     }
 
     /**
@@ -65,18 +77,23 @@ public class Accumulator extends Measurement {
         return LimitSets;
     }
 
-    public void setLimitSets(BaseClass _object_) {
-        if (!(_object_ instanceof AccumulatorLimitSet)) {
-            throw new IllegalArgumentException("Object is not AccumulatorLimitSet");
-        }
+    public void setLimitSets(AccumulatorLimitSet _object_) {
         if (!LimitSets.contains(_object_)) {
-            LimitSets.add((AccumulatorLimitSet) _object_);
-            ((AccumulatorLimitSet) _object_).setMeasurements(this);
+            LimitSets.add(_object_);
+            _object_.setMeasurements(this);
         }
     }
 
-    public String LimitSetsToString() {
-        return getStringFromSet(LimitSets);
+    private static Object getLimitSets(BaseClass _this_) {
+        return ((Accumulator) _this_).getLimitSets();
+    }
+
+    private static void setLimitSets(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof AccumulatorLimitSet) {
+            ((Accumulator) _this_).setLimitSets((AccumulatorLimitSet) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not AccumulatorLimitSet");
+        }
     }
 
     /**
@@ -113,64 +130,35 @@ public class Accumulator extends Measurement {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("Accumulator", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "Accumulator", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("Accumulator", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("Accumulator", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "Accumulator", attrName, value));
         }
     }
 
@@ -294,24 +282,16 @@ public class Accumulator extends Measurement {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("AccumulatorValues", new AttrDetails("Accumulator.AccumulatorValues", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("AccumulatorValues", new AttrDetails("Accumulator.AccumulatorValues", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, Accumulator::getAccumulatorValues, Accumulator::setAccumulatorValues));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("LimitSets", new AttrDetails("Accumulator.LimitSets", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("LimitSets", new AttrDetails("Accumulator.LimitSets", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, Accumulator::getLimitSets, Accumulator::setLimitSets));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Accumulator().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Accumulator(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("AccumulatorValues", new GetterSetter(this::AccumulatorValuesToString, this::setAccumulatorValues, null));
-        map.put("LimitSets", new GetterSetter(this::LimitSetsToString, this::setLimitSets, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

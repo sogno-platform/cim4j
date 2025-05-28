@@ -23,14 +23,21 @@ public class DiscExcContIEEEDEC3A extends DiscontinuousExcitationControlDynamics
     private static final Logging LOG = Logging.getLogger(DiscExcContIEEEDEC3A.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public DiscExcContIEEEDEC3A() {
-        setCimType("DiscExcContIEEEDEC3A");
+    public DiscExcContIEEEDEC3A(String rdfid) {
+        super("DiscExcContIEEEDEC3A", rdfid);
     }
 
     /**
-     * Reset time delay (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;DR&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).
+     * Constructor for subclasses.
+     */
+    protected DiscExcContIEEEDEC3A(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Reset time delay (<i>T</i><i><sub>DR</sub></i>) (&gt;= 0).
      */
     private Double tdr; // Seconds
 
@@ -42,16 +49,22 @@ public class DiscExcContIEEEDEC3A extends DiscontinuousExcitationControlDynamics
         tdr = _value_;
     }
 
-    public void setTdr(String _value_) {
-        tdr = getDoubleFromString(_value_);
+    private static Object getTdr(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC3A) _this_).getTdr();
     }
 
-    public String tdrToString() {
-        return tdr != null ? tdr.toString() : null;
+    private static void setTdr(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC3A) _this_).setTdr((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC3A) _this_).setTdr(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Terminal undervoltage comparison level (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;TMIN&lt;/sub&gt;&lt;/i&gt;).
+     * Terminal undervoltage comparison level (<i>V</i><i><sub>TMIN</sub></i>).
      */
     private Double vtmin; // PU
 
@@ -63,12 +76,18 @@ public class DiscExcContIEEEDEC3A extends DiscontinuousExcitationControlDynamics
         vtmin = _value_;
     }
 
-    public void setVtmin(String _value_) {
-        vtmin = getDoubleFromString(_value_);
+    private static Object getVtmin(BaseClass _this_) {
+        return ((DiscExcContIEEEDEC3A) _this_).getVtmin();
     }
 
-    public String vtminToString() {
-        return vtmin != null ? vtmin.toString() : null;
+    private static void setVtmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiscExcContIEEEDEC3A) _this_).setVtmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscExcContIEEEDEC3A) _this_).setVtmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,64 +124,35 @@ public class DiscExcContIEEEDEC3A extends DiscontinuousExcitationControlDynamics
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("DiscExcContIEEEDEC3A", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "DiscExcContIEEEDEC3A", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("DiscExcContIEEEDEC3A", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("DiscExcContIEEEDEC3A", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "DiscExcContIEEEDEC3A", attrName, value));
         }
     }
 
@@ -286,24 +276,16 @@ public class DiscExcContIEEEDEC3A extends DiscontinuousExcitationControlDynamics
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tdr", new AttrDetails("DiscExcContIEEEDEC3A.tdr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tdr", new AttrDetails("DiscExcContIEEEDEC3A.tdr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, DiscExcContIEEEDEC3A::getTdr, DiscExcContIEEEDEC3A::setTdr));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vtmin", new AttrDetails("DiscExcContIEEEDEC3A.vtmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vtmin", new AttrDetails("DiscExcContIEEEDEC3A.vtmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, DiscExcContIEEEDEC3A::getVtmin, DiscExcContIEEEDEC3A::setVtmin));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DiscExcContIEEEDEC3A().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DiscExcContIEEEDEC3A(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("tdr", new GetterSetter(this::tdrToString, null, this::setTdr));
-        map.put("vtmin", new GetterSetter(this::vtminToString, null, this::setVtmin));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

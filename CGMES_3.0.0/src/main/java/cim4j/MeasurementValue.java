@@ -23,10 +23,17 @@ public class MeasurementValue extends IOPoint {
     private static final Logging LOG = Logging.getLogger(MeasurementValue.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public MeasurementValue() {
-        setCimType("MeasurementValue");
+    public MeasurementValue(String rdfid) {
+        super("MeasurementValue", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected MeasurementValue(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class MeasurementValue extends IOPoint {
         return MeasurementValueQuality;
     }
 
-    public void setMeasurementValueQuality(BaseClass _object_) {
-        if (!(_object_ instanceof MeasurementValueQuality)) {
-            throw new IllegalArgumentException("Object is not MeasurementValueQuality");
-        }
+    public void setMeasurementValueQuality(MeasurementValueQuality _object_) {
         if (MeasurementValueQuality != _object_) {
-            MeasurementValueQuality = (MeasurementValueQuality) _object_;
+            MeasurementValueQuality = _object_;
             MeasurementValueQuality.setMeasurementValue(this);
         }
     }
 
-    public String MeasurementValueQualityToString() {
-        return MeasurementValueQuality != null ? MeasurementValueQuality.getRdfid() : null;
+    private static Object getMeasurementValueQuality(BaseClass _this_) {
+        return ((MeasurementValue) _this_).getMeasurementValueQuality();
+    }
+
+    private static void setMeasurementValueQuality(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof MeasurementValueQuality) {
+            ((MeasurementValue) _this_).setMeasurementValueQuality((MeasurementValueQuality) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not MeasurementValueQuality");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class MeasurementValue extends IOPoint {
         return MeasurementValueSource;
     }
 
-    public void setMeasurementValueSource(BaseClass _object_) {
-        if (!(_object_ instanceof MeasurementValueSource)) {
-            throw new IllegalArgumentException("Object is not MeasurementValueSource");
-        }
+    public void setMeasurementValueSource(MeasurementValueSource _object_) {
         if (MeasurementValueSource != _object_) {
-            MeasurementValueSource = (MeasurementValueSource) _object_;
+            MeasurementValueSource = _object_;
             MeasurementValueSource.setMeasurementValues(this);
         }
     }
 
-    public String MeasurementValueSourceToString() {
-        return MeasurementValueSource != null ? MeasurementValueSource.getRdfid() : null;
+    private static Object getMeasurementValueSource(BaseClass _this_) {
+        return ((MeasurementValue) _this_).getMeasurementValueSource();
+    }
+
+    private static void setMeasurementValueSource(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof MeasurementValueSource) {
+            ((MeasurementValue) _this_).setMeasurementValueSource((MeasurementValueSource) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not MeasurementValueSource");
+        }
     }
 
     /**
@@ -90,12 +107,18 @@ public class MeasurementValue extends IOPoint {
         sensorAccuracy = _value_;
     }
 
-    public void setSensorAccuracy(String _value_) {
-        sensorAccuracy = getDoubleFromString(_value_);
+    private static Object getSensorAccuracy(BaseClass _this_) {
+        return ((MeasurementValue) _this_).getSensorAccuracy();
     }
 
-    public String sensorAccuracyToString() {
-        return sensorAccuracy != null ? sensorAccuracy.toString() : null;
+    private static void setSensorAccuracy(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((MeasurementValue) _this_).setSensorAccuracy((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((MeasurementValue) _this_).setSensorAccuracy(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -111,8 +134,16 @@ public class MeasurementValue extends IOPoint {
         timeStamp = _value_;
     }
 
-    public String timeStampToString() {
-        return timeStamp != null ? timeStamp.toString() : null;
+    private static Object getTimeStamp(BaseClass _this_) {
+        return ((MeasurementValue) _this_).getTimeStamp();
+    }
+
+    private static void setTimeStamp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((MeasurementValue) _this_).setTimeStamp((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -149,64 +180,35 @@ public class MeasurementValue extends IOPoint {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("MeasurementValue", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "MeasurementValue", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("MeasurementValue", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("MeasurementValue", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "MeasurementValue", attrName, value));
         }
     }
 
@@ -330,36 +332,26 @@ public class MeasurementValue extends IOPoint {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("MeasurementValueQuality", new AttrDetails("MeasurementValue.MeasurementValueQuality", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("MeasurementValueQuality", new AttrDetails("MeasurementValue.MeasurementValueQuality", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, MeasurementValue::getMeasurementValueQuality, MeasurementValue::setMeasurementValueQuality));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("MeasurementValueSource", new AttrDetails("MeasurementValue.MeasurementValueSource", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("MeasurementValueSource", new AttrDetails("MeasurementValue.MeasurementValueSource", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, MeasurementValue::getMeasurementValueSource, MeasurementValue::setMeasurementValueSource));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("sensorAccuracy", new AttrDetails("MeasurementValue.sensorAccuracy", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("sensorAccuracy", new AttrDetails("MeasurementValue.sensorAccuracy", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, MeasurementValue::getSensorAccuracy, MeasurementValue::setSensorAccuracy));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("timeStamp", new AttrDetails("MeasurementValue.timeStamp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("timeStamp", new AttrDetails("MeasurementValue.timeStamp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, MeasurementValue::getTimeStamp, MeasurementValue::setTimeStamp));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new MeasurementValue().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new MeasurementValue(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("MeasurementValueQuality", new GetterSetter(this::MeasurementValueQualityToString, this::setMeasurementValueQuality, null));
-        map.put("MeasurementValueSource", new GetterSetter(this::MeasurementValueSourceToString, this::setMeasurementValueSource, null));
-        map.put("sensorAccuracy", new GetterSetter(this::sensorAccuracyToString, null, this::setSensorAccuracy));
-        map.put("timeStamp", new GetterSetter(this::timeStampToString, null, this::setTimeStamp));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

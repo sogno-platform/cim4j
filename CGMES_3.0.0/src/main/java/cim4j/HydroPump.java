@@ -23,10 +23,17 @@ public class HydroPump extends Equipment {
     private static final Logging LOG = Logging.getLogger(HydroPump.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public HydroPump() {
-        setCimType("HydroPump");
+    public HydroPump(String rdfid) {
+        super("HydroPump", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected HydroPump(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class HydroPump extends Equipment {
         return HydroPowerPlant;
     }
 
-    public void setHydroPowerPlant(BaseClass _object_) {
-        if (!(_object_ instanceof HydroPowerPlant)) {
-            throw new IllegalArgumentException("Object is not HydroPowerPlant");
-        }
+    public void setHydroPowerPlant(HydroPowerPlant _object_) {
         if (HydroPowerPlant != _object_) {
-            HydroPowerPlant = (HydroPowerPlant) _object_;
+            HydroPowerPlant = _object_;
             HydroPowerPlant.setHydroPumps(this);
         }
     }
 
-    public String HydroPowerPlantToString() {
-        return HydroPowerPlant != null ? HydroPowerPlant.getRdfid() : null;
+    private static Object getHydroPowerPlant(BaseClass _this_) {
+        return ((HydroPump) _this_).getHydroPowerPlant();
+    }
+
+    private static void setHydroPowerPlant(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof HydroPowerPlant) {
+            ((HydroPump) _this_).setHydroPowerPlant((HydroPowerPlant) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not HydroPowerPlant");
+        }
     }
 
     /**
@@ -61,18 +73,23 @@ public class HydroPump extends Equipment {
         return RotatingMachine;
     }
 
-    public void setRotatingMachine(BaseClass _object_) {
-        if (!(_object_ instanceof RotatingMachine)) {
-            throw new IllegalArgumentException("Object is not RotatingMachine");
-        }
+    public void setRotatingMachine(RotatingMachine _object_) {
         if (RotatingMachine != _object_) {
-            RotatingMachine = (RotatingMachine) _object_;
+            RotatingMachine = _object_;
             RotatingMachine.setHydroPump(this);
         }
     }
 
-    public String RotatingMachineToString() {
-        return RotatingMachine != null ? RotatingMachine.getRdfid() : null;
+    private static Object getRotatingMachine(BaseClass _this_) {
+        return ((HydroPump) _this_).getRotatingMachine();
+    }
+
+    private static void setRotatingMachine(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof RotatingMachine) {
+            ((HydroPump) _this_).setRotatingMachine((RotatingMachine) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not RotatingMachine");
+        }
     }
 
     /**
@@ -109,64 +126,35 @@ public class HydroPump extends Equipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("HydroPump", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "HydroPump", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("HydroPump", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("HydroPump", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "HydroPump", attrName, value));
         }
     }
 
@@ -290,24 +278,16 @@ public class HydroPump extends Equipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("HydroPowerPlant", new AttrDetails("HydroPump.HydroPowerPlant", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("HydroPowerPlant", new AttrDetails("HydroPump.HydroPowerPlant", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, HydroPump::getHydroPowerPlant, HydroPump::setHydroPowerPlant));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("RotatingMachine", new AttrDetails("HydroPump.RotatingMachine", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("RotatingMachine", new AttrDetails("HydroPump.RotatingMachine", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, HydroPump::getRotatingMachine, HydroPump::setRotatingMachine));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new HydroPump().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new HydroPump(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("HydroPowerPlant", new GetterSetter(this::HydroPowerPlantToString, this::setHydroPowerPlant, null));
-        map.put("RotatingMachine", new GetterSetter(this::RotatingMachineToString, this::setRotatingMachine, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

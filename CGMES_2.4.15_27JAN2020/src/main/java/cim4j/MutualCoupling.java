@@ -23,10 +23,17 @@ public class MutualCoupling extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(MutualCoupling.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public MutualCoupling() {
-        setCimType("MutualCoupling");
+    public MutualCoupling(String rdfid) {
+        super("MutualCoupling", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected MutualCoupling(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class MutualCoupling extends IdentifiedObject {
         return First_Terminal;
     }
 
-    public void setFirst_Terminal(BaseClass _object_) {
-        if (!(_object_ instanceof Terminal)) {
-            throw new IllegalArgumentException("Object is not Terminal");
-        }
+    public void setFirst_Terminal(Terminal _object_) {
         if (First_Terminal != _object_) {
-            First_Terminal = (Terminal) _object_;
+            First_Terminal = _object_;
             First_Terminal.setHasFirstMutualCoupling(this);
         }
     }
 
-    public String First_TerminalToString() {
-        return First_Terminal != null ? First_Terminal.getRdfid() : null;
+    private static Object getFirst_Terminal(BaseClass _this_) {
+        return ((MutualCoupling) _this_).getFirst_Terminal();
+    }
+
+    private static void setFirst_Terminal(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Terminal) {
+            ((MutualCoupling) _this_).setFirst_Terminal((Terminal) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Terminal");
+        }
     }
 
     /**
@@ -61,18 +73,23 @@ public class MutualCoupling extends IdentifiedObject {
         return Second_Terminal;
     }
 
-    public void setSecond_Terminal(BaseClass _object_) {
-        if (!(_object_ instanceof Terminal)) {
-            throw new IllegalArgumentException("Object is not Terminal");
-        }
+    public void setSecond_Terminal(Terminal _object_) {
         if (Second_Terminal != _object_) {
-            Second_Terminal = (Terminal) _object_;
+            Second_Terminal = _object_;
             Second_Terminal.setHasSecondMutualCoupling(this);
         }
     }
 
-    public String Second_TerminalToString() {
-        return Second_Terminal != null ? Second_Terminal.getRdfid() : null;
+    private static Object getSecond_Terminal(BaseClass _this_) {
+        return ((MutualCoupling) _this_).getSecond_Terminal();
+    }
+
+    private static void setSecond_Terminal(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Terminal) {
+            ((MutualCoupling) _this_).setSecond_Terminal((Terminal) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Terminal");
+        }
     }
 
     /**
@@ -88,12 +105,18 @@ public class MutualCoupling extends IdentifiedObject {
         b0ch = _value_;
     }
 
-    public void setB0ch(String _value_) {
-        b0ch = getDoubleFromString(_value_);
+    private static Object getB0ch(BaseClass _this_) {
+        return ((MutualCoupling) _this_).getB0ch();
     }
 
-    public String b0chToString() {
-        return b0ch != null ? b0ch.toString() : null;
+    private static void setB0ch(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((MutualCoupling) _this_).setB0ch((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((MutualCoupling) _this_).setB0ch(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -109,12 +132,18 @@ public class MutualCoupling extends IdentifiedObject {
         distance11 = _value_;
     }
 
-    public void setDistance11(String _value_) {
-        distance11 = getDoubleFromString(_value_);
+    private static Object getDistance11(BaseClass _this_) {
+        return ((MutualCoupling) _this_).getDistance11();
     }
 
-    public String distance11ToString() {
-        return distance11 != null ? distance11.toString() : null;
+    private static void setDistance11(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((MutualCoupling) _this_).setDistance11((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((MutualCoupling) _this_).setDistance11(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -130,12 +159,18 @@ public class MutualCoupling extends IdentifiedObject {
         distance12 = _value_;
     }
 
-    public void setDistance12(String _value_) {
-        distance12 = getDoubleFromString(_value_);
+    private static Object getDistance12(BaseClass _this_) {
+        return ((MutualCoupling) _this_).getDistance12();
     }
 
-    public String distance12ToString() {
-        return distance12 != null ? distance12.toString() : null;
+    private static void setDistance12(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((MutualCoupling) _this_).setDistance12((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((MutualCoupling) _this_).setDistance12(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -151,12 +186,18 @@ public class MutualCoupling extends IdentifiedObject {
         distance21 = _value_;
     }
 
-    public void setDistance21(String _value_) {
-        distance21 = getDoubleFromString(_value_);
+    private static Object getDistance21(BaseClass _this_) {
+        return ((MutualCoupling) _this_).getDistance21();
     }
 
-    public String distance21ToString() {
-        return distance21 != null ? distance21.toString() : null;
+    private static void setDistance21(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((MutualCoupling) _this_).setDistance21((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((MutualCoupling) _this_).setDistance21(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -172,12 +213,18 @@ public class MutualCoupling extends IdentifiedObject {
         distance22 = _value_;
     }
 
-    public void setDistance22(String _value_) {
-        distance22 = getDoubleFromString(_value_);
+    private static Object getDistance22(BaseClass _this_) {
+        return ((MutualCoupling) _this_).getDistance22();
     }
 
-    public String distance22ToString() {
-        return distance22 != null ? distance22.toString() : null;
+    private static void setDistance22(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((MutualCoupling) _this_).setDistance22((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((MutualCoupling) _this_).setDistance22(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -193,12 +240,18 @@ public class MutualCoupling extends IdentifiedObject {
         g0ch = _value_;
     }
 
-    public void setG0ch(String _value_) {
-        g0ch = getDoubleFromString(_value_);
+    private static Object getG0ch(BaseClass _this_) {
+        return ((MutualCoupling) _this_).getG0ch();
     }
 
-    public String g0chToString() {
-        return g0ch != null ? g0ch.toString() : null;
+    private static void setG0ch(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((MutualCoupling) _this_).setG0ch((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((MutualCoupling) _this_).setG0ch(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -214,12 +267,18 @@ public class MutualCoupling extends IdentifiedObject {
         r0 = _value_;
     }
 
-    public void setR0(String _value_) {
-        r0 = getDoubleFromString(_value_);
+    private static Object getR0(BaseClass _this_) {
+        return ((MutualCoupling) _this_).getR0();
     }
 
-    public String r0ToString() {
-        return r0 != null ? r0.toString() : null;
+    private static void setR0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((MutualCoupling) _this_).setR0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((MutualCoupling) _this_).setR0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -235,12 +294,18 @@ public class MutualCoupling extends IdentifiedObject {
         x0 = _value_;
     }
 
-    public void setX0(String _value_) {
-        x0 = getDoubleFromString(_value_);
+    private static Object getX0(BaseClass _this_) {
+        return ((MutualCoupling) _this_).getX0();
     }
 
-    public String x0ToString() {
-        return x0 != null ? x0.toString() : null;
+    private static void setX0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((MutualCoupling) _this_).setX0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((MutualCoupling) _this_).setX0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -277,64 +342,35 @@ public class MutualCoupling extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("MutualCoupling", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "MutualCoupling", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("MutualCoupling", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("MutualCoupling", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "MutualCoupling", attrName, value));
         }
     }
 
@@ -458,72 +494,56 @@ public class MutualCoupling extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("First_Terminal", new AttrDetails("MutualCoupling.First_Terminal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("First_Terminal", new AttrDetails("MutualCoupling.First_Terminal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, MutualCoupling::getFirst_Terminal, MutualCoupling::setFirst_Terminal));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Second_Terminal", new AttrDetails("MutualCoupling.Second_Terminal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("Second_Terminal", new AttrDetails("MutualCoupling.Second_Terminal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, MutualCoupling::getSecond_Terminal, MutualCoupling::setSecond_Terminal));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("b0ch", new AttrDetails("MutualCoupling.b0ch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("b0ch", new AttrDetails("MutualCoupling.b0ch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, MutualCoupling::getB0ch, MutualCoupling::setB0ch));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("distance11", new AttrDetails("MutualCoupling.distance11", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("distance11", new AttrDetails("MutualCoupling.distance11", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, MutualCoupling::getDistance11, MutualCoupling::setDistance11));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("distance12", new AttrDetails("MutualCoupling.distance12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("distance12", new AttrDetails("MutualCoupling.distance12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, MutualCoupling::getDistance12, MutualCoupling::setDistance12));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("distance21", new AttrDetails("MutualCoupling.distance21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("distance21", new AttrDetails("MutualCoupling.distance21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, MutualCoupling::getDistance21, MutualCoupling::setDistance21));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("distance22", new AttrDetails("MutualCoupling.distance22", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("distance22", new AttrDetails("MutualCoupling.distance22", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, MutualCoupling::getDistance22, MutualCoupling::setDistance22));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("g0ch", new AttrDetails("MutualCoupling.g0ch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("g0ch", new AttrDetails("MutualCoupling.g0ch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, MutualCoupling::getG0ch, MutualCoupling::setG0ch));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r0", new AttrDetails("MutualCoupling.r0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("r0", new AttrDetails("MutualCoupling.r0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, MutualCoupling::getR0, MutualCoupling::setR0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x0", new AttrDetails("MutualCoupling.x0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("x0", new AttrDetails("MutualCoupling.x0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, MutualCoupling::getX0, MutualCoupling::setX0));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new MutualCoupling().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new MutualCoupling(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("First_Terminal", new GetterSetter(this::First_TerminalToString, this::setFirst_Terminal, null));
-        map.put("Second_Terminal", new GetterSetter(this::Second_TerminalToString, this::setSecond_Terminal, null));
-        map.put("b0ch", new GetterSetter(this::b0chToString, null, this::setB0ch));
-        map.put("distance11", new GetterSetter(this::distance11ToString, null, this::setDistance11));
-        map.put("distance12", new GetterSetter(this::distance12ToString, null, this::setDistance12));
-        map.put("distance21", new GetterSetter(this::distance21ToString, null, this::setDistance21));
-        map.put("distance22", new GetterSetter(this::distance22ToString, null, this::setDistance22));
-        map.put("g0ch", new GetterSetter(this::g0chToString, null, this::setG0ch));
-        map.put("r0", new GetterSetter(this::r0ToString, null, this::setR0));
-        map.put("x0", new GetterSetter(this::x0ToString, null, this::setX0));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

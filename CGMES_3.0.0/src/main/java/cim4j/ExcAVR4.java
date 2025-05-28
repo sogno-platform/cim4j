@@ -23,14 +23,21 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
     private static final Logging LOG = Logging.getLogger(ExcAVR4.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ExcAVR4() {
-        setCimType("ExcAVR4");
+    public ExcAVR4(String rdfid) {
+        super("ExcAVR4", rdfid);
     }
 
     /**
-     * AVR output voltage dependency selector (&lt;i&gt;I&lt;/i&gt;&lt;i&gt;&lt;sub&gt;MUL&lt;/sub&gt;&lt;/i&gt;). true = selector is connected false = selector is not connected. Typical value = true.
+     * Constructor for subclasses.
+     */
+    protected ExcAVR4(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * AVR output voltage dependency selector (<i>I</i><i><sub>MUL</sub></i>). true = selector is connected false = selector is not connected. Typical value = true.
      */
     private Boolean imul; // Boolean
 
@@ -42,16 +49,22 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         imul = _value_;
     }
 
-    public void setImul(String _value_) {
-        imul = getBooleanFromString(_value_);
+    private static Object getImul(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getImul();
     }
 
-    public String imulToString() {
-        return imul != null ? imul.toString() : null;
+    private static void setImul(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ExcAVR4) _this_).setImul((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setImul(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
-     * AVR gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;A&lt;/sub&gt;&lt;/i&gt;).  Typical value = 300.
+     * AVR gain (<i>K</i><i><sub>A</sub></i>).  Typical value = 300.
      */
     private Float ka; // Float
 
@@ -63,16 +76,22 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         ka = _value_;
     }
 
-    public void setKa(String _value_) {
-        ka = getFloatFromString(_value_);
+    private static Object getKa(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getKa();
     }
 
-    public String kaToString() {
-        return ka != null ? ka.toString() : null;
+    private static void setKa(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExcAVR4) _this_).setKa((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setKa(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Exciter gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;E&lt;/sub&gt;&lt;/i&gt;&lt;i&gt;)&lt;/i&gt;.  Typical value = 1.
+     * Exciter gain (<i>K</i><i><sub>E</sub></i><i>)</i>.  Typical value = 1.
      */
     private Float ke; // Float
 
@@ -84,16 +103,22 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         ke = _value_;
     }
 
-    public void setKe(String _value_) {
-        ke = getFloatFromString(_value_);
+    private static Object getKe(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getKe();
     }
 
-    public String keToString() {
-        return ke != null ? ke.toString() : null;
+    private static void setKe(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExcAVR4) _this_).setKe((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setKe(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Exciter internal reactance (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;IF&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0.
+     * Exciter internal reactance (<i>K</i><i><sub>IF</sub></i>).  Typical value = 0.
      */
     private Float kif; // Float
 
@@ -105,16 +130,22 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         kif = _value_;
     }
 
-    public void setKif(String _value_) {
-        kif = getFloatFromString(_value_);
+    private static Object getKif(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getKif();
     }
 
-    public String kifToString() {
-        return kif != null ? kif.toString() : null;
+    private static void setKif(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExcAVR4) _this_).setKif((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setKif(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * AVR time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 4,8.
+     * AVR time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).  Typical value = 4,8.
      */
     private Double t1; // Seconds
 
@@ -126,16 +157,22 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         t1 = _value_;
     }
 
-    public void setT1(String _value_) {
-        t1 = getDoubleFromString(_value_);
+    private static Object getT1(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getT1();
     }
 
-    public String t1ToString() {
-        return t1 != null ? t1.toString() : null;
+    private static void setT1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAVR4) _this_).setT1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setT1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Exciter current feedback time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;1IF&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 60.
+     * Exciter current feedback time constant (<i>T</i><i><sub>1IF</sub></i>) (&gt;= 0).  Typical value = 60.
      */
     private Double t1if; // Seconds
 
@@ -147,16 +184,22 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         t1if = _value_;
     }
 
-    public void setT1if(String _value_) {
-        t1if = getDoubleFromString(_value_);
+    private static Object getT1if(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getT1if();
     }
 
-    public String t1ifToString() {
-        return t1if != null ? t1if.toString() : null;
+    private static void setT1if(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAVR4) _this_).setT1if((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setT1if(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * AVR time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 1,5.
+     * AVR time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).  Typical value = 1,5.
      */
     private Double t2; // Seconds
 
@@ -168,16 +211,22 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         t2 = _value_;
     }
 
-    public void setT2(String _value_) {
-        t2 = getDoubleFromString(_value_);
+    private static Object getT2(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getT2();
     }
 
-    public String t2ToString() {
-        return t2 != null ? t2.toString() : null;
+    private static void setT2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAVR4) _this_).setT2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setT2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * AVR time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;3&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * AVR time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double t3; // Seconds
 
@@ -189,16 +238,22 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         t3 = _value_;
     }
 
-    public void setT3(String _value_) {
-        t3 = getDoubleFromString(_value_);
+    private static Object getT3(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getT3();
     }
 
-    public String t3ToString() {
-        return t3 != null ? t3.toString() : null;
+    private static void setT3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAVR4) _this_).setT3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setT3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * AVR time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;4&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * AVR time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double t4; // Seconds
 
@@ -210,16 +265,22 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         t4 = _value_;
     }
 
-    public void setT4(String _value_) {
-        t4 = getDoubleFromString(_value_);
+    private static Object getT4(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getT4();
     }
 
-    public String t4ToString() {
-        return t4 != null ? t4.toString() : null;
+    private static void setT4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAVR4) _this_).setT4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setT4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Exciter current feedback time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;IF&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Exciter current feedback time constant (<i>T</i><i><sub>IF</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tif; // Seconds
 
@@ -231,16 +292,22 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         tif = _value_;
     }
 
-    public void setTif(String _value_) {
-        tif = getDoubleFromString(_value_);
+    private static Object getTif(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getTif();
     }
 
-    public String tifToString() {
-        return tif != null ? tif.toString() : null;
+    private static void setTif(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAVR4) _this_).setTif((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setTif(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum exciter output (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FMN&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0.
+     * Minimum exciter output (<i>V</i><i><sub>FMN</sub></i>).  Typical value = 0.
      */
     private Double vfmn; // PU
 
@@ -252,16 +319,22 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         vfmn = _value_;
     }
 
-    public void setVfmn(String _value_) {
-        vfmn = getDoubleFromString(_value_);
+    private static Object getVfmn(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getVfmn();
     }
 
-    public String vfmnToString() {
-        return vfmn != null ? vfmn.toString() : null;
+    private static void setVfmn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAVR4) _this_).setVfmn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setVfmn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum exciter output (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FMX&lt;/sub&gt;&lt;/i&gt;).  Typical value = 5.
+     * Maximum exciter output (<i>V</i><i><sub>FMX</sub></i>).  Typical value = 5.
      */
     private Double vfmx; // PU
 
@@ -273,16 +346,22 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         vfmx = _value_;
     }
 
-    public void setVfmx(String _value_) {
-        vfmx = getDoubleFromString(_value_);
+    private static Object getVfmx(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getVfmx();
     }
 
-    public String vfmxToString() {
-        return vfmx != null ? vfmx.toString() : null;
+    private static void setVfmx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAVR4) _this_).setVfmx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setVfmx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum AVR output (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;RMN&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0.
+     * Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).  Typical value = 0.
      */
     private Double vrmn; // PU
 
@@ -294,16 +373,22 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         vrmn = _value_;
     }
 
-    public void setVrmn(String _value_) {
-        vrmn = getDoubleFromString(_value_);
+    private static Object getVrmn(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getVrmn();
     }
 
-    public String vrmnToString() {
-        return vrmn != null ? vrmn.toString() : null;
+    private static void setVrmn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAVR4) _this_).setVrmn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setVrmn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum AVR output (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;RMX&lt;/sub&gt;&lt;/i&gt;).  Typical value = 5.
+     * Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).  Typical value = 5.
      */
     private Double vrmx; // PU
 
@@ -315,12 +400,18 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         vrmx = _value_;
     }
 
-    public void setVrmx(String _value_) {
-        vrmx = getDoubleFromString(_value_);
+    private static Object getVrmx(BaseClass _this_) {
+        return ((ExcAVR4) _this_).getVrmx();
     }
 
-    public String vrmxToString() {
-        return vrmx != null ? vrmx.toString() : null;
+    private static void setVrmx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcAVR4) _this_).setVrmx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcAVR4) _this_).setVrmx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -357,64 +448,35 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ExcAVR4", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ExcAVR4", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ExcAVR4", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ExcAVR4", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ExcAVR4", attrName, value));
         }
     }
 
@@ -538,96 +600,76 @@ public class ExcAVR4 extends ExcitationSystemDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("imul", new AttrDetails("ExcAVR4.imul", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("imul", new AttrDetails("ExcAVR4.imul", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getImul, ExcAVR4::setImul));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ka", new AttrDetails("ExcAVR4.ka", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ka", new AttrDetails("ExcAVR4.ka", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getKa, ExcAVR4::setKa));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ke", new AttrDetails("ExcAVR4.ke", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ke", new AttrDetails("ExcAVR4.ke", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getKe, ExcAVR4::setKe));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kif", new AttrDetails("ExcAVR4.kif", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kif", new AttrDetails("ExcAVR4.kif", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getKif, ExcAVR4::setKif));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t1", new AttrDetails("ExcAVR4.t1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t1", new AttrDetails("ExcAVR4.t1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getT1, ExcAVR4::setT1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t1if", new AttrDetails("ExcAVR4.t1if", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t1if", new AttrDetails("ExcAVR4.t1if", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getT1if, ExcAVR4::setT1if));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t2", new AttrDetails("ExcAVR4.t2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t2", new AttrDetails("ExcAVR4.t2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getT2, ExcAVR4::setT2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t3", new AttrDetails("ExcAVR4.t3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t3", new AttrDetails("ExcAVR4.t3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getT3, ExcAVR4::setT3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t4", new AttrDetails("ExcAVR4.t4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t4", new AttrDetails("ExcAVR4.t4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getT4, ExcAVR4::setT4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tif", new AttrDetails("ExcAVR4.tif", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tif", new AttrDetails("ExcAVR4.tif", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getTif, ExcAVR4::setTif));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vfmn", new AttrDetails("ExcAVR4.vfmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vfmn", new AttrDetails("ExcAVR4.vfmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getVfmn, ExcAVR4::setVfmn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vfmx", new AttrDetails("ExcAVR4.vfmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vfmx", new AttrDetails("ExcAVR4.vfmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getVfmx, ExcAVR4::setVfmx));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmn", new AttrDetails("ExcAVR4.vrmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vrmn", new AttrDetails("ExcAVR4.vrmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getVrmn, ExcAVR4::setVrmn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmx", new AttrDetails("ExcAVR4.vrmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vrmx", new AttrDetails("ExcAVR4.vrmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcAVR4::getVrmx, ExcAVR4::setVrmx));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcAVR4().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcAVR4(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("imul", new GetterSetter(this::imulToString, null, this::setImul));
-        map.put("ka", new GetterSetter(this::kaToString, null, this::setKa));
-        map.put("ke", new GetterSetter(this::keToString, null, this::setKe));
-        map.put("kif", new GetterSetter(this::kifToString, null, this::setKif));
-        map.put("t1", new GetterSetter(this::t1ToString, null, this::setT1));
-        map.put("t1if", new GetterSetter(this::t1ifToString, null, this::setT1if));
-        map.put("t2", new GetterSetter(this::t2ToString, null, this::setT2));
-        map.put("t3", new GetterSetter(this::t3ToString, null, this::setT3));
-        map.put("t4", new GetterSetter(this::t4ToString, null, this::setT4));
-        map.put("tif", new GetterSetter(this::tifToString, null, this::setTif));
-        map.put("vfmn", new GetterSetter(this::vfmnToString, null, this::setVfmn));
-        map.put("vfmx", new GetterSetter(this::vfmxToString, null, this::setVfmx));
-        map.put("vrmn", new GetterSetter(this::vrmnToString, null, this::setVrmn));
-        map.put("vrmx", new GetterSetter(this::vrmxToString, null, this::setVrmx));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

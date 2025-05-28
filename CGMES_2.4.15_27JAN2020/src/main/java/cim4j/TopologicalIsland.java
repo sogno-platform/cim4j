@@ -23,10 +23,17 @@ public class TopologicalIsland extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(TopologicalIsland.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public TopologicalIsland() {
-        setCimType("TopologicalIsland");
+    public TopologicalIsland(String rdfid) {
+        super("TopologicalIsland", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected TopologicalIsland(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class TopologicalIsland extends IdentifiedObject {
         return AngleRefTopologicalNode;
     }
 
-    public void setAngleRefTopologicalNode(BaseClass _object_) {
-        if (!(_object_ instanceof TopologicalNode)) {
-            throw new IllegalArgumentException("Object is not TopologicalNode");
-        }
+    public void setAngleRefTopologicalNode(TopologicalNode _object_) {
         if (AngleRefTopologicalNode != _object_) {
-            AngleRefTopologicalNode = (TopologicalNode) _object_;
+            AngleRefTopologicalNode = _object_;
             AngleRefTopologicalNode.setAngleRefTopologicalIsland(this);
         }
     }
 
-    public String AngleRefTopologicalNodeToString() {
-        return AngleRefTopologicalNode != null ? AngleRefTopologicalNode.getRdfid() : null;
+    private static Object getAngleRefTopologicalNode(BaseClass _this_) {
+        return ((TopologicalIsland) _this_).getAngleRefTopologicalNode();
+    }
+
+    private static void setAngleRefTopologicalNode(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof TopologicalNode) {
+            ((TopologicalIsland) _this_).setAngleRefTopologicalNode((TopologicalNode) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not TopologicalNode");
+        }
     }
 
     /**
@@ -61,18 +73,23 @@ public class TopologicalIsland extends IdentifiedObject {
         return TopologicalNodes;
     }
 
-    public void setTopologicalNodes(BaseClass _object_) {
-        if (!(_object_ instanceof TopologicalNode)) {
-            throw new IllegalArgumentException("Object is not TopologicalNode");
-        }
+    public void setTopologicalNodes(TopologicalNode _object_) {
         if (!TopologicalNodes.contains(_object_)) {
-            TopologicalNodes.add((TopologicalNode) _object_);
-            ((TopologicalNode) _object_).setTopologicalIsland(this);
+            TopologicalNodes.add(_object_);
+            _object_.setTopologicalIsland(this);
         }
     }
 
-    public String TopologicalNodesToString() {
-        return getStringFromSet(TopologicalNodes);
+    private static Object getTopologicalNodes(BaseClass _this_) {
+        return ((TopologicalIsland) _this_).getTopologicalNodes();
+    }
+
+    private static void setTopologicalNodes(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof TopologicalNode) {
+            ((TopologicalIsland) _this_).setTopologicalNodes((TopologicalNode) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not TopologicalNode");
+        }
     }
 
     /**
@@ -109,64 +126,35 @@ public class TopologicalIsland extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("TopologicalIsland", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "TopologicalIsland", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("TopologicalIsland", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("TopologicalIsland", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "TopologicalIsland", attrName, value));
         }
     }
 
@@ -290,24 +278,16 @@ public class TopologicalIsland extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("AngleRefTopologicalNode", new AttrDetails("TopologicalIsland.AngleRefTopologicalNode", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("AngleRefTopologicalNode", new AttrDetails("TopologicalIsland.AngleRefTopologicalNode", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, TopologicalIsland::getAngleRefTopologicalNode, TopologicalIsland::setAngleRefTopologicalNode));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("TopologicalNodes", new AttrDetails("TopologicalIsland.TopologicalNodes", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("TopologicalNodes", new AttrDetails("TopologicalIsland.TopologicalNodes", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, TopologicalIsland::getTopologicalNodes, TopologicalIsland::setTopologicalNodes));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TopologicalIsland().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TopologicalIsland(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("AngleRefTopologicalNode", new GetterSetter(this::AngleRefTopologicalNodeToString, this::setAngleRefTopologicalNode, null));
-        map.put("TopologicalNodes", new GetterSetter(this::TopologicalNodesToString, this::setTopologicalNodes, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

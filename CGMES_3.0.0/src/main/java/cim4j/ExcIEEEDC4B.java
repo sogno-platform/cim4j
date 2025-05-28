@@ -23,14 +23,21 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
     private static final Logging LOG = Logging.getLogger(ExcIEEEDC4B.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ExcIEEEDC4B() {
-        setCimType("ExcIEEEDC4B");
+    public ExcIEEEDC4B(String rdfid) {
+        super("ExcIEEEDC4B", rdfid);
     }
 
     /**
-     * Exciter voltage at which exciter saturation is defined (&lt;i&gt;E&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FD1&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; 0).  Typical value = 1,75.
+     * Constructor for subclasses.
+     */
+    protected ExcIEEEDC4B(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).  Typical value = 1,75.
      */
     private Double efd1; // PU
 
@@ -42,16 +49,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         efd1 = _value_;
     }
 
-    public void setEfd1(String _value_) {
-        efd1 = getDoubleFromString(_value_);
+    private static Object getEfd1(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getEfd1();
     }
 
-    public String efd1ToString() {
-        return efd1 != null ? efd1.toString() : null;
+    private static void setEfd1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setEfd1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setEfd1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Exciter voltage at which exciter saturation is defined (&lt;i&gt;E&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FD2&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; 0).  Typical value = 2,33.
+     * Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).  Typical value = 2,33.
      */
     private Double efd2; // PU
 
@@ -63,16 +76,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         efd2 = _value_;
     }
 
-    public void setEfd2(String _value_) {
-        efd2 = getDoubleFromString(_value_);
+    private static Object getEfd2(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getEfd2();
     }
 
-    public String efd2ToString() {
-        return efd2 != null ? efd2.toString() : null;
+    private static void setEfd2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setEfd2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setEfd2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage regulator gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;A&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; 0).  Typical value = 1.
+     * Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).  Typical value = 1.
      */
     private Double ka; // PU
 
@@ -84,16 +103,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         ka = _value_;
     }
 
-    public void setKa(String _value_) {
-        ka = getDoubleFromString(_value_);
+    private static Object getKa(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getKa();
     }
 
-    public String kaToString() {
-        return ka != null ? ka.toString() : null;
+    private static void setKa(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setKa((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setKa(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Regulator derivative gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;D&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 20.
+     * Regulator derivative gain (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).  Typical value = 20.
      */
     private Double kd; // PU
 
@@ -105,16 +130,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         kd = _value_;
     }
 
-    public void setKd(String _value_) {
-        kd = getDoubleFromString(_value_);
+    private static Object getKd(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getKd();
     }
 
-    public String kdToString() {
-        return kd != null ? kd.toString() : null;
+    private static void setKd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setKd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setKd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Exciter constant related to self-excited field (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;E&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1.
+     * Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).  Typical value = 1.
      */
     private Double ke; // PU
 
@@ -126,16 +157,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         ke = _value_;
     }
 
-    public void setKe(String _value_) {
-        ke = getDoubleFromString(_value_);
+    private static Object getKe(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getKe();
     }
 
-    public String keToString() {
-        return ke != null ? ke.toString() : null;
+    private static void setKe(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setKe((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setKe(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Excitation control system stabilizer gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;F&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double kf; // PU
 
@@ -147,16 +184,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         kf = _value_;
     }
 
-    public void setKf(String _value_) {
-        kf = getDoubleFromString(_value_);
+    private static Object getKf(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getKf();
     }
 
-    public String kfToString() {
-        return kf != null ? kf.toString() : null;
+    private static void setKf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setKf((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setKf(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Regulator integral gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 20.
+     * Regulator integral gain (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).  Typical value = 20.
      */
     private Double ki; // PU
 
@@ -168,16 +211,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         ki = _value_;
     }
 
-    public void setKi(String _value_) {
-        ki = getDoubleFromString(_value_);
+    private static Object getKi(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getKi();
     }
 
-    public String kiToString() {
-        return ki != null ? ki.toString() : null;
+    private static void setKi(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setKi((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setKi(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Regulator proportional gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;P&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 20.
+     * Regulator proportional gain (<i>K</i><i><sub>P</sub></i>) (&gt;= 0).  Typical value = 20.
      */
     private Double kp; // PU
 
@@ -189,16 +238,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         kp = _value_;
     }
 
-    public void setKp(String _value_) {
-        kp = getDoubleFromString(_value_);
+    private static Object getKp(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getKp();
     }
 
-    public String kpToString() {
-        return kp != null ? kp.toString() : null;
+    private static void setKp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setKp((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setKp(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * OEL input (&lt;i&gt;OELin&lt;/i&gt;). true = LV gate false = subtract from error signal. Typical value = true.
+     * OEL input (<i>OELin</i>). true = LV gate false = subtract from error signal. Typical value = true.
      */
     private Boolean oelin; // Boolean
 
@@ -210,16 +265,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         oelin = _value_;
     }
 
-    public void setOelin(String _value_) {
-        oelin = getBooleanFromString(_value_);
+    private static Object getOelin(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getOelin();
     }
 
-    public String oelinToString() {
-        return oelin != null ? oelin.toString() : null;
+    private static void setOelin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ExcIEEEDC4B) _this_).setOelin((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setOelin(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
-     * Exciter saturation function value at the corresponding exciter voltage, &lt;i&gt;E&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FD1&lt;/sub&gt;&lt;/i&gt; (&lt;i&gt;S&lt;/i&gt;&lt;i&gt;&lt;sub&gt;E&lt;/sub&gt;&lt;/i&gt;&lt;i&gt;[E&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FD1&lt;/sub&gt;&lt;/i&gt;&lt;i&gt;]&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,08.
+     * Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).  Typical value = 0,08.
      */
     private Float seefd1; // Float
 
@@ -231,16 +292,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         seefd1 = _value_;
     }
 
-    public void setSeefd1(String _value_) {
-        seefd1 = getFloatFromString(_value_);
+    private static Object getSeefd1(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getSeefd1();
     }
 
-    public String seefd1ToString() {
-        return seefd1 != null ? seefd1.toString() : null;
+    private static void setSeefd1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExcIEEEDC4B) _this_).setSeefd1((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setSeefd1(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Exciter saturation function value at the corresponding exciter voltage, &lt;i&gt;E&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FD2&lt;/sub&gt;&lt;/i&gt; (&lt;i&gt;S&lt;/i&gt;&lt;i&gt;&lt;sub&gt;E&lt;/sub&gt;&lt;/i&gt;&lt;i&gt;[E&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FD2&lt;/sub&gt;&lt;/i&gt;&lt;i&gt;]&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,27.
+     * Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).  Typical value = 0,27.
      */
     private Float seefd2; // Float
 
@@ -252,16 +319,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         seefd2 = _value_;
     }
 
-    public void setSeefd2(String _value_) {
-        seefd2 = getFloatFromString(_value_);
+    private static Object getSeefd2(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getSeefd2();
     }
 
-    public String seefd2ToString() {
-        return seefd2 != null ? seefd2.toString() : null;
+    private static void setSeefd2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExcIEEEDC4B) _this_).setSeefd2((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setSeefd2(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Voltage regulator time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;A&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; 0).  Typical value = 0,2.
+     * Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).  Typical value = 0,2.
      */
     private Double ta; // Seconds
 
@@ -273,16 +346,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         ta = _value_;
     }
 
-    public void setTa(String _value_) {
-        ta = getDoubleFromString(_value_);
+    private static Object getTa(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getTa();
     }
 
-    public String taToString() {
-        return ta != null ? ta.toString() : null;
+    private static void setTa(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setTa((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setTa(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Regulator derivative filter time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;D&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; 0 if ExcIEEEDC4B.kd &amp;gt; 0).  Typical value = 0,01.
+     * Regulator derivative filter time constant (<i>T</i><i><sub>D</sub></i>) (&gt; 0 if ExcIEEEDC4B.kd &gt; 0).  Typical value = 0,01.
      */
     private Double td; // Seconds
 
@@ -294,16 +373,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         td = _value_;
     }
 
-    public void setTd(String _value_) {
-        td = getDoubleFromString(_value_);
+    private static Object getTd(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getTd();
     }
 
-    public String tdToString() {
-        return td != null ? td.toString() : null;
+    private static void setTd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setTd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setTd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Exciter time constant, integration rate associated with exciter control (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;E&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; 0).  Typical value = 0,8.
+     * Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).  Typical value = 0,8.
      */
     private Double te; // Seconds
 
@@ -315,16 +400,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         te = _value_;
     }
 
-    public void setTe(String _value_) {
-        te = getDoubleFromString(_value_);
+    private static Object getTe(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getTe();
     }
 
-    public String teToString() {
-        return te != null ? te.toString() : null;
+    private static void setTe(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setTe((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setTe(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Excitation control system stabilizer time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;F&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 1.
+     * Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).  Typical value = 1.
      */
     private Double tf; // Seconds
 
@@ -336,16 +427,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         tf = _value_;
     }
 
-    public void setTf(String _value_) {
-        tf = getDoubleFromString(_value_);
+    private static Object getTf(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getTf();
     }
 
-    public String tfToString() {
-        return tf != null ? tf.toString() : null;
+    private static void setTf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setTf((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setTf(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * UEL input (&lt;i&gt;UELin&lt;/i&gt;). true = HV gate false = add to error signal. Typical value = true.
+     * UEL input (<i>UELin</i>). true = HV gate false = add to error signal. Typical value = true.
      */
     private Boolean uelin; // Boolean
 
@@ -357,16 +454,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         uelin = _value_;
     }
 
-    public void setUelin(String _value_) {
-        uelin = getBooleanFromString(_value_);
+    private static Object getUelin(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getUelin();
     }
 
-    public String uelinToString() {
-        return uelin != null ? uelin.toString() : null;
+    private static void setUelin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ExcIEEEDC4B) _this_).setUelin((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setUelin(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
-     * Minimum exciter voltage output (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;EMIN&lt;/sub&gt;&lt;/i&gt;) (&amp;lt;= 0).  Typical value = 0.
+     * Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).  Typical value = 0.
      */
     private Double vemin; // PU
 
@@ -378,16 +481,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         vemin = _value_;
     }
 
-    public void setVemin(String _value_) {
-        vemin = getDoubleFromString(_value_);
+    private static Object getVemin(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getVemin();
     }
 
-    public String veminToString() {
-        return vemin != null ? vemin.toString() : null;
+    private static void setVemin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setVemin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setVemin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum voltage regulator output (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;RMAX&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; ExcIEEEDC4B.vrmin).  Typical value = 2,7.
+     * Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcIEEEDC4B.vrmin).  Typical value = 2,7.
      */
     private Double vrmax; // PU
 
@@ -399,16 +508,22 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         vrmax = _value_;
     }
 
-    public void setVrmax(String _value_) {
-        vrmax = getDoubleFromString(_value_);
+    private static Object getVrmax(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getVrmax();
     }
 
-    public String vrmaxToString() {
-        return vrmax != null ? vrmax.toString() : null;
+    private static void setVrmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setVrmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setVrmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum voltage regulator output (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;RMIN&lt;/sub&gt;&lt;/i&gt;) (&amp;lt;= 0 and &amp;lt; ExcIEEEDC4B.vrmax).  Typical value = -0,9.
+     * Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0 and &lt; ExcIEEEDC4B.vrmax).  Typical value = -0,9.
      */
     private Double vrmin; // PU
 
@@ -420,12 +535,18 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         vrmin = _value_;
     }
 
-    public void setVrmin(String _value_) {
-        vrmin = getDoubleFromString(_value_);
+    private static Object getVrmin(BaseClass _this_) {
+        return ((ExcIEEEDC4B) _this_).getVrmin();
     }
 
-    public String vrminToString() {
-        return vrmin != null ? vrmin.toString() : null;
+    private static void setVrmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcIEEEDC4B) _this_).setVrmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcIEEEDC4B) _this_).setVrmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -462,64 +583,35 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ExcIEEEDC4B", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ExcIEEEDC4B", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ExcIEEEDC4B", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ExcIEEEDC4B", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ExcIEEEDC4B", attrName, value));
         }
     }
 
@@ -643,126 +735,101 @@ public class ExcIEEEDC4B extends ExcitationSystemDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("efd1", new AttrDetails("ExcIEEEDC4B.efd1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("efd1", new AttrDetails("ExcIEEEDC4B.efd1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getEfd1, ExcIEEEDC4B::setEfd1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("efd2", new AttrDetails("ExcIEEEDC4B.efd2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("efd2", new AttrDetails("ExcIEEEDC4B.efd2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getEfd2, ExcIEEEDC4B::setEfd2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ka", new AttrDetails("ExcIEEEDC4B.ka", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ka", new AttrDetails("ExcIEEEDC4B.ka", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getKa, ExcIEEEDC4B::setKa));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kd", new AttrDetails("ExcIEEEDC4B.kd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kd", new AttrDetails("ExcIEEEDC4B.kd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getKd, ExcIEEEDC4B::setKd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ke", new AttrDetails("ExcIEEEDC4B.ke", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ke", new AttrDetails("ExcIEEEDC4B.ke", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getKe, ExcIEEEDC4B::setKe));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kf", new AttrDetails("ExcIEEEDC4B.kf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kf", new AttrDetails("ExcIEEEDC4B.kf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getKf, ExcIEEEDC4B::setKf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki", new AttrDetails("ExcIEEEDC4B.ki", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ki", new AttrDetails("ExcIEEEDC4B.ki", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getKi, ExcIEEEDC4B::setKi));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kp", new AttrDetails("ExcIEEEDC4B.kp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kp", new AttrDetails("ExcIEEEDC4B.kp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getKp, ExcIEEEDC4B::setKp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("oelin", new AttrDetails("ExcIEEEDC4B.oelin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("oelin", new AttrDetails("ExcIEEEDC4B.oelin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getOelin, ExcIEEEDC4B::setOelin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("seefd1", new AttrDetails("ExcIEEEDC4B.seefd1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("seefd1", new AttrDetails("ExcIEEEDC4B.seefd1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getSeefd1, ExcIEEEDC4B::setSeefd1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("seefd2", new AttrDetails("ExcIEEEDC4B.seefd2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("seefd2", new AttrDetails("ExcIEEEDC4B.seefd2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getSeefd2, ExcIEEEDC4B::setSeefd2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ta", new AttrDetails("ExcIEEEDC4B.ta", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ta", new AttrDetails("ExcIEEEDC4B.ta", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getTa, ExcIEEEDC4B::setTa));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("td", new AttrDetails("ExcIEEEDC4B.td", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("td", new AttrDetails("ExcIEEEDC4B.td", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getTd, ExcIEEEDC4B::setTd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("te", new AttrDetails("ExcIEEEDC4B.te", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("te", new AttrDetails("ExcIEEEDC4B.te", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getTe, ExcIEEEDC4B::setTe));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf", new AttrDetails("ExcIEEEDC4B.tf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tf", new AttrDetails("ExcIEEEDC4B.tf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getTf, ExcIEEEDC4B::setTf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("uelin", new AttrDetails("ExcIEEEDC4B.uelin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("uelin", new AttrDetails("ExcIEEEDC4B.uelin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getUelin, ExcIEEEDC4B::setUelin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vemin", new AttrDetails("ExcIEEEDC4B.vemin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vemin", new AttrDetails("ExcIEEEDC4B.vemin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getVemin, ExcIEEEDC4B::setVemin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmax", new AttrDetails("ExcIEEEDC4B.vrmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vrmax", new AttrDetails("ExcIEEEDC4B.vrmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getVrmax, ExcIEEEDC4B::setVrmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmin", new AttrDetails("ExcIEEEDC4B.vrmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vrmin", new AttrDetails("ExcIEEEDC4B.vrmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcIEEEDC4B::getVrmin, ExcIEEEDC4B::setVrmin));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcIEEEDC4B().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcIEEEDC4B(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("efd1", new GetterSetter(this::efd1ToString, null, this::setEfd1));
-        map.put("efd2", new GetterSetter(this::efd2ToString, null, this::setEfd2));
-        map.put("ka", new GetterSetter(this::kaToString, null, this::setKa));
-        map.put("kd", new GetterSetter(this::kdToString, null, this::setKd));
-        map.put("ke", new GetterSetter(this::keToString, null, this::setKe));
-        map.put("kf", new GetterSetter(this::kfToString, null, this::setKf));
-        map.put("ki", new GetterSetter(this::kiToString, null, this::setKi));
-        map.put("kp", new GetterSetter(this::kpToString, null, this::setKp));
-        map.put("oelin", new GetterSetter(this::oelinToString, null, this::setOelin));
-        map.put("seefd1", new GetterSetter(this::seefd1ToString, null, this::setSeefd1));
-        map.put("seefd2", new GetterSetter(this::seefd2ToString, null, this::setSeefd2));
-        map.put("ta", new GetterSetter(this::taToString, null, this::setTa));
-        map.put("td", new GetterSetter(this::tdToString, null, this::setTd));
-        map.put("te", new GetterSetter(this::teToString, null, this::setTe));
-        map.put("tf", new GetterSetter(this::tfToString, null, this::setTf));
-        map.put("uelin", new GetterSetter(this::uelinToString, null, this::setUelin));
-        map.put("vemin", new GetterSetter(this::veminToString, null, this::setVemin));
-        map.put("vrmax", new GetterSetter(this::vrmaxToString, null, this::setVrmax));
-        map.put("vrmin", new GetterSetter(this::vrminToString, null, this::setVrmin));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

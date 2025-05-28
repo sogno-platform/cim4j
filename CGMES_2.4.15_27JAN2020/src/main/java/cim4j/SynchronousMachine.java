@@ -23,10 +23,17 @@ public class SynchronousMachine extends RotatingMachine {
     private static final Logging LOG = Logging.getLogger(SynchronousMachine.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public SynchronousMachine() {
-        setCimType("SynchronousMachine");
+    public SynchronousMachine(String rdfid) {
+        super("SynchronousMachine", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected SynchronousMachine(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class SynchronousMachine extends RotatingMachine {
         return InitialReactiveCapabilityCurve;
     }
 
-    public void setInitialReactiveCapabilityCurve(BaseClass _object_) {
-        if (!(_object_ instanceof ReactiveCapabilityCurve)) {
-            throw new IllegalArgumentException("Object is not ReactiveCapabilityCurve");
-        }
+    public void setInitialReactiveCapabilityCurve(ReactiveCapabilityCurve _object_) {
         if (InitialReactiveCapabilityCurve != _object_) {
-            InitialReactiveCapabilityCurve = (ReactiveCapabilityCurve) _object_;
+            InitialReactiveCapabilityCurve = _object_;
             InitialReactiveCapabilityCurve.setInitiallyUsedBySynchronousMachines(this);
         }
     }
 
-    public String InitialReactiveCapabilityCurveToString() {
-        return InitialReactiveCapabilityCurve != null ? InitialReactiveCapabilityCurve.getRdfid() : null;
+    private static Object getInitialReactiveCapabilityCurve(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getInitialReactiveCapabilityCurve();
+    }
+
+    private static void setInitialReactiveCapabilityCurve(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ReactiveCapabilityCurve) {
+            ((SynchronousMachine) _this_).setInitialReactiveCapabilityCurve((ReactiveCapabilityCurve) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ReactiveCapabilityCurve");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class SynchronousMachine extends RotatingMachine {
         return SynchronousMachineDynamics;
     }
 
-    public void setSynchronousMachineDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof SynchronousMachineDynamics)) {
-            throw new IllegalArgumentException("Object is not SynchronousMachineDynamics");
-        }
+    public void setSynchronousMachineDynamics(SynchronousMachineDynamics _object_) {
         if (SynchronousMachineDynamics != _object_) {
-            SynchronousMachineDynamics = (SynchronousMachineDynamics) _object_;
+            SynchronousMachineDynamics = _object_;
             SynchronousMachineDynamics.setSynchronousMachine(this);
         }
     }
 
-    public String SynchronousMachineDynamicsToString() {
-        return SynchronousMachineDynamics != null ? SynchronousMachineDynamics.getRdfid() : null;
+    private static Object getSynchronousMachineDynamics(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getSynchronousMachineDynamics();
+    }
+
+    private static void setSynchronousMachineDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof SynchronousMachineDynamics) {
+            ((SynchronousMachine) _this_).setSynchronousMachineDynamics((SynchronousMachineDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not SynchronousMachineDynamics");
+        }
     }
 
     /**
@@ -90,12 +107,18 @@ public class SynchronousMachine extends RotatingMachine {
         earthing = _value_;
     }
 
-    public void setEarthing(String _value_) {
-        earthing = getBooleanFromString(_value_);
+    private static Object getEarthing(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getEarthing();
     }
 
-    public String earthingToString() {
-        return earthing != null ? earthing.toString() : null;
+    private static void setEarthing(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((SynchronousMachine) _this_).setEarthing((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setEarthing(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -111,12 +134,18 @@ public class SynchronousMachine extends RotatingMachine {
         earthingStarPointR = _value_;
     }
 
-    public void setEarthingStarPointR(String _value_) {
-        earthingStarPointR = getDoubleFromString(_value_);
+    private static Object getEarthingStarPointR(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getEarthingStarPointR();
     }
 
-    public String earthingStarPointRToString() {
-        return earthingStarPointR != null ? earthingStarPointR.toString() : null;
+    private static void setEarthingStarPointR(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setEarthingStarPointR((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setEarthingStarPointR(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -132,12 +161,18 @@ public class SynchronousMachine extends RotatingMachine {
         earthingStarPointX = _value_;
     }
 
-    public void setEarthingStarPointX(String _value_) {
-        earthingStarPointX = getDoubleFromString(_value_);
+    private static Object getEarthingStarPointX(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getEarthingStarPointX();
     }
 
-    public String earthingStarPointXToString() {
-        return earthingStarPointX != null ? earthingStarPointX.toString() : null;
+    private static void setEarthingStarPointX(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setEarthingStarPointX((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setEarthingStarPointX(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -153,12 +188,18 @@ public class SynchronousMachine extends RotatingMachine {
         ikk = _value_;
     }
 
-    public void setIkk(String _value_) {
-        ikk = getDoubleFromString(_value_);
+    private static Object getIkk(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getIkk();
     }
 
-    public String ikkToString() {
-        return ikk != null ? ikk.toString() : null;
+    private static void setIkk(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setIkk((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setIkk(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -174,12 +215,18 @@ public class SynchronousMachine extends RotatingMachine {
         maxQ = _value_;
     }
 
-    public void setMaxQ(String _value_) {
-        maxQ = getDoubleFromString(_value_);
+    private static Object getMaxQ(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getMaxQ();
     }
 
-    public String maxQToString() {
-        return maxQ != null ? maxQ.toString() : null;
+    private static void setMaxQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setMaxQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setMaxQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -195,12 +242,18 @@ public class SynchronousMachine extends RotatingMachine {
         minQ = _value_;
     }
 
-    public void setMinQ(String _value_) {
-        minQ = getDoubleFromString(_value_);
+    private static Object getMinQ(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getMinQ();
     }
 
-    public String minQToString() {
-        return minQ != null ? minQ.toString() : null;
+    private static void setMinQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setMinQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setMinQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -216,12 +269,18 @@ public class SynchronousMachine extends RotatingMachine {
         mu = _value_;
     }
 
-    public void setMu(String _value_) {
-        mu = getDoubleFromString(_value_);
+    private static Object getMu(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getMu();
     }
 
-    public String muToString() {
-        return mu != null ? mu.toString() : null;
+    private static void setMu(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setMu((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setMu(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -237,8 +296,16 @@ public class SynchronousMachine extends RotatingMachine {
         operatingMode = _value_;
     }
 
-    public String operatingModeToString() {
-        return operatingMode;
+    private static Object getOperatingMode(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getOperatingMode();
+    }
+
+    private static void setOperatingMode(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setOperatingMode((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -254,12 +321,18 @@ public class SynchronousMachine extends RotatingMachine {
         qPercent = _value_;
     }
 
-    public void setQPercent(String _value_) {
-        qPercent = getDoubleFromString(_value_);
+    private static Object getQPercent(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getQPercent();
     }
 
-    public String qPercentToString() {
-        return qPercent != null ? qPercent.toString() : null;
+    private static void setQPercent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setQPercent((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setQPercent(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -275,12 +348,18 @@ public class SynchronousMachine extends RotatingMachine {
         r = _value_;
     }
 
-    public void setR(String _value_) {
-        r = getDoubleFromString(_value_);
+    private static Object getR(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getR();
     }
 
-    public String rToString() {
-        return r != null ? r.toString() : null;
+    private static void setR(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setR((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setR(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -296,12 +375,18 @@ public class SynchronousMachine extends RotatingMachine {
         r0 = _value_;
     }
 
-    public void setR0(String _value_) {
-        r0 = getDoubleFromString(_value_);
+    private static Object getR0(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getR0();
     }
 
-    public String r0ToString() {
-        return r0 != null ? r0.toString() : null;
+    private static void setR0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setR0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setR0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -317,12 +402,18 @@ public class SynchronousMachine extends RotatingMachine {
         r2 = _value_;
     }
 
-    public void setR2(String _value_) {
-        r2 = getDoubleFromString(_value_);
+    private static Object getR2(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getR2();
     }
 
-    public String r2ToString() {
-        return r2 != null ? r2.toString() : null;
+    private static void setR2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setR2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setR2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -338,12 +429,18 @@ public class SynchronousMachine extends RotatingMachine {
         referencePriority = _value_;
     }
 
-    public void setReferencePriority(String _value_) {
-        referencePriority = getIntegerFromString(_value_);
+    private static Object getReferencePriority(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getReferencePriority();
     }
 
-    public String referencePriorityToString() {
-        return referencePriority != null ? referencePriority.toString() : null;
+    private static void setReferencePriority(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((SynchronousMachine) _this_).setReferencePriority((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setReferencePriority(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -359,12 +456,18 @@ public class SynchronousMachine extends RotatingMachine {
         satDirectSubtransX = _value_;
     }
 
-    public void setSatDirectSubtransX(String _value_) {
-        satDirectSubtransX = getDoubleFromString(_value_);
+    private static Object getSatDirectSubtransX(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getSatDirectSubtransX();
     }
 
-    public String satDirectSubtransXToString() {
-        return satDirectSubtransX != null ? satDirectSubtransX.toString() : null;
+    private static void setSatDirectSubtransX(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setSatDirectSubtransX((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setSatDirectSubtransX(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -380,12 +483,18 @@ public class SynchronousMachine extends RotatingMachine {
         satDirectSyncX = _value_;
     }
 
-    public void setSatDirectSyncX(String _value_) {
-        satDirectSyncX = getDoubleFromString(_value_);
+    private static Object getSatDirectSyncX(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getSatDirectSyncX();
     }
 
-    public String satDirectSyncXToString() {
-        return satDirectSyncX != null ? satDirectSyncX.toString() : null;
+    private static void setSatDirectSyncX(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setSatDirectSyncX((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setSatDirectSyncX(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -401,12 +510,18 @@ public class SynchronousMachine extends RotatingMachine {
         satDirectTransX = _value_;
     }
 
-    public void setSatDirectTransX(String _value_) {
-        satDirectTransX = getDoubleFromString(_value_);
+    private static Object getSatDirectTransX(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getSatDirectTransX();
     }
 
-    public String satDirectTransXToString() {
-        return satDirectTransX != null ? satDirectTransX.toString() : null;
+    private static void setSatDirectTransX(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setSatDirectTransX((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setSatDirectTransX(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -422,8 +537,16 @@ public class SynchronousMachine extends RotatingMachine {
         shortCircuitRotorType = _value_;
     }
 
-    public String shortCircuitRotorTypeToString() {
-        return shortCircuitRotorType;
+    private static Object getShortCircuitRotorType(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getShortCircuitRotorType();
+    }
+
+    private static void setShortCircuitRotorType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setShortCircuitRotorType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -439,8 +562,16 @@ public class SynchronousMachine extends RotatingMachine {
         type = _value_;
     }
 
-    public String typeToString() {
-        return type;
+    private static Object getType(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getType();
+    }
+
+    private static void setType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -456,12 +587,18 @@ public class SynchronousMachine extends RotatingMachine {
         voltageRegulationRange = _value_;
     }
 
-    public void setVoltageRegulationRange(String _value_) {
-        voltageRegulationRange = getDoubleFromString(_value_);
+    private static Object getVoltageRegulationRange(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getVoltageRegulationRange();
     }
 
-    public String voltageRegulationRangeToString() {
-        return voltageRegulationRange != null ? voltageRegulationRange.toString() : null;
+    private static void setVoltageRegulationRange(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setVoltageRegulationRange((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setVoltageRegulationRange(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -477,12 +614,18 @@ public class SynchronousMachine extends RotatingMachine {
         x0 = _value_;
     }
 
-    public void setX0(String _value_) {
-        x0 = getDoubleFromString(_value_);
+    private static Object getX0(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getX0();
     }
 
-    public String x0ToString() {
-        return x0 != null ? x0.toString() : null;
+    private static void setX0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setX0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setX0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -498,12 +641,18 @@ public class SynchronousMachine extends RotatingMachine {
         x2 = _value_;
     }
 
-    public void setX2(String _value_) {
-        x2 = getDoubleFromString(_value_);
+    private static Object getX2(BaseClass _this_) {
+        return ((SynchronousMachine) _this_).getX2();
     }
 
-    public String x2ToString() {
-        return x2 != null ? x2.toString() : null;
+    private static void setX2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachine) _this_).setX2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).setX2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -540,64 +689,35 @@ public class SynchronousMachine extends RotatingMachine {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("SynchronousMachine", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "SynchronousMachine", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("SynchronousMachine", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("SynchronousMachine", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "SynchronousMachine", attrName, value));
         }
     }
 
@@ -721,150 +841,121 @@ public class SynchronousMachine extends RotatingMachine {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("InitialReactiveCapabilityCurve", new AttrDetails("SynchronousMachine.InitialReactiveCapabilityCurve", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("InitialReactiveCapabilityCurve", new AttrDetails("SynchronousMachine.InitialReactiveCapabilityCurve", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, SynchronousMachine::getInitialReactiveCapabilityCurve, SynchronousMachine::setInitialReactiveCapabilityCurve));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("SynchronousMachineDynamics", new AttrDetails("SynchronousMachine.SynchronousMachineDynamics", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("SynchronousMachineDynamics", new AttrDetails("SynchronousMachine.SynchronousMachineDynamics", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, SynchronousMachine::getSynchronousMachineDynamics, SynchronousMachine::setSynchronousMachineDynamics));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("earthing", new AttrDetails("SynchronousMachine.earthing", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("earthing", new AttrDetails("SynchronousMachine.earthing", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getEarthing, SynchronousMachine::setEarthing));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("earthingStarPointR", new AttrDetails("SynchronousMachine.earthingStarPointR", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("earthingStarPointR", new AttrDetails("SynchronousMachine.earthingStarPointR", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getEarthingStarPointR, SynchronousMachine::setEarthingStarPointR));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("earthingStarPointX", new AttrDetails("SynchronousMachine.earthingStarPointX", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("earthingStarPointX", new AttrDetails("SynchronousMachine.earthingStarPointX", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getEarthingStarPointX, SynchronousMachine::setEarthingStarPointX));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ikk", new AttrDetails("SynchronousMachine.ikk", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ikk", new AttrDetails("SynchronousMachine.ikk", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getIkk, SynchronousMachine::setIkk));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxQ", new AttrDetails("SynchronousMachine.maxQ", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("maxQ", new AttrDetails("SynchronousMachine.maxQ", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getMaxQ, SynchronousMachine::setMaxQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("minQ", new AttrDetails("SynchronousMachine.minQ", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("minQ", new AttrDetails("SynchronousMachine.minQ", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getMinQ, SynchronousMachine::setMinQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("mu", new AttrDetails("SynchronousMachine.mu", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("mu", new AttrDetails("SynchronousMachine.mu", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getMu, SynchronousMachine::setMu));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("operatingMode", new AttrDetails("SynchronousMachine.operatingMode", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
+            map.put("operatingMode", new AttrDetails("SynchronousMachine.operatingMode", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true, SynchronousMachine::getOperatingMode, SynchronousMachine::setOperatingMode));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("qPercent", new AttrDetails("SynchronousMachine.qPercent", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("qPercent", new AttrDetails("SynchronousMachine.qPercent", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getQPercent, SynchronousMachine::setQPercent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r", new AttrDetails("SynchronousMachine.r", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("r", new AttrDetails("SynchronousMachine.r", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getR, SynchronousMachine::setR));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r0", new AttrDetails("SynchronousMachine.r0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("r0", new AttrDetails("SynchronousMachine.r0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getR0, SynchronousMachine::setR0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r2", new AttrDetails("SynchronousMachine.r2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("r2", new AttrDetails("SynchronousMachine.r2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getR2, SynchronousMachine::setR2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("referencePriority", new AttrDetails("SynchronousMachine.referencePriority", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("referencePriority", new AttrDetails("SynchronousMachine.referencePriority", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getReferencePriority, SynchronousMachine::setReferencePriority));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("satDirectSubtransX", new AttrDetails("SynchronousMachine.satDirectSubtransX", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("satDirectSubtransX", new AttrDetails("SynchronousMachine.satDirectSubtransX", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getSatDirectSubtransX, SynchronousMachine::setSatDirectSubtransX));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("satDirectSyncX", new AttrDetails("SynchronousMachine.satDirectSyncX", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("satDirectSyncX", new AttrDetails("SynchronousMachine.satDirectSyncX", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getSatDirectSyncX, SynchronousMachine::setSatDirectSyncX));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("satDirectTransX", new AttrDetails("SynchronousMachine.satDirectTransX", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("satDirectTransX", new AttrDetails("SynchronousMachine.satDirectTransX", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getSatDirectTransX, SynchronousMachine::setSatDirectTransX));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("shortCircuitRotorType", new AttrDetails("SynchronousMachine.shortCircuitRotorType", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
+            map.put("shortCircuitRotorType", new AttrDetails("SynchronousMachine.shortCircuitRotorType", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true, SynchronousMachine::getShortCircuitRotorType, SynchronousMachine::setShortCircuitRotorType));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("type", new AttrDetails("SynchronousMachine.type", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
+            map.put("type", new AttrDetails("SynchronousMachine.type", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true, SynchronousMachine::getType, SynchronousMachine::setType));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("voltageRegulationRange", new AttrDetails("SynchronousMachine.voltageRegulationRange", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("voltageRegulationRange", new AttrDetails("SynchronousMachine.voltageRegulationRange", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getVoltageRegulationRange, SynchronousMachine::setVoltageRegulationRange));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x0", new AttrDetails("SynchronousMachine.x0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("x0", new AttrDetails("SynchronousMachine.x0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getX0, SynchronousMachine::setX0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x2", new AttrDetails("SynchronousMachine.x2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("x2", new AttrDetails("SynchronousMachine.x2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, SynchronousMachine::getX2, SynchronousMachine::setX2));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SynchronousMachine().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SynchronousMachine(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("InitialReactiveCapabilityCurve", new GetterSetter(this::InitialReactiveCapabilityCurveToString, this::setInitialReactiveCapabilityCurve, null));
-        map.put("SynchronousMachineDynamics", new GetterSetter(this::SynchronousMachineDynamicsToString, this::setSynchronousMachineDynamics, null));
-        map.put("earthing", new GetterSetter(this::earthingToString, null, this::setEarthing));
-        map.put("earthingStarPointR", new GetterSetter(this::earthingStarPointRToString, null, this::setEarthingStarPointR));
-        map.put("earthingStarPointX", new GetterSetter(this::earthingStarPointXToString, null, this::setEarthingStarPointX));
-        map.put("ikk", new GetterSetter(this::ikkToString, null, this::setIkk));
-        map.put("maxQ", new GetterSetter(this::maxQToString, null, this::setMaxQ));
-        map.put("minQ", new GetterSetter(this::minQToString, null, this::setMinQ));
-        map.put("mu", new GetterSetter(this::muToString, null, this::setMu));
-        map.put("operatingMode", new GetterSetter(this::operatingModeToString, null, this::setOperatingMode));
-        map.put("qPercent", new GetterSetter(this::qPercentToString, null, this::setQPercent));
-        map.put("r", new GetterSetter(this::rToString, null, this::setR));
-        map.put("r0", new GetterSetter(this::r0ToString, null, this::setR0));
-        map.put("r2", new GetterSetter(this::r2ToString, null, this::setR2));
-        map.put("referencePriority", new GetterSetter(this::referencePriorityToString, null, this::setReferencePriority));
-        map.put("satDirectSubtransX", new GetterSetter(this::satDirectSubtransXToString, null, this::setSatDirectSubtransX));
-        map.put("satDirectSyncX", new GetterSetter(this::satDirectSyncXToString, null, this::setSatDirectSyncX));
-        map.put("satDirectTransX", new GetterSetter(this::satDirectTransXToString, null, this::setSatDirectTransX));
-        map.put("shortCircuitRotorType", new GetterSetter(this::shortCircuitRotorTypeToString, null, this::setShortCircuitRotorType));
-        map.put("type", new GetterSetter(this::typeToString, null, this::setType));
-        map.put("voltageRegulationRange", new GetterSetter(this::voltageRegulationRangeToString, null, this::setVoltageRegulationRange));
-        map.put("x0", new GetterSetter(this::x0ToString, null, this::setX0));
-        map.put("x2", new GetterSetter(this::x2ToString, null, this::setX2));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,10 +23,17 @@ public class RaiseLowerCommand extends AnalogControl {
     private static final Logging LOG = Logging.getLogger(RaiseLowerCommand.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public RaiseLowerCommand() {
-        setCimType("RaiseLowerCommand");
+    public RaiseLowerCommand(String rdfid) {
+        super("RaiseLowerCommand", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected RaiseLowerCommand(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class RaiseLowerCommand extends AnalogControl {
         return ValueAliasSet;
     }
 
-    public void setValueAliasSet(BaseClass _object_) {
-        if (!(_object_ instanceof ValueAliasSet)) {
-            throw new IllegalArgumentException("Object is not ValueAliasSet");
-        }
+    public void setValueAliasSet(ValueAliasSet _object_) {
         if (ValueAliasSet != _object_) {
-            ValueAliasSet = (ValueAliasSet) _object_;
+            ValueAliasSet = _object_;
             ValueAliasSet.setRaiseLowerCommands(this);
         }
     }
 
-    public String ValueAliasSetToString() {
-        return ValueAliasSet != null ? ValueAliasSet.getRdfid() : null;
+    private static Object getValueAliasSet(BaseClass _this_) {
+        return ((RaiseLowerCommand) _this_).getValueAliasSet();
+    }
+
+    private static void setValueAliasSet(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ValueAliasSet) {
+            ((RaiseLowerCommand) _this_).setValueAliasSet((ValueAliasSet) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ValueAliasSet");
+        }
     }
 
     /**
@@ -86,64 +98,35 @@ public class RaiseLowerCommand extends AnalogControl {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("RaiseLowerCommand", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "RaiseLowerCommand", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("RaiseLowerCommand", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("RaiseLowerCommand", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "RaiseLowerCommand", attrName, value));
         }
     }
 
@@ -267,18 +250,11 @@ public class RaiseLowerCommand extends AnalogControl {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ValueAliasSet", new AttrDetails("RaiseLowerCommand.ValueAliasSet", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("ValueAliasSet", new AttrDetails("RaiseLowerCommand.ValueAliasSet", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, RaiseLowerCommand::getValueAliasSet, RaiseLowerCommand::setValueAliasSet));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RaiseLowerCommand().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RaiseLowerCommand(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ValueAliasSet", new GetterSetter(this::ValueAliasSetToString, this::setValueAliasSet, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

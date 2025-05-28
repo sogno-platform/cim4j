@@ -23,10 +23,17 @@ public class LoadStatic extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(LoadStatic.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public LoadStatic() {
-        setCimType("LoadStatic");
+    public LoadStatic(String rdfid) {
+        super("LoadStatic", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected LoadStatic(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class LoadStatic extends IdentifiedObject {
         return LoadAggregate;
     }
 
-    public void setLoadAggregate(BaseClass _object_) {
-        if (!(_object_ instanceof LoadAggregate)) {
-            throw new IllegalArgumentException("Object is not LoadAggregate");
-        }
+    public void setLoadAggregate(LoadAggregate _object_) {
         if (LoadAggregate != _object_) {
-            LoadAggregate = (LoadAggregate) _object_;
+            LoadAggregate = _object_;
             LoadAggregate.setLoadStatic(this);
         }
     }
 
-    public String LoadAggregateToString() {
-        return LoadAggregate != null ? LoadAggregate.getRdfid() : null;
+    private static Object getLoadAggregate(BaseClass _this_) {
+        return ((LoadStatic) _this_).getLoadAggregate();
+    }
+
+    private static void setLoadAggregate(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof LoadAggregate) {
+            ((LoadStatic) _this_).setLoadAggregate((LoadAggregate) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not LoadAggregate");
+        }
     }
 
     /**
@@ -65,12 +77,18 @@ public class LoadStatic extends IdentifiedObject {
         ep1 = _value_;
     }
 
-    public void setEp1(String _value_) {
-        ep1 = getDoubleFromString(_value_);
+    private static Object getEp1(BaseClass _this_) {
+        return ((LoadStatic) _this_).getEp1();
     }
 
-    public String ep1ToString() {
-        return ep1 != null ? ep1.toString() : null;
+    private static void setEp1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setEp1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setEp1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -86,12 +104,18 @@ public class LoadStatic extends IdentifiedObject {
         ep2 = _value_;
     }
 
-    public void setEp2(String _value_) {
-        ep2 = getDoubleFromString(_value_);
+    private static Object getEp2(BaseClass _this_) {
+        return ((LoadStatic) _this_).getEp2();
     }
 
-    public String ep2ToString() {
-        return ep2 != null ? ep2.toString() : null;
+    private static void setEp2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setEp2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setEp2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -107,12 +131,18 @@ public class LoadStatic extends IdentifiedObject {
         ep3 = _value_;
     }
 
-    public void setEp3(String _value_) {
-        ep3 = getDoubleFromString(_value_);
+    private static Object getEp3(BaseClass _this_) {
+        return ((LoadStatic) _this_).getEp3();
     }
 
-    public String ep3ToString() {
-        return ep3 != null ? ep3.toString() : null;
+    private static void setEp3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setEp3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setEp3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -128,12 +158,18 @@ public class LoadStatic extends IdentifiedObject {
         eq1 = _value_;
     }
 
-    public void setEq1(String _value_) {
-        eq1 = getDoubleFromString(_value_);
+    private static Object getEq1(BaseClass _this_) {
+        return ((LoadStatic) _this_).getEq1();
     }
 
-    public String eq1ToString() {
-        return eq1 != null ? eq1.toString() : null;
+    private static void setEq1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setEq1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setEq1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -149,12 +185,18 @@ public class LoadStatic extends IdentifiedObject {
         eq2 = _value_;
     }
 
-    public void setEq2(String _value_) {
-        eq2 = getDoubleFromString(_value_);
+    private static Object getEq2(BaseClass _this_) {
+        return ((LoadStatic) _this_).getEq2();
     }
 
-    public String eq2ToString() {
-        return eq2 != null ? eq2.toString() : null;
+    private static void setEq2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setEq2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setEq2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -170,12 +212,18 @@ public class LoadStatic extends IdentifiedObject {
         eq3 = _value_;
     }
 
-    public void setEq3(String _value_) {
-        eq3 = getDoubleFromString(_value_);
+    private static Object getEq3(BaseClass _this_) {
+        return ((LoadStatic) _this_).getEq3();
     }
 
-    public String eq3ToString() {
-        return eq3 != null ? eq3.toString() : null;
+    private static void setEq3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setEq3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setEq3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -191,12 +239,18 @@ public class LoadStatic extends IdentifiedObject {
         kp1 = _value_;
     }
 
-    public void setKp1(String _value_) {
-        kp1 = getDoubleFromString(_value_);
+    private static Object getKp1(BaseClass _this_) {
+        return ((LoadStatic) _this_).getKp1();
     }
 
-    public String kp1ToString() {
-        return kp1 != null ? kp1.toString() : null;
+    private static void setKp1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setKp1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setKp1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -212,12 +266,18 @@ public class LoadStatic extends IdentifiedObject {
         kp2 = _value_;
     }
 
-    public void setKp2(String _value_) {
-        kp2 = getDoubleFromString(_value_);
+    private static Object getKp2(BaseClass _this_) {
+        return ((LoadStatic) _this_).getKp2();
     }
 
-    public String kp2ToString() {
-        return kp2 != null ? kp2.toString() : null;
+    private static void setKp2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setKp2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setKp2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -233,12 +293,18 @@ public class LoadStatic extends IdentifiedObject {
         kp3 = _value_;
     }
 
-    public void setKp3(String _value_) {
-        kp3 = getDoubleFromString(_value_);
+    private static Object getKp3(BaseClass _this_) {
+        return ((LoadStatic) _this_).getKp3();
     }
 
-    public String kp3ToString() {
-        return kp3 != null ? kp3.toString() : null;
+    private static void setKp3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setKp3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setKp3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -254,12 +320,18 @@ public class LoadStatic extends IdentifiedObject {
         kp4 = _value_;
     }
 
-    public void setKp4(String _value_) {
-        kp4 = getDoubleFromString(_value_);
+    private static Object getKp4(BaseClass _this_) {
+        return ((LoadStatic) _this_).getKp4();
     }
 
-    public String kp4ToString() {
-        return kp4 != null ? kp4.toString() : null;
+    private static void setKp4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setKp4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setKp4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -275,12 +347,18 @@ public class LoadStatic extends IdentifiedObject {
         kpf = _value_;
     }
 
-    public void setKpf(String _value_) {
-        kpf = getDoubleFromString(_value_);
+    private static Object getKpf(BaseClass _this_) {
+        return ((LoadStatic) _this_).getKpf();
     }
 
-    public String kpfToString() {
-        return kpf != null ? kpf.toString() : null;
+    private static void setKpf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setKpf((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setKpf(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -296,12 +374,18 @@ public class LoadStatic extends IdentifiedObject {
         kq1 = _value_;
     }
 
-    public void setKq1(String _value_) {
-        kq1 = getDoubleFromString(_value_);
+    private static Object getKq1(BaseClass _this_) {
+        return ((LoadStatic) _this_).getKq1();
     }
 
-    public String kq1ToString() {
-        return kq1 != null ? kq1.toString() : null;
+    private static void setKq1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setKq1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setKq1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -317,12 +401,18 @@ public class LoadStatic extends IdentifiedObject {
         kq2 = _value_;
     }
 
-    public void setKq2(String _value_) {
-        kq2 = getDoubleFromString(_value_);
+    private static Object getKq2(BaseClass _this_) {
+        return ((LoadStatic) _this_).getKq2();
     }
 
-    public String kq2ToString() {
-        return kq2 != null ? kq2.toString() : null;
+    private static void setKq2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setKq2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setKq2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -338,12 +428,18 @@ public class LoadStatic extends IdentifiedObject {
         kq3 = _value_;
     }
 
-    public void setKq3(String _value_) {
-        kq3 = getDoubleFromString(_value_);
+    private static Object getKq3(BaseClass _this_) {
+        return ((LoadStatic) _this_).getKq3();
     }
 
-    public String kq3ToString() {
-        return kq3 != null ? kq3.toString() : null;
+    private static void setKq3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setKq3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setKq3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -359,12 +455,18 @@ public class LoadStatic extends IdentifiedObject {
         kq4 = _value_;
     }
 
-    public void setKq4(String _value_) {
-        kq4 = getDoubleFromString(_value_);
+    private static Object getKq4(BaseClass _this_) {
+        return ((LoadStatic) _this_).getKq4();
     }
 
-    public String kq4ToString() {
-        return kq4 != null ? kq4.toString() : null;
+    private static void setKq4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setKq4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setKq4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -380,12 +482,18 @@ public class LoadStatic extends IdentifiedObject {
         kqf = _value_;
     }
 
-    public void setKqf(String _value_) {
-        kqf = getDoubleFromString(_value_);
+    private static Object getKqf(BaseClass _this_) {
+        return ((LoadStatic) _this_).getKqf();
     }
 
-    public String kqfToString() {
-        return kqf != null ? kqf.toString() : null;
+    private static void setKqf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((LoadStatic) _this_).setKqf((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setKqf(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -401,8 +509,16 @@ public class LoadStatic extends IdentifiedObject {
         staticLoadModelType = _value_;
     }
 
-    public String staticLoadModelTypeToString() {
-        return staticLoadModelType;
+    private static Object getStaticLoadModelType(BaseClass _this_) {
+        return ((LoadStatic) _this_).getStaticLoadModelType();
+    }
+
+    private static void setStaticLoadModelType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((LoadStatic) _this_).setStaticLoadModelType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -439,64 +555,35 @@ public class LoadStatic extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("LoadStatic", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "LoadStatic", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("LoadStatic", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("LoadStatic", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "LoadStatic", attrName, value));
         }
     }
 
@@ -620,120 +707,96 @@ public class LoadStatic extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("LoadAggregate", new AttrDetails("LoadStatic.LoadAggregate", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("LoadAggregate", new AttrDetails("LoadStatic.LoadAggregate", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, LoadStatic::getLoadAggregate, LoadStatic::setLoadAggregate));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ep1", new AttrDetails("LoadStatic.ep1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ep1", new AttrDetails("LoadStatic.ep1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getEp1, LoadStatic::setEp1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ep2", new AttrDetails("LoadStatic.ep2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ep2", new AttrDetails("LoadStatic.ep2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getEp2, LoadStatic::setEp2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ep3", new AttrDetails("LoadStatic.ep3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ep3", new AttrDetails("LoadStatic.ep3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getEp3, LoadStatic::setEp3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eq1", new AttrDetails("LoadStatic.eq1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("eq1", new AttrDetails("LoadStatic.eq1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getEq1, LoadStatic::setEq1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eq2", new AttrDetails("LoadStatic.eq2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("eq2", new AttrDetails("LoadStatic.eq2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getEq2, LoadStatic::setEq2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("eq3", new AttrDetails("LoadStatic.eq3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("eq3", new AttrDetails("LoadStatic.eq3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getEq3, LoadStatic::setEq3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kp1", new AttrDetails("LoadStatic.kp1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kp1", new AttrDetails("LoadStatic.kp1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getKp1, LoadStatic::setKp1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kp2", new AttrDetails("LoadStatic.kp2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kp2", new AttrDetails("LoadStatic.kp2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getKp2, LoadStatic::setKp2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kp3", new AttrDetails("LoadStatic.kp3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kp3", new AttrDetails("LoadStatic.kp3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getKp3, LoadStatic::setKp3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kp4", new AttrDetails("LoadStatic.kp4", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kp4", new AttrDetails("LoadStatic.kp4", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getKp4, LoadStatic::setKp4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpf", new AttrDetails("LoadStatic.kpf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kpf", new AttrDetails("LoadStatic.kpf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getKpf, LoadStatic::setKpf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kq1", new AttrDetails("LoadStatic.kq1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kq1", new AttrDetails("LoadStatic.kq1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getKq1, LoadStatic::setKq1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kq2", new AttrDetails("LoadStatic.kq2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kq2", new AttrDetails("LoadStatic.kq2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getKq2, LoadStatic::setKq2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kq3", new AttrDetails("LoadStatic.kq3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kq3", new AttrDetails("LoadStatic.kq3", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getKq3, LoadStatic::setKq3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kq4", new AttrDetails("LoadStatic.kq4", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kq4", new AttrDetails("LoadStatic.kq4", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getKq4, LoadStatic::setKq4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kqf", new AttrDetails("LoadStatic.kqf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kqf", new AttrDetails("LoadStatic.kqf", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, LoadStatic::getKqf, LoadStatic::setKqf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("staticLoadModelType", new AttrDetails("LoadStatic.staticLoadModelType", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
+            map.put("staticLoadModelType", new AttrDetails("LoadStatic.staticLoadModelType", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true, LoadStatic::getStaticLoadModelType, LoadStatic::setStaticLoadModelType));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadStatic().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadStatic(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("LoadAggregate", new GetterSetter(this::LoadAggregateToString, this::setLoadAggregate, null));
-        map.put("ep1", new GetterSetter(this::ep1ToString, null, this::setEp1));
-        map.put("ep2", new GetterSetter(this::ep2ToString, null, this::setEp2));
-        map.put("ep3", new GetterSetter(this::ep3ToString, null, this::setEp3));
-        map.put("eq1", new GetterSetter(this::eq1ToString, null, this::setEq1));
-        map.put("eq2", new GetterSetter(this::eq2ToString, null, this::setEq2));
-        map.put("eq3", new GetterSetter(this::eq3ToString, null, this::setEq3));
-        map.put("kp1", new GetterSetter(this::kp1ToString, null, this::setKp1));
-        map.put("kp2", new GetterSetter(this::kp2ToString, null, this::setKp2));
-        map.put("kp3", new GetterSetter(this::kp3ToString, null, this::setKp3));
-        map.put("kp4", new GetterSetter(this::kp4ToString, null, this::setKp4));
-        map.put("kpf", new GetterSetter(this::kpfToString, null, this::setKpf));
-        map.put("kq1", new GetterSetter(this::kq1ToString, null, this::setKq1));
-        map.put("kq2", new GetterSetter(this::kq2ToString, null, this::setKq2));
-        map.put("kq3", new GetterSetter(this::kq3ToString, null, this::setKq3));
-        map.put("kq4", new GetterSetter(this::kq4ToString, null, this::setKq4));
-        map.put("kqf", new GetterSetter(this::kqfToString, null, this::setKqf));
-        map.put("staticLoadModelType", new GetterSetter(this::staticLoadModelTypeToString, null, this::setStaticLoadModelType));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

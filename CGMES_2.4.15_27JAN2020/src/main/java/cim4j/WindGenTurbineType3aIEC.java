@@ -23,10 +23,17 @@ public class WindGenTurbineType3aIEC extends WindGenTurbineType3IEC {
     private static final Logging LOG = Logging.getLogger(WindGenTurbineType3aIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindGenTurbineType3aIEC() {
-        setCimType("WindGenTurbineType3aIEC");
+    public WindGenTurbineType3aIEC(String rdfid) {
+        super("WindGenTurbineType3aIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindGenTurbineType3aIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class WindGenTurbineType3aIEC extends WindGenTurbineType3IEC {
         kpc = _value_;
     }
 
-    public void setKpc(String _value_) {
-        kpc = getDoubleFromString(_value_);
+    private static Object getKpc(BaseClass _this_) {
+        return ((WindGenTurbineType3aIEC) _this_).getKpc();
     }
 
-    public String kpcToString() {
-        return kpc != null ? kpc.toString() : null;
+    private static void setKpc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindGenTurbineType3aIEC) _this_).setKpc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindGenTurbineType3aIEC) _this_).setKpc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class WindGenTurbineType3aIEC extends WindGenTurbineType3IEC {
         tic = _value_;
     }
 
-    public void setTic(String _value_) {
-        tic = getDoubleFromString(_value_);
+    private static Object getTic(BaseClass _this_) {
+        return ((WindGenTurbineType3aIEC) _this_).getTic();
     }
 
-    public String ticToString() {
-        return tic != null ? tic.toString() : null;
+    private static void setTic(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindGenTurbineType3aIEC) _this_).setTic((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindGenTurbineType3aIEC) _this_).setTic(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class WindGenTurbineType3aIEC extends WindGenTurbineType3IEC {
         xs = _value_;
     }
 
-    public void setXs(String _value_) {
-        xs = getDoubleFromString(_value_);
+    private static Object getXs(BaseClass _this_) {
+        return ((WindGenTurbineType3aIEC) _this_).getXs();
     }
 
-    public String xsToString() {
-        return xs != null ? xs.toString() : null;
+    private static void setXs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindGenTurbineType3aIEC) _this_).setXs((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindGenTurbineType3aIEC) _this_).setXs(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,64 +151,35 @@ public class WindGenTurbineType3aIEC extends WindGenTurbineType3IEC {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindGenTurbineType3aIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindGenTurbineType3aIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindGenTurbineType3aIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindGenTurbineType3aIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindGenTurbineType3aIEC", attrName, value));
         }
     }
 
@@ -307,30 +303,21 @@ public class WindGenTurbineType3aIEC extends WindGenTurbineType3IEC {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpc", new AttrDetails("WindGenTurbineType3aIEC.kpc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kpc", new AttrDetails("WindGenTurbineType3aIEC.kpc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindGenTurbineType3aIEC::getKpc, WindGenTurbineType3aIEC::setKpc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tic", new AttrDetails("WindGenTurbineType3aIEC.tic", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tic", new AttrDetails("WindGenTurbineType3aIEC.tic", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindGenTurbineType3aIEC::getTic, WindGenTurbineType3aIEC::setTic));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xs", new AttrDetails("WindGenTurbineType3aIEC.xs", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("xs", new AttrDetails("WindGenTurbineType3aIEC.xs", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindGenTurbineType3aIEC::getXs, WindGenTurbineType3aIEC::setXs));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindGenTurbineType3aIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindGenTurbineType3aIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("kpc", new GetterSetter(this::kpcToString, null, this::setKpc));
-        map.put("tic", new GetterSetter(this::ticToString, null, this::setTic));
-        map.put("xs", new GetterSetter(this::xsToString, null, this::setXs));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

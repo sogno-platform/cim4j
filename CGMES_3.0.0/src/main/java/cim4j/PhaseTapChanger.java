@@ -23,10 +23,17 @@ public class PhaseTapChanger extends TapChanger {
     private static final Logging LOG = Logging.getLogger(PhaseTapChanger.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public PhaseTapChanger() {
-        setCimType("PhaseTapChanger");
+    public PhaseTapChanger(String rdfid) {
+        super("PhaseTapChanger", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected PhaseTapChanger(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class PhaseTapChanger extends TapChanger {
         return TransformerEnd;
     }
 
-    public void setTransformerEnd(BaseClass _object_) {
-        if (!(_object_ instanceof TransformerEnd)) {
-            throw new IllegalArgumentException("Object is not TransformerEnd");
-        }
+    public void setTransformerEnd(TransformerEnd _object_) {
         if (TransformerEnd != _object_) {
-            TransformerEnd = (TransformerEnd) _object_;
+            TransformerEnd = _object_;
             TransformerEnd.setPhaseTapChanger(this);
         }
     }
 
-    public String TransformerEndToString() {
-        return TransformerEnd != null ? TransformerEnd.getRdfid() : null;
+    private static Object getTransformerEnd(BaseClass _this_) {
+        return ((PhaseTapChanger) _this_).getTransformerEnd();
+    }
+
+    private static void setTransformerEnd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof TransformerEnd) {
+            ((PhaseTapChanger) _this_).setTransformerEnd((TransformerEnd) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not TransformerEnd");
+        }
     }
 
     /**
@@ -86,64 +98,35 @@ public class PhaseTapChanger extends TapChanger {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("PhaseTapChanger", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "PhaseTapChanger", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("PhaseTapChanger", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("PhaseTapChanger", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "PhaseTapChanger", attrName, value));
         }
     }
 
@@ -267,18 +250,11 @@ public class PhaseTapChanger extends TapChanger {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("TransformerEnd", new AttrDetails("PhaseTapChanger.TransformerEnd", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("TransformerEnd", new AttrDetails("PhaseTapChanger.TransformerEnd", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, PhaseTapChanger::getTransformerEnd, PhaseTapChanger::setTransformerEnd));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PhaseTapChanger().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PhaseTapChanger(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("TransformerEnd", new GetterSetter(this::TransformerEndToString, this::setTransformerEnd, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

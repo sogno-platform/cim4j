@@ -23,10 +23,17 @@ public class RegulatingControl extends PowerSystemResource {
     private static final Logging LOG = Logging.getLogger(RegulatingControl.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public RegulatingControl() {
-        setCimType("RegulatingControl");
+    public RegulatingControl(String rdfid) {
+        super("RegulatingControl", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected RegulatingControl(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class RegulatingControl extends PowerSystemResource {
         return RegulatingCondEq;
     }
 
-    public void setRegulatingCondEq(BaseClass _object_) {
-        if (!(_object_ instanceof RegulatingCondEq)) {
-            throw new IllegalArgumentException("Object is not RegulatingCondEq");
-        }
+    public void setRegulatingCondEq(RegulatingCondEq _object_) {
         if (!RegulatingCondEq.contains(_object_)) {
-            RegulatingCondEq.add((RegulatingCondEq) _object_);
-            ((RegulatingCondEq) _object_).setRegulatingControl(this);
+            RegulatingCondEq.add(_object_);
+            _object_.setRegulatingControl(this);
         }
     }
 
-    public String RegulatingCondEqToString() {
-        return getStringFromSet(RegulatingCondEq);
+    private static Object getRegulatingCondEq(BaseClass _this_) {
+        return ((RegulatingControl) _this_).getRegulatingCondEq();
+    }
+
+    private static void setRegulatingCondEq(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof RegulatingCondEq) {
+            ((RegulatingControl) _this_).setRegulatingCondEq((RegulatingCondEq) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not RegulatingCondEq");
+        }
     }
 
     /**
@@ -65,18 +77,23 @@ public class RegulatingControl extends PowerSystemResource {
         return RegulationSchedule;
     }
 
-    public void setRegulationSchedule(BaseClass _object_) {
-        if (!(_object_ instanceof RegulationSchedule)) {
-            throw new IllegalArgumentException("Object is not RegulationSchedule");
-        }
+    public void setRegulationSchedule(RegulationSchedule _object_) {
         if (!RegulationSchedule.contains(_object_)) {
-            RegulationSchedule.add((RegulationSchedule) _object_);
-            ((RegulationSchedule) _object_).setRegulatingControl(this);
+            RegulationSchedule.add(_object_);
+            _object_.setRegulatingControl(this);
         }
     }
 
-    public String RegulationScheduleToString() {
-        return getStringFromSet(RegulationSchedule);
+    private static Object getRegulationSchedule(BaseClass _this_) {
+        return ((RegulatingControl) _this_).getRegulationSchedule();
+    }
+
+    private static void setRegulationSchedule(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof RegulationSchedule) {
+            ((RegulatingControl) _this_).setRegulationSchedule((RegulationSchedule) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not RegulationSchedule");
+        }
     }
 
     /**
@@ -88,18 +105,23 @@ public class RegulatingControl extends PowerSystemResource {
         return Terminal;
     }
 
-    public void setTerminal(BaseClass _object_) {
-        if (!(_object_ instanceof Terminal)) {
-            throw new IllegalArgumentException("Object is not Terminal");
-        }
+    public void setTerminal(Terminal _object_) {
         if (Terminal != _object_) {
-            Terminal = (Terminal) _object_;
+            Terminal = _object_;
             Terminal.setRegulatingControl(this);
         }
     }
 
-    public String TerminalToString() {
-        return Terminal != null ? Terminal.getRdfid() : null;
+    private static Object getTerminal(BaseClass _this_) {
+        return ((RegulatingControl) _this_).getTerminal();
+    }
+
+    private static void setTerminal(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Terminal) {
+            ((RegulatingControl) _this_).setTerminal((Terminal) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Terminal");
+        }
     }
 
     /**
@@ -115,12 +137,18 @@ public class RegulatingControl extends PowerSystemResource {
         discrete = _value_;
     }
 
-    public void setDiscrete(String _value_) {
-        discrete = getBooleanFromString(_value_);
+    private static Object getDiscrete(BaseClass _this_) {
+        return ((RegulatingControl) _this_).getDiscrete();
     }
 
-    public String discreteToString() {
-        return discrete != null ? discrete.toString() : null;
+    private static void setDiscrete(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((RegulatingControl) _this_).setDiscrete((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((RegulatingControl) _this_).setDiscrete(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -136,12 +164,18 @@ public class RegulatingControl extends PowerSystemResource {
         enabled = _value_;
     }
 
-    public void setEnabled(String _value_) {
-        enabled = getBooleanFromString(_value_);
+    private static Object getEnabled(BaseClass _this_) {
+        return ((RegulatingControl) _this_).getEnabled();
     }
 
-    public String enabledToString() {
-        return enabled != null ? enabled.toString() : null;
+    private static void setEnabled(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((RegulatingControl) _this_).setEnabled((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((RegulatingControl) _this_).setEnabled(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -157,8 +191,16 @@ public class RegulatingControl extends PowerSystemResource {
         mode = _value_;
     }
 
-    public String modeToString() {
-        return mode;
+    private static Object getMode(BaseClass _this_) {
+        return ((RegulatingControl) _this_).getMode();
+    }
+
+    private static void setMode(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((RegulatingControl) _this_).setMode((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -174,12 +216,18 @@ public class RegulatingControl extends PowerSystemResource {
         targetDeadband = _value_;
     }
 
-    public void setTargetDeadband(String _value_) {
-        targetDeadband = getDoubleFromString(_value_);
+    private static Object getTargetDeadband(BaseClass _this_) {
+        return ((RegulatingControl) _this_).getTargetDeadband();
     }
 
-    public String targetDeadbandToString() {
-        return targetDeadband != null ? targetDeadband.toString() : null;
+    private static void setTargetDeadband(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((RegulatingControl) _this_).setTargetDeadband((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((RegulatingControl) _this_).setTargetDeadband(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -195,12 +243,18 @@ public class RegulatingControl extends PowerSystemResource {
         targetValue = _value_;
     }
 
-    public void setTargetValue(String _value_) {
-        targetValue = getDoubleFromString(_value_);
+    private static Object getTargetValue(BaseClass _this_) {
+        return ((RegulatingControl) _this_).getTargetValue();
     }
 
-    public String targetValueToString() {
-        return targetValue != null ? targetValue.toString() : null;
+    private static void setTargetValue(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((RegulatingControl) _this_).setTargetValue((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((RegulatingControl) _this_).setTargetValue(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -216,8 +270,16 @@ public class RegulatingControl extends PowerSystemResource {
         targetValueUnitMultiplier = _value_;
     }
 
-    public String targetValueUnitMultiplierToString() {
-        return targetValueUnitMultiplier;
+    private static Object getTargetValueUnitMultiplier(BaseClass _this_) {
+        return ((RegulatingControl) _this_).getTargetValueUnitMultiplier();
+    }
+
+    private static void setTargetValueUnitMultiplier(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((RegulatingControl) _this_).setTargetValueUnitMultiplier((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -254,64 +316,35 @@ public class RegulatingControl extends PowerSystemResource {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("RegulatingControl", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "RegulatingControl", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("RegulatingControl", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("RegulatingControl", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "RegulatingControl", attrName, value));
         }
     }
 
@@ -435,66 +468,51 @@ public class RegulatingControl extends PowerSystemResource {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("RegulatingCondEq", new AttrDetails("RegulatingControl.RegulatingCondEq", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("RegulatingCondEq", new AttrDetails("RegulatingControl.RegulatingCondEq", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, RegulatingControl::getRegulatingCondEq, RegulatingControl::setRegulatingCondEq));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("RegulationSchedule", new AttrDetails("RegulatingControl.RegulationSchedule", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("RegulationSchedule", new AttrDetails("RegulatingControl.RegulationSchedule", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, RegulatingControl::getRegulationSchedule, RegulatingControl::setRegulationSchedule));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("Terminal", new AttrDetails("RegulatingControl.Terminal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("Terminal", new AttrDetails("RegulatingControl.Terminal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, RegulatingControl::getTerminal, RegulatingControl::setTerminal));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("discrete", new AttrDetails("RegulatingControl.discrete", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("discrete", new AttrDetails("RegulatingControl.discrete", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, RegulatingControl::getDiscrete, RegulatingControl::setDiscrete));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("enabled", new AttrDetails("RegulatingControl.enabled", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("enabled", new AttrDetails("RegulatingControl.enabled", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, RegulatingControl::getEnabled, RegulatingControl::setEnabled));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("mode", new AttrDetails("RegulatingControl.mode", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
+            map.put("mode", new AttrDetails("RegulatingControl.mode", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true, RegulatingControl::getMode, RegulatingControl::setMode));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetDeadband", new AttrDetails("RegulatingControl.targetDeadband", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("targetDeadband", new AttrDetails("RegulatingControl.targetDeadband", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, RegulatingControl::getTargetDeadband, RegulatingControl::setTargetDeadband));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetValue", new AttrDetails("RegulatingControl.targetValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("targetValue", new AttrDetails("RegulatingControl.targetValue", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, RegulatingControl::getTargetValue, RegulatingControl::setTargetValue));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetValueUnitMultiplier", new AttrDetails("RegulatingControl.targetValueUnitMultiplier", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
+            map.put("targetValueUnitMultiplier", new AttrDetails("RegulatingControl.targetValueUnitMultiplier", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true, RegulatingControl::getTargetValueUnitMultiplier, RegulatingControl::setTargetValueUnitMultiplier));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RegulatingControl().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new RegulatingControl(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("RegulatingCondEq", new GetterSetter(this::RegulatingCondEqToString, this::setRegulatingCondEq, null));
-        map.put("RegulationSchedule", new GetterSetter(this::RegulationScheduleToString, this::setRegulationSchedule, null));
-        map.put("Terminal", new GetterSetter(this::TerminalToString, this::setTerminal, null));
-        map.put("discrete", new GetterSetter(this::discreteToString, null, this::setDiscrete));
-        map.put("enabled", new GetterSetter(this::enabledToString, null, this::setEnabled));
-        map.put("mode", new GetterSetter(this::modeToString, null, this::setMode));
-        map.put("targetDeadband", new GetterSetter(this::targetDeadbandToString, null, this::setTargetDeadband));
-        map.put("targetValue", new GetterSetter(this::targetValueToString, null, this::setTargetValue));
-        map.put("targetValueUnitMultiplier", new GetterSetter(this::targetValueUnitMultiplierToString, null, this::setTargetValueUnitMultiplier));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -13,19 +13,19 @@ import java.util.Map;
  */
 public enum ExcST7BUELselectorKind {
     /**
-     * No UEL input is used.  Corresponds to &lt;i&gt;UELin&lt;/i&gt; not = 1 and not = 2 and not = 3 on the ExcST7B diagram. Original ExcST7B model would have called this &lt;i&gt;UELin&lt;/i&gt; = 0.
+     * No UEL input is used.  Corresponds to <i>UELin</i> not = 1 and not = 2 and not = 3 on the ExcST7B diagram. Original ExcST7B model would have called this <i>UELin</i> = 0.
      */
     _noUELinput("noUELinput"),
     /**
-     * The signal is added to &lt;i&gt;Vref&lt;/i&gt;. Corresponds to &lt;i&gt;UELin&lt;/i&gt; = 1 on the ExcST7B diagram.
+     * The signal is added to <i>Vref</i>. Corresponds to <i>UELin</i> = 1 on the ExcST7B diagram.
      */
     _addVref("addVref"),
     /**
-     * The signal is connected into the input &lt;i&gt;HVGate&lt;/i&gt;.  Corresponds to &lt;i&gt;UELin&lt;/i&gt; = 2 on the ExcST7B diagram.
+     * The signal is connected into the input <i>HVGate</i>.  Corresponds to <i>UELin</i> = 2 on the ExcST7B diagram.
      */
     _inputHVgate("inputHVgate"),
     /**
-     * The signal is connected into the output &lt;i&gt;HVGate&lt;/i&gt;.  Corresponds to &lt;i&gt;UELin&lt;/i&gt; = 3 on the ExcST7B diagram.
+     * The signal is connected into the output <i>HVGate</i>.  Corresponds to <i>UELin</i> = 3 on the ExcST7B diagram.
      */
     _outputHVgate("outputHVgate"),
     ;

@@ -23,14 +23,21 @@ public class ExcNI extends ExcitationSystemDynamics {
     private static final Logging LOG = Logging.getLogger(ExcNI.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ExcNI() {
-        setCimType("ExcNI");
+    public ExcNI(String rdfid) {
+        super("ExcNI", rdfid);
     }
 
     /**
-     * Fed by selector (&lt;i&gt;BusFedSelector&lt;/i&gt;).  true = bus fed (switch is closed) false = solid fed (switch is open). Typical value = true.
+     * Constructor for subclasses.
+     */
+    protected ExcNI(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Fed by selector (<i>BusFedSelector</i>).  true = bus fed (switch is closed) false = solid fed (switch is open). Typical value = true.
      */
     private Boolean busFedSelector; // Boolean
 
@@ -42,16 +49,22 @@ public class ExcNI extends ExcitationSystemDynamics {
         busFedSelector = _value_;
     }
 
-    public void setBusFedSelector(String _value_) {
-        busFedSelector = getBooleanFromString(_value_);
+    private static Object getBusFedSelector(BaseClass _this_) {
+        return ((ExcNI) _this_).getBusFedSelector();
     }
 
-    public String busFedSelectorToString() {
-        return busFedSelector != null ? busFedSelector.toString() : null;
+    private static void setBusFedSelector(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ExcNI) _this_).setBusFedSelector((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcNI) _this_).setBusFedSelector(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
-     * Voltage regulator gain (&lt;i&gt;Ka&lt;/i&gt;) (&amp;gt; 0).  Typical value = 210.
+     * Voltage regulator gain (<i>Ka</i>) (&gt; 0).  Typical value = 210.
      */
     private Double ka; // PU
 
@@ -63,16 +76,22 @@ public class ExcNI extends ExcitationSystemDynamics {
         ka = _value_;
     }
 
-    public void setKa(String _value_) {
-        ka = getDoubleFromString(_value_);
+    private static Object getKa(BaseClass _this_) {
+        return ((ExcNI) _this_).getKa();
     }
 
-    public String kaToString() {
-        return ka != null ? ka.toString() : null;
+    private static void setKa(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcNI) _this_).setKa((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcNI) _this_).setKa(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Excitation control system stabilizer gain (&lt;i&gt;Kf&lt;/i&gt;) (&amp;gt; 0).  Typical value 0,01.
+     * Excitation control system stabilizer gain (<i>Kf</i>) (&gt; 0).  Typical value 0,01.
      */
     private Double kf; // PU
 
@@ -84,16 +103,22 @@ public class ExcNI extends ExcitationSystemDynamics {
         kf = _value_;
     }
 
-    public void setKf(String _value_) {
-        kf = getDoubleFromString(_value_);
+    private static Object getKf(BaseClass _this_) {
+        return ((ExcNI) _this_).getKf();
     }
 
-    public String kfToString() {
-        return kf != null ? kf.toString() : null;
+    private static void setKf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcNI) _this_).setKf((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcNI) _this_).setKf(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * &lt;i&gt;rc&lt;/i&gt; / &lt;i&gt;rfd&lt;/i&gt; (&lt;i&gt;R&lt;/i&gt;) (&amp;gt;= 0).  0 means exciter has negative current capability &amp;gt; 0 means exciter does not have negative current capability.   Typical value = 5.
+     * <i>rc</i> / <i>rfd</i> (<i>R</i>) (&gt;= 0).  0 means exciter has negative current capability &gt; 0 means exciter does not have negative current capability.   Typical value = 5.
      */
     private Double r; // PU
 
@@ -105,16 +130,22 @@ public class ExcNI extends ExcitationSystemDynamics {
         r = _value_;
     }
 
-    public void setR(String _value_) {
-        r = getDoubleFromString(_value_);
+    private static Object getR(BaseClass _this_) {
+        return ((ExcNI) _this_).getR();
     }
 
-    public String rToString() {
-        return r != null ? r.toString() : null;
+    private static void setR(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcNI) _this_).setR((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcNI) _this_).setR(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage regulator time constant (&lt;i&gt;Ta&lt;/i&gt;) (&amp;gt; 0).  Typical value = 0,02.
+     * Voltage regulator time constant (<i>Ta</i>) (&gt; 0).  Typical value = 0,02.
      */
     private Double ta; // Seconds
 
@@ -126,16 +157,22 @@ public class ExcNI extends ExcitationSystemDynamics {
         ta = _value_;
     }
 
-    public void setTa(String _value_) {
-        ta = getDoubleFromString(_value_);
+    private static Object getTa(BaseClass _this_) {
+        return ((ExcNI) _this_).getTa();
     }
 
-    public String taToString() {
-        return ta != null ? ta.toString() : null;
+    private static void setTa(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcNI) _this_).setTa((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcNI) _this_).setTa(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Excitation control system stabilizer time constant (&lt;i&gt;Tf1&lt;/i&gt;) (&amp;gt; 0). Typical value = 1,0.
+     * Excitation control system stabilizer time constant (<i>Tf1</i>) (&gt; 0). Typical value = 1,0.
      */
     private Double tf1; // Seconds
 
@@ -147,16 +184,22 @@ public class ExcNI extends ExcitationSystemDynamics {
         tf1 = _value_;
     }
 
-    public void setTf1(String _value_) {
-        tf1 = getDoubleFromString(_value_);
+    private static Object getTf1(BaseClass _this_) {
+        return ((ExcNI) _this_).getTf1();
     }
 
-    public String tf1ToString() {
-        return tf1 != null ? tf1.toString() : null;
+    private static void setTf1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcNI) _this_).setTf1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcNI) _this_).setTf1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Excitation control system stabilizer time constant (&lt;i&gt;Tf2&lt;/i&gt;) (&amp;gt; 0). Typical value = 0,1.
+     * Excitation control system stabilizer time constant (<i>Tf2</i>) (&gt; 0). Typical value = 0,1.
      */
     private Double tf2; // Seconds
 
@@ -168,16 +211,22 @@ public class ExcNI extends ExcitationSystemDynamics {
         tf2 = _value_;
     }
 
-    public void setTf2(String _value_) {
-        tf2 = getDoubleFromString(_value_);
+    private static Object getTf2(BaseClass _this_) {
+        return ((ExcNI) _this_).getTf2();
     }
 
-    public String tf2ToString() {
-        return tf2 != null ? tf2.toString() : null;
+    private static void setTf2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcNI) _this_).setTf2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcNI) _this_).setTf2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Time constant (&lt;i&gt;Tr&lt;/i&gt;) (&amp;gt;= 0). Typical value = 0,02.
+     * Time constant (<i>Tr</i>) (&gt;= 0). Typical value = 0,02.
      */
     private Double tr; // Seconds
 
@@ -189,16 +238,22 @@ public class ExcNI extends ExcitationSystemDynamics {
         tr = _value_;
     }
 
-    public void setTr(String _value_) {
-        tr = getDoubleFromString(_value_);
+    private static Object getTr(BaseClass _this_) {
+        return ((ExcNI) _this_).getTr();
     }
 
-    public String trToString() {
-        return tr != null ? tr.toString() : null;
+    private static void setTr(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcNI) _this_).setTr((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcNI) _this_).setTr(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum voltage regulator ouput (&lt;i&gt;Vrmax&lt;/i&gt;) (&amp;gt; ExcNI.vrmin). Typical value = 5,0.
+     * Maximum voltage regulator ouput (<i>Vrmax</i>) (&gt; ExcNI.vrmin). Typical value = 5,0.
      */
     private Double vrmax; // PU
 
@@ -210,16 +265,22 @@ public class ExcNI extends ExcitationSystemDynamics {
         vrmax = _value_;
     }
 
-    public void setVrmax(String _value_) {
-        vrmax = getDoubleFromString(_value_);
+    private static Object getVrmax(BaseClass _this_) {
+        return ((ExcNI) _this_).getVrmax();
     }
 
-    public String vrmaxToString() {
-        return vrmax != null ? vrmax.toString() : null;
+    private static void setVrmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcNI) _this_).setVrmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcNI) _this_).setVrmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum voltage regulator ouput (&lt;i&gt;Vrmin&lt;/i&gt;) (&amp;lt; ExcNI.vrmax). Typical value = -2,0.
+     * Minimum voltage regulator ouput (<i>Vrmin</i>) (&lt; ExcNI.vrmax). Typical value = -2,0.
      */
     private Double vrmin; // PU
 
@@ -231,12 +292,18 @@ public class ExcNI extends ExcitationSystemDynamics {
         vrmin = _value_;
     }
 
-    public void setVrmin(String _value_) {
-        vrmin = getDoubleFromString(_value_);
+    private static Object getVrmin(BaseClass _this_) {
+        return ((ExcNI) _this_).getVrmin();
     }
 
-    public String vrminToString() {
-        return vrmin != null ? vrmin.toString() : null;
+    private static void setVrmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcNI) _this_).setVrmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcNI) _this_).setVrmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -273,64 +340,35 @@ public class ExcNI extends ExcitationSystemDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ExcNI", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ExcNI", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ExcNI", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ExcNI", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ExcNI", attrName, value));
         }
     }
 
@@ -454,72 +492,56 @@ public class ExcNI extends ExcitationSystemDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("busFedSelector", new AttrDetails("ExcNI.busFedSelector", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("busFedSelector", new AttrDetails("ExcNI.busFedSelector", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcNI::getBusFedSelector, ExcNI::setBusFedSelector));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ka", new AttrDetails("ExcNI.ka", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ka", new AttrDetails("ExcNI.ka", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcNI::getKa, ExcNI::setKa));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kf", new AttrDetails("ExcNI.kf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kf", new AttrDetails("ExcNI.kf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcNI::getKf, ExcNI::setKf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("r", new AttrDetails("ExcNI.r", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("r", new AttrDetails("ExcNI.r", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcNI::getR, ExcNI::setR));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ta", new AttrDetails("ExcNI.ta", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ta", new AttrDetails("ExcNI.ta", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcNI::getTa, ExcNI::setTa));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf1", new AttrDetails("ExcNI.tf1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tf1", new AttrDetails("ExcNI.tf1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcNI::getTf1, ExcNI::setTf1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf2", new AttrDetails("ExcNI.tf2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tf2", new AttrDetails("ExcNI.tf2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcNI::getTf2, ExcNI::setTf2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tr", new AttrDetails("ExcNI.tr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tr", new AttrDetails("ExcNI.tr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcNI::getTr, ExcNI::setTr));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmax", new AttrDetails("ExcNI.vrmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vrmax", new AttrDetails("ExcNI.vrmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcNI::getVrmax, ExcNI::setVrmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmin", new AttrDetails("ExcNI.vrmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vrmin", new AttrDetails("ExcNI.vrmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcNI::getVrmin, ExcNI::setVrmin));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcNI().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcNI(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("busFedSelector", new GetterSetter(this::busFedSelectorToString, null, this::setBusFedSelector));
-        map.put("ka", new GetterSetter(this::kaToString, null, this::setKa));
-        map.put("kf", new GetterSetter(this::kfToString, null, this::setKf));
-        map.put("r", new GetterSetter(this::rToString, null, this::setR));
-        map.put("ta", new GetterSetter(this::taToString, null, this::setTa));
-        map.put("tf1", new GetterSetter(this::tf1ToString, null, this::setTf1));
-        map.put("tf2", new GetterSetter(this::tf2ToString, null, this::setTf2));
-        map.put("tr", new GetterSetter(this::trToString, null, this::setTr));
-        map.put("vrmax", new GetterSetter(this::vrmaxToString, null, this::setVrmax));
-        map.put("vrmin", new GetterSetter(this::vrminToString, null, this::setVrmin));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

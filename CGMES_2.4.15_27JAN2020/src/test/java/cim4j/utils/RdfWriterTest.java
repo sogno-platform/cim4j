@@ -1148,7 +1148,7 @@ class RdfWriterTest {
     }
 
     @Test
-    @Order(500)
+    @Order(510)
     void testWrite028() {
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test028.xml")));
@@ -1186,25 +1186,25 @@ class RdfWriterTest {
     }
 
     @Test
-    @Order(510)
+    @Order(520)
     void testWrite029() {
         testWrite_029_030_031_032("rdf/test029.xml", 6);
     }
 
     @Test
-    @Order(510)
+    @Order(530)
     void testWrite030() {
         testWrite_029_030_031_032("rdf/test030.xml", 4);
     }
 
     @Test
-    @Order(510)
+    @Order(540)
     void testWrite031() {
         testWrite_029_030_031_032("rdf/test031.xml", 2);
     }
 
     @Test
-    @Order(510)
+    @Order(550)
     void testWrite032() {
         testWrite_029_030_031_032("rdf/test032.xml", 4);
     }
@@ -1237,6 +1237,211 @@ class RdfWriterTest {
         assertEquals("  </cim:PowerTransformer>", lines[offset + 3]);
         // ...
         assertEquals("</rdf:RDF>", lines[10]);
+    }
+
+    @Test
+    @Order(560)
+    void testWrite033() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test033.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("_VL"));
+        assertTrue(cimData.containsKey("_PT"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(10, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:PowerTransformer rdf:ID=\"_PT\">", lines[2]);
+        assertEquals("    <cim:Equipment.EquipmentContainer rdf:resource=\"#_VL\"/>", lines[3]);
+        assertEquals("    <cim:IdentifiedObject.name>PT</cim:IdentifiedObject.name>", lines[4]);
+        assertEquals("  </cim:PowerTransformer>", lines[5]);
+        assertEquals("  <cim:VoltageLevel rdf:ID=\"_VL\">", lines[6]);
+        assertEquals("    <cim:IdentifiedObject.name>VL</cim:IdentifiedObject.name>", lines[7]);
+        assertEquals("  </cim:VoltageLevel>", lines[8]);
+        assertEquals("</rdf:RDF>", lines[9]);
+    }
+
+    @Test
+    @Order(570)
+    void testWrite034() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test034.xml")));
+        assertEquals(3, cimData.size());
+
+        assertTrue(cimData.containsKey("_VL"));
+        assertTrue(cimData.containsKey("_PT"));
+        assertTrue(cimData.containsKey("_PT2"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(14, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:VoltageLevel rdf:ID=\"_VL\">", lines[2]);
+        assertEquals("    <cim:IdentifiedObject.name>VL</cim:IdentifiedObject.name>", lines[3]);
+        assertEquals("  </cim:VoltageLevel>", lines[4]);
+        assertEquals("  <cim:PowerTransformer rdf:ID=\"_PT\">", lines[5]);
+        assertEquals("    <cim:Equipment.EquipmentContainer rdf:resource=\"#_VL\"/>", lines[6]);
+        assertEquals("    <cim:IdentifiedObject.name>PT</cim:IdentifiedObject.name>", lines[7]);
+        assertEquals("  </cim:PowerTransformer>", lines[8]);
+        assertEquals("  <cim:PowerTransformer rdf:ID=\"_PT2\">", lines[9]);
+        assertEquals("    <cim:Equipment.EquipmentContainer rdf:resource=\"#_VL\"/>", lines[10]);
+        assertEquals("    <cim:IdentifiedObject.name>PT2</cim:IdentifiedObject.name>", lines[11]);
+        assertEquals("  </cim:PowerTransformer>", lines[12]);
+        assertEquals("</rdf:RDF>", lines[13]);
+    }
+
+    @Test
+    @Order(580)
+    void testWrite035() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test035.xml")));
+        assertEquals(3, cimData.size());
+
+        assertTrue(cimData.containsKey("_VL"));
+        assertTrue(cimData.containsKey("_PT"));
+        assertTrue(cimData.containsKey("_PT2"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(14, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:VoltageLevel rdf:ID=\"_VL\">", lines[2]);
+        assertEquals("    <cim:IdentifiedObject.name>VL</cim:IdentifiedObject.name>", lines[3]);
+        assertEquals("  </cim:VoltageLevel>", lines[4]);
+        assertEquals("  <cim:PowerTransformer rdf:ID=\"_PT\">", lines[5]);
+        assertEquals("    <cim:Equipment.EquipmentContainer rdf:resource=\"#_VL\"/>", lines[6]);
+        assertEquals("    <cim:IdentifiedObject.name>PT</cim:IdentifiedObject.name>", lines[7]);
+        assertEquals("  </cim:PowerTransformer>", lines[8]);
+        assertEquals("  <cim:PowerTransformer rdf:ID=\"_PT2\">", lines[9]);
+        assertEquals("    <cim:Equipment.EquipmentContainer rdf:resource=\"#_VL\"/>", lines[10]);
+        assertEquals("    <cim:IdentifiedObject.name>PT2</cim:IdentifiedObject.name>", lines[11]);
+        assertEquals("  </cim:PowerTransformer>", lines[12]);
+        assertEquals("</rdf:RDF>", lines[13]);
+    }
+
+    @Test
+    @Order(590)
+    void testWrite036() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test036.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("_Status"));
+        assertTrue(cimData.containsKey("_PT"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(10, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:SvStatus rdf:ID=\"_Status\">", lines[2]);
+        assertEquals("    <cim:SvStatus.ConductingEquipment rdf:resource=\"#_PT\"/>", lines[3]);
+        assertEquals("  </cim:SvStatus>", lines[4]);
+        assertEquals("  <cim:PowerTransformer rdf:ID=\"_PT\">", lines[5]);
+        assertEquals("    <cim:IdentifiedObject.description>PowerTransformer</cim:IdentifiedObject.description>",
+                lines[6]);
+        assertEquals("    <cim:IdentifiedObject.name>PT</cim:IdentifiedObject.name>", lines[7]);
+        assertEquals("  </cim:PowerTransformer>", lines[8]);
+        assertEquals("</rdf:RDF>", lines[9]);
+    }
+
+    @Test
+    @Order(600)
+    void testWrite037() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test037.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("_Status"));
+        assertTrue(cimData.containsKey("_PT"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(10, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:PowerTransformer rdf:ID=\"_PT\">", lines[2]);
+        assertEquals("    <cim:IdentifiedObject.description>PowerTransformer</cim:IdentifiedObject.description>",
+                lines[3]);
+        assertEquals("    <cim:IdentifiedObject.name>PT</cim:IdentifiedObject.name>", lines[4]);
+        assertEquals("  </cim:PowerTransformer>", lines[5]);
+        assertEquals("  <cim:SvStatus rdf:ID=\"_Status\">", lines[6]);
+        assertEquals("    <cim:SvStatus.ConductingEquipment rdf:resource=\"#_PT\"/>", lines[7]);
+        assertEquals("  </cim:SvStatus>", lines[8]);
+        assertEquals("</rdf:RDF>", lines[9]);
+    }
+
+    @Test
+    @Order(610)
+    void testWrite038() {
+        Logging.setEnabled(false);
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test038.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("_Status"));
+        assertTrue(cimData.containsKey("_PT"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(8, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:Equipment rdf:ID=\"_PT\">", lines[2]);
+        assertEquals("    <cim:IdentifiedObject.description>PowerTransformer</cim:IdentifiedObject.description>",
+                lines[3]);
+        assertEquals("  </cim:Equipment>", lines[4]);
+        assertEquals("  <cim:SvStatus rdf:ID=\"_Status\">", lines[5]);
+        assertEquals("  </cim:SvStatus>", lines[6]);
+        assertEquals("</rdf:RDF>", lines[7]);
+        Logging.setEnabled(true);
     }
 
     @Test

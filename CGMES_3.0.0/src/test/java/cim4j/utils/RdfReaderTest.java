@@ -23,12 +23,14 @@ import cim4j.ConnectivityNode;
 import cim4j.EnergyConsumer;
 import cim4j.EnergySchedulingType;
 import cim4j.EnergySource;
+import cim4j.Equipment;
 import cim4j.Location;
 import cim4j.Logging;
 import cim4j.OperationalLimitType;
 import cim4j.PowerTransformer;
 import cim4j.PowerTransformerEnd;
 import cim4j.Season;
+import cim4j.SvStatus;
 import cim4j.SvVoltage;
 import cim4j.Terminal;
 import cim4j.TopologicalIsland;
@@ -968,6 +970,196 @@ class RdfReaderTest {
         assertNotNull(equipments);
         assertEquals(1, equipments.size());
         assertTrue(equipments.contains(powerTransformer));
+    }
+
+    @Test
+    @Order(460)
+    void testRead033() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test033.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("_VL"));
+        assertTrue(cimData.containsKey("_PT"));
+
+        var obj = cimData.get("_VL");
+        assertNotNull(obj);
+        assertTrue(obj instanceof VoltageLevel);
+        var voltageLevel = (VoltageLevel) obj;
+
+        obj = cimData.get("_PT");
+        assertNotNull(obj);
+        assertTrue(obj instanceof PowerTransformer);
+        var powerTransformer = (PowerTransformer) obj;
+
+        assertEquals("PT", powerTransformer.getName());
+        assertEquals(voltageLevel, powerTransformer.getEquipmentContainer());
+
+        var equipments = voltageLevel.getEquipments();
+        assertNotNull(equipments);
+        assertEquals(1, equipments.size());
+        assertTrue(equipments.contains(powerTransformer));
+    }
+
+    @Test
+    @Order(470)
+    void testRead034() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test034.xml")));
+        assertEquals(3, cimData.size());
+
+        assertTrue(cimData.containsKey("_VL"));
+        assertTrue(cimData.containsKey("_PT"));
+        assertTrue(cimData.containsKey("_PT2"));
+
+        var obj = cimData.get("_VL");
+        assertNotNull(obj);
+        assertTrue(obj instanceof VoltageLevel);
+        var voltageLevel = (VoltageLevel) obj;
+
+        obj = cimData.get("_PT");
+        assertNotNull(obj);
+        assertTrue(obj instanceof PowerTransformer);
+        var powerTransformer1 = (PowerTransformer) obj;
+
+        obj = cimData.get("_PT2");
+        assertNotNull(obj);
+        assertTrue(obj instanceof PowerTransformer);
+        var powerTransformer2 = (PowerTransformer) obj;
+
+        assertEquals("PT", powerTransformer1.getName());
+        assertEquals(voltageLevel, powerTransformer1.getEquipmentContainer());
+
+        assertEquals("PT2", powerTransformer2.getName());
+        assertEquals(voltageLevel, powerTransformer2.getEquipmentContainer());
+
+        var equipments = voltageLevel.getEquipments();
+        assertNotNull(equipments);
+        assertEquals(2, equipments.size());
+        assertTrue(equipments.contains(powerTransformer1));
+        assertTrue(equipments.contains(powerTransformer2));
+    }
+
+    @Test
+    @Order(480)
+    void testRead035() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test035.xml")));
+        assertEquals(3, cimData.size());
+
+        assertTrue(cimData.containsKey("_VL"));
+        assertTrue(cimData.containsKey("_PT"));
+        assertTrue(cimData.containsKey("_PT2"));
+
+        var obj = cimData.get("_VL");
+        assertNotNull(obj);
+        assertTrue(obj instanceof VoltageLevel);
+        var voltageLevel = (VoltageLevel) obj;
+
+        obj = cimData.get("_PT");
+        assertNotNull(obj);
+        assertTrue(obj instanceof PowerTransformer);
+        var powerTransformer1 = (PowerTransformer) obj;
+
+        obj = cimData.get("_PT2");
+        assertNotNull(obj);
+        assertTrue(obj instanceof PowerTransformer);
+        var powerTransformer2 = (PowerTransformer) obj;
+
+        assertEquals("PT", powerTransformer1.getName());
+        assertEquals(voltageLevel, powerTransformer1.getEquipmentContainer());
+
+        assertEquals("PT2", powerTransformer2.getName());
+        assertEquals(voltageLevel, powerTransformer2.getEquipmentContainer());
+
+        var equipments = voltageLevel.getEquipments();
+        assertNotNull(equipments);
+        assertEquals(2, equipments.size());
+        assertTrue(equipments.contains(powerTransformer1));
+        assertTrue(equipments.contains(powerTransformer2));
+    }
+
+    @Test
+    @Order(490)
+    void testRead036() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test036.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("_Status"));
+        assertTrue(cimData.containsKey("_PT"));
+
+        var obj = cimData.get("_Status");
+        assertNotNull(obj);
+        assertTrue(obj instanceof SvStatus);
+        var svStatus = (SvStatus) obj;
+
+        obj = cimData.get("_PT");
+        assertNotNull(obj);
+        assertTrue(obj instanceof PowerTransformer);
+        var powerTransformer = (PowerTransformer) obj;
+
+        assertEquals("PT", powerTransformer.getName());
+        assertEquals("PowerTransformer", powerTransformer.getDescription());
+        assertEquals(svStatus, powerTransformer.getSvStatus());
+
+        assertEquals(powerTransformer, svStatus.getConductingEquipment());
+    }
+
+    @Test
+    @Order(500)
+    void testRead037() {
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test037.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("_Status"));
+        assertTrue(cimData.containsKey("_PT"));
+
+        var obj = cimData.get("_Status");
+        assertNotNull(obj);
+        assertTrue(obj instanceof SvStatus);
+        var svStatus = (SvStatus) obj;
+
+        obj = cimData.get("_PT");
+        assertNotNull(obj);
+        assertTrue(obj instanceof PowerTransformer);
+        var powerTransformer = (PowerTransformer) obj;
+
+        assertEquals("PT", powerTransformer.getName());
+        assertEquals("PowerTransformer", powerTransformer.getDescription());
+        assertEquals(svStatus, powerTransformer.getSvStatus());
+
+        assertEquals(powerTransformer, svStatus.getConductingEquipment());
+    }
+
+    @Test
+    @Order(510)
+    void testRead038() {
+        Logging.setEnabled(false);
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test038.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("_Status"));
+        assertTrue(cimData.containsKey("_PT"));
+
+        var obj = cimData.get("_Status");
+        assertNotNull(obj);
+        assertTrue(obj instanceof SvStatus);
+        var svStatus = (SvStatus) obj;
+
+        obj = cimData.get("_PT");
+        assertNotNull(obj);
+        assertTrue(obj instanceof Equipment);
+        var equipment = (Equipment) obj;
+        assertEquals(Equipment.class, equipment.getClass());
+        assertEquals("Equipment", equipment.getCimType());
+        assertEquals("_PT", equipment.getRdfid());
+
+        assertEquals("PowerTransformer", equipment.getDescription());
+        assertNull(svStatus.getConductingEquipment());
+        Logging.setEnabled(true);
     }
 
     private String getPath(String aResource) {

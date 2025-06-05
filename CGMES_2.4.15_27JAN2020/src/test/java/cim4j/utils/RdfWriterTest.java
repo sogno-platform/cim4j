@@ -49,6 +49,7 @@ class RdfWriterTest {
     @Test
     @Order(100)
     void testRdfWriter() {
+        // Check creating a writer
         var rdfWriter = new RdfWriter();
         assertNotNull(rdfWriter);
     }
@@ -56,6 +57,7 @@ class RdfWriterTest {
     @Test
     @Order(110)
     void testGetCimData() {
+        // Check getting CIM data from a writer
         var rdfWriter = new RdfWriter();
         var cimData = rdfWriter.getCimData();
         assertNotNull(cimData);
@@ -65,6 +67,7 @@ class RdfWriterTest {
     @Test
     @Order(120)
     void testAddCimData() {
+        // Check adding CIM data to a writer
         var rdfWriter = new RdfWriter();
 
         var cimObj = CimClassMap.createCimObject("Location", "rdfid");
@@ -81,6 +84,7 @@ class RdfWriterTest {
     @Test
     @Order(130)
     void testWrite001() {
+        // Check CIM objects with primitive, datatype and class attribute (ManyToOne)
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test001.xml")));
         assertEquals(2, cimData.size());
@@ -113,6 +117,7 @@ class RdfWriterTest {
     @Test
     @Order(140)
     void testWrite002() {
+        // Check enum attributes
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test002.xml")));
         assertEquals(2, cimData.size());
@@ -148,6 +153,7 @@ class RdfWriterTest {
     @Test
     @Order(150)
     void testWrite003() {
+        // Check reading rdf:about instead of rdf:ID
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test003.xml")));
         assertEquals(2, cimData.size());
@@ -179,6 +185,7 @@ class RdfWriterTest {
     @Test
     @Order(160)
     void testWrite004() {
+        // Check reading model header
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test004.xml")));
         assertEquals(1, cimData.size());
@@ -208,6 +215,7 @@ class RdfWriterTest {
     @Test
     @Order(170)
     void testWrite005() {
+        // Check custom namespaces
         if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_13")) {
             // There is no class or list attribute in cgmes_v2_4_13 with entsoe namespace
         } else if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_15")) {
@@ -270,6 +278,7 @@ class RdfWriterTest {
     @Test
     @Order(180)
     void testWrite006() {
+        // Check enum attribute with custom namespace
         if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_13") || CimConstants.CIM_VERSION.equals("cgmes_v2_4_15")) {
             var rdfReader = new RdfReader();
             var cimData = rdfReader.read(List.of(getPath("rdf/test006_CGMES2.xml")));
@@ -326,6 +335,7 @@ class RdfWriterTest {
     @Test
     @Order(190)
     void testWrite007() {
+        // Check class attributes if the linked object is defined later
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test007.xml")));
         assertEquals(4, cimData.size());
@@ -365,6 +375,7 @@ class RdfWriterTest {
     @Test
     @Order(200)
     void testWrite008_EQ_TP() {
+        // Check reading models from more than one file
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test008_EQ.xml"), getPath("rdf/test008_TP.xml")));
         assertEquals(2, cimData.size());
@@ -397,6 +408,7 @@ class RdfWriterTest {
     @Test
     @Order(210)
     void testWrite008_TP_EQ() {
+        // Check reading models from more than one file in reverse order
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test008_TP.xml"), getPath("rdf/test008_EQ.xml")));
         assertEquals(2, cimData.size());
@@ -429,6 +441,7 @@ class RdfWriterTest {
     @Test
     @Order(220)
     void testWrite009_EQ_TP() {
+        // Check reading one object from more than one file
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test009_EQ.xml"), getPath("rdf/test009_TP.xml")));
         assertEquals(2, cimData.size());
@@ -461,6 +474,7 @@ class RdfWriterTest {
     @Test
     @Order(230)
     void testWrite009_TP_EQ() {
+        // Check reading one object from more than one file in reverse order
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test009_TP.xml"), getPath("rdf/test009_EQ.xml")));
         assertEquals(2, cimData.size());
@@ -493,6 +507,7 @@ class RdfWriterTest {
     @Test
     @Order(240)
     void testWrite010() {
+        // Check text with non ASCII utf-8 characters
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test010.xml")));
         assertEquals(1, cimData.size());
@@ -520,6 +535,8 @@ class RdfWriterTest {
     @Test
     @Order(250)
     void testWrite011() {
+        // Check class attributes to Status, StreetAddress, StreetDetail, TownDetail
+        // (to make sure they are not primitive string attributes, only for CGMES3)
         if (CimConstants.CIM_VERSION.equals("cgmes_v3_0_0")) {
             var rdfReader = new RdfReader();
             var cimData = rdfReader.read(List.of(getPath("rdf/test011_CGMES3.xml")));
@@ -571,6 +588,7 @@ class RdfWriterTest {
     @Test
     @Order(260)
     void testWrite012() {
+        // Check MonthDay as primitive string attribute
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test012.xml")));
         assertEquals(1, cimData.size());
@@ -599,24 +617,31 @@ class RdfWriterTest {
     @Test
     @Order(270)
     void testWrite013() {
+        // Check list attributes (TopologicalIsland to TopologicalNode, OneToMany)
         testWrite_013_014_015_016("rdf/test013.xml");
     }
 
     @Test
     @Order(280)
     void testWrite014() {
+        // Check links from TopologicalNode to TopologicalIsland (not CGMES conform)
         testWrite_013_014_015_016("rdf/test014.xml");
     }
 
     @Test
     @Order(290)
     void testWrite015() {
+        // Check reading links between TopologicalNode and TopologicalIsland
+        // if they are set on both sides (not CGMES conform)
         testWrite_013_014_015_016("rdf/test015.xml");
     }
 
     @Test
     @Order(300)
     void testWrite016() {
+        // Check reading mixed links between TopologicalNode and TopologicalIsland:
+        // one from TopologicalIsland to TopologicalNode and the other
+        // from TopologicalNode to TopologicalIsland (not CGMES conform)
         testWrite_013_014_015_016("rdf/test016.xml");
     }
 
@@ -658,18 +683,22 @@ class RdfWriterTest {
     @Test
     @Order(310)
     void testWrite017() {
+        // Check class attributes (SvVoltage to TopologicalNode, OneToOne)
         testWrite_017_018_019("rdf/test017.xml");
     }
 
     @Test
     @Order(320)
     void testWrite018() {
+        // Check link from TopologicalNode to SvVoltage (not CGMES conform)
         testWrite_017_018_019("rdf/test018.xml");
     }
 
     @Test
     @Order(330)
     void testWrite019() {
+        // Check reading links between SvVoltage and TopologicalNode
+        // if they are set on both sides (not CGMES conform)
         testWrite_017_018_019("rdf/test019.xml");
     }
 
@@ -706,6 +735,7 @@ class RdfWriterTest {
     @Test
     @Order(340)
     void testWrite020() {
+        // Check inherited object links
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test020.xml")));
         assertEquals(2, cimData.size());
@@ -737,6 +767,7 @@ class RdfWriterTest {
     @Test
     @Order(350)
     void testWrite021() {
+        // Check handling links to not existing objects (causing an error log entry)
         Logging.setEnabled(false);
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test021.xml")));
@@ -766,6 +797,7 @@ class RdfWriterTest {
     @Test
     @Order(360)
     void testIsClassMatchingProfile() {
+        // Check isClassMatchingProfile
         BaseClass cimObj = new BaseVoltage("rdfid1");
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.EQ));
         assertTrue(RdfWriter.isClassMatchingProfile(cimObj, CGMESProfile.TP));
@@ -826,6 +858,7 @@ class RdfWriterTest {
     @Test
     @Order(370)
     void testGetClassProfile() {
+        // Check getClassProfile
         assertEquals(CGMESProfile.EQ, RdfWriter.getClassProfile(new BaseVoltage("rdfid1")));
         assertEquals(CGMESProfile.EQ, RdfWriter.getClassProfile(new VoltageLevel("rdfid2")));
         assertEquals(CGMESProfile.TP, RdfWriter.getClassProfile(new TopologicalNode("rdfid3")));
@@ -835,6 +868,7 @@ class RdfWriterTest {
     @Test
     @Order(380)
     void testGetClassProfileMap() {
+        // Check getClassProfileMap
         List<BaseClass> cimList = List.of(new BaseVoltage("rdfid1"), new TopologicalNode("rdfid2"),
                 new BaseVoltage("rdfid3"));
         var profileMap = RdfWriter.getClassProfileMap(cimList);
@@ -850,6 +884,7 @@ class RdfWriterTest {
     @Test
     @Order(390)
     void testGetAttributeProfile() {
+        // Check getAttributeProfile
         BaseClass cimObj = new BaseVoltage("rdfid1");
         var profile = CGMESProfile.EQ;
         assertEquals(CGMESProfile.EQ, RdfWriter.getAttributeProfile(cimObj, "nominalVoltage", profile));
@@ -894,6 +929,7 @@ class RdfWriterTest {
     @Test
     @Order(400)
     void testWrite022_SV() {
+        // Check models with more than one profile for StateVariables profile
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test022.xml")));
         assertEquals(2, cimData.size());
@@ -929,6 +965,7 @@ class RdfWriterTest {
     @Test
     @Order(410)
     void testWrite022_EQ() {
+        // Check models with more than one profile for Equipment/CoreEquipment profile
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test022.xml")));
         var rdfWriter = new RdfWriter();
@@ -952,6 +989,7 @@ class RdfWriterTest {
     @Test
     @Order(420)
     void testWrite022_TP() {
+        // Check models with more than one profile for Topology profile
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test022.xml")));
         var rdfWriter = new RdfWriter();
@@ -967,6 +1005,7 @@ class RdfWriterTest {
     @Test
     @Order(430)
     void testWrite008_TP() {
+        // Check reading models from more than one file and writing for Topology profile
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test008_TP.xml"), getPath("rdf/test008_EQ.xml")));
         var rdfWriter = new RdfWriter();
@@ -998,6 +1037,7 @@ class RdfWriterTest {
     @Test
     @Order(440)
     void testWrite008_EQ() {
+        // Check reading models from more than one file and writing for EQ profile
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test008_TP.xml"), getPath("rdf/test008_EQ.xml")));
         var rdfWriter = new RdfWriter();
@@ -1021,6 +1061,8 @@ class RdfWriterTest {
     @Test
     @Order(450)
     void testWrite008_TPall() {
+        // Check reading models from more than one file and writing for Topology profile
+        // forcing Terminal object to be written completely into Topology profile
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test008_TP.xml"), getPath("rdf/test008_EQ.xml")));
         var rdfWriter = new RdfWriter();
@@ -1059,6 +1101,7 @@ class RdfWriterTest {
     @Test
     @Order(460)
     void testWrite023() {
+        // Check text with entity references
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test023.xml")));
         assertEquals(1, cimData.size());
@@ -1090,24 +1133,32 @@ class RdfWriterTest {
     @Test
     @Order(470)
     void testWrite024() {
+        // Check parsing one object with different types (maybe not CGMES conform)
+        // PowerTransformer gets more attributes from Equipment entry with rdf:about
         testWrite_024_025_026_027("rdf/test024.xml");
     }
 
     @Test
     @Order(480)
     void testWrite025() {
+        // Check parsing one object with changing type (maybe not CGMES conform)
+        // Equipment object (rdf:about) has to be changed to PowerTransformer
         testWrite_024_025_026_027("rdf/test025.xml");
     }
 
     @Test
     @Order(490)
     void testWrite026() {
+        // Check parsing one object with different types (maybe not CGMES conform)
+        // PowerTransformer (rdf:about) gets more attributes from Equipment entry
         testWrite_024_025_026_027("rdf/test026.xml");
     }
 
     @Test
     @Order(500)
     void testWrite027() {
+        // Check parsing one object with changing type (maybe not CGMES conform)
+        // Equipment object has to be changed to PowerTransformer (rdf:about)
         testWrite_024_025_026_027("rdf/test027.xml");
     }
 
@@ -1150,6 +1201,9 @@ class RdfWriterTest {
     @Test
     @Order(510)
     void testWrite028() {
+        // Check parsing one object with changing type (maybe not CGMES conform)
+        // Equipment object has to be changed to PowerTransformer (rdf:about)
+        // Equipment has class attribute, but the linked object is defined later
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test028.xml")));
         assertEquals(3, cimData.size());
@@ -1188,24 +1242,31 @@ class RdfWriterTest {
     @Test
     @Order(520)
     void testWrite029() {
+        // Check parsing one object with overriding attribute (maybe not CGMES conform)
         testWrite_029_030_031_032("rdf/test029.xml", 6);
     }
 
     @Test
     @Order(530)
     void testWrite030() {
+        // Check parsing one object with overriding attribute (maybe not CGMES conform)
+        // and the overriding class attribute links to object, that is defined later
         testWrite_029_030_031_032("rdf/test030.xml", 4);
     }
 
     @Test
     @Order(540)
     void testWrite031() {
+        // Check parsing one object with overriding attribute (maybe not CGMES conform)
+        // and both (overridden and overriding) link to objects, that are defined later
         testWrite_029_030_031_032("rdf/test031.xml", 2);
     }
 
     @Test
     @Order(550)
     void testWrite032() {
+        // Check parsing one object with overriding attribute (maybe not CGMES conform)
+        // and the overridden class attribute links to object, that is defined later
         testWrite_029_030_031_032("rdf/test032.xml", 4);
     }
 
@@ -1242,6 +1303,10 @@ class RdfWriterTest {
     @Test
     @Order(560)
     void testWrite033() {
+        // Check parsing one object with changing type (maybe not CGMES conform)
+        // Equipment object has to be changed to PowerTransformer (rdf:about)
+        // Equipment has class attribute, but the linked object is defined later
+        // after changing to PowerTransformer
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test033.xml")));
         assertEquals(2, cimData.size());
@@ -1274,6 +1339,10 @@ class RdfWriterTest {
     @Test
     @Order(570)
     void testWrite034() {
+        // Check parsing one object with changing type (maybe not CGMES conform)
+        // EquipmentContainer object has to be changed to VoltageLevel
+        // EquipmentContainer has list attributes (not CGMES conform), but the linked
+        // objects are defined later after changing to VoltageLevel
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test034.xml")));
         assertEquals(3, cimData.size());
@@ -1311,6 +1380,10 @@ class RdfWriterTest {
     @Test
     @Order(580)
     void testWrite035() {
+        // Check parsing one object with changing type (maybe not CGMES conform)
+        // EquipmentContainer object has to be changed to VoltageLevel
+        // EquipmentContainer has list attributes (not CGMES conform), but the linked
+        // objects are defined later: one before and one after changing to VoltageLevel
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test035.xml")));
         assertEquals(3, cimData.size());
@@ -1348,6 +1421,9 @@ class RdfWriterTest {
     @Test
     @Order(590)
     void testWrite036() {
+        // Check parsing one object with changing type (maybe not CGMES conform)
+        // Equipment object has to be changed to PowerTransformer
+        // and is linked as ConductingEquipment (which is not allowed for Equipment)
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test036.xml")));
         assertEquals(2, cimData.size());
@@ -1381,6 +1457,11 @@ class RdfWriterTest {
     @Test
     @Order(600)
     void testWrite037() {
+        // Check parsing one object with changing type (maybe not CGMES conform)
+        // Equipment object has to be changed to PowerTransformer
+        // and is linked as ConductingEquipment (which is not allowed for Equipment)
+        // before changing to PowerTransformer (typically the entries are defined
+        // in more than one file, so the order of reading is not clearly defined)
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test037.xml")));
         assertEquals(2, cimData.size());
@@ -1414,6 +1495,8 @@ class RdfWriterTest {
     @Test
     @Order(610)
     void testWrite038() {
+        // Check not allowed linked type (causing an error log entry)
+        // Equipment object is tried to be linked as ConductingEquipment
         Logging.setEnabled(false);
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test038.xml")));
@@ -1447,6 +1530,7 @@ class RdfWriterTest {
     @Test
     @Order(900)
     void testWriteEmpty() {
+        // Check writing an empty file (i.e. with no CIM objects)
         var rdfWriter = new RdfWriter();
         assertDoesNotThrow(() -> rdfWriter.write("target/test.xml"));
     }
@@ -1454,6 +1538,7 @@ class RdfWriterTest {
     @Test
     @Order(910)
     void testWriteWithProfiles() {
+        // Check writing more than one profile file
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test022.xml")));
         var rdfWriter = new RdfWriter();

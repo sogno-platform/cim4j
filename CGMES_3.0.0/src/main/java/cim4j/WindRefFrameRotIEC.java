@@ -23,10 +23,17 @@ public class WindRefFrameRotIEC extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(WindRefFrameRotIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindRefFrameRotIEC() {
-        setCimType("WindRefFrameRotIEC");
+    public WindRefFrameRotIEC(String rdfid) {
+        super("WindRefFrameRotIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindRefFrameRotIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,22 +47,27 @@ public class WindRefFrameRotIEC extends IdentifiedObject {
         return WindTurbineType3or4IEC;
     }
 
-    public void setWindTurbineType3or4IEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindTurbineType3or4IEC)) {
-            throw new IllegalArgumentException("Object is not WindTurbineType3or4IEC");
-        }
+    public void setWindTurbineType3or4IEC(WindTurbineType3or4IEC _object_) {
         if (WindTurbineType3or4IEC != _object_) {
-            WindTurbineType3or4IEC = (WindTurbineType3or4IEC) _object_;
+            WindTurbineType3or4IEC = _object_;
             WindTurbineType3or4IEC.setWindRefFrameRotIEC(this);
         }
     }
 
-    public String WindTurbineType3or4IECToString() {
-        return WindTurbineType3or4IEC != null ? WindTurbineType3or4IEC.getRdfid() : null;
+    private static Object getWindTurbineType3or4IEC(BaseClass _this_) {
+        return ((WindRefFrameRotIEC) _this_).getWindTurbineType3or4IEC();
+    }
+
+    private static void setWindTurbineType3or4IEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindTurbineType3or4IEC) {
+            ((WindRefFrameRotIEC) _this_).setWindTurbineType3or4IEC((WindTurbineType3or4IEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindTurbineType3or4IEC");
+        }
     }
 
     /**
-     * Time constant for PLL first order filter model (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;PLL&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     * Time constant for PLL first order filter model (<i>T</i><i><sub>PLL</sub></i>) (&gt;= 0). It is a type-dependent parameter.
      */
     private Double tpll; // Seconds
 
@@ -67,16 +79,22 @@ public class WindRefFrameRotIEC extends IdentifiedObject {
         tpll = _value_;
     }
 
-    public void setTpll(String _value_) {
-        tpll = getDoubleFromString(_value_);
+    private static Object getTpll(BaseClass _this_) {
+        return ((WindRefFrameRotIEC) _this_).getTpll();
     }
 
-    public String tpllToString() {
-        return tpll != null ? tpll.toString() : null;
+    private static void setTpll(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindRefFrameRotIEC) _this_).setTpll((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindRefFrameRotIEC) _this_).setTpll(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage below which the angle of the voltage is filtered and possibly also frozen (&lt;i&gt;u&lt;/i&gt;&lt;i&gt;&lt;sub&gt;PLL1&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Voltage below which the angle of the voltage is filtered and possibly also frozen (<i>u</i><i><sub>PLL1</sub></i>). It is a type-dependent parameter.
      */
     private Double upll1; // PU
 
@@ -88,16 +106,22 @@ public class WindRefFrameRotIEC extends IdentifiedObject {
         upll1 = _value_;
     }
 
-    public void setUpll1(String _value_) {
-        upll1 = getDoubleFromString(_value_);
+    private static Object getUpll1(BaseClass _this_) {
+        return ((WindRefFrameRotIEC) _this_).getUpll1();
     }
 
-    public String upll1ToString() {
-        return upll1 != null ? upll1.toString() : null;
+    private static void setUpll1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindRefFrameRotIEC) _this_).setUpll1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindRefFrameRotIEC) _this_).setUpll1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage (&lt;i&gt;u&lt;/i&gt;&lt;i&gt;&lt;sub&gt;PLL2&lt;/sub&gt;&lt;/i&gt;) below which the angle of the voltage is frozen if &lt;i&gt;u&lt;/i&gt;&lt;i&gt;&lt;sub&gt;PLL2&lt;/sub&gt;&lt;/i&gt;&lt;sub&gt; &lt;/sub&gt;is smaller or equal to &lt;i&gt;u&lt;/i&gt;&lt;i&gt;&lt;sub&gt;PLL1&lt;/sub&gt;&lt;/i&gt; . It is a type-dependent parameter.
+     * Voltage (<i>u</i><i><sub>PLL2</sub></i>) below which the angle of the voltage is frozen if <i>u</i><i><sub>PLL2</sub></i><sub> </sub>is smaller or equal to <i>u</i><i><sub>PLL1</sub></i> . It is a type-dependent parameter.
      */
     private Double upll2; // PU
 
@@ -109,12 +133,18 @@ public class WindRefFrameRotIEC extends IdentifiedObject {
         upll2 = _value_;
     }
 
-    public void setUpll2(String _value_) {
-        upll2 = getDoubleFromString(_value_);
+    private static Object getUpll2(BaseClass _this_) {
+        return ((WindRefFrameRotIEC) _this_).getUpll2();
     }
 
-    public String upll2ToString() {
-        return upll2 != null ? upll2.toString() : null;
+    private static void setUpll2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindRefFrameRotIEC) _this_).setUpll2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindRefFrameRotIEC) _this_).setUpll2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -151,64 +181,35 @@ public class WindRefFrameRotIEC extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindRefFrameRotIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindRefFrameRotIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindRefFrameRotIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindRefFrameRotIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindRefFrameRotIEC", attrName, value));
         }
     }
 
@@ -332,36 +333,26 @@ public class WindRefFrameRotIEC extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindTurbineType3or4IEC", new AttrDetails("WindRefFrameRotIEC.WindTurbineType3or4IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindTurbineType3or4IEC", new AttrDetails("WindRefFrameRotIEC.WindTurbineType3or4IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindRefFrameRotIEC::getWindTurbineType3or4IEC, WindRefFrameRotIEC::setWindTurbineType3or4IEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpll", new AttrDetails("WindRefFrameRotIEC.tpll", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tpll", new AttrDetails("WindRefFrameRotIEC.tpll", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindRefFrameRotIEC::getTpll, WindRefFrameRotIEC::setTpll));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("upll1", new AttrDetails("WindRefFrameRotIEC.upll1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("upll1", new AttrDetails("WindRefFrameRotIEC.upll1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindRefFrameRotIEC::getUpll1, WindRefFrameRotIEC::setUpll1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("upll2", new AttrDetails("WindRefFrameRotIEC.upll2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("upll2", new AttrDetails("WindRefFrameRotIEC.upll2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindRefFrameRotIEC::getUpll2, WindRefFrameRotIEC::setUpll2));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindRefFrameRotIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindRefFrameRotIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("WindTurbineType3or4IEC", new GetterSetter(this::WindTurbineType3or4IECToString, this::setWindTurbineType3or4IEC, null));
-        map.put("tpll", new GetterSetter(this::tpllToString, null, this::setTpll));
-        map.put("upll1", new GetterSetter(this::upll1ToString, null, this::setUpll1));
-        map.put("upll2", new GetterSetter(this::upll2ToString, null, this::setUpll2));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

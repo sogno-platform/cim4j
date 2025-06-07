@@ -23,10 +23,17 @@ public class EquivalentBranch extends EquivalentEquipment {
     private static final Logging LOG = Logging.getLogger(EquivalentBranch.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public EquivalentBranch() {
-        setCimType("EquivalentBranch");
+    public EquivalentBranch(String rdfid) {
+        super("EquivalentBranch", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected EquivalentBranch(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         negativeR12 = _value_;
     }
 
-    public void setNegativeR12(String _value_) {
-        negativeR12 = getDoubleFromString(_value_);
+    private static Object getNegativeR12(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getNegativeR12();
     }
 
-    public String negativeR12ToString() {
-        return negativeR12 != null ? negativeR12.toString() : null;
+    private static void setNegativeR12(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setNegativeR12((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setNegativeR12(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         negativeR21 = _value_;
     }
 
-    public void setNegativeR21(String _value_) {
-        negativeR21 = getDoubleFromString(_value_);
+    private static Object getNegativeR21(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getNegativeR21();
     }
 
-    public String negativeR21ToString() {
-        return negativeR21 != null ? negativeR21.toString() : null;
+    private static void setNegativeR21(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setNegativeR21((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setNegativeR21(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         negativeX12 = _value_;
     }
 
-    public void setNegativeX12(String _value_) {
-        negativeX12 = getDoubleFromString(_value_);
+    private static Object getNegativeX12(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getNegativeX12();
     }
 
-    public String negativeX12ToString() {
-        return negativeX12 != null ? negativeX12.toString() : null;
+    private static void setNegativeX12(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setNegativeX12((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setNegativeX12(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         negativeX21 = _value_;
     }
 
-    public void setNegativeX21(String _value_) {
-        negativeX21 = getDoubleFromString(_value_);
+    private static Object getNegativeX21(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getNegativeX21();
     }
 
-    public String negativeX21ToString() {
-        return negativeX21 != null ? negativeX21.toString() : null;
+    private static void setNegativeX21(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setNegativeX21((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setNegativeX21(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         positiveR12 = _value_;
     }
 
-    public void setPositiveR12(String _value_) {
-        positiveR12 = getDoubleFromString(_value_);
+    private static Object getPositiveR12(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getPositiveR12();
     }
 
-    public String positiveR12ToString() {
-        return positiveR12 != null ? positiveR12.toString() : null;
+    private static void setPositiveR12(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setPositiveR12((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setPositiveR12(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,12 +184,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         positiveR21 = _value_;
     }
 
-    public void setPositiveR21(String _value_) {
-        positiveR21 = getDoubleFromString(_value_);
+    private static Object getPositiveR21(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getPositiveR21();
     }
 
-    public String positiveR21ToString() {
-        return positiveR21 != null ? positiveR21.toString() : null;
+    private static void setPositiveR21(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setPositiveR21((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setPositiveR21(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,12 +211,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         positiveX12 = _value_;
     }
 
-    public void setPositiveX12(String _value_) {
-        positiveX12 = getDoubleFromString(_value_);
+    private static Object getPositiveX12(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getPositiveX12();
     }
 
-    public String positiveX12ToString() {
-        return positiveX12 != null ? positiveX12.toString() : null;
+    private static void setPositiveX12(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setPositiveX12((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setPositiveX12(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,12 +238,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         positiveX21 = _value_;
     }
 
-    public void setPositiveX21(String _value_) {
-        positiveX21 = getDoubleFromString(_value_);
+    private static Object getPositiveX21(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getPositiveX21();
     }
 
-    public String positiveX21ToString() {
-        return positiveX21 != null ? positiveX21.toString() : null;
+    private static void setPositiveX21(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setPositiveX21((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setPositiveX21(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -210,12 +265,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         r = _value_;
     }
 
-    public void setR(String _value_) {
-        r = getDoubleFromString(_value_);
+    private static Object getR(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getR();
     }
 
-    public String rToString() {
-        return r != null ? r.toString() : null;
+    private static void setR(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setR((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setR(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -231,12 +292,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         r21 = _value_;
     }
 
-    public void setR21(String _value_) {
-        r21 = getDoubleFromString(_value_);
+    private static Object getR21(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getR21();
     }
 
-    public String r21ToString() {
-        return r21 != null ? r21.toString() : null;
+    private static void setR21(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setR21((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setR21(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -252,12 +319,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         x = _value_;
     }
 
-    public void setX(String _value_) {
-        x = getDoubleFromString(_value_);
+    private static Object getX(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getX();
     }
 
-    public String xToString() {
-        return x != null ? x.toString() : null;
+    private static void setX(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setX((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setX(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -273,12 +346,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         x21 = _value_;
     }
 
-    public void setX21(String _value_) {
-        x21 = getDoubleFromString(_value_);
+    private static Object getX21(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getX21();
     }
 
-    public String x21ToString() {
-        return x21 != null ? x21.toString() : null;
+    private static void setX21(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setX21((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setX21(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -294,12 +373,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         zeroR12 = _value_;
     }
 
-    public void setZeroR12(String _value_) {
-        zeroR12 = getDoubleFromString(_value_);
+    private static Object getZeroR12(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getZeroR12();
     }
 
-    public String zeroR12ToString() {
-        return zeroR12 != null ? zeroR12.toString() : null;
+    private static void setZeroR12(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setZeroR12((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setZeroR12(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -315,12 +400,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         zeroR21 = _value_;
     }
 
-    public void setZeroR21(String _value_) {
-        zeroR21 = getDoubleFromString(_value_);
+    private static Object getZeroR21(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getZeroR21();
     }
 
-    public String zeroR21ToString() {
-        return zeroR21 != null ? zeroR21.toString() : null;
+    private static void setZeroR21(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setZeroR21((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setZeroR21(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -336,12 +427,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         zeroX12 = _value_;
     }
 
-    public void setZeroX12(String _value_) {
-        zeroX12 = getDoubleFromString(_value_);
+    private static Object getZeroX12(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getZeroX12();
     }
 
-    public String zeroX12ToString() {
-        return zeroX12 != null ? zeroX12.toString() : null;
+    private static void setZeroX12(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setZeroX12((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setZeroX12(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -357,12 +454,18 @@ public class EquivalentBranch extends EquivalentEquipment {
         zeroX21 = _value_;
     }
 
-    public void setZeroX21(String _value_) {
-        zeroX21 = getDoubleFromString(_value_);
+    private static Object getZeroX21(BaseClass _this_) {
+        return ((EquivalentBranch) _this_).getZeroX21();
     }
 
-    public String zeroX21ToString() {
-        return zeroX21 != null ? zeroX21.toString() : null;
+    private static void setZeroX21(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EquivalentBranch) _this_).setZeroX21((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EquivalentBranch) _this_).setZeroX21(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -399,64 +502,35 @@ public class EquivalentBranch extends EquivalentEquipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("EquivalentBranch", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "EquivalentBranch", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("EquivalentBranch", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("EquivalentBranch", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "EquivalentBranch", attrName, value));
         }
     }
 
@@ -580,108 +654,86 @@ public class EquivalentBranch extends EquivalentEquipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("negativeR12", new AttrDetails("EquivalentBranch.negativeR12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("negativeR12", new AttrDetails("EquivalentBranch.negativeR12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getNegativeR12, EquivalentBranch::setNegativeR12));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("negativeR21", new AttrDetails("EquivalentBranch.negativeR21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("negativeR21", new AttrDetails("EquivalentBranch.negativeR21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getNegativeR21, EquivalentBranch::setNegativeR21));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("negativeX12", new AttrDetails("EquivalentBranch.negativeX12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("negativeX12", new AttrDetails("EquivalentBranch.negativeX12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getNegativeX12, EquivalentBranch::setNegativeX12));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("negativeX21", new AttrDetails("EquivalentBranch.negativeX21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("negativeX21", new AttrDetails("EquivalentBranch.negativeX21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getNegativeX21, EquivalentBranch::setNegativeX21));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("positiveR12", new AttrDetails("EquivalentBranch.positiveR12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("positiveR12", new AttrDetails("EquivalentBranch.positiveR12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getPositiveR12, EquivalentBranch::setPositiveR12));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("positiveR21", new AttrDetails("EquivalentBranch.positiveR21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("positiveR21", new AttrDetails("EquivalentBranch.positiveR21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getPositiveR21, EquivalentBranch::setPositiveR21));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("positiveX12", new AttrDetails("EquivalentBranch.positiveX12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("positiveX12", new AttrDetails("EquivalentBranch.positiveX12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getPositiveX12, EquivalentBranch::setPositiveX12));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("positiveX21", new AttrDetails("EquivalentBranch.positiveX21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("positiveX21", new AttrDetails("EquivalentBranch.positiveX21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getPositiveX21, EquivalentBranch::setPositiveX21));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r", new AttrDetails("EquivalentBranch.r", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("r", new AttrDetails("EquivalentBranch.r", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getR, EquivalentBranch::setR));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r21", new AttrDetails("EquivalentBranch.r21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("r21", new AttrDetails("EquivalentBranch.r21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getR21, EquivalentBranch::setR21));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x", new AttrDetails("EquivalentBranch.x", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("x", new AttrDetails("EquivalentBranch.x", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getX, EquivalentBranch::setX));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x21", new AttrDetails("EquivalentBranch.x21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("x21", new AttrDetails("EquivalentBranch.x21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getX21, EquivalentBranch::setX21));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("zeroR12", new AttrDetails("EquivalentBranch.zeroR12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("zeroR12", new AttrDetails("EquivalentBranch.zeroR12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getZeroR12, EquivalentBranch::setZeroR12));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("zeroR21", new AttrDetails("EquivalentBranch.zeroR21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("zeroR21", new AttrDetails("EquivalentBranch.zeroR21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getZeroR21, EquivalentBranch::setZeroR21));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("zeroX12", new AttrDetails("EquivalentBranch.zeroX12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("zeroX12", new AttrDetails("EquivalentBranch.zeroX12", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getZeroX12, EquivalentBranch::setZeroX12));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("zeroX21", new AttrDetails("EquivalentBranch.zeroX21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("zeroX21", new AttrDetails("EquivalentBranch.zeroX21", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EquivalentBranch::getZeroX21, EquivalentBranch::setZeroX21));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EquivalentBranch().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EquivalentBranch(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("negativeR12", new GetterSetter(this::negativeR12ToString, null, this::setNegativeR12));
-        map.put("negativeR21", new GetterSetter(this::negativeR21ToString, null, this::setNegativeR21));
-        map.put("negativeX12", new GetterSetter(this::negativeX12ToString, null, this::setNegativeX12));
-        map.put("negativeX21", new GetterSetter(this::negativeX21ToString, null, this::setNegativeX21));
-        map.put("positiveR12", new GetterSetter(this::positiveR12ToString, null, this::setPositiveR12));
-        map.put("positiveR21", new GetterSetter(this::positiveR21ToString, null, this::setPositiveR21));
-        map.put("positiveX12", new GetterSetter(this::positiveX12ToString, null, this::setPositiveX12));
-        map.put("positiveX21", new GetterSetter(this::positiveX21ToString, null, this::setPositiveX21));
-        map.put("r", new GetterSetter(this::rToString, null, this::setR));
-        map.put("r21", new GetterSetter(this::r21ToString, null, this::setR21));
-        map.put("x", new GetterSetter(this::xToString, null, this::setX));
-        map.put("x21", new GetterSetter(this::x21ToString, null, this::setX21));
-        map.put("zeroR12", new GetterSetter(this::zeroR12ToString, null, this::setZeroR12));
-        map.put("zeroR21", new GetterSetter(this::zeroR21ToString, null, this::setZeroR21));
-        map.put("zeroX12", new GetterSetter(this::zeroX12ToString, null, this::setZeroX12));
-        map.put("zeroX21", new GetterSetter(this::zeroX21ToString, null, this::setZeroX21));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

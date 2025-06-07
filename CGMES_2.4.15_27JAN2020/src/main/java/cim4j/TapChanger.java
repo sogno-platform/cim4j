@@ -23,10 +23,17 @@ public class TapChanger extends PowerSystemResource {
     private static final Logging LOG = Logging.getLogger(TapChanger.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public TapChanger() {
-        setCimType("TapChanger");
+    public TapChanger(String rdfid) {
+        super("TapChanger", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected TapChanger(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class TapChanger extends PowerSystemResource {
         return SvTapStep;
     }
 
-    public void setSvTapStep(BaseClass _object_) {
-        if (!(_object_ instanceof SvTapStep)) {
-            throw new IllegalArgumentException("Object is not SvTapStep");
-        }
+    public void setSvTapStep(SvTapStep _object_) {
         if (SvTapStep != _object_) {
-            SvTapStep = (SvTapStep) _object_;
+            SvTapStep = _object_;
             SvTapStep.setTapChanger(this);
         }
     }
 
-    public String SvTapStepToString() {
-        return SvTapStep != null ? SvTapStep.getRdfid() : null;
+    private static Object getSvTapStep(BaseClass _this_) {
+        return ((TapChanger) _this_).getSvTapStep();
+    }
+
+    private static void setSvTapStep(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof SvTapStep) {
+            ((TapChanger) _this_).setSvTapStep((SvTapStep) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not SvTapStep");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class TapChanger extends PowerSystemResource {
         return TapChangerControl;
     }
 
-    public void setTapChangerControl(BaseClass _object_) {
-        if (!(_object_ instanceof TapChangerControl)) {
-            throw new IllegalArgumentException("Object is not TapChangerControl");
-        }
+    public void setTapChangerControl(TapChangerControl _object_) {
         if (TapChangerControl != _object_) {
-            TapChangerControl = (TapChangerControl) _object_;
+            TapChangerControl = _object_;
             TapChangerControl.setTapChanger(this);
         }
     }
 
-    public String TapChangerControlToString() {
-        return TapChangerControl != null ? TapChangerControl.getRdfid() : null;
+    private static Object getTapChangerControl(BaseClass _this_) {
+        return ((TapChanger) _this_).getTapChangerControl();
+    }
+
+    private static void setTapChangerControl(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof TapChangerControl) {
+            ((TapChanger) _this_).setTapChangerControl((TapChangerControl) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not TapChangerControl");
+        }
     }
 
     /**
@@ -88,18 +105,23 @@ public class TapChanger extends PowerSystemResource {
         return TapSchedules;
     }
 
-    public void setTapSchedules(BaseClass _object_) {
-        if (!(_object_ instanceof TapSchedule)) {
-            throw new IllegalArgumentException("Object is not TapSchedule");
-        }
+    public void setTapSchedules(TapSchedule _object_) {
         if (!TapSchedules.contains(_object_)) {
-            TapSchedules.add((TapSchedule) _object_);
-            ((TapSchedule) _object_).setTapChanger(this);
+            TapSchedules.add(_object_);
+            _object_.setTapChanger(this);
         }
     }
 
-    public String TapSchedulesToString() {
-        return getStringFromSet(TapSchedules);
+    private static Object getTapSchedules(BaseClass _this_) {
+        return ((TapChanger) _this_).getTapSchedules();
+    }
+
+    private static void setTapSchedules(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof TapSchedule) {
+            ((TapChanger) _this_).setTapSchedules((TapSchedule) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not TapSchedule");
+        }
     }
 
     /**
@@ -115,12 +137,18 @@ public class TapChanger extends PowerSystemResource {
         controlEnabled = _value_;
     }
 
-    public void setControlEnabled(String _value_) {
-        controlEnabled = getBooleanFromString(_value_);
+    private static Object getControlEnabled(BaseClass _this_) {
+        return ((TapChanger) _this_).getControlEnabled();
     }
 
-    public String controlEnabledToString() {
-        return controlEnabled != null ? controlEnabled.toString() : null;
+    private static void setControlEnabled(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((TapChanger) _this_).setControlEnabled((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChanger) _this_).setControlEnabled(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -136,12 +164,18 @@ public class TapChanger extends PowerSystemResource {
         highStep = _value_;
     }
 
-    public void setHighStep(String _value_) {
-        highStep = getIntegerFromString(_value_);
+    private static Object getHighStep(BaseClass _this_) {
+        return ((TapChanger) _this_).getHighStep();
     }
 
-    public String highStepToString() {
-        return highStep != null ? highStep.toString() : null;
+    private static void setHighStep(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((TapChanger) _this_).setHighStep((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChanger) _this_).setHighStep(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -157,12 +191,18 @@ public class TapChanger extends PowerSystemResource {
         lowStep = _value_;
     }
 
-    public void setLowStep(String _value_) {
-        lowStep = getIntegerFromString(_value_);
+    private static Object getLowStep(BaseClass _this_) {
+        return ((TapChanger) _this_).getLowStep();
     }
 
-    public String lowStepToString() {
-        return lowStep != null ? lowStep.toString() : null;
+    private static void setLowStep(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((TapChanger) _this_).setLowStep((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChanger) _this_).setLowStep(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -178,12 +218,18 @@ public class TapChanger extends PowerSystemResource {
         ltcFlag = _value_;
     }
 
-    public void setLtcFlag(String _value_) {
-        ltcFlag = getBooleanFromString(_value_);
+    private static Object getLtcFlag(BaseClass _this_) {
+        return ((TapChanger) _this_).getLtcFlag();
     }
 
-    public String ltcFlagToString() {
-        return ltcFlag != null ? ltcFlag.toString() : null;
+    private static void setLtcFlag(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((TapChanger) _this_).setLtcFlag((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChanger) _this_).setLtcFlag(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -199,12 +245,18 @@ public class TapChanger extends PowerSystemResource {
         neutralStep = _value_;
     }
 
-    public void setNeutralStep(String _value_) {
-        neutralStep = getIntegerFromString(_value_);
+    private static Object getNeutralStep(BaseClass _this_) {
+        return ((TapChanger) _this_).getNeutralStep();
     }
 
-    public String neutralStepToString() {
-        return neutralStep != null ? neutralStep.toString() : null;
+    private static void setNeutralStep(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((TapChanger) _this_).setNeutralStep((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChanger) _this_).setNeutralStep(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -220,12 +272,18 @@ public class TapChanger extends PowerSystemResource {
         neutralU = _value_;
     }
 
-    public void setNeutralU(String _value_) {
-        neutralU = getDoubleFromString(_value_);
+    private static Object getNeutralU(BaseClass _this_) {
+        return ((TapChanger) _this_).getNeutralU();
     }
 
-    public String neutralUToString() {
-        return neutralU != null ? neutralU.toString() : null;
+    private static void setNeutralU(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((TapChanger) _this_).setNeutralU((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChanger) _this_).setNeutralU(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -241,12 +299,18 @@ public class TapChanger extends PowerSystemResource {
         normalStep = _value_;
     }
 
-    public void setNormalStep(String _value_) {
-        normalStep = getIntegerFromString(_value_);
+    private static Object getNormalStep(BaseClass _this_) {
+        return ((TapChanger) _this_).getNormalStep();
     }
 
-    public String normalStepToString() {
-        return normalStep != null ? normalStep.toString() : null;
+    private static void setNormalStep(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((TapChanger) _this_).setNormalStep((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChanger) _this_).setNormalStep(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -262,12 +326,18 @@ public class TapChanger extends PowerSystemResource {
         step = _value_;
     }
 
-    public void setStep(String _value_) {
-        step = getDoubleFromString(_value_);
+    private static Object getStep(BaseClass _this_) {
+        return ((TapChanger) _this_).getStep();
     }
 
-    public String stepToString() {
-        return step != null ? step.toString() : null;
+    private static void setStep(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((TapChanger) _this_).setStep((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChanger) _this_).setStep(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -304,64 +374,35 @@ public class TapChanger extends PowerSystemResource {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("TapChanger", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "TapChanger", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("TapChanger", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("TapChanger", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "TapChanger", attrName, value));
         }
     }
 
@@ -485,78 +526,61 @@ public class TapChanger extends PowerSystemResource {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("SvTapStep", new AttrDetails("TapChanger.SvTapStep", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("SvTapStep", new AttrDetails("TapChanger.SvTapStep", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, TapChanger::getSvTapStep, TapChanger::setSvTapStep));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("TapChangerControl", new AttrDetails("TapChanger.TapChangerControl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("TapChangerControl", new AttrDetails("TapChanger.TapChangerControl", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, TapChanger::getTapChangerControl, TapChanger::setTapChangerControl));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("TapSchedules", new AttrDetails("TapChanger.TapSchedules", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("TapSchedules", new AttrDetails("TapChanger.TapSchedules", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, TapChanger::getTapSchedules, TapChanger::setTapSchedules));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("controlEnabled", new AttrDetails("TapChanger.controlEnabled", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("controlEnabled", new AttrDetails("TapChanger.controlEnabled", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, TapChanger::getControlEnabled, TapChanger::setControlEnabled));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("highStep", new AttrDetails("TapChanger.highStep", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("highStep", new AttrDetails("TapChanger.highStep", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, TapChanger::getHighStep, TapChanger::setHighStep));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("lowStep", new AttrDetails("TapChanger.lowStep", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("lowStep", new AttrDetails("TapChanger.lowStep", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, TapChanger::getLowStep, TapChanger::setLowStep));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ltcFlag", new AttrDetails("TapChanger.ltcFlag", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ltcFlag", new AttrDetails("TapChanger.ltcFlag", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, TapChanger::getLtcFlag, TapChanger::setLtcFlag));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("neutralStep", new AttrDetails("TapChanger.neutralStep", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("neutralStep", new AttrDetails("TapChanger.neutralStep", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, TapChanger::getNeutralStep, TapChanger::setNeutralStep));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("neutralU", new AttrDetails("TapChanger.neutralU", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("neutralU", new AttrDetails("TapChanger.neutralU", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, TapChanger::getNeutralU, TapChanger::setNeutralU));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("normalStep", new AttrDetails("TapChanger.normalStep", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("normalStep", new AttrDetails("TapChanger.normalStep", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, TapChanger::getNormalStep, TapChanger::setNormalStep));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("step", new AttrDetails("TapChanger.step", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("step", new AttrDetails("TapChanger.step", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, TapChanger::getStep, TapChanger::setStep));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TapChanger().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TapChanger(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("SvTapStep", new GetterSetter(this::SvTapStepToString, this::setSvTapStep, null));
-        map.put("TapChangerControl", new GetterSetter(this::TapChangerControlToString, this::setTapChangerControl, null));
-        map.put("TapSchedules", new GetterSetter(this::TapSchedulesToString, this::setTapSchedules, null));
-        map.put("controlEnabled", new GetterSetter(this::controlEnabledToString, null, this::setControlEnabled));
-        map.put("highStep", new GetterSetter(this::highStepToString, null, this::setHighStep));
-        map.put("lowStep", new GetterSetter(this::lowStepToString, null, this::setLowStep));
-        map.put("ltcFlag", new GetterSetter(this::ltcFlagToString, null, this::setLtcFlag));
-        map.put("neutralStep", new GetterSetter(this::neutralStepToString, null, this::setNeutralStep));
-        map.put("neutralU", new GetterSetter(this::neutralUToString, null, this::setNeutralU));
-        map.put("normalStep", new GetterSetter(this::normalStepToString, null, this::setNormalStep));
-        map.put("step", new GetterSetter(this::stepToString, null, this::setStep));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

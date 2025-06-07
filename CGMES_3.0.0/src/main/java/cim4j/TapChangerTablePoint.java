@@ -23,10 +23,17 @@ public class TapChangerTablePoint extends BaseClass {
     private static final Logging LOG = Logging.getLogger(TapChangerTablePoint.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public TapChangerTablePoint() {
-        setCimType("TapChangerTablePoint");
+    public TapChangerTablePoint(String rdfid) {
+        super("TapChangerTablePoint", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected TapChangerTablePoint(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class TapChangerTablePoint extends BaseClass {
         b = _value_;
     }
 
-    public void setB(String _value_) {
-        b = getDoubleFromString(_value_);
+    private static Object getB(BaseClass _this_) {
+        return ((TapChangerTablePoint) _this_).getB();
     }
 
-    public String bToString() {
-        return b != null ? b.toString() : null;
+    private static void setB(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((TapChangerTablePoint) _this_).setB((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChangerTablePoint) _this_).setB(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class TapChangerTablePoint extends BaseClass {
         g = _value_;
     }
 
-    public void setG(String _value_) {
-        g = getDoubleFromString(_value_);
+    private static Object getG(BaseClass _this_) {
+        return ((TapChangerTablePoint) _this_).getG();
     }
 
-    public String gToString() {
-        return g != null ? g.toString() : null;
+    private static void setG(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((TapChangerTablePoint) _this_).setG((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChangerTablePoint) _this_).setG(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class TapChangerTablePoint extends BaseClass {
         r = _value_;
     }
 
-    public void setR(String _value_) {
-        r = getDoubleFromString(_value_);
+    private static Object getR(BaseClass _this_) {
+        return ((TapChangerTablePoint) _this_).getR();
     }
 
-    public String rToString() {
-        return r != null ? r.toString() : null;
+    private static void setR(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((TapChangerTablePoint) _this_).setR((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChangerTablePoint) _this_).setR(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class TapChangerTablePoint extends BaseClass {
         ratio = _value_;
     }
 
-    public void setRatio(String _value_) {
-        ratio = getFloatFromString(_value_);
+    private static Object getRatio(BaseClass _this_) {
+        return ((TapChangerTablePoint) _this_).getRatio();
     }
 
-    public String ratioToString() {
-        return ratio != null ? ratio.toString() : null;
+    private static void setRatio(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((TapChangerTablePoint) _this_).setRatio((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChangerTablePoint) _this_).setRatio(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class TapChangerTablePoint extends BaseClass {
         step = _value_;
     }
 
-    public void setStep(String _value_) {
-        step = getIntegerFromString(_value_);
+    private static Object getStep(BaseClass _this_) {
+        return ((TapChangerTablePoint) _this_).getStep();
     }
 
-    public String stepToString() {
-        return step != null ? step.toString() : null;
+    private static void setStep(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((TapChangerTablePoint) _this_).setStep((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChangerTablePoint) _this_).setStep(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -147,12 +184,18 @@ public class TapChangerTablePoint extends BaseClass {
         x = _value_;
     }
 
-    public void setX(String _value_) {
-        x = getDoubleFromString(_value_);
+    private static Object getX(BaseClass _this_) {
+        return ((TapChangerTablePoint) _this_).getX();
     }
 
-    public String xToString() {
-        return x != null ? x.toString() : null;
+    private static void setX(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((TapChangerTablePoint) _this_).setX((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((TapChangerTablePoint) _this_).setX(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,64 +232,35 @@ public class TapChangerTablePoint extends BaseClass {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("TapChangerTablePoint", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "TapChangerTablePoint", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("TapChangerTablePoint", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("TapChangerTablePoint", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "TapChangerTablePoint", attrName, value));
         }
     }
 
@@ -370,48 +384,36 @@ public class TapChangerTablePoint extends BaseClass {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("b", new AttrDetails("TapChangerTablePoint.b", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("b", new AttrDetails("TapChangerTablePoint.b", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, TapChangerTablePoint::getB, TapChangerTablePoint::setB));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("g", new AttrDetails("TapChangerTablePoint.g", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("g", new AttrDetails("TapChangerTablePoint.g", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, TapChangerTablePoint::getG, TapChangerTablePoint::setG));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r", new AttrDetails("TapChangerTablePoint.r", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("r", new AttrDetails("TapChangerTablePoint.r", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, TapChangerTablePoint::getR, TapChangerTablePoint::setR));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratio", new AttrDetails("TapChangerTablePoint.ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ratio", new AttrDetails("TapChangerTablePoint.ratio", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, TapChangerTablePoint::getRatio, TapChangerTablePoint::setRatio));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("step", new AttrDetails("TapChangerTablePoint.step", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("step", new AttrDetails("TapChangerTablePoint.step", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, TapChangerTablePoint::getStep, TapChangerTablePoint::setStep));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x", new AttrDetails("TapChangerTablePoint.x", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("x", new AttrDetails("TapChangerTablePoint.x", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, TapChangerTablePoint::getX, TapChangerTablePoint::setX));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TapChangerTablePoint().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TapChangerTablePoint(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("b", new GetterSetter(this::bToString, null, this::setB));
-        map.put("g", new GetterSetter(this::gToString, null, this::setG));
-        map.put("r", new GetterSetter(this::rToString, null, this::setR));
-        map.put("ratio", new GetterSetter(this::ratioToString, null, this::setRatio));
-        map.put("step", new GetterSetter(this::stepToString, null, this::setStep));
-        map.put("x", new GetterSetter(this::xToString, null, this::setX));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

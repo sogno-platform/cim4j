@@ -23,10 +23,17 @@ public class AccumulatorReset extends Control {
     private static final Logging LOG = Logging.getLogger(AccumulatorReset.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public AccumulatorReset() {
-        setCimType("AccumulatorReset");
+    public AccumulatorReset(String rdfid) {
+        super("AccumulatorReset", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected AccumulatorReset(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class AccumulatorReset extends Control {
         return AccumulatorValue;
     }
 
-    public void setAccumulatorValue(BaseClass _object_) {
-        if (!(_object_ instanceof AccumulatorValue)) {
-            throw new IllegalArgumentException("Object is not AccumulatorValue");
-        }
+    public void setAccumulatorValue(AccumulatorValue _object_) {
         if (AccumulatorValue != _object_) {
-            AccumulatorValue = (AccumulatorValue) _object_;
+            AccumulatorValue = _object_;
             AccumulatorValue.setAccumulatorReset(this);
         }
     }
 
-    public String AccumulatorValueToString() {
-        return AccumulatorValue != null ? AccumulatorValue.getRdfid() : null;
+    private static Object getAccumulatorValue(BaseClass _this_) {
+        return ((AccumulatorReset) _this_).getAccumulatorValue();
+    }
+
+    private static void setAccumulatorValue(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof AccumulatorValue) {
+            ((AccumulatorReset) _this_).setAccumulatorValue((AccumulatorValue) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not AccumulatorValue");
+        }
     }
 
     /**
@@ -86,64 +98,35 @@ public class AccumulatorReset extends Control {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("AccumulatorReset", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "AccumulatorReset", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("AccumulatorReset", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("AccumulatorReset", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "AccumulatorReset", attrName, value));
         }
     }
 
@@ -267,18 +250,11 @@ public class AccumulatorReset extends Control {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("AccumulatorValue", new AttrDetails("AccumulatorReset.AccumulatorValue", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("AccumulatorValue", new AttrDetails("AccumulatorReset.AccumulatorValue", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, AccumulatorReset::getAccumulatorValue, AccumulatorReset::setAccumulatorValue));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AccumulatorReset().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AccumulatorReset(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("AccumulatorValue", new GetterSetter(this::AccumulatorValueToString, this::setAccumulatorValue, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,10 +23,17 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(WindPitchContEmulIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindPitchContEmulIEC() {
-        setCimType("WindPitchContEmulIEC");
+    public WindPitchContEmulIEC(String rdfid) {
+        super("WindPitchContEmulIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindPitchContEmulIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
         return WindGenTurbineType2IEC;
     }
 
-    public void setWindGenTurbineType2IEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindGenTurbineType2IEC)) {
-            throw new IllegalArgumentException("Object is not WindGenTurbineType2IEC");
-        }
+    public void setWindGenTurbineType2IEC(WindGenTurbineType2IEC _object_) {
         if (WindGenTurbineType2IEC != _object_) {
-            WindGenTurbineType2IEC = (WindGenTurbineType2IEC) _object_;
+            WindGenTurbineType2IEC = _object_;
             WindGenTurbineType2IEC.setWindPitchContEmulIEC(this);
         }
     }
 
-    public String WindGenTurbineType2IECToString() {
-        return WindGenTurbineType2IEC != null ? WindGenTurbineType2IEC.getRdfid() : null;
+    private static Object getWindGenTurbineType2IEC(BaseClass _this_) {
+        return ((WindPitchContEmulIEC) _this_).getWindGenTurbineType2IEC();
+    }
+
+    private static void setWindGenTurbineType2IEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindGenTurbineType2IEC) {
+            ((WindPitchContEmulIEC) _this_).setWindGenTurbineType2IEC((WindGenTurbineType2IEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindGenTurbineType2IEC");
+        }
     }
 
     /**
@@ -67,12 +79,18 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
         kdroop = _value_;
     }
 
-    public void setKdroop(String _value_) {
-        kdroop = getDoubleFromString(_value_);
+    private static Object getKdroop(BaseClass _this_) {
+        return ((WindPitchContEmulIEC) _this_).getKdroop();
     }
 
-    public String kdroopToString() {
-        return kdroop != null ? kdroop.toString() : null;
+    private static void setKdroop(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContEmulIEC) _this_).setKdroop((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContEmulIEC) _this_).setKdroop(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -88,12 +106,18 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
         kipce = _value_;
     }
 
-    public void setKipce(String _value_) {
-        kipce = getDoubleFromString(_value_);
+    private static Object getKipce(BaseClass _this_) {
+        return ((WindPitchContEmulIEC) _this_).getKipce();
     }
 
-    public String kipceToString() {
-        return kipce != null ? kipce.toString() : null;
+    private static void setKipce(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContEmulIEC) _this_).setKipce((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContEmulIEC) _this_).setKipce(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -109,12 +133,18 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
         komegaaero = _value_;
     }
 
-    public void setKomegaaero(String _value_) {
-        komegaaero = getDoubleFromString(_value_);
+    private static Object getKomegaaero(BaseClass _this_) {
+        return ((WindPitchContEmulIEC) _this_).getKomegaaero();
     }
 
-    public String komegaaeroToString() {
-        return komegaaero != null ? komegaaero.toString() : null;
+    private static void setKomegaaero(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContEmulIEC) _this_).setKomegaaero((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContEmulIEC) _this_).setKomegaaero(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -130,12 +160,18 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
         kppce = _value_;
     }
 
-    public void setKppce(String _value_) {
-        kppce = getDoubleFromString(_value_);
+    private static Object getKppce(BaseClass _this_) {
+        return ((WindPitchContEmulIEC) _this_).getKppce();
     }
 
-    public String kppceToString() {
-        return kppce != null ? kppce.toString() : null;
+    private static void setKppce(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContEmulIEC) _this_).setKppce((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContEmulIEC) _this_).setKppce(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -151,12 +187,18 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
         omegaref = _value_;
     }
 
-    public void setOmegaref(String _value_) {
-        omegaref = getDoubleFromString(_value_);
+    private static Object getOmegaref(BaseClass _this_) {
+        return ((WindPitchContEmulIEC) _this_).getOmegaref();
     }
 
-    public String omegarefToString() {
-        return omegaref != null ? omegaref.toString() : null;
+    private static void setOmegaref(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContEmulIEC) _this_).setOmegaref((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContEmulIEC) _this_).setOmegaref(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -172,12 +214,18 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
         pimax = _value_;
     }
 
-    public void setPimax(String _value_) {
-        pimax = getDoubleFromString(_value_);
+    private static Object getPimax(BaseClass _this_) {
+        return ((WindPitchContEmulIEC) _this_).getPimax();
     }
 
-    public String pimaxToString() {
-        return pimax != null ? pimax.toString() : null;
+    private static void setPimax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContEmulIEC) _this_).setPimax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContEmulIEC) _this_).setPimax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -193,12 +241,18 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
         pimin = _value_;
     }
 
-    public void setPimin(String _value_) {
-        pimin = getDoubleFromString(_value_);
+    private static Object getPimin(BaseClass _this_) {
+        return ((WindPitchContEmulIEC) _this_).getPimin();
     }
 
-    public String piminToString() {
-        return pimin != null ? pimin.toString() : null;
+    private static void setPimin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContEmulIEC) _this_).setPimin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContEmulIEC) _this_).setPimin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -214,12 +268,18 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
         t1 = _value_;
     }
 
-    public void setT1(String _value_) {
-        t1 = getDoubleFromString(_value_);
+    private static Object getT1(BaseClass _this_) {
+        return ((WindPitchContEmulIEC) _this_).getT1();
     }
 
-    public String t1ToString() {
-        return t1 != null ? t1.toString() : null;
+    private static void setT1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContEmulIEC) _this_).setT1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContEmulIEC) _this_).setT1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -235,12 +295,18 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
         t2 = _value_;
     }
 
-    public void setT2(String _value_) {
-        t2 = getDoubleFromString(_value_);
+    private static Object getT2(BaseClass _this_) {
+        return ((WindPitchContEmulIEC) _this_).getT2();
     }
 
-    public String t2ToString() {
-        return t2 != null ? t2.toString() : null;
+    private static void setT2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContEmulIEC) _this_).setT2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContEmulIEC) _this_).setT2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -256,12 +322,18 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
         tpe = _value_;
     }
 
-    public void setTpe(String _value_) {
-        tpe = getDoubleFromString(_value_);
+    private static Object getTpe(BaseClass _this_) {
+        return ((WindPitchContEmulIEC) _this_).getTpe();
     }
 
-    public String tpeToString() {
-        return tpe != null ? tpe.toString() : null;
+    private static void setTpe(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindPitchContEmulIEC) _this_).setTpe((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindPitchContEmulIEC) _this_).setTpe(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -298,64 +370,35 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindPitchContEmulIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindPitchContEmulIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindPitchContEmulIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindPitchContEmulIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindPitchContEmulIEC", attrName, value));
         }
     }
 
@@ -479,78 +522,61 @@ public class WindPitchContEmulIEC extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindGenTurbineType2IEC", new AttrDetails("WindPitchContEmulIEC.WindGenTurbineType2IEC", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("WindGenTurbineType2IEC", new AttrDetails("WindPitchContEmulIEC.WindGenTurbineType2IEC", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, WindPitchContEmulIEC::getWindGenTurbineType2IEC, WindPitchContEmulIEC::setWindGenTurbineType2IEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kdroop", new AttrDetails("WindPitchContEmulIEC.kdroop", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kdroop", new AttrDetails("WindPitchContEmulIEC.kdroop", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPitchContEmulIEC::getKdroop, WindPitchContEmulIEC::setKdroop));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kipce", new AttrDetails("WindPitchContEmulIEC.kipce", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kipce", new AttrDetails("WindPitchContEmulIEC.kipce", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPitchContEmulIEC::getKipce, WindPitchContEmulIEC::setKipce));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("komegaaero", new AttrDetails("WindPitchContEmulIEC.komegaaero", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("komegaaero", new AttrDetails("WindPitchContEmulIEC.komegaaero", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPitchContEmulIEC::getKomegaaero, WindPitchContEmulIEC::setKomegaaero));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kppce", new AttrDetails("WindPitchContEmulIEC.kppce", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("kppce", new AttrDetails("WindPitchContEmulIEC.kppce", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPitchContEmulIEC::getKppce, WindPitchContEmulIEC::setKppce));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("omegaref", new AttrDetails("WindPitchContEmulIEC.omegaref", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("omegaref", new AttrDetails("WindPitchContEmulIEC.omegaref", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPitchContEmulIEC::getOmegaref, WindPitchContEmulIEC::setOmegaref));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pimax", new AttrDetails("WindPitchContEmulIEC.pimax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("pimax", new AttrDetails("WindPitchContEmulIEC.pimax", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPitchContEmulIEC::getPimax, WindPitchContEmulIEC::setPimax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pimin", new AttrDetails("WindPitchContEmulIEC.pimin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("pimin", new AttrDetails("WindPitchContEmulIEC.pimin", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPitchContEmulIEC::getPimin, WindPitchContEmulIEC::setPimin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t1", new AttrDetails("WindPitchContEmulIEC.t1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("t1", new AttrDetails("WindPitchContEmulIEC.t1", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPitchContEmulIEC::getT1, WindPitchContEmulIEC::setT1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t2", new AttrDetails("WindPitchContEmulIEC.t2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("t2", new AttrDetails("WindPitchContEmulIEC.t2", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPitchContEmulIEC::getT2, WindPitchContEmulIEC::setT2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpe", new AttrDetails("WindPitchContEmulIEC.tpe", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("tpe", new AttrDetails("WindPitchContEmulIEC.tpe", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, WindPitchContEmulIEC::getTpe, WindPitchContEmulIEC::setTpe));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindPitchContEmulIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindPitchContEmulIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("WindGenTurbineType2IEC", new GetterSetter(this::WindGenTurbineType2IECToString, this::setWindGenTurbineType2IEC, null));
-        map.put("kdroop", new GetterSetter(this::kdroopToString, null, this::setKdroop));
-        map.put("kipce", new GetterSetter(this::kipceToString, null, this::setKipce));
-        map.put("komegaaero", new GetterSetter(this::komegaaeroToString, null, this::setKomegaaero));
-        map.put("kppce", new GetterSetter(this::kppceToString, null, this::setKppce));
-        map.put("omegaref", new GetterSetter(this::omegarefToString, null, this::setOmegaref));
-        map.put("pimax", new GetterSetter(this::pimaxToString, null, this::setPimax));
-        map.put("pimin", new GetterSetter(this::piminToString, null, this::setPimin));
-        map.put("t1", new GetterSetter(this::t1ToString, null, this::setT1));
-        map.put("t2", new GetterSetter(this::t2ToString, null, this::setT2));
-        map.put("tpe", new GetterSetter(this::tpeToString, null, this::setTpe));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

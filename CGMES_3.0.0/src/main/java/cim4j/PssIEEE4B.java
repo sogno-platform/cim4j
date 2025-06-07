@@ -23,14 +23,21 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
     private static final Logging LOG = Logging.getLogger(PssIEEE4B.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public PssIEEE4B() {
-        setCimType("PssIEEE4B");
+    public PssIEEE4B(String rdfid) {
+        super("PssIEEE4B", rdfid);
     }
 
     /**
-     * Notch filter 1 (high-frequency band): three dB bandwidth (&lt;i&gt;B&lt;/i&gt;&lt;i&gt;&lt;sub&gt;wi&lt;/sub&gt;&lt;/i&gt;).
+     * Constructor for subclasses.
+     */
+    protected PssIEEE4B(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Notch filter 1 (high-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
      */
     private Float bwh1; // Float
 
@@ -42,16 +49,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         bwh1 = _value_;
     }
 
-    public void setBwh1(String _value_) {
-        bwh1 = getFloatFromString(_value_);
+    private static Object getBwh1(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getBwh1();
     }
 
-    public String bwh1ToString() {
-        return bwh1 != null ? bwh1.toString() : null;
+    private static void setBwh1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PssIEEE4B) _this_).setBwh1((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setBwh1(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Notch filter 2 (high-frequency band): three dB bandwidth (&lt;i&gt;B&lt;/i&gt;&lt;i&gt;&lt;sub&gt;wi&lt;/sub&gt;&lt;/i&gt;).
+     * Notch filter 2 (high-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
      */
     private Float bwh2; // Float
 
@@ -63,16 +76,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         bwh2 = _value_;
     }
 
-    public void setBwh2(String _value_) {
-        bwh2 = getFloatFromString(_value_);
+    private static Object getBwh2(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getBwh2();
     }
 
-    public String bwh2ToString() {
-        return bwh2 != null ? bwh2.toString() : null;
+    private static void setBwh2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PssIEEE4B) _this_).setBwh2((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setBwh2(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Notch filter 1 (low-frequency band): three dB bandwidth (&lt;i&gt;B&lt;/i&gt;&lt;i&gt;&lt;sub&gt;wi&lt;/sub&gt;&lt;/i&gt;).
+     * Notch filter 1 (low-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
      */
     private Float bwl1; // Float
 
@@ -84,16 +103,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         bwl1 = _value_;
     }
 
-    public void setBwl1(String _value_) {
-        bwl1 = getFloatFromString(_value_);
+    private static Object getBwl1(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getBwl1();
     }
 
-    public String bwl1ToString() {
-        return bwl1 != null ? bwl1.toString() : null;
+    private static void setBwl1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PssIEEE4B) _this_).setBwl1((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setBwl1(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Notch filter 2 (low-frequency band): three dB bandwidth (&lt;i&gt;B&lt;/i&gt;&lt;i&gt;&lt;sub&gt;wi&lt;/sub&gt;&lt;/i&gt;).
+     * Notch filter 2 (low-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
      */
     private Float bwl2; // Float
 
@@ -105,16 +130,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         bwl2 = _value_;
     }
 
-    public void setBwl2(String _value_) {
-        bwl2 = getFloatFromString(_value_);
+    private static Object getBwl2(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getBwl2();
     }
 
-    public String bwl2ToString() {
-        return bwl2 != null ? bwl2.toString() : null;
+    private static void setBwl2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PssIEEE4B) _this_).setBwl2((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setBwl2(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * High band gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H&lt;/sub&gt;&lt;/i&gt;).  Typical value = 120.
+     * High band gain (<i>K</i><i><sub>H</sub></i>).  Typical value = 120.
      */
     private Double kh; // PU
 
@@ -126,16 +157,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         kh = _value_;
     }
 
-    public void setKh(String _value_) {
-        kh = getDoubleFromString(_value_);
+    private static Object getKh(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKh();
     }
 
-    public String khToString() {
-        return kh != null ? kh.toString() : null;
+    private static void setKh(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKh((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKh(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band differential filter gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H1&lt;/sub&gt;&lt;/i&gt;).  Typical value = 66.
+     * High band differential filter gain (<i>K</i><i><sub>H1</sub></i>).  Typical value = 66.
      */
     private Double kh1; // PU
 
@@ -147,16 +184,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         kh1 = _value_;
     }
 
-    public void setKh1(String _value_) {
-        kh1 = getDoubleFromString(_value_);
+    private static Object getKh1(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKh1();
     }
 
-    public String kh1ToString() {
-        return kh1 != null ? kh1.toString() : null;
+    private static void setKh1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKh1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKh1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band first lead-lag blocks coefficient (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H11&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1.
+     * High band first lead-lag blocks coefficient (<i>K</i><i><sub>H11</sub></i>).  Typical value = 1.
      */
     private Double kh11; // PU
 
@@ -168,16 +211,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         kh11 = _value_;
     }
 
-    public void setKh11(String _value_) {
-        kh11 = getDoubleFromString(_value_);
+    private static Object getKh11(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKh11();
     }
 
-    public String kh11ToString() {
-        return kh11 != null ? kh11.toString() : null;
+    private static void setKh11(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKh11((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKh11(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band first lead-lag blocks coefficient (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H17&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1.
+     * High band first lead-lag blocks coefficient (<i>K</i><i><sub>H17</sub></i>).  Typical value = 1.
      */
     private Double kh17; // PU
 
@@ -189,16 +238,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         kh17 = _value_;
     }
 
-    public void setKh17(String _value_) {
-        kh17 = getDoubleFromString(_value_);
+    private static Object getKh17(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKh17();
     }
 
-    public String kh17ToString() {
-        return kh17 != null ? kh17.toString() : null;
+    private static void setKh17(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKh17((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKh17(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band differential filter gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H2&lt;/sub&gt;&lt;/i&gt;).  Typical value = 66.
+     * High band differential filter gain (<i>K</i><i><sub>H2</sub></i>).  Typical value = 66.
      */
     private Double kh2; // PU
 
@@ -210,16 +265,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         kh2 = _value_;
     }
 
-    public void setKh2(String _value_) {
-        kh2 = getDoubleFromString(_value_);
+    private static Object getKh2(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKh2();
     }
 
-    public String kh2ToString() {
-        return kh2 != null ? kh2.toString() : null;
+    private static void setKh2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKh2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKh2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I&lt;/sub&gt;&lt;/i&gt;).  Typical value = 30.
+     * Intermediate band gain (<i>K</i><i><sub>I</sub></i>).  Typical value = 30.
      */
     private Double ki; // PU
 
@@ -231,16 +292,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ki = _value_;
     }
 
-    public void setKi(String _value_) {
-        ki = getDoubleFromString(_value_);
+    private static Object getKi(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKi();
     }
 
-    public String kiToString() {
-        return ki != null ? ki.toString() : null;
+    private static void setKi(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKi((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKi(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band differential filter gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I1&lt;/sub&gt;&lt;/i&gt;).  Typical value = 66.
+     * Intermediate band differential filter gain (<i>K</i><i><sub>I1</sub></i>).  Typical value = 66.
      */
     private Double ki1; // PU
 
@@ -252,16 +319,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ki1 = _value_;
     }
 
-    public void setKi1(String _value_) {
-        ki1 = getDoubleFromString(_value_);
+    private static Object getKi1(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKi1();
     }
 
-    public String ki1ToString() {
-        return ki1 != null ? ki1.toString() : null;
+    private static void setKi1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKi1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKi1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band first lead-lag blocks coefficient (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I11&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1.
+     * Intermediate band first lead-lag blocks coefficient (<i>K</i><i><sub>I11</sub></i>).  Typical value = 1.
      */
     private Double ki11; // PU
 
@@ -273,16 +346,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ki11 = _value_;
     }
 
-    public void setKi11(String _value_) {
-        ki11 = getDoubleFromString(_value_);
+    private static Object getKi11(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKi11();
     }
 
-    public String ki11ToString() {
-        return ki11 != null ? ki11.toString() : null;
+    private static void setKi11(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKi11((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKi11(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band first lead-lag blocks coefficient (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I17&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1.
+     * Intermediate band first lead-lag blocks coefficient (<i>K</i><i><sub>I17</sub></i>).  Typical value = 1.
      */
     private Double ki17; // PU
 
@@ -294,16 +373,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ki17 = _value_;
     }
 
-    public void setKi17(String _value_) {
-        ki17 = getDoubleFromString(_value_);
+    private static Object getKi17(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKi17();
     }
 
-    public String ki17ToString() {
-        return ki17 != null ? ki17.toString() : null;
+    private static void setKi17(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKi17((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKi17(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band differential filter gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I2&lt;/sub&gt;&lt;/i&gt;).  Typical value = 66.
+     * Intermediate band differential filter gain (<i>K</i><i><sub>I2</sub></i>).  Typical value = 66.
      */
     private Double ki2; // PU
 
@@ -315,16 +400,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ki2 = _value_;
     }
 
-    public void setKi2(String _value_) {
-        ki2 = getDoubleFromString(_value_);
+    private static Object getKi2(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKi2();
     }
 
-    public String ki2ToString() {
-        return ki2 != null ? ki2.toString() : null;
+    private static void setKi2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKi2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKi2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L&lt;/sub&gt;&lt;/i&gt;).  Typical value = 7.5.
+     * Low band gain (<i>K</i><i><sub>L</sub></i>).  Typical value = 7.5.
      */
     private Double kl; // PU
 
@@ -336,16 +427,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         kl = _value_;
     }
 
-    public void setKl(String _value_) {
-        kl = getDoubleFromString(_value_);
+    private static Object getKl(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKl();
     }
 
-    public String klToString() {
-        return kl != null ? kl.toString() : null;
+    private static void setKl(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKl((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKl(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band differential filter gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L1&lt;/sub&gt;&lt;/i&gt;).  Typical value = 66.
+     * Low band differential filter gain (<i>K</i><i><sub>L1</sub></i>).  Typical value = 66.
      */
     private Double kl1; // PU
 
@@ -357,16 +454,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         kl1 = _value_;
     }
 
-    public void setKl1(String _value_) {
-        kl1 = getDoubleFromString(_value_);
+    private static Object getKl1(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKl1();
     }
 
-    public String kl1ToString() {
-        return kl1 != null ? kl1.toString() : null;
+    private static void setKl1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKl1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKl1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band first lead-lag blocks coefficient (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L11&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1.
+     * Low band first lead-lag blocks coefficient (<i>K</i><i><sub>L11</sub></i>).  Typical value = 1.
      */
     private Double kl11; // PU
 
@@ -378,16 +481,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         kl11 = _value_;
     }
 
-    public void setKl11(String _value_) {
-        kl11 = getDoubleFromString(_value_);
+    private static Object getKl11(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKl11();
     }
 
-    public String kl11ToString() {
-        return kl11 != null ? kl11.toString() : null;
+    private static void setKl11(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKl11((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKl11(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band first lead-lag blocks coefficient (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L17&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1.
+     * Low band first lead-lag blocks coefficient (<i>K</i><i><sub>L17</sub></i>).  Typical value = 1.
      */
     private Double kl17; // PU
 
@@ -399,16 +508,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         kl17 = _value_;
     }
 
-    public void setKl17(String _value_) {
-        kl17 = getDoubleFromString(_value_);
+    private static Object getKl17(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKl17();
     }
 
-    public String kl17ToString() {
-        return kl17 != null ? kl17.toString() : null;
+    private static void setKl17(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKl17((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKl17(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band differential filter gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L2&lt;/sub&gt;&lt;/i&gt;).  Typical value = 66.
+     * Low band differential filter gain (<i>K</i><i><sub>L2</sub></i>).  Typical value = 66.
      */
     private Double kl2; // PU
 
@@ -420,16 +535,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         kl2 = _value_;
     }
 
-    public void setKl2(String _value_) {
-        kl2 = getDoubleFromString(_value_);
+    private static Object getKl2(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getKl2();
     }
 
-    public String kl2ToString() {
-        return kl2 != null ? kl2.toString() : null;
+    private static void setKl2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setKl2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setKl2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Notch filter 1 (high-frequency band): filter frequency (&lt;i&gt;omega&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ni&lt;/sub&gt;&lt;/i&gt;).
+     * Notch filter 1 (high-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
      */
     private Float omeganh1; // Float
 
@@ -441,16 +562,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         omeganh1 = _value_;
     }
 
-    public void setOmeganh1(String _value_) {
-        omeganh1 = getFloatFromString(_value_);
+    private static Object getOmeganh1(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getOmeganh1();
     }
 
-    public String omeganh1ToString() {
-        return omeganh1 != null ? omeganh1.toString() : null;
+    private static void setOmeganh1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PssIEEE4B) _this_).setOmeganh1((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setOmeganh1(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Notch filter 2 (high-frequency band): filter frequency (&lt;i&gt;omega&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ni&lt;/sub&gt;&lt;/i&gt;).
+     * Notch filter 2 (high-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
      */
     private Float omeganh2; // Float
 
@@ -462,16 +589,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         omeganh2 = _value_;
     }
 
-    public void setOmeganh2(String _value_) {
-        omeganh2 = getFloatFromString(_value_);
+    private static Object getOmeganh2(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getOmeganh2();
     }
 
-    public String omeganh2ToString() {
-        return omeganh2 != null ? omeganh2.toString() : null;
+    private static void setOmeganh2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PssIEEE4B) _this_).setOmeganh2((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setOmeganh2(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Notch filter 1 (low-frequency band): filter frequency (&lt;i&gt;omega&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ni&lt;/sub&gt;&lt;/i&gt;).
+     * Notch filter 1 (low-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
      */
     private Float omeganl1; // Float
 
@@ -483,16 +616,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         omeganl1 = _value_;
     }
 
-    public void setOmeganl1(String _value_) {
-        omeganl1 = getFloatFromString(_value_);
+    private static Object getOmeganl1(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getOmeganl1();
     }
 
-    public String omeganl1ToString() {
-        return omeganl1 != null ? omeganl1.toString() : null;
+    private static void setOmeganl1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PssIEEE4B) _this_).setOmeganl1((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setOmeganl1(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Notch filter 2 (low-frequency band): filter frequency (&lt;i&gt;omega&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ni&lt;/sub&gt;&lt;/i&gt;).
+     * Notch filter 2 (low-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
      */
     private Float omeganl2; // Float
 
@@ -504,16 +643,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         omeganl2 = _value_;
     }
 
-    public void setOmeganl2(String _value_) {
-        omeganl2 = getFloatFromString(_value_);
+    private static Object getOmeganl2(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getOmeganl2();
     }
 
-    public String omeganl2ToString() {
-        return omeganl2 != null ? omeganl2.toString() : null;
+    private static void setOmeganl2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PssIEEE4B) _this_).setOmeganl2((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setOmeganl2(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * High band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H1&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,01513.
+     * High band time constant (<i>T</i><i><sub>H1</sub></i>) (&gt;= 0).  Typical value = 0,01513.
      */
     private Double th1; // Seconds
 
@@ -525,16 +670,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         th1 = _value_;
     }
 
-    public void setTh1(String _value_) {
-        th1 = getDoubleFromString(_value_);
+    private static Object getTh1(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTh1();
     }
 
-    public String th1ToString() {
-        return th1 != null ? th1.toString() : null;
+    private static void setTh1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTh1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTh1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H10&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * High band time constant (<i>T</i><i><sub>H10</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double th10; // Seconds
 
@@ -546,16 +697,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         th10 = _value_;
     }
 
-    public void setTh10(String _value_) {
-        th10 = getDoubleFromString(_value_);
+    private static Object getTh10(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTh10();
     }
 
-    public String th10ToString() {
-        return th10 != null ? th10.toString() : null;
+    private static void setTh10(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTh10((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTh10(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H11&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * High band time constant (<i>T</i><i><sub>H11</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double th11; // Seconds
 
@@ -567,16 +724,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         th11 = _value_;
     }
 
-    public void setTh11(String _value_) {
-        th11 = getDoubleFromString(_value_);
+    private static Object getTh11(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTh11();
     }
 
-    public String th11ToString() {
-        return th11 != null ? th11.toString() : null;
+    private static void setTh11(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTh11((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTh11(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H12&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * High band time constant (<i>T</i><i><sub>H12</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double th12; // Seconds
 
@@ -588,16 +751,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         th12 = _value_;
     }
 
-    public void setTh12(String _value_) {
-        th12 = getDoubleFromString(_value_);
+    private static Object getTh12(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTh12();
     }
 
-    public String th12ToString() {
-        return th12 != null ? th12.toString() : null;
+    private static void setTh12(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTh12((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTh12(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H2&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,01816.
+     * High band time constant (<i>T</i><i><sub>H2</sub></i>) (&gt;= 0).  Typical value = 0,01816.
      */
     private Double th2; // Seconds
 
@@ -609,16 +778,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         th2 = _value_;
     }
 
-    public void setTh2(String _value_) {
-        th2 = getDoubleFromString(_value_);
+    private static Object getTh2(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTh2();
     }
 
-    public String th2ToString() {
-        return th2 != null ? th2.toString() : null;
+    private static void setTh2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTh2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTh2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H3&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * High band time constant (<i>T</i><i><sub>H3</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double th3; // Seconds
 
@@ -630,16 +805,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         th3 = _value_;
     }
 
-    public void setTh3(String _value_) {
-        th3 = getDoubleFromString(_value_);
+    private static Object getTh3(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTh3();
     }
 
-    public String th3ToString() {
-        return th3 != null ? th3.toString() : null;
+    private static void setTh3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTh3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTh3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H4&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * High band time constant (<i>T</i><i><sub>H4</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double th4; // Seconds
 
@@ -651,16 +832,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         th4 = _value_;
     }
 
-    public void setTh4(String _value_) {
-        th4 = getDoubleFromString(_value_);
+    private static Object getTh4(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTh4();
     }
 
-    public String th4ToString() {
-        return th4 != null ? th4.toString() : null;
+    private static void setTh4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTh4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTh4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H5&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * High band time constant (<i>T</i><i><sub>H5</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double th5; // Seconds
 
@@ -672,16 +859,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         th5 = _value_;
     }
 
-    public void setTh5(String _value_) {
-        th5 = getDoubleFromString(_value_);
+    private static Object getTh5(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTh5();
     }
 
-    public String th5ToString() {
-        return th5 != null ? th5.toString() : null;
+    private static void setTh5(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTh5((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTh5(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H6&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * High band time constant (<i>T</i><i><sub>H6</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double th6; // Seconds
 
@@ -693,16 +886,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         th6 = _value_;
     }
 
-    public void setTh6(String _value_) {
-        th6 = getDoubleFromString(_value_);
+    private static Object getTh6(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTh6();
     }
 
-    public String th6ToString() {
-        return th6 != null ? th6.toString() : null;
+    private static void setTh6(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTh6((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTh6(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H7&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,01816.
+     * High band time constant (<i>T</i><i><sub>H7</sub></i>) (&gt;= 0).  Typical value = 0,01816.
      */
     private Double th7; // Seconds
 
@@ -714,16 +913,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         th7 = _value_;
     }
 
-    public void setTh7(String _value_) {
-        th7 = getDoubleFromString(_value_);
+    private static Object getTh7(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTh7();
     }
 
-    public String th7ToString() {
-        return th7 != null ? th7.toString() : null;
+    private static void setTh7(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTh7((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTh7(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H8&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,02179.
+     * High band time constant (<i>T</i><i><sub>H8</sub></i>) (&gt;= 0).  Typical value = 0,02179.
      */
     private Double th8; // Seconds
 
@@ -735,16 +940,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         th8 = _value_;
     }
 
-    public void setTh8(String _value_) {
-        th8 = getDoubleFromString(_value_);
+    private static Object getTh8(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTh8();
     }
 
-    public String th8ToString() {
-        return th8 != null ? th8.toString() : null;
+    private static void setTh8(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTh8((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTh8(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;H9&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * High band time constant (<i>T</i><i><sub>H9</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double th9; // Seconds
 
@@ -756,16 +967,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         th9 = _value_;
     }
 
-    public void setTh9(String _value_) {
-        th9 = getDoubleFromString(_value_);
+    private static Object getTh9(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTh9();
     }
 
-    public String th9ToString() {
-        return th9 != null ? th9.toString() : null;
+    private static void setTh9(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTh9((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTh9(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I1&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,173.
+     * Intermediate band time constant (<i>T</i><i><sub>I1</sub></i>) (&gt;= 0).  Typical value = 0,173.
      */
     private Double ti1; // Seconds
 
@@ -777,16 +994,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ti1 = _value_;
     }
 
-    public void setTi1(String _value_) {
-        ti1 = getDoubleFromString(_value_);
+    private static Object getTi1(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTi1();
     }
 
-    public String ti1ToString() {
-        return ti1 != null ? ti1.toString() : null;
+    private static void setTi1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTi1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTi1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I10&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Intermediate band time constant (<i>T</i><i><sub>I10</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double ti10; // Seconds
 
@@ -798,16 +1021,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ti10 = _value_;
     }
 
-    public void setTi10(String _value_) {
-        ti10 = getDoubleFromString(_value_);
+    private static Object getTi10(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTi10();
     }
 
-    public String ti10ToString() {
-        return ti10 != null ? ti10.toString() : null;
+    private static void setTi10(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTi10((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTi10(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I11&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Intermediate band time constant (<i>T</i><i><sub>I11</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double ti11; // Seconds
 
@@ -819,16 +1048,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ti11 = _value_;
     }
 
-    public void setTi11(String _value_) {
-        ti11 = getDoubleFromString(_value_);
+    private static Object getTi11(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTi11();
     }
 
-    public String ti11ToString() {
-        return ti11 != null ? ti11.toString() : null;
+    private static void setTi11(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTi11((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTi11(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I12&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Intermediate band time constant (<i>T</i><i><sub>I12</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double ti12; // Seconds
 
@@ -840,16 +1075,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ti12 = _value_;
     }
 
-    public void setTi12(String _value_) {
-        ti12 = getDoubleFromString(_value_);
+    private static Object getTi12(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTi12();
     }
 
-    public String ti12ToString() {
-        return ti12 != null ? ti12.toString() : null;
+    private static void setTi12(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTi12((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTi12(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I2&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,2075.
+     * Intermediate band time constant (<i>T</i><i><sub>I2</sub></i>) (&gt;= 0).  Typical value = 0,2075.
      */
     private Double ti2; // Seconds
 
@@ -861,16 +1102,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ti2 = _value_;
     }
 
-    public void setTi2(String _value_) {
-        ti2 = getDoubleFromString(_value_);
+    private static Object getTi2(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTi2();
     }
 
-    public String ti2ToString() {
-        return ti2 != null ? ti2.toString() : null;
+    private static void setTi2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTi2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTi2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I3&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Intermediate band time constant (<i>T</i><i><sub>I3</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double ti3; // Seconds
 
@@ -882,16 +1129,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ti3 = _value_;
     }
 
-    public void setTi3(String _value_) {
-        ti3 = getDoubleFromString(_value_);
+    private static Object getTi3(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTi3();
     }
 
-    public String ti3ToString() {
-        return ti3 != null ? ti3.toString() : null;
+    private static void setTi3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTi3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTi3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I4&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Intermediate band time constant (<i>T</i><i><sub>I4</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double ti4; // Seconds
 
@@ -903,16 +1156,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ti4 = _value_;
     }
 
-    public void setTi4(String _value_) {
-        ti4 = getDoubleFromString(_value_);
+    private static Object getTi4(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTi4();
     }
 
-    public String ti4ToString() {
-        return ti4 != null ? ti4.toString() : null;
+    private static void setTi4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTi4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTi4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I5&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Intermediate band time constant (<i>T</i><i><sub>I5</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double ti5; // Seconds
 
@@ -924,16 +1183,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ti5 = _value_;
     }
 
-    public void setTi5(String _value_) {
-        ti5 = getDoubleFromString(_value_);
+    private static Object getTi5(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTi5();
     }
 
-    public String ti5ToString() {
-        return ti5 != null ? ti5.toString() : null;
+    private static void setTi5(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTi5((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTi5(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I6&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Intermediate band time constant (<i>T</i><i><sub>I6</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double ti6; // Seconds
 
@@ -945,16 +1210,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ti6 = _value_;
     }
 
-    public void setTi6(String _value_) {
-        ti6 = getDoubleFromString(_value_);
+    private static Object getTi6(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTi6();
     }
 
-    public String ti6ToString() {
-        return ti6 != null ? ti6.toString() : null;
+    private static void setTi6(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTi6((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTi6(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I7&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,2075.
+     * Intermediate band time constant (<i>T</i><i><sub>I7</sub></i>) (&gt;= 0).  Typical value = 0,2075.
      */
     private Double ti7; // Seconds
 
@@ -966,16 +1237,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ti7 = _value_;
     }
 
-    public void setTi7(String _value_) {
-        ti7 = getDoubleFromString(_value_);
+    private static Object getTi7(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTi7();
     }
 
-    public String ti7ToString() {
-        return ti7 != null ? ti7.toString() : null;
+    private static void setTi7(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTi7((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTi7(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I8&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,2491.
+     * Intermediate band time constant (<i>T</i><i><sub>I8</sub></i>) (&gt;= 0).  Typical value = 0,2491.
      */
     private Double ti8; // Seconds
 
@@ -987,16 +1264,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ti8 = _value_;
     }
 
-    public void setTi8(String _value_) {
-        ti8 = getDoubleFromString(_value_);
+    private static Object getTi8(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTi8();
     }
 
-    public String ti8ToString() {
-        return ti8 != null ? ti8.toString() : null;
+    private static void setTi8(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTi8((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTi8(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I9&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Intermediate band time constant (<i>T</i><i><sub>I9</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double ti9; // Seconds
 
@@ -1008,16 +1291,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         ti9 = _value_;
     }
 
-    public void setTi9(String _value_) {
-        ti9 = getDoubleFromString(_value_);
+    private static Object getTi9(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTi9();
     }
 
-    public String ti9ToString() {
-        return ti9 != null ? ti9.toString() : null;
+    private static void setTi9(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTi9((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTi9(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L1&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 1,73.
+     * Low band time constant (<i>T</i><i><sub>L1</sub></i>) (&gt;= 0).  Typical value = 1,73.
      */
     private Double tl1; // Seconds
 
@@ -1029,16 +1318,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         tl1 = _value_;
     }
 
-    public void setTl1(String _value_) {
-        tl1 = getDoubleFromString(_value_);
+    private static Object getTl1(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTl1();
     }
 
-    public String tl1ToString() {
-        return tl1 != null ? tl1.toString() : null;
+    private static void setTl1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTl1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTl1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L10&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Low band time constant (<i>T</i><i><sub>L10</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tl10; // Seconds
 
@@ -1050,16 +1345,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         tl10 = _value_;
     }
 
-    public void setTl10(String _value_) {
-        tl10 = getDoubleFromString(_value_);
+    private static Object getTl10(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTl10();
     }
 
-    public String tl10ToString() {
-        return tl10 != null ? tl10.toString() : null;
+    private static void setTl10(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTl10((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTl10(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L11&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Low band time constant (<i>T</i><i><sub>L11</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tl11; // Seconds
 
@@ -1071,16 +1372,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         tl11 = _value_;
     }
 
-    public void setTl11(String _value_) {
-        tl11 = getDoubleFromString(_value_);
+    private static Object getTl11(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTl11();
     }
 
-    public String tl11ToString() {
-        return tl11 != null ? tl11.toString() : null;
+    private static void setTl11(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTl11((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTl11(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L12&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Low band time constant (<i>T</i><i><sub>L12</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tl12; // Seconds
 
@@ -1092,16 +1399,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         tl12 = _value_;
     }
 
-    public void setTl12(String _value_) {
-        tl12 = getDoubleFromString(_value_);
+    private static Object getTl12(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTl12();
     }
 
-    public String tl12ToString() {
-        return tl12 != null ? tl12.toString() : null;
+    private static void setTl12(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTl12((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTl12(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L2&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 2,075.
+     * Low band time constant (<i>T</i><i><sub>L2</sub></i>) (&gt;= 0).  Typical value = 2,075.
      */
     private Double tl2; // Seconds
 
@@ -1113,16 +1426,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         tl2 = _value_;
     }
 
-    public void setTl2(String _value_) {
-        tl2 = getDoubleFromString(_value_);
+    private static Object getTl2(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTl2();
     }
 
-    public String tl2ToString() {
-        return tl2 != null ? tl2.toString() : null;
+    private static void setTl2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTl2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTl2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L3&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Low band time constant (<i>T</i><i><sub>L3</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tl3; // Seconds
 
@@ -1134,16 +1453,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         tl3 = _value_;
     }
 
-    public void setTl3(String _value_) {
-        tl3 = getDoubleFromString(_value_);
+    private static Object getTl3(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTl3();
     }
 
-    public String tl3ToString() {
-        return tl3 != null ? tl3.toString() : null;
+    private static void setTl3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTl3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTl3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L4&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Low band time constant (<i>T</i><i><sub>L4</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tl4; // Seconds
 
@@ -1155,16 +1480,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         tl4 = _value_;
     }
 
-    public void setTl4(String _value_) {
-        tl4 = getDoubleFromString(_value_);
+    private static Object getTl4(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTl4();
     }
 
-    public String tl4ToString() {
-        return tl4 != null ? tl4.toString() : null;
+    private static void setTl4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTl4((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTl4(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L5&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Low band time constant (<i>T</i><i><sub>L5</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tl5; // Seconds
 
@@ -1176,16 +1507,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         tl5 = _value_;
     }
 
-    public void setTl5(String _value_) {
-        tl5 = getDoubleFromString(_value_);
+    private static Object getTl5(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTl5();
     }
 
-    public String tl5ToString() {
-        return tl5 != null ? tl5.toString() : null;
+    private static void setTl5(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTl5((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTl5(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L6&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Low band time constant (<i>T</i><i><sub>L6</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tl6; // Seconds
 
@@ -1197,16 +1534,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         tl6 = _value_;
     }
 
-    public void setTl6(String _value_) {
-        tl6 = getDoubleFromString(_value_);
+    private static Object getTl6(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTl6();
     }
 
-    public String tl6ToString() {
-        return tl6 != null ? tl6.toString() : null;
+    private static void setTl6(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTl6((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTl6(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L7&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 2,075.
+     * Low band time constant (<i>T</i><i><sub>L7</sub></i>) (&gt;= 0).  Typical value = 2,075.
      */
     private Double tl7; // Seconds
 
@@ -1218,16 +1561,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         tl7 = _value_;
     }
 
-    public void setTl7(String _value_) {
-        tl7 = getDoubleFromString(_value_);
+    private static Object getTl7(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTl7();
     }
 
-    public String tl7ToString() {
-        return tl7 != null ? tl7.toString() : null;
+    private static void setTl7(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTl7((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTl7(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L8&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 2,491.
+     * Low band time constant (<i>T</i><i><sub>L8</sub></i>) (&gt;= 0).  Typical value = 2,491.
      */
     private Double tl8; // Seconds
 
@@ -1239,16 +1588,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         tl8 = _value_;
     }
 
-    public void setTl8(String _value_) {
-        tl8 = getDoubleFromString(_value_);
+    private static Object getTl8(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTl8();
     }
 
-    public String tl8ToString() {
-        return tl8 != null ? tl8.toString() : null;
+    private static void setTl8(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTl8((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTl8(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;L9&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Low band time constant (<i>T</i><i><sub>L9</sub></i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tl9; // Seconds
 
@@ -1260,16 +1615,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         tl9 = _value_;
     }
 
-    public void setTl9(String _value_) {
-        tl9 = getDoubleFromString(_value_);
+    private static Object getTl9(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getTl9();
     }
 
-    public String tl9ToString() {
-        return tl9 != null ? tl9.toString() : null;
+    private static void setTl9(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setTl9((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setTl9(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band output maximum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;Hmax&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; PssIEEE4B.vhmin).  Typical value = 0,6.
+     * High band output maximum limit (<i>V</i><i><sub>Hmax</sub></i>) (&gt; PssIEEE4B.vhmin).  Typical value = 0,6.
      */
     private Double vhmax; // PU
 
@@ -1281,16 +1642,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         vhmax = _value_;
     }
 
-    public void setVhmax(String _value_) {
-        vhmax = getDoubleFromString(_value_);
+    private static Object getVhmax(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getVhmax();
     }
 
-    public String vhmaxToString() {
-        return vhmax != null ? vhmax.toString() : null;
+    private static void setVhmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setVhmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setVhmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High band output minimum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;Hmin&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; PssIEEE4V.vhmax).  Typical value = -0,6.
+     * High band output minimum limit (<i>V</i><i><sub>Hmin</sub></i>) (&lt; PssIEEE4V.vhmax).  Typical value = -0,6.
      */
     private Double vhmin; // PU
 
@@ -1302,16 +1669,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         vhmin = _value_;
     }
 
-    public void setVhmin(String _value_) {
-        vhmin = getDoubleFromString(_value_);
+    private static Object getVhmin(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getVhmin();
     }
 
-    public String vhminToString() {
-        return vhmin != null ? vhmin.toString() : null;
+    private static void setVhmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setVhmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setVhmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band output maximum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;Imax&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; PssIEEE4B.vimin).  Typical value = 0,6.
+     * Intermediate band output maximum limit (<i>V</i><i><sub>Imax</sub></i>) (&gt; PssIEEE4B.vimin).  Typical value = 0,6.
      */
     private Double vimax; // PU
 
@@ -1323,16 +1696,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         vimax = _value_;
     }
 
-    public void setVimax(String _value_) {
-        vimax = getDoubleFromString(_value_);
+    private static Object getVimax(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getVimax();
     }
 
-    public String vimaxToString() {
-        return vimax != null ? vimax.toString() : null;
+    private static void setVimax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setVimax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setVimax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intermediate band output minimum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;Imin&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; PssIEEE4B.vimax).  Typical value = -0,6.
+     * Intermediate band output minimum limit (<i>V</i><i><sub>Imin</sub></i>) (&lt; PssIEEE4B.vimax).  Typical value = -0,6.
      */
     private Double vimin; // PU
 
@@ -1344,16 +1723,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         vimin = _value_;
     }
 
-    public void setVimin(String _value_) {
-        vimin = getDoubleFromString(_value_);
+    private static Object getVimin(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getVimin();
     }
 
-    public String viminToString() {
-        return vimin != null ? vimin.toString() : null;
+    private static void setVimin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setVimin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setVimin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band output maximum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;Lmax&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; PssIEEE4B.vlmin).  Typical value = 0,075.
+     * Low band output maximum limit (<i>V</i><i><sub>Lmax</sub></i>) (&gt; PssIEEE4B.vlmin).  Typical value = 0,075.
      */
     private Double vlmax; // PU
 
@@ -1365,16 +1750,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         vlmax = _value_;
     }
 
-    public void setVlmax(String _value_) {
-        vlmax = getDoubleFromString(_value_);
+    private static Object getVlmax(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getVlmax();
     }
 
-    public String vlmaxToString() {
-        return vlmax != null ? vlmax.toString() : null;
+    private static void setVlmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setVlmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setVlmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low band output minimum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;Lmin&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; PssIEEE4B.vlmax).  Typical value = -0,075.
+     * Low band output minimum limit (<i>V</i><i><sub>Lmin</sub></i>) (&lt; PssIEEE4B.vlmax).  Typical value = -0,075.
      */
     private Double vlmin; // PU
 
@@ -1386,16 +1777,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         vlmin = _value_;
     }
 
-    public void setVlmin(String _value_) {
-        vlmin = getDoubleFromString(_value_);
+    private static Object getVlmin(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getVlmin();
     }
 
-    public String vlminToString() {
-        return vlmin != null ? vlmin.toString() : null;
+    private static void setVlmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setVlmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setVlmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * PSS output maximum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;STmax&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; PssIEEE4B.vstmin).  Typical value = 0,15.
+     * PSS output maximum limit (<i>V</i><i><sub>STmax</sub></i>) (&gt; PssIEEE4B.vstmin).  Typical value = 0,15.
      */
     private Double vstmax; // PU
 
@@ -1407,16 +1804,22 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         vstmax = _value_;
     }
 
-    public void setVstmax(String _value_) {
-        vstmax = getDoubleFromString(_value_);
+    private static Object getVstmax(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getVstmax();
     }
 
-    public String vstmaxToString() {
-        return vstmax != null ? vstmax.toString() : null;
+    private static void setVstmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setVstmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setVstmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * PSS output minimum limit (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;STmin&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; PssIEEE4B.vstmax).  Typical value = -0,15.
+     * PSS output minimum limit (<i>V</i><i><sub>STmin</sub></i>) (&lt; PssIEEE4B.vstmax).  Typical value = -0,15.
      */
     private Double vstmin; // PU
 
@@ -1428,12 +1831,18 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         vstmin = _value_;
     }
 
-    public void setVstmin(String _value_) {
-        vstmin = getDoubleFromString(_value_);
+    private static Object getVstmin(BaseClass _this_) {
+        return ((PssIEEE4B) _this_).getVstmin();
     }
 
-    public String vstminToString() {
-        return vstmin != null ? vstmin.toString() : null;
+    private static void setVstmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssIEEE4B) _this_).setVstmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssIEEE4B) _this_).setVstmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -1470,64 +1879,35 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("PssIEEE4B", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "PssIEEE4B", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("PssIEEE4B", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("PssIEEE4B", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "PssIEEE4B", attrName, value));
         }
     }
 
@@ -1651,414 +2031,341 @@ public class PssIEEE4B extends PowerSystemStabilizerDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("bwh1", new AttrDetails("PssIEEE4B.bwh1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("bwh1", new AttrDetails("PssIEEE4B.bwh1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getBwh1, PssIEEE4B::setBwh1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("bwh2", new AttrDetails("PssIEEE4B.bwh2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("bwh2", new AttrDetails("PssIEEE4B.bwh2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getBwh2, PssIEEE4B::setBwh2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("bwl1", new AttrDetails("PssIEEE4B.bwl1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("bwl1", new AttrDetails("PssIEEE4B.bwl1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getBwl1, PssIEEE4B::setBwl1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("bwl2", new AttrDetails("PssIEEE4B.bwl2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("bwl2", new AttrDetails("PssIEEE4B.bwl2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getBwl2, PssIEEE4B::setBwl2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kh", new AttrDetails("PssIEEE4B.kh", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kh", new AttrDetails("PssIEEE4B.kh", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKh, PssIEEE4B::setKh));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kh1", new AttrDetails("PssIEEE4B.kh1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kh1", new AttrDetails("PssIEEE4B.kh1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKh1, PssIEEE4B::setKh1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kh11", new AttrDetails("PssIEEE4B.kh11", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kh11", new AttrDetails("PssIEEE4B.kh11", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKh11, PssIEEE4B::setKh11));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kh17", new AttrDetails("PssIEEE4B.kh17", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kh17", new AttrDetails("PssIEEE4B.kh17", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKh17, PssIEEE4B::setKh17));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kh2", new AttrDetails("PssIEEE4B.kh2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kh2", new AttrDetails("PssIEEE4B.kh2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKh2, PssIEEE4B::setKh2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki", new AttrDetails("PssIEEE4B.ki", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ki", new AttrDetails("PssIEEE4B.ki", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKi, PssIEEE4B::setKi));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki1", new AttrDetails("PssIEEE4B.ki1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ki1", new AttrDetails("PssIEEE4B.ki1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKi1, PssIEEE4B::setKi1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki11", new AttrDetails("PssIEEE4B.ki11", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ki11", new AttrDetails("PssIEEE4B.ki11", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKi11, PssIEEE4B::setKi11));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki17", new AttrDetails("PssIEEE4B.ki17", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ki17", new AttrDetails("PssIEEE4B.ki17", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKi17, PssIEEE4B::setKi17));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki2", new AttrDetails("PssIEEE4B.ki2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ki2", new AttrDetails("PssIEEE4B.ki2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKi2, PssIEEE4B::setKi2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kl", new AttrDetails("PssIEEE4B.kl", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kl", new AttrDetails("PssIEEE4B.kl", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKl, PssIEEE4B::setKl));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kl1", new AttrDetails("PssIEEE4B.kl1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kl1", new AttrDetails("PssIEEE4B.kl1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKl1, PssIEEE4B::setKl1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kl11", new AttrDetails("PssIEEE4B.kl11", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kl11", new AttrDetails("PssIEEE4B.kl11", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKl11, PssIEEE4B::setKl11));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kl17", new AttrDetails("PssIEEE4B.kl17", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kl17", new AttrDetails("PssIEEE4B.kl17", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKl17, PssIEEE4B::setKl17));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kl2", new AttrDetails("PssIEEE4B.kl2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kl2", new AttrDetails("PssIEEE4B.kl2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getKl2, PssIEEE4B::setKl2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("omeganh1", new AttrDetails("PssIEEE4B.omeganh1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("omeganh1", new AttrDetails("PssIEEE4B.omeganh1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getOmeganh1, PssIEEE4B::setOmeganh1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("omeganh2", new AttrDetails("PssIEEE4B.omeganh2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("omeganh2", new AttrDetails("PssIEEE4B.omeganh2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getOmeganh2, PssIEEE4B::setOmeganh2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("omeganl1", new AttrDetails("PssIEEE4B.omeganl1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("omeganl1", new AttrDetails("PssIEEE4B.omeganl1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getOmeganl1, PssIEEE4B::setOmeganl1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("omeganl2", new AttrDetails("PssIEEE4B.omeganl2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("omeganl2", new AttrDetails("PssIEEE4B.omeganl2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getOmeganl2, PssIEEE4B::setOmeganl2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("th1", new AttrDetails("PssIEEE4B.th1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("th1", new AttrDetails("PssIEEE4B.th1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTh1, PssIEEE4B::setTh1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("th10", new AttrDetails("PssIEEE4B.th10", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("th10", new AttrDetails("PssIEEE4B.th10", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTh10, PssIEEE4B::setTh10));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("th11", new AttrDetails("PssIEEE4B.th11", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("th11", new AttrDetails("PssIEEE4B.th11", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTh11, PssIEEE4B::setTh11));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("th12", new AttrDetails("PssIEEE4B.th12", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("th12", new AttrDetails("PssIEEE4B.th12", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTh12, PssIEEE4B::setTh12));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("th2", new AttrDetails("PssIEEE4B.th2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("th2", new AttrDetails("PssIEEE4B.th2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTh2, PssIEEE4B::setTh2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("th3", new AttrDetails("PssIEEE4B.th3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("th3", new AttrDetails("PssIEEE4B.th3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTh3, PssIEEE4B::setTh3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("th4", new AttrDetails("PssIEEE4B.th4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("th4", new AttrDetails("PssIEEE4B.th4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTh4, PssIEEE4B::setTh4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("th5", new AttrDetails("PssIEEE4B.th5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("th5", new AttrDetails("PssIEEE4B.th5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTh5, PssIEEE4B::setTh5));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("th6", new AttrDetails("PssIEEE4B.th6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("th6", new AttrDetails("PssIEEE4B.th6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTh6, PssIEEE4B::setTh6));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("th7", new AttrDetails("PssIEEE4B.th7", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("th7", new AttrDetails("PssIEEE4B.th7", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTh7, PssIEEE4B::setTh7));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("th8", new AttrDetails("PssIEEE4B.th8", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("th8", new AttrDetails("PssIEEE4B.th8", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTh8, PssIEEE4B::setTh8));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("th9", new AttrDetails("PssIEEE4B.th9", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("th9", new AttrDetails("PssIEEE4B.th9", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTh9, PssIEEE4B::setTh9));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ti1", new AttrDetails("PssIEEE4B.ti1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ti1", new AttrDetails("PssIEEE4B.ti1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTi1, PssIEEE4B::setTi1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ti10", new AttrDetails("PssIEEE4B.ti10", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ti10", new AttrDetails("PssIEEE4B.ti10", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTi10, PssIEEE4B::setTi10));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ti11", new AttrDetails("PssIEEE4B.ti11", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ti11", new AttrDetails("PssIEEE4B.ti11", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTi11, PssIEEE4B::setTi11));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ti12", new AttrDetails("PssIEEE4B.ti12", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ti12", new AttrDetails("PssIEEE4B.ti12", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTi12, PssIEEE4B::setTi12));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ti2", new AttrDetails("PssIEEE4B.ti2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ti2", new AttrDetails("PssIEEE4B.ti2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTi2, PssIEEE4B::setTi2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ti3", new AttrDetails("PssIEEE4B.ti3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ti3", new AttrDetails("PssIEEE4B.ti3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTi3, PssIEEE4B::setTi3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ti4", new AttrDetails("PssIEEE4B.ti4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ti4", new AttrDetails("PssIEEE4B.ti4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTi4, PssIEEE4B::setTi4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ti5", new AttrDetails("PssIEEE4B.ti5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ti5", new AttrDetails("PssIEEE4B.ti5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTi5, PssIEEE4B::setTi5));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ti6", new AttrDetails("PssIEEE4B.ti6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ti6", new AttrDetails("PssIEEE4B.ti6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTi6, PssIEEE4B::setTi6));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ti7", new AttrDetails("PssIEEE4B.ti7", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ti7", new AttrDetails("PssIEEE4B.ti7", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTi7, PssIEEE4B::setTi7));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ti8", new AttrDetails("PssIEEE4B.ti8", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ti8", new AttrDetails("PssIEEE4B.ti8", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTi8, PssIEEE4B::setTi8));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ti9", new AttrDetails("PssIEEE4B.ti9", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ti9", new AttrDetails("PssIEEE4B.ti9", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTi9, PssIEEE4B::setTi9));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl1", new AttrDetails("PssIEEE4B.tl1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tl1", new AttrDetails("PssIEEE4B.tl1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTl1, PssIEEE4B::setTl1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl10", new AttrDetails("PssIEEE4B.tl10", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tl10", new AttrDetails("PssIEEE4B.tl10", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTl10, PssIEEE4B::setTl10));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl11", new AttrDetails("PssIEEE4B.tl11", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tl11", new AttrDetails("PssIEEE4B.tl11", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTl11, PssIEEE4B::setTl11));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl12", new AttrDetails("PssIEEE4B.tl12", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tl12", new AttrDetails("PssIEEE4B.tl12", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTl12, PssIEEE4B::setTl12));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl2", new AttrDetails("PssIEEE4B.tl2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tl2", new AttrDetails("PssIEEE4B.tl2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTl2, PssIEEE4B::setTl2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl3", new AttrDetails("PssIEEE4B.tl3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tl3", new AttrDetails("PssIEEE4B.tl3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTl3, PssIEEE4B::setTl3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl4", new AttrDetails("PssIEEE4B.tl4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tl4", new AttrDetails("PssIEEE4B.tl4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTl4, PssIEEE4B::setTl4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl5", new AttrDetails("PssIEEE4B.tl5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tl5", new AttrDetails("PssIEEE4B.tl5", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTl5, PssIEEE4B::setTl5));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl6", new AttrDetails("PssIEEE4B.tl6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tl6", new AttrDetails("PssIEEE4B.tl6", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTl6, PssIEEE4B::setTl6));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl7", new AttrDetails("PssIEEE4B.tl7", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tl7", new AttrDetails("PssIEEE4B.tl7", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTl7, PssIEEE4B::setTl7));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl8", new AttrDetails("PssIEEE4B.tl8", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tl8", new AttrDetails("PssIEEE4B.tl8", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTl8, PssIEEE4B::setTl8));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tl9", new AttrDetails("PssIEEE4B.tl9", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tl9", new AttrDetails("PssIEEE4B.tl9", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getTl9, PssIEEE4B::setTl9));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vhmax", new AttrDetails("PssIEEE4B.vhmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vhmax", new AttrDetails("PssIEEE4B.vhmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getVhmax, PssIEEE4B::setVhmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vhmin", new AttrDetails("PssIEEE4B.vhmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vhmin", new AttrDetails("PssIEEE4B.vhmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getVhmin, PssIEEE4B::setVhmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vimax", new AttrDetails("PssIEEE4B.vimax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vimax", new AttrDetails("PssIEEE4B.vimax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getVimax, PssIEEE4B::setVimax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vimin", new AttrDetails("PssIEEE4B.vimin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vimin", new AttrDetails("PssIEEE4B.vimin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getVimin, PssIEEE4B::setVimin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vlmax", new AttrDetails("PssIEEE4B.vlmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vlmax", new AttrDetails("PssIEEE4B.vlmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getVlmax, PssIEEE4B::setVlmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vlmin", new AttrDetails("PssIEEE4B.vlmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vlmin", new AttrDetails("PssIEEE4B.vlmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getVlmin, PssIEEE4B::setVlmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vstmax", new AttrDetails("PssIEEE4B.vstmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vstmax", new AttrDetails("PssIEEE4B.vstmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getVstmax, PssIEEE4B::setVstmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vstmin", new AttrDetails("PssIEEE4B.vstmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vstmin", new AttrDetails("PssIEEE4B.vstmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssIEEE4B::getVstmin, PssIEEE4B::setVstmin));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PssIEEE4B().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PssIEEE4B(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("bwh1", new GetterSetter(this::bwh1ToString, null, this::setBwh1));
-        map.put("bwh2", new GetterSetter(this::bwh2ToString, null, this::setBwh2));
-        map.put("bwl1", new GetterSetter(this::bwl1ToString, null, this::setBwl1));
-        map.put("bwl2", new GetterSetter(this::bwl2ToString, null, this::setBwl2));
-        map.put("kh", new GetterSetter(this::khToString, null, this::setKh));
-        map.put("kh1", new GetterSetter(this::kh1ToString, null, this::setKh1));
-        map.put("kh11", new GetterSetter(this::kh11ToString, null, this::setKh11));
-        map.put("kh17", new GetterSetter(this::kh17ToString, null, this::setKh17));
-        map.put("kh2", new GetterSetter(this::kh2ToString, null, this::setKh2));
-        map.put("ki", new GetterSetter(this::kiToString, null, this::setKi));
-        map.put("ki1", new GetterSetter(this::ki1ToString, null, this::setKi1));
-        map.put("ki11", new GetterSetter(this::ki11ToString, null, this::setKi11));
-        map.put("ki17", new GetterSetter(this::ki17ToString, null, this::setKi17));
-        map.put("ki2", new GetterSetter(this::ki2ToString, null, this::setKi2));
-        map.put("kl", new GetterSetter(this::klToString, null, this::setKl));
-        map.put("kl1", new GetterSetter(this::kl1ToString, null, this::setKl1));
-        map.put("kl11", new GetterSetter(this::kl11ToString, null, this::setKl11));
-        map.put("kl17", new GetterSetter(this::kl17ToString, null, this::setKl17));
-        map.put("kl2", new GetterSetter(this::kl2ToString, null, this::setKl2));
-        map.put("omeganh1", new GetterSetter(this::omeganh1ToString, null, this::setOmeganh1));
-        map.put("omeganh2", new GetterSetter(this::omeganh2ToString, null, this::setOmeganh2));
-        map.put("omeganl1", new GetterSetter(this::omeganl1ToString, null, this::setOmeganl1));
-        map.put("omeganl2", new GetterSetter(this::omeganl2ToString, null, this::setOmeganl2));
-        map.put("th1", new GetterSetter(this::th1ToString, null, this::setTh1));
-        map.put("th10", new GetterSetter(this::th10ToString, null, this::setTh10));
-        map.put("th11", new GetterSetter(this::th11ToString, null, this::setTh11));
-        map.put("th12", new GetterSetter(this::th12ToString, null, this::setTh12));
-        map.put("th2", new GetterSetter(this::th2ToString, null, this::setTh2));
-        map.put("th3", new GetterSetter(this::th3ToString, null, this::setTh3));
-        map.put("th4", new GetterSetter(this::th4ToString, null, this::setTh4));
-        map.put("th5", new GetterSetter(this::th5ToString, null, this::setTh5));
-        map.put("th6", new GetterSetter(this::th6ToString, null, this::setTh6));
-        map.put("th7", new GetterSetter(this::th7ToString, null, this::setTh7));
-        map.put("th8", new GetterSetter(this::th8ToString, null, this::setTh8));
-        map.put("th9", new GetterSetter(this::th9ToString, null, this::setTh9));
-        map.put("ti1", new GetterSetter(this::ti1ToString, null, this::setTi1));
-        map.put("ti10", new GetterSetter(this::ti10ToString, null, this::setTi10));
-        map.put("ti11", new GetterSetter(this::ti11ToString, null, this::setTi11));
-        map.put("ti12", new GetterSetter(this::ti12ToString, null, this::setTi12));
-        map.put("ti2", new GetterSetter(this::ti2ToString, null, this::setTi2));
-        map.put("ti3", new GetterSetter(this::ti3ToString, null, this::setTi3));
-        map.put("ti4", new GetterSetter(this::ti4ToString, null, this::setTi4));
-        map.put("ti5", new GetterSetter(this::ti5ToString, null, this::setTi5));
-        map.put("ti6", new GetterSetter(this::ti6ToString, null, this::setTi6));
-        map.put("ti7", new GetterSetter(this::ti7ToString, null, this::setTi7));
-        map.put("ti8", new GetterSetter(this::ti8ToString, null, this::setTi8));
-        map.put("ti9", new GetterSetter(this::ti9ToString, null, this::setTi9));
-        map.put("tl1", new GetterSetter(this::tl1ToString, null, this::setTl1));
-        map.put("tl10", new GetterSetter(this::tl10ToString, null, this::setTl10));
-        map.put("tl11", new GetterSetter(this::tl11ToString, null, this::setTl11));
-        map.put("tl12", new GetterSetter(this::tl12ToString, null, this::setTl12));
-        map.put("tl2", new GetterSetter(this::tl2ToString, null, this::setTl2));
-        map.put("tl3", new GetterSetter(this::tl3ToString, null, this::setTl3));
-        map.put("tl4", new GetterSetter(this::tl4ToString, null, this::setTl4));
-        map.put("tl5", new GetterSetter(this::tl5ToString, null, this::setTl5));
-        map.put("tl6", new GetterSetter(this::tl6ToString, null, this::setTl6));
-        map.put("tl7", new GetterSetter(this::tl7ToString, null, this::setTl7));
-        map.put("tl8", new GetterSetter(this::tl8ToString, null, this::setTl8));
-        map.put("tl9", new GetterSetter(this::tl9ToString, null, this::setTl9));
-        map.put("vhmax", new GetterSetter(this::vhmaxToString, null, this::setVhmax));
-        map.put("vhmin", new GetterSetter(this::vhminToString, null, this::setVhmin));
-        map.put("vimax", new GetterSetter(this::vimaxToString, null, this::setVimax));
-        map.put("vimin", new GetterSetter(this::viminToString, null, this::setVimin));
-        map.put("vlmax", new GetterSetter(this::vlmaxToString, null, this::setVlmax));
-        map.put("vlmin", new GetterSetter(this::vlminToString, null, this::setVlmin));
-        map.put("vstmax", new GetterSetter(this::vstmaxToString, null, this::setVstmax));
-        map.put("vstmin", new GetterSetter(this::vstminToString, null, this::setVstmin));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,14 +23,21 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
     private static final Logging LOG = Logging.getLogger(PssRQB.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public PssRQB() {
-        setCimType("PssRQB");
+    public PssRQB(String rdfid) {
+        super("PssRQB", rdfid);
     }
 
     /**
-     * Lead lag gain (&lt;i&gt;KDPM&lt;/i&gt;). Typical value = 0,185.
+     * Constructor for subclasses.
+     */
+    protected PssRQB(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Lead lag gain (<i>KDPM</i>). Typical value = 0,185.
      */
     private Float kdpm; // Float
 
@@ -42,16 +49,22 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
         kdpm = _value_;
     }
 
-    public void setKdpm(String _value_) {
-        kdpm = getFloatFromString(_value_);
+    private static Object getKdpm(BaseClass _this_) {
+        return ((PssRQB) _this_).getKdpm();
     }
 
-    public String kdpmToString() {
-        return kdpm != null ? kdpm.toString() : null;
+    private static void setKdpm(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PssRQB) _this_).setKdpm((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssRQB) _this_).setKdpm(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Speed input gain (&lt;i&gt;Ki2&lt;/i&gt;). Typical value = 3,43.
+     * Speed input gain (<i>Ki2</i>). Typical value = 3,43.
      */
     private Float ki2; // Float
 
@@ -63,16 +76,22 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
         ki2 = _value_;
     }
 
-    public void setKi2(String _value_) {
-        ki2 = getFloatFromString(_value_);
+    private static Object getKi2(BaseClass _this_) {
+        return ((PssRQB) _this_).getKi2();
     }
 
-    public String ki2ToString() {
-        return ki2 != null ? ki2.toString() : null;
+    private static void setKi2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PssRQB) _this_).setKi2((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssRQB) _this_).setKi2(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Electrical power input gain (&lt;i&gt;Ki3&lt;/i&gt;). Typical value = -11,45.
+     * Electrical power input gain (<i>Ki3</i>). Typical value = -11,45.
      */
     private Float ki3; // Float
 
@@ -84,16 +103,22 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
         ki3 = _value_;
     }
 
-    public void setKi3(String _value_) {
-        ki3 = getFloatFromString(_value_);
+    private static Object getKi3(BaseClass _this_) {
+        return ((PssRQB) _this_).getKi3();
     }
 
-    public String ki3ToString() {
-        return ki3 != null ? ki3.toString() : null;
+    private static void setKi3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PssRQB) _this_).setKi3((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssRQB) _this_).setKi3(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Mechanical power input gain (&lt;i&gt;Ki4&lt;/i&gt;). Typical value = 11,86.
+     * Mechanical power input gain (<i>Ki4</i>). Typical value = 11,86.
      */
     private Float ki4; // Float
 
@@ -105,16 +130,22 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
         ki4 = _value_;
     }
 
-    public void setKi4(String _value_) {
-        ki4 = getFloatFromString(_value_);
+    private static Object getKi4(BaseClass _this_) {
+        return ((PssRQB) _this_).getKi4();
     }
 
-    public String ki4ToString() {
-        return ki4 != null ? ki4.toString() : null;
+    private static void setKi4(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PssRQB) _this_).setKi4((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssRQB) _this_).setKi4(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Speed deadband (&lt;i&gt;SIBV&lt;/i&gt;). Typical value = 0,006.
+     * Speed deadband (<i>SIBV</i>). Typical value = 0,006.
      */
     private Double sibv; // PU
 
@@ -126,16 +157,22 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
         sibv = _value_;
     }
 
-    public void setSibv(String _value_) {
-        sibv = getDoubleFromString(_value_);
+    private static Object getSibv(BaseClass _this_) {
+        return ((PssRQB) _this_).getSibv();
     }
 
-    public String sibvToString() {
-        return sibv != null ? sibv.toString() : null;
+    private static void setSibv(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssRQB) _this_).setSibv((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssRQB) _this_).setSibv(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Lead lag time constant (&lt;i&gt;T4F&lt;/i&gt;) (&amp;gt;= 0). Typical value = 0,045.
+     * Lead lag time constant (<i>T4F</i>) (&gt;= 0). Typical value = 0,045.
      */
     private Double t4f; // Seconds
 
@@ -147,16 +184,22 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
         t4f = _value_;
     }
 
-    public void setT4f(String _value_) {
-        t4f = getDoubleFromString(_value_);
+    private static Object getT4f(BaseClass _this_) {
+        return ((PssRQB) _this_).getT4f();
     }
 
-    public String t4fToString() {
-        return t4f != null ? t4f.toString() : null;
+    private static void setT4f(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssRQB) _this_).setT4f((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssRQB) _this_).setT4f(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Input time constant (&lt;i&gt;T4M&lt;/i&gt;) (&amp;gt;= 0). Typical value = 5.
+     * Input time constant (<i>T4M</i>) (&gt;= 0). Typical value = 5.
      */
     private Double t4m; // Seconds
 
@@ -168,16 +211,22 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
         t4m = _value_;
     }
 
-    public void setT4m(String _value_) {
-        t4m = getDoubleFromString(_value_);
+    private static Object getT4m(BaseClass _this_) {
+        return ((PssRQB) _this_).getT4m();
     }
 
-    public String t4mToString() {
-        return t4m != null ? t4m.toString() : null;
+    private static void setT4m(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssRQB) _this_).setT4m((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssRQB) _this_).setT4m(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Speed time constant (&lt;i&gt;T4MOM&lt;/i&gt;) (&amp;gt;= 0). Typical value = 1,27.
+     * Speed time constant (<i>T4MOM</i>) (&gt;= 0). Typical value = 1,27.
      */
     private Double t4mom; // Seconds
 
@@ -189,16 +238,22 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
         t4mom = _value_;
     }
 
-    public void setT4mom(String _value_) {
-        t4mom = getDoubleFromString(_value_);
+    private static Object getT4mom(BaseClass _this_) {
+        return ((PssRQB) _this_).getT4mom();
     }
 
-    public String t4momToString() {
-        return t4mom != null ? t4mom.toString() : null;
+    private static void setT4mom(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssRQB) _this_).setT4mom((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssRQB) _this_).setT4mom(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Speed delay (&lt;i&gt;TOMD&lt;/i&gt;) (&amp;gt;= 0). Typical value = 0,02.
+     * Speed delay (<i>TOMD</i>) (&gt;= 0). Typical value = 0,02.
      */
     private Double tomd; // Seconds
 
@@ -210,16 +265,22 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
         tomd = _value_;
     }
 
-    public void setTomd(String _value_) {
-        tomd = getDoubleFromString(_value_);
+    private static Object getTomd(BaseClass _this_) {
+        return ((PssRQB) _this_).getTomd();
     }
 
-    public String tomdToString() {
-        return tomd != null ? tomd.toString() : null;
+    private static void setTomd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssRQB) _this_).setTomd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssRQB) _this_).setTomd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Speed time constant (&lt;i&gt;TOMSL&lt;/i&gt;) (&amp;gt;= 0). Typical value = 0,04.
+     * Speed time constant (<i>TOMSL</i>) (&gt;= 0). Typical value = 0,04.
      */
     private Double tomsl; // Seconds
 
@@ -231,12 +292,18 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
         tomsl = _value_;
     }
 
-    public void setTomsl(String _value_) {
-        tomsl = getDoubleFromString(_value_);
+    private static Object getTomsl(BaseClass _this_) {
+        return ((PssRQB) _this_).getTomsl();
     }
 
-    public String tomslToString() {
-        return tomsl != null ? tomsl.toString() : null;
+    private static void setTomsl(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PssRQB) _this_).setTomsl((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PssRQB) _this_).setTomsl(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -273,64 +340,35 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("PssRQB", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "PssRQB", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("PssRQB", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("PssRQB", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "PssRQB", attrName, value));
         }
     }
 
@@ -454,72 +492,56 @@ public class PssRQB extends PowerSystemStabilizerDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kdpm", new AttrDetails("PssRQB.kdpm", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kdpm", new AttrDetails("PssRQB.kdpm", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssRQB::getKdpm, PssRQB::setKdpm));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki2", new AttrDetails("PssRQB.ki2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ki2", new AttrDetails("PssRQB.ki2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssRQB::getKi2, PssRQB::setKi2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki3", new AttrDetails("PssRQB.ki3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ki3", new AttrDetails("PssRQB.ki3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssRQB::getKi3, PssRQB::setKi3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki4", new AttrDetails("PssRQB.ki4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ki4", new AttrDetails("PssRQB.ki4", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssRQB::getKi4, PssRQB::setKi4));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("sibv", new AttrDetails("PssRQB.sibv", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("sibv", new AttrDetails("PssRQB.sibv", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssRQB::getSibv, PssRQB::setSibv));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t4f", new AttrDetails("PssRQB.t4f", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t4f", new AttrDetails("PssRQB.t4f", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssRQB::getT4f, PssRQB::setT4f));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t4m", new AttrDetails("PssRQB.t4m", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t4m", new AttrDetails("PssRQB.t4m", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssRQB::getT4m, PssRQB::setT4m));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("t4mom", new AttrDetails("PssRQB.t4mom", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("t4mom", new AttrDetails("PssRQB.t4mom", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssRQB::getT4mom, PssRQB::setT4mom));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tomd", new AttrDetails("PssRQB.tomd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tomd", new AttrDetails("PssRQB.tomd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssRQB::getTomd, PssRQB::setTomd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tomsl", new AttrDetails("PssRQB.tomsl", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tomsl", new AttrDetails("PssRQB.tomsl", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PssRQB::getTomsl, PssRQB::setTomsl));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PssRQB().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PssRQB(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("kdpm", new GetterSetter(this::kdpmToString, null, this::setKdpm));
-        map.put("ki2", new GetterSetter(this::ki2ToString, null, this::setKi2));
-        map.put("ki3", new GetterSetter(this::ki3ToString, null, this::setKi3));
-        map.put("ki4", new GetterSetter(this::ki4ToString, null, this::setKi4));
-        map.put("sibv", new GetterSetter(this::sibvToString, null, this::setSibv));
-        map.put("t4f", new GetterSetter(this::t4fToString, null, this::setT4f));
-        map.put("t4m", new GetterSetter(this::t4mToString, null, this::setT4m));
-        map.put("t4mom", new GetterSetter(this::t4momToString, null, this::setT4mom));
-        map.put("tomd", new GetterSetter(this::tomdToString, null, this::setTomd));
-        map.put("tomsl", new GetterSetter(this::tomslToString, null, this::setTomsl));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

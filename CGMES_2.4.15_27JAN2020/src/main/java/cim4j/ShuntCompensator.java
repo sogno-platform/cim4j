@@ -23,10 +23,17 @@ public class ShuntCompensator extends RegulatingCondEq {
     private static final Logging LOG = Logging.getLogger(ShuntCompensator.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ShuntCompensator() {
-        setCimType("ShuntCompensator");
+    public ShuntCompensator(String rdfid) {
+        super("ShuntCompensator", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ShuntCompensator(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class ShuntCompensator extends RegulatingCondEq {
         return SvShuntCompensatorSections;
     }
 
-    public void setSvShuntCompensatorSections(BaseClass _object_) {
-        if (!(_object_ instanceof SvShuntCompensatorSections)) {
-            throw new IllegalArgumentException("Object is not SvShuntCompensatorSections");
-        }
+    public void setSvShuntCompensatorSections(SvShuntCompensatorSections _object_) {
         if (SvShuntCompensatorSections != _object_) {
-            SvShuntCompensatorSections = (SvShuntCompensatorSections) _object_;
+            SvShuntCompensatorSections = _object_;
             SvShuntCompensatorSections.setShuntCompensator(this);
         }
     }
 
-    public String SvShuntCompensatorSectionsToString() {
-        return SvShuntCompensatorSections != null ? SvShuntCompensatorSections.getRdfid() : null;
+    private static Object getSvShuntCompensatorSections(BaseClass _this_) {
+        return ((ShuntCompensator) _this_).getSvShuntCompensatorSections();
+    }
+
+    private static void setSvShuntCompensatorSections(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof SvShuntCompensatorSections) {
+            ((ShuntCompensator) _this_).setSvShuntCompensatorSections((SvShuntCompensatorSections) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not SvShuntCompensatorSections");
+        }
     }
 
     /**
@@ -67,12 +79,18 @@ public class ShuntCompensator extends RegulatingCondEq {
         aVRDelay = _value_;
     }
 
-    public void setAVRDelay(String _value_) {
-        aVRDelay = getDoubleFromString(_value_);
+    private static Object getAVRDelay(BaseClass _this_) {
+        return ((ShuntCompensator) _this_).getAVRDelay();
     }
 
-    public String aVRDelayToString() {
-        return aVRDelay != null ? aVRDelay.toString() : null;
+    private static void setAVRDelay(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ShuntCompensator) _this_).setAVRDelay((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ShuntCompensator) _this_).setAVRDelay(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -88,12 +106,18 @@ public class ShuntCompensator extends RegulatingCondEq {
         grounded = _value_;
     }
 
-    public void setGrounded(String _value_) {
-        grounded = getBooleanFromString(_value_);
+    private static Object getGrounded(BaseClass _this_) {
+        return ((ShuntCompensator) _this_).getGrounded();
     }
 
-    public String groundedToString() {
-        return grounded != null ? grounded.toString() : null;
+    private static void setGrounded(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ShuntCompensator) _this_).setGrounded((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ShuntCompensator) _this_).setGrounded(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -109,12 +133,18 @@ public class ShuntCompensator extends RegulatingCondEq {
         maximumSections = _value_;
     }
 
-    public void setMaximumSections(String _value_) {
-        maximumSections = getIntegerFromString(_value_);
+    private static Object getMaximumSections(BaseClass _this_) {
+        return ((ShuntCompensator) _this_).getMaximumSections();
     }
 
-    public String maximumSectionsToString() {
-        return maximumSections != null ? maximumSections.toString() : null;
+    private static void setMaximumSections(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((ShuntCompensator) _this_).setMaximumSections((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((ShuntCompensator) _this_).setMaximumSections(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -130,12 +160,18 @@ public class ShuntCompensator extends RegulatingCondEq {
         nomU = _value_;
     }
 
-    public void setNomU(String _value_) {
-        nomU = getDoubleFromString(_value_);
+    private static Object getNomU(BaseClass _this_) {
+        return ((ShuntCompensator) _this_).getNomU();
     }
 
-    public String nomUToString() {
-        return nomU != null ? nomU.toString() : null;
+    private static void setNomU(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ShuntCompensator) _this_).setNomU((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ShuntCompensator) _this_).setNomU(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -151,12 +187,18 @@ public class ShuntCompensator extends RegulatingCondEq {
         normalSections = _value_;
     }
 
-    public void setNormalSections(String _value_) {
-        normalSections = getIntegerFromString(_value_);
+    private static Object getNormalSections(BaseClass _this_) {
+        return ((ShuntCompensator) _this_).getNormalSections();
     }
 
-    public String normalSectionsToString() {
-        return normalSections != null ? normalSections.toString() : null;
+    private static void setNormalSections(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((ShuntCompensator) _this_).setNormalSections((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((ShuntCompensator) _this_).setNormalSections(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -172,12 +214,18 @@ public class ShuntCompensator extends RegulatingCondEq {
         sections = _value_;
     }
 
-    public void setSections(String _value_) {
-        sections = getDoubleFromString(_value_);
+    private static Object getSections(BaseClass _this_) {
+        return ((ShuntCompensator) _this_).getSections();
     }
 
-    public String sectionsToString() {
-        return sections != null ? sections.toString() : null;
+    private static void setSections(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ShuntCompensator) _this_).setSections((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ShuntCompensator) _this_).setSections(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -193,12 +241,18 @@ public class ShuntCompensator extends RegulatingCondEq {
         switchOnCount = _value_;
     }
 
-    public void setSwitchOnCount(String _value_) {
-        switchOnCount = getIntegerFromString(_value_);
+    private static Object getSwitchOnCount(BaseClass _this_) {
+        return ((ShuntCompensator) _this_).getSwitchOnCount();
     }
 
-    public String switchOnCountToString() {
-        return switchOnCount != null ? switchOnCount.toString() : null;
+    private static void setSwitchOnCount(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((ShuntCompensator) _this_).setSwitchOnCount((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((ShuntCompensator) _this_).setSwitchOnCount(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -214,8 +268,16 @@ public class ShuntCompensator extends RegulatingCondEq {
         switchOnDate = _value_;
     }
 
-    public String switchOnDateToString() {
-        return switchOnDate != null ? switchOnDate.toString() : null;
+    private static Object getSwitchOnDate(BaseClass _this_) {
+        return ((ShuntCompensator) _this_).getSwitchOnDate();
+    }
+
+    private static void setSwitchOnDate(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((ShuntCompensator) _this_).setSwitchOnDate((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -231,12 +293,18 @@ public class ShuntCompensator extends RegulatingCondEq {
         voltageSensitivity = _value_;
     }
 
-    public void setVoltageSensitivity(String _value_) {
-        voltageSensitivity = getDoubleFromString(_value_);
+    private static Object getVoltageSensitivity(BaseClass _this_) {
+        return ((ShuntCompensator) _this_).getVoltageSensitivity();
     }
 
-    public String voltageSensitivityToString() {
-        return voltageSensitivity != null ? voltageSensitivity.toString() : null;
+    private static void setVoltageSensitivity(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ShuntCompensator) _this_).setVoltageSensitivity((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ShuntCompensator) _this_).setVoltageSensitivity(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -273,64 +341,35 @@ public class ShuntCompensator extends RegulatingCondEq {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ShuntCompensator", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ShuntCompensator", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ShuntCompensator", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ShuntCompensator", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ShuntCompensator", attrName, value));
         }
     }
 
@@ -454,72 +493,56 @@ public class ShuntCompensator extends RegulatingCondEq {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("SvShuntCompensatorSections", new AttrDetails("ShuntCompensator.SvShuntCompensatorSections", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("SvShuntCompensatorSections", new AttrDetails("ShuntCompensator.SvShuntCompensatorSections", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ShuntCompensator::getSvShuntCompensatorSections, ShuntCompensator::setSvShuntCompensatorSections));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("aVRDelay", new AttrDetails("ShuntCompensator.aVRDelay", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("aVRDelay", new AttrDetails("ShuntCompensator.aVRDelay", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ShuntCompensator::getAVRDelay, ShuntCompensator::setAVRDelay));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("grounded", new AttrDetails("ShuntCompensator.grounded", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("grounded", new AttrDetails("ShuntCompensator.grounded", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ShuntCompensator::getGrounded, ShuntCompensator::setGrounded));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maximumSections", new AttrDetails("ShuntCompensator.maximumSections", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("maximumSections", new AttrDetails("ShuntCompensator.maximumSections", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ShuntCompensator::getMaximumSections, ShuntCompensator::setMaximumSections));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("nomU", new AttrDetails("ShuntCompensator.nomU", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("nomU", new AttrDetails("ShuntCompensator.nomU", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ShuntCompensator::getNomU, ShuntCompensator::setNomU));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("normalSections", new AttrDetails("ShuntCompensator.normalSections", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("normalSections", new AttrDetails("ShuntCompensator.normalSections", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ShuntCompensator::getNormalSections, ShuntCompensator::setNormalSections));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("sections", new AttrDetails("ShuntCompensator.sections", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("sections", new AttrDetails("ShuntCompensator.sections", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ShuntCompensator::getSections, ShuntCompensator::setSections));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("switchOnCount", new AttrDetails("ShuntCompensator.switchOnCount", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("switchOnCount", new AttrDetails("ShuntCompensator.switchOnCount", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ShuntCompensator::getSwitchOnCount, ShuntCompensator::setSwitchOnCount));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("switchOnDate", new AttrDetails("ShuntCompensator.switchOnDate", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("switchOnDate", new AttrDetails("ShuntCompensator.switchOnDate", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ShuntCompensator::getSwitchOnDate, ShuntCompensator::setSwitchOnDate));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("voltageSensitivity", new AttrDetails("ShuntCompensator.voltageSensitivity", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("voltageSensitivity", new AttrDetails("ShuntCompensator.voltageSensitivity", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ShuntCompensator::getVoltageSensitivity, ShuntCompensator::setVoltageSensitivity));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ShuntCompensator().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ShuntCompensator(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("SvShuntCompensatorSections", new GetterSetter(this::SvShuntCompensatorSectionsToString, this::setSvShuntCompensatorSections, null));
-        map.put("aVRDelay", new GetterSetter(this::aVRDelayToString, null, this::setAVRDelay));
-        map.put("grounded", new GetterSetter(this::groundedToString, null, this::setGrounded));
-        map.put("maximumSections", new GetterSetter(this::maximumSectionsToString, null, this::setMaximumSections));
-        map.put("nomU", new GetterSetter(this::nomUToString, null, this::setNomU));
-        map.put("normalSections", new GetterSetter(this::normalSectionsToString, null, this::setNormalSections));
-        map.put("sections", new GetterSetter(this::sectionsToString, null, this::setSections));
-        map.put("switchOnCount", new GetterSetter(this::switchOnCountToString, null, this::setSwitchOnCount));
-        map.put("switchOnDate", new GetterSetter(this::switchOnDateToString, null, this::setSwitchOnDate));
-        map.put("voltageSensitivity", new GetterSetter(this::voltageSensitivityToString, null, this::setVoltageSensitivity));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

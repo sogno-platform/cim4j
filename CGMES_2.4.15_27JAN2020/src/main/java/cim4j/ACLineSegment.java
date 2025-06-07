@@ -23,10 +23,17 @@ public class ACLineSegment extends Conductor {
     private static final Logging LOG = Logging.getLogger(ACLineSegment.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ACLineSegment() {
-        setCimType("ACLineSegment");
+    public ACLineSegment(String rdfid) {
+        super("ACLineSegment", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ACLineSegment(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -42,12 +49,18 @@ public class ACLineSegment extends Conductor {
         b0ch = _value_;
     }
 
-    public void setB0ch(String _value_) {
-        b0ch = getDoubleFromString(_value_);
+    private static Object getB0ch(BaseClass _this_) {
+        return ((ACLineSegment) _this_).getB0ch();
     }
 
-    public String b0chToString() {
-        return b0ch != null ? b0ch.toString() : null;
+    private static void setB0ch(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACLineSegment) _this_).setB0ch((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACLineSegment) _this_).setB0ch(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -63,12 +76,18 @@ public class ACLineSegment extends Conductor {
         bch = _value_;
     }
 
-    public void setBch(String _value_) {
-        bch = getDoubleFromString(_value_);
+    private static Object getBch(BaseClass _this_) {
+        return ((ACLineSegment) _this_).getBch();
     }
 
-    public String bchToString() {
-        return bch != null ? bch.toString() : null;
+    private static void setBch(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACLineSegment) _this_).setBch((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACLineSegment) _this_).setBch(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -84,12 +103,18 @@ public class ACLineSegment extends Conductor {
         g0ch = _value_;
     }
 
-    public void setG0ch(String _value_) {
-        g0ch = getDoubleFromString(_value_);
+    private static Object getG0ch(BaseClass _this_) {
+        return ((ACLineSegment) _this_).getG0ch();
     }
 
-    public String g0chToString() {
-        return g0ch != null ? g0ch.toString() : null;
+    private static void setG0ch(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACLineSegment) _this_).setG0ch((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACLineSegment) _this_).setG0ch(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -105,12 +130,18 @@ public class ACLineSegment extends Conductor {
         gch = _value_;
     }
 
-    public void setGch(String _value_) {
-        gch = getDoubleFromString(_value_);
+    private static Object getGch(BaseClass _this_) {
+        return ((ACLineSegment) _this_).getGch();
     }
 
-    public String gchToString() {
-        return gch != null ? gch.toString() : null;
+    private static void setGch(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACLineSegment) _this_).setGch((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACLineSegment) _this_).setGch(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,12 +157,18 @@ public class ACLineSegment extends Conductor {
         r = _value_;
     }
 
-    public void setR(String _value_) {
-        r = getDoubleFromString(_value_);
+    private static Object getR(BaseClass _this_) {
+        return ((ACLineSegment) _this_).getR();
     }
 
-    public String rToString() {
-        return r != null ? r.toString() : null;
+    private static void setR(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACLineSegment) _this_).setR((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACLineSegment) _this_).setR(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -147,12 +184,18 @@ public class ACLineSegment extends Conductor {
         r0 = _value_;
     }
 
-    public void setR0(String _value_) {
-        r0 = getDoubleFromString(_value_);
+    private static Object getR0(BaseClass _this_) {
+        return ((ACLineSegment) _this_).getR0();
     }
 
-    public String r0ToString() {
-        return r0 != null ? r0.toString() : null;
+    private static void setR0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACLineSegment) _this_).setR0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACLineSegment) _this_).setR0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -168,12 +211,18 @@ public class ACLineSegment extends Conductor {
         shortCircuitEndTemperature = _value_;
     }
 
-    public void setShortCircuitEndTemperature(String _value_) {
-        shortCircuitEndTemperature = getDoubleFromString(_value_);
+    private static Object getShortCircuitEndTemperature(BaseClass _this_) {
+        return ((ACLineSegment) _this_).getShortCircuitEndTemperature();
     }
 
-    public String shortCircuitEndTemperatureToString() {
-        return shortCircuitEndTemperature != null ? shortCircuitEndTemperature.toString() : null;
+    private static void setShortCircuitEndTemperature(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACLineSegment) _this_).setShortCircuitEndTemperature((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACLineSegment) _this_).setShortCircuitEndTemperature(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,12 +238,18 @@ public class ACLineSegment extends Conductor {
         x = _value_;
     }
 
-    public void setX(String _value_) {
-        x = getDoubleFromString(_value_);
+    private static Object getX(BaseClass _this_) {
+        return ((ACLineSegment) _this_).getX();
     }
 
-    public String xToString() {
-        return x != null ? x.toString() : null;
+    private static void setX(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACLineSegment) _this_).setX((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACLineSegment) _this_).setX(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -210,12 +265,18 @@ public class ACLineSegment extends Conductor {
         x0 = _value_;
     }
 
-    public void setX0(String _value_) {
-        x0 = getDoubleFromString(_value_);
+    private static Object getX0(BaseClass _this_) {
+        return ((ACLineSegment) _this_).getX0();
     }
 
-    public String x0ToString() {
-        return x0 != null ? x0.toString() : null;
+    private static void setX0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACLineSegment) _this_).setX0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACLineSegment) _this_).setX0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -252,64 +313,35 @@ public class ACLineSegment extends Conductor {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ACLineSegment", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ACLineSegment", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ACLineSegment", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ACLineSegment", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ACLineSegment", attrName, value));
         }
     }
 
@@ -433,66 +465,51 @@ public class ACLineSegment extends Conductor {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("b0ch", new AttrDetails("ACLineSegment.b0ch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("b0ch", new AttrDetails("ACLineSegment.b0ch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACLineSegment::getB0ch, ACLineSegment::setB0ch));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("bch", new AttrDetails("ACLineSegment.bch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("bch", new AttrDetails("ACLineSegment.bch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACLineSegment::getBch, ACLineSegment::setBch));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("g0ch", new AttrDetails("ACLineSegment.g0ch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("g0ch", new AttrDetails("ACLineSegment.g0ch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACLineSegment::getG0ch, ACLineSegment::setG0ch));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("gch", new AttrDetails("ACLineSegment.gch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("gch", new AttrDetails("ACLineSegment.gch", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACLineSegment::getGch, ACLineSegment::setGch));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r", new AttrDetails("ACLineSegment.r", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("r", new AttrDetails("ACLineSegment.r", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACLineSegment::getR, ACLineSegment::setR));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r0", new AttrDetails("ACLineSegment.r0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("r0", new AttrDetails("ACLineSegment.r0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACLineSegment::getR0, ACLineSegment::setR0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("shortCircuitEndTemperature", new AttrDetails("ACLineSegment.shortCircuitEndTemperature", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("shortCircuitEndTemperature", new AttrDetails("ACLineSegment.shortCircuitEndTemperature", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACLineSegment::getShortCircuitEndTemperature, ACLineSegment::setShortCircuitEndTemperature));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x", new AttrDetails("ACLineSegment.x", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("x", new AttrDetails("ACLineSegment.x", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACLineSegment::getX, ACLineSegment::setX));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x0", new AttrDetails("ACLineSegment.x0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("x0", new AttrDetails("ACLineSegment.x0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACLineSegment::getX0, ACLineSegment::setX0));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ACLineSegment().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ACLineSegment(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("b0ch", new GetterSetter(this::b0chToString, null, this::setB0ch));
-        map.put("bch", new GetterSetter(this::bchToString, null, this::setBch));
-        map.put("g0ch", new GetterSetter(this::g0chToString, null, this::setG0ch));
-        map.put("gch", new GetterSetter(this::gchToString, null, this::setGch));
-        map.put("r", new GetterSetter(this::rToString, null, this::setR));
-        map.put("r0", new GetterSetter(this::r0ToString, null, this::setR0));
-        map.put("shortCircuitEndTemperature", new GetterSetter(this::shortCircuitEndTemperatureToString, null, this::setShortCircuitEndTemperature));
-        map.put("x", new GetterSetter(this::xToString, null, this::setX));
-        map.put("x0", new GetterSetter(this::x0ToString, null, this::setX0));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

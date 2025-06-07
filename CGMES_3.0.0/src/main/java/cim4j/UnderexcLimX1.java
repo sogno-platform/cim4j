@@ -23,14 +23,21 @@ public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
     private static final Logging LOG = Logging.getLogger(UnderexcLimX1.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public UnderexcLimX1() {
-        setCimType("UnderexcLimX1");
+    public UnderexcLimX1(String rdfid) {
+        super("UnderexcLimX1", rdfid);
     }
 
     /**
-     * Minimum excitation limit slope (&lt;i&gt;K&lt;/i&gt;) (&amp;gt; 0).
+     * Constructor for subclasses.
+     */
+    protected UnderexcLimX1(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Minimum excitation limit slope (<i>K</i>) (&gt; 0).
      */
     private Double k; // PU
 
@@ -42,16 +49,22 @@ public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
         k = _value_;
     }
 
-    public void setK(String _value_) {
-        k = getDoubleFromString(_value_);
+    private static Object getK(BaseClass _this_) {
+        return ((UnderexcLimX1) _this_).getK();
     }
 
-    public String kToString() {
-        return k != null ? k.toString() : null;
+    private static void setK(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimX1) _this_).setK((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimX1) _this_).setK(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Differential gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;F2&lt;/sub&gt;&lt;/i&gt;).
+     * Differential gain (<i>K</i><i><sub>F2</sub></i>).
      */
     private Double kf2; // PU
 
@@ -63,16 +76,22 @@ public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
         kf2 = _value_;
     }
 
-    public void setKf2(String _value_) {
-        kf2 = getDoubleFromString(_value_);
+    private static Object getKf2(BaseClass _this_) {
+        return ((UnderexcLimX1) _this_).getKf2();
     }
 
-    public String kf2ToString() {
-        return kf2 != null ? kf2.toString() : null;
+    private static void setKf2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimX1) _this_).setKf2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimX1) _this_).setKf2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum excitation limit gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;M&lt;/sub&gt;&lt;/i&gt;).
+     * Minimum excitation limit gain (<i>K</i><i><sub>M</sub></i>).
      */
     private Double km; // PU
 
@@ -84,16 +103,22 @@ public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
         km = _value_;
     }
 
-    public void setKm(String _value_) {
-        km = getDoubleFromString(_value_);
+    private static Object getKm(BaseClass _this_) {
+        return ((UnderexcLimX1) _this_).getKm();
     }
 
-    public String kmToString() {
-        return km != null ? km.toString() : null;
+    private static void setKm(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimX1) _this_).setKm((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimX1) _this_).setKm(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum excitation limit value (&lt;i&gt;MELMAX&lt;/i&gt;).
+     * Minimum excitation limit value (<i>MELMAX</i>).
      */
     private Double melmax; // PU
 
@@ -105,16 +130,22 @@ public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
         melmax = _value_;
     }
 
-    public void setMelmax(String _value_) {
-        melmax = getDoubleFromString(_value_);
+    private static Object getMelmax(BaseClass _this_) {
+        return ((UnderexcLimX1) _this_).getMelmax();
     }
 
-    public String melmaxToString() {
-        return melmax != null ? melmax.toString() : null;
+    private static void setMelmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimX1) _this_).setMelmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimX1) _this_).setMelmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Differential time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;F2&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).
+     * Differential time constant (<i>T</i><i><sub>F2</sub></i>) (&gt;= 0).
      */
     private Double tf2; // Seconds
 
@@ -126,16 +157,22 @@ public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
         tf2 = _value_;
     }
 
-    public void setTf2(String _value_) {
-        tf2 = getDoubleFromString(_value_);
+    private static Object getTf2(BaseClass _this_) {
+        return ((UnderexcLimX1) _this_).getTf2();
     }
 
-    public String tf2ToString() {
-        return tf2 != null ? tf2.toString() : null;
+    private static void setTf2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimX1) _this_).setTf2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimX1) _this_).setTf2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum excitation limit time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;M&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).
+     * Minimum excitation limit time constant (<i>T</i><i><sub>M</sub></i>) (&gt;= 0).
      */
     private Double tm; // Seconds
 
@@ -147,12 +184,18 @@ public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
         tm = _value_;
     }
 
-    public void setTm(String _value_) {
-        tm = getDoubleFromString(_value_);
+    private static Object getTm(BaseClass _this_) {
+        return ((UnderexcLimX1) _this_).getTm();
     }
 
-    public String tmToString() {
-        return tm != null ? tm.toString() : null;
+    private static void setTm(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((UnderexcLimX1) _this_).setTm((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((UnderexcLimX1) _this_).setTm(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,64 +232,35 @@ public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("UnderexcLimX1", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "UnderexcLimX1", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("UnderexcLimX1", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("UnderexcLimX1", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "UnderexcLimX1", attrName, value));
         }
     }
 
@@ -370,48 +384,36 @@ public class UnderexcLimX1 extends UnderexcitationLimiterDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k", new AttrDetails("UnderexcLimX1.k", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("k", new AttrDetails("UnderexcLimX1.k", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimX1::getK, UnderexcLimX1::setK));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kf2", new AttrDetails("UnderexcLimX1.kf2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kf2", new AttrDetails("UnderexcLimX1.kf2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimX1::getKf2, UnderexcLimX1::setKf2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("km", new AttrDetails("UnderexcLimX1.km", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("km", new AttrDetails("UnderexcLimX1.km", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimX1::getKm, UnderexcLimX1::setKm));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("melmax", new AttrDetails("UnderexcLimX1.melmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("melmax", new AttrDetails("UnderexcLimX1.melmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimX1::getMelmax, UnderexcLimX1::setMelmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf2", new AttrDetails("UnderexcLimX1.tf2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tf2", new AttrDetails("UnderexcLimX1.tf2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimX1::getTf2, UnderexcLimX1::setTf2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tm", new AttrDetails("UnderexcLimX1.tm", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tm", new AttrDetails("UnderexcLimX1.tm", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, UnderexcLimX1::getTm, UnderexcLimX1::setTm));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new UnderexcLimX1().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new UnderexcLimX1(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("k", new GetterSetter(this::kToString, null, this::setK));
-        map.put("kf2", new GetterSetter(this::kf2ToString, null, this::setKf2));
-        map.put("km", new GetterSetter(this::kmToString, null, this::setKm));
-        map.put("melmax", new GetterSetter(this::melmaxToString, null, this::setMelmax));
-        map.put("tf2", new GetterSetter(this::tf2ToString, null, this::setTf2));
-        map.put("tm", new GetterSetter(this::tmToString, null, this::setTm));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

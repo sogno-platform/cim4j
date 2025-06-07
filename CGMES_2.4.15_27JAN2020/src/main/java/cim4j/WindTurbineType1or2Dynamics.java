@@ -23,10 +23,17 @@ public class WindTurbineType1or2Dynamics extends DynamicsFunctionBlock {
     private static final Logging LOG = Logging.getLogger(WindTurbineType1or2Dynamics.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindTurbineType1or2Dynamics() {
-        setCimType("WindTurbineType1or2Dynamics");
+    public WindTurbineType1or2Dynamics(String rdfid) {
+        super("WindTurbineType1or2Dynamics", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindTurbineType1or2Dynamics(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class WindTurbineType1or2Dynamics extends DynamicsFunctionBlock {
         return AsynchronousMachineDynamics;
     }
 
-    public void setAsynchronousMachineDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof AsynchronousMachineDynamics)) {
-            throw new IllegalArgumentException("Object is not AsynchronousMachineDynamics");
-        }
+    public void setAsynchronousMachineDynamics(AsynchronousMachineDynamics _object_) {
         if (AsynchronousMachineDynamics != _object_) {
-            AsynchronousMachineDynamics = (AsynchronousMachineDynamics) _object_;
+            AsynchronousMachineDynamics = _object_;
             AsynchronousMachineDynamics.setWindTurbineType1or2Dynamics(this);
         }
     }
 
-    public String AsynchronousMachineDynamicsToString() {
-        return AsynchronousMachineDynamics != null ? AsynchronousMachineDynamics.getRdfid() : null;
+    private static Object getAsynchronousMachineDynamics(BaseClass _this_) {
+        return ((WindTurbineType1or2Dynamics) _this_).getAsynchronousMachineDynamics();
+    }
+
+    private static void setAsynchronousMachineDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof AsynchronousMachineDynamics) {
+            ((WindTurbineType1or2Dynamics) _this_).setAsynchronousMachineDynamics((AsynchronousMachineDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not AsynchronousMachineDynamics");
+        }
     }
 
     /**
@@ -61,18 +73,23 @@ public class WindTurbineType1or2Dynamics extends DynamicsFunctionBlock {
         return RemoteInputSignal;
     }
 
-    public void setRemoteInputSignal(BaseClass _object_) {
-        if (!(_object_ instanceof RemoteInputSignal)) {
-            throw new IllegalArgumentException("Object is not RemoteInputSignal");
-        }
+    public void setRemoteInputSignal(RemoteInputSignal _object_) {
         if (RemoteInputSignal != _object_) {
-            RemoteInputSignal = (RemoteInputSignal) _object_;
+            RemoteInputSignal = _object_;
             RemoteInputSignal.setWindTurbineType1or2Dynamics(this);
         }
     }
 
-    public String RemoteInputSignalToString() {
-        return RemoteInputSignal != null ? RemoteInputSignal.getRdfid() : null;
+    private static Object getRemoteInputSignal(BaseClass _this_) {
+        return ((WindTurbineType1or2Dynamics) _this_).getRemoteInputSignal();
+    }
+
+    private static void setRemoteInputSignal(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof RemoteInputSignal) {
+            ((WindTurbineType1or2Dynamics) _this_).setRemoteInputSignal((RemoteInputSignal) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not RemoteInputSignal");
+        }
     }
 
     /**
@@ -109,64 +126,35 @@ public class WindTurbineType1or2Dynamics extends DynamicsFunctionBlock {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindTurbineType1or2Dynamics", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindTurbineType1or2Dynamics", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindTurbineType1or2Dynamics", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindTurbineType1or2Dynamics", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindTurbineType1or2Dynamics", attrName, value));
         }
     }
 
@@ -290,24 +278,16 @@ public class WindTurbineType1or2Dynamics extends DynamicsFunctionBlock {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("AsynchronousMachineDynamics", new AttrDetails("WindTurbineType1or2Dynamics.AsynchronousMachineDynamics", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("AsynchronousMachineDynamics", new AttrDetails("WindTurbineType1or2Dynamics.AsynchronousMachineDynamics", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, WindTurbineType1or2Dynamics::getAsynchronousMachineDynamics, WindTurbineType1or2Dynamics::setAsynchronousMachineDynamics));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("RemoteInputSignal", new AttrDetails("WindTurbineType1or2Dynamics.RemoteInputSignal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("RemoteInputSignal", new AttrDetails("WindTurbineType1or2Dynamics.RemoteInputSignal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, WindTurbineType1or2Dynamics::getRemoteInputSignal, WindTurbineType1or2Dynamics::setRemoteInputSignal));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindTurbineType1or2Dynamics().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindTurbineType1or2Dynamics(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("AsynchronousMachineDynamics", new GetterSetter(this::AsynchronousMachineDynamicsToString, this::setAsynchronousMachineDynamics, null));
-        map.put("RemoteInputSignal", new GetterSetter(this::RemoteInputSignalToString, this::setRemoteInputSignal, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

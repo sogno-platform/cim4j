@@ -23,14 +23,21 @@ public class ExcST6B extends ExcitationSystemDynamics {
     private static final Logging LOG = Logging.getLogger(ExcST6B.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ExcST6B() {
-        setCimType("ExcST6B");
+    public ExcST6B(String rdfid) {
+        super("ExcST6B", rdfid);
     }
 
     /**
-     * Exciter output current limit reference (&lt;i&gt;Ilr&lt;/i&gt;) (&amp;gt; 0).  Typical value = 4,164.
+     * Constructor for subclasses.
+     */
+    protected ExcST6B(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Exciter output current limit reference (<i>Ilr</i>) (&gt; 0).  Typical value = 4,164.
      */
     private Double ilr; // PU
 
@@ -42,16 +49,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         ilr = _value_;
     }
 
-    public void setIlr(String _value_) {
-        ilr = getDoubleFromString(_value_);
+    private static Object getIlr(BaseClass _this_) {
+        return ((ExcST6B) _this_).getIlr();
     }
 
-    public String ilrToString() {
-        return ilr != null ? ilr.toString() : null;
+    private static void setIlr(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setIlr((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setIlr(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Selector (&lt;i&gt;K1&lt;/i&gt;). true = feedback is from &lt;i&gt;Ifd&lt;/i&gt; false = feedback is not from &lt;i&gt;Ifd&lt;/i&gt;. Typical value = true.
+     * Selector (<i>K1</i>). true = feedback is from <i>Ifd</i> false = feedback is not from <i>Ifd</i>. Typical value = true.
      */
     private Boolean k1; // Boolean
 
@@ -63,16 +76,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         k1 = _value_;
     }
 
-    public void setK1(String _value_) {
-        k1 = getBooleanFromString(_value_);
+    private static Object getK1(BaseClass _this_) {
+        return ((ExcST6B) _this_).getK1();
     }
 
-    public String k1ToString() {
-        return k1 != null ? k1.toString() : null;
+    private static void setK1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ExcST6B) _this_).setK1((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setK1(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
-     * Exciter output current limit adjustment (&lt;i&gt;Kcl&lt;/i&gt;) (&amp;gt; 0).  Typical value = 1,0577.
+     * Exciter output current limit adjustment (<i>Kcl</i>) (&gt; 0).  Typical value = 1,0577.
      */
     private Double kcl; // PU
 
@@ -84,16 +103,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         kcl = _value_;
     }
 
-    public void setKcl(String _value_) {
-        kcl = getDoubleFromString(_value_);
+    private static Object getKcl(BaseClass _this_) {
+        return ((ExcST6B) _this_).getKcl();
     }
 
-    public String kclToString() {
-        return kcl != null ? kcl.toString() : null;
+    private static void setKcl(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setKcl((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setKcl(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Pre-control gain constant of the inner loop field regulator (&lt;i&gt;Kff&lt;/i&gt;).  Typical value = 1.
+     * Pre-control gain constant of the inner loop field regulator (<i>Kff</i>).  Typical value = 1.
      */
     private Double kff; // PU
 
@@ -105,16 +130,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         kff = _value_;
     }
 
-    public void setKff(String _value_) {
-        kff = getDoubleFromString(_value_);
+    private static Object getKff(BaseClass _this_) {
+        return ((ExcST6B) _this_).getKff();
     }
 
-    public String kffToString() {
-        return kff != null ? kff.toString() : null;
+    private static void setKff(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setKff((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setKff(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Feedback gain constant of the inner loop field regulator (&lt;i&gt;Kg&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 1.
+     * Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).  Typical value = 1.
      */
     private Double kg; // PU
 
@@ -126,16 +157,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         kg = _value_;
     }
 
-    public void setKg(String _value_) {
-        kg = getDoubleFromString(_value_);
+    private static Object getKg(BaseClass _this_) {
+        return ((ExcST6B) _this_).getKg();
     }
 
-    public String kgToString() {
-        return kg != null ? kg.toString() : null;
+    private static void setKg(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setKg((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setKg(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage regulator integral gain (&lt;i&gt;Kia&lt;/i&gt;) (&amp;gt; 0).  Typical value = 45,094.
+     * Voltage regulator integral gain (<i>Kia</i>) (&gt; 0).  Typical value = 45,094.
      */
     private Double kia; // PU
 
@@ -147,16 +184,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         kia = _value_;
     }
 
-    public void setKia(String _value_) {
-        kia = getDoubleFromString(_value_);
+    private static Object getKia(BaseClass _this_) {
+        return ((ExcST6B) _this_).getKia();
     }
 
-    public String kiaToString() {
-        return kia != null ? kia.toString() : null;
+    private static void setKia(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setKia((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setKia(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Exciter output current limit adjustment (&lt;i&gt;Kcl&lt;/i&gt;) (&amp;gt; 0).  Typical value = 17,33.
+     * Exciter output current limit adjustment (<i>Kcl</i>) (&gt; 0).  Typical value = 17,33.
      */
     private Double klr; // PU
 
@@ -168,16 +211,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         klr = _value_;
     }
 
-    public void setKlr(String _value_) {
-        klr = getDoubleFromString(_value_);
+    private static Object getKlr(BaseClass _this_) {
+        return ((ExcST6B) _this_).getKlr();
     }
 
-    public String klrToString() {
-        return klr != null ? klr.toString() : null;
+    private static void setKlr(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setKlr((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setKlr(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Forward gain constant of the inner loop field regulator (&lt;i&gt;Km&lt;/i&gt;).  Typical value = 1.
+     * Forward gain constant of the inner loop field regulator (<i>Km</i>).  Typical value = 1.
      */
     private Double km; // PU
 
@@ -189,16 +238,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         km = _value_;
     }
 
-    public void setKm(String _value_) {
-        km = getDoubleFromString(_value_);
+    private static Object getKm(BaseClass _this_) {
+        return ((ExcST6B) _this_).getKm();
     }
 
-    public String kmToString() {
-        return km != null ? km.toString() : null;
+    private static void setKm(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setKm((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setKm(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage regulator proportional gain (&lt;i&gt;Kpa&lt;/i&gt;) (&amp;gt; 0).  Typical value = 18,038.
+     * Voltage regulator proportional gain (<i>Kpa</i>) (&gt; 0).  Typical value = 18,038.
      */
     private Double kpa; // PU
 
@@ -210,16 +265,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         kpa = _value_;
     }
 
-    public void setKpa(String _value_) {
-        kpa = getDoubleFromString(_value_);
+    private static Object getKpa(BaseClass _this_) {
+        return ((ExcST6B) _this_).getKpa();
     }
 
-    public String kpaToString() {
-        return kpa != null ? kpa.toString() : null;
+    private static void setKpa(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setKpa((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setKpa(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage regulator derivative gain (&lt;i&gt;Kvd&lt;/i&gt;).  Typical value = 0.
+     * Voltage regulator derivative gain (<i>Kvd</i>).  Typical value = 0.
      */
     private Double kvd; // PU
 
@@ -231,16 +292,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         kvd = _value_;
     }
 
-    public void setKvd(String _value_) {
-        kvd = getDoubleFromString(_value_);
+    private static Object getKvd(BaseClass _this_) {
+        return ((ExcST6B) _this_).getKvd();
     }
 
-    public String kvdToString() {
-        return kvd != null ? kvd.toString() : null;
+    private static void setKvd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setKvd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setKvd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * OEL input selector (&lt;i&gt;OELin&lt;/i&gt;).  Typical value = noOELinput (corresponds to &lt;i&gt;OELin&lt;/i&gt; = 0 on diagram).
+     * OEL input selector (<i>OELin</i>).  Typical value = noOELinput (corresponds to <i>OELin</i> = 0 on diagram).
      */
     private String oelin; // ExcST6BOELselectorKind
 
@@ -252,12 +319,20 @@ public class ExcST6B extends ExcitationSystemDynamics {
         oelin = _value_;
     }
 
-    public String oelinToString() {
-        return oelin;
+    private static Object getOelin(BaseClass _this_) {
+        return ((ExcST6B) _this_).getOelin();
+    }
+
+    private static void setOelin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setOelin((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
-     * Feedback time constant of inner loop field voltage regulator (&lt;i&gt;Tg&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,02.
+     * Feedback time constant of inner loop field voltage regulator (<i>Tg</i>) (&gt;= 0).  Typical value = 0,02.
      */
     private Double tg; // Seconds
 
@@ -269,16 +344,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         tg = _value_;
     }
 
-    public void setTg(String _value_) {
-        tg = getDoubleFromString(_value_);
+    private static Object getTg(BaseClass _this_) {
+        return ((ExcST6B) _this_).getTg();
     }
 
-    public String tgToString() {
-        return tg != null ? tg.toString() : null;
+    private static void setTg(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setTg((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setTg(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Rectifier firing time constant (&lt;i&gt;Ts&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Rectifier firing time constant (<i>Ts</i>) (&gt;= 0).  Typical value = 0.
      */
     private Double ts; // Seconds
 
@@ -290,16 +371,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         ts = _value_;
     }
 
-    public void setTs(String _value_) {
-        ts = getDoubleFromString(_value_);
+    private static Object getTs(BaseClass _this_) {
+        return ((ExcST6B) _this_).getTs();
     }
 
-    public String tsToString() {
-        return ts != null ? ts.toString() : null;
+    private static void setTs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setTs((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setTs(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage regulator derivative gain (&lt;i&gt;Tvd&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Voltage regulator derivative gain (<i>Tvd</i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tvd; // Seconds
 
@@ -311,16 +398,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         tvd = _value_;
     }
 
-    public void setTvd(String _value_) {
-        tvd = getDoubleFromString(_value_);
+    private static Object getTvd(BaseClass _this_) {
+        return ((ExcST6B) _this_).getTvd();
     }
 
-    public String tvdToString() {
-        return tvd != null ? tvd.toString() : null;
+    private static void setTvd(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setTvd((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setTvd(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum voltage regulator output (&lt;i&gt;Vamax&lt;/i&gt;) (&amp;gt; 0).  Typical value = 4,81.
+     * Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).  Typical value = 4,81.
      */
     private Double vamax; // PU
 
@@ -332,16 +425,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         vamax = _value_;
     }
 
-    public void setVamax(String _value_) {
-        vamax = getDoubleFromString(_value_);
+    private static Object getVamax(BaseClass _this_) {
+        return ((ExcST6B) _this_).getVamax();
     }
 
-    public String vamaxToString() {
-        return vamax != null ? vamax.toString() : null;
+    private static void setVamax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setVamax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setVamax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum voltage regulator output (&lt;i&gt;Vamin&lt;/i&gt;) (&amp;lt; 0).  Typical value = -3,85.
+     * Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).  Typical value = -3,85.
      */
     private Double vamin; // PU
 
@@ -353,16 +452,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         vamin = _value_;
     }
 
-    public void setVamin(String _value_) {
-        vamin = getDoubleFromString(_value_);
+    private static Object getVamin(BaseClass _this_) {
+        return ((ExcST6B) _this_).getVamin();
     }
 
-    public String vaminToString() {
-        return vamin != null ? vamin.toString() : null;
+    private static void setVamin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setVamin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setVamin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Selector (&lt;i&gt;Vilim&lt;/i&gt;). true = &lt;i&gt;Vimin&lt;/i&gt;-&lt;i&gt;Vimax&lt;/i&gt; limiter is active false = &lt;i&gt;Vimin&lt;/i&gt;-&lt;i&gt;Vimax&lt;/i&gt; limiter is not active. Typical value = true.
+     * Selector (<i>Vilim</i>). true = <i>Vimin</i>-<i>Vimax</i> limiter is active false = <i>Vimin</i>-<i>Vimax</i> limiter is not active. Typical value = true.
      */
     private Boolean vilim; // Boolean
 
@@ -374,16 +479,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         vilim = _value_;
     }
 
-    public void setVilim(String _value_) {
-        vilim = getBooleanFromString(_value_);
+    private static Object getVilim(BaseClass _this_) {
+        return ((ExcST6B) _this_).getVilim();
     }
 
-    public String vilimToString() {
-        return vilim != null ? vilim.toString() : null;
+    private static void setVilim(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ExcST6B) _this_).setVilim((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setVilim(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
-     * Maximum voltage regulator input limit (&lt;i&gt;Vimax&lt;/i&gt;) (&amp;gt; ExcST6B.vimin).  Typical value = 10.
+     * Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; ExcST6B.vimin).  Typical value = 10.
      */
     private Double vimax; // PU
 
@@ -395,16 +506,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         vimax = _value_;
     }
 
-    public void setVimax(String _value_) {
-        vimax = getDoubleFromString(_value_);
+    private static Object getVimax(BaseClass _this_) {
+        return ((ExcST6B) _this_).getVimax();
     }
 
-    public String vimaxToString() {
-        return vimax != null ? vimax.toString() : null;
+    private static void setVimax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setVimax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setVimax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum voltage regulator input limit (&lt;i&gt;Vimin&lt;/i&gt;) (&amp;lt; ExcST6B.vimax).  Typical value = -10.
+     * Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; ExcST6B.vimax).  Typical value = -10.
      */
     private Double vimin; // PU
 
@@ -416,16 +533,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         vimin = _value_;
     }
 
-    public void setVimin(String _value_) {
-        vimin = getDoubleFromString(_value_);
+    private static Object getVimin(BaseClass _this_) {
+        return ((ExcST6B) _this_).getVimin();
     }
 
-    public String viminToString() {
-        return vimin != null ? vimin.toString() : null;
+    private static void setVimin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setVimin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setVimin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Selector (&lt;i&gt;vmult&lt;/i&gt;). true = multiply regulator output by terminal voltage false = do not multiply regulator output by terminal voltage.  Typical value = true.
+     * Selector (<i>vmult</i>). true = multiply regulator output by terminal voltage false = do not multiply regulator output by terminal voltage.  Typical value = true.
      */
     private Boolean vmult; // Boolean
 
@@ -437,16 +560,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         vmult = _value_;
     }
 
-    public void setVmult(String _value_) {
-        vmult = getBooleanFromString(_value_);
+    private static Object getVmult(BaseClass _this_) {
+        return ((ExcST6B) _this_).getVmult();
     }
 
-    public String vmultToString() {
-        return vmult != null ? vmult.toString() : null;
+    private static void setVmult(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ExcST6B) _this_).setVmult((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setVmult(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
-     * Maximum voltage regulator output (&lt;i&gt;Vrmax&lt;/i&gt;) (&amp;gt; 0).  Typical value = 4,81.
+     * Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).  Typical value = 4,81.
      */
     private Double vrmax; // PU
 
@@ -458,16 +587,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         vrmax = _value_;
     }
 
-    public void setVrmax(String _value_) {
-        vrmax = getDoubleFromString(_value_);
+    private static Object getVrmax(BaseClass _this_) {
+        return ((ExcST6B) _this_).getVrmax();
     }
 
-    public String vrmaxToString() {
-        return vrmax != null ? vrmax.toString() : null;
+    private static void setVrmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setVrmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setVrmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum voltage regulator output (&lt;i&gt;Vrmin&lt;/i&gt;) (&amp;lt; 0).  Typical value = -3,85.
+     * Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).  Typical value = -3,85.
      */
     private Double vrmin; // PU
 
@@ -479,16 +614,22 @@ public class ExcST6B extends ExcitationSystemDynamics {
         vrmin = _value_;
     }
 
-    public void setVrmin(String _value_) {
-        vrmin = getDoubleFromString(_value_);
+    private static Object getVrmin(BaseClass _this_) {
+        return ((ExcST6B) _this_).getVrmin();
     }
 
-    public String vrminToString() {
-        return vrmin != null ? vrmin.toString() : null;
+    private static void setVrmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setVrmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setVrmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Excitation source reactance (&lt;i&gt;Xc&lt;/i&gt;).  Typical value = 0,05.
+     * Excitation source reactance (<i>Xc</i>).  Typical value = 0,05.
      */
     private Double xc; // PU
 
@@ -500,12 +641,18 @@ public class ExcST6B extends ExcitationSystemDynamics {
         xc = _value_;
     }
 
-    public void setXc(String _value_) {
-        xc = getDoubleFromString(_value_);
+    private static Object getXc(BaseClass _this_) {
+        return ((ExcST6B) _this_).getXc();
     }
 
-    public String xcToString() {
-        return xc != null ? xc.toString() : null;
+    private static void setXc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcST6B) _this_).setXc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcST6B) _this_).setXc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -542,64 +689,35 @@ public class ExcST6B extends ExcitationSystemDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ExcST6B", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ExcST6B", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ExcST6B", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ExcST6B", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ExcST6B", attrName, value));
         }
     }
 
@@ -723,150 +841,121 @@ public class ExcST6B extends ExcitationSystemDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ilr", new AttrDetails("ExcST6B.ilr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ilr", new AttrDetails("ExcST6B.ilr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getIlr, ExcST6B::setIlr));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("k1", new AttrDetails("ExcST6B.k1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("k1", new AttrDetails("ExcST6B.k1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getK1, ExcST6B::setK1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kcl", new AttrDetails("ExcST6B.kcl", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kcl", new AttrDetails("ExcST6B.kcl", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getKcl, ExcST6B::setKcl));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kff", new AttrDetails("ExcST6B.kff", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kff", new AttrDetails("ExcST6B.kff", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getKff, ExcST6B::setKff));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kg", new AttrDetails("ExcST6B.kg", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kg", new AttrDetails("ExcST6B.kg", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getKg, ExcST6B::setKg));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kia", new AttrDetails("ExcST6B.kia", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kia", new AttrDetails("ExcST6B.kia", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getKia, ExcST6B::setKia));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("klr", new AttrDetails("ExcST6B.klr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("klr", new AttrDetails("ExcST6B.klr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getKlr, ExcST6B::setKlr));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("km", new AttrDetails("ExcST6B.km", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("km", new AttrDetails("ExcST6B.km", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getKm, ExcST6B::setKm));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpa", new AttrDetails("ExcST6B.kpa", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kpa", new AttrDetails("ExcST6B.kpa", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getKpa, ExcST6B::setKpa));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kvd", new AttrDetails("ExcST6B.kvd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kvd", new AttrDetails("ExcST6B.kvd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getKvd, ExcST6B::setKvd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("oelin", new AttrDetails("ExcST6B.oelin", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("oelin", new AttrDetails("ExcST6B.oelin", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, ExcST6B::getOelin, ExcST6B::setOelin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tg", new AttrDetails("ExcST6B.tg", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tg", new AttrDetails("ExcST6B.tg", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getTg, ExcST6B::setTg));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ts", new AttrDetails("ExcST6B.ts", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ts", new AttrDetails("ExcST6B.ts", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getTs, ExcST6B::setTs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tvd", new AttrDetails("ExcST6B.tvd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tvd", new AttrDetails("ExcST6B.tvd", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getTvd, ExcST6B::setTvd));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vamax", new AttrDetails("ExcST6B.vamax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vamax", new AttrDetails("ExcST6B.vamax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getVamax, ExcST6B::setVamax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vamin", new AttrDetails("ExcST6B.vamin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vamin", new AttrDetails("ExcST6B.vamin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getVamin, ExcST6B::setVamin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vilim", new AttrDetails("ExcST6B.vilim", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vilim", new AttrDetails("ExcST6B.vilim", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getVilim, ExcST6B::setVilim));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vimax", new AttrDetails("ExcST6B.vimax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vimax", new AttrDetails("ExcST6B.vimax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getVimax, ExcST6B::setVimax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vimin", new AttrDetails("ExcST6B.vimin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vimin", new AttrDetails("ExcST6B.vimin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getVimin, ExcST6B::setVimin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vmult", new AttrDetails("ExcST6B.vmult", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vmult", new AttrDetails("ExcST6B.vmult", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getVmult, ExcST6B::setVmult));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmax", new AttrDetails("ExcST6B.vrmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vrmax", new AttrDetails("ExcST6B.vrmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getVrmax, ExcST6B::setVrmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmin", new AttrDetails("ExcST6B.vrmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vrmin", new AttrDetails("ExcST6B.vrmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getVrmin, ExcST6B::setVrmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xc", new AttrDetails("ExcST6B.xc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xc", new AttrDetails("ExcST6B.xc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcST6B::getXc, ExcST6B::setXc));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcST6B().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcST6B(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ilr", new GetterSetter(this::ilrToString, null, this::setIlr));
-        map.put("k1", new GetterSetter(this::k1ToString, null, this::setK1));
-        map.put("kcl", new GetterSetter(this::kclToString, null, this::setKcl));
-        map.put("kff", new GetterSetter(this::kffToString, null, this::setKff));
-        map.put("kg", new GetterSetter(this::kgToString, null, this::setKg));
-        map.put("kia", new GetterSetter(this::kiaToString, null, this::setKia));
-        map.put("klr", new GetterSetter(this::klrToString, null, this::setKlr));
-        map.put("km", new GetterSetter(this::kmToString, null, this::setKm));
-        map.put("kpa", new GetterSetter(this::kpaToString, null, this::setKpa));
-        map.put("kvd", new GetterSetter(this::kvdToString, null, this::setKvd));
-        map.put("oelin", new GetterSetter(this::oelinToString, null, this::setOelin));
-        map.put("tg", new GetterSetter(this::tgToString, null, this::setTg));
-        map.put("ts", new GetterSetter(this::tsToString, null, this::setTs));
-        map.put("tvd", new GetterSetter(this::tvdToString, null, this::setTvd));
-        map.put("vamax", new GetterSetter(this::vamaxToString, null, this::setVamax));
-        map.put("vamin", new GetterSetter(this::vaminToString, null, this::setVamin));
-        map.put("vilim", new GetterSetter(this::vilimToString, null, this::setVilim));
-        map.put("vimax", new GetterSetter(this::vimaxToString, null, this::setVimax));
-        map.put("vimin", new GetterSetter(this::viminToString, null, this::setVimin));
-        map.put("vmult", new GetterSetter(this::vmultToString, null, this::setVmult));
-        map.put("vrmax", new GetterSetter(this::vrmaxToString, null, this::setVrmax));
-        map.put("vrmin", new GetterSetter(this::vrminToString, null, this::setVrmin));
-        map.put("xc", new GetterSetter(this::xcToString, null, this::setXc));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

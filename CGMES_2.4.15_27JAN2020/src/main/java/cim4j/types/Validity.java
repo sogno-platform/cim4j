@@ -17,7 +17,7 @@ public enum Validity {
      */
     _GOOD("GOOD"),
     /**
-     * The value is marked questionable if a supervision function detects an abnormal behaviour, however the value could still be valid. The client is responsible for determining whether or not values marked &quot;questionable&quot; should be used.
+     * The value is marked questionable if a supervision function detects an abnormal behaviour, however the value could still be valid. The client is responsible for determining whether or not values marked "questionable" should be used.
      */
     _QUESTIONABLE("QUESTIONABLE"),
     /**

@@ -23,10 +23,17 @@ public class EquipmentContainer extends ConnectivityNodeContainer {
     private static final Logging LOG = Logging.getLogger(EquipmentContainer.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public EquipmentContainer() {
-        setCimType("EquipmentContainer");
+    public EquipmentContainer(String rdfid) {
+        super("EquipmentContainer", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected EquipmentContainer(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class EquipmentContainer extends ConnectivityNodeContainer {
         return Equipments;
     }
 
-    public void setEquipments(BaseClass _object_) {
-        if (!(_object_ instanceof Equipment)) {
-            throw new IllegalArgumentException("Object is not Equipment");
-        }
+    public void setEquipments(Equipment _object_) {
         if (!Equipments.contains(_object_)) {
-            Equipments.add((Equipment) _object_);
-            ((Equipment) _object_).setEquipmentContainer(this);
+            Equipments.add(_object_);
+            _object_.setEquipmentContainer(this);
         }
     }
 
-    public String EquipmentsToString() {
-        return getStringFromSet(Equipments);
+    private static Object getEquipments(BaseClass _this_) {
+        return ((EquipmentContainer) _this_).getEquipments();
+    }
+
+    private static void setEquipments(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Equipment) {
+            ((EquipmentContainer) _this_).setEquipments((Equipment) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Equipment");
+        }
     }
 
     /**
@@ -88,64 +100,35 @@ public class EquipmentContainer extends ConnectivityNodeContainer {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("EquipmentContainer", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "EquipmentContainer", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("EquipmentContainer", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("EquipmentContainer", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "EquipmentContainer", attrName, value));
         }
     }
 
@@ -270,18 +253,11 @@ public class EquipmentContainer extends ConnectivityNodeContainer {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ_BD);
             profiles.add(CGMESProfile.EQ);
-            map.put("Equipments", new AttrDetails("EquipmentContainer.Equipments", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("Equipments", new AttrDetails("EquipmentContainer.Equipments", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, EquipmentContainer::getEquipments, EquipmentContainer::setEquipments));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EquipmentContainer().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EquipmentContainer(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("Equipments", new GetterSetter(this::EquipmentsToString, this::setEquipments, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

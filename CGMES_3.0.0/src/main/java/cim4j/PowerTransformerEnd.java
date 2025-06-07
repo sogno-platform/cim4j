@@ -23,10 +23,17 @@ public class PowerTransformerEnd extends TransformerEnd {
     private static final Logging LOG = Logging.getLogger(PowerTransformerEnd.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public PowerTransformerEnd() {
-        setCimType("PowerTransformerEnd");
+    public PowerTransformerEnd(String rdfid) {
+        super("PowerTransformerEnd", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected PowerTransformerEnd(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class PowerTransformerEnd extends TransformerEnd {
         return PowerTransformer;
     }
 
-    public void setPowerTransformer(BaseClass _object_) {
-        if (!(_object_ instanceof PowerTransformer)) {
-            throw new IllegalArgumentException("Object is not PowerTransformer");
-        }
+    public void setPowerTransformer(PowerTransformer _object_) {
         if (PowerTransformer != _object_) {
-            PowerTransformer = (PowerTransformer) _object_;
+            PowerTransformer = _object_;
             PowerTransformer.setPowerTransformerEnd(this);
         }
     }
 
-    public String PowerTransformerToString() {
-        return PowerTransformer != null ? PowerTransformer.getRdfid() : null;
+    private static Object getPowerTransformer(BaseClass _this_) {
+        return ((PowerTransformerEnd) _this_).getPowerTransformer();
+    }
+
+    private static void setPowerTransformer(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof PowerTransformer) {
+            ((PowerTransformerEnd) _this_).setPowerTransformer((PowerTransformer) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not PowerTransformer");
+        }
     }
 
     /**
@@ -65,12 +77,18 @@ public class PowerTransformerEnd extends TransformerEnd {
         b = _value_;
     }
 
-    public void setB(String _value_) {
-        b = getDoubleFromString(_value_);
+    private static Object getB(BaseClass _this_) {
+        return ((PowerTransformerEnd) _this_).getB();
     }
 
-    public String bToString() {
-        return b != null ? b.toString() : null;
+    private static void setB(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerTransformerEnd) _this_).setB((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerTransformerEnd) _this_).setB(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -86,12 +104,18 @@ public class PowerTransformerEnd extends TransformerEnd {
         b0 = _value_;
     }
 
-    public void setB0(String _value_) {
-        b0 = getDoubleFromString(_value_);
+    private static Object getB0(BaseClass _this_) {
+        return ((PowerTransformerEnd) _this_).getB0();
     }
 
-    public String b0ToString() {
-        return b0 != null ? b0.toString() : null;
+    private static void setB0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerTransformerEnd) _this_).setB0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerTransformerEnd) _this_).setB0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -107,8 +131,16 @@ public class PowerTransformerEnd extends TransformerEnd {
         connectionKind = _value_;
     }
 
-    public String connectionKindToString() {
-        return connectionKind;
+    private static Object getConnectionKind(BaseClass _this_) {
+        return ((PowerTransformerEnd) _this_).getConnectionKind();
+    }
+
+    private static void setConnectionKind(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((PowerTransformerEnd) _this_).setConnectionKind((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -124,12 +156,18 @@ public class PowerTransformerEnd extends TransformerEnd {
         g = _value_;
     }
 
-    public void setG(String _value_) {
-        g = getDoubleFromString(_value_);
+    private static Object getG(BaseClass _this_) {
+        return ((PowerTransformerEnd) _this_).getG();
     }
 
-    public String gToString() {
-        return g != null ? g.toString() : null;
+    private static void setG(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerTransformerEnd) _this_).setG((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerTransformerEnd) _this_).setG(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -145,12 +183,18 @@ public class PowerTransformerEnd extends TransformerEnd {
         g0 = _value_;
     }
 
-    public void setG0(String _value_) {
-        g0 = getDoubleFromString(_value_);
+    private static Object getG0(BaseClass _this_) {
+        return ((PowerTransformerEnd) _this_).getG0();
     }
 
-    public String g0ToString() {
-        return g0 != null ? g0.toString() : null;
+    private static void setG0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerTransformerEnd) _this_).setG0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerTransformerEnd) _this_).setG0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -166,12 +210,18 @@ public class PowerTransformerEnd extends TransformerEnd {
         phaseAngleClock = _value_;
     }
 
-    public void setPhaseAngleClock(String _value_) {
-        phaseAngleClock = getIntegerFromString(_value_);
+    private static Object getPhaseAngleClock(BaseClass _this_) {
+        return ((PowerTransformerEnd) _this_).getPhaseAngleClock();
     }
 
-    public String phaseAngleClockToString() {
-        return phaseAngleClock != null ? phaseAngleClock.toString() : null;
+    private static void setPhaseAngleClock(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((PowerTransformerEnd) _this_).setPhaseAngleClock((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerTransformerEnd) _this_).setPhaseAngleClock(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -187,12 +237,18 @@ public class PowerTransformerEnd extends TransformerEnd {
         r = _value_;
     }
 
-    public void setR(String _value_) {
-        r = getDoubleFromString(_value_);
+    private static Object getR(BaseClass _this_) {
+        return ((PowerTransformerEnd) _this_).getR();
     }
 
-    public String rToString() {
-        return r != null ? r.toString() : null;
+    private static void setR(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerTransformerEnd) _this_).setR((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerTransformerEnd) _this_).setR(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -208,12 +264,18 @@ public class PowerTransformerEnd extends TransformerEnd {
         r0 = _value_;
     }
 
-    public void setR0(String _value_) {
-        r0 = getDoubleFromString(_value_);
+    private static Object getR0(BaseClass _this_) {
+        return ((PowerTransformerEnd) _this_).getR0();
     }
 
-    public String r0ToString() {
-        return r0 != null ? r0.toString() : null;
+    private static void setR0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerTransformerEnd) _this_).setR0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerTransformerEnd) _this_).setR0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -229,12 +291,18 @@ public class PowerTransformerEnd extends TransformerEnd {
         ratedS = _value_;
     }
 
-    public void setRatedS(String _value_) {
-        ratedS = getDoubleFromString(_value_);
+    private static Object getRatedS(BaseClass _this_) {
+        return ((PowerTransformerEnd) _this_).getRatedS();
     }
 
-    public String ratedSToString() {
-        return ratedS != null ? ratedS.toString() : null;
+    private static void setRatedS(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerTransformerEnd) _this_).setRatedS((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerTransformerEnd) _this_).setRatedS(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -250,12 +318,18 @@ public class PowerTransformerEnd extends TransformerEnd {
         ratedU = _value_;
     }
 
-    public void setRatedU(String _value_) {
-        ratedU = getDoubleFromString(_value_);
+    private static Object getRatedU(BaseClass _this_) {
+        return ((PowerTransformerEnd) _this_).getRatedU();
     }
 
-    public String ratedUToString() {
-        return ratedU != null ? ratedU.toString() : null;
+    private static void setRatedU(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerTransformerEnd) _this_).setRatedU((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerTransformerEnd) _this_).setRatedU(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -271,12 +345,18 @@ public class PowerTransformerEnd extends TransformerEnd {
         x = _value_;
     }
 
-    public void setX(String _value_) {
-        x = getDoubleFromString(_value_);
+    private static Object getX(BaseClass _this_) {
+        return ((PowerTransformerEnd) _this_).getX();
     }
 
-    public String xToString() {
-        return x != null ? x.toString() : null;
+    private static void setX(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerTransformerEnd) _this_).setX((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerTransformerEnd) _this_).setX(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -292,12 +372,18 @@ public class PowerTransformerEnd extends TransformerEnd {
         x0 = _value_;
     }
 
-    public void setX0(String _value_) {
-        x0 = getDoubleFromString(_value_);
+    private static Object getX0(BaseClass _this_) {
+        return ((PowerTransformerEnd) _this_).getX0();
     }
 
-    public String x0ToString() {
-        return x0 != null ? x0.toString() : null;
+    private static void setX0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerTransformerEnd) _this_).setX0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerTransformerEnd) _this_).setX0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -334,64 +420,35 @@ public class PowerTransformerEnd extends TransformerEnd {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("PowerTransformerEnd", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "PowerTransformerEnd", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("PowerTransformerEnd", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("PowerTransformerEnd", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "PowerTransformerEnd", attrName, value));
         }
     }
 
@@ -515,90 +572,71 @@ public class PowerTransformerEnd extends TransformerEnd {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("PowerTransformer", new AttrDetails("PowerTransformerEnd.PowerTransformer", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("PowerTransformer", new AttrDetails("PowerTransformerEnd.PowerTransformer", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, PowerTransformerEnd::getPowerTransformer, PowerTransformerEnd::setPowerTransformer));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("b", new AttrDetails("PowerTransformerEnd.b", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("b", new AttrDetails("PowerTransformerEnd.b", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerTransformerEnd::getB, PowerTransformerEnd::setB));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("b0", new AttrDetails("PowerTransformerEnd.b0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("b0", new AttrDetails("PowerTransformerEnd.b0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerTransformerEnd::getB0, PowerTransformerEnd::setB0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("connectionKind", new AttrDetails("PowerTransformerEnd.connectionKind", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("connectionKind", new AttrDetails("PowerTransformerEnd.connectionKind", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, PowerTransformerEnd::getConnectionKind, PowerTransformerEnd::setConnectionKind));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("g", new AttrDetails("PowerTransformerEnd.g", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("g", new AttrDetails("PowerTransformerEnd.g", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerTransformerEnd::getG, PowerTransformerEnd::setG));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("g0", new AttrDetails("PowerTransformerEnd.g0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("g0", new AttrDetails("PowerTransformerEnd.g0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerTransformerEnd::getG0, PowerTransformerEnd::setG0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("phaseAngleClock", new AttrDetails("PowerTransformerEnd.phaseAngleClock", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("phaseAngleClock", new AttrDetails("PowerTransformerEnd.phaseAngleClock", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerTransformerEnd::getPhaseAngleClock, PowerTransformerEnd::setPhaseAngleClock));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("r", new AttrDetails("PowerTransformerEnd.r", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("r", new AttrDetails("PowerTransformerEnd.r", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerTransformerEnd::getR, PowerTransformerEnd::setR));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("r0", new AttrDetails("PowerTransformerEnd.r0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("r0", new AttrDetails("PowerTransformerEnd.r0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerTransformerEnd::getR0, PowerTransformerEnd::setR0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedS", new AttrDetails("PowerTransformerEnd.ratedS", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ratedS", new AttrDetails("PowerTransformerEnd.ratedS", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerTransformerEnd::getRatedS, PowerTransformerEnd::setRatedS));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedU", new AttrDetails("PowerTransformerEnd.ratedU", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ratedU", new AttrDetails("PowerTransformerEnd.ratedU", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerTransformerEnd::getRatedU, PowerTransformerEnd::setRatedU));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("x", new AttrDetails("PowerTransformerEnd.x", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("x", new AttrDetails("PowerTransformerEnd.x", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerTransformerEnd::getX, PowerTransformerEnd::setX));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SC);
-            map.put("x0", new AttrDetails("PowerTransformerEnd.x0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("x0", new AttrDetails("PowerTransformerEnd.x0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerTransformerEnd::getX0, PowerTransformerEnd::setX0));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PowerTransformerEnd().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PowerTransformerEnd(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("PowerTransformer", new GetterSetter(this::PowerTransformerToString, this::setPowerTransformer, null));
-        map.put("b", new GetterSetter(this::bToString, null, this::setB));
-        map.put("b0", new GetterSetter(this::b0ToString, null, this::setB0));
-        map.put("connectionKind", new GetterSetter(this::connectionKindToString, null, this::setConnectionKind));
-        map.put("g", new GetterSetter(this::gToString, null, this::setG));
-        map.put("g0", new GetterSetter(this::g0ToString, null, this::setG0));
-        map.put("phaseAngleClock", new GetterSetter(this::phaseAngleClockToString, null, this::setPhaseAngleClock));
-        map.put("r", new GetterSetter(this::rToString, null, this::setR));
-        map.put("r0", new GetterSetter(this::r0ToString, null, this::setR0));
-        map.put("ratedS", new GetterSetter(this::ratedSToString, null, this::setRatedS));
-        map.put("ratedU", new GetterSetter(this::ratedUToString, null, this::setRatedU));
-        map.put("x", new GetterSetter(this::xToString, null, this::setX));
-        map.put("x0", new GetterSetter(this::x0ToString, null, this::setX0));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

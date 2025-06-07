@@ -23,10 +23,17 @@ public class ACDCConverter extends ConductingEquipment {
     private static final Logging LOG = Logging.getLogger(ACDCConverter.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ACDCConverter() {
-        setCimType("ACDCConverter");
+    public ACDCConverter(String rdfid) {
+        super("ACDCConverter", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ACDCConverter(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -39,18 +46,23 @@ public class ACDCConverter extends ConductingEquipment {
         return DCTerminals;
     }
 
-    public void setDCTerminals(BaseClass _object_) {
-        if (!(_object_ instanceof ACDCConverterDCTerminal)) {
-            throw new IllegalArgumentException("Object is not ACDCConverterDCTerminal");
-        }
+    public void setDCTerminals(ACDCConverterDCTerminal _object_) {
         if (!DCTerminals.contains(_object_)) {
-            DCTerminals.add((ACDCConverterDCTerminal) _object_);
-            ((ACDCConverterDCTerminal) _object_).setDCConductingEquipment(this);
+            DCTerminals.add(_object_);
+            _object_.setDCConductingEquipment(this);
         }
     }
 
-    public String DCTerminalsToString() {
-        return getStringFromSet(DCTerminals);
+    private static Object getDCTerminals(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getDCTerminals();
+    }
+
+    private static void setDCTerminals(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ACDCConverterDCTerminal) {
+            ((ACDCConverter) _this_).setDCTerminals((ACDCConverterDCTerminal) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ACDCConverterDCTerminal");
+        }
     }
 
     /**
@@ -62,18 +74,23 @@ public class ACDCConverter extends ConductingEquipment {
         return PccTerminal;
     }
 
-    public void setPccTerminal(BaseClass _object_) {
-        if (!(_object_ instanceof Terminal)) {
-            throw new IllegalArgumentException("Object is not Terminal");
-        }
+    public void setPccTerminal(Terminal _object_) {
         if (PccTerminal != _object_) {
-            PccTerminal = (Terminal) _object_;
+            PccTerminal = _object_;
             PccTerminal.setConverterDCSides(this);
         }
     }
 
-    public String PccTerminalToString() {
-        return PccTerminal != null ? PccTerminal.getRdfid() : null;
+    private static Object getPccTerminal(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getPccTerminal();
+    }
+
+    private static void setPccTerminal(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Terminal) {
+            ((ACDCConverter) _this_).setPccTerminal((Terminal) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Terminal");
+        }
     }
 
     /**
@@ -89,12 +106,18 @@ public class ACDCConverter extends ConductingEquipment {
         baseS = _value_;
     }
 
-    public void setBaseS(String _value_) {
-        baseS = getDoubleFromString(_value_);
+    private static Object getBaseS(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getBaseS();
     }
 
-    public String baseSToString() {
-        return baseS != null ? baseS.toString() : null;
+    private static void setBaseS(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setBaseS((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setBaseS(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -110,12 +133,18 @@ public class ACDCConverter extends ConductingEquipment {
         idc = _value_;
     }
 
-    public void setIdc(String _value_) {
-        idc = getDoubleFromString(_value_);
+    private static Object getIdc(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getIdc();
     }
 
-    public String idcToString() {
-        return idc != null ? idc.toString() : null;
+    private static void setIdc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setIdc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setIdc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -131,12 +160,18 @@ public class ACDCConverter extends ConductingEquipment {
         idleLoss = _value_;
     }
 
-    public void setIdleLoss(String _value_) {
-        idleLoss = getDoubleFromString(_value_);
+    private static Object getIdleLoss(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getIdleLoss();
     }
 
-    public String idleLossToString() {
-        return idleLoss != null ? idleLoss.toString() : null;
+    private static void setIdleLoss(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setIdleLoss((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setIdleLoss(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -152,12 +187,18 @@ public class ACDCConverter extends ConductingEquipment {
         maxUdc = _value_;
     }
 
-    public void setMaxUdc(String _value_) {
-        maxUdc = getDoubleFromString(_value_);
+    private static Object getMaxUdc(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getMaxUdc();
     }
 
-    public String maxUdcToString() {
-        return maxUdc != null ? maxUdc.toString() : null;
+    private static void setMaxUdc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setMaxUdc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setMaxUdc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -173,12 +214,18 @@ public class ACDCConverter extends ConductingEquipment {
         minUdc = _value_;
     }
 
-    public void setMinUdc(String _value_) {
-        minUdc = getDoubleFromString(_value_);
+    private static Object getMinUdc(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getMinUdc();
     }
 
-    public String minUdcToString() {
-        return minUdc != null ? minUdc.toString() : null;
+    private static void setMinUdc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setMinUdc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setMinUdc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -194,12 +241,18 @@ public class ACDCConverter extends ConductingEquipment {
         numberOfValves = _value_;
     }
 
-    public void setNumberOfValves(String _value_) {
-        numberOfValves = getIntegerFromString(_value_);
+    private static Object getNumberOfValves(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getNumberOfValves();
     }
 
-    public String numberOfValvesToString() {
-        return numberOfValves != null ? numberOfValves.toString() : null;
+    private static void setNumberOfValves(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((ACDCConverter) _this_).setNumberOfValves((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setNumberOfValves(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -215,12 +268,18 @@ public class ACDCConverter extends ConductingEquipment {
         p = _value_;
     }
 
-    public void setP(String _value_) {
-        p = getDoubleFromString(_value_);
+    private static Object getP(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getP();
     }
 
-    public String pToString() {
-        return p != null ? p.toString() : null;
+    private static void setP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -236,12 +295,18 @@ public class ACDCConverter extends ConductingEquipment {
         poleLossP = _value_;
     }
 
-    public void setPoleLossP(String _value_) {
-        poleLossP = getDoubleFromString(_value_);
+    private static Object getPoleLossP(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getPoleLossP();
     }
 
-    public String poleLossPToString() {
-        return poleLossP != null ? poleLossP.toString() : null;
+    private static void setPoleLossP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setPoleLossP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setPoleLossP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -257,12 +322,18 @@ public class ACDCConverter extends ConductingEquipment {
         q = _value_;
     }
 
-    public void setQ(String _value_) {
-        q = getDoubleFromString(_value_);
+    private static Object getQ(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getQ();
     }
 
-    public String qToString() {
-        return q != null ? q.toString() : null;
+    private static void setQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -278,12 +349,18 @@ public class ACDCConverter extends ConductingEquipment {
         ratedUdc = _value_;
     }
 
-    public void setRatedUdc(String _value_) {
-        ratedUdc = getDoubleFromString(_value_);
+    private static Object getRatedUdc(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getRatedUdc();
     }
 
-    public String ratedUdcToString() {
-        return ratedUdc != null ? ratedUdc.toString() : null;
+    private static void setRatedUdc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setRatedUdc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setRatedUdc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -299,12 +376,18 @@ public class ACDCConverter extends ConductingEquipment {
         resistiveLoss = _value_;
     }
 
-    public void setResistiveLoss(String _value_) {
-        resistiveLoss = getDoubleFromString(_value_);
+    private static Object getResistiveLoss(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getResistiveLoss();
     }
 
-    public String resistiveLossToString() {
-        return resistiveLoss != null ? resistiveLoss.toString() : null;
+    private static void setResistiveLoss(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setResistiveLoss((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setResistiveLoss(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -320,12 +403,18 @@ public class ACDCConverter extends ConductingEquipment {
         switchingLoss = _value_;
     }
 
-    public void setSwitchingLoss(String _value_) {
-        switchingLoss = getDoubleFromString(_value_);
+    private static Object getSwitchingLoss(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getSwitchingLoss();
     }
 
-    public String switchingLossToString() {
-        return switchingLoss != null ? switchingLoss.toString() : null;
+    private static void setSwitchingLoss(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setSwitchingLoss((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setSwitchingLoss(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -341,12 +430,18 @@ public class ACDCConverter extends ConductingEquipment {
         targetPpcc = _value_;
     }
 
-    public void setTargetPpcc(String _value_) {
-        targetPpcc = getDoubleFromString(_value_);
+    private static Object getTargetPpcc(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getTargetPpcc();
     }
 
-    public String targetPpccToString() {
-        return targetPpcc != null ? targetPpcc.toString() : null;
+    private static void setTargetPpcc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setTargetPpcc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setTargetPpcc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -362,12 +457,18 @@ public class ACDCConverter extends ConductingEquipment {
         targetUdc = _value_;
     }
 
-    public void setTargetUdc(String _value_) {
-        targetUdc = getDoubleFromString(_value_);
+    private static Object getTargetUdc(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getTargetUdc();
     }
 
-    public String targetUdcToString() {
-        return targetUdc != null ? targetUdc.toString() : null;
+    private static void setTargetUdc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setTargetUdc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setTargetUdc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -383,12 +484,18 @@ public class ACDCConverter extends ConductingEquipment {
         uc = _value_;
     }
 
-    public void setUc(String _value_) {
-        uc = getDoubleFromString(_value_);
+    private static Object getUc(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getUc();
     }
 
-    public String ucToString() {
-        return uc != null ? uc.toString() : null;
+    private static void setUc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setUc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setUc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -404,12 +511,18 @@ public class ACDCConverter extends ConductingEquipment {
         udc = _value_;
     }
 
-    public void setUdc(String _value_) {
-        udc = getDoubleFromString(_value_);
+    private static Object getUdc(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getUdc();
     }
 
-    public String udcToString() {
-        return udc != null ? udc.toString() : null;
+    private static void setUdc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setUdc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setUdc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -425,12 +538,18 @@ public class ACDCConverter extends ConductingEquipment {
         valveU0 = _value_;
     }
 
-    public void setValveU0(String _value_) {
-        valveU0 = getDoubleFromString(_value_);
+    private static Object getValveU0(BaseClass _this_) {
+        return ((ACDCConverter) _this_).getValveU0();
     }
 
-    public String valveU0ToString() {
-        return valveU0 != null ? valveU0.toString() : null;
+    private static void setValveU0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ACDCConverter) _this_).setValveU0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).setValveU0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -467,64 +586,35 @@ public class ACDCConverter extends ConductingEquipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ACDCConverter", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ACDCConverter", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ACDCConverter", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ACDCConverter", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ACDCConverter", attrName, value));
         }
     }
 
@@ -648,126 +738,101 @@ public class ACDCConverter extends ConductingEquipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("DCTerminals", new AttrDetails("ACDCConverter.DCTerminals", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("DCTerminals", new AttrDetails("ACDCConverter.DCTerminals", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ACDCConverter::getDCTerminals, ACDCConverter::setDCTerminals));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("PccTerminal", new AttrDetails("ACDCConverter.PccTerminal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("PccTerminal", new AttrDetails("ACDCConverter.PccTerminal", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ACDCConverter::getPccTerminal, ACDCConverter::setPccTerminal));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("baseS", new AttrDetails("ACDCConverter.baseS", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("baseS", new AttrDetails("ACDCConverter.baseS", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getBaseS, ACDCConverter::setBaseS));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("idc", new AttrDetails("ACDCConverter.idc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("idc", new AttrDetails("ACDCConverter.idc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getIdc, ACDCConverter::setIdc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("idleLoss", new AttrDetails("ACDCConverter.idleLoss", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("idleLoss", new AttrDetails("ACDCConverter.idleLoss", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getIdleLoss, ACDCConverter::setIdleLoss));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxUdc", new AttrDetails("ACDCConverter.maxUdc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("maxUdc", new AttrDetails("ACDCConverter.maxUdc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getMaxUdc, ACDCConverter::setMaxUdc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("minUdc", new AttrDetails("ACDCConverter.minUdc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("minUdc", new AttrDetails("ACDCConverter.minUdc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getMinUdc, ACDCConverter::setMinUdc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("numberOfValves", new AttrDetails("ACDCConverter.numberOfValves", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("numberOfValves", new AttrDetails("ACDCConverter.numberOfValves", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getNumberOfValves, ACDCConverter::setNumberOfValves));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("p", new AttrDetails("ACDCConverter.p", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("p", new AttrDetails("ACDCConverter.p", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getP, ACDCConverter::setP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("poleLossP", new AttrDetails("ACDCConverter.poleLossP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("poleLossP", new AttrDetails("ACDCConverter.poleLossP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getPoleLossP, ACDCConverter::setPoleLossP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("q", new AttrDetails("ACDCConverter.q", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("q", new AttrDetails("ACDCConverter.q", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getQ, ACDCConverter::setQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedUdc", new AttrDetails("ACDCConverter.ratedUdc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ratedUdc", new AttrDetails("ACDCConverter.ratedUdc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getRatedUdc, ACDCConverter::setRatedUdc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("resistiveLoss", new AttrDetails("ACDCConverter.resistiveLoss", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("resistiveLoss", new AttrDetails("ACDCConverter.resistiveLoss", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getResistiveLoss, ACDCConverter::setResistiveLoss));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("switchingLoss", new AttrDetails("ACDCConverter.switchingLoss", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("switchingLoss", new AttrDetails("ACDCConverter.switchingLoss", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getSwitchingLoss, ACDCConverter::setSwitchingLoss));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetPpcc", new AttrDetails("ACDCConverter.targetPpcc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("targetPpcc", new AttrDetails("ACDCConverter.targetPpcc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getTargetPpcc, ACDCConverter::setTargetPpcc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("targetUdc", new AttrDetails("ACDCConverter.targetUdc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("targetUdc", new AttrDetails("ACDCConverter.targetUdc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getTargetUdc, ACDCConverter::setTargetUdc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("uc", new AttrDetails("ACDCConverter.uc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("uc", new AttrDetails("ACDCConverter.uc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getUc, ACDCConverter::setUc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("udc", new AttrDetails("ACDCConverter.udc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("udc", new AttrDetails("ACDCConverter.udc", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getUdc, ACDCConverter::setUdc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("valveU0", new AttrDetails("ACDCConverter.valveU0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("valveU0", new AttrDetails("ACDCConverter.valveU0", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, ACDCConverter::getValveU0, ACDCConverter::setValveU0));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ACDCConverter().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ACDCConverter(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("DCTerminals", new GetterSetter(this::DCTerminalsToString, this::setDCTerminals, null));
-        map.put("PccTerminal", new GetterSetter(this::PccTerminalToString, this::setPccTerminal, null));
-        map.put("baseS", new GetterSetter(this::baseSToString, null, this::setBaseS));
-        map.put("idc", new GetterSetter(this::idcToString, null, this::setIdc));
-        map.put("idleLoss", new GetterSetter(this::idleLossToString, null, this::setIdleLoss));
-        map.put("maxUdc", new GetterSetter(this::maxUdcToString, null, this::setMaxUdc));
-        map.put("minUdc", new GetterSetter(this::minUdcToString, null, this::setMinUdc));
-        map.put("numberOfValves", new GetterSetter(this::numberOfValvesToString, null, this::setNumberOfValves));
-        map.put("p", new GetterSetter(this::pToString, null, this::setP));
-        map.put("poleLossP", new GetterSetter(this::poleLossPToString, null, this::setPoleLossP));
-        map.put("q", new GetterSetter(this::qToString, null, this::setQ));
-        map.put("ratedUdc", new GetterSetter(this::ratedUdcToString, null, this::setRatedUdc));
-        map.put("resistiveLoss", new GetterSetter(this::resistiveLossToString, null, this::setResistiveLoss));
-        map.put("switchingLoss", new GetterSetter(this::switchingLossToString, null, this::setSwitchingLoss));
-        map.put("targetPpcc", new GetterSetter(this::targetPpccToString, null, this::setTargetPpcc));
-        map.put("targetUdc", new GetterSetter(this::targetUdcToString, null, this::setTargetUdc));
-        map.put("uc", new GetterSetter(this::ucToString, null, this::setUc));
-        map.put("udc", new GetterSetter(this::udcToString, null, this::setUdc));
-        map.put("valveU0", new GetterSetter(this::valveU0ToString, null, this::setValveU0));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

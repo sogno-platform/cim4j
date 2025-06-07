@@ -23,10 +23,17 @@ public class WindContQIEC extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(WindContQIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindContQIEC() {
-        setCimType("WindContQIEC");
+    public WindContQIEC(String rdfid) {
+        super("WindContQIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindContQIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,22 +47,27 @@ public class WindContQIEC extends IdentifiedObject {
         return WindTurbineType3or4IEC;
     }
 
-    public void setWindTurbineType3or4IEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindTurbineType3or4IEC)) {
-            throw new IllegalArgumentException("Object is not WindTurbineType3or4IEC");
-        }
+    public void setWindTurbineType3or4IEC(WindTurbineType3or4IEC _object_) {
         if (WindTurbineType3or4IEC != _object_) {
-            WindTurbineType3or4IEC = (WindTurbineType3or4IEC) _object_;
+            WindTurbineType3or4IEC = _object_;
             WindTurbineType3or4IEC.setWIndContQIEC(this);
         }
     }
 
-    public String WindTurbineType3or4IECToString() {
-        return WindTurbineType3or4IEC != null ? WindTurbineType3or4IEC.getRdfid() : null;
+    private static Object getWindTurbineType3or4IEC(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getWindTurbineType3or4IEC();
+    }
+
+    private static void setWindTurbineType3or4IEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindTurbineType3or4IEC) {
+            ((WindContQIEC) _this_).setWindTurbineType3or4IEC((WindTurbineType3or4IEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindTurbineType3or4IEC");
+        }
     }
 
     /**
-     * Maximum reactive current injection during dip (&lt;i&gt;i&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qh1&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Maximum reactive current injection during dip (<i>i</i><i><sub>qh1</sub></i>). It is a type-dependent parameter.
      */
     private Double iqh1; // PU
 
@@ -67,16 +79,22 @@ public class WindContQIEC extends IdentifiedObject {
         iqh1 = _value_;
     }
 
-    public void setIqh1(String _value_) {
-        iqh1 = getDoubleFromString(_value_);
+    private static Object getIqh1(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getIqh1();
     }
 
-    public String iqh1ToString() {
-        return iqh1 != null ? iqh1.toString() : null;
+    private static void setIqh1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setIqh1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setIqh1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum reactive current injection (&lt;i&gt;i&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qmax&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; WindContQIEC.iqmin). It is a type-dependent parameter.
+     * Maximum reactive current injection (<i>i</i><i><sub>qmax</sub></i>) (&gt; WindContQIEC.iqmin). It is a type-dependent parameter.
      */
     private Double iqmax; // PU
 
@@ -88,16 +106,22 @@ public class WindContQIEC extends IdentifiedObject {
         iqmax = _value_;
     }
 
-    public void setIqmax(String _value_) {
-        iqmax = getDoubleFromString(_value_);
+    private static Object getIqmax(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getIqmax();
     }
 
-    public String iqmaxToString() {
-        return iqmax != null ? iqmax.toString() : null;
+    private static void setIqmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setIqmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setIqmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum reactive current injection (&lt;i&gt;i&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qmin&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; WindContQIEC.iqmax). It is a type-dependent parameter.
+     * Minimum reactive current injection (<i>i</i><i><sub>qmin</sub></i>) (&lt; WindContQIEC.iqmax). It is a type-dependent parameter.
      */
     private Double iqmin; // PU
 
@@ -109,16 +133,22 @@ public class WindContQIEC extends IdentifiedObject {
         iqmin = _value_;
     }
 
-    public void setIqmin(String _value_) {
-        iqmin = getDoubleFromString(_value_);
+    private static Object getIqmin(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getIqmin();
     }
 
-    public String iqminToString() {
-        return iqmin != null ? iqmin.toString() : null;
+    private static void setIqmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setIqmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setIqmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Post fault reactive current injection (&lt;i&gt;i&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qpost&lt;/sub&gt;&lt;/i&gt;). It is a project-dependent parameter.
+     * Post fault reactive current injection (<i>i</i><i><sub>qpost</sub></i>). It is a project-dependent parameter.
      */
     private Double iqpost; // PU
 
@@ -130,16 +160,22 @@ public class WindContQIEC extends IdentifiedObject {
         iqpost = _value_;
     }
 
-    public void setIqpost(String _value_) {
-        iqpost = getDoubleFromString(_value_);
+    private static Object getIqpost(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getIqpost();
     }
 
-    public String iqpostToString() {
-        return iqpost != null ? iqpost.toString() : null;
+    private static void setIqpost(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setIqpost((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setIqpost(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power PI controller integration gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I,q&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Reactive power PI controller integration gain (<i>K</i><i><sub>I,q</sub></i>). It is a type-dependent parameter.
      */
     private Double kiq; // PU
 
@@ -151,16 +187,22 @@ public class WindContQIEC extends IdentifiedObject {
         kiq = _value_;
     }
 
-    public void setKiq(String _value_) {
-        kiq = getDoubleFromString(_value_);
+    private static Object getKiq(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getKiq();
     }
 
-    public String kiqToString() {
-        return kiq != null ? kiq.toString() : null;
+    private static void setKiq(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setKiq((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setKiq(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage PI controller integration gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I,u&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Voltage PI controller integration gain (<i>K</i><i><sub>I,u</sub></i>). It is a type-dependent parameter.
      */
     private Double kiu; // PU
 
@@ -172,16 +214,22 @@ public class WindContQIEC extends IdentifiedObject {
         kiu = _value_;
     }
 
-    public void setKiu(String _value_) {
-        kiu = getDoubleFromString(_value_);
+    private static Object getKiu(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getKiu();
     }
 
-    public String kiuToString() {
-        return kiu != null ? kiu.toString() : null;
+    private static void setKiu(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setKiu((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setKiu(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reactive power PI controller proportional gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;P,q&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Reactive power PI controller proportional gain (<i>K</i><i><sub>P,q</sub></i>). It is a type-dependent parameter.
      */
     private Double kpq; // PU
 
@@ -193,16 +241,22 @@ public class WindContQIEC extends IdentifiedObject {
         kpq = _value_;
     }
 
-    public void setKpq(String _value_) {
-        kpq = getDoubleFromString(_value_);
+    private static Object getKpq(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getKpq();
     }
 
-    public String kpqToString() {
-        return kpq != null ? kpq.toString() : null;
+    private static void setKpq(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setKpq((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setKpq(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage PI controller proportional gain (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;P,u&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Voltage PI controller proportional gain (<i>K</i><i><sub>P,u</sub></i>). It is a type-dependent parameter.
      */
     private Double kpu; // PU
 
@@ -214,16 +268,22 @@ public class WindContQIEC extends IdentifiedObject {
         kpu = _value_;
     }
 
-    public void setKpu(String _value_) {
-        kpu = getDoubleFromString(_value_);
+    private static Object getKpu(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getKpu();
     }
 
-    public String kpuToString() {
-        return kpu != null ? kpu.toString() : null;
+    private static void setKpu(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setKpu((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setKpu(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage scaling factor for UVRT current (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qv&lt;/sub&gt;&lt;/i&gt;). It is a project-dependent parameter.
+     * Voltage scaling factor for UVRT current (<i>K</i><i><sub>qv</sub></i>). It is a project-dependent parameter.
      */
     private Double kqv; // PU
 
@@ -235,16 +295,22 @@ public class WindContQIEC extends IdentifiedObject {
         kqv = _value_;
     }
 
-    public void setKqv(String _value_) {
-        kqv = getDoubleFromString(_value_);
+    private static Object getKqv(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getKqv();
     }
 
-    public String kqvToString() {
-        return kqv != null ? kqv.toString() : null;
+    private static void setKqv(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setKqv((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setKqv(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Resistive component of voltage drop impedance (&lt;i&gt;r&lt;/i&gt;&lt;i&gt;&lt;sub&gt;droop&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a project-dependent parameter.
+     * Resistive component of voltage drop impedance (<i>r</i><i><sub>droop</sub></i>) (&gt;= 0). It is a project-dependent parameter.
      */
     private Double rdroop; // PU
 
@@ -256,16 +322,22 @@ public class WindContQIEC extends IdentifiedObject {
         rdroop = _value_;
     }
 
-    public void setRdroop(String _value_) {
-        rdroop = getDoubleFromString(_value_);
+    private static Object getRdroop(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getRdroop();
     }
 
-    public String rdroopToString() {
-        return rdroop != null ? rdroop.toString() : null;
+    private static void setRdroop(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setRdroop((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setRdroop(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Power measurement filter time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;pfiltq&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     * Power measurement filter time constant (<i>T</i><i><sub>pfiltq</sub></i>) (&gt;= 0). It is a type-dependent parameter.
      */
     private Double tpfiltq; // Seconds
 
@@ -277,16 +349,22 @@ public class WindContQIEC extends IdentifiedObject {
         tpfiltq = _value_;
     }
 
-    public void setTpfiltq(String _value_) {
-        tpfiltq = getDoubleFromString(_value_);
+    private static Object getTpfiltq(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getTpfiltq();
     }
 
-    public String tpfiltqToString() {
-        return tpfiltq != null ? tpfiltq.toString() : null;
+    private static void setTpfiltq(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setTpfiltq((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setTpfiltq(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Length of time period where post fault reactive power is injected (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;post&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a project-dependent parameter.
+     * Length of time period where post fault reactive power is injected (<i>T</i><i><sub>post</sub></i>) (&gt;= 0). It is a project-dependent parameter.
      */
     private Double tpost; // Seconds
 
@@ -298,16 +376,22 @@ public class WindContQIEC extends IdentifiedObject {
         tpost = _value_;
     }
 
-    public void setTpost(String _value_) {
-        tpost = getDoubleFromString(_value_);
+    private static Object getTpost(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getTpost();
     }
 
-    public String tpostToString() {
-        return tpost != null ? tpost.toString() : null;
+    private static void setTpost(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setTpost((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setTpost(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Time constant in reactive power order lag (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qord&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     * Time constant in reactive power order lag (<i>T</i><i><sub>qord</sub></i>) (&gt;= 0). It is a type-dependent parameter.
      */
     private Double tqord; // Seconds
 
@@ -319,16 +403,22 @@ public class WindContQIEC extends IdentifiedObject {
         tqord = _value_;
     }
 
-    public void setTqord(String _value_) {
-        tqord = getDoubleFromString(_value_);
+    private static Object getTqord(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getTqord();
     }
 
-    public String tqordToString() {
-        return tqord != null ? tqord.toString() : null;
+    private static void setTqord(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setTqord((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setTqord(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage measurement filter time constant (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ufiltq&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a type-dependent parameter.
+     * Voltage measurement filter time constant (<i>T</i><i><sub>ufiltq</sub></i>) (&gt;= 0). It is a type-dependent parameter.
      */
     private Double tufiltq; // Seconds
 
@@ -340,16 +430,22 @@ public class WindContQIEC extends IdentifiedObject {
         tufiltq = _value_;
     }
 
-    public void setTufiltq(String _value_) {
-        tufiltq = getDoubleFromString(_value_);
+    private static Object getTufiltq(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getTufiltq();
     }
 
-    public String tufiltqToString() {
-        return tufiltq != null ? tufiltq.toString() : null;
+    private static void setTufiltq(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setTufiltq((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setTufiltq(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage deadband lower limit (&lt;i&gt;u&lt;/i&gt;&lt;i&gt;&lt;sub&gt;db1&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Voltage deadband lower limit (<i>u</i><i><sub>db1</sub></i>). It is a type-dependent parameter.
      */
     private Double udb1; // PU
 
@@ -361,16 +457,22 @@ public class WindContQIEC extends IdentifiedObject {
         udb1 = _value_;
     }
 
-    public void setUdb1(String _value_) {
-        udb1 = getDoubleFromString(_value_);
+    private static Object getUdb1(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getUdb1();
     }
 
-    public String udb1ToString() {
-        return udb1 != null ? udb1.toString() : null;
+    private static void setUdb1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setUdb1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setUdb1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage deadband upper limit (&lt;i&gt;u&lt;/i&gt;&lt;i&gt;&lt;sub&gt;db2&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Voltage deadband upper limit (<i>u</i><i><sub>db2</sub></i>). It is a type-dependent parameter.
      */
     private Double udb2; // PU
 
@@ -382,16 +484,22 @@ public class WindContQIEC extends IdentifiedObject {
         udb2 = _value_;
     }
 
-    public void setUdb2(String _value_) {
-        udb2 = getDoubleFromString(_value_);
+    private static Object getUdb2(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getUdb2();
     }
 
-    public String udb2ToString() {
-        return udb2 != null ? udb2.toString() : null;
+    private static void setUdb2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setUdb2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setUdb2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum voltage in voltage PI controller integral term (&lt;i&gt;u&lt;/i&gt;&lt;i&gt;&lt;sub&gt;max&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; WindContQIEC.umin). It is a type-dependent parameter.
+     * Maximum voltage in voltage PI controller integral term (<i>u</i><i><sub>max</sub></i>) (&gt; WindContQIEC.umin). It is a type-dependent parameter.
      */
     private Double umax; // PU
 
@@ -403,16 +511,22 @@ public class WindContQIEC extends IdentifiedObject {
         umax = _value_;
     }
 
-    public void setUmax(String _value_) {
-        umax = getDoubleFromString(_value_);
+    private static Object getUmax(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getUmax();
     }
 
-    public String umaxToString() {
-        return umax != null ? umax.toString() : null;
+    private static void setUmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setUmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setUmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum voltage in voltage PI controller integral term (&lt;i&gt;u&lt;/i&gt;&lt;i&gt;&lt;sub&gt;min&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; WindContQIEC.umax). It is a type-dependent parameter.
+     * Minimum voltage in voltage PI controller integral term (<i>u</i><i><sub>min</sub></i>) (&lt; WindContQIEC.umax). It is a type-dependent parameter.
      */
     private Double umin; // PU
 
@@ -424,16 +538,22 @@ public class WindContQIEC extends IdentifiedObject {
         umin = _value_;
     }
 
-    public void setUmin(String _value_) {
-        umin = getDoubleFromString(_value_);
+    private static Object getUmin(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getUmin();
     }
 
-    public String uminToString() {
-        return umin != null ? umin.toString() : null;
+    private static void setUmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setUmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setUmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage threshold for UVRT detection in Q control (&lt;i&gt;u&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qdip&lt;/sub&gt;&lt;/i&gt;). It is a type-dependent parameter.
+     * Voltage threshold for UVRT detection in Q control (<i>u</i><i><sub>qdip</sub></i>). It is a type-dependent parameter.
      */
     private Double uqdip; // PU
 
@@ -445,16 +565,22 @@ public class WindContQIEC extends IdentifiedObject {
         uqdip = _value_;
     }
 
-    public void setUqdip(String _value_) {
-        uqdip = getDoubleFromString(_value_);
+    private static Object getUqdip(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getUqdip();
     }
 
-    public String uqdipToString() {
-        return uqdip != null ? uqdip.toString() : null;
+    private static void setUqdip(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setUqdip((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setUqdip(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * User-defined bias in voltage reference (&lt;i&gt;u&lt;/i&gt;&lt;i&gt;&lt;sub&gt;ref0&lt;/sub&gt;&lt;/i&gt;). It is a case-dependent parameter.
+     * User-defined bias in voltage reference (<i>u</i><i><sub>ref0</sub></i>). It is a case-dependent parameter.
      */
     private Double uref0; // PU
 
@@ -466,16 +592,22 @@ public class WindContQIEC extends IdentifiedObject {
         uref0 = _value_;
     }
 
-    public void setUref0(String _value_) {
-        uref0 = getDoubleFromString(_value_);
+    private static Object getUref0(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getUref0();
     }
 
-    public String uref0ToString() {
-        return uref0 != null ? uref0.toString() : null;
+    private static void setUref0(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setUref0((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setUref0(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Types of general wind turbine Q control modes (&lt;i&gt;M&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qG&lt;/sub&gt;&lt;/i&gt;).  It is a project-dependent parameter.
+     * Types of general wind turbine Q control modes (<i>M</i><i><sub>qG</sub></i>).  It is a project-dependent parameter.
      */
     private String windQcontrolModesType; // WindQcontrolModeKind
 
@@ -487,12 +619,20 @@ public class WindContQIEC extends IdentifiedObject {
         windQcontrolModesType = _value_;
     }
 
-    public String windQcontrolModesTypeToString() {
-        return windQcontrolModesType;
+    private static Object getWindQcontrolModesType(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getWindQcontrolModesType();
+    }
+
+    private static void setWindQcontrolModesType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setWindQcontrolModesType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
-     * Types of UVRT Q control modes (&lt;i&gt;M&lt;/i&gt;&lt;i&gt;&lt;sub&gt;qUVRT&lt;/sub&gt;&lt;/i&gt;). It is a project-dependent parameter.
+     * Types of UVRT Q control modes (<i>M</i><i><sub>qUVRT</sub></i>). It is a project-dependent parameter.
      */
     private String windUVRTQcontrolModesType; // WindUVRTQcontrolModeKind
 
@@ -504,12 +644,20 @@ public class WindContQIEC extends IdentifiedObject {
         windUVRTQcontrolModesType = _value_;
     }
 
-    public String windUVRTQcontrolModesTypeToString() {
-        return windUVRTQcontrolModesType;
+    private static Object getWindUVRTQcontrolModesType(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getWindUVRTQcontrolModesType();
+    }
+
+    private static void setWindUVRTQcontrolModesType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setWindUVRTQcontrolModesType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
-     * Inductive component of voltage drop impedance (&lt;i&gt;x&lt;/i&gt;&lt;i&gt;&lt;sub&gt;droop&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0). It is a project-dependent parameter.
+     * Inductive component of voltage drop impedance (<i>x</i><i><sub>droop</sub></i>) (&gt;= 0). It is a project-dependent parameter.
      */
     private Double xdroop; // PU
 
@@ -521,12 +669,18 @@ public class WindContQIEC extends IdentifiedObject {
         xdroop = _value_;
     }
 
-    public void setXdroop(String _value_) {
-        xdroop = getDoubleFromString(_value_);
+    private static Object getXdroop(BaseClass _this_) {
+        return ((WindContQIEC) _this_).getXdroop();
     }
 
-    public String xdroopToString() {
-        return xdroop != null ? xdroop.toString() : null;
+    private static void setXdroop(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((WindContQIEC) _this_).setXdroop((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((WindContQIEC) _this_).setXdroop(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -563,64 +717,35 @@ public class WindContQIEC extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindContQIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindContQIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindContQIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindContQIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindContQIEC", attrName, value));
         }
     }
 
@@ -744,156 +869,126 @@ public class WindContQIEC extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindTurbineType3or4IEC", new AttrDetails("WindContQIEC.WindTurbineType3or4IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindTurbineType3or4IEC", new AttrDetails("WindContQIEC.WindTurbineType3or4IEC", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, WindContQIEC::getWindTurbineType3or4IEC, WindContQIEC::setWindTurbineType3or4IEC));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("iqh1", new AttrDetails("WindContQIEC.iqh1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("iqh1", new AttrDetails("WindContQIEC.iqh1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getIqh1, WindContQIEC::setIqh1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("iqmax", new AttrDetails("WindContQIEC.iqmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("iqmax", new AttrDetails("WindContQIEC.iqmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getIqmax, WindContQIEC::setIqmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("iqmin", new AttrDetails("WindContQIEC.iqmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("iqmin", new AttrDetails("WindContQIEC.iqmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getIqmin, WindContQIEC::setIqmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("iqpost", new AttrDetails("WindContQIEC.iqpost", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("iqpost", new AttrDetails("WindContQIEC.iqpost", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getIqpost, WindContQIEC::setIqpost));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kiq", new AttrDetails("WindContQIEC.kiq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kiq", new AttrDetails("WindContQIEC.kiq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getKiq, WindContQIEC::setKiq));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kiu", new AttrDetails("WindContQIEC.kiu", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kiu", new AttrDetails("WindContQIEC.kiu", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getKiu, WindContQIEC::setKiu));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpq", new AttrDetails("WindContQIEC.kpq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kpq", new AttrDetails("WindContQIEC.kpq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getKpq, WindContQIEC::setKpq));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpu", new AttrDetails("WindContQIEC.kpu", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kpu", new AttrDetails("WindContQIEC.kpu", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getKpu, WindContQIEC::setKpu));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kqv", new AttrDetails("WindContQIEC.kqv", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kqv", new AttrDetails("WindContQIEC.kqv", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getKqv, WindContQIEC::setKqv));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rdroop", new AttrDetails("WindContQIEC.rdroop", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rdroop", new AttrDetails("WindContQIEC.rdroop", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getRdroop, WindContQIEC::setRdroop));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpfiltq", new AttrDetails("WindContQIEC.tpfiltq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tpfiltq", new AttrDetails("WindContQIEC.tpfiltq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getTpfiltq, WindContQIEC::setTpfiltq));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpost", new AttrDetails("WindContQIEC.tpost", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tpost", new AttrDetails("WindContQIEC.tpost", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getTpost, WindContQIEC::setTpost));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tqord", new AttrDetails("WindContQIEC.tqord", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tqord", new AttrDetails("WindContQIEC.tqord", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getTqord, WindContQIEC::setTqord));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tufiltq", new AttrDetails("WindContQIEC.tufiltq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tufiltq", new AttrDetails("WindContQIEC.tufiltq", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getTufiltq, WindContQIEC::setTufiltq));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("udb1", new AttrDetails("WindContQIEC.udb1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("udb1", new AttrDetails("WindContQIEC.udb1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getUdb1, WindContQIEC::setUdb1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("udb2", new AttrDetails("WindContQIEC.udb2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("udb2", new AttrDetails("WindContQIEC.udb2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getUdb2, WindContQIEC::setUdb2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("umax", new AttrDetails("WindContQIEC.umax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("umax", new AttrDetails("WindContQIEC.umax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getUmax, WindContQIEC::setUmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("umin", new AttrDetails("WindContQIEC.umin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("umin", new AttrDetails("WindContQIEC.umin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getUmin, WindContQIEC::setUmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("uqdip", new AttrDetails("WindContQIEC.uqdip", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("uqdip", new AttrDetails("WindContQIEC.uqdip", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getUqdip, WindContQIEC::setUqdip));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("uref0", new AttrDetails("WindContQIEC.uref0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("uref0", new AttrDetails("WindContQIEC.uref0", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getUref0, WindContQIEC::setUref0));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("windQcontrolModesType", new AttrDetails("WindContQIEC.windQcontrolModesType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("windQcontrolModesType", new AttrDetails("WindContQIEC.windQcontrolModesType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, WindContQIEC::getWindQcontrolModesType, WindContQIEC::setWindQcontrolModesType));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("windUVRTQcontrolModesType", new AttrDetails("WindContQIEC.windUVRTQcontrolModesType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("windUVRTQcontrolModesType", new AttrDetails("WindContQIEC.windUVRTQcontrolModesType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, WindContQIEC::getWindUVRTQcontrolModesType, WindContQIEC::setWindUVRTQcontrolModesType));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xdroop", new AttrDetails("WindContQIEC.xdroop", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xdroop", new AttrDetails("WindContQIEC.xdroop", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, WindContQIEC::getXdroop, WindContQIEC::setXdroop));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindContQIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindContQIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("WindTurbineType3or4IEC", new GetterSetter(this::WindTurbineType3or4IECToString, this::setWindTurbineType3or4IEC, null));
-        map.put("iqh1", new GetterSetter(this::iqh1ToString, null, this::setIqh1));
-        map.put("iqmax", new GetterSetter(this::iqmaxToString, null, this::setIqmax));
-        map.put("iqmin", new GetterSetter(this::iqminToString, null, this::setIqmin));
-        map.put("iqpost", new GetterSetter(this::iqpostToString, null, this::setIqpost));
-        map.put("kiq", new GetterSetter(this::kiqToString, null, this::setKiq));
-        map.put("kiu", new GetterSetter(this::kiuToString, null, this::setKiu));
-        map.put("kpq", new GetterSetter(this::kpqToString, null, this::setKpq));
-        map.put("kpu", new GetterSetter(this::kpuToString, null, this::setKpu));
-        map.put("kqv", new GetterSetter(this::kqvToString, null, this::setKqv));
-        map.put("rdroop", new GetterSetter(this::rdroopToString, null, this::setRdroop));
-        map.put("tpfiltq", new GetterSetter(this::tpfiltqToString, null, this::setTpfiltq));
-        map.put("tpost", new GetterSetter(this::tpostToString, null, this::setTpost));
-        map.put("tqord", new GetterSetter(this::tqordToString, null, this::setTqord));
-        map.put("tufiltq", new GetterSetter(this::tufiltqToString, null, this::setTufiltq));
-        map.put("udb1", new GetterSetter(this::udb1ToString, null, this::setUdb1));
-        map.put("udb2", new GetterSetter(this::udb2ToString, null, this::setUdb2));
-        map.put("umax", new GetterSetter(this::umaxToString, null, this::setUmax));
-        map.put("umin", new GetterSetter(this::uminToString, null, this::setUmin));
-        map.put("uqdip", new GetterSetter(this::uqdipToString, null, this::setUqdip));
-        map.put("uref0", new GetterSetter(this::uref0ToString, null, this::setUref0));
-        map.put("windQcontrolModesType", new GetterSetter(this::windQcontrolModesTypeToString, null, this::setWindQcontrolModesType));
-        map.put("windUVRTQcontrolModesType", new GetterSetter(this::windUVRTQcontrolModesTypeToString, null, this::setWindUVRTQcontrolModesType));
-        map.put("xdroop", new GetterSetter(this::xdroopToString, null, this::setXdroop));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

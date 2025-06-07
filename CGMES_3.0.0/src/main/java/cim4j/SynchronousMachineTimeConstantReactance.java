@@ -23,14 +23,21 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
     private static final Logging LOG = Logging.getLogger(SynchronousMachineTimeConstantReactance.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public SynchronousMachineTimeConstantReactance() {
-        setCimType("SynchronousMachineTimeConstantReactance");
+    public SynchronousMachineTimeConstantReactance(String rdfid) {
+        super("SynchronousMachineTimeConstantReactance", rdfid);
     }
 
     /**
-     * Saturation loading correction factor (&lt;i&gt;Ks&lt;/i&gt;) (&amp;gt;= 0).  Used only by type J model.  Typical value = 0.
+     * Constructor for subclasses.
+     */
+    protected SynchronousMachineTimeConstantReactance(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Saturation loading correction factor (<i>Ks</i>) (&gt;= 0).  Used only by type J model.  Typical value = 0.
      */
     private Float ks; // Float
 
@@ -42,12 +49,18 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         ks = _value_;
     }
 
-    public void setKs(String _value_) {
-        ks = getFloatFromString(_value_);
+    private static Object getKs(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getKs();
     }
 
-    public String ksToString() {
-        return ks != null ? ks.toString() : null;
+    private static void setKs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setKs((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setKs(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -63,8 +76,16 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         modelType = _value_;
     }
 
-    public String modelTypeToString() {
-        return modelType;
+    private static Object getModelType(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getModelType();
+    }
+
+    private static void setModelType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setModelType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -80,12 +101,20 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         rotorType = _value_;
     }
 
-    public String rotorTypeToString() {
-        return rotorType;
+    private static Object getRotorType(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getRotorType();
+    }
+
+    private static void setRotorType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setRotorType((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
-     * Damping time constant for `Canay` reactance (&amp;gt;= 0).  Typical value = 0.
+     * Damping time constant for `Canay` reactance (&gt;= 0).  Typical value = 0.
      */
     private Double tc; // Seconds
 
@@ -97,16 +126,22 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         tc = _value_;
     }
 
-    public void setTc(String _value_) {
-        tc = getDoubleFromString(_value_);
+    private static Object getTc(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getTc();
     }
 
-    public String tcToString() {
-        return tc != null ? tc.toString() : null;
+    private static void setTc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setTc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setTc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Direct-axis transient rotor time constant (&lt;i&gt;T`do&lt;/i&gt;) (&amp;gt; SynchronousMachineTimeConstantReactance.tppdo).  Typical value = 5.
+     * Direct-axis transient rotor time constant (<i>T`do</i>) (&gt; SynchronousMachineTimeConstantReactance.tppdo).  Typical value = 5.
      */
     private Double tpdo; // Seconds
 
@@ -118,16 +153,22 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         tpdo = _value_;
     }
 
-    public void setTpdo(String _value_) {
-        tpdo = getDoubleFromString(_value_);
+    private static Object getTpdo(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getTpdo();
     }
 
-    public String tpdoToString() {
-        return tpdo != null ? tpdo.toString() : null;
+    private static void setTpdo(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setTpdo((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setTpdo(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Direct-axis subtransient rotor time constant (&lt;i&gt;T``do&lt;/i&gt;) (&amp;gt; 0).  Typical value = 0,03.
+     * Direct-axis subtransient rotor time constant (<i>T``do</i>) (&gt; 0).  Typical value = 0,03.
      */
     private Double tppdo; // Seconds
 
@@ -139,16 +180,22 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         tppdo = _value_;
     }
 
-    public void setTppdo(String _value_) {
-        tppdo = getDoubleFromString(_value_);
+    private static Object getTppdo(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getTppdo();
     }
 
-    public String tppdoToString() {
-        return tppdo != null ? tppdo.toString() : null;
+    private static void setTppdo(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setTppdo((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setTppdo(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Quadrature-axis subtransient rotor time constant (&lt;i&gt;T``qo&lt;/i&gt;) (&amp;gt; 0). Typical value = 0,03.
+     * Quadrature-axis subtransient rotor time constant (<i>T``qo</i>) (&gt; 0). Typical value = 0,03.
      */
     private Double tppqo; // Seconds
 
@@ -160,16 +207,22 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         tppqo = _value_;
     }
 
-    public void setTppqo(String _value_) {
-        tppqo = getDoubleFromString(_value_);
+    private static Object getTppqo(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getTppqo();
     }
 
-    public String tppqoToString() {
-        return tppqo != null ? tppqo.toString() : null;
+    private static void setTppqo(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setTppqo((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setTppqo(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Quadrature-axis transient rotor time constant (&lt;i&gt;T`qo&lt;/i&gt;) (&amp;gt; SynchronousMachineTimeConstantReactance.tppqo). Typical value = 0,5.
+     * Quadrature-axis transient rotor time constant (<i>T`qo</i>) (&gt; SynchronousMachineTimeConstantReactance.tppqo). Typical value = 0,5.
      */
     private Double tpqo; // Seconds
 
@@ -181,16 +234,22 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         tpqo = _value_;
     }
 
-    public void setTpqo(String _value_) {
-        tpqo = getDoubleFromString(_value_);
+    private static Object getTpqo(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getTpqo();
     }
 
-    public String tpqoToString() {
-        return tpqo != null ? tpqo.toString() : null;
+    private static void setTpqo(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setTpqo((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setTpqo(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Direct-axis subtransient reactance (unsaturated) (&lt;i&gt;X``d&lt;/i&gt;) (&amp;gt; RotatingMachineDynamics.statorLeakageReactance).  Typical value = 0,2.
+     * Direct-axis subtransient reactance (unsaturated) (<i>X``d</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).  Typical value = 0,2.
      */
     private Double xDirectSubtrans; // PU
 
@@ -202,16 +261,22 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         xDirectSubtrans = _value_;
     }
 
-    public void setXDirectSubtrans(String _value_) {
-        xDirectSubtrans = getDoubleFromString(_value_);
+    private static Object getXDirectSubtrans(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getXDirectSubtrans();
     }
 
-    public String xDirectSubtransToString() {
-        return xDirectSubtrans != null ? xDirectSubtrans.toString() : null;
+    private static void setXDirectSubtrans(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setXDirectSubtrans((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setXDirectSubtrans(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Direct-axis synchronous reactance (&lt;i&gt;Xd&lt;/i&gt;) (&amp;gt;= SynchronousMachineTimeConstantReactance.xDirectTrans). The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed.  Typical value = 1,8.
+     * Direct-axis synchronous reactance (<i>Xd</i>) (&gt;= SynchronousMachineTimeConstantReactance.xDirectTrans). The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed.  Typical value = 1,8.
      */
     private Double xDirectSync; // PU
 
@@ -223,16 +288,22 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         xDirectSync = _value_;
     }
 
-    public void setXDirectSync(String _value_) {
-        xDirectSync = getDoubleFromString(_value_);
+    private static Object getXDirectSync(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getXDirectSync();
     }
 
-    public String xDirectSyncToString() {
-        return xDirectSync != null ? xDirectSync.toString() : null;
+    private static void setXDirectSync(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setXDirectSync((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setXDirectSync(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Direct-axis transient reactance (unsaturated) (&lt;i&gt;X`d&lt;/i&gt;) (&amp;gt;= SynchronousMachineTimeConstantReactance.xDirectSubtrans).  Typical value = 0,5.
+     * Direct-axis transient reactance (unsaturated) (<i>X`d</i>) (&gt;= SynchronousMachineTimeConstantReactance.xDirectSubtrans).  Typical value = 0,5.
      */
     private Double xDirectTrans; // PU
 
@@ -244,16 +315,22 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         xDirectTrans = _value_;
     }
 
-    public void setXDirectTrans(String _value_) {
-        xDirectTrans = getDoubleFromString(_value_);
+    private static Object getXDirectTrans(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getXDirectTrans();
     }
 
-    public String xDirectTransToString() {
-        return xDirectTrans != null ? xDirectTrans.toString() : null;
+    private static void setXDirectTrans(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setXDirectTrans((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setXDirectTrans(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Quadrature-axis subtransient reactance (&lt;i&gt;X``q&lt;/i&gt;) (&amp;gt; RotatingMachineDynamics.statorLeakageReactance).  Typical value = 0,2.
+     * Quadrature-axis subtransient reactance (<i>X``q</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).  Typical value = 0,2.
      */
     private Double xQuadSubtrans; // PU
 
@@ -265,16 +342,22 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         xQuadSubtrans = _value_;
     }
 
-    public void setXQuadSubtrans(String _value_) {
-        xQuadSubtrans = getDoubleFromString(_value_);
+    private static Object getXQuadSubtrans(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getXQuadSubtrans();
     }
 
-    public String xQuadSubtransToString() {
-        return xQuadSubtrans != null ? xQuadSubtrans.toString() : null;
+    private static void setXQuadSubtrans(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setXQuadSubtrans((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setXQuadSubtrans(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Quadrature-axis synchronous reactance (&lt;i&gt;Xq&lt;/i&gt;) (&amp;gt;= SynchronousMachineTimeConstantReactance.xQuadTrans). The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical value = 1,6.
+     * Quadrature-axis synchronous reactance (<i>Xq</i>) (&gt;= SynchronousMachineTimeConstantReactance.xQuadTrans). The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical value = 1,6.
      */
     private Double xQuadSync; // PU
 
@@ -286,16 +369,22 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         xQuadSync = _value_;
     }
 
-    public void setXQuadSync(String _value_) {
-        xQuadSync = getDoubleFromString(_value_);
+    private static Object getXQuadSync(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getXQuadSync();
     }
 
-    public String xQuadSyncToString() {
-        return xQuadSync != null ? xQuadSync.toString() : null;
+    private static void setXQuadSync(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setXQuadSync((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setXQuadSync(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Quadrature-axis transient reactance (&lt;i&gt;X`q&lt;/i&gt;) (&amp;gt;= SynchronousMachineTimeConstantReactance.xQuadSubtrans).  Typical value = 0,3.
+     * Quadrature-axis transient reactance (<i>X`q</i>) (&gt;= SynchronousMachineTimeConstantReactance.xQuadSubtrans).  Typical value = 0,3.
      */
     private Double xQuadTrans; // PU
 
@@ -307,12 +396,18 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         xQuadTrans = _value_;
     }
 
-    public void setXQuadTrans(String _value_) {
-        xQuadTrans = getDoubleFromString(_value_);
+    private static Object getXQuadTrans(BaseClass _this_) {
+        return ((SynchronousMachineTimeConstantReactance) _this_).getXQuadTrans();
     }
 
-    public String xQuadTransToString() {
-        return xQuadTrans != null ? xQuadTrans.toString() : null;
+    private static void setXQuadTrans(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setXQuadTrans((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((SynchronousMachineTimeConstantReactance) _this_).setXQuadTrans(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -349,64 +444,35 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("SynchronousMachineTimeConstantReactance", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "SynchronousMachineTimeConstantReactance", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("SynchronousMachineTimeConstantReactance", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("SynchronousMachineTimeConstantReactance", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "SynchronousMachineTimeConstantReactance", attrName, value));
         }
     }
 
@@ -530,96 +596,76 @@ public class SynchronousMachineTimeConstantReactance extends SynchronousMachineD
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ks", new AttrDetails("SynchronousMachineTimeConstantReactance.ks", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ks", new AttrDetails("SynchronousMachineTimeConstantReactance.ks", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineTimeConstantReactance::getKs, SynchronousMachineTimeConstantReactance::setKs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("modelType", new AttrDetails("SynchronousMachineTimeConstantReactance.modelType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("modelType", new AttrDetails("SynchronousMachineTimeConstantReactance.modelType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, SynchronousMachineTimeConstantReactance::getModelType, SynchronousMachineTimeConstantReactance::setModelType));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rotorType", new AttrDetails("SynchronousMachineTimeConstantReactance.rotorType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("rotorType", new AttrDetails("SynchronousMachineTimeConstantReactance.rotorType", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, SynchronousMachineTimeConstantReactance::getRotorType, SynchronousMachineTimeConstantReactance::setRotorType));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tc", new AttrDetails("SynchronousMachineTimeConstantReactance.tc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tc", new AttrDetails("SynchronousMachineTimeConstantReactance.tc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineTimeConstantReactance::getTc, SynchronousMachineTimeConstantReactance::setTc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpdo", new AttrDetails("SynchronousMachineTimeConstantReactance.tpdo", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tpdo", new AttrDetails("SynchronousMachineTimeConstantReactance.tpdo", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineTimeConstantReactance::getTpdo, SynchronousMachineTimeConstantReactance::setTpdo));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tppdo", new AttrDetails("SynchronousMachineTimeConstantReactance.tppdo", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tppdo", new AttrDetails("SynchronousMachineTimeConstantReactance.tppdo", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineTimeConstantReactance::getTppdo, SynchronousMachineTimeConstantReactance::setTppdo));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tppqo", new AttrDetails("SynchronousMachineTimeConstantReactance.tppqo", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tppqo", new AttrDetails("SynchronousMachineTimeConstantReactance.tppqo", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineTimeConstantReactance::getTppqo, SynchronousMachineTimeConstantReactance::setTppqo));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tpqo", new AttrDetails("SynchronousMachineTimeConstantReactance.tpqo", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tpqo", new AttrDetails("SynchronousMachineTimeConstantReactance.tpqo", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineTimeConstantReactance::getTpqo, SynchronousMachineTimeConstantReactance::setTpqo));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xDirectSubtrans", new AttrDetails("SynchronousMachineTimeConstantReactance.xDirectSubtrans", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xDirectSubtrans", new AttrDetails("SynchronousMachineTimeConstantReactance.xDirectSubtrans", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineTimeConstantReactance::getXDirectSubtrans, SynchronousMachineTimeConstantReactance::setXDirectSubtrans));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xDirectSync", new AttrDetails("SynchronousMachineTimeConstantReactance.xDirectSync", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xDirectSync", new AttrDetails("SynchronousMachineTimeConstantReactance.xDirectSync", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineTimeConstantReactance::getXDirectSync, SynchronousMachineTimeConstantReactance::setXDirectSync));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xDirectTrans", new AttrDetails("SynchronousMachineTimeConstantReactance.xDirectTrans", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xDirectTrans", new AttrDetails("SynchronousMachineTimeConstantReactance.xDirectTrans", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineTimeConstantReactance::getXDirectTrans, SynchronousMachineTimeConstantReactance::setXDirectTrans));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xQuadSubtrans", new AttrDetails("SynchronousMachineTimeConstantReactance.xQuadSubtrans", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xQuadSubtrans", new AttrDetails("SynchronousMachineTimeConstantReactance.xQuadSubtrans", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineTimeConstantReactance::getXQuadSubtrans, SynchronousMachineTimeConstantReactance::setXQuadSubtrans));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xQuadSync", new AttrDetails("SynchronousMachineTimeConstantReactance.xQuadSync", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xQuadSync", new AttrDetails("SynchronousMachineTimeConstantReactance.xQuadSync", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineTimeConstantReactance::getXQuadSync, SynchronousMachineTimeConstantReactance::setXQuadSync));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xQuadTrans", new AttrDetails("SynchronousMachineTimeConstantReactance.xQuadTrans", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xQuadTrans", new AttrDetails("SynchronousMachineTimeConstantReactance.xQuadTrans", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, SynchronousMachineTimeConstantReactance::getXQuadTrans, SynchronousMachineTimeConstantReactance::setXQuadTrans));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SynchronousMachineTimeConstantReactance().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SynchronousMachineTimeConstantReactance(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ks", new GetterSetter(this::ksToString, null, this::setKs));
-        map.put("modelType", new GetterSetter(this::modelTypeToString, null, this::setModelType));
-        map.put("rotorType", new GetterSetter(this::rotorTypeToString, null, this::setRotorType));
-        map.put("tc", new GetterSetter(this::tcToString, null, this::setTc));
-        map.put("tpdo", new GetterSetter(this::tpdoToString, null, this::setTpdo));
-        map.put("tppdo", new GetterSetter(this::tppdoToString, null, this::setTppdo));
-        map.put("tppqo", new GetterSetter(this::tppqoToString, null, this::setTppqo));
-        map.put("tpqo", new GetterSetter(this::tpqoToString, null, this::setTpqo));
-        map.put("xDirectSubtrans", new GetterSetter(this::xDirectSubtransToString, null, this::setXDirectSubtrans));
-        map.put("xDirectSync", new GetterSetter(this::xDirectSyncToString, null, this::setXDirectSync));
-        map.put("xDirectTrans", new GetterSetter(this::xDirectTransToString, null, this::setXDirectTrans));
-        map.put("xQuadSubtrans", new GetterSetter(this::xQuadSubtransToString, null, this::setXQuadSubtrans));
-        map.put("xQuadSync", new GetterSetter(this::xQuadSyncToString, null, this::setXQuadSync));
-        map.put("xQuadTrans", new GetterSetter(this::xQuadTransToString, null, this::setXQuadTrans));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

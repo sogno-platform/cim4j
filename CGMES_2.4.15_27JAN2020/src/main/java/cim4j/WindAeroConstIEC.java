@@ -23,10 +23,17 @@ public class WindAeroConstIEC extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(WindAeroConstIEC.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public WindAeroConstIEC() {
-        setCimType("WindAeroConstIEC");
+    public WindAeroConstIEC(String rdfid) {
+        super("WindAeroConstIEC", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected WindAeroConstIEC(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class WindAeroConstIEC extends IdentifiedObject {
         return WindGenTurbineType1IEC;
     }
 
-    public void setWindGenTurbineType1IEC(BaseClass _object_) {
-        if (!(_object_ instanceof WindGenTurbineType1IEC)) {
-            throw new IllegalArgumentException("Object is not WindGenTurbineType1IEC");
-        }
+    public void setWindGenTurbineType1IEC(WindGenTurbineType1IEC _object_) {
         if (WindGenTurbineType1IEC != _object_) {
-            WindGenTurbineType1IEC = (WindGenTurbineType1IEC) _object_;
+            WindGenTurbineType1IEC = _object_;
             WindGenTurbineType1IEC.setWindAeroConstIEC(this);
         }
     }
 
-    public String WindGenTurbineType1IECToString() {
-        return WindGenTurbineType1IEC != null ? WindGenTurbineType1IEC.getRdfid() : null;
+    private static Object getWindGenTurbineType1IEC(BaseClass _this_) {
+        return ((WindAeroConstIEC) _this_).getWindGenTurbineType1IEC();
+    }
+
+    private static void setWindGenTurbineType1IEC(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindGenTurbineType1IEC) {
+            ((WindAeroConstIEC) _this_).setWindGenTurbineType1IEC((WindGenTurbineType1IEC) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindGenTurbineType1IEC");
+        }
     }
 
     /**
@@ -88,64 +100,35 @@ public class WindAeroConstIEC extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("WindAeroConstIEC", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "WindAeroConstIEC", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("WindAeroConstIEC", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("WindAeroConstIEC", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "WindAeroConstIEC", attrName, value));
         }
     }
 
@@ -269,18 +252,11 @@ public class WindAeroConstIEC extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindGenTurbineType1IEC", new AttrDetails("WindAeroConstIEC.WindGenTurbineType1IEC", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("WindGenTurbineType1IEC", new AttrDetails("WindAeroConstIEC.WindGenTurbineType1IEC", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, WindAeroConstIEC::getWindGenTurbineType1IEC, WindAeroConstIEC::setWindGenTurbineType1IEC));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindAeroConstIEC().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new WindAeroConstIEC(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("WindGenTurbineType1IEC", new GetterSetter(this::WindGenTurbineType1IECToString, this::setWindGenTurbineType1IEC, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

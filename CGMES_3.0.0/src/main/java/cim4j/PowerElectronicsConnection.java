@@ -23,10 +23,17 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
     private static final Logging LOG = Logging.getLogger(PowerElectronicsConnection.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public PowerElectronicsConnection() {
-        setCimType("PowerElectronicsConnection");
+    public PowerElectronicsConnection(String rdfid) {
+        super("PowerElectronicsConnection", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected PowerElectronicsConnection(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
         return PowerElectronicsUnit;
     }
 
-    public void setPowerElectronicsUnit(BaseClass _object_) {
-        if (!(_object_ instanceof PowerElectronicsUnit)) {
-            throw new IllegalArgumentException("Object is not PowerElectronicsUnit");
-        }
+    public void setPowerElectronicsUnit(PowerElectronicsUnit _object_) {
         if (PowerElectronicsUnit != _object_) {
-            PowerElectronicsUnit = (PowerElectronicsUnit) _object_;
+            PowerElectronicsUnit = _object_;
             PowerElectronicsUnit.setPowerElectronicsConnection(this);
         }
     }
 
-    public String PowerElectronicsUnitToString() {
-        return PowerElectronicsUnit != null ? PowerElectronicsUnit.getRdfid() : null;
+    private static Object getPowerElectronicsUnit(BaseClass _this_) {
+        return ((PowerElectronicsConnection) _this_).getPowerElectronicsUnit();
+    }
+
+    private static void setPowerElectronicsUnit(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof PowerElectronicsUnit) {
+            ((PowerElectronicsConnection) _this_).setPowerElectronicsUnit((PowerElectronicsUnit) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not PowerElectronicsUnit");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
         return WindTurbineType3or4Dynamics;
     }
 
-    public void setWindTurbineType3or4Dynamics(BaseClass _object_) {
-        if (!(_object_ instanceof WindTurbineType3or4Dynamics)) {
-            throw new IllegalArgumentException("Object is not WindTurbineType3or4Dynamics");
-        }
+    public void setWindTurbineType3or4Dynamics(WindTurbineType3or4Dynamics _object_) {
         if (WindTurbineType3or4Dynamics != _object_) {
-            WindTurbineType3or4Dynamics = (WindTurbineType3or4Dynamics) _object_;
+            WindTurbineType3or4Dynamics = _object_;
             WindTurbineType3or4Dynamics.setPowerElectronicsConnection(this);
         }
     }
 
-    public String WindTurbineType3or4DynamicsToString() {
-        return WindTurbineType3or4Dynamics != null ? WindTurbineType3or4Dynamics.getRdfid() : null;
+    private static Object getWindTurbineType3or4Dynamics(BaseClass _this_) {
+        return ((PowerElectronicsConnection) _this_).getWindTurbineType3or4Dynamics();
+    }
+
+    private static void setWindTurbineType3or4Dynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof WindTurbineType3or4Dynamics) {
+            ((PowerElectronicsConnection) _this_).setWindTurbineType3or4Dynamics((WindTurbineType3or4Dynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not WindTurbineType3or4Dynamics");
+        }
     }
 
     /**
@@ -90,12 +107,18 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
         maxQ = _value_;
     }
 
-    public void setMaxQ(String _value_) {
-        maxQ = getDoubleFromString(_value_);
+    private static Object getMaxQ(BaseClass _this_) {
+        return ((PowerElectronicsConnection) _this_).getMaxQ();
     }
 
-    public String maxQToString() {
-        return maxQ != null ? maxQ.toString() : null;
+    private static void setMaxQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerElectronicsConnection) _this_).setMaxQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerElectronicsConnection) _this_).setMaxQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -111,12 +134,18 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
         minQ = _value_;
     }
 
-    public void setMinQ(String _value_) {
-        minQ = getDoubleFromString(_value_);
+    private static Object getMinQ(BaseClass _this_) {
+        return ((PowerElectronicsConnection) _this_).getMinQ();
     }
 
-    public String minQToString() {
-        return minQ != null ? minQ.toString() : null;
+    private static void setMinQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerElectronicsConnection) _this_).setMinQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerElectronicsConnection) _this_).setMinQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -132,12 +161,18 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
         p = _value_;
     }
 
-    public void setP(String _value_) {
-        p = getDoubleFromString(_value_);
+    private static Object getP(BaseClass _this_) {
+        return ((PowerElectronicsConnection) _this_).getP();
     }
 
-    public String pToString() {
-        return p != null ? p.toString() : null;
+    private static void setP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerElectronicsConnection) _this_).setP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerElectronicsConnection) _this_).setP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -153,12 +188,18 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
         q = _value_;
     }
 
-    public void setQ(String _value_) {
-        q = getDoubleFromString(_value_);
+    private static Object getQ(BaseClass _this_) {
+        return ((PowerElectronicsConnection) _this_).getQ();
     }
 
-    public String qToString() {
-        return q != null ? q.toString() : null;
+    private static void setQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerElectronicsConnection) _this_).setQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerElectronicsConnection) _this_).setQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -174,12 +215,18 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
         ratedS = _value_;
     }
 
-    public void setRatedS(String _value_) {
-        ratedS = getDoubleFromString(_value_);
+    private static Object getRatedS(BaseClass _this_) {
+        return ((PowerElectronicsConnection) _this_).getRatedS();
     }
 
-    public String ratedSToString() {
-        return ratedS != null ? ratedS.toString() : null;
+    private static void setRatedS(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerElectronicsConnection) _this_).setRatedS((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerElectronicsConnection) _this_).setRatedS(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -195,12 +242,18 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
         ratedU = _value_;
     }
 
-    public void setRatedU(String _value_) {
-        ratedU = getDoubleFromString(_value_);
+    private static Object getRatedU(BaseClass _this_) {
+        return ((PowerElectronicsConnection) _this_).getRatedU();
     }
 
-    public String ratedUToString() {
-        return ratedU != null ? ratedU.toString() : null;
+    private static void setRatedU(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PowerElectronicsConnection) _this_).setRatedU((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PowerElectronicsConnection) _this_).setRatedU(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -237,64 +290,35 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("PowerElectronicsConnection", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "PowerElectronicsConnection", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("PowerElectronicsConnection", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("PowerElectronicsConnection", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "PowerElectronicsConnection", attrName, value));
         }
     }
 
@@ -418,60 +442,46 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("PowerElectronicsUnit", new AttrDetails("PowerElectronicsConnection.PowerElectronicsUnit", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("PowerElectronicsUnit", new AttrDetails("PowerElectronicsConnection.PowerElectronicsUnit", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, PowerElectronicsConnection::getPowerElectronicsUnit, PowerElectronicsConnection::setPowerElectronicsUnit));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("WindTurbineType3or4Dynamics", new AttrDetails("PowerElectronicsConnection.WindTurbineType3or4Dynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("WindTurbineType3or4Dynamics", new AttrDetails("PowerElectronicsConnection.WindTurbineType3or4Dynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, PowerElectronicsConnection::getWindTurbineType3or4Dynamics, PowerElectronicsConnection::setWindTurbineType3or4Dynamics));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxQ", new AttrDetails("PowerElectronicsConnection.maxQ", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("maxQ", new AttrDetails("PowerElectronicsConnection.maxQ", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerElectronicsConnection::getMaxQ, PowerElectronicsConnection::setMaxQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("minQ", new AttrDetails("PowerElectronicsConnection.minQ", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("minQ", new AttrDetails("PowerElectronicsConnection.minQ", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerElectronicsConnection::getMinQ, PowerElectronicsConnection::setMinQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("p", new AttrDetails("PowerElectronicsConnection.p", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("p", new AttrDetails("PowerElectronicsConnection.p", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerElectronicsConnection::getP, PowerElectronicsConnection::setP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("q", new AttrDetails("PowerElectronicsConnection.q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("q", new AttrDetails("PowerElectronicsConnection.q", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerElectronicsConnection::getQ, PowerElectronicsConnection::setQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedS", new AttrDetails("PowerElectronicsConnection.ratedS", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ratedS", new AttrDetails("PowerElectronicsConnection.ratedS", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerElectronicsConnection::getRatedS, PowerElectronicsConnection::setRatedS));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedU", new AttrDetails("PowerElectronicsConnection.ratedU", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ratedU", new AttrDetails("PowerElectronicsConnection.ratedU", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PowerElectronicsConnection::getRatedU, PowerElectronicsConnection::setRatedU));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PowerElectronicsConnection().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PowerElectronicsConnection(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("PowerElectronicsUnit", new GetterSetter(this::PowerElectronicsUnitToString, this::setPowerElectronicsUnit, null));
-        map.put("WindTurbineType3or4Dynamics", new GetterSetter(this::WindTurbineType3or4DynamicsToString, this::setWindTurbineType3or4Dynamics, null));
-        map.put("maxQ", new GetterSetter(this::maxQToString, null, this::setMaxQ));
-        map.put("minQ", new GetterSetter(this::minQToString, null, this::setMinQ));
-        map.put("p", new GetterSetter(this::pToString, null, this::setP));
-        map.put("q", new GetterSetter(this::qToString, null, this::setQ));
-        map.put("ratedS", new GetterSetter(this::ratedSToString, null, this::setRatedS));
-        map.put("ratedU", new GetterSetter(this::ratedUToString, null, this::setRatedU));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

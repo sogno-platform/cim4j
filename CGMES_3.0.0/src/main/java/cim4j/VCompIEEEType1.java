@@ -23,14 +23,21 @@ public class VCompIEEEType1 extends VoltageCompensatorDynamics {
     private static final Logging LOG = Logging.getLogger(VCompIEEEType1.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public VCompIEEEType1() {
-        setCimType("VCompIEEEType1");
+    public VCompIEEEType1(String rdfid) {
+        super("VCompIEEEType1", rdfid);
     }
 
     /**
-     * &lt;font color=`#0f0f0f`&gt;Resistive component of compensation of a generator (&lt;i&gt;Rc&lt;/i&gt;) (&amp;gt;= 0).&lt;/font&gt;
+     * Constructor for subclasses.
+     */
+    protected VCompIEEEType1(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * <font color=`#0f0f0f`>Resistive component of compensation of a generator (<i>Rc</i>) (&gt;= 0).</font>
      */
     private Double rc; // PU
 
@@ -42,16 +49,22 @@ public class VCompIEEEType1 extends VoltageCompensatorDynamics {
         rc = _value_;
     }
 
-    public void setRc(String _value_) {
-        rc = getDoubleFromString(_value_);
+    private static Object getRc(BaseClass _this_) {
+        return ((VCompIEEEType1) _this_).getRc();
     }
 
-    public String rcToString() {
-        return rc != null ? rc.toString() : null;
+    private static void setRc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VCompIEEEType1) _this_).setRc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VCompIEEEType1) _this_).setRc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * &lt;font color=`#0f0f0f`&gt;Time constant which is used for the combined voltage sensing and compensation signal (&lt;i&gt;Tr&lt;/i&gt;) (&amp;gt;= 0).&lt;/font&gt;
+     * <font color=`#0f0f0f`>Time constant which is used for the combined voltage sensing and compensation signal (<i>Tr</i>) (&gt;= 0).</font>
      */
     private Double tr; // Seconds
 
@@ -63,16 +76,22 @@ public class VCompIEEEType1 extends VoltageCompensatorDynamics {
         tr = _value_;
     }
 
-    public void setTr(String _value_) {
-        tr = getDoubleFromString(_value_);
+    private static Object getTr(BaseClass _this_) {
+        return ((VCompIEEEType1) _this_).getTr();
     }
 
-    public String trToString() {
-        return tr != null ? tr.toString() : null;
+    private static void setTr(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VCompIEEEType1) _this_).setTr((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VCompIEEEType1) _this_).setTr(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * &lt;font color=`#0f0f0f`&gt;Reactive component of compensation of a generator (&lt;i&gt;Xc&lt;/i&gt;) (&amp;gt;= 0).&lt;/font&gt;
+     * <font color=`#0f0f0f`>Reactive component of compensation of a generator (<i>Xc</i>) (&gt;= 0).</font>
      */
     private Double xc; // PU
 
@@ -84,12 +103,18 @@ public class VCompIEEEType1 extends VoltageCompensatorDynamics {
         xc = _value_;
     }
 
-    public void setXc(String _value_) {
-        xc = getDoubleFromString(_value_);
+    private static Object getXc(BaseClass _this_) {
+        return ((VCompIEEEType1) _this_).getXc();
     }
 
-    public String xcToString() {
-        return xc != null ? xc.toString() : null;
+    private static void setXc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((VCompIEEEType1) _this_).setXc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((VCompIEEEType1) _this_).setXc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -126,64 +151,35 @@ public class VCompIEEEType1 extends VoltageCompensatorDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("VCompIEEEType1", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "VCompIEEEType1", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("VCompIEEEType1", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("VCompIEEEType1", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "VCompIEEEType1", attrName, value));
         }
     }
 
@@ -307,30 +303,21 @@ public class VCompIEEEType1 extends VoltageCompensatorDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rc", new AttrDetails("VCompIEEEType1.rc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rc", new AttrDetails("VCompIEEEType1.rc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, VCompIEEEType1::getRc, VCompIEEEType1::setRc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tr", new AttrDetails("VCompIEEEType1.tr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tr", new AttrDetails("VCompIEEEType1.tr", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, VCompIEEEType1::getTr, VCompIEEEType1::setTr));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("xc", new AttrDetails("VCompIEEEType1.xc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("xc", new AttrDetails("VCompIEEEType1.xc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, VCompIEEEType1::getXc, VCompIEEEType1::setXc));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new VCompIEEEType1().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new VCompIEEEType1(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("rc", new GetterSetter(this::rcToString, null, this::setRc));
-        map.put("tr", new GetterSetter(this::trToString, null, this::setTr));
-        map.put("xc", new GetterSetter(this::xcToString, null, this::setXc));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

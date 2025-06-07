@@ -23,14 +23,21 @@ public class PFVArType1IEEEVArController extends PFVArControllerType1Dynamics {
     private static final Logging LOG = Logging.getLogger(PFVArType1IEEEVArController.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public PFVArType1IEEEVArController() {
-        setCimType("PFVArType1IEEEVArController");
+    public PFVArType1IEEEVArController(String rdfid) {
+        super("PFVArType1IEEEVArController", rdfid);
     }
 
     /**
-     * Var controller time delay (&lt;i&gt;T&lt;/i&gt;&lt;i&gt;&lt;sub&gt;VARC&lt;/sub&gt;&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 5.
+     * Constructor for subclasses.
+     */
+    protected PFVArType1IEEEVArController(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Var controller time delay (<i>T</i><i><sub>VARC</sub></i>) (&gt;= 0).  Typical value = 5.
      */
     private Double tvarc; // Seconds
 
@@ -42,16 +49,22 @@ public class PFVArType1IEEEVArController extends PFVArControllerType1Dynamics {
         tvarc = _value_;
     }
 
-    public void setTvarc(String _value_) {
-        tvarc = getDoubleFromString(_value_);
+    private static Object getTvarc(BaseClass _this_) {
+        return ((PFVArType1IEEEVArController) _this_).getTvarc();
     }
 
-    public String tvarcToString() {
-        return tvarc != null ? tvarc.toString() : null;
+    private static void setTvarc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PFVArType1IEEEVArController) _this_).setTvarc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArType1IEEEVArController) _this_).setTvarc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Synchronous machine power factor (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;VAR&lt;/sub&gt;&lt;/i&gt;).
+     * Synchronous machine power factor (<i>V</i><i><sub>VAR</sub></i>).
      */
     private Double vvar; // PU
 
@@ -63,16 +76,22 @@ public class PFVArType1IEEEVArController extends PFVArControllerType1Dynamics {
         vvar = _value_;
     }
 
-    public void setVvar(String _value_) {
-        vvar = getDoubleFromString(_value_);
+    private static Object getVvar(BaseClass _this_) {
+        return ((PFVArType1IEEEVArController) _this_).getVvar();
     }
 
-    public String vvarToString() {
-        return vvar != null ? vvar.toString() : null;
+    private static void setVvar(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PFVArType1IEEEVArController) _this_).setVvar((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArType1IEEEVArController) _this_).setVvar(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Var controller deadband (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;VARC_BW&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0,02.
+     * Var controller deadband (<i>V</i><i><sub>VARC_BW</sub></i>).  Typical value = 0,02.
      */
     private Float vvarcbw; // Float
 
@@ -84,16 +103,22 @@ public class PFVArType1IEEEVArController extends PFVArControllerType1Dynamics {
         vvarcbw = _value_;
     }
 
-    public void setVvarcbw(String _value_) {
-        vvarcbw = getFloatFromString(_value_);
+    private static Object getVvarcbw(BaseClass _this_) {
+        return ((PFVArType1IEEEVArController) _this_).getVvarcbw();
     }
 
-    public String vvarcbwToString() {
-        return vvarcbw != null ? vvarcbw.toString() : null;
+    private static void setVvarcbw(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PFVArType1IEEEVArController) _this_).setVvarcbw((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArType1IEEEVArController) _this_).setVvarcbw(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Var controller reference (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;VARREF&lt;/sub&gt;&lt;/i&gt;).
+     * Var controller reference (<i>V</i><i><sub>VARREF</sub></i>).
      */
     private Double vvarref; // PU
 
@@ -105,16 +130,22 @@ public class PFVArType1IEEEVArController extends PFVArControllerType1Dynamics {
         vvarref = _value_;
     }
 
-    public void setVvarref(String _value_) {
-        vvarref = getDoubleFromString(_value_);
+    private static Object getVvarref(BaseClass _this_) {
+        return ((PFVArType1IEEEVArController) _this_).getVvarref();
     }
 
-    public String vvarrefToString() {
-        return vvarref != null ? vvarref.toString() : null;
+    private static void setVvarref(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PFVArType1IEEEVArController) _this_).setVvarref((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArType1IEEEVArController) _this_).setVvarref(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum machine terminal voltage needed for pf/VAr controller to be enabled (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;VTMAX&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; PVFArType1IEEEVArController.vvtmin).
+     * Maximum machine terminal voltage needed for pf/VAr controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>) (&gt; PVFArType1IEEEVArController.vvtmin).
      */
     private Double vvtmax; // PU
 
@@ -126,16 +157,22 @@ public class PFVArType1IEEEVArController extends PFVArControllerType1Dynamics {
         vvtmax = _value_;
     }
 
-    public void setVvtmax(String _value_) {
-        vvtmax = getDoubleFromString(_value_);
+    private static Object getVvtmax(BaseClass _this_) {
+        return ((PFVArType1IEEEVArController) _this_).getVvtmax();
     }
 
-    public String vvtmaxToString() {
-        return vvtmax != null ? vvtmax.toString() : null;
+    private static void setVvtmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PFVArType1IEEEVArController) _this_).setVvtmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArType1IEEEVArController) _this_).setVvtmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum machine terminal voltage needed to enable pf/var controller (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;VTMIN&lt;/sub&gt;&lt;/i&gt;) (&amp;lt; PVFArType1IEEEVArController.vvtmax).
+     * Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>) (&lt; PVFArType1IEEEVArController.vvtmax).
      */
     private Double vvtmin; // PU
 
@@ -147,12 +184,18 @@ public class PFVArType1IEEEVArController extends PFVArControllerType1Dynamics {
         vvtmin = _value_;
     }
 
-    public void setVvtmin(String _value_) {
-        vvtmin = getDoubleFromString(_value_);
+    private static Object getVvtmin(BaseClass _this_) {
+        return ((PFVArType1IEEEVArController) _this_).getVvtmin();
     }
 
-    public String vvtminToString() {
-        return vvtmin != null ? vvtmin.toString() : null;
+    private static void setVvtmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PFVArType1IEEEVArController) _this_).setVvtmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArType1IEEEVArController) _this_).setVvtmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -189,64 +232,35 @@ public class PFVArType1IEEEVArController extends PFVArControllerType1Dynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("PFVArType1IEEEVArController", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "PFVArType1IEEEVArController", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("PFVArType1IEEEVArController", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("PFVArType1IEEEVArController", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "PFVArType1IEEEVArController", attrName, value));
         }
     }
 
@@ -370,48 +384,36 @@ public class PFVArType1IEEEVArController extends PFVArControllerType1Dynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tvarc", new AttrDetails("PFVArType1IEEEVArController.tvarc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tvarc", new AttrDetails("PFVArType1IEEEVArController.tvarc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PFVArType1IEEEVArController::getTvarc, PFVArType1IEEEVArController::setTvarc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vvar", new AttrDetails("PFVArType1IEEEVArController.vvar", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vvar", new AttrDetails("PFVArType1IEEEVArController.vvar", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PFVArType1IEEEVArController::getVvar, PFVArType1IEEEVArController::setVvar));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vvarcbw", new AttrDetails("PFVArType1IEEEVArController.vvarcbw", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vvarcbw", new AttrDetails("PFVArType1IEEEVArController.vvarcbw", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PFVArType1IEEEVArController::getVvarcbw, PFVArType1IEEEVArController::setVvarcbw));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vvarref", new AttrDetails("PFVArType1IEEEVArController.vvarref", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vvarref", new AttrDetails("PFVArType1IEEEVArController.vvarref", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PFVArType1IEEEVArController::getVvarref, PFVArType1IEEEVArController::setVvarref));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vvtmax", new AttrDetails("PFVArType1IEEEVArController.vvtmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vvtmax", new AttrDetails("PFVArType1IEEEVArController.vvtmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PFVArType1IEEEVArController::getVvtmax, PFVArType1IEEEVArController::setVvtmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vvtmin", new AttrDetails("PFVArType1IEEEVArController.vvtmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vvtmin", new AttrDetails("PFVArType1IEEEVArController.vvtmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PFVArType1IEEEVArController::getVvtmin, PFVArType1IEEEVArController::setVvtmin));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PFVArType1IEEEVArController().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PFVArType1IEEEVArController(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("tvarc", new GetterSetter(this::tvarcToString, null, this::setTvarc));
-        map.put("vvar", new GetterSetter(this::vvarToString, null, this::setVvar));
-        map.put("vvarcbw", new GetterSetter(this::vvarcbwToString, null, this::setVvarcbw));
-        map.put("vvarref", new GetterSetter(this::vvarrefToString, null, this::setVvarref));
-        map.put("vvtmax", new GetterSetter(this::vvtmaxToString, null, this::setVvtmax));
-        map.put("vvtmin", new GetterSetter(this::vvtminToString, null, this::setVvtmin));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

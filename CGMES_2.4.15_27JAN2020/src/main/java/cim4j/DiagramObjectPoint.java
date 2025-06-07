@@ -23,10 +23,17 @@ public class DiagramObjectPoint extends BaseClass {
     private static final Logging LOG = Logging.getLogger(DiagramObjectPoint.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public DiagramObjectPoint() {
-        setCimType("DiagramObjectPoint");
+    public DiagramObjectPoint(String rdfid) {
+        super("DiagramObjectPoint", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected DiagramObjectPoint(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class DiagramObjectPoint extends BaseClass {
         return DiagramObject;
     }
 
-    public void setDiagramObject(BaseClass _object_) {
-        if (!(_object_ instanceof DiagramObject)) {
-            throw new IllegalArgumentException("Object is not DiagramObject");
-        }
+    public void setDiagramObject(DiagramObject _object_) {
         if (DiagramObject != _object_) {
-            DiagramObject = (DiagramObject) _object_;
+            DiagramObject = _object_;
             DiagramObject.setDiagramObjectPoints(this);
         }
     }
 
-    public String DiagramObjectToString() {
-        return DiagramObject != null ? DiagramObject.getRdfid() : null;
+    private static Object getDiagramObject(BaseClass _this_) {
+        return ((DiagramObjectPoint) _this_).getDiagramObject();
+    }
+
+    private static void setDiagramObject(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof DiagramObject) {
+            ((DiagramObjectPoint) _this_).setDiagramObject((DiagramObject) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not DiagramObject");
+        }
     }
 
     /**
@@ -61,18 +73,23 @@ public class DiagramObjectPoint extends BaseClass {
         return DiagramObjectGluePoint;
     }
 
-    public void setDiagramObjectGluePoint(BaseClass _object_) {
-        if (!(_object_ instanceof DiagramObjectGluePoint)) {
-            throw new IllegalArgumentException("Object is not DiagramObjectGluePoint");
-        }
+    public void setDiagramObjectGluePoint(DiagramObjectGluePoint _object_) {
         if (DiagramObjectGluePoint != _object_) {
-            DiagramObjectGluePoint = (DiagramObjectGluePoint) _object_;
+            DiagramObjectGluePoint = _object_;
             DiagramObjectGluePoint.setDiagramObjectPoints(this);
         }
     }
 
-    public String DiagramObjectGluePointToString() {
-        return DiagramObjectGluePoint != null ? DiagramObjectGluePoint.getRdfid() : null;
+    private static Object getDiagramObjectGluePoint(BaseClass _this_) {
+        return ((DiagramObjectPoint) _this_).getDiagramObjectGluePoint();
+    }
+
+    private static void setDiagramObjectGluePoint(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof DiagramObjectGluePoint) {
+            ((DiagramObjectPoint) _this_).setDiagramObjectGluePoint((DiagramObjectGluePoint) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not DiagramObjectGluePoint");
+        }
     }
 
     /**
@@ -88,12 +105,18 @@ public class DiagramObjectPoint extends BaseClass {
         sequenceNumber = _value_;
     }
 
-    public void setSequenceNumber(String _value_) {
-        sequenceNumber = getIntegerFromString(_value_);
+    private static Object getSequenceNumber(BaseClass _this_) {
+        return ((DiagramObjectPoint) _this_).getSequenceNumber();
     }
 
-    public String sequenceNumberToString() {
-        return sequenceNumber != null ? sequenceNumber.toString() : null;
+    private static void setSequenceNumber(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Integer) {
+            ((DiagramObjectPoint) _this_).setSequenceNumber((Integer) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiagramObjectPoint) _this_).setSequenceNumber(getIntegerFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Integer nor String");
+        }
     }
 
     /**
@@ -109,12 +132,18 @@ public class DiagramObjectPoint extends BaseClass {
         xPosition = _value_;
     }
 
-    public void setXPosition(String _value_) {
-        xPosition = getDoubleFromString(_value_);
+    private static Object getXPosition(BaseClass _this_) {
+        return ((DiagramObjectPoint) _this_).getXPosition();
     }
 
-    public String xPositionToString() {
-        return xPosition != null ? xPosition.toString() : null;
+    private static void setXPosition(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiagramObjectPoint) _this_).setXPosition((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiagramObjectPoint) _this_).setXPosition(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -130,12 +159,18 @@ public class DiagramObjectPoint extends BaseClass {
         yPosition = _value_;
     }
 
-    public void setYPosition(String _value_) {
-        yPosition = getDoubleFromString(_value_);
+    private static Object getYPosition(BaseClass _this_) {
+        return ((DiagramObjectPoint) _this_).getYPosition();
     }
 
-    public String yPositionToString() {
-        return yPosition != null ? yPosition.toString() : null;
+    private static void setYPosition(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiagramObjectPoint) _this_).setYPosition((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiagramObjectPoint) _this_).setYPosition(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -151,12 +186,18 @@ public class DiagramObjectPoint extends BaseClass {
         zPosition = _value_;
     }
 
-    public void setZPosition(String _value_) {
-        zPosition = getDoubleFromString(_value_);
+    private static Object getZPosition(BaseClass _this_) {
+        return ((DiagramObjectPoint) _this_).getZPosition();
     }
 
-    public String zPositionToString() {
-        return zPosition != null ? zPosition.toString() : null;
+    private static void setZPosition(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((DiagramObjectPoint) _this_).setZPosition((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiagramObjectPoint) _this_).setZPosition(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -193,64 +234,35 @@ public class DiagramObjectPoint extends BaseClass {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("DiagramObjectPoint", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "DiagramObjectPoint", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("DiagramObjectPoint", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("DiagramObjectPoint", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "DiagramObjectPoint", attrName, value));
         }
     }
 
@@ -374,48 +386,36 @@ public class DiagramObjectPoint extends BaseClass {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("DiagramObject", new AttrDetails("DiagramObjectPoint.DiagramObject", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("DiagramObject", new AttrDetails("DiagramObjectPoint.DiagramObject", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, DiagramObjectPoint::getDiagramObject, DiagramObjectPoint::setDiagramObject));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("DiagramObjectGluePoint", new AttrDetails("DiagramObjectPoint.DiagramObjectGluePoint", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("DiagramObjectGluePoint", new AttrDetails("DiagramObjectPoint.DiagramObjectGluePoint", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, DiagramObjectPoint::getDiagramObjectGluePoint, DiagramObjectPoint::setDiagramObjectGluePoint));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("sequenceNumber", new AttrDetails("DiagramObjectPoint.sequenceNumber", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("sequenceNumber", new AttrDetails("DiagramObjectPoint.sequenceNumber", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiagramObjectPoint::getSequenceNumber, DiagramObjectPoint::setSequenceNumber));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("xPosition", new AttrDetails("DiagramObjectPoint.xPosition", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("xPosition", new AttrDetails("DiagramObjectPoint.xPosition", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiagramObjectPoint::getXPosition, DiagramObjectPoint::setXPosition));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("yPosition", new AttrDetails("DiagramObjectPoint.yPosition", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("yPosition", new AttrDetails("DiagramObjectPoint.yPosition", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiagramObjectPoint::getYPosition, DiagramObjectPoint::setYPosition));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("zPosition", new AttrDetails("DiagramObjectPoint.zPosition", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("zPosition", new AttrDetails("DiagramObjectPoint.zPosition", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, DiagramObjectPoint::getZPosition, DiagramObjectPoint::setZPosition));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DiagramObjectPoint().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DiagramObjectPoint(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("DiagramObject", new GetterSetter(this::DiagramObjectToString, this::setDiagramObject, null));
-        map.put("DiagramObjectGluePoint", new GetterSetter(this::DiagramObjectGluePointToString, this::setDiagramObjectGluePoint, null));
-        map.put("sequenceNumber", new GetterSetter(this::sequenceNumberToString, null, this::setSequenceNumber));
-        map.put("xPosition", new GetterSetter(this::xPositionToString, null, this::setXPosition));
-        map.put("yPosition", new GetterSetter(this::yPositionToString, null, this::setYPosition));
-        map.put("zPosition", new GetterSetter(this::zPositionToString, null, this::setZPosition));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

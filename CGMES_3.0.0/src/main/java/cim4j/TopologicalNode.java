@@ -23,10 +23,17 @@ public class TopologicalNode extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(TopologicalNode.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public TopologicalNode() {
-        setCimType("TopologicalNode");
+    public TopologicalNode(String rdfid) {
+        super("TopologicalNode", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected TopologicalNode(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class TopologicalNode extends IdentifiedObject {
         return AngleRefTopologicalIsland;
     }
 
-    public void setAngleRefTopologicalIsland(BaseClass _object_) {
-        if (!(_object_ instanceof TopologicalIsland)) {
-            throw new IllegalArgumentException("Object is not TopologicalIsland");
-        }
+    public void setAngleRefTopologicalIsland(TopologicalIsland _object_) {
         if (AngleRefTopologicalIsland != _object_) {
-            AngleRefTopologicalIsland = (TopologicalIsland) _object_;
+            AngleRefTopologicalIsland = _object_;
             AngleRefTopologicalIsland.setAngleRefTopologicalNode(this);
         }
     }
 
-    public String AngleRefTopologicalIslandToString() {
-        return AngleRefTopologicalIsland != null ? AngleRefTopologicalIsland.getRdfid() : null;
+    private static Object getAngleRefTopologicalIsland(BaseClass _this_) {
+        return ((TopologicalNode) _this_).getAngleRefTopologicalIsland();
+    }
+
+    private static void setAngleRefTopologicalIsland(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof TopologicalIsland) {
+            ((TopologicalNode) _this_).setAngleRefTopologicalIsland((TopologicalIsland) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not TopologicalIsland");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class TopologicalNode extends IdentifiedObject {
         return BaseVoltage;
     }
 
-    public void setBaseVoltage(BaseClass _object_) {
-        if (!(_object_ instanceof BaseVoltage)) {
-            throw new IllegalArgumentException("Object is not BaseVoltage");
-        }
+    public void setBaseVoltage(BaseVoltage _object_) {
         if (BaseVoltage != _object_) {
-            BaseVoltage = (BaseVoltage) _object_;
+            BaseVoltage = _object_;
             BaseVoltage.setTopologicalNode(this);
         }
     }
 
-    public String BaseVoltageToString() {
-        return BaseVoltage != null ? BaseVoltage.getRdfid() : null;
+    private static Object getBaseVoltage(BaseClass _this_) {
+        return ((TopologicalNode) _this_).getBaseVoltage();
+    }
+
+    private static void setBaseVoltage(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof BaseVoltage) {
+            ((TopologicalNode) _this_).setBaseVoltage((BaseVoltage) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not BaseVoltage");
+        }
     }
 
     /**
@@ -86,18 +103,23 @@ public class TopologicalNode extends IdentifiedObject {
         return ConnectivityNodeContainer;
     }
 
-    public void setConnectivityNodeContainer(BaseClass _object_) {
-        if (!(_object_ instanceof ConnectivityNodeContainer)) {
-            throw new IllegalArgumentException("Object is not ConnectivityNodeContainer");
-        }
+    public void setConnectivityNodeContainer(ConnectivityNodeContainer _object_) {
         if (ConnectivityNodeContainer != _object_) {
-            ConnectivityNodeContainer = (ConnectivityNodeContainer) _object_;
+            ConnectivityNodeContainer = _object_;
             ConnectivityNodeContainer.setTopologicalNode(this);
         }
     }
 
-    public String ConnectivityNodeContainerToString() {
-        return ConnectivityNodeContainer != null ? ConnectivityNodeContainer.getRdfid() : null;
+    private static Object getConnectivityNodeContainer(BaseClass _this_) {
+        return ((TopologicalNode) _this_).getConnectivityNodeContainer();
+    }
+
+    private static void setConnectivityNodeContainer(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ConnectivityNodeContainer) {
+            ((TopologicalNode) _this_).setConnectivityNodeContainer((ConnectivityNodeContainer) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ConnectivityNodeContainer");
+        }
     }
 
     /**
@@ -111,18 +133,23 @@ public class TopologicalNode extends IdentifiedObject {
         return ConnectivityNodes;
     }
 
-    public void setConnectivityNodes(BaseClass _object_) {
-        if (!(_object_ instanceof ConnectivityNode)) {
-            throw new IllegalArgumentException("Object is not ConnectivityNode");
-        }
+    public void setConnectivityNodes(ConnectivityNode _object_) {
         if (!ConnectivityNodes.contains(_object_)) {
-            ConnectivityNodes.add((ConnectivityNode) _object_);
-            ((ConnectivityNode) _object_).setTopologicalNode(this);
+            ConnectivityNodes.add(_object_);
+            _object_.setTopologicalNode(this);
         }
     }
 
-    public String ConnectivityNodesToString() {
-        return getStringFromSet(ConnectivityNodes);
+    private static Object getConnectivityNodes(BaseClass _this_) {
+        return ((TopologicalNode) _this_).getConnectivityNodes();
+    }
+
+    private static void setConnectivityNodes(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ConnectivityNode) {
+            ((TopologicalNode) _this_).setConnectivityNodes((ConnectivityNode) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ConnectivityNode");
+        }
     }
 
     /**
@@ -134,18 +161,23 @@ public class TopologicalNode extends IdentifiedObject {
         return ReportingGroup;
     }
 
-    public void setReportingGroup(BaseClass _object_) {
-        if (!(_object_ instanceof ReportingGroup)) {
-            throw new IllegalArgumentException("Object is not ReportingGroup");
-        }
+    public void setReportingGroup(ReportingGroup _object_) {
         if (ReportingGroup != _object_) {
-            ReportingGroup = (ReportingGroup) _object_;
+            ReportingGroup = _object_;
             ReportingGroup.setTopologicalNode(this);
         }
     }
 
-    public String ReportingGroupToString() {
-        return ReportingGroup != null ? ReportingGroup.getRdfid() : null;
+    private static Object getReportingGroup(BaseClass _this_) {
+        return ((TopologicalNode) _this_).getReportingGroup();
+    }
+
+    private static void setReportingGroup(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ReportingGroup) {
+            ((TopologicalNode) _this_).setReportingGroup((ReportingGroup) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ReportingGroup");
+        }
     }
 
     /**
@@ -159,18 +191,23 @@ public class TopologicalNode extends IdentifiedObject {
         return SvInjection;
     }
 
-    public void setSvInjection(BaseClass _object_) {
-        if (!(_object_ instanceof SvInjection)) {
-            throw new IllegalArgumentException("Object is not SvInjection");
-        }
+    public void setSvInjection(SvInjection _object_) {
         if (SvInjection != _object_) {
-            SvInjection = (SvInjection) _object_;
+            SvInjection = _object_;
             SvInjection.setTopologicalNode(this);
         }
     }
 
-    public String SvInjectionToString() {
-        return SvInjection != null ? SvInjection.getRdfid() : null;
+    private static Object getSvInjection(BaseClass _this_) {
+        return ((TopologicalNode) _this_).getSvInjection();
+    }
+
+    private static void setSvInjection(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof SvInjection) {
+            ((TopologicalNode) _this_).setSvInjection((SvInjection) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not SvInjection");
+        }
     }
 
     /**
@@ -184,18 +221,23 @@ public class TopologicalNode extends IdentifiedObject {
         return SvVoltage;
     }
 
-    public void setSvVoltage(BaseClass _object_) {
-        if (!(_object_ instanceof SvVoltage)) {
-            throw new IllegalArgumentException("Object is not SvVoltage");
-        }
+    public void setSvVoltage(SvVoltage _object_) {
         if (SvVoltage != _object_) {
-            SvVoltage = (SvVoltage) _object_;
+            SvVoltage = _object_;
             SvVoltage.setTopologicalNode(this);
         }
     }
 
-    public String SvVoltageToString() {
-        return SvVoltage != null ? SvVoltage.getRdfid() : null;
+    private static Object getSvVoltage(BaseClass _this_) {
+        return ((TopologicalNode) _this_).getSvVoltage();
+    }
+
+    private static void setSvVoltage(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof SvVoltage) {
+            ((TopologicalNode) _this_).setSvVoltage((SvVoltage) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not SvVoltage");
+        }
     }
 
     /**
@@ -209,18 +251,23 @@ public class TopologicalNode extends IdentifiedObject {
         return Terminal;
     }
 
-    public void setTerminal(BaseClass _object_) {
-        if (!(_object_ instanceof Terminal)) {
-            throw new IllegalArgumentException("Object is not Terminal");
-        }
+    public void setTerminal(Terminal _object_) {
         if (!Terminal.contains(_object_)) {
-            Terminal.add((Terminal) _object_);
-            ((Terminal) _object_).setTopologicalNode(this);
+            Terminal.add(_object_);
+            _object_.setTopologicalNode(this);
         }
     }
 
-    public String TerminalToString() {
-        return getStringFromSet(Terminal);
+    private static Object getTerminal(BaseClass _this_) {
+        return ((TopologicalNode) _this_).getTerminal();
+    }
+
+    private static void setTerminal(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Terminal) {
+            ((TopologicalNode) _this_).setTerminal((Terminal) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not Terminal");
+        }
     }
 
     /**
@@ -234,18 +281,23 @@ public class TopologicalNode extends IdentifiedObject {
         return TopologicalIsland;
     }
 
-    public void setTopologicalIsland(BaseClass _object_) {
-        if (!(_object_ instanceof TopologicalIsland)) {
-            throw new IllegalArgumentException("Object is not TopologicalIsland");
-        }
+    public void setTopologicalIsland(TopologicalIsland _object_) {
         if (TopologicalIsland != _object_) {
-            TopologicalIsland = (TopologicalIsland) _object_;
+            TopologicalIsland = _object_;
             TopologicalIsland.setTopologicalNodes(this);
         }
     }
 
-    public String TopologicalIslandToString() {
-        return TopologicalIsland != null ? TopologicalIsland.getRdfid() : null;
+    private static Object getTopologicalIsland(BaseClass _this_) {
+        return ((TopologicalNode) _this_).getTopologicalIsland();
+    }
+
+    private static void setTopologicalIsland(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof TopologicalIsland) {
+            ((TopologicalNode) _this_).setTopologicalIsland((TopologicalIsland) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not TopologicalIsland");
+        }
     }
 
     /**
@@ -282,64 +334,35 @@ public class TopologicalNode extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("TopologicalNode", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "TopologicalNode", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("TopologicalNode", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("TopologicalNode", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "TopologicalNode", attrName, value));
         }
     }
 
@@ -463,66 +486,51 @@ public class TopologicalNode extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("AngleRefTopologicalIsland", new AttrDetails("TopologicalNode.AngleRefTopologicalIsland", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("AngleRefTopologicalIsland", new AttrDetails("TopologicalNode.AngleRefTopologicalIsland", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, TopologicalNode::getAngleRefTopologicalIsland, TopologicalNode::setAngleRefTopologicalIsland));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.TP);
-            map.put("BaseVoltage", new AttrDetails("TopologicalNode.BaseVoltage", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("BaseVoltage", new AttrDetails("TopologicalNode.BaseVoltage", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, TopologicalNode::getBaseVoltage, TopologicalNode::setBaseVoltage));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.TP);
-            map.put("ConnectivityNodeContainer", new AttrDetails("TopologicalNode.ConnectivityNodeContainer", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("ConnectivityNodeContainer", new AttrDetails("TopologicalNode.ConnectivityNodeContainer", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, TopologicalNode::getConnectivityNodeContainer, TopologicalNode::setConnectivityNodeContainer));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.TP);
-            map.put("ConnectivityNodes", new AttrDetails("TopologicalNode.ConnectivityNodes", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("ConnectivityNodes", new AttrDetails("TopologicalNode.ConnectivityNodes", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, TopologicalNode::getConnectivityNodes, TopologicalNode::setConnectivityNodes));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.TP);
-            map.put("ReportingGroup", new AttrDetails("TopologicalNode.ReportingGroup", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("ReportingGroup", new AttrDetails("TopologicalNode.ReportingGroup", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, TopologicalNode::getReportingGroup, TopologicalNode::setReportingGroup));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("SvInjection", new AttrDetails("TopologicalNode.SvInjection", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("SvInjection", new AttrDetails("TopologicalNode.SvInjection", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, TopologicalNode::getSvInjection, TopologicalNode::setSvInjection));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("SvVoltage", new AttrDetails("TopologicalNode.SvVoltage", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("SvVoltage", new AttrDetails("TopologicalNode.SvVoltage", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, TopologicalNode::getSvVoltage, TopologicalNode::setSvVoltage));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.TP);
-            map.put("Terminal", new AttrDetails("TopologicalNode.Terminal", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("Terminal", new AttrDetails("TopologicalNode.Terminal", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, TopologicalNode::getTerminal, TopologicalNode::setTerminal));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SV);
-            map.put("TopologicalIsland", new AttrDetails("TopologicalNode.TopologicalIsland", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("TopologicalIsland", new AttrDetails("TopologicalNode.TopologicalIsland", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, TopologicalNode::getTopologicalIsland, TopologicalNode::setTopologicalIsland));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TopologicalNode().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new TopologicalNode(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("AngleRefTopologicalIsland", new GetterSetter(this::AngleRefTopologicalIslandToString, this::setAngleRefTopologicalIsland, null));
-        map.put("BaseVoltage", new GetterSetter(this::BaseVoltageToString, this::setBaseVoltage, null));
-        map.put("ConnectivityNodeContainer", new GetterSetter(this::ConnectivityNodeContainerToString, this::setConnectivityNodeContainer, null));
-        map.put("ConnectivityNodes", new GetterSetter(this::ConnectivityNodesToString, this::setConnectivityNodes, null));
-        map.put("ReportingGroup", new GetterSetter(this::ReportingGroupToString, this::setReportingGroup, null));
-        map.put("SvInjection", new GetterSetter(this::SvInjectionToString, this::setSvInjection, null));
-        map.put("SvVoltage", new GetterSetter(this::SvVoltageToString, this::setSvVoltage, null));
-        map.put("Terminal", new GetterSetter(this::TerminalToString, this::setTerminal, null));
-        map.put("TopologicalIsland", new GetterSetter(this::TopologicalIslandToString, this::setTopologicalIsland, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

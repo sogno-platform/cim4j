@@ -23,10 +23,17 @@ public class OperationalLimit extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(OperationalLimit.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public OperationalLimit() {
-        setCimType("OperationalLimit");
+    public OperationalLimit(String rdfid) {
+        super("OperationalLimit", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected OperationalLimit(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class OperationalLimit extends IdentifiedObject {
         return OperationalLimitSet;
     }
 
-    public void setOperationalLimitSet(BaseClass _object_) {
-        if (!(_object_ instanceof OperationalLimitSet)) {
-            throw new IllegalArgumentException("Object is not OperationalLimitSet");
-        }
+    public void setOperationalLimitSet(OperationalLimitSet _object_) {
         if (OperationalLimitSet != _object_) {
-            OperationalLimitSet = (OperationalLimitSet) _object_;
+            OperationalLimitSet = _object_;
             OperationalLimitSet.setOperationalLimitValue(this);
         }
     }
 
-    public String OperationalLimitSetToString() {
-        return OperationalLimitSet != null ? OperationalLimitSet.getRdfid() : null;
+    private static Object getOperationalLimitSet(BaseClass _this_) {
+        return ((OperationalLimit) _this_).getOperationalLimitSet();
+    }
+
+    private static void setOperationalLimitSet(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof OperationalLimitSet) {
+            ((OperationalLimit) _this_).setOperationalLimitSet((OperationalLimitSet) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not OperationalLimitSet");
+        }
     }
 
     /**
@@ -61,18 +73,23 @@ public class OperationalLimit extends IdentifiedObject {
         return OperationalLimitType;
     }
 
-    public void setOperationalLimitType(BaseClass _object_) {
-        if (!(_object_ instanceof OperationalLimitType)) {
-            throw new IllegalArgumentException("Object is not OperationalLimitType");
-        }
+    public void setOperationalLimitType(OperationalLimitType _object_) {
         if (OperationalLimitType != _object_) {
-            OperationalLimitType = (OperationalLimitType) _object_;
+            OperationalLimitType = _object_;
             OperationalLimitType.setOperationalLimit(this);
         }
     }
 
-    public String OperationalLimitTypeToString() {
-        return OperationalLimitType != null ? OperationalLimitType.getRdfid() : null;
+    private static Object getOperationalLimitType(BaseClass _this_) {
+        return ((OperationalLimit) _this_).getOperationalLimitType();
+    }
+
+    private static void setOperationalLimitType(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof OperationalLimitType) {
+            ((OperationalLimit) _this_).setOperationalLimitType((OperationalLimitType) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not OperationalLimitType");
+        }
     }
 
     /**
@@ -109,64 +126,35 @@ public class OperationalLimit extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("OperationalLimit", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "OperationalLimit", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("OperationalLimit", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("OperationalLimit", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "OperationalLimit", attrName, value));
         }
     }
 
@@ -290,24 +278,16 @@ public class OperationalLimit extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("OperationalLimitSet", new AttrDetails("OperationalLimit.OperationalLimitSet", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("OperationalLimitSet", new AttrDetails("OperationalLimit.OperationalLimitSet", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, OperationalLimit::getOperationalLimitSet, OperationalLimit::setOperationalLimitSet));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("OperationalLimitType", new AttrDetails("OperationalLimit.OperationalLimitType", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("OperationalLimitType", new AttrDetails("OperationalLimit.OperationalLimitType", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, OperationalLimit::getOperationalLimitType, OperationalLimit::setOperationalLimitType));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new OperationalLimit().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new OperationalLimit(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("OperationalLimitSet", new GetterSetter(this::OperationalLimitSetToString, this::setOperationalLimitSet, null));
-        map.put("OperationalLimitType", new GetterSetter(this::OperationalLimitTypeToString, this::setOperationalLimitType, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

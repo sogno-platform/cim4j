@@ -23,10 +23,17 @@ public class IdentifiedObject extends BaseClass {
     private static final Logging LOG = Logging.getLogger(IdentifiedObject.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public IdentifiedObject() {
-        setCimType("IdentifiedObject");
+    public IdentifiedObject(String rdfid) {
+        super("IdentifiedObject", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected IdentifiedObject(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class IdentifiedObject extends BaseClass {
         return DiagramObjects;
     }
 
-    public void setDiagramObjects(BaseClass _object_) {
-        if (!(_object_ instanceof DiagramObject)) {
-            throw new IllegalArgumentException("Object is not DiagramObject");
-        }
+    public void setDiagramObjects(DiagramObject _object_) {
         if (!DiagramObjects.contains(_object_)) {
-            DiagramObjects.add((DiagramObject) _object_);
-            ((DiagramObject) _object_).setIdentifiedObject(this);
+            DiagramObjects.add(_object_);
+            _object_.setIdentifiedObject(this);
         }
     }
 
-    public String DiagramObjectsToString() {
-        return getStringFromSet(DiagramObjects);
+    private static Object getDiagramObjects(BaseClass _this_) {
+        return ((IdentifiedObject) _this_).getDiagramObjects();
+    }
+
+    private static void setDiagramObjects(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof DiagramObject) {
+            ((IdentifiedObject) _this_).setDiagramObjects((DiagramObject) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not DiagramObject");
+        }
     }
 
     /**
@@ -67,8 +79,16 @@ public class IdentifiedObject extends BaseClass {
         description = _value_;
     }
 
-    public String descriptionToString() {
-        return description != null ? description.toString() : null;
+    private static Object getDescription(BaseClass _this_) {
+        return ((IdentifiedObject) _this_).getDescription();
+    }
+
+    private static void setDescription(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((IdentifiedObject) _this_).setDescription((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -84,8 +104,16 @@ public class IdentifiedObject extends BaseClass {
         energyIdentCodeEic = _value_;
     }
 
-    public String energyIdentCodeEicToString() {
-        return energyIdentCodeEic != null ? energyIdentCodeEic.toString() : null;
+    private static Object getEnergyIdentCodeEic(BaseClass _this_) {
+        return ((IdentifiedObject) _this_).getEnergyIdentCodeEic();
+    }
+
+    private static void setEnergyIdentCodeEic(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((IdentifiedObject) _this_).setEnergyIdentCodeEic((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -101,8 +129,16 @@ public class IdentifiedObject extends BaseClass {
         mRID = _value_;
     }
 
-    public String mRIDToString() {
-        return mRID != null ? mRID.toString() : null;
+    private static Object getMRID(BaseClass _this_) {
+        return ((IdentifiedObject) _this_).getMRID();
+    }
+
+    private static void setMRID(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((IdentifiedObject) _this_).setMRID((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -118,8 +154,16 @@ public class IdentifiedObject extends BaseClass {
         name = _value_;
     }
 
-    public String nameToString() {
-        return name != null ? name.toString() : null;
+    private static Object getName(BaseClass _this_) {
+        return ((IdentifiedObject) _this_).getName();
+    }
+
+    private static void setName(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((IdentifiedObject) _this_).setName((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -135,8 +179,16 @@ public class IdentifiedObject extends BaseClass {
         shortName = _value_;
     }
 
-    public String shortNameToString() {
-        return shortName != null ? shortName.toString() : null;
+    private static Object getShortName(BaseClass _this_) {
+        return ((IdentifiedObject) _this_).getShortName();
+    }
+
+    private static void setShortName(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((IdentifiedObject) _this_).setShortName((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -173,64 +225,35 @@ public class IdentifiedObject extends BaseClass {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("IdentifiedObject", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "IdentifiedObject", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("IdentifiedObject", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("IdentifiedObject", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "IdentifiedObject", attrName, value));
         }
     }
 
@@ -354,7 +377,7 @@ public class IdentifiedObject extends BaseClass {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("DiagramObjects", new AttrDetails("IdentifiedObject.DiagramObjects", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("DiagramObjects", new AttrDetails("IdentifiedObject.DiagramObjects", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, IdentifiedObject::getDiagramObjects, IdentifiedObject::setDiagramObjects));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
@@ -364,14 +387,14 @@ public class IdentifiedObject extends BaseClass {
             profiles.add(CGMESProfile.EQBD);
             profiles.add(CGMESProfile.OP);
             profiles.add(CGMESProfile.TP);
-            map.put("description", new AttrDetails("IdentifiedObject.description", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("description", new AttrDetails("IdentifiedObject.description", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, IdentifiedObject::getDescription, IdentifiedObject::setDescription));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
             profiles.add(CGMESProfile.EQBD);
             profiles.add(CGMESProfile.TP);
-            map.put("energyIdentCodeEic", new AttrDetails("IdentifiedObject.energyIdentCodeEic", true, "http://iec.ch/TC57/CIM100-European#", profiles, true, false));
+            map.put("energyIdentCodeEic", new AttrDetails("IdentifiedObject.energyIdentCodeEic", true, "http://iec.ch/TC57/CIM100-European#", profiles, true, false, IdentifiedObject::getEnergyIdentCodeEic, IdentifiedObject::setEnergyIdentCodeEic));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
@@ -385,7 +408,7 @@ public class IdentifiedObject extends BaseClass {
             profiles.add(CGMESProfile.SSH);
             profiles.add(CGMESProfile.SV);
             profiles.add(CGMESProfile.TP);
-            map.put("mRID", new AttrDetails("IdentifiedObject.mRID", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("mRID", new AttrDetails("IdentifiedObject.mRID", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, IdentifiedObject::getMRID, IdentifiedObject::setMRID));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
@@ -397,30 +420,18 @@ public class IdentifiedObject extends BaseClass {
             profiles.add(CGMESProfile.OP);
             profiles.add(CGMESProfile.SV);
             profiles.add(CGMESProfile.TP);
-            map.put("name", new AttrDetails("IdentifiedObject.name", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("name", new AttrDetails("IdentifiedObject.name", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, IdentifiedObject::getName, IdentifiedObject::setName));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
             profiles.add(CGMESProfile.EQBD);
             profiles.add(CGMESProfile.TP);
-            map.put("shortName", new AttrDetails("IdentifiedObject.shortName", true, "http://iec.ch/TC57/CIM100-European#", profiles, true, false));
+            map.put("shortName", new AttrDetails("IdentifiedObject.shortName", true, "http://iec.ch/TC57/CIM100-European#", profiles, true, false, IdentifiedObject::getShortName, IdentifiedObject::setShortName));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new IdentifiedObject().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new IdentifiedObject(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("DiagramObjects", new GetterSetter(this::DiagramObjectsToString, this::setDiagramObjects, null));
-        map.put("description", new GetterSetter(this::descriptionToString, null, this::setDescription));
-        map.put("energyIdentCodeEic", new GetterSetter(this::energyIdentCodeEicToString, null, this::setEnergyIdentCodeEic));
-        map.put("mRID", new GetterSetter(this::mRIDToString, null, this::setMRID));
-        map.put("name", new GetterSetter(this::nameToString, null, this::setName));
-        map.put("shortName", new GetterSetter(this::shortNameToString, null, this::setShortName));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

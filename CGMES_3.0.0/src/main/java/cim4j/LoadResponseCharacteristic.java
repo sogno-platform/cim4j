@@ -23,10 +23,17 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(LoadResponseCharacteristic.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public LoadResponseCharacteristic() {
-        setCimType("LoadResponseCharacteristic");
+    public LoadResponseCharacteristic(String rdfid) {
+        super("LoadResponseCharacteristic", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected LoadResponseCharacteristic(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         return EnergyConsumer;
     }
 
-    public void setEnergyConsumer(BaseClass _object_) {
-        if (!(_object_ instanceof EnergyConsumer)) {
-            throw new IllegalArgumentException("Object is not EnergyConsumer");
-        }
+    public void setEnergyConsumer(EnergyConsumer _object_) {
         if (!EnergyConsumer.contains(_object_)) {
-            EnergyConsumer.add((EnergyConsumer) _object_);
-            ((EnergyConsumer) _object_).setLoadResponse(this);
+            EnergyConsumer.add(_object_);
+            _object_.setLoadResponse(this);
         }
     }
 
-    public String EnergyConsumerToString() {
-        return getStringFromSet(EnergyConsumer);
+    private static Object getEnergyConsumer(BaseClass _this_) {
+        return ((LoadResponseCharacteristic) _this_).getEnergyConsumer();
+    }
+
+    private static void setEnergyConsumer(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof EnergyConsumer) {
+            ((LoadResponseCharacteristic) _this_).setEnergyConsumer((EnergyConsumer) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not EnergyConsumer");
+        }
     }
 
     /**
@@ -67,12 +79,18 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         exponentModel = _value_;
     }
 
-    public void setExponentModel(String _value_) {
-        exponentModel = getBooleanFromString(_value_);
+    private static Object getExponentModel(BaseClass _this_) {
+        return ((LoadResponseCharacteristic) _this_).getExponentModel();
     }
 
-    public String exponentModelToString() {
-        return exponentModel != null ? exponentModel.toString() : null;
+    private static void setExponentModel(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((LoadResponseCharacteristic) _this_).setExponentModel((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadResponseCharacteristic) _this_).setExponentModel(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -88,12 +106,18 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         pConstantCurrent = _value_;
     }
 
-    public void setPConstantCurrent(String _value_) {
-        pConstantCurrent = getFloatFromString(_value_);
+    private static Object getPConstantCurrent(BaseClass _this_) {
+        return ((LoadResponseCharacteristic) _this_).getPConstantCurrent();
     }
 
-    public String pConstantCurrentToString() {
-        return pConstantCurrent != null ? pConstantCurrent.toString() : null;
+    private static void setPConstantCurrent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadResponseCharacteristic) _this_).setPConstantCurrent((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadResponseCharacteristic) _this_).setPConstantCurrent(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -109,12 +133,18 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         pConstantImpedance = _value_;
     }
 
-    public void setPConstantImpedance(String _value_) {
-        pConstantImpedance = getFloatFromString(_value_);
+    private static Object getPConstantImpedance(BaseClass _this_) {
+        return ((LoadResponseCharacteristic) _this_).getPConstantImpedance();
     }
 
-    public String pConstantImpedanceToString() {
-        return pConstantImpedance != null ? pConstantImpedance.toString() : null;
+    private static void setPConstantImpedance(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadResponseCharacteristic) _this_).setPConstantImpedance((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadResponseCharacteristic) _this_).setPConstantImpedance(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -130,12 +160,18 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         pConstantPower = _value_;
     }
 
-    public void setPConstantPower(String _value_) {
-        pConstantPower = getFloatFromString(_value_);
+    private static Object getPConstantPower(BaseClass _this_) {
+        return ((LoadResponseCharacteristic) _this_).getPConstantPower();
     }
 
-    public String pConstantPowerToString() {
-        return pConstantPower != null ? pConstantPower.toString() : null;
+    private static void setPConstantPower(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadResponseCharacteristic) _this_).setPConstantPower((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadResponseCharacteristic) _this_).setPConstantPower(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -151,12 +187,18 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         pFrequencyExponent = _value_;
     }
 
-    public void setPFrequencyExponent(String _value_) {
-        pFrequencyExponent = getFloatFromString(_value_);
+    private static Object getPFrequencyExponent(BaseClass _this_) {
+        return ((LoadResponseCharacteristic) _this_).getPFrequencyExponent();
     }
 
-    public String pFrequencyExponentToString() {
-        return pFrequencyExponent != null ? pFrequencyExponent.toString() : null;
+    private static void setPFrequencyExponent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadResponseCharacteristic) _this_).setPFrequencyExponent((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadResponseCharacteristic) _this_).setPFrequencyExponent(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -172,12 +214,18 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         pVoltageExponent = _value_;
     }
 
-    public void setPVoltageExponent(String _value_) {
-        pVoltageExponent = getFloatFromString(_value_);
+    private static Object getPVoltageExponent(BaseClass _this_) {
+        return ((LoadResponseCharacteristic) _this_).getPVoltageExponent();
     }
 
-    public String pVoltageExponentToString() {
-        return pVoltageExponent != null ? pVoltageExponent.toString() : null;
+    private static void setPVoltageExponent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadResponseCharacteristic) _this_).setPVoltageExponent((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadResponseCharacteristic) _this_).setPVoltageExponent(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -193,12 +241,18 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         qConstantCurrent = _value_;
     }
 
-    public void setQConstantCurrent(String _value_) {
-        qConstantCurrent = getFloatFromString(_value_);
+    private static Object getQConstantCurrent(BaseClass _this_) {
+        return ((LoadResponseCharacteristic) _this_).getQConstantCurrent();
     }
 
-    public String qConstantCurrentToString() {
-        return qConstantCurrent != null ? qConstantCurrent.toString() : null;
+    private static void setQConstantCurrent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadResponseCharacteristic) _this_).setQConstantCurrent((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadResponseCharacteristic) _this_).setQConstantCurrent(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -214,12 +268,18 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         qConstantImpedance = _value_;
     }
 
-    public void setQConstantImpedance(String _value_) {
-        qConstantImpedance = getFloatFromString(_value_);
+    private static Object getQConstantImpedance(BaseClass _this_) {
+        return ((LoadResponseCharacteristic) _this_).getQConstantImpedance();
     }
 
-    public String qConstantImpedanceToString() {
-        return qConstantImpedance != null ? qConstantImpedance.toString() : null;
+    private static void setQConstantImpedance(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadResponseCharacteristic) _this_).setQConstantImpedance((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadResponseCharacteristic) _this_).setQConstantImpedance(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -235,12 +295,18 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         qConstantPower = _value_;
     }
 
-    public void setQConstantPower(String _value_) {
-        qConstantPower = getFloatFromString(_value_);
+    private static Object getQConstantPower(BaseClass _this_) {
+        return ((LoadResponseCharacteristic) _this_).getQConstantPower();
     }
 
-    public String qConstantPowerToString() {
-        return qConstantPower != null ? qConstantPower.toString() : null;
+    private static void setQConstantPower(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadResponseCharacteristic) _this_).setQConstantPower((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadResponseCharacteristic) _this_).setQConstantPower(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -256,12 +322,18 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         qFrequencyExponent = _value_;
     }
 
-    public void setQFrequencyExponent(String _value_) {
-        qFrequencyExponent = getFloatFromString(_value_);
+    private static Object getQFrequencyExponent(BaseClass _this_) {
+        return ((LoadResponseCharacteristic) _this_).getQFrequencyExponent();
     }
 
-    public String qFrequencyExponentToString() {
-        return qFrequencyExponent != null ? qFrequencyExponent.toString() : null;
+    private static void setQFrequencyExponent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadResponseCharacteristic) _this_).setQFrequencyExponent((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadResponseCharacteristic) _this_).setQFrequencyExponent(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -277,12 +349,18 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         qVoltageExponent = _value_;
     }
 
-    public void setQVoltageExponent(String _value_) {
-        qVoltageExponent = getFloatFromString(_value_);
+    private static Object getQVoltageExponent(BaseClass _this_) {
+        return ((LoadResponseCharacteristic) _this_).getQVoltageExponent();
     }
 
-    public String qVoltageExponentToString() {
-        return qVoltageExponent != null ? qVoltageExponent.toString() : null;
+    private static void setQVoltageExponent(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((LoadResponseCharacteristic) _this_).setQVoltageExponent((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((LoadResponseCharacteristic) _this_).setQVoltageExponent(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -319,64 +397,35 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("LoadResponseCharacteristic", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "LoadResponseCharacteristic", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("LoadResponseCharacteristic", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("LoadResponseCharacteristic", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "LoadResponseCharacteristic", attrName, value));
         }
     }
 
@@ -500,84 +549,66 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("EnergyConsumer", new AttrDetails("LoadResponseCharacteristic.EnergyConsumer", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("EnergyConsumer", new AttrDetails("LoadResponseCharacteristic.EnergyConsumer", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, LoadResponseCharacteristic::getEnergyConsumer, LoadResponseCharacteristic::setEnergyConsumer));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("exponentModel", new AttrDetails("LoadResponseCharacteristic.exponentModel", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("exponentModel", new AttrDetails("LoadResponseCharacteristic.exponentModel", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadResponseCharacteristic::getExponentModel, LoadResponseCharacteristic::setExponentModel));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("pConstantCurrent", new AttrDetails("LoadResponseCharacteristic.pConstantCurrent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pConstantCurrent", new AttrDetails("LoadResponseCharacteristic.pConstantCurrent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadResponseCharacteristic::getPConstantCurrent, LoadResponseCharacteristic::setPConstantCurrent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("pConstantImpedance", new AttrDetails("LoadResponseCharacteristic.pConstantImpedance", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pConstantImpedance", new AttrDetails("LoadResponseCharacteristic.pConstantImpedance", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadResponseCharacteristic::getPConstantImpedance, LoadResponseCharacteristic::setPConstantImpedance));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("pConstantPower", new AttrDetails("LoadResponseCharacteristic.pConstantPower", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pConstantPower", new AttrDetails("LoadResponseCharacteristic.pConstantPower", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadResponseCharacteristic::getPConstantPower, LoadResponseCharacteristic::setPConstantPower));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("pFrequencyExponent", new AttrDetails("LoadResponseCharacteristic.pFrequencyExponent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pFrequencyExponent", new AttrDetails("LoadResponseCharacteristic.pFrequencyExponent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadResponseCharacteristic::getPFrequencyExponent, LoadResponseCharacteristic::setPFrequencyExponent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("pVoltageExponent", new AttrDetails("LoadResponseCharacteristic.pVoltageExponent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pVoltageExponent", new AttrDetails("LoadResponseCharacteristic.pVoltageExponent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadResponseCharacteristic::getPVoltageExponent, LoadResponseCharacteristic::setPVoltageExponent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("qConstantCurrent", new AttrDetails("LoadResponseCharacteristic.qConstantCurrent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("qConstantCurrent", new AttrDetails("LoadResponseCharacteristic.qConstantCurrent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadResponseCharacteristic::getQConstantCurrent, LoadResponseCharacteristic::setQConstantCurrent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("qConstantImpedance", new AttrDetails("LoadResponseCharacteristic.qConstantImpedance", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("qConstantImpedance", new AttrDetails("LoadResponseCharacteristic.qConstantImpedance", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadResponseCharacteristic::getQConstantImpedance, LoadResponseCharacteristic::setQConstantImpedance));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("qConstantPower", new AttrDetails("LoadResponseCharacteristic.qConstantPower", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("qConstantPower", new AttrDetails("LoadResponseCharacteristic.qConstantPower", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadResponseCharacteristic::getQConstantPower, LoadResponseCharacteristic::setQConstantPower));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("qFrequencyExponent", new AttrDetails("LoadResponseCharacteristic.qFrequencyExponent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("qFrequencyExponent", new AttrDetails("LoadResponseCharacteristic.qFrequencyExponent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadResponseCharacteristic::getQFrequencyExponent, LoadResponseCharacteristic::setQFrequencyExponent));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("qVoltageExponent", new AttrDetails("LoadResponseCharacteristic.qVoltageExponent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("qVoltageExponent", new AttrDetails("LoadResponseCharacteristic.qVoltageExponent", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, LoadResponseCharacteristic::getQVoltageExponent, LoadResponseCharacteristic::setQVoltageExponent));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadResponseCharacteristic().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadResponseCharacteristic(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("EnergyConsumer", new GetterSetter(this::EnergyConsumerToString, this::setEnergyConsumer, null));
-        map.put("exponentModel", new GetterSetter(this::exponentModelToString, null, this::setExponentModel));
-        map.put("pConstantCurrent", new GetterSetter(this::pConstantCurrentToString, null, this::setPConstantCurrent));
-        map.put("pConstantImpedance", new GetterSetter(this::pConstantImpedanceToString, null, this::setPConstantImpedance));
-        map.put("pConstantPower", new GetterSetter(this::pConstantPowerToString, null, this::setPConstantPower));
-        map.put("pFrequencyExponent", new GetterSetter(this::pFrequencyExponentToString, null, this::setPFrequencyExponent));
-        map.put("pVoltageExponent", new GetterSetter(this::pVoltageExponentToString, null, this::setPVoltageExponent));
-        map.put("qConstantCurrent", new GetterSetter(this::qConstantCurrentToString, null, this::setQConstantCurrent));
-        map.put("qConstantImpedance", new GetterSetter(this::qConstantImpedanceToString, null, this::setQConstantImpedance));
-        map.put("qConstantPower", new GetterSetter(this::qConstantPowerToString, null, this::setQConstantPower));
-        map.put("qFrequencyExponent", new GetterSetter(this::qFrequencyExponentToString, null, this::setQFrequencyExponent));
-        map.put("qVoltageExponent", new GetterSetter(this::qVoltageExponentToString, null, this::setQVoltageExponent));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

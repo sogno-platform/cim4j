@@ -23,14 +23,21 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
     private static final Logging LOG = Logging.getLogger(GovSteamFV4.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public GovSteamFV4() {
-        setCimType("GovSteamFV4");
+    public GovSteamFV4(String rdfid) {
+        super("GovSteamFV4", rdfid);
     }
 
     /**
-     * Minimum value of pressure regulator output (&lt;i&gt;Cpsmn&lt;/i&gt;).  Typical value = -1.
+     * Constructor for subclasses.
+     */
+    protected GovSteamFV4(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Minimum value of pressure regulator output (<i>Cpsmn</i>).  Typical value = -1.
      */
     private Double cpsmn; // PU
 
@@ -42,16 +49,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         cpsmn = _value_;
     }
 
-    public void setCpsmn(String _value_) {
-        cpsmn = getDoubleFromString(_value_);
+    private static Object getCpsmn(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getCpsmn();
     }
 
-    public String cpsmnToString() {
-        return cpsmn != null ? cpsmn.toString() : null;
+    private static void setCpsmn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setCpsmn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setCpsmn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum value of pressure regulator output (&lt;i&gt;Cpsmx&lt;/i&gt;).  Typical value = 1.
+     * Maximum value of pressure regulator output (<i>Cpsmx</i>).  Typical value = 1.
      */
     private Double cpsmx; // PU
 
@@ -63,16 +76,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         cpsmx = _value_;
     }
 
-    public void setCpsmx(String _value_) {
-        cpsmx = getDoubleFromString(_value_);
+    private static Object getCpsmx(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getCpsmx();
     }
 
-    public String cpsmxToString() {
-        return cpsmx != null ? cpsmx.toString() : null;
+    private static void setCpsmx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setCpsmx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setCpsmx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum value of regulator set-point (&lt;i&gt;Crmn&lt;/i&gt;).  Typical value = 0.
+     * Minimum value of regulator set-point (<i>Crmn</i>).  Typical value = 0.
      */
     private Double crmn; // PU
 
@@ -84,16 +103,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         crmn = _value_;
     }
 
-    public void setCrmn(String _value_) {
-        crmn = getDoubleFromString(_value_);
+    private static Object getCrmn(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getCrmn();
     }
 
-    public String crmnToString() {
-        return crmn != null ? crmn.toString() : null;
+    private static void setCrmn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setCrmn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setCrmn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum value of regulator set-point (&lt;i&gt;Crmx&lt;/i&gt;).  Typical value = 1,2.
+     * Maximum value of regulator set-point (<i>Crmx</i>).  Typical value = 1,2.
      */
     private Double crmx; // PU
 
@@ -105,16 +130,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         crmx = _value_;
     }
 
-    public void setCrmx(String _value_) {
-        crmx = getDoubleFromString(_value_);
+    private static Object getCrmx(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getCrmx();
     }
 
-    public String crmxToString() {
-        return crmx != null ? crmx.toString() : null;
+    private static void setCrmx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setCrmx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setCrmx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Derivative gain of pressure regulator (&lt;i&gt;Kdc&lt;/i&gt;).  Typical value = 1.
+     * Derivative gain of pressure regulator (<i>Kdc</i>).  Typical value = 1.
      */
     private Double kdc; // PU
 
@@ -126,16 +157,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         kdc = _value_;
     }
 
-    public void setKdc(String _value_) {
-        kdc = getDoubleFromString(_value_);
+    private static Object getKdc(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKdc();
     }
 
-    public String kdcToString() {
-        return kdc != null ? kdc.toString() : null;
+    private static void setKdc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKdc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKdc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Frequency bias (reciprocal of droop) (&lt;i&gt;Kf1&lt;/i&gt;).  Typical value = 20.
+     * Frequency bias (reciprocal of droop) (<i>Kf1</i>).  Typical value = 20.
      */
     private Double kf1; // PU
 
@@ -147,16 +184,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         kf1 = _value_;
     }
 
-    public void setKf1(String _value_) {
-        kf1 = getDoubleFromString(_value_);
+    private static Object getKf1(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKf1();
     }
 
-    public String kf1ToString() {
-        return kf1 != null ? kf1.toString() : null;
+    private static void setKf1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKf1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKf1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Frequency control (reciprocal of droop) (&lt;i&gt;Kf3&lt;/i&gt;).  Typical value = 20.
+     * Frequency control (reciprocal of droop) (<i>Kf3</i>).  Typical value = 20.
      */
     private Double kf3; // PU
 
@@ -168,16 +211,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         kf3 = _value_;
     }
 
-    public void setKf3(String _value_) {
-        kf3 = getDoubleFromString(_value_);
+    private static Object getKf3(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKf3();
     }
 
-    public String kf3ToString() {
-        return kf3 != null ? kf3.toString() : null;
+    private static void setKf3(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKf3((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKf3(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Fraction  of total turbine output generated by HP part (&lt;i&gt;Khp&lt;/i&gt;).  Typical value = 0,35.
+     * Fraction  of total turbine output generated by HP part (<i>Khp</i>).  Typical value = 0,35.
      */
     private Double khp; // PU
 
@@ -189,16 +238,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         khp = _value_;
     }
 
-    public void setKhp(String _value_) {
-        khp = getDoubleFromString(_value_);
+    private static Object getKhp(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKhp();
     }
 
-    public String khpToString() {
-        return khp != null ? khp.toString() : null;
+    private static void setKhp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKhp((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKhp(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Integral gain of pressure regulator (&lt;i&gt;Kic&lt;/i&gt;).  Typical value = 0,0033.
+     * Integral gain of pressure regulator (<i>Kic</i>).  Typical value = 0,0033.
      */
     private Double kic; // PU
 
@@ -210,16 +265,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         kic = _value_;
     }
 
-    public void setKic(String _value_) {
-        kic = getDoubleFromString(_value_);
+    private static Object getKic(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKic();
     }
 
-    public String kicToString() {
-        return kic != null ? kic.toString() : null;
+    private static void setKic(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKic((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKic(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Integral gain of pressure feedback regulator (&lt;i&gt;Kip&lt;/i&gt;).  Typical value = 0,5.
+     * Integral gain of pressure feedback regulator (<i>Kip</i>).  Typical value = 0,5.
      */
     private Double kip; // PU
 
@@ -231,16 +292,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         kip = _value_;
     }
 
-    public void setKip(String _value_) {
-        kip = getDoubleFromString(_value_);
+    private static Object getKip(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKip();
     }
 
-    public String kipToString() {
-        return kip != null ? kip.toString() : null;
+    private static void setKip(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKip((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKip(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Integral gain of electro-hydraulic regulator (&lt;i&gt;Kit&lt;/i&gt;).  Typical value = 0,04.
+     * Integral gain of electro-hydraulic regulator (<i>Kit</i>).  Typical value = 0,04.
      */
     private Double kit; // PU
 
@@ -252,16 +319,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         kit = _value_;
     }
 
-    public void setKit(String _value_) {
-        kit = getDoubleFromString(_value_);
+    private static Object getKit(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKit();
     }
 
-    public String kitToString() {
-        return kit != null ? kit.toString() : null;
+    private static void setKit(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKit((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKit(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * First gain coefficient of  intercept valves characteristic (&lt;i&gt;Kmp1&lt;/i&gt;).  Typical value = 0,5.
+     * First gain coefficient of  intercept valves characteristic (<i>Kmp1</i>).  Typical value = 0,5.
      */
     private Double kmp1; // PU
 
@@ -273,16 +346,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         kmp1 = _value_;
     }
 
-    public void setKmp1(String _value_) {
-        kmp1 = getDoubleFromString(_value_);
+    private static Object getKmp1(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKmp1();
     }
 
-    public String kmp1ToString() {
-        return kmp1 != null ? kmp1.toString() : null;
+    private static void setKmp1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKmp1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKmp1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Second gain coefficient of intercept valves characteristic (&lt;i&gt;Kmp2&lt;/i&gt;).  Typical value = 3,5.
+     * Second gain coefficient of intercept valves characteristic (<i>Kmp2</i>).  Typical value = 3,5.
      */
     private Double kmp2; // PU
 
@@ -294,16 +373,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         kmp2 = _value_;
     }
 
-    public void setKmp2(String _value_) {
-        kmp2 = getDoubleFromString(_value_);
+    private static Object getKmp2(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKmp2();
     }
 
-    public String kmp2ToString() {
-        return kmp2 != null ? kmp2.toString() : null;
+    private static void setKmp2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKmp2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKmp2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Proportional gain of pressure regulator (&lt;i&gt;Kpc&lt;/i&gt;).  Typical value = 0,5.
+     * Proportional gain of pressure regulator (<i>Kpc</i>).  Typical value = 0,5.
      */
     private Double kpc; // PU
 
@@ -315,16 +400,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         kpc = _value_;
     }
 
-    public void setKpc(String _value_) {
-        kpc = getDoubleFromString(_value_);
+    private static Object getKpc(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKpc();
     }
 
-    public String kpcToString() {
-        return kpc != null ? kpc.toString() : null;
+    private static void setKpc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKpc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKpc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Proportional gain of pressure feedback regulator (&lt;i&gt;Kpp&lt;/i&gt;).  Typical value = 1.
+     * Proportional gain of pressure feedback regulator (<i>Kpp</i>).  Typical value = 1.
      */
     private Double kpp; // PU
 
@@ -336,16 +427,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         kpp = _value_;
     }
 
-    public void setKpp(String _value_) {
-        kpp = getDoubleFromString(_value_);
+    private static Object getKpp(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKpp();
     }
 
-    public String kppToString() {
-        return kpp != null ? kpp.toString() : null;
+    private static void setKpp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKpp((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKpp(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Proportional gain of electro-hydraulic regulator (&lt;i&gt;Kpt&lt;/i&gt;).  Typical value = 0,3.
+     * Proportional gain of electro-hydraulic regulator (<i>Kpt</i>).  Typical value = 0,3.
      */
     private Double kpt; // PU
 
@@ -357,16 +454,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         kpt = _value_;
     }
 
-    public void setKpt(String _value_) {
-        kpt = getDoubleFromString(_value_);
+    private static Object getKpt(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKpt();
     }
 
-    public String kptToString() {
-        return kpt != null ? kpt.toString() : null;
+    private static void setKpt(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKpt((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKpt(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum variation of fuel flow (&lt;i&gt;Krc&lt;/i&gt;).  Typical value = 0,05.
+     * Maximum variation of fuel flow (<i>Krc</i>).  Typical value = 0,05.
      */
     private Double krc; // PU
 
@@ -378,16 +481,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         krc = _value_;
     }
 
-    public void setKrc(String _value_) {
-        krc = getDoubleFromString(_value_);
+    private static Object getKrc(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKrc();
     }
 
-    public String krcToString() {
-        return krc != null ? krc.toString() : null;
+    private static void setKrc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKrc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKrc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Pressure loss due to flow friction in the boiler tubes (&lt;i&gt;Ksh&lt;/i&gt;).  Typical value = 0,08.
+     * Pressure loss due to flow friction in the boiler tubes (<i>Ksh</i>).  Typical value = 0,08.
      */
     private Double ksh; // PU
 
@@ -399,16 +508,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         ksh = _value_;
     }
 
-    public void setKsh(String _value_) {
-        ksh = getDoubleFromString(_value_);
+    private static Object getKsh(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getKsh();
     }
 
-    public String kshToString() {
-        return ksh != null ? ksh.toString() : null;
+    private static void setKsh(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setKsh((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setKsh(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum negative power error (&lt;i&gt;Lpi&lt;/i&gt;).  Typical value = -0,15.
+     * Maximum negative power error (<i>Lpi</i>).  Typical value = -0,15.
      */
     private Double lpi; // PU
 
@@ -420,16 +535,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         lpi = _value_;
     }
 
-    public void setLpi(String _value_) {
-        lpi = getDoubleFromString(_value_);
+    private static Object getLpi(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getLpi();
     }
 
-    public String lpiToString() {
-        return lpi != null ? lpi.toString() : null;
+    private static void setLpi(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setLpi((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setLpi(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum positive power error (&lt;i&gt;Lps&lt;/i&gt;).  Typical value = 0,03.
+     * Maximum positive power error (<i>Lps</i>).  Typical value = 0,03.
      */
     private Double lps; // PU
 
@@ -441,16 +562,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         lps = _value_;
     }
 
-    public void setLps(String _value_) {
-        lps = getDoubleFromString(_value_);
+    private static Object getLps(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getLps();
     }
 
-    public String lpsToString() {
-        return lps != null ? lps.toString() : null;
+    private static void setLps(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setLps((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setLps(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Lower limit for frequency correction (&lt;i&gt;MN&lt;/i&gt;&lt;i&gt;&lt;sub&gt;EF&lt;/sub&gt;&lt;/i&gt;).  Typical value = -0,05.
+     * Lower limit for frequency correction (<i>MN</i><i><sub>EF</sub></i>).  Typical value = -0,05.
      */
     private Double mnef; // PU
 
@@ -462,16 +589,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         mnef = _value_;
     }
 
-    public void setMnef(String _value_) {
-        mnef = getDoubleFromString(_value_);
+    private static Object getMnef(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getMnef();
     }
 
-    public String mnefToString() {
-        return mnef != null ? mnef.toString() : null;
+    private static void setMnef(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setMnef((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setMnef(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Upper limit for frequency correction (&lt;i&gt;MX&lt;/i&gt;&lt;i&gt;&lt;sub&gt;EF&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0,05.
+     * Upper limit for frequency correction (<i>MX</i><i><sub>EF</sub></i>).  Typical value = 0,05.
      */
     private Double mxef; // PU
 
@@ -483,16 +616,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         mxef = _value_;
     }
 
-    public void setMxef(String _value_) {
-        mxef = getDoubleFromString(_value_);
+    private static Object getMxef(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getMxef();
     }
 
-    public String mxefToString() {
-        return mxef != null ? mxef.toString() : null;
+    private static void setMxef(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setMxef((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setMxef(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * First value of pressure set point static characteristic (&lt;i&gt;Pr1&lt;/i&gt;).  Typical value = 0,2.
+     * First value of pressure set point static characteristic (<i>Pr1</i>).  Typical value = 0,2.
      */
     private Double pr1; // PU
 
@@ -504,16 +643,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         pr1 = _value_;
     }
 
-    public void setPr1(String _value_) {
-        pr1 = getDoubleFromString(_value_);
+    private static Object getPr1(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getPr1();
     }
 
-    public String pr1ToString() {
-        return pr1 != null ? pr1.toString() : null;
+    private static void setPr1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setPr1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setPr1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Second value of pressure set point static characteristic, corresponding to &lt;i&gt;Ps0&lt;/i&gt; = 1,0 PU (&lt;i&gt;Pr2&lt;/i&gt;).  Typical value = 0,75.
+     * Second value of pressure set point static characteristic, corresponding to <i>Ps0</i> = 1,0 PU (<i>Pr2</i>).  Typical value = 0,75.
      */
     private Double pr2; // PU
 
@@ -525,16 +670,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         pr2 = _value_;
     }
 
-    public void setPr2(String _value_) {
-        pr2 = getDoubleFromString(_value_);
+    private static Object getPr2(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getPr2();
     }
 
-    public String pr2ToString() {
-        return pr2 != null ? pr2.toString() : null;
+    private static void setPr2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setPr2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setPr2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum value of pressure set point static characteristic (&lt;i&gt;Psmn&lt;/i&gt;).  Typical value = 1.
+     * Minimum value of pressure set point static characteristic (<i>Psmn</i>).  Typical value = 1.
      */
     private Double psmn; // PU
 
@@ -546,16 +697,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         psmn = _value_;
     }
 
-    public void setPsmn(String _value_) {
-        psmn = getDoubleFromString(_value_);
+    private static Object getPsmn(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getPsmn();
     }
 
-    public String psmnToString() {
-        return psmn != null ? psmn.toString() : null;
+    private static void setPsmn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setPsmn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setPsmn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum value of integral regulator (&lt;i&gt;Rsmimn&lt;/i&gt;).  Typical value = 0.
+     * Minimum value of integral regulator (<i>Rsmimn</i>).  Typical value = 0.
      */
     private Double rsmimn; // PU
 
@@ -567,16 +724,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         rsmimn = _value_;
     }
 
-    public void setRsmimn(String _value_) {
-        rsmimn = getDoubleFromString(_value_);
+    private static Object getRsmimn(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getRsmimn();
     }
 
-    public String rsmimnToString() {
-        return rsmimn != null ? rsmimn.toString() : null;
+    private static void setRsmimn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setRsmimn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setRsmimn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum value of integral regulator (&lt;i&gt;Rsmimx&lt;/i&gt;).  Typical value = 1,1.
+     * Maximum value of integral regulator (<i>Rsmimx</i>).  Typical value = 1,1.
      */
     private Double rsmimx; // PU
 
@@ -588,16 +751,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         rsmimx = _value_;
     }
 
-    public void setRsmimx(String _value_) {
-        rsmimx = getDoubleFromString(_value_);
+    private static Object getRsmimx(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getRsmimx();
     }
 
-    public String rsmimxToString() {
-        return rsmimx != null ? rsmimx.toString() : null;
+    private static void setRsmimx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setRsmimx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setRsmimx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum value of integral regulator (&lt;i&gt;Rvgmn&lt;/i&gt;).  Typical value = 0.
+     * Minimum value of integral regulator (<i>Rvgmn</i>).  Typical value = 0.
      */
     private Double rvgmn; // PU
 
@@ -609,16 +778,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         rvgmn = _value_;
     }
 
-    public void setRvgmn(String _value_) {
-        rvgmn = getDoubleFromString(_value_);
+    private static Object getRvgmn(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getRvgmn();
     }
 
-    public String rvgmnToString() {
-        return rvgmn != null ? rvgmn.toString() : null;
+    private static void setRvgmn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setRvgmn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setRvgmn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum value of integral regulator (&lt;i&gt;Rvgmx&lt;/i&gt;).  Typical value = 1,2.
+     * Maximum value of integral regulator (<i>Rvgmx</i>).  Typical value = 1,2.
      */
     private Double rvgmx; // PU
 
@@ -630,16 +805,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         rvgmx = _value_;
     }
 
-    public void setRvgmx(String _value_) {
-        rvgmx = getDoubleFromString(_value_);
+    private static Object getRvgmx(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getRvgmx();
     }
 
-    public String rvgmxToString() {
-        return rvgmx != null ? rvgmx.toString() : null;
+    private static void setRvgmx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setRvgmx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setRvgmx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum valve opening (&lt;i&gt;Srmn&lt;/i&gt;).  Typical value = 0.
+     * Minimum valve opening (<i>Srmn</i>).  Typical value = 0.
      */
     private Double srmn; // PU
 
@@ -651,16 +832,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         srmn = _value_;
     }
 
-    public void setSrmn(String _value_) {
-        srmn = getDoubleFromString(_value_);
+    private static Object getSrmn(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getSrmn();
     }
 
-    public String srmnToString() {
-        return srmn != null ? srmn.toString() : null;
+    private static void setSrmn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setSrmn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setSrmn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum valve opening (&lt;i&gt;Srmx&lt;/i&gt;).  Typical value = 1,1.
+     * Maximum valve opening (<i>Srmx</i>).  Typical value = 1,1.
      */
     private Double srmx; // PU
 
@@ -672,16 +859,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         srmx = _value_;
     }
 
-    public void setSrmx(String _value_) {
-        srmx = getDoubleFromString(_value_);
+    private static Object getSrmx(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getSrmx();
     }
 
-    public String srmxToString() {
-        return srmx != null ? srmx.toString() : null;
+    private static void setSrmx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setSrmx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setSrmx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intercept valves characteristic discontinuity point (&lt;i&gt;Srsmp&lt;/i&gt;).  Typical value = 0,43.
+     * Intercept valves characteristic discontinuity point (<i>Srsmp</i>).  Typical value = 0,43.
      */
     private Double srsmp; // PU
 
@@ -693,16 +886,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         srsmp = _value_;
     }
 
-    public void setSrsmp(String _value_) {
-        srsmp = getDoubleFromString(_value_);
+    private static Object getSrsmp(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getSrsmp();
     }
 
-    public String srsmpToString() {
-        return srsmp != null ? srsmp.toString() : null;
+    private static void setSrsmp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setSrsmp((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setSrsmp(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum regulator gate closing velocity (&lt;i&gt;Svmn&lt;/i&gt;).  Typical value = -0,0333.
+     * Maximum regulator gate closing velocity (<i>Svmn</i>).  Typical value = -0,0333.
      */
     private Float svmn; // Float
 
@@ -714,16 +913,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         svmn = _value_;
     }
 
-    public void setSvmn(String _value_) {
-        svmn = getFloatFromString(_value_);
+    private static Object getSvmn(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getSvmn();
     }
 
-    public String svmnToString() {
-        return svmn != null ? svmn.toString() : null;
+    private static void setSvmn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((GovSteamFV4) _this_).setSvmn((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setSvmn(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Maximum regulator gate opening velocity (&lt;i&gt;Svmx&lt;/i&gt;).  Typical value = 0,0333.
+     * Maximum regulator gate opening velocity (<i>Svmx</i>).  Typical value = 0,0333.
      */
     private Float svmx; // Float
 
@@ -735,16 +940,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         svmx = _value_;
     }
 
-    public void setSvmx(String _value_) {
-        svmx = getFloatFromString(_value_);
+    private static Object getSvmx(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getSvmx();
     }
 
-    public String svmxToString() {
-        return svmx != null ? svmx.toString() : null;
+    private static void setSvmx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((GovSteamFV4) _this_).setSvmx((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setSvmx(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Control valves rate opening time (&lt;i&gt;Ta&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,8.
+     * Control valves rate opening time (<i>Ta</i>) (&gt;= 0).  Typical value = 0,8.
      */
     private Double ta; // Seconds
 
@@ -756,16 +967,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         ta = _value_;
     }
 
-    public void setTa(String _value_) {
-        ta = getDoubleFromString(_value_);
+    private static Object getTa(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getTa();
     }
 
-    public String taToString() {
-        return ta != null ? ta.toString() : null;
+    private static void setTa(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setTa((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setTa(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intercept valves rate opening time (&lt;i&gt;Tam&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,8.
+     * Intercept valves rate opening time (<i>Tam</i>) (&gt;= 0).  Typical value = 0,8.
      */
     private Double tam; // Seconds
 
@@ -777,16 +994,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         tam = _value_;
     }
 
-    public void setTam(String _value_) {
-        tam = getDoubleFromString(_value_);
+    private static Object getTam(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getTam();
     }
 
-    public String tamToString() {
-        return tam != null ? tam.toString() : null;
+    private static void setTam(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setTam((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setTam(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Control valves rate closing time (&lt;i&gt;Tc&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,5.
+     * Control valves rate closing time (<i>Tc</i>) (&gt;= 0).  Typical value = 0,5.
      */
     private Double tc; // Seconds
 
@@ -798,16 +1021,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         tc = _value_;
     }
 
-    public void setTc(String _value_) {
-        tc = getDoubleFromString(_value_);
+    private static Object getTc(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getTc();
     }
 
-    public String tcToString() {
-        return tc != null ? tc.toString() : null;
+    private static void setTc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setTc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setTc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Intercept valves rate closing time (&lt;i&gt;Tcm&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,5.
+     * Intercept valves rate closing time (<i>Tcm</i>) (&gt;= 0).  Typical value = 0,5.
      */
     private Double tcm; // Seconds
 
@@ -819,16 +1048,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         tcm = _value_;
     }
 
-    public void setTcm(String _value_) {
-        tcm = getDoubleFromString(_value_);
+    private static Object getTcm(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getTcm();
     }
 
-    public String tcmToString() {
-        return tcm != null ? tcm.toString() : null;
+    private static void setTcm(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setTcm((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setTcm(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Derivative time constant of pressure regulator (&lt;i&gt;Tdc&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 90.
+     * Derivative time constant of pressure regulator (<i>Tdc</i>) (&gt;= 0).  Typical value = 90.
      */
     private Double tdc; // Seconds
 
@@ -840,16 +1075,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         tdc = _value_;
     }
 
-    public void setTdc(String _value_) {
-        tdc = getDoubleFromString(_value_);
+    private static Object getTdc(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getTdc();
     }
 
-    public String tdcToString() {
-        return tdc != null ? tdc.toString() : null;
+    private static void setTdc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setTdc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setTdc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Time constant of fuel regulation (&lt;i&gt;Tf1&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 10.
+     * Time constant of fuel regulation (<i>Tf1</i>) (&gt;= 0).  Typical value = 10.
      */
     private Double tf1; // Seconds
 
@@ -861,16 +1102,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         tf1 = _value_;
     }
 
-    public void setTf1(String _value_) {
-        tf1 = getDoubleFromString(_value_);
+    private static Object getTf1(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getTf1();
     }
 
-    public String tf1ToString() {
-        return tf1 != null ? tf1.toString() : null;
+    private static void setTf1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setTf1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setTf1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Time constant of steam chest (&lt;i&gt;Tf2&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 10.
+     * Time constant of steam chest (<i>Tf2</i>) (&gt;= 0).  Typical value = 10.
      */
     private Double tf2; // Seconds
 
@@ -882,16 +1129,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         tf2 = _value_;
     }
 
-    public void setTf2(String _value_) {
-        tf2 = getDoubleFromString(_value_);
+    private static Object getTf2(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getTf2();
     }
 
-    public String tf2ToString() {
-        return tf2 != null ? tf2.toString() : null;
+    private static void setTf2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setTf2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setTf2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * High pressure (HP) time constant of the turbine (&lt;i&gt;Thp&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,15.
+     * High pressure (HP) time constant of the turbine (<i>Thp</i>) (&gt;= 0).  Typical value = 0,15.
      */
     private Double thp; // Seconds
 
@@ -903,16 +1156,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         thp = _value_;
     }
 
-    public void setThp(String _value_) {
-        thp = getDoubleFromString(_value_);
+    private static Object getThp(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getThp();
     }
 
-    public String thpToString() {
-        return thp != null ? thp.toString() : null;
+    private static void setThp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setThp((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setThp(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Low pressure (LP) time constant of the turbine (&lt;i&gt;Tmp&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,4.
+     * Low pressure (LP) time constant of the turbine (<i>Tmp</i>) (&gt;= 0).  Typical value = 0,4.
      */
     private Double tmp; // Seconds
 
@@ -924,16 +1183,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         tmp = _value_;
     }
 
-    public void setTmp(String _value_) {
-        tmp = getDoubleFromString(_value_);
+    private static Object getTmp(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getTmp();
     }
 
-    public String tmpToString() {
-        return tmp != null ? tmp.toString() : null;
+    private static void setTmp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setTmp((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setTmp(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Reheater  time constant of the turbine (&lt;i&gt;Trh&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 10.
+     * Reheater  time constant of the turbine (<i>Trh</i>) (&gt;= 0).  Typical value = 10.
      */
     private Double trh; // Seconds
 
@@ -945,16 +1210,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         trh = _value_;
     }
 
-    public void setTrh(String _value_) {
-        trh = getDoubleFromString(_value_);
+    private static Object getTrh(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getTrh();
     }
 
-    public String trhToString() {
-        return trh != null ? trh.toString() : null;
+    private static void setTrh(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setTrh((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setTrh(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Boiler time constant (&lt;i&gt;Tv&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 60.
+     * Boiler time constant (<i>Tv</i>) (&gt;= 0).  Typical value = 60.
      */
     private Double tv; // Seconds
 
@@ -966,16 +1237,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         tv = _value_;
     }
 
-    public void setTv(String _value_) {
-        tv = getDoubleFromString(_value_);
+    private static Object getTv(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getTv();
     }
 
-    public String tvToString() {
-        return tv != null ? tv.toString() : null;
+    private static void setTv(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setTv((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setTv(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Control valves servo time constant (&lt;i&gt;Ty&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,1.
+     * Control valves servo time constant (<i>Ty</i>) (&gt;= 0).  Typical value = 0,1.
      */
     private Double ty; // Seconds
 
@@ -987,16 +1264,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         ty = _value_;
     }
 
-    public void setTy(String _value_) {
-        ty = getDoubleFromString(_value_);
+    private static Object getTy(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getTy();
     }
 
-    public String tyToString() {
-        return ty != null ? ty.toString() : null;
+    private static void setTy(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setTy((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setTy(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Coefficient of linearized equations of turbine (Stodola formulation) (&lt;i&gt;Y&lt;/i&gt;).  Typical value = 0,13.
+     * Coefficient of linearized equations of turbine (Stodola formulation) (<i>Y</i>).  Typical value = 0,13.
      */
     private Double y; // PU
 
@@ -1008,16 +1291,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         y = _value_;
     }
 
-    public void setY(String _value_) {
-        y = getDoubleFromString(_value_);
+    private static Object getY(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getY();
     }
 
-    public String yToString() {
-        return y != null ? y.toString() : null;
+    private static void setY(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setY((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setY(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum control valve position (&lt;i&gt;Yhpmn&lt;/i&gt;).  Typical value = 0.
+     * Minimum control valve position (<i>Yhpmn</i>).  Typical value = 0.
      */
     private Double yhpmn; // PU
 
@@ -1029,16 +1318,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         yhpmn = _value_;
     }
 
-    public void setYhpmn(String _value_) {
-        yhpmn = getDoubleFromString(_value_);
+    private static Object getYhpmn(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getYhpmn();
     }
 
-    public String yhpmnToString() {
-        return yhpmn != null ? yhpmn.toString() : null;
+    private static void setYhpmn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setYhpmn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setYhpmn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum control valve position (&lt;i&gt;Yhpmx&lt;/i&gt;).  Typical value = 1,1.
+     * Maximum control valve position (<i>Yhpmx</i>).  Typical value = 1,1.
      */
     private Double yhpmx; // PU
 
@@ -1050,16 +1345,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         yhpmx = _value_;
     }
 
-    public void setYhpmx(String _value_) {
-        yhpmx = getDoubleFromString(_value_);
+    private static Object getYhpmx(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getYhpmx();
     }
 
-    public String yhpmxToString() {
-        return yhpmx != null ? yhpmx.toString() : null;
+    private static void setYhpmx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setYhpmx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setYhpmx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum intercept valve position (&lt;i&gt;Ympmn&lt;/i&gt;).  Typical value = 0.
+     * Minimum intercept valve position (<i>Ympmn</i>).  Typical value = 0.
      */
     private Double ympmn; // PU
 
@@ -1071,16 +1372,22 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         ympmn = _value_;
     }
 
-    public void setYmpmn(String _value_) {
-        ympmn = getDoubleFromString(_value_);
+    private static Object getYmpmn(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getYmpmn();
     }
 
-    public String ympmnToString() {
-        return ympmn != null ? ympmn.toString() : null;
+    private static void setYmpmn(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setYmpmn((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setYmpmn(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum intercept valve position (&lt;i&gt;Ympmx&lt;/i&gt;).  Typical value = 1,1.
+     * Maximum intercept valve position (<i>Ympmx</i>).  Typical value = 1,1.
      */
     private Double ympmx; // PU
 
@@ -1092,12 +1399,18 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         ympmx = _value_;
     }
 
-    public void setYmpmx(String _value_) {
-        ympmx = getDoubleFromString(_value_);
+    private static Object getYmpmx(BaseClass _this_) {
+        return ((GovSteamFV4) _this_).getYmpmx();
     }
 
-    public String ympmxToString() {
-        return ympmx != null ? ympmx.toString() : null;
+    private static void setYmpmx(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GovSteamFV4) _this_).setYmpmx((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GovSteamFV4) _this_).setYmpmx(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -1134,64 +1447,35 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("GovSteamFV4", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "GovSteamFV4", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("GovSteamFV4", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("GovSteamFV4", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "GovSteamFV4", attrName, value));
         }
     }
 
@@ -1315,318 +1599,261 @@ public class GovSteamFV4 extends TurbineGovernorDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("cpsmn", new AttrDetails("GovSteamFV4.cpsmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("cpsmn", new AttrDetails("GovSteamFV4.cpsmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getCpsmn, GovSteamFV4::setCpsmn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("cpsmx", new AttrDetails("GovSteamFV4.cpsmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("cpsmx", new AttrDetails("GovSteamFV4.cpsmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getCpsmx, GovSteamFV4::setCpsmx));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("crmn", new AttrDetails("GovSteamFV4.crmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("crmn", new AttrDetails("GovSteamFV4.crmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getCrmn, GovSteamFV4::setCrmn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("crmx", new AttrDetails("GovSteamFV4.crmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("crmx", new AttrDetails("GovSteamFV4.crmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getCrmx, GovSteamFV4::setCrmx));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kdc", new AttrDetails("GovSteamFV4.kdc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kdc", new AttrDetails("GovSteamFV4.kdc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKdc, GovSteamFV4::setKdc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kf1", new AttrDetails("GovSteamFV4.kf1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kf1", new AttrDetails("GovSteamFV4.kf1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKf1, GovSteamFV4::setKf1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kf3", new AttrDetails("GovSteamFV4.kf3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kf3", new AttrDetails("GovSteamFV4.kf3", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKf3, GovSteamFV4::setKf3));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("khp", new AttrDetails("GovSteamFV4.khp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("khp", new AttrDetails("GovSteamFV4.khp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKhp, GovSteamFV4::setKhp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kic", new AttrDetails("GovSteamFV4.kic", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kic", new AttrDetails("GovSteamFV4.kic", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKic, GovSteamFV4::setKic));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kip", new AttrDetails("GovSteamFV4.kip", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kip", new AttrDetails("GovSteamFV4.kip", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKip, GovSteamFV4::setKip));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kit", new AttrDetails("GovSteamFV4.kit", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kit", new AttrDetails("GovSteamFV4.kit", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKit, GovSteamFV4::setKit));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kmp1", new AttrDetails("GovSteamFV4.kmp1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kmp1", new AttrDetails("GovSteamFV4.kmp1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKmp1, GovSteamFV4::setKmp1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kmp2", new AttrDetails("GovSteamFV4.kmp2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kmp2", new AttrDetails("GovSteamFV4.kmp2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKmp2, GovSteamFV4::setKmp2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpc", new AttrDetails("GovSteamFV4.kpc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kpc", new AttrDetails("GovSteamFV4.kpc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKpc, GovSteamFV4::setKpc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpp", new AttrDetails("GovSteamFV4.kpp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kpp", new AttrDetails("GovSteamFV4.kpp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKpp, GovSteamFV4::setKpp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kpt", new AttrDetails("GovSteamFV4.kpt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kpt", new AttrDetails("GovSteamFV4.kpt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKpt, GovSteamFV4::setKpt));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("krc", new AttrDetails("GovSteamFV4.krc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("krc", new AttrDetails("GovSteamFV4.krc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKrc, GovSteamFV4::setKrc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ksh", new AttrDetails("GovSteamFV4.ksh", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ksh", new AttrDetails("GovSteamFV4.ksh", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getKsh, GovSteamFV4::setKsh));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("lpi", new AttrDetails("GovSteamFV4.lpi", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("lpi", new AttrDetails("GovSteamFV4.lpi", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getLpi, GovSteamFV4::setLpi));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("lps", new AttrDetails("GovSteamFV4.lps", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("lps", new AttrDetails("GovSteamFV4.lps", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getLps, GovSteamFV4::setLps));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mnef", new AttrDetails("GovSteamFV4.mnef", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("mnef", new AttrDetails("GovSteamFV4.mnef", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getMnef, GovSteamFV4::setMnef));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("mxef", new AttrDetails("GovSteamFV4.mxef", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("mxef", new AttrDetails("GovSteamFV4.mxef", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getMxef, GovSteamFV4::setMxef));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pr1", new AttrDetails("GovSteamFV4.pr1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pr1", new AttrDetails("GovSteamFV4.pr1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getPr1, GovSteamFV4::setPr1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pr2", new AttrDetails("GovSteamFV4.pr2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pr2", new AttrDetails("GovSteamFV4.pr2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getPr2, GovSteamFV4::setPr2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("psmn", new AttrDetails("GovSteamFV4.psmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("psmn", new AttrDetails("GovSteamFV4.psmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getPsmn, GovSteamFV4::setPsmn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rsmimn", new AttrDetails("GovSteamFV4.rsmimn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rsmimn", new AttrDetails("GovSteamFV4.rsmimn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getRsmimn, GovSteamFV4::setRsmimn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rsmimx", new AttrDetails("GovSteamFV4.rsmimx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rsmimx", new AttrDetails("GovSteamFV4.rsmimx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getRsmimx, GovSteamFV4::setRsmimx));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rvgmn", new AttrDetails("GovSteamFV4.rvgmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rvgmn", new AttrDetails("GovSteamFV4.rvgmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getRvgmn, GovSteamFV4::setRvgmn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("rvgmx", new AttrDetails("GovSteamFV4.rvgmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("rvgmx", new AttrDetails("GovSteamFV4.rvgmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getRvgmx, GovSteamFV4::setRvgmx));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("srmn", new AttrDetails("GovSteamFV4.srmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("srmn", new AttrDetails("GovSteamFV4.srmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getSrmn, GovSteamFV4::setSrmn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("srmx", new AttrDetails("GovSteamFV4.srmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("srmx", new AttrDetails("GovSteamFV4.srmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getSrmx, GovSteamFV4::setSrmx));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("srsmp", new AttrDetails("GovSteamFV4.srsmp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("srsmp", new AttrDetails("GovSteamFV4.srsmp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getSrsmp, GovSteamFV4::setSrsmp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("svmn", new AttrDetails("GovSteamFV4.svmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("svmn", new AttrDetails("GovSteamFV4.svmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getSvmn, GovSteamFV4::setSvmn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("svmx", new AttrDetails("GovSteamFV4.svmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("svmx", new AttrDetails("GovSteamFV4.svmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getSvmx, GovSteamFV4::setSvmx));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ta", new AttrDetails("GovSteamFV4.ta", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ta", new AttrDetails("GovSteamFV4.ta", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getTa, GovSteamFV4::setTa));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tam", new AttrDetails("GovSteamFV4.tam", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tam", new AttrDetails("GovSteamFV4.tam", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getTam, GovSteamFV4::setTam));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tc", new AttrDetails("GovSteamFV4.tc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tc", new AttrDetails("GovSteamFV4.tc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getTc, GovSteamFV4::setTc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tcm", new AttrDetails("GovSteamFV4.tcm", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tcm", new AttrDetails("GovSteamFV4.tcm", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getTcm, GovSteamFV4::setTcm));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tdc", new AttrDetails("GovSteamFV4.tdc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tdc", new AttrDetails("GovSteamFV4.tdc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getTdc, GovSteamFV4::setTdc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf1", new AttrDetails("GovSteamFV4.tf1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tf1", new AttrDetails("GovSteamFV4.tf1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getTf1, GovSteamFV4::setTf1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf2", new AttrDetails("GovSteamFV4.tf2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tf2", new AttrDetails("GovSteamFV4.tf2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getTf2, GovSteamFV4::setTf2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("thp", new AttrDetails("GovSteamFV4.thp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("thp", new AttrDetails("GovSteamFV4.thp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getThp, GovSteamFV4::setThp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tmp", new AttrDetails("GovSteamFV4.tmp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tmp", new AttrDetails("GovSteamFV4.tmp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getTmp, GovSteamFV4::setTmp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("trh", new AttrDetails("GovSteamFV4.trh", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("trh", new AttrDetails("GovSteamFV4.trh", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getTrh, GovSteamFV4::setTrh));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tv", new AttrDetails("GovSteamFV4.tv", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tv", new AttrDetails("GovSteamFV4.tv", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getTv, GovSteamFV4::setTv));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ty", new AttrDetails("GovSteamFV4.ty", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ty", new AttrDetails("GovSteamFV4.ty", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getTy, GovSteamFV4::setTy));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("y", new AttrDetails("GovSteamFV4.y", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("y", new AttrDetails("GovSteamFV4.y", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getY, GovSteamFV4::setY));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("yhpmn", new AttrDetails("GovSteamFV4.yhpmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("yhpmn", new AttrDetails("GovSteamFV4.yhpmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getYhpmn, GovSteamFV4::setYhpmn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("yhpmx", new AttrDetails("GovSteamFV4.yhpmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("yhpmx", new AttrDetails("GovSteamFV4.yhpmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getYhpmx, GovSteamFV4::setYhpmx));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ympmn", new AttrDetails("GovSteamFV4.ympmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ympmn", new AttrDetails("GovSteamFV4.ympmn", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getYmpmn, GovSteamFV4::setYmpmn));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ympmx", new AttrDetails("GovSteamFV4.ympmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ympmx", new AttrDetails("GovSteamFV4.ympmx", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, GovSteamFV4::getYmpmx, GovSteamFV4::setYmpmx));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovSteamFV4().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GovSteamFV4(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("cpsmn", new GetterSetter(this::cpsmnToString, null, this::setCpsmn));
-        map.put("cpsmx", new GetterSetter(this::cpsmxToString, null, this::setCpsmx));
-        map.put("crmn", new GetterSetter(this::crmnToString, null, this::setCrmn));
-        map.put("crmx", new GetterSetter(this::crmxToString, null, this::setCrmx));
-        map.put("kdc", new GetterSetter(this::kdcToString, null, this::setKdc));
-        map.put("kf1", new GetterSetter(this::kf1ToString, null, this::setKf1));
-        map.put("kf3", new GetterSetter(this::kf3ToString, null, this::setKf3));
-        map.put("khp", new GetterSetter(this::khpToString, null, this::setKhp));
-        map.put("kic", new GetterSetter(this::kicToString, null, this::setKic));
-        map.put("kip", new GetterSetter(this::kipToString, null, this::setKip));
-        map.put("kit", new GetterSetter(this::kitToString, null, this::setKit));
-        map.put("kmp1", new GetterSetter(this::kmp1ToString, null, this::setKmp1));
-        map.put("kmp2", new GetterSetter(this::kmp2ToString, null, this::setKmp2));
-        map.put("kpc", new GetterSetter(this::kpcToString, null, this::setKpc));
-        map.put("kpp", new GetterSetter(this::kppToString, null, this::setKpp));
-        map.put("kpt", new GetterSetter(this::kptToString, null, this::setKpt));
-        map.put("krc", new GetterSetter(this::krcToString, null, this::setKrc));
-        map.put("ksh", new GetterSetter(this::kshToString, null, this::setKsh));
-        map.put("lpi", new GetterSetter(this::lpiToString, null, this::setLpi));
-        map.put("lps", new GetterSetter(this::lpsToString, null, this::setLps));
-        map.put("mnef", new GetterSetter(this::mnefToString, null, this::setMnef));
-        map.put("mxef", new GetterSetter(this::mxefToString, null, this::setMxef));
-        map.put("pr1", new GetterSetter(this::pr1ToString, null, this::setPr1));
-        map.put("pr2", new GetterSetter(this::pr2ToString, null, this::setPr2));
-        map.put("psmn", new GetterSetter(this::psmnToString, null, this::setPsmn));
-        map.put("rsmimn", new GetterSetter(this::rsmimnToString, null, this::setRsmimn));
-        map.put("rsmimx", new GetterSetter(this::rsmimxToString, null, this::setRsmimx));
-        map.put("rvgmn", new GetterSetter(this::rvgmnToString, null, this::setRvgmn));
-        map.put("rvgmx", new GetterSetter(this::rvgmxToString, null, this::setRvgmx));
-        map.put("srmn", new GetterSetter(this::srmnToString, null, this::setSrmn));
-        map.put("srmx", new GetterSetter(this::srmxToString, null, this::setSrmx));
-        map.put("srsmp", new GetterSetter(this::srsmpToString, null, this::setSrsmp));
-        map.put("svmn", new GetterSetter(this::svmnToString, null, this::setSvmn));
-        map.put("svmx", new GetterSetter(this::svmxToString, null, this::setSvmx));
-        map.put("ta", new GetterSetter(this::taToString, null, this::setTa));
-        map.put("tam", new GetterSetter(this::tamToString, null, this::setTam));
-        map.put("tc", new GetterSetter(this::tcToString, null, this::setTc));
-        map.put("tcm", new GetterSetter(this::tcmToString, null, this::setTcm));
-        map.put("tdc", new GetterSetter(this::tdcToString, null, this::setTdc));
-        map.put("tf1", new GetterSetter(this::tf1ToString, null, this::setTf1));
-        map.put("tf2", new GetterSetter(this::tf2ToString, null, this::setTf2));
-        map.put("thp", new GetterSetter(this::thpToString, null, this::setThp));
-        map.put("tmp", new GetterSetter(this::tmpToString, null, this::setTmp));
-        map.put("trh", new GetterSetter(this::trhToString, null, this::setTrh));
-        map.put("tv", new GetterSetter(this::tvToString, null, this::setTv));
-        map.put("ty", new GetterSetter(this::tyToString, null, this::setTy));
-        map.put("y", new GetterSetter(this::yToString, null, this::setY));
-        map.put("yhpmn", new GetterSetter(this::yhpmnToString, null, this::setYhpmn));
-        map.put("yhpmx", new GetterSetter(this::yhpmxToString, null, this::setYhpmx));
-        map.put("ympmn", new GetterSetter(this::ympmnToString, null, this::setYmpmn));
-        map.put("ympmx", new GetterSetter(this::ympmxToString, null, this::setYmpmx));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

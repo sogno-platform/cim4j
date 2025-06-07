@@ -23,10 +23,17 @@ public class DiscontinuousExcitationControlUserDefined extends DiscontinuousExci
     private static final Logging LOG = Logging.getLogger(DiscontinuousExcitationControlUserDefined.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public DiscontinuousExcitationControlUserDefined() {
-        setCimType("DiscontinuousExcitationControlUserDefined");
+    public DiscontinuousExcitationControlUserDefined(String rdfid) {
+        super("DiscontinuousExcitationControlUserDefined", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected DiscontinuousExcitationControlUserDefined(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class DiscontinuousExcitationControlUserDefined extends DiscontinuousExci
         return ProprietaryParameterDynamics;
     }
 
-    public void setProprietaryParameterDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof ProprietaryParameterDynamics)) {
-            throw new IllegalArgumentException("Object is not ProprietaryParameterDynamics");
-        }
+    public void setProprietaryParameterDynamics(ProprietaryParameterDynamics _object_) {
         if (!ProprietaryParameterDynamics.contains(_object_)) {
-            ProprietaryParameterDynamics.add((ProprietaryParameterDynamics) _object_);
-            ((ProprietaryParameterDynamics) _object_).setDiscontinuousExcitationControlUserDefined(this);
+            ProprietaryParameterDynamics.add(_object_);
+            _object_.setDiscontinuousExcitationControlUserDefined(this);
         }
     }
 
-    public String ProprietaryParameterDynamicsToString() {
-        return getStringFromSet(ProprietaryParameterDynamics);
+    private static Object getProprietaryParameterDynamics(BaseClass _this_) {
+        return ((DiscontinuousExcitationControlUserDefined) _this_).getProprietaryParameterDynamics();
+    }
+
+    private static void setProprietaryParameterDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ProprietaryParameterDynamics) {
+            ((DiscontinuousExcitationControlUserDefined) _this_).setProprietaryParameterDynamics((ProprietaryParameterDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ProprietaryParameterDynamics");
+        }
     }
 
     /**
@@ -67,12 +79,18 @@ public class DiscontinuousExcitationControlUserDefined extends DiscontinuousExci
         proprietary = _value_;
     }
 
-    public void setProprietary(String _value_) {
-        proprietary = getBooleanFromString(_value_);
+    private static Object getProprietary(BaseClass _this_) {
+        return ((DiscontinuousExcitationControlUserDefined) _this_).getProprietary();
     }
 
-    public String proprietaryToString() {
-        return proprietary != null ? proprietary.toString() : null;
+    private static void setProprietary(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((DiscontinuousExcitationControlUserDefined) _this_).setProprietary((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((DiscontinuousExcitationControlUserDefined) _this_).setProprietary(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
@@ -109,64 +127,35 @@ public class DiscontinuousExcitationControlUserDefined extends DiscontinuousExci
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("DiscontinuousExcitationControlUserDefined", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "DiscontinuousExcitationControlUserDefined", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("DiscontinuousExcitationControlUserDefined", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("DiscontinuousExcitationControlUserDefined", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "DiscontinuousExcitationControlUserDefined", attrName, value));
         }
     }
 
@@ -290,24 +279,16 @@ public class DiscontinuousExcitationControlUserDefined extends DiscontinuousExci
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ProprietaryParameterDynamics", new AttrDetails("DiscontinuousExcitationControlUserDefined.ProprietaryParameterDynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("ProprietaryParameterDynamics", new AttrDetails("DiscontinuousExcitationControlUserDefined.ProprietaryParameterDynamics", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, DiscontinuousExcitationControlUserDefined::getProprietaryParameterDynamics, DiscontinuousExcitationControlUserDefined::setProprietaryParameterDynamics));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("proprietary", new AttrDetails("DiscontinuousExcitationControlUserDefined.proprietary", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("proprietary", new AttrDetails("DiscontinuousExcitationControlUserDefined.proprietary", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, DiscontinuousExcitationControlUserDefined::getProprietary, DiscontinuousExcitationControlUserDefined::setProprietary));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DiscontinuousExcitationControlUserDefined().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new DiscontinuousExcitationControlUserDefined(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ProprietaryParameterDynamics", new GetterSetter(this::ProprietaryParameterDynamicsToString, this::setProprietaryParameterDynamics, null));
-        map.put("proprietary", new GetterSetter(this::proprietaryToString, null, this::setProprietary));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

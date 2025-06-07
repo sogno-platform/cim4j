@@ -23,10 +23,17 @@ public class SynchronousMachineSimplified extends SynchronousMachineDynamics {
     private static final Logging LOG = Logging.getLogger(SynchronousMachineSimplified.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public SynchronousMachineSimplified() {
-        setCimType("SynchronousMachineSimplified");
+    public SynchronousMachineSimplified(String rdfid) {
+        super("SynchronousMachineSimplified", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected SynchronousMachineSimplified(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -63,64 +70,35 @@ public class SynchronousMachineSimplified extends SynchronousMachineDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("SynchronousMachineSimplified", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "SynchronousMachineSimplified", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("SynchronousMachineSimplified", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("SynchronousMachineSimplified", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "SynchronousMachineSimplified", attrName, value));
         }
     }
 
@@ -242,14 +220,8 @@ public class SynchronousMachineSimplified extends SynchronousMachineDynamics {
     static {
         Map<String, AttrDetails> map = new LinkedHashMap<>();
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SynchronousMachineSimplified().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new SynchronousMachineSimplified(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

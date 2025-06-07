@@ -23,10 +23,17 @@ public class GeneratingUnit extends Equipment {
     private static final Logging LOG = Logging.getLogger(GeneratingUnit.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public GeneratingUnit() {
-        setCimType("GeneratingUnit");
+    public GeneratingUnit(String rdfid) {
+        super("GeneratingUnit", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected GeneratingUnit(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class GeneratingUnit extends Equipment {
         return ControlAreaGeneratingUnit;
     }
 
-    public void setControlAreaGeneratingUnit(BaseClass _object_) {
-        if (!(_object_ instanceof ControlAreaGeneratingUnit)) {
-            throw new IllegalArgumentException("Object is not ControlAreaGeneratingUnit");
-        }
+    public void setControlAreaGeneratingUnit(ControlAreaGeneratingUnit _object_) {
         if (!ControlAreaGeneratingUnit.contains(_object_)) {
-            ControlAreaGeneratingUnit.add((ControlAreaGeneratingUnit) _object_);
-            ((ControlAreaGeneratingUnit) _object_).setGeneratingUnit(this);
+            ControlAreaGeneratingUnit.add(_object_);
+            _object_.setGeneratingUnit(this);
         }
     }
 
-    public String ControlAreaGeneratingUnitToString() {
-        return getStringFromSet(ControlAreaGeneratingUnit);
+    private static Object getControlAreaGeneratingUnit(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getControlAreaGeneratingUnit();
+    }
+
+    private static void setControlAreaGeneratingUnit(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ControlAreaGeneratingUnit) {
+            ((GeneratingUnit) _this_).setControlAreaGeneratingUnit((ControlAreaGeneratingUnit) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ControlAreaGeneratingUnit");
+        }
     }
 
     /**
@@ -65,18 +77,23 @@ public class GeneratingUnit extends Equipment {
         return GrossToNetActivePowerCurves;
     }
 
-    public void setGrossToNetActivePowerCurves(BaseClass _object_) {
-        if (!(_object_ instanceof GrossToNetActivePowerCurve)) {
-            throw new IllegalArgumentException("Object is not GrossToNetActivePowerCurve");
-        }
+    public void setGrossToNetActivePowerCurves(GrossToNetActivePowerCurve _object_) {
         if (!GrossToNetActivePowerCurves.contains(_object_)) {
-            GrossToNetActivePowerCurves.add((GrossToNetActivePowerCurve) _object_);
-            ((GrossToNetActivePowerCurve) _object_).setGeneratingUnit(this);
+            GrossToNetActivePowerCurves.add(_object_);
+            _object_.setGeneratingUnit(this);
         }
     }
 
-    public String GrossToNetActivePowerCurvesToString() {
-        return getStringFromSet(GrossToNetActivePowerCurves);
+    private static Object getGrossToNetActivePowerCurves(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getGrossToNetActivePowerCurves();
+    }
+
+    private static void setGrossToNetActivePowerCurves(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof GrossToNetActivePowerCurve) {
+            ((GeneratingUnit) _this_).setGrossToNetActivePowerCurves((GrossToNetActivePowerCurve) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not GrossToNetActivePowerCurve");
+        }
     }
 
     /**
@@ -90,18 +107,23 @@ public class GeneratingUnit extends Equipment {
         return RotatingMachine;
     }
 
-    public void setRotatingMachine(BaseClass _object_) {
-        if (!(_object_ instanceof RotatingMachine)) {
-            throw new IllegalArgumentException("Object is not RotatingMachine");
-        }
+    public void setRotatingMachine(RotatingMachine _object_) {
         if (!RotatingMachine.contains(_object_)) {
-            RotatingMachine.add((RotatingMachine) _object_);
-            ((RotatingMachine) _object_).setGeneratingUnit(this);
+            RotatingMachine.add(_object_);
+            _object_.setGeneratingUnit(this);
         }
     }
 
-    public String RotatingMachineToString() {
-        return getStringFromSet(RotatingMachine);
+    private static Object getRotatingMachine(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getRotatingMachine();
+    }
+
+    private static void setRotatingMachine(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof RotatingMachine) {
+            ((GeneratingUnit) _this_).setRotatingMachine((RotatingMachine) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not RotatingMachine");
+        }
     }
 
     /**
@@ -117,8 +139,16 @@ public class GeneratingUnit extends Equipment {
         genControlSource = _value_;
     }
 
-    public String genControlSourceToString() {
-        return genControlSource;
+    private static Object getGenControlSource(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getGenControlSource();
+    }
+
+    private static void setGenControlSource(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setGenControlSource((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -134,12 +164,18 @@ public class GeneratingUnit extends Equipment {
         governorSCD = _value_;
     }
 
-    public void setGovernorSCD(String _value_) {
-        governorSCD = getDoubleFromString(_value_);
+    private static Object getGovernorSCD(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getGovernorSCD();
     }
 
-    public String governorSCDToString() {
-        return governorSCD != null ? governorSCD.toString() : null;
+    private static void setGovernorSCD(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setGovernorSCD((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setGovernorSCD(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -155,12 +191,18 @@ public class GeneratingUnit extends Equipment {
         initialP = _value_;
     }
 
-    public void setInitialP(String _value_) {
-        initialP = getDoubleFromString(_value_);
+    private static Object getInitialP(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getInitialP();
     }
 
-    public String initialPToString() {
-        return initialP != null ? initialP.toString() : null;
+    private static void setInitialP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setInitialP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setInitialP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -176,12 +218,18 @@ public class GeneratingUnit extends Equipment {
         longPF = _value_;
     }
 
-    public void setLongPF(String _value_) {
-        longPF = getDoubleFromString(_value_);
+    private static Object getLongPF(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getLongPF();
     }
 
-    public String longPFToString() {
-        return longPF != null ? longPF.toString() : null;
+    private static void setLongPF(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setLongPF((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setLongPF(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -197,12 +245,18 @@ public class GeneratingUnit extends Equipment {
         maxOperatingP = _value_;
     }
 
-    public void setMaxOperatingP(String _value_) {
-        maxOperatingP = getDoubleFromString(_value_);
+    private static Object getMaxOperatingP(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getMaxOperatingP();
     }
 
-    public String maxOperatingPToString() {
-        return maxOperatingP != null ? maxOperatingP.toString() : null;
+    private static void setMaxOperatingP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setMaxOperatingP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setMaxOperatingP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -218,12 +272,18 @@ public class GeneratingUnit extends Equipment {
         maximumAllowableSpinningReserve = _value_;
     }
 
-    public void setMaximumAllowableSpinningReserve(String _value_) {
-        maximumAllowableSpinningReserve = getDoubleFromString(_value_);
+    private static Object getMaximumAllowableSpinningReserve(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getMaximumAllowableSpinningReserve();
     }
 
-    public String maximumAllowableSpinningReserveToString() {
-        return maximumAllowableSpinningReserve != null ? maximumAllowableSpinningReserve.toString() : null;
+    private static void setMaximumAllowableSpinningReserve(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setMaximumAllowableSpinningReserve((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setMaximumAllowableSpinningReserve(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -239,12 +299,18 @@ public class GeneratingUnit extends Equipment {
         minOperatingP = _value_;
     }
 
-    public void setMinOperatingP(String _value_) {
-        minOperatingP = getDoubleFromString(_value_);
+    private static Object getMinOperatingP(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getMinOperatingP();
     }
 
-    public String minOperatingPToString() {
-        return minOperatingP != null ? minOperatingP.toString() : null;
+    private static void setMinOperatingP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setMinOperatingP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setMinOperatingP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -260,12 +326,18 @@ public class GeneratingUnit extends Equipment {
         nominalP = _value_;
     }
 
-    public void setNominalP(String _value_) {
-        nominalP = getDoubleFromString(_value_);
+    private static Object getNominalP(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getNominalP();
     }
 
-    public String nominalPToString() {
-        return nominalP != null ? nominalP.toString() : null;
+    private static void setNominalP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setNominalP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setNominalP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -281,12 +353,18 @@ public class GeneratingUnit extends Equipment {
         normalPF = _value_;
     }
 
-    public void setNormalPF(String _value_) {
-        normalPF = getDoubleFromString(_value_);
+    private static Object getNormalPF(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getNormalPF();
     }
 
-    public String normalPFToString() {
-        return normalPF != null ? normalPF.toString() : null;
+    private static void setNormalPF(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setNormalPF((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setNormalPF(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -302,12 +380,18 @@ public class GeneratingUnit extends Equipment {
         ratedGrossMaxP = _value_;
     }
 
-    public void setRatedGrossMaxP(String _value_) {
-        ratedGrossMaxP = getDoubleFromString(_value_);
+    private static Object getRatedGrossMaxP(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getRatedGrossMaxP();
     }
 
-    public String ratedGrossMaxPToString() {
-        return ratedGrossMaxP != null ? ratedGrossMaxP.toString() : null;
+    private static void setRatedGrossMaxP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setRatedGrossMaxP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setRatedGrossMaxP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -323,12 +407,18 @@ public class GeneratingUnit extends Equipment {
         ratedGrossMinP = _value_;
     }
 
-    public void setRatedGrossMinP(String _value_) {
-        ratedGrossMinP = getDoubleFromString(_value_);
+    private static Object getRatedGrossMinP(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getRatedGrossMinP();
     }
 
-    public String ratedGrossMinPToString() {
-        return ratedGrossMinP != null ? ratedGrossMinP.toString() : null;
+    private static void setRatedGrossMinP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setRatedGrossMinP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setRatedGrossMinP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -344,12 +434,18 @@ public class GeneratingUnit extends Equipment {
         ratedNetMaxP = _value_;
     }
 
-    public void setRatedNetMaxP(String _value_) {
-        ratedNetMaxP = getDoubleFromString(_value_);
+    private static Object getRatedNetMaxP(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getRatedNetMaxP();
     }
 
-    public String ratedNetMaxPToString() {
-        return ratedNetMaxP != null ? ratedNetMaxP.toString() : null;
+    private static void setRatedNetMaxP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setRatedNetMaxP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setRatedNetMaxP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -365,12 +461,18 @@ public class GeneratingUnit extends Equipment {
         shortPF = _value_;
     }
 
-    public void setShortPF(String _value_) {
-        shortPF = getDoubleFromString(_value_);
+    private static Object getShortPF(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getShortPF();
     }
 
-    public String shortPFToString() {
-        return shortPF != null ? shortPF.toString() : null;
+    private static void setShortPF(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setShortPF((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setShortPF(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -386,12 +488,18 @@ public class GeneratingUnit extends Equipment {
         startupCost = _value_;
     }
 
-    public void setStartupCost(String _value_) {
-        startupCost = getDoubleFromString(_value_);
+    private static Object getStartupCost(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getStartupCost();
     }
 
-    public String startupCostToString() {
-        return startupCost != null ? startupCost.toString() : null;
+    private static void setStartupCost(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setStartupCost((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setStartupCost(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -407,12 +515,18 @@ public class GeneratingUnit extends Equipment {
         totalEfficiency = _value_;
     }
 
-    public void setTotalEfficiency(String _value_) {
-        totalEfficiency = getDoubleFromString(_value_);
+    private static Object getTotalEfficiency(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getTotalEfficiency();
     }
 
-    public String totalEfficiencyToString() {
-        return totalEfficiency != null ? totalEfficiency.toString() : null;
+    private static void setTotalEfficiency(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setTotalEfficiency((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setTotalEfficiency(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -428,12 +542,18 @@ public class GeneratingUnit extends Equipment {
         variableCost = _value_;
     }
 
-    public void setVariableCost(String _value_) {
-        variableCost = getDoubleFromString(_value_);
+    private static Object getVariableCost(BaseClass _this_) {
+        return ((GeneratingUnit) _this_).getVariableCost();
     }
 
-    public String variableCostToString() {
-        return variableCost != null ? variableCost.toString() : null;
+    private static void setVariableCost(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((GeneratingUnit) _this_).setVariableCost((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).setVariableCost(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -470,64 +590,35 @@ public class GeneratingUnit extends Equipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("GeneratingUnit", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "GeneratingUnit", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("GeneratingUnit", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("GeneratingUnit", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "GeneratingUnit", attrName, value));
         }
     }
 
@@ -651,126 +742,101 @@ public class GeneratingUnit extends Equipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ControlAreaGeneratingUnit", new AttrDetails("GeneratingUnit.ControlAreaGeneratingUnit", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("ControlAreaGeneratingUnit", new AttrDetails("GeneratingUnit.ControlAreaGeneratingUnit", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, GeneratingUnit::getControlAreaGeneratingUnit, GeneratingUnit::setControlAreaGeneratingUnit));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("GrossToNetActivePowerCurves", new AttrDetails("GeneratingUnit.GrossToNetActivePowerCurves", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("GrossToNetActivePowerCurves", new AttrDetails("GeneratingUnit.GrossToNetActivePowerCurves", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, GeneratingUnit::getGrossToNetActivePowerCurves, GeneratingUnit::setGrossToNetActivePowerCurves));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("RotatingMachine", new AttrDetails("GeneratingUnit.RotatingMachine", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("RotatingMachine", new AttrDetails("GeneratingUnit.RotatingMachine", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, GeneratingUnit::getRotatingMachine, GeneratingUnit::setRotatingMachine));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("genControlSource", new AttrDetails("GeneratingUnit.genControlSource", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true));
+            map.put("genControlSource", new AttrDetails("GeneratingUnit.genControlSource", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, true, GeneratingUnit::getGenControlSource, GeneratingUnit::setGenControlSource));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("governorSCD", new AttrDetails("GeneratingUnit.governorSCD", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("governorSCD", new AttrDetails("GeneratingUnit.governorSCD", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getGovernorSCD, GeneratingUnit::setGovernorSCD));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("initialP", new AttrDetails("GeneratingUnit.initialP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("initialP", new AttrDetails("GeneratingUnit.initialP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getInitialP, GeneratingUnit::setInitialP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("longPF", new AttrDetails("GeneratingUnit.longPF", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("longPF", new AttrDetails("GeneratingUnit.longPF", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getLongPF, GeneratingUnit::setLongPF));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maxOperatingP", new AttrDetails("GeneratingUnit.maxOperatingP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("maxOperatingP", new AttrDetails("GeneratingUnit.maxOperatingP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getMaxOperatingP, GeneratingUnit::setMaxOperatingP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("maximumAllowableSpinningReserve", new AttrDetails("GeneratingUnit.maximumAllowableSpinningReserve", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("maximumAllowableSpinningReserve", new AttrDetails("GeneratingUnit.maximumAllowableSpinningReserve", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getMaximumAllowableSpinningReserve, GeneratingUnit::setMaximumAllowableSpinningReserve));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("minOperatingP", new AttrDetails("GeneratingUnit.minOperatingP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("minOperatingP", new AttrDetails("GeneratingUnit.minOperatingP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getMinOperatingP, GeneratingUnit::setMinOperatingP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("nominalP", new AttrDetails("GeneratingUnit.nominalP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("nominalP", new AttrDetails("GeneratingUnit.nominalP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getNominalP, GeneratingUnit::setNominalP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("normalPF", new AttrDetails("GeneratingUnit.normalPF", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("normalPF", new AttrDetails("GeneratingUnit.normalPF", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getNormalPF, GeneratingUnit::setNormalPF));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedGrossMaxP", new AttrDetails("GeneratingUnit.ratedGrossMaxP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ratedGrossMaxP", new AttrDetails("GeneratingUnit.ratedGrossMaxP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getRatedGrossMaxP, GeneratingUnit::setRatedGrossMaxP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedGrossMinP", new AttrDetails("GeneratingUnit.ratedGrossMinP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ratedGrossMinP", new AttrDetails("GeneratingUnit.ratedGrossMinP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getRatedGrossMinP, GeneratingUnit::setRatedGrossMinP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ratedNetMaxP", new AttrDetails("GeneratingUnit.ratedNetMaxP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("ratedNetMaxP", new AttrDetails("GeneratingUnit.ratedNetMaxP", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getRatedNetMaxP, GeneratingUnit::setRatedNetMaxP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("shortPF", new AttrDetails("GeneratingUnit.shortPF", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("shortPF", new AttrDetails("GeneratingUnit.shortPF", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getShortPF, GeneratingUnit::setShortPF));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("startupCost", new AttrDetails("GeneratingUnit.startupCost", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("startupCost", new AttrDetails("GeneratingUnit.startupCost", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getStartupCost, GeneratingUnit::setStartupCost));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("totalEfficiency", new AttrDetails("GeneratingUnit.totalEfficiency", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("totalEfficiency", new AttrDetails("GeneratingUnit.totalEfficiency", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getTotalEfficiency, GeneratingUnit::setTotalEfficiency));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("variableCost", new AttrDetails("GeneratingUnit.variableCost", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("variableCost", new AttrDetails("GeneratingUnit.variableCost", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, GeneratingUnit::getVariableCost, GeneratingUnit::setVariableCost));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GeneratingUnit().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new GeneratingUnit(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ControlAreaGeneratingUnit", new GetterSetter(this::ControlAreaGeneratingUnitToString, this::setControlAreaGeneratingUnit, null));
-        map.put("GrossToNetActivePowerCurves", new GetterSetter(this::GrossToNetActivePowerCurvesToString, this::setGrossToNetActivePowerCurves, null));
-        map.put("RotatingMachine", new GetterSetter(this::RotatingMachineToString, this::setRotatingMachine, null));
-        map.put("genControlSource", new GetterSetter(this::genControlSourceToString, null, this::setGenControlSource));
-        map.put("governorSCD", new GetterSetter(this::governorSCDToString, null, this::setGovernorSCD));
-        map.put("initialP", new GetterSetter(this::initialPToString, null, this::setInitialP));
-        map.put("longPF", new GetterSetter(this::longPFToString, null, this::setLongPF));
-        map.put("maxOperatingP", new GetterSetter(this::maxOperatingPToString, null, this::setMaxOperatingP));
-        map.put("maximumAllowableSpinningReserve", new GetterSetter(this::maximumAllowableSpinningReserveToString, null, this::setMaximumAllowableSpinningReserve));
-        map.put("minOperatingP", new GetterSetter(this::minOperatingPToString, null, this::setMinOperatingP));
-        map.put("nominalP", new GetterSetter(this::nominalPToString, null, this::setNominalP));
-        map.put("normalPF", new GetterSetter(this::normalPFToString, null, this::setNormalPF));
-        map.put("ratedGrossMaxP", new GetterSetter(this::ratedGrossMaxPToString, null, this::setRatedGrossMaxP));
-        map.put("ratedGrossMinP", new GetterSetter(this::ratedGrossMinPToString, null, this::setRatedGrossMinP));
-        map.put("ratedNetMaxP", new GetterSetter(this::ratedNetMaxPToString, null, this::setRatedNetMaxP));
-        map.put("shortPF", new GetterSetter(this::shortPFToString, null, this::setShortPF));
-        map.put("startupCost", new GetterSetter(this::startupCostToString, null, this::setStartupCost));
-        map.put("totalEfficiency", new GetterSetter(this::totalEfficiencyToString, null, this::setTotalEfficiency));
-        map.put("variableCost", new GetterSetter(this::variableCostToString, null, this::setVariableCost));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

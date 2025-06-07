@@ -23,14 +23,21 @@ public class PFVArType2IEEEPFController extends PFVArControllerType2Dynamics {
     private static final Logging LOG = Logging.getLogger(PFVArType2IEEEPFController.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public PFVArType2IEEEPFController() {
-        setCimType("PFVArType2IEEEPFController");
+    public PFVArType2IEEEPFController(String rdfid) {
+        super("PFVArType2IEEEPFController", rdfid);
     }
 
     /**
-     * Overexcitation or under excitation flag (&lt;i&gt;EXLON&lt;/i&gt;) true = 1 (not in the overexcitation or underexcitation state, integral action is active) false = 0 (in the overexcitation or underexcitation state, so integral action is disabled to allow the limiter to play its role).
+     * Constructor for subclasses.
+     */
+    protected PFVArType2IEEEPFController(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Overexcitation or under excitation flag (<i>EXLON</i>) true = 1 (not in the overexcitation or underexcitation state, integral action is active) false = 0 (in the overexcitation or underexcitation state, so integral action is disabled to allow the limiter to play its role).
      */
     private Boolean exlon; // Boolean
 
@@ -42,16 +49,22 @@ public class PFVArType2IEEEPFController extends PFVArControllerType2Dynamics {
         exlon = _value_;
     }
 
-    public void setExlon(String _value_) {
-        exlon = getBooleanFromString(_value_);
+    private static Object getExlon(BaseClass _this_) {
+        return ((PFVArType2IEEEPFController) _this_).getExlon();
     }
 
-    public String exlonToString() {
-        return exlon != null ? exlon.toString() : null;
+    private static void setExlon(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((PFVArType2IEEEPFController) _this_).setExlon((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArType2IEEEPFController) _this_).setExlon(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
-     * Integral gain of the pf controller (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;I&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1.
+     * Integral gain of the pf controller (<i>K</i><i><sub>I</sub></i>).  Typical value = 1.
      */
     private Double ki; // PU
 
@@ -63,16 +76,22 @@ public class PFVArType2IEEEPFController extends PFVArControllerType2Dynamics {
         ki = _value_;
     }
 
-    public void setKi(String _value_) {
-        ki = getDoubleFromString(_value_);
+    private static Object getKi(BaseClass _this_) {
+        return ((PFVArType2IEEEPFController) _this_).getKi();
     }
 
-    public String kiToString() {
-        return ki != null ? ki.toString() : null;
+    private static void setKi(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PFVArType2IEEEPFController) _this_).setKi((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArType2IEEEPFController) _this_).setKi(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Proportional gain of the pf controller (&lt;i&gt;K&lt;/i&gt;&lt;i&gt;&lt;sub&gt;P&lt;/sub&gt;&lt;/i&gt;).  Typical value = 1.
+     * Proportional gain of the pf controller (<i>K</i><i><sub>P</sub></i>).  Typical value = 1.
      */
     private Double kp; // PU
 
@@ -84,16 +103,22 @@ public class PFVArType2IEEEPFController extends PFVArControllerType2Dynamics {
         kp = _value_;
     }
 
-    public void setKp(String _value_) {
-        kp = getDoubleFromString(_value_);
+    private static Object getKp(BaseClass _this_) {
+        return ((PFVArType2IEEEPFController) _this_).getKp();
     }
 
-    public String kpToString() {
-        return kp != null ? kp.toString() : null;
+    private static void setKp(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PFVArType2IEEEPFController) _this_).setKp((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArType2IEEEPFController) _this_).setKp(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Power factor reference (&lt;i&gt;P&lt;/i&gt;&lt;i&gt;&lt;sub&gt;FREF&lt;/sub&gt;&lt;/i&gt;).
+     * Power factor reference (<i>P</i><i><sub>FREF</sub></i>).
      */
     private Double pfref; // PU
 
@@ -105,16 +130,22 @@ public class PFVArType2IEEEPFController extends PFVArControllerType2Dynamics {
         pfref = _value_;
     }
 
-    public void setPfref(String _value_) {
-        pfref = getDoubleFromString(_value_);
+    private static Object getPfref(BaseClass _this_) {
+        return ((PFVArType2IEEEPFController) _this_).getPfref();
     }
 
-    public String pfrefToString() {
-        return pfref != null ? pfref.toString() : null;
+    private static void setPfref(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PFVArType2IEEEPFController) _this_).setPfref((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArType2IEEEPFController) _this_).setPfref(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum output of the pf controller (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;CLMT&lt;/sub&gt;&lt;/i&gt;).  Typical value = 0,1.
+     * Maximum output of the pf controller (<i>V</i><i><sub>CLMT</sub></i>).  Typical value = 0,1.
      */
     private Double vclmt; // PU
 
@@ -126,16 +157,22 @@ public class PFVArType2IEEEPFController extends PFVArControllerType2Dynamics {
         vclmt = _value_;
     }
 
-    public void setVclmt(String _value_) {
-        vclmt = getDoubleFromString(_value_);
+    private static Object getVclmt(BaseClass _this_) {
+        return ((PFVArType2IEEEPFController) _this_).getVclmt();
     }
 
-    public String vclmtToString() {
-        return vclmt != null ? vclmt.toString() : null;
+    private static void setVclmt(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PFVArType2IEEEPFController) _this_).setVclmt((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArType2IEEEPFController) _this_).setVclmt(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage regulator reference (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;REF&lt;/sub&gt;&lt;/i&gt;).
+     * Voltage regulator reference (<i>V</i><i><sub>REF</sub></i>).
      */
     private Double vref; // PU
 
@@ -147,16 +184,22 @@ public class PFVArType2IEEEPFController extends PFVArControllerType2Dynamics {
         vref = _value_;
     }
 
-    public void setVref(String _value_) {
-        vref = getDoubleFromString(_value_);
+    private static Object getVref(BaseClass _this_) {
+        return ((PFVArType2IEEEPFController) _this_).getVref();
     }
 
-    public String vrefToString() {
-        return vref != null ? vref.toString() : null;
+    private static void setVref(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((PFVArType2IEEEPFController) _this_).setVref((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArType2IEEEPFController) _this_).setVref(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Generator sensing voltage (&lt;i&gt;V&lt;/i&gt;&lt;i&gt;&lt;sub&gt;S&lt;/sub&gt;&lt;/i&gt;).
+     * Generator sensing voltage (<i>V</i><i><sub>S</sub></i>).
      */
     private Float vs; // Float
 
@@ -168,12 +211,18 @@ public class PFVArType2IEEEPFController extends PFVArControllerType2Dynamics {
         vs = _value_;
     }
 
-    public void setVs(String _value_) {
-        vs = getFloatFromString(_value_);
+    private static Object getVs(BaseClass _this_) {
+        return ((PFVArType2IEEEPFController) _this_).getVs();
     }
 
-    public String vsToString() {
-        return vs != null ? vs.toString() : null;
+    private static void setVs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((PFVArType2IEEEPFController) _this_).setVs((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((PFVArType2IEEEPFController) _this_).setVs(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -210,64 +259,35 @@ public class PFVArType2IEEEPFController extends PFVArControllerType2Dynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("PFVArType2IEEEPFController", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "PFVArType2IEEEPFController", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("PFVArType2IEEEPFController", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("PFVArType2IEEEPFController", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "PFVArType2IEEEPFController", attrName, value));
         }
     }
 
@@ -391,54 +411,41 @@ public class PFVArType2IEEEPFController extends PFVArControllerType2Dynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("exlon", new AttrDetails("PFVArType2IEEEPFController.exlon", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("exlon", new AttrDetails("PFVArType2IEEEPFController.exlon", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PFVArType2IEEEPFController::getExlon, PFVArType2IEEEPFController::setExlon));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ki", new AttrDetails("PFVArType2IEEEPFController.ki", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ki", new AttrDetails("PFVArType2IEEEPFController.ki", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PFVArType2IEEEPFController::getKi, PFVArType2IEEEPFController::setKi));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kp", new AttrDetails("PFVArType2IEEEPFController.kp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kp", new AttrDetails("PFVArType2IEEEPFController.kp", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PFVArType2IEEEPFController::getKp, PFVArType2IEEEPFController::setKp));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("pfref", new AttrDetails("PFVArType2IEEEPFController.pfref", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("pfref", new AttrDetails("PFVArType2IEEEPFController.pfref", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PFVArType2IEEEPFController::getPfref, PFVArType2IEEEPFController::setPfref));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vclmt", new AttrDetails("PFVArType2IEEEPFController.vclmt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vclmt", new AttrDetails("PFVArType2IEEEPFController.vclmt", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PFVArType2IEEEPFController::getVclmt, PFVArType2IEEEPFController::setVclmt));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vref", new AttrDetails("PFVArType2IEEEPFController.vref", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vref", new AttrDetails("PFVArType2IEEEPFController.vref", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PFVArType2IEEEPFController::getVref, PFVArType2IEEEPFController::setVref));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vs", new AttrDetails("PFVArType2IEEEPFController.vs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vs", new AttrDetails("PFVArType2IEEEPFController.vs", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, PFVArType2IEEEPFController::getVs, PFVArType2IEEEPFController::setVs));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PFVArType2IEEEPFController().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new PFVArType2IEEEPFController(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("exlon", new GetterSetter(this::exlonToString, null, this::setExlon));
-        map.put("ki", new GetterSetter(this::kiToString, null, this::setKi));
-        map.put("kp", new GetterSetter(this::kpToString, null, this::setKp));
-        map.put("pfref", new GetterSetter(this::pfrefToString, null, this::setPfref));
-        map.put("vclmt", new GetterSetter(this::vclmtToString, null, this::setVclmt));
-        map.put("vref", new GetterSetter(this::vrefToString, null, this::setVref));
-        map.put("vs", new GetterSetter(this::vsToString, null, this::setVs));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

@@ -23,10 +23,17 @@ public class LoadGroup extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(LoadGroup.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public LoadGroup() {
-        setCimType("LoadGroup");
+    public LoadGroup(String rdfid) {
+        super("LoadGroup", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected LoadGroup(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class LoadGroup extends IdentifiedObject {
         return SubLoadArea;
     }
 
-    public void setSubLoadArea(BaseClass _object_) {
-        if (!(_object_ instanceof SubLoadArea)) {
-            throw new IllegalArgumentException("Object is not SubLoadArea");
-        }
+    public void setSubLoadArea(SubLoadArea _object_) {
         if (SubLoadArea != _object_) {
-            SubLoadArea = (SubLoadArea) _object_;
+            SubLoadArea = _object_;
             SubLoadArea.setLoadGroups(this);
         }
     }
 
-    public String SubLoadAreaToString() {
-        return SubLoadArea != null ? SubLoadArea.getRdfid() : null;
+    private static Object getSubLoadArea(BaseClass _this_) {
+        return ((LoadGroup) _this_).getSubLoadArea();
+    }
+
+    private static void setSubLoadArea(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof SubLoadArea) {
+            ((LoadGroup) _this_).setSubLoadArea((SubLoadArea) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not SubLoadArea");
+        }
     }
 
     /**
@@ -86,64 +98,35 @@ public class LoadGroup extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("LoadGroup", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "LoadGroup", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("LoadGroup", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("LoadGroup", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "LoadGroup", attrName, value));
         }
     }
 
@@ -267,18 +250,11 @@ public class LoadGroup extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("SubLoadArea", new AttrDetails("LoadGroup.SubLoadArea", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("SubLoadArea", new AttrDetails("LoadGroup.SubLoadArea", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, LoadGroup::getSubLoadArea, LoadGroup::setSubLoadArea));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadGroup().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new LoadGroup(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("SubLoadArea", new GetterSetter(this::SubLoadAreaToString, this::setSubLoadArea, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

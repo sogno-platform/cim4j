@@ -23,10 +23,17 @@ public class ConformLoadGroup extends LoadGroup {
     private static final Logging LOG = Logging.getLogger(ConformLoadGroup.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ConformLoadGroup() {
-        setCimType("ConformLoadGroup");
+    public ConformLoadGroup(String rdfid) {
+        super("ConformLoadGroup", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected ConformLoadGroup(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class ConformLoadGroup extends LoadGroup {
         return ConformLoadSchedules;
     }
 
-    public void setConformLoadSchedules(BaseClass _object_) {
-        if (!(_object_ instanceof ConformLoadSchedule)) {
-            throw new IllegalArgumentException("Object is not ConformLoadSchedule");
-        }
+    public void setConformLoadSchedules(ConformLoadSchedule _object_) {
         if (!ConformLoadSchedules.contains(_object_)) {
-            ConformLoadSchedules.add((ConformLoadSchedule) _object_);
-            ((ConformLoadSchedule) _object_).setConformLoadGroup(this);
+            ConformLoadSchedules.add(_object_);
+            _object_.setConformLoadGroup(this);
         }
     }
 
-    public String ConformLoadSchedulesToString() {
-        return getStringFromSet(ConformLoadSchedules);
+    private static Object getConformLoadSchedules(BaseClass _this_) {
+        return ((ConformLoadGroup) _this_).getConformLoadSchedules();
+    }
+
+    private static void setConformLoadSchedules(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ConformLoadSchedule) {
+            ((ConformLoadGroup) _this_).setConformLoadSchedules((ConformLoadSchedule) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ConformLoadSchedule");
+        }
     }
 
     /**
@@ -65,18 +77,23 @@ public class ConformLoadGroup extends LoadGroup {
         return EnergyConsumers;
     }
 
-    public void setEnergyConsumers(BaseClass _object_) {
-        if (!(_object_ instanceof ConformLoad)) {
-            throw new IllegalArgumentException("Object is not ConformLoad");
-        }
+    public void setEnergyConsumers(ConformLoad _object_) {
         if (!EnergyConsumers.contains(_object_)) {
-            EnergyConsumers.add((ConformLoad) _object_);
-            ((ConformLoad) _object_).setLoadGroup(this);
+            EnergyConsumers.add(_object_);
+            _object_.setLoadGroup(this);
         }
     }
 
-    public String EnergyConsumersToString() {
-        return getStringFromSet(EnergyConsumers);
+    private static Object getEnergyConsumers(BaseClass _this_) {
+        return ((ConformLoadGroup) _this_).getEnergyConsumers();
+    }
+
+    private static void setEnergyConsumers(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof ConformLoad) {
+            ((ConformLoadGroup) _this_).setEnergyConsumers((ConformLoad) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not ConformLoad");
+        }
     }
 
     /**
@@ -113,64 +130,35 @@ public class ConformLoadGroup extends LoadGroup {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ConformLoadGroup", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ConformLoadGroup", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ConformLoadGroup", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ConformLoadGroup", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ConformLoadGroup", attrName, value));
         }
     }
 
@@ -294,24 +282,16 @@ public class ConformLoadGroup extends LoadGroup {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("ConformLoadSchedules", new AttrDetails("ConformLoadGroup.ConformLoadSchedules", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("ConformLoadSchedules", new AttrDetails("ConformLoadGroup.ConformLoadSchedules", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ConformLoadGroup::getConformLoadSchedules, ConformLoadGroup::setConformLoadSchedules));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("EnergyConsumers", new AttrDetails("ConformLoadGroup.EnergyConsumers", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("EnergyConsumers", new AttrDetails("ConformLoadGroup.EnergyConsumers", false, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, ConformLoadGroup::getEnergyConsumers, ConformLoadGroup::setEnergyConsumers));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ConformLoadGroup().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ConformLoadGroup(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("ConformLoadSchedules", new GetterSetter(this::ConformLoadSchedulesToString, this::setConformLoadSchedules, null));
-        map.put("EnergyConsumers", new GetterSetter(this::EnergyConsumersToString, this::setEnergyConsumers, null));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

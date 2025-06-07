@@ -23,10 +23,17 @@ public class EnergyConsumer extends ConductingEquipment {
     private static final Logging LOG = Logging.getLogger(EnergyConsumer.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public EnergyConsumer() {
-        setCimType("EnergyConsumer");
+    public EnergyConsumer(String rdfid) {
+        super("EnergyConsumer", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected EnergyConsumer(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class EnergyConsumer extends ConductingEquipment {
         return LoadDynamics;
     }
 
-    public void setLoadDynamics(BaseClass _object_) {
-        if (!(_object_ instanceof LoadDynamics)) {
-            throw new IllegalArgumentException("Object is not LoadDynamics");
-        }
+    public void setLoadDynamics(LoadDynamics _object_) {
         if (LoadDynamics != _object_) {
-            LoadDynamics = (LoadDynamics) _object_;
+            LoadDynamics = _object_;
             LoadDynamics.setEnergyConsumer(this);
         }
     }
 
-    public String LoadDynamicsToString() {
-        return LoadDynamics != null ? LoadDynamics.getRdfid() : null;
+    private static Object getLoadDynamics(BaseClass _this_) {
+        return ((EnergyConsumer) _this_).getLoadDynamics();
+    }
+
+    private static void setLoadDynamics(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof LoadDynamics) {
+            ((EnergyConsumer) _this_).setLoadDynamics((LoadDynamics) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not LoadDynamics");
+        }
     }
 
     /**
@@ -61,18 +73,23 @@ public class EnergyConsumer extends ConductingEquipment {
         return LoadResponse;
     }
 
-    public void setLoadResponse(BaseClass _object_) {
-        if (!(_object_ instanceof LoadResponseCharacteristic)) {
-            throw new IllegalArgumentException("Object is not LoadResponseCharacteristic");
-        }
+    public void setLoadResponse(LoadResponseCharacteristic _object_) {
         if (LoadResponse != _object_) {
-            LoadResponse = (LoadResponseCharacteristic) _object_;
+            LoadResponse = _object_;
             LoadResponse.setEnergyConsumer(this);
         }
     }
 
-    public String LoadResponseToString() {
-        return LoadResponse != null ? LoadResponse.getRdfid() : null;
+    private static Object getLoadResponse(BaseClass _this_) {
+        return ((EnergyConsumer) _this_).getLoadResponse();
+    }
+
+    private static void setLoadResponse(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof LoadResponseCharacteristic) {
+            ((EnergyConsumer) _this_).setLoadResponse((LoadResponseCharacteristic) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not LoadResponseCharacteristic");
+        }
     }
 
     /**
@@ -88,12 +105,18 @@ public class EnergyConsumer extends ConductingEquipment {
         p = _value_;
     }
 
-    public void setP(String _value_) {
-        p = getDoubleFromString(_value_);
+    private static Object getP(BaseClass _this_) {
+        return ((EnergyConsumer) _this_).getP();
     }
 
-    public String pToString() {
-        return p != null ? p.toString() : null;
+    private static void setP(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergyConsumer) _this_).setP((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergyConsumer) _this_).setP(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -109,12 +132,18 @@ public class EnergyConsumer extends ConductingEquipment {
         pfixed = _value_;
     }
 
-    public void setPfixed(String _value_) {
-        pfixed = getDoubleFromString(_value_);
+    private static Object getPfixed(BaseClass _this_) {
+        return ((EnergyConsumer) _this_).getPfixed();
     }
 
-    public String pfixedToString() {
-        return pfixed != null ? pfixed.toString() : null;
+    private static void setPfixed(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergyConsumer) _this_).setPfixed((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergyConsumer) _this_).setPfixed(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -130,12 +159,18 @@ public class EnergyConsumer extends ConductingEquipment {
         pfixedPct = _value_;
     }
 
-    public void setPfixedPct(String _value_) {
-        pfixedPct = getDoubleFromString(_value_);
+    private static Object getPfixedPct(BaseClass _this_) {
+        return ((EnergyConsumer) _this_).getPfixedPct();
     }
 
-    public String pfixedPctToString() {
-        return pfixedPct != null ? pfixedPct.toString() : null;
+    private static void setPfixedPct(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergyConsumer) _this_).setPfixedPct((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergyConsumer) _this_).setPfixedPct(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -151,12 +186,18 @@ public class EnergyConsumer extends ConductingEquipment {
         q = _value_;
     }
 
-    public void setQ(String _value_) {
-        q = getDoubleFromString(_value_);
+    private static Object getQ(BaseClass _this_) {
+        return ((EnergyConsumer) _this_).getQ();
     }
 
-    public String qToString() {
-        return q != null ? q.toString() : null;
+    private static void setQ(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergyConsumer) _this_).setQ((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergyConsumer) _this_).setQ(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -172,12 +213,18 @@ public class EnergyConsumer extends ConductingEquipment {
         qfixed = _value_;
     }
 
-    public void setQfixed(String _value_) {
-        qfixed = getDoubleFromString(_value_);
+    private static Object getQfixed(BaseClass _this_) {
+        return ((EnergyConsumer) _this_).getQfixed();
     }
 
-    public String qfixedToString() {
-        return qfixed != null ? qfixed.toString() : null;
+    private static void setQfixed(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergyConsumer) _this_).setQfixed((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergyConsumer) _this_).setQfixed(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -193,12 +240,18 @@ public class EnergyConsumer extends ConductingEquipment {
         qfixedPct = _value_;
     }
 
-    public void setQfixedPct(String _value_) {
-        qfixedPct = getDoubleFromString(_value_);
+    private static Object getQfixedPct(BaseClass _this_) {
+        return ((EnergyConsumer) _this_).getQfixedPct();
     }
 
-    public String qfixedPctToString() {
-        return qfixedPct != null ? qfixedPct.toString() : null;
+    private static void setQfixedPct(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((EnergyConsumer) _this_).setQfixedPct((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((EnergyConsumer) _this_).setQfixedPct(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -235,64 +288,35 @@ public class EnergyConsumer extends ConductingEquipment {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("EnergyConsumer", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "EnergyConsumer", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("EnergyConsumer", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("EnergyConsumer", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "EnergyConsumer", attrName, value));
         }
     }
 
@@ -416,60 +440,46 @@ public class EnergyConsumer extends ConductingEquipment {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("LoadDynamics", new AttrDetails("EnergyConsumer.LoadDynamics", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("LoadDynamics", new AttrDetails("EnergyConsumer.LoadDynamics", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, EnergyConsumer::getLoadDynamics, EnergyConsumer::setLoadDynamics));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("LoadResponse", new AttrDetails("EnergyConsumer.LoadResponse", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false));
+            map.put("LoadResponse", new AttrDetails("EnergyConsumer.LoadResponse", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, false, false, EnergyConsumer::getLoadResponse, EnergyConsumer::setLoadResponse));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("p", new AttrDetails("EnergyConsumer.p", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("p", new AttrDetails("EnergyConsumer.p", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EnergyConsumer::getP, EnergyConsumer::setP));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("pfixed", new AttrDetails("EnergyConsumer.pfixed", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("pfixed", new AttrDetails("EnergyConsumer.pfixed", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EnergyConsumer::getPfixed, EnergyConsumer::setPfixed));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("pfixedPct", new AttrDetails("EnergyConsumer.pfixedPct", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("pfixedPct", new AttrDetails("EnergyConsumer.pfixedPct", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EnergyConsumer::getPfixedPct, EnergyConsumer::setPfixedPct));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.SSH);
-            map.put("q", new AttrDetails("EnergyConsumer.q", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("q", new AttrDetails("EnergyConsumer.q", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EnergyConsumer::getQ, EnergyConsumer::setQ));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("qfixed", new AttrDetails("EnergyConsumer.qfixed", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("qfixed", new AttrDetails("EnergyConsumer.qfixed", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EnergyConsumer::getQfixed, EnergyConsumer::setQfixed));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.EQ);
-            map.put("qfixedPct", new AttrDetails("EnergyConsumer.qfixedPct", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false));
+            map.put("qfixedPct", new AttrDetails("EnergyConsumer.qfixedPct", true, "http://iec.ch/TC57/2013/CIM-schema-cim16#", profiles, true, false, EnergyConsumer::getQfixedPct, EnergyConsumer::setQfixedPct));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EnergyConsumer().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new EnergyConsumer(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("LoadDynamics", new GetterSetter(this::LoadDynamicsToString, this::setLoadDynamics, null));
-        map.put("LoadResponse", new GetterSetter(this::LoadResponseToString, this::setLoadResponse, null));
-        map.put("p", new GetterSetter(this::pToString, null, this::setP));
-        map.put("pfixed", new GetterSetter(this::pfixedToString, null, this::setPfixed));
-        map.put("pfixedPct", new GetterSetter(this::pfixedPctToString, null, this::setPfixedPct));
-        map.put("q", new GetterSetter(this::qToString, null, this::setQ));
-        map.put("qfixed", new GetterSetter(this::qfixedToString, null, this::setQfixed));
-        map.put("qfixedPct", new GetterSetter(this::qfixedPctToString, null, this::setQfixedPct));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

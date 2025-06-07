@@ -23,10 +23,17 @@ public class AnalogLimit extends Limit {
     private static final Logging LOG = Logging.getLogger(AnalogLimit.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public AnalogLimit() {
-        setCimType("AnalogLimit");
+    public AnalogLimit(String rdfid) {
+        super("AnalogLimit", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected AnalogLimit(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -38,18 +45,23 @@ public class AnalogLimit extends Limit {
         return LimitSet;
     }
 
-    public void setLimitSet(BaseClass _object_) {
-        if (!(_object_ instanceof AnalogLimitSet)) {
-            throw new IllegalArgumentException("Object is not AnalogLimitSet");
-        }
+    public void setLimitSet(AnalogLimitSet _object_) {
         if (LimitSet != _object_) {
-            LimitSet = (AnalogLimitSet) _object_;
+            LimitSet = _object_;
             LimitSet.setLimits(this);
         }
     }
 
-    public String LimitSetToString() {
-        return LimitSet != null ? LimitSet.getRdfid() : null;
+    private static Object getLimitSet(BaseClass _this_) {
+        return ((AnalogLimit) _this_).getLimitSet();
+    }
+
+    private static void setLimitSet(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof AnalogLimitSet) {
+            ((AnalogLimit) _this_).setLimitSet((AnalogLimitSet) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not AnalogLimitSet");
+        }
     }
 
     /**
@@ -65,12 +77,18 @@ public class AnalogLimit extends Limit {
         value = _value_;
     }
 
-    public void setValue(String _value_) {
-        value = getFloatFromString(_value_);
+    private static Object getValue(BaseClass _this_) {
+        return ((AnalogLimit) _this_).getValue();
     }
 
-    public String valueToString() {
-        return value != null ? value.toString() : null;
+    private static void setValue(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((AnalogLimit) _this_).setValue((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((AnalogLimit) _this_).setValue(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -107,64 +125,35 @@ public class AnalogLimit extends Limit {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("AnalogLimit", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "AnalogLimit", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("AnalogLimit", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("AnalogLimit", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "AnalogLimit", attrName, value));
         }
     }
 
@@ -288,24 +277,16 @@ public class AnalogLimit extends Limit {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("LimitSet", new AttrDetails("AnalogLimit.LimitSet", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("LimitSet", new AttrDetails("AnalogLimit.LimitSet", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, AnalogLimit::getLimitSet, AnalogLimit::setLimitSet));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.OP);
-            map.put("value", new AttrDetails("AnalogLimit.value", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("value", new AttrDetails("AnalogLimit.value", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, AnalogLimit::getValue, AnalogLimit::setValue));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AnalogLimit().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new AnalogLimit(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("LimitSet", new GetterSetter(this::LimitSetToString, this::setLimitSet, null));
-        map.put("value", new GetterSetter(this::valueToString, null, this::setValue));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

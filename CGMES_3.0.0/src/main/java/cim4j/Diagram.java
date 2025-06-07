@@ -23,10 +23,17 @@ public class Diagram extends IdentifiedObject {
     private static final Logging LOG = Logging.getLogger(Diagram.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public Diagram() {
-        setCimType("Diagram");
+    public Diagram(String rdfid) {
+        super("Diagram", rdfid);
+    }
+
+    /**
+     * Constructor for subclasses.
+     */
+    protected Diagram(String cimType, String rdfid) {
+        super(cimType, rdfid);
     }
 
     /**
@@ -40,18 +47,23 @@ public class Diagram extends IdentifiedObject {
         return DiagramElements;
     }
 
-    public void setDiagramElements(BaseClass _object_) {
-        if (!(_object_ instanceof DiagramObject)) {
-            throw new IllegalArgumentException("Object is not DiagramObject");
-        }
+    public void setDiagramElements(DiagramObject _object_) {
         if (!DiagramElements.contains(_object_)) {
-            DiagramElements.add((DiagramObject) _object_);
-            ((DiagramObject) _object_).setDiagram(this);
+            DiagramElements.add(_object_);
+            _object_.setDiagram(this);
         }
     }
 
-    public String DiagramElementsToString() {
-        return getStringFromSet(DiagramElements);
+    private static Object getDiagramElements(BaseClass _this_) {
+        return ((Diagram) _this_).getDiagramElements();
+    }
+
+    private static void setDiagramElements(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof DiagramObject) {
+            ((Diagram) _this_).setDiagramElements((DiagramObject) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not DiagramObject");
+        }
     }
 
     /**
@@ -63,18 +75,23 @@ public class Diagram extends IdentifiedObject {
         return DiagramStyle;
     }
 
-    public void setDiagramStyle(BaseClass _object_) {
-        if (!(_object_ instanceof DiagramStyle)) {
-            throw new IllegalArgumentException("Object is not DiagramStyle");
-        }
+    public void setDiagramStyle(DiagramStyle _object_) {
         if (DiagramStyle != _object_) {
-            DiagramStyle = (DiagramStyle) _object_;
+            DiagramStyle = _object_;
             DiagramStyle.setDiagram(this);
         }
     }
 
-    public String DiagramStyleToString() {
-        return DiagramStyle != null ? DiagramStyle.getRdfid() : null;
+    private static Object getDiagramStyle(BaseClass _this_) {
+        return ((Diagram) _this_).getDiagramStyle();
+    }
+
+    private static void setDiagramStyle(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof DiagramStyle) {
+            ((Diagram) _this_).setDiagramStyle((DiagramStyle) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not DiagramStyle");
+        }
     }
 
     /**
@@ -90,8 +107,16 @@ public class Diagram extends IdentifiedObject {
         orientation = _value_;
     }
 
-    public String orientationToString() {
-        return orientation;
+    private static Object getOrientation(BaseClass _this_) {
+        return ((Diagram) _this_).getOrientation();
+    }
+
+    private static void setOrientation(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof String) {
+            ((Diagram) _this_).setOrientation((String) _value_);
+        } else {
+            throw new IllegalArgumentException("Object is not String");
+        }
     }
 
     /**
@@ -107,12 +132,18 @@ public class Diagram extends IdentifiedObject {
         x1InitialView = _value_;
     }
 
-    public void setX1InitialView(String _value_) {
-        x1InitialView = getFloatFromString(_value_);
+    private static Object getX1InitialView(BaseClass _this_) {
+        return ((Diagram) _this_).getX1InitialView();
     }
 
-    public String x1InitialViewToString() {
-        return x1InitialView != null ? x1InitialView.toString() : null;
+    private static void setX1InitialView(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((Diagram) _this_).setX1InitialView((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((Diagram) _this_).setX1InitialView(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -128,12 +159,18 @@ public class Diagram extends IdentifiedObject {
         x2InitialView = _value_;
     }
 
-    public void setX2InitialView(String _value_) {
-        x2InitialView = getFloatFromString(_value_);
+    private static Object getX2InitialView(BaseClass _this_) {
+        return ((Diagram) _this_).getX2InitialView();
     }
 
-    public String x2InitialViewToString() {
-        return x2InitialView != null ? x2InitialView.toString() : null;
+    private static void setX2InitialView(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((Diagram) _this_).setX2InitialView((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((Diagram) _this_).setX2InitialView(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -149,12 +186,18 @@ public class Diagram extends IdentifiedObject {
         y1InitialView = _value_;
     }
 
-    public void setY1InitialView(String _value_) {
-        y1InitialView = getFloatFromString(_value_);
+    private static Object getY1InitialView(BaseClass _this_) {
+        return ((Diagram) _this_).getY1InitialView();
     }
 
-    public String y1InitialViewToString() {
-        return y1InitialView != null ? y1InitialView.toString() : null;
+    private static void setY1InitialView(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((Diagram) _this_).setY1InitialView((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((Diagram) _this_).setY1InitialView(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -170,12 +213,18 @@ public class Diagram extends IdentifiedObject {
         y2InitialView = _value_;
     }
 
-    public void setY2InitialView(String _value_) {
-        y2InitialView = getFloatFromString(_value_);
+    private static Object getY2InitialView(BaseClass _this_) {
+        return ((Diagram) _this_).getY2InitialView();
     }
 
-    public String y2InitialViewToString() {
-        return y2InitialView != null ? y2InitialView.toString() : null;
+    private static void setY2InitialView(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((Diagram) _this_).setY2InitialView((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((Diagram) _this_).setY2InitialView(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
@@ -212,64 +261,35 @@ public class Diagram extends IdentifiedObject {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("Diagram", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "Diagram", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("Diagram", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("Diagram", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "Diagram", attrName, value));
         }
     }
 
@@ -393,54 +413,41 @@ public class Diagram extends IdentifiedObject {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("DiagramElements", new AttrDetails("Diagram.DiagramElements", false, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("DiagramElements", new AttrDetails("Diagram.DiagramElements", false, "http://iec.ch/TC57/CIM100#", profiles, false, false, Diagram::getDiagramElements, Diagram::setDiagramElements));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("DiagramStyle", new AttrDetails("Diagram.DiagramStyle", true, "http://iec.ch/TC57/CIM100#", profiles, false, false));
+            map.put("DiagramStyle", new AttrDetails("Diagram.DiagramStyle", true, "http://iec.ch/TC57/CIM100#", profiles, false, false, Diagram::getDiagramStyle, Diagram::setDiagramStyle));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("orientation", new AttrDetails("Diagram.orientation", true, "http://iec.ch/TC57/CIM100#", profiles, false, true));
+            map.put("orientation", new AttrDetails("Diagram.orientation", true, "http://iec.ch/TC57/CIM100#", profiles, false, true, Diagram::getOrientation, Diagram::setOrientation));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("x1InitialView", new AttrDetails("Diagram.x1InitialView", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("x1InitialView", new AttrDetails("Diagram.x1InitialView", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Diagram::getX1InitialView, Diagram::setX1InitialView));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("x2InitialView", new AttrDetails("Diagram.x2InitialView", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("x2InitialView", new AttrDetails("Diagram.x2InitialView", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Diagram::getX2InitialView, Diagram::setX2InitialView));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("y1InitialView", new AttrDetails("Diagram.y1InitialView", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("y1InitialView", new AttrDetails("Diagram.y1InitialView", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Diagram::getY1InitialView, Diagram::setY1InitialView));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DL);
-            map.put("y2InitialView", new AttrDetails("Diagram.y2InitialView", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("y2InitialView", new AttrDetails("Diagram.y2InitialView", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, Diagram::getY2InitialView, Diagram::setY2InitialView));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Diagram().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new Diagram(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("DiagramElements", new GetterSetter(this::DiagramElementsToString, this::setDiagramElements, null));
-        map.put("DiagramStyle", new GetterSetter(this::DiagramStyleToString, this::setDiagramStyle, null));
-        map.put("orientation", new GetterSetter(this::orientationToString, null, this::setOrientation));
-        map.put("x1InitialView", new GetterSetter(this::x1InitialViewToString, null, this::setX1InitialView));
-        map.put("x2InitialView", new GetterSetter(this::x2InitialViewToString, null, this::setX2InitialView));
-        map.put("y1InitialView", new GetterSetter(this::y1InitialViewToString, null, this::setY1InitialView));
-        map.put("y2InitialView", new GetterSetter(this::y2InitialViewToString, null, this::setY2InitialView));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

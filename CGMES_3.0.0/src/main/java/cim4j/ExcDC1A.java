@@ -23,14 +23,21 @@ public class ExcDC1A extends ExcitationSystemDynamics {
     private static final Logging LOG = Logging.getLogger(ExcDC1A.class);
 
     /**
-     * Default constructor.
+     * Constructor.
      */
-    public ExcDC1A() {
-        setCimType("ExcDC1A");
+    public ExcDC1A(String rdfid) {
+        super("ExcDC1A", rdfid);
     }
 
     /**
-     * Exciter voltage at which exciter saturation is defined (&lt;i&gt;Efd&lt;/i&gt;&lt;i&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; 0).  Typical value = 3,1.
+     * Constructor for subclasses.
+     */
+    protected ExcDC1A(String cimType, String rdfid) {
+        super(cimType, rdfid);
+    }
+
+    /**
+     * Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>1</sub></i>) (&gt; 0).  Typical value = 3,1.
      */
     private Double efd1; // PU
 
@@ -42,16 +49,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         efd1 = _value_;
     }
 
-    public void setEfd1(String _value_) {
-        efd1 = getDoubleFromString(_value_);
+    private static Object getEfd1(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getEfd1();
     }
 
-    public String efd1ToString() {
-        return efd1 != null ? efd1.toString() : null;
+    private static void setEfd1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setEfd1((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setEfd1(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Exciter voltage at which exciter saturation is defined (&lt;i&gt;Efd&lt;/i&gt;&lt;i&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/i&gt;) (&amp;gt; 0).  Typical value = 2,3.
+     * Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>2</sub></i>) (&gt; 0).  Typical value = 2,3.
      */
     private Double efd2; // PU
 
@@ -63,16 +76,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         efd2 = _value_;
     }
 
-    public void setEfd2(String _value_) {
-        efd2 = getDoubleFromString(_value_);
+    private static Object getEfd2(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getEfd2();
     }
 
-    public String efd2ToString() {
-        return efd2 != null ? efd2.toString() : null;
+    private static void setEfd2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setEfd2((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setEfd2(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum voltage exciter output limiter (&lt;i&gt;Efdmax&lt;/i&gt;) (&amp;gt; ExcDC1A.efdmin).  Typical value = 99.
+     * Maximum voltage exciter output limiter (<i>Efdmax</i>) (&gt; ExcDC1A.efdmin).  Typical value = 99.
      */
     private Double efdmax; // PU
 
@@ -84,16 +103,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         efdmax = _value_;
     }
 
-    public void setEfdmax(String _value_) {
-        efdmax = getDoubleFromString(_value_);
+    private static Object getEfdmax(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getEfdmax();
     }
 
-    public String efdmaxToString() {
-        return efdmax != null ? efdmax.toString() : null;
+    private static void setEfdmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setEfdmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setEfdmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum voltage exciter output limiter (&lt;i&gt;Efdmin&lt;/i&gt;) (&amp;lt; ExcDC1A.edfmax).  Typical value = -99.
+     * Minimum voltage exciter output limiter (<i>Efdmin</i>) (&lt; ExcDC1A.edfmax).  Typical value = -99.
      */
     private Double efdmin; // PU
 
@@ -105,16 +130,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         efdmin = _value_;
     }
 
-    public void setEfdmin(String _value_) {
-        efdmin = getDoubleFromString(_value_);
+    private static Object getEfdmin(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getEfdmin();
     }
 
-    public String efdminToString() {
-        return efdmin != null ? efdmin.toString() : null;
+    private static void setEfdmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setEfdmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setEfdmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * (&lt;i&gt;exclim&lt;/i&gt;).  IEEE standard is ambiguous about lower limit on exciter output.  true = a lower limit of zero is applied to integrator output false = a lower limit of zero is not applied to integrator output. Typical value = true.
+     * (<i>exclim</i>).  IEEE standard is ambiguous about lower limit on exciter output.  true = a lower limit of zero is applied to integrator output false = a lower limit of zero is not applied to integrator output. Typical value = true.
      */
     private Boolean exclim; // Boolean
 
@@ -126,16 +157,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         exclim = _value_;
     }
 
-    public void setExclim(String _value_) {
-        exclim = getBooleanFromString(_value_);
+    private static Object getExclim(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getExclim();
     }
 
-    public String exclimToString() {
-        return exclim != null ? exclim.toString() : null;
+    private static void setExclim(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Boolean) {
+            ((ExcDC1A) _this_).setExclim((Boolean) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setExclim(getBooleanFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Boolean nor String");
+        }
     }
 
     /**
-     * Voltage regulator gain (&lt;i&gt;Ka&lt;/i&gt;) (&amp;gt; 0).  Typical value = 46.
+     * Voltage regulator gain (<i>Ka</i>) (&gt; 0).  Typical value = 46.
      */
     private Double ka; // PU
 
@@ -147,16 +184,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         ka = _value_;
     }
 
-    public void setKa(String _value_) {
-        ka = getDoubleFromString(_value_);
+    private static Object getKa(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getKa();
     }
 
-    public String kaToString() {
-        return ka != null ? ka.toString() : null;
+    private static void setKa(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setKa((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setKa(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Exciter constant related to self-excited field (&lt;i&gt;Ke&lt;/i&gt;).  Typical value = 0.
+     * Exciter constant related to self-excited field (<i>Ke</i>).  Typical value = 0.
      */
     private Double ke; // PU
 
@@ -168,16 +211,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         ke = _value_;
     }
 
-    public void setKe(String _value_) {
-        ke = getDoubleFromString(_value_);
+    private static Object getKe(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getKe();
     }
 
-    public String keToString() {
-        return ke != null ? ke.toString() : null;
+    private static void setKe(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setKe((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setKe(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Excitation control system stabilizer gain (&lt;i&gt;Kf&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,1.
+     * Excitation control system stabilizer gain (<i>Kf</i>) (&gt;= 0).  Typical value = 0,1.
      */
     private Double kf; // PU
 
@@ -189,16 +238,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         kf = _value_;
     }
 
-    public void setKf(String _value_) {
-        kf = getDoubleFromString(_value_);
+    private static Object getKf(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getKf();
     }
 
-    public String kfToString() {
-        return kf != null ? kf.toString() : null;
+    private static void setKf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setKf((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setKf(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Coefficient to allow different usage of the model-speed coefficient (&lt;i&gt;Ks&lt;/i&gt;).  Typical value = 0.
+     * Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).  Typical value = 0.
      */
     private Double ks; // PU
 
@@ -210,16 +265,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         ks = _value_;
     }
 
-    public void setKs(String _value_) {
-        ks = getDoubleFromString(_value_);
+    private static Object getKs(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getKs();
     }
 
-    public String ksToString() {
-        return ks != null ? ks.toString() : null;
+    private static void setKs(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setKs((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setKs(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Exciter saturation function value at the corresponding exciter voltage, &lt;i&gt;Efd&lt;/i&gt;&lt;i&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/i&gt; (&lt;i&gt;Se[Eefd&lt;/i&gt;&lt;i&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/i&gt;&lt;i&gt;]&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,33.
+     * Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>1</sub></i> (<i>Se[Eefd</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).  Typical value = 0,33.
      */
     private Float seefd1; // Float
 
@@ -231,16 +292,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         seefd1 = _value_;
     }
 
-    public void setSeefd1(String _value_) {
-        seefd1 = getFloatFromString(_value_);
+    private static Object getSeefd1(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getSeefd1();
     }
 
-    public String seefd1ToString() {
-        return seefd1 != null ? seefd1.toString() : null;
+    private static void setSeefd1(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExcDC1A) _this_).setSeefd1((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setSeefd1(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Exciter saturation function value at the corresponding exciter voltage, &lt;i&gt;Efd&lt;/i&gt;&lt;i&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/i&gt; (&lt;i&gt;Se[Eefd&lt;/i&gt;&lt;i&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/i&gt;&lt;i&gt;]&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0,1.
+     * Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>2</sub></i> (<i>Se[Eefd</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).  Typical value = 0,1.
      */
     private Float seefd2; // Float
 
@@ -252,16 +319,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         seefd2 = _value_;
     }
 
-    public void setSeefd2(String _value_) {
-        seefd2 = getFloatFromString(_value_);
+    private static Object getSeefd2(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getSeefd2();
     }
 
-    public String seefd2ToString() {
-        return seefd2 != null ? seefd2.toString() : null;
+    private static void setSeefd2(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Float) {
+            ((ExcDC1A) _this_).setSeefd2((Float) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setSeefd2(getFloatFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Float nor String");
+        }
     }
 
     /**
-     * Voltage regulator time constant (&lt;i&gt;Ta&lt;/i&gt;) (&amp;gt; 0).  Typical value = 0,06.
+     * Voltage regulator time constant (<i>Ta</i>) (&gt; 0).  Typical value = 0,06.
      */
     private Double ta; // Seconds
 
@@ -273,16 +346,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         ta = _value_;
     }
 
-    public void setTa(String _value_) {
-        ta = getDoubleFromString(_value_);
+    private static Object getTa(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getTa();
     }
 
-    public String taToString() {
-        return ta != null ? ta.toString() : null;
+    private static void setTa(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setTa((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setTa(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage regulator time constant (&lt;i&gt;Tb&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tb; // Seconds
 
@@ -294,16 +373,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         tb = _value_;
     }
 
-    public void setTb(String _value_) {
-        tb = getDoubleFromString(_value_);
+    private static Object getTb(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getTb();
     }
 
-    public String tbToString() {
-        return tb != null ? tb.toString() : null;
+    private static void setTb(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setTb((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setTb(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Voltage regulator time constant (&lt;i&gt;Tc&lt;/i&gt;) (&amp;gt;= 0).  Typical value = 0.
+     * Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).  Typical value = 0.
      */
     private Double tc; // Seconds
 
@@ -315,16 +400,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         tc = _value_;
     }
 
-    public void setTc(String _value_) {
-        tc = getDoubleFromString(_value_);
+    private static Object getTc(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getTc();
     }
 
-    public String tcToString() {
-        return tc != null ? tc.toString() : null;
+    private static void setTc(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setTc((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setTc(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Exciter time constant, integration rate associated with exciter control (&lt;i&gt;Te&lt;/i&gt;) (&amp;gt; 0).  Typical value = 0,46.
+     * Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).  Typical value = 0,46.
      */
     private Double te; // Seconds
 
@@ -336,16 +427,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         te = _value_;
     }
 
-    public void setTe(String _value_) {
-        te = getDoubleFromString(_value_);
+    private static Object getTe(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getTe();
     }
 
-    public String teToString() {
-        return te != null ? te.toString() : null;
+    private static void setTe(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setTe((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setTe(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Excitation control system stabilizer time constant (&lt;i&gt;Tf&lt;/i&gt;) (&amp;gt; 0).  Typical value = 1.
+     * Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).  Typical value = 1.
      */
     private Double tf; // Seconds
 
@@ -357,16 +454,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         tf = _value_;
     }
 
-    public void setTf(String _value_) {
-        tf = getDoubleFromString(_value_);
+    private static Object getTf(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getTf();
     }
 
-    public String tfToString() {
-        return tf != null ? tf.toString() : null;
+    private static void setTf(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setTf((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setTf(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Maximum voltage regulator output (&lt;i&gt;Vrmax&lt;/i&gt;) (&amp;gt; ExcDC1A.vrmin).  Typical value = 1.
+     * Maximum voltage regulator output (<i>Vrmax</i>) (&gt; ExcDC1A.vrmin).  Typical value = 1.
      */
     private Double vrmax; // PU
 
@@ -378,16 +481,22 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         vrmax = _value_;
     }
 
-    public void setVrmax(String _value_) {
-        vrmax = getDoubleFromString(_value_);
+    private static Object getVrmax(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getVrmax();
     }
 
-    public String vrmaxToString() {
-        return vrmax != null ? vrmax.toString() : null;
+    private static void setVrmax(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setVrmax((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setVrmax(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
-     * Minimum voltage regulator output (&lt;i&gt;Vrmin&lt;/i&gt;) (&amp;lt; 0 and &amp;lt; ExcDC1A.vrmax).  Typical value = -0,9.
+     * Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0 and &lt; ExcDC1A.vrmax).  Typical value = -0,9.
      */
     private Double vrmin; // PU
 
@@ -399,12 +508,18 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         vrmin = _value_;
     }
 
-    public void setVrmin(String _value_) {
-        vrmin = getDoubleFromString(_value_);
+    private static Object getVrmin(BaseClass _this_) {
+        return ((ExcDC1A) _this_).getVrmin();
     }
 
-    public String vrminToString() {
-        return vrmin != null ? vrmin.toString() : null;
+    private static void setVrmin(BaseClass _this_, Object _value_) {
+        if (_value_ instanceof Double) {
+            ((ExcDC1A) _this_).setVrmin((Double) _value_);
+        } else if (_value_ instanceof String) {
+            ((ExcDC1A) _this_).setVrmin(getDoubleFromString((String) _value_));
+        } else {
+            throw new IllegalArgumentException("Object is neither Double nor String");
+        }
     }
 
     /**
@@ -441,64 +556,35 @@ public class ExcDC1A extends ExcitationSystemDynamics {
     }
 
     /**
-     * Get an attribute value as string.
+     * Get an attribute value.
      *
      * @param attrName The attribute name
      * @return         The attribute value
      */
     @Override
-    public String getAttribute(String attrName) {
-        return getAttribute("ExcDC1A", attrName);
-    }
-
-    @Override
-    protected String getAttribute(String className, String attrName) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var getterFunction = classGetterSetterMap.get(attrName).getter;
-            return getterFunction.get();
+    public Object getAttribute(String attrName) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var getterFunction = ATTR_DETAILS_MAP.get(attrName).getter;
+            return getterFunction.apply(this);
         }
-        return super.getAttribute(className, attrName);
+        LOG.error(String.format("No-one knows an attribute %s.%s", "ExcDC1A", attrName));
+        return "";
     }
 
     /**
-     * Set an attribute value as object (for class and list attributes).
+     * Set an attribute value.
      *
-     * @param attrName    The attribute name
-     * @param objectValue The attribute value as object
+     * @param attrName The attribute name
+     * @param value    The attribute value
      */
     @Override
-    public void setAttribute(String attrName, BaseClass objectValue) {
-        setAttribute("ExcDC1A", attrName, objectValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, BaseClass objectValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).objectSetter;
-            setterFunction.accept(objectValue);
+    public void setAttribute(String attrName, Object value) {
+        if (ATTR_DETAILS_MAP.containsKey(attrName)) {
+            var setterFunction = ATTR_DETAILS_MAP.get(attrName).setter;
+            setterFunction.accept(this, value);
         } else {
-            super.setAttribute(className, attrName, objectValue);
-        }
-    }
-
-    /**
-     * Set an attribute value as string (for primitive (including datatype) and enum attributes).
-     *
-     * @param attrName    The attribute name
-     * @param stringValue The attribute value as string
-     */
-    @Override
-    public void setAttribute(String attrName, String stringValue) {
-        setAttribute("ExcDC1A", attrName, stringValue);
-    }
-
-    @Override
-    protected void setAttribute(String className, String attrName, String stringValue) {
-        if (classGetterSetterMap.containsKey(attrName)) {
-            var setterFunction = classGetterSetterMap.get(attrName).stringSetter;
-            setterFunction.accept(stringValue);
-        } else {
-            super.setAttribute(className, attrName, stringValue);
+            LOG.error(String.format("No-one knows what to do with attribute %s.%s and value %s",
+                "ExcDC1A", attrName, value));
         }
     }
 
@@ -622,120 +708,96 @@ public class ExcDC1A extends ExcitationSystemDynamics {
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("efd1", new AttrDetails("ExcDC1A.efd1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("efd1", new AttrDetails("ExcDC1A.efd1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getEfd1, ExcDC1A::setEfd1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("efd2", new AttrDetails("ExcDC1A.efd2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("efd2", new AttrDetails("ExcDC1A.efd2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getEfd2, ExcDC1A::setEfd2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("efdmax", new AttrDetails("ExcDC1A.efdmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("efdmax", new AttrDetails("ExcDC1A.efdmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getEfdmax, ExcDC1A::setEfdmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("efdmin", new AttrDetails("ExcDC1A.efdmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("efdmin", new AttrDetails("ExcDC1A.efdmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getEfdmin, ExcDC1A::setEfdmin));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("exclim", new AttrDetails("ExcDC1A.exclim", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("exclim", new AttrDetails("ExcDC1A.exclim", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getExclim, ExcDC1A::setExclim));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ka", new AttrDetails("ExcDC1A.ka", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ka", new AttrDetails("ExcDC1A.ka", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getKa, ExcDC1A::setKa));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ke", new AttrDetails("ExcDC1A.ke", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ke", new AttrDetails("ExcDC1A.ke", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getKe, ExcDC1A::setKe));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("kf", new AttrDetails("ExcDC1A.kf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("kf", new AttrDetails("ExcDC1A.kf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getKf, ExcDC1A::setKf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ks", new AttrDetails("ExcDC1A.ks", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ks", new AttrDetails("ExcDC1A.ks", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getKs, ExcDC1A::setKs));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("seefd1", new AttrDetails("ExcDC1A.seefd1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("seefd1", new AttrDetails("ExcDC1A.seefd1", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getSeefd1, ExcDC1A::setSeefd1));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("seefd2", new AttrDetails("ExcDC1A.seefd2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("seefd2", new AttrDetails("ExcDC1A.seefd2", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getSeefd2, ExcDC1A::setSeefd2));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("ta", new AttrDetails("ExcDC1A.ta", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("ta", new AttrDetails("ExcDC1A.ta", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getTa, ExcDC1A::setTa));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tb", new AttrDetails("ExcDC1A.tb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tb", new AttrDetails("ExcDC1A.tb", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getTb, ExcDC1A::setTb));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tc", new AttrDetails("ExcDC1A.tc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tc", new AttrDetails("ExcDC1A.tc", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getTc, ExcDC1A::setTc));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("te", new AttrDetails("ExcDC1A.te", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("te", new AttrDetails("ExcDC1A.te", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getTe, ExcDC1A::setTe));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("tf", new AttrDetails("ExcDC1A.tf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("tf", new AttrDetails("ExcDC1A.tf", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getTf, ExcDC1A::setTf));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmax", new AttrDetails("ExcDC1A.vrmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vrmax", new AttrDetails("ExcDC1A.vrmax", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getVrmax, ExcDC1A::setVrmax));
         }
         {
             Set<CGMESProfile> profiles = new LinkedHashSet<>();
             profiles.add(CGMESProfile.DY);
-            map.put("vrmin", new AttrDetails("ExcDC1A.vrmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false));
+            map.put("vrmin", new AttrDetails("ExcDC1A.vrmin", true, "http://iec.ch/TC57/CIM100#", profiles, true, false, ExcDC1A::getVrmin, ExcDC1A::setVrmin));
         }
         CLASS_ATTR_DETAILS_MAP = map;
-        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcDC1A().allAttrDetailsMap());
+        ATTR_DETAILS_MAP = Collections.unmodifiableMap(new ExcDC1A(null).allAttrDetailsMap());
         ATTR_NAMES_LIST = new ArrayList<>(ATTR_DETAILS_MAP.keySet());
-    }
-
-    private final Map<String, GetterSetter> classGetterSetterMap = fillGetterSetterMap();
-    private final Map<String, GetterSetter> fillGetterSetterMap() {
-        Map<String, GetterSetter> map = new LinkedHashMap<>();
-        map.put("efd1", new GetterSetter(this::efd1ToString, null, this::setEfd1));
-        map.put("efd2", new GetterSetter(this::efd2ToString, null, this::setEfd2));
-        map.put("efdmax", new GetterSetter(this::efdmaxToString, null, this::setEfdmax));
-        map.put("efdmin", new GetterSetter(this::efdminToString, null, this::setEfdmin));
-        map.put("exclim", new GetterSetter(this::exclimToString, null, this::setExclim));
-        map.put("ka", new GetterSetter(this::kaToString, null, this::setKa));
-        map.put("ke", new GetterSetter(this::keToString, null, this::setKe));
-        map.put("kf", new GetterSetter(this::kfToString, null, this::setKf));
-        map.put("ks", new GetterSetter(this::ksToString, null, this::setKs));
-        map.put("seefd1", new GetterSetter(this::seefd1ToString, null, this::setSeefd1));
-        map.put("seefd2", new GetterSetter(this::seefd2ToString, null, this::setSeefd2));
-        map.put("ta", new GetterSetter(this::taToString, null, this::setTa));
-        map.put("tb", new GetterSetter(this::tbToString, null, this::setTb));
-        map.put("tc", new GetterSetter(this::tcToString, null, this::setTc));
-        map.put("te", new GetterSetter(this::teToString, null, this::setTe));
-        map.put("tf", new GetterSetter(this::tfToString, null, this::setTf));
-        map.put("vrmax", new GetterSetter(this::vrmaxToString, null, this::setVrmax));
-        map.put("vrmin", new GetterSetter(this::vrminToString, null, this::setVrmin));
-        return map;
     }
 
     private static final Set<CGMESProfile> POSSIBLE_PROFILES;

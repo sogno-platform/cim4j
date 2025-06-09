@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.lfenergy.sogno</groupId>
         <artifactId>cim4j-parent</artifactId>
-        <version>0.3.0</version>
+        <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 

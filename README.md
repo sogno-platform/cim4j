@@ -19,6 +19,13 @@ apt install maven openjdk-17-jdk
 mvn verify
 ```
 
+This compiles the sources, verifies the unit tests, and builds two jar files:
+
+- `cim4j-cgmes-2-4-15` in directory `CGMES_2.4.15_27JAN2020/target`
+- `cim4j-cgmes-3-0-0` in directory `CGMES_3.0.0/target`
+
+These jar files can be used in other projects instead of including the source files.
+
 ## Run simple test program
 
 Read RDF files and write the data to RDF files separated by profiles.

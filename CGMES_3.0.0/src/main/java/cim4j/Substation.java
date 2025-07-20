@@ -43,6 +43,8 @@ public class Substation extends EquipmentContainer {
      */
     private Set<DCConverterUnit> DCConverterUnit = new HashSet<>(); // OneToMany
 
+    private Set<String> DCConverterUnitIdSet = new HashSet<>();
+
     public Set<DCConverterUnit> getDCConverterUnit() {
         return DCConverterUnit;
     }
@@ -51,15 +53,23 @@ public class Substation extends EquipmentContainer {
         if (!DCConverterUnit.contains(_object_)) {
             DCConverterUnit.add(_object_);
             _object_.setSubstation(this);
+            DCConverterUnitIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDCConverterUnit(BaseClass _this_) {
-        return ((Substation) _this_).getDCConverterUnit();
+        var objs = ((Substation) _this_).getDCConverterUnit();
+        var ids = ((Substation) _this_).DCConverterUnitIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDCConverterUnit(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCConverterUnit) {
+        if (_value_ instanceof String) {
+            ((Substation) _this_).DCConverterUnitIdSet.add((String) _value_);
+        } else if (_value_ instanceof DCConverterUnit) {
             ((Substation) _this_).setDCConverterUnit((DCConverterUnit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCConverterUnit");
@@ -71,6 +81,8 @@ public class Substation extends EquipmentContainer {
      */
     private SubGeographicalRegion Region; // ManyToOne
 
+    private String RegionId;
+
     public SubGeographicalRegion getRegion() {
         return Region;
     }
@@ -78,16 +90,24 @@ public class Substation extends EquipmentContainer {
     public void setRegion(SubGeographicalRegion _object_) {
         if (Region != _object_) {
             Region = _object_;
-            Region.setSubstations(this);
+            _object_.setSubstations(this);
+            RegionId = _object_.getRdfid();
         }
     }
 
     private static Object getRegion(BaseClass _this_) {
-        return ((Substation) _this_).getRegion();
+        var obj = ((Substation) _this_).getRegion();
+        var id = ((Substation) _this_).RegionId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setRegion(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SubGeographicalRegion) {
+        if (_value_ instanceof String) {
+            ((Substation) _this_).RegionId = (String) _value_;
+        } else if (_value_ instanceof SubGeographicalRegion) {
             ((Substation) _this_).setRegion((SubGeographicalRegion) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SubGeographicalRegion");
@@ -101,6 +121,8 @@ public class Substation extends EquipmentContainer {
      */
     private Set<VoltageLevel> VoltageLevels = new HashSet<>(); // OneToMany
 
+    private Set<String> VoltageLevelsIdSet = new HashSet<>();
+
     public Set<VoltageLevel> getVoltageLevels() {
         return VoltageLevels;
     }
@@ -109,15 +131,23 @@ public class Substation extends EquipmentContainer {
         if (!VoltageLevels.contains(_object_)) {
             VoltageLevels.add(_object_);
             _object_.setSubstation(this);
+            VoltageLevelsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getVoltageLevels(BaseClass _this_) {
-        return ((Substation) _this_).getVoltageLevels();
+        var objs = ((Substation) _this_).getVoltageLevels();
+        var ids = ((Substation) _this_).VoltageLevelsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setVoltageLevels(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VoltageLevel) {
+        if (_value_ instanceof String) {
+            ((Substation) _this_).VoltageLevelsIdSet.add((String) _value_);
+        } else if (_value_ instanceof VoltageLevel) {
             ((Substation) _this_).setVoltageLevels((VoltageLevel) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VoltageLevel");

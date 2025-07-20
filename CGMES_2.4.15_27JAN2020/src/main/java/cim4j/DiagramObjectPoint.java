@@ -41,6 +41,8 @@ public class DiagramObjectPoint extends BaseClass {
      */
     private DiagramObject DiagramObject; // ManyToOne
 
+    private String DiagramObjectId;
+
     public DiagramObject getDiagramObject() {
         return DiagramObject;
     }
@@ -48,16 +50,24 @@ public class DiagramObjectPoint extends BaseClass {
     public void setDiagramObject(DiagramObject _object_) {
         if (DiagramObject != _object_) {
             DiagramObject = _object_;
-            DiagramObject.setDiagramObjectPoints(this);
+            _object_.setDiagramObjectPoints(this);
+            DiagramObjectId = _object_.getRdfid();
         }
     }
 
     private static Object getDiagramObject(BaseClass _this_) {
-        return ((DiagramObjectPoint) _this_).getDiagramObject();
+        var obj = ((DiagramObjectPoint) _this_).getDiagramObject();
+        var id = ((DiagramObjectPoint) _this_).DiagramObjectId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDiagramObject(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiagramObject) {
+        if (_value_ instanceof String) {
+            ((DiagramObjectPoint) _this_).DiagramObjectId = (String) _value_;
+        } else if (_value_ instanceof DiagramObject) {
             ((DiagramObjectPoint) _this_).setDiagramObject((DiagramObject) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiagramObject");
@@ -69,6 +79,8 @@ public class DiagramObjectPoint extends BaseClass {
      */
     private DiagramObjectGluePoint DiagramObjectGluePoint; // ManyToOne
 
+    private String DiagramObjectGluePointId;
+
     public DiagramObjectGluePoint getDiagramObjectGluePoint() {
         return DiagramObjectGluePoint;
     }
@@ -76,16 +88,24 @@ public class DiagramObjectPoint extends BaseClass {
     public void setDiagramObjectGluePoint(DiagramObjectGluePoint _object_) {
         if (DiagramObjectGluePoint != _object_) {
             DiagramObjectGluePoint = _object_;
-            DiagramObjectGluePoint.setDiagramObjectPoints(this);
+            _object_.setDiagramObjectPoints(this);
+            DiagramObjectGluePointId = _object_.getRdfid();
         }
     }
 
     private static Object getDiagramObjectGluePoint(BaseClass _this_) {
-        return ((DiagramObjectPoint) _this_).getDiagramObjectGluePoint();
+        var obj = ((DiagramObjectPoint) _this_).getDiagramObjectGluePoint();
+        var id = ((DiagramObjectPoint) _this_).DiagramObjectGluePointId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDiagramObjectGluePoint(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiagramObjectGluePoint) {
+        if (_value_ instanceof String) {
+            ((DiagramObjectPoint) _this_).DiagramObjectGluePointId = (String) _value_;
+        } else if (_value_ instanceof DiagramObjectGluePoint) {
             ((DiagramObjectPoint) _this_).setDiagramObjectGluePoint((DiagramObjectGluePoint) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiagramObjectGluePoint");

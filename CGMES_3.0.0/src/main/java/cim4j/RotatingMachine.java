@@ -41,6 +41,8 @@ public class RotatingMachine extends RegulatingCondEq {
      */
     private GeneratingUnit GeneratingUnit; // ManyToOne
 
+    private String GeneratingUnitId;
+
     public GeneratingUnit getGeneratingUnit() {
         return GeneratingUnit;
     }
@@ -48,16 +50,24 @@ public class RotatingMachine extends RegulatingCondEq {
     public void setGeneratingUnit(GeneratingUnit _object_) {
         if (GeneratingUnit != _object_) {
             GeneratingUnit = _object_;
-            GeneratingUnit.setRotatingMachine(this);
+            _object_.setRotatingMachine(this);
+            GeneratingUnitId = _object_.getRdfid();
         }
     }
 
     private static Object getGeneratingUnit(BaseClass _this_) {
-        return ((RotatingMachine) _this_).getGeneratingUnit();
+        var obj = ((RotatingMachine) _this_).getGeneratingUnit();
+        var id = ((RotatingMachine) _this_).GeneratingUnitId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setGeneratingUnit(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof GeneratingUnit) {
+        if (_value_ instanceof String) {
+            ((RotatingMachine) _this_).GeneratingUnitId = (String) _value_;
+        } else if (_value_ instanceof GeneratingUnit) {
             ((RotatingMachine) _this_).setGeneratingUnit((GeneratingUnit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not GeneratingUnit");
@@ -71,6 +81,8 @@ public class RotatingMachine extends RegulatingCondEq {
      */
     private HydroPump HydroPump; // OneToOne
 
+    private String HydroPumpId;
+
     public HydroPump getHydroPump() {
         return HydroPump;
     }
@@ -78,16 +90,24 @@ public class RotatingMachine extends RegulatingCondEq {
     public void setHydroPump(HydroPump _object_) {
         if (HydroPump != _object_) {
             HydroPump = _object_;
-            HydroPump.setRotatingMachine(this);
+            _object_.setRotatingMachine(this);
+            HydroPumpId = _object_.getRdfid();
         }
     }
 
     private static Object getHydroPump(BaseClass _this_) {
-        return ((RotatingMachine) _this_).getHydroPump();
+        var obj = ((RotatingMachine) _this_).getHydroPump();
+        var id = ((RotatingMachine) _this_).HydroPumpId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setHydroPump(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof HydroPump) {
+        if (_value_ instanceof String) {
+            ((RotatingMachine) _this_).HydroPumpId = (String) _value_;
+        } else if (_value_ instanceof HydroPump) {
             ((RotatingMachine) _this_).setHydroPump((HydroPump) _value_);
         } else {
             throw new IllegalArgumentException("Object is not HydroPump");

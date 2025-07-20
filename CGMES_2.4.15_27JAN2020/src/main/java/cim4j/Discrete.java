@@ -43,6 +43,8 @@ public class Discrete extends Measurement {
      */
     private Set<DiscreteValue> DiscreteValues = new HashSet<>(); // OneToMany
 
+    private Set<String> DiscreteValuesIdSet = new HashSet<>();
+
     public Set<DiscreteValue> getDiscreteValues() {
         return DiscreteValues;
     }
@@ -51,15 +53,23 @@ public class Discrete extends Measurement {
         if (!DiscreteValues.contains(_object_)) {
             DiscreteValues.add(_object_);
             _object_.setDiscrete(this);
+            DiscreteValuesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDiscreteValues(BaseClass _this_) {
-        return ((Discrete) _this_).getDiscreteValues();
+        var objs = ((Discrete) _this_).getDiscreteValues();
+        var ids = ((Discrete) _this_).DiscreteValuesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDiscreteValues(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiscreteValue) {
+        if (_value_ instanceof String) {
+            ((Discrete) _this_).DiscreteValuesIdSet.add((String) _value_);
+        } else if (_value_ instanceof DiscreteValue) {
             ((Discrete) _this_).setDiscreteValues((DiscreteValue) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiscreteValue");
@@ -71,6 +81,8 @@ public class Discrete extends Measurement {
      */
     private ValueAliasSet ValueAliasSet; // ManyToOne
 
+    private String ValueAliasSetId;
+
     public ValueAliasSet getValueAliasSet() {
         return ValueAliasSet;
     }
@@ -78,16 +90,24 @@ public class Discrete extends Measurement {
     public void setValueAliasSet(ValueAliasSet _object_) {
         if (ValueAliasSet != _object_) {
             ValueAliasSet = _object_;
-            ValueAliasSet.setDiscretes(this);
+            _object_.setDiscretes(this);
+            ValueAliasSetId = _object_.getRdfid();
         }
     }
 
     private static Object getValueAliasSet(BaseClass _this_) {
-        return ((Discrete) _this_).getValueAliasSet();
+        var obj = ((Discrete) _this_).getValueAliasSet();
+        var id = ((Discrete) _this_).ValueAliasSetId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setValueAliasSet(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ValueAliasSet) {
+        if (_value_ instanceof String) {
+            ((Discrete) _this_).ValueAliasSetId = (String) _value_;
+        } else if (_value_ instanceof ValueAliasSet) {
             ((Discrete) _this_).setValueAliasSet((ValueAliasSet) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ValueAliasSet");

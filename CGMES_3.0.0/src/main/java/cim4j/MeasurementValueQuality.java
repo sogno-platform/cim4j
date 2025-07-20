@@ -41,6 +41,8 @@ public class MeasurementValueQuality extends Quality61850 {
      */
     private MeasurementValue MeasurementValue; // OneToOne
 
+    private String MeasurementValueId;
+
     public MeasurementValue getMeasurementValue() {
         return MeasurementValue;
     }
@@ -48,16 +50,24 @@ public class MeasurementValueQuality extends Quality61850 {
     public void setMeasurementValue(MeasurementValue _object_) {
         if (MeasurementValue != _object_) {
             MeasurementValue = _object_;
-            MeasurementValue.setMeasurementValueQuality(this);
+            _object_.setMeasurementValueQuality(this);
+            MeasurementValueId = _object_.getRdfid();
         }
     }
 
     private static Object getMeasurementValue(BaseClass _this_) {
-        return ((MeasurementValueQuality) _this_).getMeasurementValue();
+        var obj = ((MeasurementValueQuality) _this_).getMeasurementValue();
+        var id = ((MeasurementValueQuality) _this_).MeasurementValueId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setMeasurementValue(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof MeasurementValue) {
+        if (_value_ instanceof String) {
+            ((MeasurementValueQuality) _this_).MeasurementValueId = (String) _value_;
+        } else if (_value_ instanceof MeasurementValue) {
             ((MeasurementValueQuality) _this_).setMeasurementValue((MeasurementValue) _value_);
         } else {
             throw new IllegalArgumentException("Object is not MeasurementValue");

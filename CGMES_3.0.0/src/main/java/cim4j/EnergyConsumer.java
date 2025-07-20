@@ -41,6 +41,8 @@ public class EnergyConsumer extends EnergyConnection {
      */
     private LoadDynamics LoadDynamics; // ManyToOne
 
+    private String LoadDynamicsId;
+
     public LoadDynamics getLoadDynamics() {
         return LoadDynamics;
     }
@@ -48,16 +50,24 @@ public class EnergyConsumer extends EnergyConnection {
     public void setLoadDynamics(LoadDynamics _object_) {
         if (LoadDynamics != _object_) {
             LoadDynamics = _object_;
-            LoadDynamics.setEnergyConsumer(this);
+            _object_.setEnergyConsumer(this);
+            LoadDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getLoadDynamics(BaseClass _this_) {
-        return ((EnergyConsumer) _this_).getLoadDynamics();
+        var obj = ((EnergyConsumer) _this_).getLoadDynamics();
+        var id = ((EnergyConsumer) _this_).LoadDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setLoadDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof LoadDynamics) {
+        if (_value_ instanceof String) {
+            ((EnergyConsumer) _this_).LoadDynamicsId = (String) _value_;
+        } else if (_value_ instanceof LoadDynamics) {
             ((EnergyConsumer) _this_).setLoadDynamics((LoadDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not LoadDynamics");
@@ -69,6 +79,8 @@ public class EnergyConsumer extends EnergyConnection {
      */
     private LoadResponseCharacteristic LoadResponse; // ManyToOne
 
+    private String LoadResponseId;
+
     public LoadResponseCharacteristic getLoadResponse() {
         return LoadResponse;
     }
@@ -76,16 +88,24 @@ public class EnergyConsumer extends EnergyConnection {
     public void setLoadResponse(LoadResponseCharacteristic _object_) {
         if (LoadResponse != _object_) {
             LoadResponse = _object_;
-            LoadResponse.setEnergyConsumer(this);
+            _object_.setEnergyConsumer(this);
+            LoadResponseId = _object_.getRdfid();
         }
     }
 
     private static Object getLoadResponse(BaseClass _this_) {
-        return ((EnergyConsumer) _this_).getLoadResponse();
+        var obj = ((EnergyConsumer) _this_).getLoadResponse();
+        var id = ((EnergyConsumer) _this_).LoadResponseId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setLoadResponse(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof LoadResponseCharacteristic) {
+        if (_value_ instanceof String) {
+            ((EnergyConsumer) _this_).LoadResponseId = (String) _value_;
+        } else if (_value_ instanceof LoadResponseCharacteristic) {
             ((EnergyConsumer) _this_).setLoadResponse((LoadResponseCharacteristic) _value_);
         } else {
             throw new IllegalArgumentException("Object is not LoadResponseCharacteristic");

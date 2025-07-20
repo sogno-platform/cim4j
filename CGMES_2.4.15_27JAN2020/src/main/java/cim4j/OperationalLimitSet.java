@@ -41,6 +41,8 @@ public class OperationalLimitSet extends IdentifiedObject {
      */
     private Equipment Equipment; // ManyToOne
 
+    private String EquipmentId;
+
     public Equipment getEquipment() {
         return Equipment;
     }
@@ -48,16 +50,24 @@ public class OperationalLimitSet extends IdentifiedObject {
     public void setEquipment(Equipment _object_) {
         if (Equipment != _object_) {
             Equipment = _object_;
-            Equipment.setOperationalLimitSet(this);
+            _object_.setOperationalLimitSet(this);
+            EquipmentId = _object_.getRdfid();
         }
     }
 
     private static Object getEquipment(BaseClass _this_) {
-        return ((OperationalLimitSet) _this_).getEquipment();
+        var obj = ((OperationalLimitSet) _this_).getEquipment();
+        var id = ((OperationalLimitSet) _this_).EquipmentId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setEquipment(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Equipment) {
+        if (_value_ instanceof String) {
+            ((OperationalLimitSet) _this_).EquipmentId = (String) _value_;
+        } else if (_value_ instanceof Equipment) {
             ((OperationalLimitSet) _this_).setEquipment((Equipment) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Equipment");
@@ -71,6 +81,8 @@ public class OperationalLimitSet extends IdentifiedObject {
      */
     private Set<OperationalLimit> OperationalLimitValue = new HashSet<>(); // OneToMany
 
+    private Set<String> OperationalLimitValueIdSet = new HashSet<>();
+
     public Set<OperationalLimit> getOperationalLimitValue() {
         return OperationalLimitValue;
     }
@@ -79,15 +91,23 @@ public class OperationalLimitSet extends IdentifiedObject {
         if (!OperationalLimitValue.contains(_object_)) {
             OperationalLimitValue.add(_object_);
             _object_.setOperationalLimitSet(this);
+            OperationalLimitValueIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getOperationalLimitValue(BaseClass _this_) {
-        return ((OperationalLimitSet) _this_).getOperationalLimitValue();
+        var objs = ((OperationalLimitSet) _this_).getOperationalLimitValue();
+        var ids = ((OperationalLimitSet) _this_).OperationalLimitValueIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setOperationalLimitValue(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof OperationalLimit) {
+        if (_value_ instanceof String) {
+            ((OperationalLimitSet) _this_).OperationalLimitValueIdSet.add((String) _value_);
+        } else if (_value_ instanceof OperationalLimit) {
             ((OperationalLimitSet) _this_).setOperationalLimitValue((OperationalLimit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not OperationalLimit");
@@ -98,6 +118,8 @@ public class OperationalLimitSet extends IdentifiedObject {
      */
     private ACDCTerminal Terminal; // ManyToOne
 
+    private String TerminalId;
+
     public ACDCTerminal getTerminal() {
         return Terminal;
     }
@@ -105,16 +127,24 @@ public class OperationalLimitSet extends IdentifiedObject {
     public void setTerminal(ACDCTerminal _object_) {
         if (Terminal != _object_) {
             Terminal = _object_;
-            Terminal.setOperationalLimitSet(this);
+            _object_.setOperationalLimitSet(this);
+            TerminalId = _object_.getRdfid();
         }
     }
 
     private static Object getTerminal(BaseClass _this_) {
-        return ((OperationalLimitSet) _this_).getTerminal();
+        var obj = ((OperationalLimitSet) _this_).getTerminal();
+        var id = ((OperationalLimitSet) _this_).TerminalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTerminal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ACDCTerminal) {
+        if (_value_ instanceof String) {
+            ((OperationalLimitSet) _this_).TerminalId = (String) _value_;
+        } else if (_value_ instanceof ACDCTerminal) {
             ((OperationalLimitSet) _this_).setTerminal((ACDCTerminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ACDCTerminal");

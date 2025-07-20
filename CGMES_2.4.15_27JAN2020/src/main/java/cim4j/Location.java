@@ -41,6 +41,8 @@ public class Location extends IdentifiedObject {
      */
     private CoordinateSystem CoordinateSystem; // ManyToOne
 
+    private String CoordinateSystemId;
+
     public CoordinateSystem getCoordinateSystem() {
         return CoordinateSystem;
     }
@@ -48,16 +50,24 @@ public class Location extends IdentifiedObject {
     public void setCoordinateSystem(CoordinateSystem _object_) {
         if (CoordinateSystem != _object_) {
             CoordinateSystem = _object_;
-            CoordinateSystem.setLocation(this);
+            _object_.setLocation(this);
+            CoordinateSystemId = _object_.getRdfid();
         }
     }
 
     private static Object getCoordinateSystem(BaseClass _this_) {
-        return ((Location) _this_).getCoordinateSystem();
+        var obj = ((Location) _this_).getCoordinateSystem();
+        var id = ((Location) _this_).CoordinateSystemId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setCoordinateSystem(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof CoordinateSystem) {
+        if (_value_ instanceof String) {
+            ((Location) _this_).CoordinateSystemId = (String) _value_;
+        } else if (_value_ instanceof CoordinateSystem) {
             ((Location) _this_).setCoordinateSystem((CoordinateSystem) _value_);
         } else {
             throw new IllegalArgumentException("Object is not CoordinateSystem");
@@ -71,6 +81,8 @@ public class Location extends IdentifiedObject {
      */
     private Set<PositionPoint> PositionPoints = new HashSet<>(); // OneToMany
 
+    private Set<String> PositionPointsIdSet = new HashSet<>();
+
     public Set<PositionPoint> getPositionPoints() {
         return PositionPoints;
     }
@@ -79,15 +91,23 @@ public class Location extends IdentifiedObject {
         if (!PositionPoints.contains(_object_)) {
             PositionPoints.add(_object_);
             _object_.setLocation(this);
+            PositionPointsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getPositionPoints(BaseClass _this_) {
-        return ((Location) _this_).getPositionPoints();
+        var objs = ((Location) _this_).getPositionPoints();
+        var ids = ((Location) _this_).PositionPointsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setPositionPoints(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PositionPoint) {
+        if (_value_ instanceof String) {
+            ((Location) _this_).PositionPointsIdSet.add((String) _value_);
+        } else if (_value_ instanceof PositionPoint) {
             ((Location) _this_).setPositionPoints((PositionPoint) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PositionPoint");
@@ -99,6 +119,8 @@ public class Location extends IdentifiedObject {
      */
     private PowerSystemResource PowerSystemResources; // OneToOne
 
+    private String PowerSystemResourcesId;
+
     public PowerSystemResource getPowerSystemResources() {
         return PowerSystemResources;
     }
@@ -106,16 +128,24 @@ public class Location extends IdentifiedObject {
     public void setPowerSystemResources(PowerSystemResource _object_) {
         if (PowerSystemResources != _object_) {
             PowerSystemResources = _object_;
-            PowerSystemResources.setLocation(this);
+            _object_.setLocation(this);
+            PowerSystemResourcesId = _object_.getRdfid();
         }
     }
 
     private static Object getPowerSystemResources(BaseClass _this_) {
-        return ((Location) _this_).getPowerSystemResources();
+        var obj = ((Location) _this_).getPowerSystemResources();
+        var id = ((Location) _this_).PowerSystemResourcesId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPowerSystemResources(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PowerSystemResource) {
+        if (_value_ instanceof String) {
+            ((Location) _this_).PowerSystemResourcesId = (String) _value_;
+        } else if (_value_ instanceof PowerSystemResource) {
             ((Location) _this_).setPowerSystemResources((PowerSystemResource) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PowerSystemResource");

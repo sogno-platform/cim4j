@@ -41,6 +41,8 @@ public class SwitchSchedule extends SeasonDayTypeSchedule {
      */
     private Switch Switch; // ManyToOne
 
+    private String SwitchId;
+
     public Switch getSwitch() {
         return Switch;
     }
@@ -48,16 +50,24 @@ public class SwitchSchedule extends SeasonDayTypeSchedule {
     public void setSwitch(Switch _object_) {
         if (Switch != _object_) {
             Switch = _object_;
-            Switch.setSwitchSchedules(this);
+            _object_.setSwitchSchedules(this);
+            SwitchId = _object_.getRdfid();
         }
     }
 
     private static Object getSwitch(BaseClass _this_) {
-        return ((SwitchSchedule) _this_).getSwitch();
+        var obj = ((SwitchSchedule) _this_).getSwitch();
+        var id = ((SwitchSchedule) _this_).SwitchId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSwitch(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Switch) {
+        if (_value_ instanceof String) {
+            ((SwitchSchedule) _this_).SwitchId = (String) _value_;
+        } else if (_value_ instanceof Switch) {
             ((SwitchSchedule) _this_).setSwitch((Switch) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Switch");

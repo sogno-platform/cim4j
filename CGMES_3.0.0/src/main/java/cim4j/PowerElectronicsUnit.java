@@ -43,6 +43,8 @@ public class PowerElectronicsUnit extends Equipment {
      */
     private PowerElectronicsConnection PowerElectronicsConnection; // OneToOne
 
+    private String PowerElectronicsConnectionId;
+
     public PowerElectronicsConnection getPowerElectronicsConnection() {
         return PowerElectronicsConnection;
     }
@@ -50,16 +52,24 @@ public class PowerElectronicsUnit extends Equipment {
     public void setPowerElectronicsConnection(PowerElectronicsConnection _object_) {
         if (PowerElectronicsConnection != _object_) {
             PowerElectronicsConnection = _object_;
-            PowerElectronicsConnection.setPowerElectronicsUnit(this);
+            _object_.setPowerElectronicsUnit(this);
+            PowerElectronicsConnectionId = _object_.getRdfid();
         }
     }
 
     private static Object getPowerElectronicsConnection(BaseClass _this_) {
-        return ((PowerElectronicsUnit) _this_).getPowerElectronicsConnection();
+        var obj = ((PowerElectronicsUnit) _this_).getPowerElectronicsConnection();
+        var id = ((PowerElectronicsUnit) _this_).PowerElectronicsConnectionId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPowerElectronicsConnection(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PowerElectronicsConnection) {
+        if (_value_ instanceof String) {
+            ((PowerElectronicsUnit) _this_).PowerElectronicsConnectionId = (String) _value_;
+        } else if (_value_ instanceof PowerElectronicsConnection) {
             ((PowerElectronicsUnit) _this_).setPowerElectronicsConnection((PowerElectronicsConnection) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PowerElectronicsConnection");

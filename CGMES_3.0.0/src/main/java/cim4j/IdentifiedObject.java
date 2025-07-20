@@ -43,6 +43,8 @@ public class IdentifiedObject extends BaseClass {
      */
     private Set<DiagramObject> DiagramObjects = new HashSet<>(); // OneToMany
 
+    private Set<String> DiagramObjectsIdSet = new HashSet<>();
+
     public Set<DiagramObject> getDiagramObjects() {
         return DiagramObjects;
     }
@@ -51,15 +53,23 @@ public class IdentifiedObject extends BaseClass {
         if (!DiagramObjects.contains(_object_)) {
             DiagramObjects.add(_object_);
             _object_.setIdentifiedObject(this);
+            DiagramObjectsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDiagramObjects(BaseClass _this_) {
-        return ((IdentifiedObject) _this_).getDiagramObjects();
+        var objs = ((IdentifiedObject) _this_).getDiagramObjects();
+        var ids = ((IdentifiedObject) _this_).DiagramObjectsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDiagramObjects(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiagramObject) {
+        if (_value_ instanceof String) {
+            ((IdentifiedObject) _this_).DiagramObjectsIdSet.add((String) _value_);
+        } else if (_value_ instanceof DiagramObject) {
             ((IdentifiedObject) _this_).setDiagramObjects((DiagramObject) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiagramObject");

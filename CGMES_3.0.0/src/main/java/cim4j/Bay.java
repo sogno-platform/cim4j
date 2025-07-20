@@ -41,6 +41,8 @@ public class Bay extends EquipmentContainer {
      */
     private VoltageLevel VoltageLevel; // ManyToOne
 
+    private String VoltageLevelId;
+
     public VoltageLevel getVoltageLevel() {
         return VoltageLevel;
     }
@@ -48,16 +50,24 @@ public class Bay extends EquipmentContainer {
     public void setVoltageLevel(VoltageLevel _object_) {
         if (VoltageLevel != _object_) {
             VoltageLevel = _object_;
-            VoltageLevel.setBays(this);
+            _object_.setBays(this);
+            VoltageLevelId = _object_.getRdfid();
         }
     }
 
     private static Object getVoltageLevel(BaseClass _this_) {
-        return ((Bay) _this_).getVoltageLevel();
+        var obj = ((Bay) _this_).getVoltageLevel();
+        var id = ((Bay) _this_).VoltageLevelId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setVoltageLevel(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VoltageLevel) {
+        if (_value_ instanceof String) {
+            ((Bay) _this_).VoltageLevelId = (String) _value_;
+        } else if (_value_ instanceof VoltageLevel) {
             ((Bay) _this_).setVoltageLevel((VoltageLevel) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VoltageLevel");

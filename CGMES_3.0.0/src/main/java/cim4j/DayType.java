@@ -43,6 +43,8 @@ public class DayType extends IdentifiedObject {
      */
     private Set<SeasonDayTypeSchedule> SeasonDayTypeSchedules = new HashSet<>(); // OneToMany
 
+    private Set<String> SeasonDayTypeSchedulesIdSet = new HashSet<>();
+
     public Set<SeasonDayTypeSchedule> getSeasonDayTypeSchedules() {
         return SeasonDayTypeSchedules;
     }
@@ -51,15 +53,23 @@ public class DayType extends IdentifiedObject {
         if (!SeasonDayTypeSchedules.contains(_object_)) {
             SeasonDayTypeSchedules.add(_object_);
             _object_.setDayType(this);
+            SeasonDayTypeSchedulesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getSeasonDayTypeSchedules(BaseClass _this_) {
-        return ((DayType) _this_).getSeasonDayTypeSchedules();
+        var objs = ((DayType) _this_).getSeasonDayTypeSchedules();
+        var ids = ((DayType) _this_).SeasonDayTypeSchedulesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setSeasonDayTypeSchedules(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SeasonDayTypeSchedule) {
+        if (_value_ instanceof String) {
+            ((DayType) _this_).SeasonDayTypeSchedulesIdSet.add((String) _value_);
+        } else if (_value_ instanceof SeasonDayTypeSchedule) {
             ((DayType) _this_).setSeasonDayTypeSchedules((SeasonDayTypeSchedule) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SeasonDayTypeSchedule");

@@ -41,6 +41,8 @@ public class Measurement extends IdentifiedObject {
      */
     private PowerSystemResource PowerSystemResource; // ManyToOne
 
+    private String PowerSystemResourceId;
+
     public PowerSystemResource getPowerSystemResource() {
         return PowerSystemResource;
     }
@@ -48,16 +50,24 @@ public class Measurement extends IdentifiedObject {
     public void setPowerSystemResource(PowerSystemResource _object_) {
         if (PowerSystemResource != _object_) {
             PowerSystemResource = _object_;
-            PowerSystemResource.setMeasurements(this);
+            _object_.setMeasurements(this);
+            PowerSystemResourceId = _object_.getRdfid();
         }
     }
 
     private static Object getPowerSystemResource(BaseClass _this_) {
-        return ((Measurement) _this_).getPowerSystemResource();
+        var obj = ((Measurement) _this_).getPowerSystemResource();
+        var id = ((Measurement) _this_).PowerSystemResourceId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPowerSystemResource(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PowerSystemResource) {
+        if (_value_ instanceof String) {
+            ((Measurement) _this_).PowerSystemResourceId = (String) _value_;
+        } else if (_value_ instanceof PowerSystemResource) {
             ((Measurement) _this_).setPowerSystemResource((PowerSystemResource) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PowerSystemResource");
@@ -69,6 +79,8 @@ public class Measurement extends IdentifiedObject {
      */
     private ACDCTerminal Terminal; // ManyToOne
 
+    private String TerminalId;
+
     public ACDCTerminal getTerminal() {
         return Terminal;
     }
@@ -76,16 +88,24 @@ public class Measurement extends IdentifiedObject {
     public void setTerminal(ACDCTerminal _object_) {
         if (Terminal != _object_) {
             Terminal = _object_;
-            Terminal.setMeasurements(this);
+            _object_.setMeasurements(this);
+            TerminalId = _object_.getRdfid();
         }
     }
 
     private static Object getTerminal(BaseClass _this_) {
-        return ((Measurement) _this_).getTerminal();
+        var obj = ((Measurement) _this_).getTerminal();
+        var id = ((Measurement) _this_).TerminalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTerminal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ACDCTerminal) {
+        if (_value_ instanceof String) {
+            ((Measurement) _this_).TerminalId = (String) _value_;
+        } else if (_value_ instanceof ACDCTerminal) {
             ((Measurement) _this_).setTerminal((ACDCTerminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ACDCTerminal");

@@ -41,6 +41,8 @@ public class AnalogLimit extends Limit {
      */
     private AnalogLimitSet LimitSet; // ManyToOne
 
+    private String LimitSetId;
+
     public AnalogLimitSet getLimitSet() {
         return LimitSet;
     }
@@ -48,16 +50,24 @@ public class AnalogLimit extends Limit {
     public void setLimitSet(AnalogLimitSet _object_) {
         if (LimitSet != _object_) {
             LimitSet = _object_;
-            LimitSet.setLimits(this);
+            _object_.setLimits(this);
+            LimitSetId = _object_.getRdfid();
         }
     }
 
     private static Object getLimitSet(BaseClass _this_) {
-        return ((AnalogLimit) _this_).getLimitSet();
+        var obj = ((AnalogLimit) _this_).getLimitSet();
+        var id = ((AnalogLimit) _this_).LimitSetId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setLimitSet(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AnalogLimitSet) {
+        if (_value_ instanceof String) {
+            ((AnalogLimit) _this_).LimitSetId = (String) _value_;
+        } else if (_value_ instanceof AnalogLimitSet) {
             ((AnalogLimit) _this_).setLimitSet((AnalogLimitSet) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AnalogLimitSet");

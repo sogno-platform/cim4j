@@ -41,6 +41,8 @@ public class AccumulatorReset extends Control {
      */
     private AccumulatorValue AccumulatorValue; // OneToOne
 
+    private String AccumulatorValueId;
+
     public AccumulatorValue getAccumulatorValue() {
         return AccumulatorValue;
     }
@@ -48,16 +50,24 @@ public class AccumulatorReset extends Control {
     public void setAccumulatorValue(AccumulatorValue _object_) {
         if (AccumulatorValue != _object_) {
             AccumulatorValue = _object_;
-            AccumulatorValue.setAccumulatorReset(this);
+            _object_.setAccumulatorReset(this);
+            AccumulatorValueId = _object_.getRdfid();
         }
     }
 
     private static Object getAccumulatorValue(BaseClass _this_) {
-        return ((AccumulatorReset) _this_).getAccumulatorValue();
+        var obj = ((AccumulatorReset) _this_).getAccumulatorValue();
+        var id = ((AccumulatorReset) _this_).AccumulatorValueId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setAccumulatorValue(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AccumulatorValue) {
+        if (_value_ instanceof String) {
+            ((AccumulatorReset) _this_).AccumulatorValueId = (String) _value_;
+        } else if (_value_ instanceof AccumulatorValue) {
             ((AccumulatorReset) _this_).setAccumulatorValue((AccumulatorValue) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AccumulatorValue");

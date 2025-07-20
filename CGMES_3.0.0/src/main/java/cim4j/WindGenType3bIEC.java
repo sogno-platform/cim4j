@@ -43,6 +43,8 @@ public class WindGenType3bIEC extends WindGenType3IEC {
      */
     private Set<WindDynamicsLookupTable> WindDynamicsLookupTable = new HashSet<>(); // OneToMany
 
+    private Set<String> WindDynamicsLookupTableIdSet = new HashSet<>();
+
     public Set<WindDynamicsLookupTable> getWindDynamicsLookupTable() {
         return WindDynamicsLookupTable;
     }
@@ -51,15 +53,23 @@ public class WindGenType3bIEC extends WindGenType3IEC {
         if (!WindDynamicsLookupTable.contains(_object_)) {
             WindDynamicsLookupTable.add(_object_);
             _object_.setWindGenType3bIEC(this);
+            WindDynamicsLookupTableIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getWindDynamicsLookupTable(BaseClass _this_) {
-        return ((WindGenType3bIEC) _this_).getWindDynamicsLookupTable();
+        var objs = ((WindGenType3bIEC) _this_).getWindDynamicsLookupTable();
+        var ids = ((WindGenType3bIEC) _this_).WindDynamicsLookupTableIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setWindDynamicsLookupTable(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindDynamicsLookupTable) {
+        if (_value_ instanceof String) {
+            ((WindGenType3bIEC) _this_).WindDynamicsLookupTableIdSet.add((String) _value_);
+        } else if (_value_ instanceof WindDynamicsLookupTable) {
             ((WindGenType3bIEC) _this_).setWindDynamicsLookupTable((WindDynamicsLookupTable) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindDynamicsLookupTable");

@@ -43,6 +43,8 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
      */
     private DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics; // OneToOne
 
+    private String DiscontinuousExcitationControlDynamicsId;
+
     public DiscontinuousExcitationControlDynamics getDiscontinuousExcitationControlDynamics() {
         return DiscontinuousExcitationControlDynamics;
     }
@@ -50,16 +52,24 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
     public void setDiscontinuousExcitationControlDynamics(DiscontinuousExcitationControlDynamics _object_) {
         if (DiscontinuousExcitationControlDynamics != _object_) {
             DiscontinuousExcitationControlDynamics = _object_;
-            DiscontinuousExcitationControlDynamics.setExcitationSystemDynamics(this);
+            _object_.setExcitationSystemDynamics(this);
+            DiscontinuousExcitationControlDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getDiscontinuousExcitationControlDynamics(BaseClass _this_) {
-        return ((ExcitationSystemDynamics) _this_).getDiscontinuousExcitationControlDynamics();
+        var obj = ((ExcitationSystemDynamics) _this_).getDiscontinuousExcitationControlDynamics();
+        var id = ((ExcitationSystemDynamics) _this_).DiscontinuousExcitationControlDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDiscontinuousExcitationControlDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiscontinuousExcitationControlDynamics) {
+        if (_value_ instanceof String) {
+            ((ExcitationSystemDynamics) _this_).DiscontinuousExcitationControlDynamicsId = (String) _value_;
+        } else if (_value_ instanceof DiscontinuousExcitationControlDynamics) {
             ((ExcitationSystemDynamics) _this_).setDiscontinuousExcitationControlDynamics((DiscontinuousExcitationControlDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiscontinuousExcitationControlDynamics");
@@ -73,6 +83,8 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
      */
     private OverexcitationLimiterDynamics OverexcitationLimiterDynamics; // OneToOne
 
+    private String OverexcitationLimiterDynamicsId;
+
     public OverexcitationLimiterDynamics getOverexcitationLimiterDynamics() {
         return OverexcitationLimiterDynamics;
     }
@@ -80,16 +92,24 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
     public void setOverexcitationLimiterDynamics(OverexcitationLimiterDynamics _object_) {
         if (OverexcitationLimiterDynamics != _object_) {
             OverexcitationLimiterDynamics = _object_;
-            OverexcitationLimiterDynamics.setExcitationSystemDynamics(this);
+            _object_.setExcitationSystemDynamics(this);
+            OverexcitationLimiterDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getOverexcitationLimiterDynamics(BaseClass _this_) {
-        return ((ExcitationSystemDynamics) _this_).getOverexcitationLimiterDynamics();
+        var obj = ((ExcitationSystemDynamics) _this_).getOverexcitationLimiterDynamics();
+        var id = ((ExcitationSystemDynamics) _this_).OverexcitationLimiterDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setOverexcitationLimiterDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof OverexcitationLimiterDynamics) {
+        if (_value_ instanceof String) {
+            ((ExcitationSystemDynamics) _this_).OverexcitationLimiterDynamicsId = (String) _value_;
+        } else if (_value_ instanceof OverexcitationLimiterDynamics) {
             ((ExcitationSystemDynamics) _this_).setOverexcitationLimiterDynamics((OverexcitationLimiterDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not OverexcitationLimiterDynamics");
@@ -103,6 +123,8 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
      */
     private PFVArControllerType1Dynamics PFVArControllerType1Dynamics; // OneToOne
 
+    private String PFVArControllerType1DynamicsId;
+
     public PFVArControllerType1Dynamics getPFVArControllerType1Dynamics() {
         return PFVArControllerType1Dynamics;
     }
@@ -110,16 +132,24 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
     public void setPFVArControllerType1Dynamics(PFVArControllerType1Dynamics _object_) {
         if (PFVArControllerType1Dynamics != _object_) {
             PFVArControllerType1Dynamics = _object_;
-            PFVArControllerType1Dynamics.setExcitationSystemDynamics(this);
+            _object_.setExcitationSystemDynamics(this);
+            PFVArControllerType1DynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getPFVArControllerType1Dynamics(BaseClass _this_) {
-        return ((ExcitationSystemDynamics) _this_).getPFVArControllerType1Dynamics();
+        var obj = ((ExcitationSystemDynamics) _this_).getPFVArControllerType1Dynamics();
+        var id = ((ExcitationSystemDynamics) _this_).PFVArControllerType1DynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPFVArControllerType1Dynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PFVArControllerType1Dynamics) {
+        if (_value_ instanceof String) {
+            ((ExcitationSystemDynamics) _this_).PFVArControllerType1DynamicsId = (String) _value_;
+        } else if (_value_ instanceof PFVArControllerType1Dynamics) {
             ((ExcitationSystemDynamics) _this_).setPFVArControllerType1Dynamics((PFVArControllerType1Dynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PFVArControllerType1Dynamics");
@@ -133,6 +163,8 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
      */
     private PFVArControllerType2Dynamics PFVArControllerType2Dynamics; // OneToOne
 
+    private String PFVArControllerType2DynamicsId;
+
     public PFVArControllerType2Dynamics getPFVArControllerType2Dynamics() {
         return PFVArControllerType2Dynamics;
     }
@@ -140,16 +172,24 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
     public void setPFVArControllerType2Dynamics(PFVArControllerType2Dynamics _object_) {
         if (PFVArControllerType2Dynamics != _object_) {
             PFVArControllerType2Dynamics = _object_;
-            PFVArControllerType2Dynamics.setExcitationSystemDynamics(this);
+            _object_.setExcitationSystemDynamics(this);
+            PFVArControllerType2DynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getPFVArControllerType2Dynamics(BaseClass _this_) {
-        return ((ExcitationSystemDynamics) _this_).getPFVArControllerType2Dynamics();
+        var obj = ((ExcitationSystemDynamics) _this_).getPFVArControllerType2Dynamics();
+        var id = ((ExcitationSystemDynamics) _this_).PFVArControllerType2DynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPFVArControllerType2Dynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PFVArControllerType2Dynamics) {
+        if (_value_ instanceof String) {
+            ((ExcitationSystemDynamics) _this_).PFVArControllerType2DynamicsId = (String) _value_;
+        } else if (_value_ instanceof PFVArControllerType2Dynamics) {
             ((ExcitationSystemDynamics) _this_).setPFVArControllerType2Dynamics((PFVArControllerType2Dynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PFVArControllerType2Dynamics");
@@ -163,6 +203,8 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
      */
     private PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics; // OneToOne
 
+    private String PowerSystemStabilizerDynamicsId;
+
     public PowerSystemStabilizerDynamics getPowerSystemStabilizerDynamics() {
         return PowerSystemStabilizerDynamics;
     }
@@ -170,16 +212,24 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
     public void setPowerSystemStabilizerDynamics(PowerSystemStabilizerDynamics _object_) {
         if (PowerSystemStabilizerDynamics != _object_) {
             PowerSystemStabilizerDynamics = _object_;
-            PowerSystemStabilizerDynamics.setExcitationSystemDynamics(this);
+            _object_.setExcitationSystemDynamics(this);
+            PowerSystemStabilizerDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getPowerSystemStabilizerDynamics(BaseClass _this_) {
-        return ((ExcitationSystemDynamics) _this_).getPowerSystemStabilizerDynamics();
+        var obj = ((ExcitationSystemDynamics) _this_).getPowerSystemStabilizerDynamics();
+        var id = ((ExcitationSystemDynamics) _this_).PowerSystemStabilizerDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPowerSystemStabilizerDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PowerSystemStabilizerDynamics) {
+        if (_value_ instanceof String) {
+            ((ExcitationSystemDynamics) _this_).PowerSystemStabilizerDynamicsId = (String) _value_;
+        } else if (_value_ instanceof PowerSystemStabilizerDynamics) {
             ((ExcitationSystemDynamics) _this_).setPowerSystemStabilizerDynamics((PowerSystemStabilizerDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PowerSystemStabilizerDynamics");
@@ -191,6 +241,8 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
      */
     private SynchronousMachineDynamics SynchronousMachineDynamics; // OneToOne
 
+    private String SynchronousMachineDynamicsId;
+
     public SynchronousMachineDynamics getSynchronousMachineDynamics() {
         return SynchronousMachineDynamics;
     }
@@ -198,16 +250,24 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
     public void setSynchronousMachineDynamics(SynchronousMachineDynamics _object_) {
         if (SynchronousMachineDynamics != _object_) {
             SynchronousMachineDynamics = _object_;
-            SynchronousMachineDynamics.setExcitationSystemDynamics(this);
+            _object_.setExcitationSystemDynamics(this);
+            SynchronousMachineDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getSynchronousMachineDynamics(BaseClass _this_) {
-        return ((ExcitationSystemDynamics) _this_).getSynchronousMachineDynamics();
+        var obj = ((ExcitationSystemDynamics) _this_).getSynchronousMachineDynamics();
+        var id = ((ExcitationSystemDynamics) _this_).SynchronousMachineDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSynchronousMachineDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SynchronousMachineDynamics) {
+        if (_value_ instanceof String) {
+            ((ExcitationSystemDynamics) _this_).SynchronousMachineDynamicsId = (String) _value_;
+        } else if (_value_ instanceof SynchronousMachineDynamics) {
             ((ExcitationSystemDynamics) _this_).setSynchronousMachineDynamics((SynchronousMachineDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SynchronousMachineDynamics");
@@ -221,6 +281,8 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
      */
     private UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics; // OneToOne
 
+    private String UnderexcitationLimiterDynamicsId;
+
     public UnderexcitationLimiterDynamics getUnderexcitationLimiterDynamics() {
         return UnderexcitationLimiterDynamics;
     }
@@ -228,16 +290,24 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
     public void setUnderexcitationLimiterDynamics(UnderexcitationLimiterDynamics _object_) {
         if (UnderexcitationLimiterDynamics != _object_) {
             UnderexcitationLimiterDynamics = _object_;
-            UnderexcitationLimiterDynamics.setExcitationSystemDynamics(this);
+            _object_.setExcitationSystemDynamics(this);
+            UnderexcitationLimiterDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getUnderexcitationLimiterDynamics(BaseClass _this_) {
-        return ((ExcitationSystemDynamics) _this_).getUnderexcitationLimiterDynamics();
+        var obj = ((ExcitationSystemDynamics) _this_).getUnderexcitationLimiterDynamics();
+        var id = ((ExcitationSystemDynamics) _this_).UnderexcitationLimiterDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setUnderexcitationLimiterDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof UnderexcitationLimiterDynamics) {
+        if (_value_ instanceof String) {
+            ((ExcitationSystemDynamics) _this_).UnderexcitationLimiterDynamicsId = (String) _value_;
+        } else if (_value_ instanceof UnderexcitationLimiterDynamics) {
             ((ExcitationSystemDynamics) _this_).setUnderexcitationLimiterDynamics((UnderexcitationLimiterDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not UnderexcitationLimiterDynamics");
@@ -251,6 +321,8 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
      */
     private VoltageCompensatorDynamics VoltageCompensatorDynamics; // OneToOne
 
+    private String VoltageCompensatorDynamicsId;
+
     public VoltageCompensatorDynamics getVoltageCompensatorDynamics() {
         return VoltageCompensatorDynamics;
     }
@@ -258,16 +330,24 @@ public class ExcitationSystemDynamics extends DynamicsFunctionBlock {
     public void setVoltageCompensatorDynamics(VoltageCompensatorDynamics _object_) {
         if (VoltageCompensatorDynamics != _object_) {
             VoltageCompensatorDynamics = _object_;
-            VoltageCompensatorDynamics.setExcitationSystemDynamics(this);
+            _object_.setExcitationSystemDynamics(this);
+            VoltageCompensatorDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getVoltageCompensatorDynamics(BaseClass _this_) {
-        return ((ExcitationSystemDynamics) _this_).getVoltageCompensatorDynamics();
+        var obj = ((ExcitationSystemDynamics) _this_).getVoltageCompensatorDynamics();
+        var id = ((ExcitationSystemDynamics) _this_).VoltageCompensatorDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setVoltageCompensatorDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VoltageCompensatorDynamics) {
+        if (_value_ instanceof String) {
+            ((ExcitationSystemDynamics) _this_).VoltageCompensatorDynamicsId = (String) _value_;
+        } else if (_value_ instanceof VoltageCompensatorDynamics) {
             ((ExcitationSystemDynamics) _this_).setVoltageCompensatorDynamics((VoltageCompensatorDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VoltageCompensatorDynamics");

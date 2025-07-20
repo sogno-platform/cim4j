@@ -41,6 +41,8 @@ public class VsConverter extends ACDCConverter {
      */
     private VsCapabilityCurve CapabilityCurve; // ManyToOne
 
+    private String CapabilityCurveId;
+
     public VsCapabilityCurve getCapabilityCurve() {
         return CapabilityCurve;
     }
@@ -48,16 +50,24 @@ public class VsConverter extends ACDCConverter {
     public void setCapabilityCurve(VsCapabilityCurve _object_) {
         if (CapabilityCurve != _object_) {
             CapabilityCurve = _object_;
-            CapabilityCurve.setVsConverterDCSides(this);
+            _object_.setVsConverterDCSides(this);
+            CapabilityCurveId = _object_.getRdfid();
         }
     }
 
     private static Object getCapabilityCurve(BaseClass _this_) {
-        return ((VsConverter) _this_).getCapabilityCurve();
+        var obj = ((VsConverter) _this_).getCapabilityCurve();
+        var id = ((VsConverter) _this_).CapabilityCurveId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setCapabilityCurve(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VsCapabilityCurve) {
+        if (_value_ instanceof String) {
+            ((VsConverter) _this_).CapabilityCurveId = (String) _value_;
+        } else if (_value_ instanceof VsCapabilityCurve) {
             ((VsConverter) _this_).setCapabilityCurve((VsCapabilityCurve) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VsCapabilityCurve");
@@ -71,6 +81,8 @@ public class VsConverter extends ACDCConverter {
      */
     private VSCDynamics VSCDynamics; // OneToOne
 
+    private String VSCDynamicsId;
+
     public VSCDynamics getVSCDynamics() {
         return VSCDynamics;
     }
@@ -78,16 +90,24 @@ public class VsConverter extends ACDCConverter {
     public void setVSCDynamics(VSCDynamics _object_) {
         if (VSCDynamics != _object_) {
             VSCDynamics = _object_;
-            VSCDynamics.setVsConverter(this);
+            _object_.setVsConverter(this);
+            VSCDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getVSCDynamics(BaseClass _this_) {
-        return ((VsConverter) _this_).getVSCDynamics();
+        var obj = ((VsConverter) _this_).getVSCDynamics();
+        var id = ((VsConverter) _this_).VSCDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setVSCDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VSCDynamics) {
+        if (_value_ instanceof String) {
+            ((VsConverter) _this_).VSCDynamicsId = (String) _value_;
+        } else if (_value_ instanceof VSCDynamics) {
             ((VsConverter) _this_).setVSCDynamics((VSCDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VSCDynamics");

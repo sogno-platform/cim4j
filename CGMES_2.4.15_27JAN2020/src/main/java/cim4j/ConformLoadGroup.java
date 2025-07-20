@@ -43,6 +43,8 @@ public class ConformLoadGroup extends LoadGroup {
      */
     private Set<ConformLoadSchedule> ConformLoadSchedules = new HashSet<>(); // OneToMany
 
+    private Set<String> ConformLoadSchedulesIdSet = new HashSet<>();
+
     public Set<ConformLoadSchedule> getConformLoadSchedules() {
         return ConformLoadSchedules;
     }
@@ -51,15 +53,23 @@ public class ConformLoadGroup extends LoadGroup {
         if (!ConformLoadSchedules.contains(_object_)) {
             ConformLoadSchedules.add(_object_);
             _object_.setConformLoadGroup(this);
+            ConformLoadSchedulesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getConformLoadSchedules(BaseClass _this_) {
-        return ((ConformLoadGroup) _this_).getConformLoadSchedules();
+        var objs = ((ConformLoadGroup) _this_).getConformLoadSchedules();
+        var ids = ((ConformLoadGroup) _this_).ConformLoadSchedulesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setConformLoadSchedules(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ConformLoadSchedule) {
+        if (_value_ instanceof String) {
+            ((ConformLoadGroup) _this_).ConformLoadSchedulesIdSet.add((String) _value_);
+        } else if (_value_ instanceof ConformLoadSchedule) {
             ((ConformLoadGroup) _this_).setConformLoadSchedules((ConformLoadSchedule) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ConformLoadSchedule");
@@ -73,6 +83,8 @@ public class ConformLoadGroup extends LoadGroup {
      */
     private Set<ConformLoad> EnergyConsumers = new HashSet<>(); // OneToMany
 
+    private Set<String> EnergyConsumersIdSet = new HashSet<>();
+
     public Set<ConformLoad> getEnergyConsumers() {
         return EnergyConsumers;
     }
@@ -81,15 +93,23 @@ public class ConformLoadGroup extends LoadGroup {
         if (!EnergyConsumers.contains(_object_)) {
             EnergyConsumers.add(_object_);
             _object_.setLoadGroup(this);
+            EnergyConsumersIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getEnergyConsumers(BaseClass _this_) {
-        return ((ConformLoadGroup) _this_).getEnergyConsumers();
+        var objs = ((ConformLoadGroup) _this_).getEnergyConsumers();
+        var ids = ((ConformLoadGroup) _this_).EnergyConsumersIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setEnergyConsumers(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ConformLoad) {
+        if (_value_ instanceof String) {
+            ((ConformLoadGroup) _this_).EnergyConsumersIdSet.add((String) _value_);
+        } else if (_value_ instanceof ConformLoad) {
             ((ConformLoadGroup) _this_).setEnergyConsumers((ConformLoad) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ConformLoad");

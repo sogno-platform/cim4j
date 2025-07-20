@@ -43,6 +43,8 @@ public class HydroPowerPlant extends PowerSystemResource {
      */
     private Set<HydroGeneratingUnit> HydroGeneratingUnits = new HashSet<>(); // OneToMany
 
+    private Set<String> HydroGeneratingUnitsIdSet = new HashSet<>();
+
     public Set<HydroGeneratingUnit> getHydroGeneratingUnits() {
         return HydroGeneratingUnits;
     }
@@ -51,15 +53,23 @@ public class HydroPowerPlant extends PowerSystemResource {
         if (!HydroGeneratingUnits.contains(_object_)) {
             HydroGeneratingUnits.add(_object_);
             _object_.setHydroPowerPlant(this);
+            HydroGeneratingUnitsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getHydroGeneratingUnits(BaseClass _this_) {
-        return ((HydroPowerPlant) _this_).getHydroGeneratingUnits();
+        var objs = ((HydroPowerPlant) _this_).getHydroGeneratingUnits();
+        var ids = ((HydroPowerPlant) _this_).HydroGeneratingUnitsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setHydroGeneratingUnits(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof HydroGeneratingUnit) {
+        if (_value_ instanceof String) {
+            ((HydroPowerPlant) _this_).HydroGeneratingUnitsIdSet.add((String) _value_);
+        } else if (_value_ instanceof HydroGeneratingUnit) {
             ((HydroPowerPlant) _this_).setHydroGeneratingUnits((HydroGeneratingUnit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not HydroGeneratingUnit");
@@ -73,6 +83,8 @@ public class HydroPowerPlant extends PowerSystemResource {
      */
     private Set<HydroPump> HydroPumps = new HashSet<>(); // OneToMany
 
+    private Set<String> HydroPumpsIdSet = new HashSet<>();
+
     public Set<HydroPump> getHydroPumps() {
         return HydroPumps;
     }
@@ -81,15 +93,23 @@ public class HydroPowerPlant extends PowerSystemResource {
         if (!HydroPumps.contains(_object_)) {
             HydroPumps.add(_object_);
             _object_.setHydroPowerPlant(this);
+            HydroPumpsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getHydroPumps(BaseClass _this_) {
-        return ((HydroPowerPlant) _this_).getHydroPumps();
+        var objs = ((HydroPowerPlant) _this_).getHydroPumps();
+        var ids = ((HydroPowerPlant) _this_).HydroPumpsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setHydroPumps(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof HydroPump) {
+        if (_value_ instanceof String) {
+            ((HydroPowerPlant) _this_).HydroPumpsIdSet.add((String) _value_);
+        } else if (_value_ instanceof HydroPump) {
             ((HydroPowerPlant) _this_).setHydroPumps((HydroPump) _value_);
         } else {
             throw new IllegalArgumentException("Object is not HydroPump");

@@ -43,6 +43,8 @@ public class TapChangerControl extends RegulatingControl {
      */
     private Set<TapChanger> TapChanger = new HashSet<>(); // OneToMany
 
+    private Set<String> TapChangerIdSet = new HashSet<>();
+
     public Set<TapChanger> getTapChanger() {
         return TapChanger;
     }
@@ -51,15 +53,23 @@ public class TapChangerControl extends RegulatingControl {
         if (!TapChanger.contains(_object_)) {
             TapChanger.add(_object_);
             _object_.setTapChangerControl(this);
+            TapChangerIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTapChanger(BaseClass _this_) {
-        return ((TapChangerControl) _this_).getTapChanger();
+        var objs = ((TapChangerControl) _this_).getTapChanger();
+        var ids = ((TapChangerControl) _this_).TapChangerIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTapChanger(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TapChanger) {
+        if (_value_ instanceof String) {
+            ((TapChangerControl) _this_).TapChangerIdSet.add((String) _value_);
+        } else if (_value_ instanceof TapChanger) {
             ((TapChangerControl) _this_).setTapChanger((TapChanger) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TapChanger");

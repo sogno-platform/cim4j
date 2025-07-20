@@ -40,6 +40,8 @@ public class DCTerminal extends DCBaseTerminal {
      */
     private DCConductingEquipment DCConductingEquipment; // ManyToOne
 
+    private String DCConductingEquipmentId;
+
     public DCConductingEquipment getDCConductingEquipment() {
         return DCConductingEquipment;
     }
@@ -47,16 +49,24 @@ public class DCTerminal extends DCBaseTerminal {
     public void setDCConductingEquipment(DCConductingEquipment _object_) {
         if (DCConductingEquipment != _object_) {
             DCConductingEquipment = _object_;
-            DCConductingEquipment.setDCTerminals(this);
+            _object_.setDCTerminals(this);
+            DCConductingEquipmentId = _object_.getRdfid();
         }
     }
 
     private static Object getDCConductingEquipment(BaseClass _this_) {
-        return ((DCTerminal) _this_).getDCConductingEquipment();
+        var obj = ((DCTerminal) _this_).getDCConductingEquipment();
+        var id = ((DCTerminal) _this_).DCConductingEquipmentId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDCConductingEquipment(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCConductingEquipment) {
+        if (_value_ instanceof String) {
+            ((DCTerminal) _this_).DCConductingEquipmentId = (String) _value_;
+        } else if (_value_ instanceof DCConductingEquipment) {
             ((DCTerminal) _this_).setDCConductingEquipment((DCConductingEquipment) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCConductingEquipment");

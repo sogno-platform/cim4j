@@ -41,6 +41,8 @@ public class SvStatus extends BaseClass {
      */
     private ConductingEquipment ConductingEquipment; // OneToOne
 
+    private String ConductingEquipmentId;
+
     public ConductingEquipment getConductingEquipment() {
         return ConductingEquipment;
     }
@@ -48,16 +50,24 @@ public class SvStatus extends BaseClass {
     public void setConductingEquipment(ConductingEquipment _object_) {
         if (ConductingEquipment != _object_) {
             ConductingEquipment = _object_;
-            ConductingEquipment.setSvStatus(this);
+            _object_.setSvStatus(this);
+            ConductingEquipmentId = _object_.getRdfid();
         }
     }
 
     private static Object getConductingEquipment(BaseClass _this_) {
-        return ((SvStatus) _this_).getConductingEquipment();
+        var obj = ((SvStatus) _this_).getConductingEquipment();
+        var id = ((SvStatus) _this_).ConductingEquipmentId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setConductingEquipment(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ConductingEquipment) {
+        if (_value_ instanceof String) {
+            ((SvStatus) _this_).ConductingEquipmentId = (String) _value_;
+        } else if (_value_ instanceof ConductingEquipment) {
             ((SvStatus) _this_).setConductingEquipment((ConductingEquipment) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ConductingEquipment");

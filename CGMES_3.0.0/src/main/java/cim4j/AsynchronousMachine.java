@@ -43,6 +43,8 @@ public class AsynchronousMachine extends RotatingMachine {
      */
     private AsynchronousMachineDynamics AsynchronousMachineDynamics; // OneToOne
 
+    private String AsynchronousMachineDynamicsId;
+
     public AsynchronousMachineDynamics getAsynchronousMachineDynamics() {
         return AsynchronousMachineDynamics;
     }
@@ -50,16 +52,24 @@ public class AsynchronousMachine extends RotatingMachine {
     public void setAsynchronousMachineDynamics(AsynchronousMachineDynamics _object_) {
         if (AsynchronousMachineDynamics != _object_) {
             AsynchronousMachineDynamics = _object_;
-            AsynchronousMachineDynamics.setAsynchronousMachine(this);
+            _object_.setAsynchronousMachine(this);
+            AsynchronousMachineDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getAsynchronousMachineDynamics(BaseClass _this_) {
-        return ((AsynchronousMachine) _this_).getAsynchronousMachineDynamics();
+        var obj = ((AsynchronousMachine) _this_).getAsynchronousMachineDynamics();
+        var id = ((AsynchronousMachine) _this_).AsynchronousMachineDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setAsynchronousMachineDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AsynchronousMachineDynamics) {
+        if (_value_ instanceof String) {
+            ((AsynchronousMachine) _this_).AsynchronousMachineDynamicsId = (String) _value_;
+        } else if (_value_ instanceof AsynchronousMachineDynamics) {
             ((AsynchronousMachine) _this_).setAsynchronousMachineDynamics((AsynchronousMachineDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AsynchronousMachineDynamics");

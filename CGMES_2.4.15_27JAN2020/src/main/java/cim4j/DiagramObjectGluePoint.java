@@ -43,6 +43,8 @@ public class DiagramObjectGluePoint extends BaseClass {
      */
     private Set<DiagramObjectPoint> DiagramObjectPoints = new HashSet<>(); // OneToMany
 
+    private Set<String> DiagramObjectPointsIdSet = new HashSet<>();
+
     public Set<DiagramObjectPoint> getDiagramObjectPoints() {
         return DiagramObjectPoints;
     }
@@ -51,15 +53,23 @@ public class DiagramObjectGluePoint extends BaseClass {
         if (!DiagramObjectPoints.contains(_object_)) {
             DiagramObjectPoints.add(_object_);
             _object_.setDiagramObjectGluePoint(this);
+            DiagramObjectPointsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDiagramObjectPoints(BaseClass _this_) {
-        return ((DiagramObjectGluePoint) _this_).getDiagramObjectPoints();
+        var objs = ((DiagramObjectGluePoint) _this_).getDiagramObjectPoints();
+        var ids = ((DiagramObjectGluePoint) _this_).DiagramObjectPointsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDiagramObjectPoints(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiagramObjectPoint) {
+        if (_value_ instanceof String) {
+            ((DiagramObjectGluePoint) _this_).DiagramObjectPointsIdSet.add((String) _value_);
+        } else if (_value_ instanceof DiagramObjectPoint) {
             ((DiagramObjectGluePoint) _this_).setDiagramObjectPoints((DiagramObjectPoint) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiagramObjectPoint");

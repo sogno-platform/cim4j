@@ -40,6 +40,8 @@ public class VCompIEEEType2 extends VoltageCompensatorDynamics {
      */
     private Set<GenICompensationForGenJ> GenICompensationForGenJ = new HashSet<>(); // OneToMany
 
+    private Set<String> GenICompensationForGenJIdSet = new HashSet<>();
+
     public Set<GenICompensationForGenJ> getGenICompensationForGenJ() {
         return GenICompensationForGenJ;
     }
@@ -48,15 +50,23 @@ public class VCompIEEEType2 extends VoltageCompensatorDynamics {
         if (!GenICompensationForGenJ.contains(_object_)) {
             GenICompensationForGenJ.add(_object_);
             _object_.setVcompIEEEType2(this);
+            GenICompensationForGenJIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getGenICompensationForGenJ(BaseClass _this_) {
-        return ((VCompIEEEType2) _this_).getGenICompensationForGenJ();
+        var objs = ((VCompIEEEType2) _this_).getGenICompensationForGenJ();
+        var ids = ((VCompIEEEType2) _this_).GenICompensationForGenJIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setGenICompensationForGenJ(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof GenICompensationForGenJ) {
+        if (_value_ instanceof String) {
+            ((VCompIEEEType2) _this_).GenICompensationForGenJIdSet.add((String) _value_);
+        } else if (_value_ instanceof GenICompensationForGenJ) {
             ((VCompIEEEType2) _this_).setGenICompensationForGenJ((GenICompensationForGenJ) _value_);
         } else {
             throw new IllegalArgumentException("Object is not GenICompensationForGenJ");

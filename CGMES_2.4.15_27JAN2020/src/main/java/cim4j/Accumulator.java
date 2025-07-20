@@ -43,6 +43,8 @@ public class Accumulator extends Measurement {
      */
     private Set<AccumulatorValue> AccumulatorValues = new HashSet<>(); // OneToMany
 
+    private Set<String> AccumulatorValuesIdSet = new HashSet<>();
+
     public Set<AccumulatorValue> getAccumulatorValues() {
         return AccumulatorValues;
     }
@@ -51,15 +53,23 @@ public class Accumulator extends Measurement {
         if (!AccumulatorValues.contains(_object_)) {
             AccumulatorValues.add(_object_);
             _object_.setAccumulator(this);
+            AccumulatorValuesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getAccumulatorValues(BaseClass _this_) {
-        return ((Accumulator) _this_).getAccumulatorValues();
+        var objs = ((Accumulator) _this_).getAccumulatorValues();
+        var ids = ((Accumulator) _this_).AccumulatorValuesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setAccumulatorValues(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AccumulatorValue) {
+        if (_value_ instanceof String) {
+            ((Accumulator) _this_).AccumulatorValuesIdSet.add((String) _value_);
+        } else if (_value_ instanceof AccumulatorValue) {
             ((Accumulator) _this_).setAccumulatorValues((AccumulatorValue) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AccumulatorValue");
@@ -73,6 +83,8 @@ public class Accumulator extends Measurement {
      */
     private Set<AccumulatorLimitSet> LimitSets = new HashSet<>(); // OneToMany
 
+    private Set<String> LimitSetsIdSet = new HashSet<>();
+
     public Set<AccumulatorLimitSet> getLimitSets() {
         return LimitSets;
     }
@@ -81,15 +93,23 @@ public class Accumulator extends Measurement {
         if (!LimitSets.contains(_object_)) {
             LimitSets.add(_object_);
             _object_.setMeasurements(this);
+            LimitSetsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getLimitSets(BaseClass _this_) {
-        return ((Accumulator) _this_).getLimitSets();
+        var objs = ((Accumulator) _this_).getLimitSets();
+        var ids = ((Accumulator) _this_).LimitSetsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setLimitSets(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AccumulatorLimitSet) {
+        if (_value_ instanceof String) {
+            ((Accumulator) _this_).LimitSetsIdSet.add((String) _value_);
+        } else if (_value_ instanceof AccumulatorLimitSet) {
             ((Accumulator) _this_).setLimitSets((AccumulatorLimitSet) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AccumulatorLimitSet");

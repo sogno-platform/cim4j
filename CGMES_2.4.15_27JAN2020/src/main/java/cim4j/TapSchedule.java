@@ -41,6 +41,8 @@ public class TapSchedule extends SeasonDayTypeSchedule {
      */
     private TapChanger TapChanger; // ManyToOne
 
+    private String TapChangerId;
+
     public TapChanger getTapChanger() {
         return TapChanger;
     }
@@ -48,16 +50,24 @@ public class TapSchedule extends SeasonDayTypeSchedule {
     public void setTapChanger(TapChanger _object_) {
         if (TapChanger != _object_) {
             TapChanger = _object_;
-            TapChanger.setTapSchedules(this);
+            _object_.setTapSchedules(this);
+            TapChangerId = _object_.getRdfid();
         }
     }
 
     private static Object getTapChanger(BaseClass _this_) {
-        return ((TapSchedule) _this_).getTapChanger();
+        var obj = ((TapSchedule) _this_).getTapChanger();
+        var id = ((TapSchedule) _this_).TapChangerId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTapChanger(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TapChanger) {
+        if (_value_ instanceof String) {
+            ((TapSchedule) _this_).TapChangerId = (String) _value_;
+        } else if (_value_ instanceof TapChanger) {
             ((TapSchedule) _this_).setTapChanger((TapChanger) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TapChanger");

@@ -41,6 +41,8 @@ public class SvVoltage extends BaseClass {
      */
     private TopologicalNode TopologicalNode; // OneToOne
 
+    private String TopologicalNodeId;
+
     public TopologicalNode getTopologicalNode() {
         return TopologicalNode;
     }
@@ -48,16 +50,24 @@ public class SvVoltage extends BaseClass {
     public void setTopologicalNode(TopologicalNode _object_) {
         if (TopologicalNode != _object_) {
             TopologicalNode = _object_;
-            TopologicalNode.setSvVoltage(this);
+            _object_.setSvVoltage(this);
+            TopologicalNodeId = _object_.getRdfid();
         }
     }
 
     private static Object getTopologicalNode(BaseClass _this_) {
-        return ((SvVoltage) _this_).getTopologicalNode();
+        var obj = ((SvVoltage) _this_).getTopologicalNode();
+        var id = ((SvVoltage) _this_).TopologicalNodeId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTopologicalNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TopologicalNode) {
+        if (_value_ instanceof String) {
+            ((SvVoltage) _this_).TopologicalNodeId = (String) _value_;
+        } else if (_value_ instanceof TopologicalNode) {
             ((SvVoltage) _this_).setTopologicalNode((TopologicalNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TopologicalNode");

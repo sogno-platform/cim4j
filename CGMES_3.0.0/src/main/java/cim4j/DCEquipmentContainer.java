@@ -43,6 +43,8 @@ public class DCEquipmentContainer extends EquipmentContainer {
      */
     private Set<DCNode> DCNodes = new HashSet<>(); // OneToMany
 
+    private Set<String> DCNodesIdSet = new HashSet<>();
+
     public Set<DCNode> getDCNodes() {
         return DCNodes;
     }
@@ -51,15 +53,23 @@ public class DCEquipmentContainer extends EquipmentContainer {
         if (!DCNodes.contains(_object_)) {
             DCNodes.add(_object_);
             _object_.setDCEquipmentContainer(this);
+            DCNodesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDCNodes(BaseClass _this_) {
-        return ((DCEquipmentContainer) _this_).getDCNodes();
+        var objs = ((DCEquipmentContainer) _this_).getDCNodes();
+        var ids = ((DCEquipmentContainer) _this_).DCNodesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDCNodes(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCNode) {
+        if (_value_ instanceof String) {
+            ((DCEquipmentContainer) _this_).DCNodesIdSet.add((String) _value_);
+        } else if (_value_ instanceof DCNode) {
             ((DCEquipmentContainer) _this_).setDCNodes((DCNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCNode");
@@ -73,6 +83,8 @@ public class DCEquipmentContainer extends EquipmentContainer {
      */
     private Set<DCTopologicalNode> DCTopologicalNode = new HashSet<>(); // OneToMany
 
+    private Set<String> DCTopologicalNodeIdSet = new HashSet<>();
+
     public Set<DCTopologicalNode> getDCTopologicalNode() {
         return DCTopologicalNode;
     }
@@ -81,15 +93,23 @@ public class DCEquipmentContainer extends EquipmentContainer {
         if (!DCTopologicalNode.contains(_object_)) {
             DCTopologicalNode.add(_object_);
             _object_.setDCEquipmentContainer(this);
+            DCTopologicalNodeIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDCTopologicalNode(BaseClass _this_) {
-        return ((DCEquipmentContainer) _this_).getDCTopologicalNode();
+        var objs = ((DCEquipmentContainer) _this_).getDCTopologicalNode();
+        var ids = ((DCEquipmentContainer) _this_).DCTopologicalNodeIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDCTopologicalNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCTopologicalNode) {
+        if (_value_ instanceof String) {
+            ((DCEquipmentContainer) _this_).DCTopologicalNodeIdSet.add((String) _value_);
+        } else if (_value_ instanceof DCTopologicalNode) {
             ((DCEquipmentContainer) _this_).setDCTopologicalNode((DCTopologicalNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCTopologicalNode");

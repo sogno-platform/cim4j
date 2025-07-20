@@ -41,6 +41,8 @@ public class DCLineSegment extends DCConductingEquipment {
      */
     private PerLengthDCLineParameter PerLengthParameter; // ManyToOne
 
+    private String PerLengthParameterId;
+
     public PerLengthDCLineParameter getPerLengthParameter() {
         return PerLengthParameter;
     }
@@ -48,16 +50,24 @@ public class DCLineSegment extends DCConductingEquipment {
     public void setPerLengthParameter(PerLengthDCLineParameter _object_) {
         if (PerLengthParameter != _object_) {
             PerLengthParameter = _object_;
-            PerLengthParameter.setDCLineSegments(this);
+            _object_.setDCLineSegments(this);
+            PerLengthParameterId = _object_.getRdfid();
         }
     }
 
     private static Object getPerLengthParameter(BaseClass _this_) {
-        return ((DCLineSegment) _this_).getPerLengthParameter();
+        var obj = ((DCLineSegment) _this_).getPerLengthParameter();
+        var id = ((DCLineSegment) _this_).PerLengthParameterId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPerLengthParameter(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PerLengthDCLineParameter) {
+        if (_value_ instanceof String) {
+            ((DCLineSegment) _this_).PerLengthParameterId = (String) _value_;
+        } else if (_value_ instanceof PerLengthDCLineParameter) {
             ((DCLineSegment) _this_).setPerLengthParameter((PerLengthDCLineParameter) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PerLengthDCLineParameter");

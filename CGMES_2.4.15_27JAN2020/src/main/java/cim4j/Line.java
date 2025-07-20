@@ -41,6 +41,8 @@ public class Line extends EquipmentContainer {
      */
     private SubGeographicalRegion Region; // ManyToOne
 
+    private String RegionId;
+
     public SubGeographicalRegion getRegion() {
         return Region;
     }
@@ -48,16 +50,24 @@ public class Line extends EquipmentContainer {
     public void setRegion(SubGeographicalRegion _object_) {
         if (Region != _object_) {
             Region = _object_;
-            Region.setLines(this);
+            _object_.setLines(this);
+            RegionId = _object_.getRdfid();
         }
     }
 
     private static Object getRegion(BaseClass _this_) {
-        return ((Line) _this_).getRegion();
+        var obj = ((Line) _this_).getRegion();
+        var id = ((Line) _this_).RegionId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setRegion(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SubGeographicalRegion) {
+        if (_value_ instanceof String) {
+            ((Line) _this_).RegionId = (String) _value_;
+        } else if (_value_ instanceof SubGeographicalRegion) {
             ((Line) _this_).setRegion((SubGeographicalRegion) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SubGeographicalRegion");

@@ -41,6 +41,8 @@ public class VoltageLevel extends EquipmentContainer {
      */
     private BaseVoltage BaseVoltage; // ManyToOne
 
+    private String BaseVoltageId;
+
     public BaseVoltage getBaseVoltage() {
         return BaseVoltage;
     }
@@ -48,16 +50,24 @@ public class VoltageLevel extends EquipmentContainer {
     public void setBaseVoltage(BaseVoltage _object_) {
         if (BaseVoltage != _object_) {
             BaseVoltage = _object_;
-            BaseVoltage.setVoltageLevel(this);
+            _object_.setVoltageLevel(this);
+            BaseVoltageId = _object_.getRdfid();
         }
     }
 
     private static Object getBaseVoltage(BaseClass _this_) {
-        return ((VoltageLevel) _this_).getBaseVoltage();
+        var obj = ((VoltageLevel) _this_).getBaseVoltage();
+        var id = ((VoltageLevel) _this_).BaseVoltageId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setBaseVoltage(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof BaseVoltage) {
+        if (_value_ instanceof String) {
+            ((VoltageLevel) _this_).BaseVoltageId = (String) _value_;
+        } else if (_value_ instanceof BaseVoltage) {
             ((VoltageLevel) _this_).setBaseVoltage((BaseVoltage) _value_);
         } else {
             throw new IllegalArgumentException("Object is not BaseVoltage");
@@ -71,6 +81,8 @@ public class VoltageLevel extends EquipmentContainer {
      */
     private Set<Bay> Bays = new HashSet<>(); // OneToMany
 
+    private Set<String> BaysIdSet = new HashSet<>();
+
     public Set<Bay> getBays() {
         return Bays;
     }
@@ -79,15 +91,23 @@ public class VoltageLevel extends EquipmentContainer {
         if (!Bays.contains(_object_)) {
             Bays.add(_object_);
             _object_.setVoltageLevel(this);
+            BaysIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getBays(BaseClass _this_) {
-        return ((VoltageLevel) _this_).getBays();
+        var objs = ((VoltageLevel) _this_).getBays();
+        var ids = ((VoltageLevel) _this_).BaysIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setBays(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Bay) {
+        if (_value_ instanceof String) {
+            ((VoltageLevel) _this_).BaysIdSet.add((String) _value_);
+        } else if (_value_ instanceof Bay) {
             ((VoltageLevel) _this_).setBays((Bay) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Bay");
@@ -99,6 +119,8 @@ public class VoltageLevel extends EquipmentContainer {
      */
     private Substation Substation; // ManyToOne
 
+    private String SubstationId;
+
     public Substation getSubstation() {
         return Substation;
     }
@@ -106,16 +128,24 @@ public class VoltageLevel extends EquipmentContainer {
     public void setSubstation(Substation _object_) {
         if (Substation != _object_) {
             Substation = _object_;
-            Substation.setVoltageLevels(this);
+            _object_.setVoltageLevels(this);
+            SubstationId = _object_.getRdfid();
         }
     }
 
     private static Object getSubstation(BaseClass _this_) {
-        return ((VoltageLevel) _this_).getSubstation();
+        var obj = ((VoltageLevel) _this_).getSubstation();
+        var id = ((VoltageLevel) _this_).SubstationId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSubstation(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Substation) {
+        if (_value_ instanceof String) {
+            ((VoltageLevel) _this_).SubstationId = (String) _value_;
+        } else if (_value_ instanceof Substation) {
             ((VoltageLevel) _this_).setSubstation((Substation) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Substation");

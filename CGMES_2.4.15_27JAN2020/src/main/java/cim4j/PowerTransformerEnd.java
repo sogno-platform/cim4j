@@ -41,6 +41,8 @@ public class PowerTransformerEnd extends TransformerEnd {
      */
     private PowerTransformer PowerTransformer; // ManyToOne
 
+    private String PowerTransformerId;
+
     public PowerTransformer getPowerTransformer() {
         return PowerTransformer;
     }
@@ -48,16 +50,24 @@ public class PowerTransformerEnd extends TransformerEnd {
     public void setPowerTransformer(PowerTransformer _object_) {
         if (PowerTransformer != _object_) {
             PowerTransformer = _object_;
-            PowerTransformer.setPowerTransformerEnd(this);
+            _object_.setPowerTransformerEnd(this);
+            PowerTransformerId = _object_.getRdfid();
         }
     }
 
     private static Object getPowerTransformer(BaseClass _this_) {
-        return ((PowerTransformerEnd) _this_).getPowerTransformer();
+        var obj = ((PowerTransformerEnd) _this_).getPowerTransformer();
+        var id = ((PowerTransformerEnd) _this_).PowerTransformerId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPowerTransformer(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PowerTransformer) {
+        if (_value_ instanceof String) {
+            ((PowerTransformerEnd) _this_).PowerTransformerId = (String) _value_;
+        } else if (_value_ instanceof PowerTransformer) {
             ((PowerTransformerEnd) _this_).setPowerTransformer((PowerTransformer) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PowerTransformer");

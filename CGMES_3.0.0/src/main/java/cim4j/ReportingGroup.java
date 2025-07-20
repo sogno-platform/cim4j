@@ -43,6 +43,8 @@ public class ReportingGroup extends IdentifiedObject {
      */
     private Set<BusNameMarker> BusNameMarker = new HashSet<>(); // OneToMany
 
+    private Set<String> BusNameMarkerIdSet = new HashSet<>();
+
     public Set<BusNameMarker> getBusNameMarker() {
         return BusNameMarker;
     }
@@ -51,15 +53,23 @@ public class ReportingGroup extends IdentifiedObject {
         if (!BusNameMarker.contains(_object_)) {
             BusNameMarker.add(_object_);
             _object_.setReportingGroup(this);
+            BusNameMarkerIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getBusNameMarker(BaseClass _this_) {
-        return ((ReportingGroup) _this_).getBusNameMarker();
+        var objs = ((ReportingGroup) _this_).getBusNameMarker();
+        var ids = ((ReportingGroup) _this_).BusNameMarkerIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setBusNameMarker(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof BusNameMarker) {
+        if (_value_ instanceof String) {
+            ((ReportingGroup) _this_).BusNameMarkerIdSet.add((String) _value_);
+        } else if (_value_ instanceof BusNameMarker) {
             ((ReportingGroup) _this_).setBusNameMarker((BusNameMarker) _value_);
         } else {
             throw new IllegalArgumentException("Object is not BusNameMarker");
@@ -73,6 +83,8 @@ public class ReportingGroup extends IdentifiedObject {
      */
     private Set<TopologicalNode> TopologicalNode = new HashSet<>(); // OneToMany
 
+    private Set<String> TopologicalNodeIdSet = new HashSet<>();
+
     public Set<TopologicalNode> getTopologicalNode() {
         return TopologicalNode;
     }
@@ -81,15 +93,23 @@ public class ReportingGroup extends IdentifiedObject {
         if (!TopologicalNode.contains(_object_)) {
             TopologicalNode.add(_object_);
             _object_.setReportingGroup(this);
+            TopologicalNodeIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTopologicalNode(BaseClass _this_) {
-        return ((ReportingGroup) _this_).getTopologicalNode();
+        var objs = ((ReportingGroup) _this_).getTopologicalNode();
+        var ids = ((ReportingGroup) _this_).TopologicalNodeIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTopologicalNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TopologicalNode) {
+        if (_value_ instanceof String) {
+            ((ReportingGroup) _this_).TopologicalNodeIdSet.add((String) _value_);
+        } else if (_value_ instanceof TopologicalNode) {
             ((ReportingGroup) _this_).setTopologicalNode((TopologicalNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TopologicalNode");

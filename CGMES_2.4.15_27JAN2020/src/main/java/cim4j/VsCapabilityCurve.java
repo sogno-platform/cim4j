@@ -43,6 +43,8 @@ public class VsCapabilityCurve extends Curve {
      */
     private Set<VsConverter> VsConverterDCSides = new HashSet<>(); // OneToMany
 
+    private Set<String> VsConverterDCSidesIdSet = new HashSet<>();
+
     public Set<VsConverter> getVsConverterDCSides() {
         return VsConverterDCSides;
     }
@@ -51,15 +53,23 @@ public class VsCapabilityCurve extends Curve {
         if (!VsConverterDCSides.contains(_object_)) {
             VsConverterDCSides.add(_object_);
             _object_.setCapabilityCurve(this);
+            VsConverterDCSidesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getVsConverterDCSides(BaseClass _this_) {
-        return ((VsCapabilityCurve) _this_).getVsConverterDCSides();
+        var objs = ((VsCapabilityCurve) _this_).getVsConverterDCSides();
+        var ids = ((VsCapabilityCurve) _this_).VsConverterDCSidesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setVsConverterDCSides(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VsConverter) {
+        if (_value_ instanceof String) {
+            ((VsCapabilityCurve) _this_).VsConverterDCSidesIdSet.add((String) _value_);
+        } else if (_value_ instanceof VsConverter) {
             ((VsCapabilityCurve) _this_).setVsConverterDCSides((VsConverter) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VsConverter");

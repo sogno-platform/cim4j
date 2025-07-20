@@ -41,6 +41,8 @@ public class AccumulatorValue extends MeasurementValue {
      */
     private Accumulator Accumulator; // ManyToOne
 
+    private String AccumulatorId;
+
     public Accumulator getAccumulator() {
         return Accumulator;
     }
@@ -48,16 +50,24 @@ public class AccumulatorValue extends MeasurementValue {
     public void setAccumulator(Accumulator _object_) {
         if (Accumulator != _object_) {
             Accumulator = _object_;
-            Accumulator.setAccumulatorValues(this);
+            _object_.setAccumulatorValues(this);
+            AccumulatorId = _object_.getRdfid();
         }
     }
 
     private static Object getAccumulator(BaseClass _this_) {
-        return ((AccumulatorValue) _this_).getAccumulator();
+        var obj = ((AccumulatorValue) _this_).getAccumulator();
+        var id = ((AccumulatorValue) _this_).AccumulatorId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setAccumulator(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Accumulator) {
+        if (_value_ instanceof String) {
+            ((AccumulatorValue) _this_).AccumulatorId = (String) _value_;
+        } else if (_value_ instanceof Accumulator) {
             ((AccumulatorValue) _this_).setAccumulator((Accumulator) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Accumulator");
@@ -71,6 +81,8 @@ public class AccumulatorValue extends MeasurementValue {
      */
     private AccumulatorReset AccumulatorReset; // OneToOne
 
+    private String AccumulatorResetId;
+
     public AccumulatorReset getAccumulatorReset() {
         return AccumulatorReset;
     }
@@ -78,16 +90,24 @@ public class AccumulatorValue extends MeasurementValue {
     public void setAccumulatorReset(AccumulatorReset _object_) {
         if (AccumulatorReset != _object_) {
             AccumulatorReset = _object_;
-            AccumulatorReset.setAccumulatorValue(this);
+            _object_.setAccumulatorValue(this);
+            AccumulatorResetId = _object_.getRdfid();
         }
     }
 
     private static Object getAccumulatorReset(BaseClass _this_) {
-        return ((AccumulatorValue) _this_).getAccumulatorReset();
+        var obj = ((AccumulatorValue) _this_).getAccumulatorReset();
+        var id = ((AccumulatorValue) _this_).AccumulatorResetId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setAccumulatorReset(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AccumulatorReset) {
+        if (_value_ instanceof String) {
+            ((AccumulatorValue) _this_).AccumulatorResetId = (String) _value_;
+        } else if (_value_ instanceof AccumulatorReset) {
             ((AccumulatorValue) _this_).setAccumulatorReset((AccumulatorReset) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AccumulatorReset");

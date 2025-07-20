@@ -41,6 +41,8 @@ public class UnderexcitationLimiterDynamics extends DynamicsFunctionBlock {
      */
     private ExcitationSystemDynamics ExcitationSystemDynamics; // OneToOne
 
+    private String ExcitationSystemDynamicsId;
+
     public ExcitationSystemDynamics getExcitationSystemDynamics() {
         return ExcitationSystemDynamics;
     }
@@ -48,16 +50,24 @@ public class UnderexcitationLimiterDynamics extends DynamicsFunctionBlock {
     public void setExcitationSystemDynamics(ExcitationSystemDynamics _object_) {
         if (ExcitationSystemDynamics != _object_) {
             ExcitationSystemDynamics = _object_;
-            ExcitationSystemDynamics.setUnderexcitationLimiterDynamics(this);
+            _object_.setUnderexcitationLimiterDynamics(this);
+            ExcitationSystemDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getExcitationSystemDynamics(BaseClass _this_) {
-        return ((UnderexcitationLimiterDynamics) _this_).getExcitationSystemDynamics();
+        var obj = ((UnderexcitationLimiterDynamics) _this_).getExcitationSystemDynamics();
+        var id = ((UnderexcitationLimiterDynamics) _this_).ExcitationSystemDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setExcitationSystemDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ExcitationSystemDynamics) {
+        if (_value_ instanceof String) {
+            ((UnderexcitationLimiterDynamics) _this_).ExcitationSystemDynamicsId = (String) _value_;
+        } else if (_value_ instanceof ExcitationSystemDynamics) {
             ((UnderexcitationLimiterDynamics) _this_).setExcitationSystemDynamics((ExcitationSystemDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ExcitationSystemDynamics");
@@ -71,6 +81,8 @@ public class UnderexcitationLimiterDynamics extends DynamicsFunctionBlock {
      */
     private RemoteInputSignal RemoteInputSignal; // OneToOne
 
+    private String RemoteInputSignalId;
+
     public RemoteInputSignal getRemoteInputSignal() {
         return RemoteInputSignal;
     }
@@ -78,16 +90,24 @@ public class UnderexcitationLimiterDynamics extends DynamicsFunctionBlock {
     public void setRemoteInputSignal(RemoteInputSignal _object_) {
         if (RemoteInputSignal != _object_) {
             RemoteInputSignal = _object_;
-            RemoteInputSignal.setUnderexcitationLimiterDynamics(this);
+            _object_.setUnderexcitationLimiterDynamics(this);
+            RemoteInputSignalId = _object_.getRdfid();
         }
     }
 
     private static Object getRemoteInputSignal(BaseClass _this_) {
-        return ((UnderexcitationLimiterDynamics) _this_).getRemoteInputSignal();
+        var obj = ((UnderexcitationLimiterDynamics) _this_).getRemoteInputSignal();
+        var id = ((UnderexcitationLimiterDynamics) _this_).RemoteInputSignalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setRemoteInputSignal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RemoteInputSignal) {
+        if (_value_ instanceof String) {
+            ((UnderexcitationLimiterDynamics) _this_).RemoteInputSignalId = (String) _value_;
+        } else if (_value_ instanceof RemoteInputSignal) {
             ((UnderexcitationLimiterDynamics) _this_).setRemoteInputSignal((RemoteInputSignal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RemoteInputSignal");

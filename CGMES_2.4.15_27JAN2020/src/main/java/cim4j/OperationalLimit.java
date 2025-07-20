@@ -41,6 +41,8 @@ public class OperationalLimit extends IdentifiedObject {
      */
     private OperationalLimitSet OperationalLimitSet; // ManyToOne
 
+    private String OperationalLimitSetId;
+
     public OperationalLimitSet getOperationalLimitSet() {
         return OperationalLimitSet;
     }
@@ -48,16 +50,24 @@ public class OperationalLimit extends IdentifiedObject {
     public void setOperationalLimitSet(OperationalLimitSet _object_) {
         if (OperationalLimitSet != _object_) {
             OperationalLimitSet = _object_;
-            OperationalLimitSet.setOperationalLimitValue(this);
+            _object_.setOperationalLimitValue(this);
+            OperationalLimitSetId = _object_.getRdfid();
         }
     }
 
     private static Object getOperationalLimitSet(BaseClass _this_) {
-        return ((OperationalLimit) _this_).getOperationalLimitSet();
+        var obj = ((OperationalLimit) _this_).getOperationalLimitSet();
+        var id = ((OperationalLimit) _this_).OperationalLimitSetId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setOperationalLimitSet(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof OperationalLimitSet) {
+        if (_value_ instanceof String) {
+            ((OperationalLimit) _this_).OperationalLimitSetId = (String) _value_;
+        } else if (_value_ instanceof OperationalLimitSet) {
             ((OperationalLimit) _this_).setOperationalLimitSet((OperationalLimitSet) _value_);
         } else {
             throw new IllegalArgumentException("Object is not OperationalLimitSet");
@@ -69,6 +79,8 @@ public class OperationalLimit extends IdentifiedObject {
      */
     private OperationalLimitType OperationalLimitType; // ManyToOne
 
+    private String OperationalLimitTypeId;
+
     public OperationalLimitType getOperationalLimitType() {
         return OperationalLimitType;
     }
@@ -76,16 +88,24 @@ public class OperationalLimit extends IdentifiedObject {
     public void setOperationalLimitType(OperationalLimitType _object_) {
         if (OperationalLimitType != _object_) {
             OperationalLimitType = _object_;
-            OperationalLimitType.setOperationalLimit(this);
+            _object_.setOperationalLimit(this);
+            OperationalLimitTypeId = _object_.getRdfid();
         }
     }
 
     private static Object getOperationalLimitType(BaseClass _this_) {
-        return ((OperationalLimit) _this_).getOperationalLimitType();
+        var obj = ((OperationalLimit) _this_).getOperationalLimitType();
+        var id = ((OperationalLimit) _this_).OperationalLimitTypeId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setOperationalLimitType(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof OperationalLimitType) {
+        if (_value_ instanceof String) {
+            ((OperationalLimit) _this_).OperationalLimitTypeId = (String) _value_;
+        } else if (_value_ instanceof OperationalLimitType) {
             ((OperationalLimit) _this_).setOperationalLimitType((OperationalLimitType) _value_);
         } else {
             throw new IllegalArgumentException("Object is not OperationalLimitType");

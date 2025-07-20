@@ -41,6 +41,8 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
      */
     private PowerElectronicsUnit PowerElectronicsUnit; // OneToOne
 
+    private String PowerElectronicsUnitId;
+
     public PowerElectronicsUnit getPowerElectronicsUnit() {
         return PowerElectronicsUnit;
     }
@@ -48,16 +50,24 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
     public void setPowerElectronicsUnit(PowerElectronicsUnit _object_) {
         if (PowerElectronicsUnit != _object_) {
             PowerElectronicsUnit = _object_;
-            PowerElectronicsUnit.setPowerElectronicsConnection(this);
+            _object_.setPowerElectronicsConnection(this);
+            PowerElectronicsUnitId = _object_.getRdfid();
         }
     }
 
     private static Object getPowerElectronicsUnit(BaseClass _this_) {
-        return ((PowerElectronicsConnection) _this_).getPowerElectronicsUnit();
+        var obj = ((PowerElectronicsConnection) _this_).getPowerElectronicsUnit();
+        var id = ((PowerElectronicsConnection) _this_).PowerElectronicsUnitId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPowerElectronicsUnit(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PowerElectronicsUnit) {
+        if (_value_ instanceof String) {
+            ((PowerElectronicsConnection) _this_).PowerElectronicsUnitId = (String) _value_;
+        } else if (_value_ instanceof PowerElectronicsUnit) {
             ((PowerElectronicsConnection) _this_).setPowerElectronicsUnit((PowerElectronicsUnit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PowerElectronicsUnit");
@@ -71,6 +81,8 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
      */
     private WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics; // OneToOne
 
+    private String WindTurbineType3or4DynamicsId;
+
     public WindTurbineType3or4Dynamics getWindTurbineType3or4Dynamics() {
         return WindTurbineType3or4Dynamics;
     }
@@ -78,16 +90,24 @@ public class PowerElectronicsConnection extends RegulatingCondEq {
     public void setWindTurbineType3or4Dynamics(WindTurbineType3or4Dynamics _object_) {
         if (WindTurbineType3or4Dynamics != _object_) {
             WindTurbineType3or4Dynamics = _object_;
-            WindTurbineType3or4Dynamics.setPowerElectronicsConnection(this);
+            _object_.setPowerElectronicsConnection(this);
+            WindTurbineType3or4DynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getWindTurbineType3or4Dynamics(BaseClass _this_) {
-        return ((PowerElectronicsConnection) _this_).getWindTurbineType3or4Dynamics();
+        var obj = ((PowerElectronicsConnection) _this_).getWindTurbineType3or4Dynamics();
+        var id = ((PowerElectronicsConnection) _this_).WindTurbineType3or4DynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindTurbineType3or4Dynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindTurbineType3or4Dynamics) {
+        if (_value_ instanceof String) {
+            ((PowerElectronicsConnection) _this_).WindTurbineType3or4DynamicsId = (String) _value_;
+        } else if (_value_ instanceof WindTurbineType3or4Dynamics) {
             ((PowerElectronicsConnection) _this_).setWindTurbineType3or4Dynamics((WindTurbineType3or4Dynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindTurbineType3or4Dynamics");

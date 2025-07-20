@@ -41,6 +41,8 @@ public class MechanicalLoadDynamics extends DynamicsFunctionBlock {
      */
     private AsynchronousMachineDynamics AsynchronousMachineDynamics; // OneToOne
 
+    private String AsynchronousMachineDynamicsId;
+
     public AsynchronousMachineDynamics getAsynchronousMachineDynamics() {
         return AsynchronousMachineDynamics;
     }
@@ -48,16 +50,24 @@ public class MechanicalLoadDynamics extends DynamicsFunctionBlock {
     public void setAsynchronousMachineDynamics(AsynchronousMachineDynamics _object_) {
         if (AsynchronousMachineDynamics != _object_) {
             AsynchronousMachineDynamics = _object_;
-            AsynchronousMachineDynamics.setMechanicalLoadDynamics(this);
+            _object_.setMechanicalLoadDynamics(this);
+            AsynchronousMachineDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getAsynchronousMachineDynamics(BaseClass _this_) {
-        return ((MechanicalLoadDynamics) _this_).getAsynchronousMachineDynamics();
+        var obj = ((MechanicalLoadDynamics) _this_).getAsynchronousMachineDynamics();
+        var id = ((MechanicalLoadDynamics) _this_).AsynchronousMachineDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setAsynchronousMachineDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AsynchronousMachineDynamics) {
+        if (_value_ instanceof String) {
+            ((MechanicalLoadDynamics) _this_).AsynchronousMachineDynamicsId = (String) _value_;
+        } else if (_value_ instanceof AsynchronousMachineDynamics) {
             ((MechanicalLoadDynamics) _this_).setAsynchronousMachineDynamics((AsynchronousMachineDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AsynchronousMachineDynamics");
@@ -69,6 +79,8 @@ public class MechanicalLoadDynamics extends DynamicsFunctionBlock {
      */
     private SynchronousMachineDynamics SynchronousMachineDynamics; // OneToOne
 
+    private String SynchronousMachineDynamicsId;
+
     public SynchronousMachineDynamics getSynchronousMachineDynamics() {
         return SynchronousMachineDynamics;
     }
@@ -76,16 +88,24 @@ public class MechanicalLoadDynamics extends DynamicsFunctionBlock {
     public void setSynchronousMachineDynamics(SynchronousMachineDynamics _object_) {
         if (SynchronousMachineDynamics != _object_) {
             SynchronousMachineDynamics = _object_;
-            SynchronousMachineDynamics.setMechanicalLoadDynamics(this);
+            _object_.setMechanicalLoadDynamics(this);
+            SynchronousMachineDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getSynchronousMachineDynamics(BaseClass _this_) {
-        return ((MechanicalLoadDynamics) _this_).getSynchronousMachineDynamics();
+        var obj = ((MechanicalLoadDynamics) _this_).getSynchronousMachineDynamics();
+        var id = ((MechanicalLoadDynamics) _this_).SynchronousMachineDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSynchronousMachineDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SynchronousMachineDynamics) {
+        if (_value_ instanceof String) {
+            ((MechanicalLoadDynamics) _this_).SynchronousMachineDynamicsId = (String) _value_;
+        } else if (_value_ instanceof SynchronousMachineDynamics) {
             ((MechanicalLoadDynamics) _this_).setSynchronousMachineDynamics((SynchronousMachineDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SynchronousMachineDynamics");

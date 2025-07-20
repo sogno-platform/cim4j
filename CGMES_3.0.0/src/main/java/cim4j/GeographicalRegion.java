@@ -43,6 +43,8 @@ public class GeographicalRegion extends IdentifiedObject {
      */
     private Set<SubGeographicalRegion> Regions = new HashSet<>(); // OneToMany
 
+    private Set<String> RegionsIdSet = new HashSet<>();
+
     public Set<SubGeographicalRegion> getRegions() {
         return Regions;
     }
@@ -51,15 +53,23 @@ public class GeographicalRegion extends IdentifiedObject {
         if (!Regions.contains(_object_)) {
             Regions.add(_object_);
             _object_.setRegion(this);
+            RegionsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getRegions(BaseClass _this_) {
-        return ((GeographicalRegion) _this_).getRegions();
+        var objs = ((GeographicalRegion) _this_).getRegions();
+        var ids = ((GeographicalRegion) _this_).RegionsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setRegions(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SubGeographicalRegion) {
+        if (_value_ instanceof String) {
+            ((GeographicalRegion) _this_).RegionsIdSet.add((String) _value_);
+        } else if (_value_ instanceof SubGeographicalRegion) {
             ((GeographicalRegion) _this_).setRegions((SubGeographicalRegion) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SubGeographicalRegion");

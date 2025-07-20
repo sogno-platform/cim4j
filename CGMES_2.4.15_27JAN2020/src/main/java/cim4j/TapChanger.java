@@ -43,6 +43,8 @@ public class TapChanger extends PowerSystemResource {
      */
     private SvTapStep SvTapStep; // OneToOne
 
+    private String SvTapStepId;
+
     public SvTapStep getSvTapStep() {
         return SvTapStep;
     }
@@ -50,16 +52,24 @@ public class TapChanger extends PowerSystemResource {
     public void setSvTapStep(SvTapStep _object_) {
         if (SvTapStep != _object_) {
             SvTapStep = _object_;
-            SvTapStep.setTapChanger(this);
+            _object_.setTapChanger(this);
+            SvTapStepId = _object_.getRdfid();
         }
     }
 
     private static Object getSvTapStep(BaseClass _this_) {
-        return ((TapChanger) _this_).getSvTapStep();
+        var obj = ((TapChanger) _this_).getSvTapStep();
+        var id = ((TapChanger) _this_).SvTapStepId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSvTapStep(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SvTapStep) {
+        if (_value_ instanceof String) {
+            ((TapChanger) _this_).SvTapStepId = (String) _value_;
+        } else if (_value_ instanceof SvTapStep) {
             ((TapChanger) _this_).setSvTapStep((SvTapStep) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SvTapStep");
@@ -71,6 +81,8 @@ public class TapChanger extends PowerSystemResource {
      */
     private TapChangerControl TapChangerControl; // ManyToOne
 
+    private String TapChangerControlId;
+
     public TapChangerControl getTapChangerControl() {
         return TapChangerControl;
     }
@@ -78,16 +90,24 @@ public class TapChanger extends PowerSystemResource {
     public void setTapChangerControl(TapChangerControl _object_) {
         if (TapChangerControl != _object_) {
             TapChangerControl = _object_;
-            TapChangerControl.setTapChanger(this);
+            _object_.setTapChanger(this);
+            TapChangerControlId = _object_.getRdfid();
         }
     }
 
     private static Object getTapChangerControl(BaseClass _this_) {
-        return ((TapChanger) _this_).getTapChangerControl();
+        var obj = ((TapChanger) _this_).getTapChangerControl();
+        var id = ((TapChanger) _this_).TapChangerControlId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTapChangerControl(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TapChangerControl) {
+        if (_value_ instanceof String) {
+            ((TapChanger) _this_).TapChangerControlId = (String) _value_;
+        } else if (_value_ instanceof TapChangerControl) {
             ((TapChanger) _this_).setTapChangerControl((TapChangerControl) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TapChangerControl");
@@ -101,6 +121,8 @@ public class TapChanger extends PowerSystemResource {
      */
     private Set<TapSchedule> TapSchedules = new HashSet<>(); // OneToMany
 
+    private Set<String> TapSchedulesIdSet = new HashSet<>();
+
     public Set<TapSchedule> getTapSchedules() {
         return TapSchedules;
     }
@@ -109,15 +131,23 @@ public class TapChanger extends PowerSystemResource {
         if (!TapSchedules.contains(_object_)) {
             TapSchedules.add(_object_);
             _object_.setTapChanger(this);
+            TapSchedulesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTapSchedules(BaseClass _this_) {
-        return ((TapChanger) _this_).getTapSchedules();
+        var objs = ((TapChanger) _this_).getTapSchedules();
+        var ids = ((TapChanger) _this_).TapSchedulesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTapSchedules(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TapSchedule) {
+        if (_value_ instanceof String) {
+            ((TapChanger) _this_).TapSchedulesIdSet.add((String) _value_);
+        } else if (_value_ instanceof TapSchedule) {
             ((TapChanger) _this_).setTapSchedules((TapSchedule) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TapSchedule");

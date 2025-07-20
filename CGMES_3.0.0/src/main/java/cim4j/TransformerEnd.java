@@ -41,6 +41,8 @@ public class TransformerEnd extends IdentifiedObject {
      */
     private BaseVoltage BaseVoltage; // ManyToOne
 
+    private String BaseVoltageId;
+
     public BaseVoltage getBaseVoltage() {
         return BaseVoltage;
     }
@@ -48,16 +50,24 @@ public class TransformerEnd extends IdentifiedObject {
     public void setBaseVoltage(BaseVoltage _object_) {
         if (BaseVoltage != _object_) {
             BaseVoltage = _object_;
-            BaseVoltage.setTransformerEnds(this);
+            _object_.setTransformerEnds(this);
+            BaseVoltageId = _object_.getRdfid();
         }
     }
 
     private static Object getBaseVoltage(BaseClass _this_) {
-        return ((TransformerEnd) _this_).getBaseVoltage();
+        var obj = ((TransformerEnd) _this_).getBaseVoltage();
+        var id = ((TransformerEnd) _this_).BaseVoltageId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setBaseVoltage(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof BaseVoltage) {
+        if (_value_ instanceof String) {
+            ((TransformerEnd) _this_).BaseVoltageId = (String) _value_;
+        } else if (_value_ instanceof BaseVoltage) {
             ((TransformerEnd) _this_).setBaseVoltage((BaseVoltage) _value_);
         } else {
             throw new IllegalArgumentException("Object is not BaseVoltage");
@@ -71,6 +81,8 @@ public class TransformerEnd extends IdentifiedObject {
      */
     private PhaseTapChanger PhaseTapChanger; // OneToOne
 
+    private String PhaseTapChangerId;
+
     public PhaseTapChanger getPhaseTapChanger() {
         return PhaseTapChanger;
     }
@@ -78,16 +90,24 @@ public class TransformerEnd extends IdentifiedObject {
     public void setPhaseTapChanger(PhaseTapChanger _object_) {
         if (PhaseTapChanger != _object_) {
             PhaseTapChanger = _object_;
-            PhaseTapChanger.setTransformerEnd(this);
+            _object_.setTransformerEnd(this);
+            PhaseTapChangerId = _object_.getRdfid();
         }
     }
 
     private static Object getPhaseTapChanger(BaseClass _this_) {
-        return ((TransformerEnd) _this_).getPhaseTapChanger();
+        var obj = ((TransformerEnd) _this_).getPhaseTapChanger();
+        var id = ((TransformerEnd) _this_).PhaseTapChangerId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPhaseTapChanger(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PhaseTapChanger) {
+        if (_value_ instanceof String) {
+            ((TransformerEnd) _this_).PhaseTapChangerId = (String) _value_;
+        } else if (_value_ instanceof PhaseTapChanger) {
             ((TransformerEnd) _this_).setPhaseTapChanger((PhaseTapChanger) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PhaseTapChanger");
@@ -101,6 +121,8 @@ public class TransformerEnd extends IdentifiedObject {
      */
     private RatioTapChanger RatioTapChanger; // OneToOne
 
+    private String RatioTapChangerId;
+
     public RatioTapChanger getRatioTapChanger() {
         return RatioTapChanger;
     }
@@ -108,16 +130,24 @@ public class TransformerEnd extends IdentifiedObject {
     public void setRatioTapChanger(RatioTapChanger _object_) {
         if (RatioTapChanger != _object_) {
             RatioTapChanger = _object_;
-            RatioTapChanger.setTransformerEnd(this);
+            _object_.setTransformerEnd(this);
+            RatioTapChangerId = _object_.getRdfid();
         }
     }
 
     private static Object getRatioTapChanger(BaseClass _this_) {
-        return ((TransformerEnd) _this_).getRatioTapChanger();
+        var obj = ((TransformerEnd) _this_).getRatioTapChanger();
+        var id = ((TransformerEnd) _this_).RatioTapChangerId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setRatioTapChanger(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RatioTapChanger) {
+        if (_value_ instanceof String) {
+            ((TransformerEnd) _this_).RatioTapChangerId = (String) _value_;
+        } else if (_value_ instanceof RatioTapChanger) {
             ((TransformerEnd) _this_).setRatioTapChanger((RatioTapChanger) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RatioTapChanger");
@@ -129,6 +159,8 @@ public class TransformerEnd extends IdentifiedObject {
      */
     private Terminal Terminal; // ManyToOne
 
+    private String TerminalId;
+
     public Terminal getTerminal() {
         return Terminal;
     }
@@ -136,16 +168,24 @@ public class TransformerEnd extends IdentifiedObject {
     public void setTerminal(Terminal _object_) {
         if (Terminal != _object_) {
             Terminal = _object_;
-            Terminal.setTransformerEnd(this);
+            _object_.setTransformerEnd(this);
+            TerminalId = _object_.getRdfid();
         }
     }
 
     private static Object getTerminal(BaseClass _this_) {
-        return ((TransformerEnd) _this_).getTerminal();
+        var obj = ((TransformerEnd) _this_).getTerminal();
+        var id = ((TransformerEnd) _this_).TerminalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTerminal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Terminal) {
+        if (_value_ instanceof String) {
+            ((TransformerEnd) _this_).TerminalId = (String) _value_;
+        } else if (_value_ instanceof Terminal) {
             ((TransformerEnd) _this_).setTerminal((Terminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Terminal");

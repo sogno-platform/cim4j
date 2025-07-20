@@ -41,6 +41,8 @@ public class CurveData extends BaseClass {
      */
     private Curve Curve; // ManyToOne
 
+    private String CurveId;
+
     public Curve getCurve() {
         return Curve;
     }
@@ -48,16 +50,24 @@ public class CurveData extends BaseClass {
     public void setCurve(Curve _object_) {
         if (Curve != _object_) {
             Curve = _object_;
-            Curve.setCurveDatas(this);
+            _object_.setCurveDatas(this);
+            CurveId = _object_.getRdfid();
         }
     }
 
     private static Object getCurve(BaseClass _this_) {
-        return ((CurveData) _this_).getCurve();
+        var obj = ((CurveData) _this_).getCurve();
+        var id = ((CurveData) _this_).CurveId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setCurve(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Curve) {
+        if (_value_ instanceof String) {
+            ((CurveData) _this_).CurveId = (String) _value_;
+        } else if (_value_ instanceof Curve) {
             ((CurveData) _this_).setCurve((Curve) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Curve");

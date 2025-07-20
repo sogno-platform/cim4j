@@ -41,6 +41,8 @@ public class LoadMotor extends IdentifiedObject {
      */
     private LoadAggregate LoadAggregate; // OneToOne
 
+    private String LoadAggregateId;
+
     public LoadAggregate getLoadAggregate() {
         return LoadAggregate;
     }
@@ -48,16 +50,24 @@ public class LoadMotor extends IdentifiedObject {
     public void setLoadAggregate(LoadAggregate _object_) {
         if (LoadAggregate != _object_) {
             LoadAggregate = _object_;
-            LoadAggregate.setLoadMotor(this);
+            _object_.setLoadMotor(this);
+            LoadAggregateId = _object_.getRdfid();
         }
     }
 
     private static Object getLoadAggregate(BaseClass _this_) {
-        return ((LoadMotor) _this_).getLoadAggregate();
+        var obj = ((LoadMotor) _this_).getLoadAggregate();
+        var id = ((LoadMotor) _this_).LoadAggregateId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setLoadAggregate(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof LoadAggregate) {
+        if (_value_ instanceof String) {
+            ((LoadMotor) _this_).LoadAggregateId = (String) _value_;
+        } else if (_value_ instanceof LoadAggregate) {
             ((LoadMotor) _this_).setLoadAggregate((LoadAggregate) _value_);
         } else {
             throw new IllegalArgumentException("Object is not LoadAggregate");

@@ -41,6 +41,8 @@ public class HydroGeneratingUnit extends GeneratingUnit {
      */
     private HydroPowerPlant HydroPowerPlant; // ManyToOne
 
+    private String HydroPowerPlantId;
+
     public HydroPowerPlant getHydroPowerPlant() {
         return HydroPowerPlant;
     }
@@ -48,16 +50,24 @@ public class HydroGeneratingUnit extends GeneratingUnit {
     public void setHydroPowerPlant(HydroPowerPlant _object_) {
         if (HydroPowerPlant != _object_) {
             HydroPowerPlant = _object_;
-            HydroPowerPlant.setHydroGeneratingUnits(this);
+            _object_.setHydroGeneratingUnits(this);
+            HydroPowerPlantId = _object_.getRdfid();
         }
     }
 
     private static Object getHydroPowerPlant(BaseClass _this_) {
-        return ((HydroGeneratingUnit) _this_).getHydroPowerPlant();
+        var obj = ((HydroGeneratingUnit) _this_).getHydroPowerPlant();
+        var id = ((HydroGeneratingUnit) _this_).HydroPowerPlantId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setHydroPowerPlant(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof HydroPowerPlant) {
+        if (_value_ instanceof String) {
+            ((HydroGeneratingUnit) _this_).HydroPowerPlantId = (String) _value_;
+        } else if (_value_ instanceof HydroPowerPlant) {
             ((HydroGeneratingUnit) _this_).setHydroPowerPlant((HydroPowerPlant) _value_);
         } else {
             throw new IllegalArgumentException("Object is not HydroPowerPlant");

@@ -41,6 +41,8 @@ public class WindPlantIEC extends WindPlantDynamics {
      */
     private WindPlantFreqPcontrolIEC WindPlantFreqPcontrolIEC; // OneToOne
 
+    private String WindPlantFreqPcontrolIECId;
+
     public WindPlantFreqPcontrolIEC getWindPlantFreqPcontrolIEC() {
         return WindPlantFreqPcontrolIEC;
     }
@@ -48,16 +50,24 @@ public class WindPlantIEC extends WindPlantDynamics {
     public void setWindPlantFreqPcontrolIEC(WindPlantFreqPcontrolIEC _object_) {
         if (WindPlantFreqPcontrolIEC != _object_) {
             WindPlantFreqPcontrolIEC = _object_;
-            WindPlantFreqPcontrolIEC.setWindPlantIEC(this);
+            _object_.setWindPlantIEC(this);
+            WindPlantFreqPcontrolIECId = _object_.getRdfid();
         }
     }
 
     private static Object getWindPlantFreqPcontrolIEC(BaseClass _this_) {
-        return ((WindPlantIEC) _this_).getWindPlantFreqPcontrolIEC();
+        var obj = ((WindPlantIEC) _this_).getWindPlantFreqPcontrolIEC();
+        var id = ((WindPlantIEC) _this_).WindPlantFreqPcontrolIECId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindPlantFreqPcontrolIEC(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindPlantFreqPcontrolIEC) {
+        if (_value_ instanceof String) {
+            ((WindPlantIEC) _this_).WindPlantFreqPcontrolIECId = (String) _value_;
+        } else if (_value_ instanceof WindPlantFreqPcontrolIEC) {
             ((WindPlantIEC) _this_).setWindPlantFreqPcontrolIEC((WindPlantFreqPcontrolIEC) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindPlantFreqPcontrolIEC");
@@ -69,6 +79,8 @@ public class WindPlantIEC extends WindPlantDynamics {
      */
     private WindPlantReactiveControlIEC WindPlantReactiveControlIEC; // OneToOne
 
+    private String WindPlantReactiveControlIECId;
+
     public WindPlantReactiveControlIEC getWindPlantReactiveControlIEC() {
         return WindPlantReactiveControlIEC;
     }
@@ -76,16 +88,24 @@ public class WindPlantIEC extends WindPlantDynamics {
     public void setWindPlantReactiveControlIEC(WindPlantReactiveControlIEC _object_) {
         if (WindPlantReactiveControlIEC != _object_) {
             WindPlantReactiveControlIEC = _object_;
-            WindPlantReactiveControlIEC.setWindPlantIEC(this);
+            _object_.setWindPlantIEC(this);
+            WindPlantReactiveControlIECId = _object_.getRdfid();
         }
     }
 
     private static Object getWindPlantReactiveControlIEC(BaseClass _this_) {
-        return ((WindPlantIEC) _this_).getWindPlantReactiveControlIEC();
+        var obj = ((WindPlantIEC) _this_).getWindPlantReactiveControlIEC();
+        var id = ((WindPlantIEC) _this_).WindPlantReactiveControlIECId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindPlantReactiveControlIEC(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindPlantReactiveControlIEC) {
+        if (_value_ instanceof String) {
+            ((WindPlantIEC) _this_).WindPlantReactiveControlIECId = (String) _value_;
+        } else if (_value_ instanceof WindPlantReactiveControlIEC) {
             ((WindPlantIEC) _this_).setWindPlantReactiveControlIEC((WindPlantReactiveControlIEC) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindPlantReactiveControlIEC");

@@ -41,6 +41,8 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
      */
     private CAESPlant CAESPlant; // OneToOne
 
+    private String CAESPlantId;
+
     public CAESPlant getCAESPlant() {
         return CAESPlant;
     }
@@ -48,16 +50,24 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
     public void setCAESPlant(CAESPlant _object_) {
         if (CAESPlant != _object_) {
             CAESPlant = _object_;
-            CAESPlant.setThermalGeneratingUnit(this);
+            _object_.setThermalGeneratingUnit(this);
+            CAESPlantId = _object_.getRdfid();
         }
     }
 
     private static Object getCAESPlant(BaseClass _this_) {
-        return ((ThermalGeneratingUnit) _this_).getCAESPlant();
+        var obj = ((ThermalGeneratingUnit) _this_).getCAESPlant();
+        var id = ((ThermalGeneratingUnit) _this_).CAESPlantId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setCAESPlant(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof CAESPlant) {
+        if (_value_ instanceof String) {
+            ((ThermalGeneratingUnit) _this_).CAESPlantId = (String) _value_;
+        } else if (_value_ instanceof CAESPlant) {
             ((ThermalGeneratingUnit) _this_).setCAESPlant((CAESPlant) _value_);
         } else {
             throw new IllegalArgumentException("Object is not CAESPlant");
@@ -69,6 +79,8 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
      */
     private CogenerationPlant CogenerationPlant; // ManyToOne
 
+    private String CogenerationPlantId;
+
     public CogenerationPlant getCogenerationPlant() {
         return CogenerationPlant;
     }
@@ -76,16 +88,24 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
     public void setCogenerationPlant(CogenerationPlant _object_) {
         if (CogenerationPlant != _object_) {
             CogenerationPlant = _object_;
-            CogenerationPlant.setThermalGeneratingUnits(this);
+            _object_.setThermalGeneratingUnits(this);
+            CogenerationPlantId = _object_.getRdfid();
         }
     }
 
     private static Object getCogenerationPlant(BaseClass _this_) {
-        return ((ThermalGeneratingUnit) _this_).getCogenerationPlant();
+        var obj = ((ThermalGeneratingUnit) _this_).getCogenerationPlant();
+        var id = ((ThermalGeneratingUnit) _this_).CogenerationPlantId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setCogenerationPlant(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof CogenerationPlant) {
+        if (_value_ instanceof String) {
+            ((ThermalGeneratingUnit) _this_).CogenerationPlantId = (String) _value_;
+        } else if (_value_ instanceof CogenerationPlant) {
             ((ThermalGeneratingUnit) _this_).setCogenerationPlant((CogenerationPlant) _value_);
         } else {
             throw new IllegalArgumentException("Object is not CogenerationPlant");
@@ -97,6 +117,8 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
      */
     private CombinedCyclePlant CombinedCyclePlant; // ManyToOne
 
+    private String CombinedCyclePlantId;
+
     public CombinedCyclePlant getCombinedCyclePlant() {
         return CombinedCyclePlant;
     }
@@ -104,16 +126,24 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
     public void setCombinedCyclePlant(CombinedCyclePlant _object_) {
         if (CombinedCyclePlant != _object_) {
             CombinedCyclePlant = _object_;
-            CombinedCyclePlant.setThermalGeneratingUnits(this);
+            _object_.setThermalGeneratingUnits(this);
+            CombinedCyclePlantId = _object_.getRdfid();
         }
     }
 
     private static Object getCombinedCyclePlant(BaseClass _this_) {
-        return ((ThermalGeneratingUnit) _this_).getCombinedCyclePlant();
+        var obj = ((ThermalGeneratingUnit) _this_).getCombinedCyclePlant();
+        var id = ((ThermalGeneratingUnit) _this_).CombinedCyclePlantId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setCombinedCyclePlant(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof CombinedCyclePlant) {
+        if (_value_ instanceof String) {
+            ((ThermalGeneratingUnit) _this_).CombinedCyclePlantId = (String) _value_;
+        } else if (_value_ instanceof CombinedCyclePlant) {
             ((ThermalGeneratingUnit) _this_).setCombinedCyclePlant((CombinedCyclePlant) _value_);
         } else {
             throw new IllegalArgumentException("Object is not CombinedCyclePlant");
@@ -127,6 +157,8 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
      */
     private Set<FossilFuel> FossilFuels = new HashSet<>(); // OneToMany
 
+    private Set<String> FossilFuelsIdSet = new HashSet<>();
+
     public Set<FossilFuel> getFossilFuels() {
         return FossilFuels;
     }
@@ -135,15 +167,23 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
         if (!FossilFuels.contains(_object_)) {
             FossilFuels.add(_object_);
             _object_.setThermalGeneratingUnit(this);
+            FossilFuelsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getFossilFuels(BaseClass _this_) {
-        return ((ThermalGeneratingUnit) _this_).getFossilFuels();
+        var objs = ((ThermalGeneratingUnit) _this_).getFossilFuels();
+        var ids = ((ThermalGeneratingUnit) _this_).FossilFuelsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setFossilFuels(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof FossilFuel) {
+        if (_value_ instanceof String) {
+            ((ThermalGeneratingUnit) _this_).FossilFuelsIdSet.add((String) _value_);
+        } else if (_value_ instanceof FossilFuel) {
             ((ThermalGeneratingUnit) _this_).setFossilFuels((FossilFuel) _value_);
         } else {
             throw new IllegalArgumentException("Object is not FossilFuel");

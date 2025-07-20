@@ -41,6 +41,8 @@ public class BoundaryPoint extends PowerSystemResource {
      */
     private ConnectivityNode ConnectivityNode; // OneToOne
 
+    private String ConnectivityNodeId;
+
     public ConnectivityNode getConnectivityNode() {
         return ConnectivityNode;
     }
@@ -48,16 +50,24 @@ public class BoundaryPoint extends PowerSystemResource {
     public void setConnectivityNode(ConnectivityNode _object_) {
         if (ConnectivityNode != _object_) {
             ConnectivityNode = _object_;
-            ConnectivityNode.setBoundaryPoint(this);
+            _object_.setBoundaryPoint(this);
+            ConnectivityNodeId = _object_.getRdfid();
         }
     }
 
     private static Object getConnectivityNode(BaseClass _this_) {
-        return ((BoundaryPoint) _this_).getConnectivityNode();
+        var obj = ((BoundaryPoint) _this_).getConnectivityNode();
+        var id = ((BoundaryPoint) _this_).ConnectivityNodeId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setConnectivityNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ConnectivityNode) {
+        if (_value_ instanceof String) {
+            ((BoundaryPoint) _this_).ConnectivityNodeId = (String) _value_;
+        } else if (_value_ instanceof ConnectivityNode) {
             ((BoundaryPoint) _this_).setConnectivityNode((ConnectivityNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ConnectivityNode");

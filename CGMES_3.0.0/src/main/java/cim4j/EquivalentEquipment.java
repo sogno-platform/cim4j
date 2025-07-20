@@ -41,6 +41,8 @@ public class EquivalentEquipment extends ConductingEquipment {
      */
     private EquivalentNetwork EquivalentNetwork; // ManyToOne
 
+    private String EquivalentNetworkId;
+
     public EquivalentNetwork getEquivalentNetwork() {
         return EquivalentNetwork;
     }
@@ -48,16 +50,24 @@ public class EquivalentEquipment extends ConductingEquipment {
     public void setEquivalentNetwork(EquivalentNetwork _object_) {
         if (EquivalentNetwork != _object_) {
             EquivalentNetwork = _object_;
-            EquivalentNetwork.setEquivalentEquipments(this);
+            _object_.setEquivalentEquipments(this);
+            EquivalentNetworkId = _object_.getRdfid();
         }
     }
 
     private static Object getEquivalentNetwork(BaseClass _this_) {
-        return ((EquivalentEquipment) _this_).getEquivalentNetwork();
+        var obj = ((EquivalentEquipment) _this_).getEquivalentNetwork();
+        var id = ((EquivalentEquipment) _this_).EquivalentNetworkId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setEquivalentNetwork(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof EquivalentNetwork) {
+        if (_value_ instanceof String) {
+            ((EquivalentEquipment) _this_).EquivalentNetworkId = (String) _value_;
+        } else if (_value_ instanceof EquivalentNetwork) {
             ((EquivalentEquipment) _this_).setEquivalentNetwork((EquivalentNetwork) _value_);
         } else {
             throw new IllegalArgumentException("Object is not EquivalentNetwork");

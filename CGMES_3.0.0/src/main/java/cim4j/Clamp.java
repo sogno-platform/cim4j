@@ -41,6 +41,8 @@ public class Clamp extends ConductingEquipment {
      */
     private ACLineSegment ACLineSegment; // ManyToOne
 
+    private String ACLineSegmentId;
+
     public ACLineSegment getACLineSegment() {
         return ACLineSegment;
     }
@@ -48,16 +50,24 @@ public class Clamp extends ConductingEquipment {
     public void setACLineSegment(ACLineSegment _object_) {
         if (ACLineSegment != _object_) {
             ACLineSegment = _object_;
-            ACLineSegment.setClamp(this);
+            _object_.setClamp(this);
+            ACLineSegmentId = _object_.getRdfid();
         }
     }
 
     private static Object getACLineSegment(BaseClass _this_) {
-        return ((Clamp) _this_).getACLineSegment();
+        var obj = ((Clamp) _this_).getACLineSegment();
+        var id = ((Clamp) _this_).ACLineSegmentId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setACLineSegment(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ACLineSegment) {
+        if (_value_ instanceof String) {
+            ((Clamp) _this_).ACLineSegmentId = (String) _value_;
+        } else if (_value_ instanceof ACLineSegment) {
             ((Clamp) _this_).setACLineSegment((ACLineSegment) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ACLineSegment");

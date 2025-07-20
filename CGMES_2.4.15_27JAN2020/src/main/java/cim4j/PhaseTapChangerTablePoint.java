@@ -41,6 +41,8 @@ public class PhaseTapChangerTablePoint extends TapChangerTablePoint {
      */
     private PhaseTapChangerTable PhaseTapChangerTable; // ManyToOne
 
+    private String PhaseTapChangerTableId;
+
     public PhaseTapChangerTable getPhaseTapChangerTable() {
         return PhaseTapChangerTable;
     }
@@ -48,16 +50,24 @@ public class PhaseTapChangerTablePoint extends TapChangerTablePoint {
     public void setPhaseTapChangerTable(PhaseTapChangerTable _object_) {
         if (PhaseTapChangerTable != _object_) {
             PhaseTapChangerTable = _object_;
-            PhaseTapChangerTable.setPhaseTapChangerTablePoint(this);
+            _object_.setPhaseTapChangerTablePoint(this);
+            PhaseTapChangerTableId = _object_.getRdfid();
         }
     }
 
     private static Object getPhaseTapChangerTable(BaseClass _this_) {
-        return ((PhaseTapChangerTablePoint) _this_).getPhaseTapChangerTable();
+        var obj = ((PhaseTapChangerTablePoint) _this_).getPhaseTapChangerTable();
+        var id = ((PhaseTapChangerTablePoint) _this_).PhaseTapChangerTableId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPhaseTapChangerTable(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PhaseTapChangerTable) {
+        if (_value_ instanceof String) {
+            ((PhaseTapChangerTablePoint) _this_).PhaseTapChangerTableId = (String) _value_;
+        } else if (_value_ instanceof PhaseTapChangerTable) {
             ((PhaseTapChangerTablePoint) _this_).setPhaseTapChangerTable((PhaseTapChangerTable) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PhaseTapChangerTable");

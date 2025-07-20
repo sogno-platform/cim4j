@@ -43,6 +43,8 @@ public class CoordinateSystem extends IdentifiedObject {
      */
     private Set<Location> Locations = new HashSet<>(); // OneToMany
 
+    private Set<String> LocationsIdSet = new HashSet<>();
+
     public Set<Location> getLocations() {
         return Locations;
     }
@@ -51,15 +53,23 @@ public class CoordinateSystem extends IdentifiedObject {
         if (!Locations.contains(_object_)) {
             Locations.add(_object_);
             _object_.setCoordinateSystem(this);
+            LocationsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getLocations(BaseClass _this_) {
-        return ((CoordinateSystem) _this_).getLocations();
+        var objs = ((CoordinateSystem) _this_).getLocations();
+        var ids = ((CoordinateSystem) _this_).LocationsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setLocations(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Location) {
+        if (_value_ instanceof String) {
+            ((CoordinateSystem) _this_).LocationsIdSet.add((String) _value_);
+        } else if (_value_ instanceof Location) {
             ((CoordinateSystem) _this_).setLocations((Location) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Location");

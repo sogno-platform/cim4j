@@ -41,6 +41,8 @@ public class FossilFuel extends IdentifiedObject {
      */
     private ThermalGeneratingUnit ThermalGeneratingUnit; // ManyToOne
 
+    private String ThermalGeneratingUnitId;
+
     public ThermalGeneratingUnit getThermalGeneratingUnit() {
         return ThermalGeneratingUnit;
     }
@@ -48,16 +50,24 @@ public class FossilFuel extends IdentifiedObject {
     public void setThermalGeneratingUnit(ThermalGeneratingUnit _object_) {
         if (ThermalGeneratingUnit != _object_) {
             ThermalGeneratingUnit = _object_;
-            ThermalGeneratingUnit.setFossilFuels(this);
+            _object_.setFossilFuels(this);
+            ThermalGeneratingUnitId = _object_.getRdfid();
         }
     }
 
     private static Object getThermalGeneratingUnit(BaseClass _this_) {
-        return ((FossilFuel) _this_).getThermalGeneratingUnit();
+        var obj = ((FossilFuel) _this_).getThermalGeneratingUnit();
+        var id = ((FossilFuel) _this_).ThermalGeneratingUnitId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setThermalGeneratingUnit(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ThermalGeneratingUnit) {
+        if (_value_ instanceof String) {
+            ((FossilFuel) _this_).ThermalGeneratingUnitId = (String) _value_;
+        } else if (_value_ instanceof ThermalGeneratingUnit) {
             ((FossilFuel) _this_).setThermalGeneratingUnit((ThermalGeneratingUnit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ThermalGeneratingUnit");

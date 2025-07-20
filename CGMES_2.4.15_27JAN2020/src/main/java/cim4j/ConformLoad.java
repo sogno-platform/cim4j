@@ -41,6 +41,8 @@ public class ConformLoad extends EnergyConsumer {
      */
     private ConformLoadGroup LoadGroup; // ManyToOne
 
+    private String LoadGroupId;
+
     public ConformLoadGroup getLoadGroup() {
         return LoadGroup;
     }
@@ -48,16 +50,24 @@ public class ConformLoad extends EnergyConsumer {
     public void setLoadGroup(ConformLoadGroup _object_) {
         if (LoadGroup != _object_) {
             LoadGroup = _object_;
-            LoadGroup.setEnergyConsumers(this);
+            _object_.setEnergyConsumers(this);
+            LoadGroupId = _object_.getRdfid();
         }
     }
 
     private static Object getLoadGroup(BaseClass _this_) {
-        return ((ConformLoad) _this_).getLoadGroup();
+        var obj = ((ConformLoad) _this_).getLoadGroup();
+        var id = ((ConformLoad) _this_).LoadGroupId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setLoadGroup(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ConformLoadGroup) {
+        if (_value_ instanceof String) {
+            ((ConformLoad) _this_).LoadGroupId = (String) _value_;
+        } else if (_value_ instanceof ConformLoadGroup) {
             ((ConformLoad) _this_).setLoadGroup((ConformLoadGroup) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ConformLoadGroup");

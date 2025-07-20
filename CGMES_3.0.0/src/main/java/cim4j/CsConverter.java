@@ -43,6 +43,8 @@ public class CsConverter extends ACDCConverter {
      */
     private CSCDynamics CSCDynamics; // OneToOne
 
+    private String CSCDynamicsId;
+
     public CSCDynamics getCSCDynamics() {
         return CSCDynamics;
     }
@@ -50,16 +52,24 @@ public class CsConverter extends ACDCConverter {
     public void setCSCDynamics(CSCDynamics _object_) {
         if (CSCDynamics != _object_) {
             CSCDynamics = _object_;
-            CSCDynamics.setCSConverter(this);
+            _object_.setCSConverter(this);
+            CSCDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getCSCDynamics(BaseClass _this_) {
-        return ((CsConverter) _this_).getCSCDynamics();
+        var obj = ((CsConverter) _this_).getCSCDynamics();
+        var id = ((CsConverter) _this_).CSCDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setCSCDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof CSCDynamics) {
+        if (_value_ instanceof String) {
+            ((CsConverter) _this_).CSCDynamicsId = (String) _value_;
+        } else if (_value_ instanceof CSCDynamics) {
             ((CsConverter) _this_).setCSCDynamics((CSCDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not CSCDynamics");

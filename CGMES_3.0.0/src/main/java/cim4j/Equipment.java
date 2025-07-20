@@ -41,6 +41,8 @@ public class Equipment extends PowerSystemResource {
      */
     private EquipmentContainer EquipmentContainer; // ManyToOne
 
+    private String EquipmentContainerId;
+
     public EquipmentContainer getEquipmentContainer() {
         return EquipmentContainer;
     }
@@ -48,16 +50,24 @@ public class Equipment extends PowerSystemResource {
     public void setEquipmentContainer(EquipmentContainer _object_) {
         if (EquipmentContainer != _object_) {
             EquipmentContainer = _object_;
-            EquipmentContainer.setEquipments(this);
+            _object_.setEquipments(this);
+            EquipmentContainerId = _object_.getRdfid();
         }
     }
 
     private static Object getEquipmentContainer(BaseClass _this_) {
-        return ((Equipment) _this_).getEquipmentContainer();
+        var obj = ((Equipment) _this_).getEquipmentContainer();
+        var id = ((Equipment) _this_).EquipmentContainerId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setEquipmentContainer(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof EquipmentContainer) {
+        if (_value_ instanceof String) {
+            ((Equipment) _this_).EquipmentContainerId = (String) _value_;
+        } else if (_value_ instanceof EquipmentContainer) {
             ((Equipment) _this_).setEquipmentContainer((EquipmentContainer) _value_);
         } else {
             throw new IllegalArgumentException("Object is not EquipmentContainer");
@@ -71,6 +81,8 @@ public class Equipment extends PowerSystemResource {
      */
     private Set<OperationalLimitSet> OperationalLimitSet = new HashSet<>(); // OneToMany
 
+    private Set<String> OperationalLimitSetIdSet = new HashSet<>();
+
     public Set<OperationalLimitSet> getOperationalLimitSet() {
         return OperationalLimitSet;
     }
@@ -79,15 +91,23 @@ public class Equipment extends PowerSystemResource {
         if (!OperationalLimitSet.contains(_object_)) {
             OperationalLimitSet.add(_object_);
             _object_.setEquipment(this);
+            OperationalLimitSetIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getOperationalLimitSet(BaseClass _this_) {
-        return ((Equipment) _this_).getOperationalLimitSet();
+        var objs = ((Equipment) _this_).getOperationalLimitSet();
+        var ids = ((Equipment) _this_).OperationalLimitSetIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setOperationalLimitSet(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof OperationalLimitSet) {
+        if (_value_ instanceof String) {
+            ((Equipment) _this_).OperationalLimitSetIdSet.add((String) _value_);
+        } else if (_value_ instanceof OperationalLimitSet) {
             ((Equipment) _this_).setOperationalLimitSet((OperationalLimitSet) _value_);
         } else {
             throw new IllegalArgumentException("Object is not OperationalLimitSet");

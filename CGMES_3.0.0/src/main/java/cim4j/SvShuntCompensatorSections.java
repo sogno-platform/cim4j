@@ -41,6 +41,8 @@ public class SvShuntCompensatorSections extends BaseClass {
      */
     private ShuntCompensator ShuntCompensator; // OneToOne
 
+    private String ShuntCompensatorId;
+
     public ShuntCompensator getShuntCompensator() {
         return ShuntCompensator;
     }
@@ -48,16 +50,24 @@ public class SvShuntCompensatorSections extends BaseClass {
     public void setShuntCompensator(ShuntCompensator _object_) {
         if (ShuntCompensator != _object_) {
             ShuntCompensator = _object_;
-            ShuntCompensator.setSvShuntCompensatorSections(this);
+            _object_.setSvShuntCompensatorSections(this);
+            ShuntCompensatorId = _object_.getRdfid();
         }
     }
 
     private static Object getShuntCompensator(BaseClass _this_) {
-        return ((SvShuntCompensatorSections) _this_).getShuntCompensator();
+        var obj = ((SvShuntCompensatorSections) _this_).getShuntCompensator();
+        var id = ((SvShuntCompensatorSections) _this_).ShuntCompensatorId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setShuntCompensator(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ShuntCompensator) {
+        if (_value_ instanceof String) {
+            ((SvShuntCompensatorSections) _this_).ShuntCompensatorId = (String) _value_;
+        } else if (_value_ instanceof ShuntCompensator) {
             ((SvShuntCompensatorSections) _this_).setShuntCompensator((ShuntCompensator) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ShuntCompensator");

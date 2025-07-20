@@ -43,6 +43,8 @@ public class BaseVoltage extends IdentifiedObject {
      */
     private Set<ConductingEquipment> ConductingEquipment = new HashSet<>(); // OneToMany
 
+    private Set<String> ConductingEquipmentIdSet = new HashSet<>();
+
     public Set<ConductingEquipment> getConductingEquipment() {
         return ConductingEquipment;
     }
@@ -51,15 +53,23 @@ public class BaseVoltage extends IdentifiedObject {
         if (!ConductingEquipment.contains(_object_)) {
             ConductingEquipment.add(_object_);
             _object_.setBaseVoltage(this);
+            ConductingEquipmentIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getConductingEquipment(BaseClass _this_) {
-        return ((BaseVoltage) _this_).getConductingEquipment();
+        var objs = ((BaseVoltage) _this_).getConductingEquipment();
+        var ids = ((BaseVoltage) _this_).ConductingEquipmentIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setConductingEquipment(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ConductingEquipment) {
+        if (_value_ instanceof String) {
+            ((BaseVoltage) _this_).ConductingEquipmentIdSet.add((String) _value_);
+        } else if (_value_ instanceof ConductingEquipment) {
             ((BaseVoltage) _this_).setConductingEquipment((ConductingEquipment) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ConductingEquipment");
@@ -73,6 +83,8 @@ public class BaseVoltage extends IdentifiedObject {
      */
     private Set<TopologicalNode> TopologicalNode = new HashSet<>(); // OneToMany
 
+    private Set<String> TopologicalNodeIdSet = new HashSet<>();
+
     public Set<TopologicalNode> getTopologicalNode() {
         return TopologicalNode;
     }
@@ -81,15 +93,23 @@ public class BaseVoltage extends IdentifiedObject {
         if (!TopologicalNode.contains(_object_)) {
             TopologicalNode.add(_object_);
             _object_.setBaseVoltage(this);
+            TopologicalNodeIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTopologicalNode(BaseClass _this_) {
-        return ((BaseVoltage) _this_).getTopologicalNode();
+        var objs = ((BaseVoltage) _this_).getTopologicalNode();
+        var ids = ((BaseVoltage) _this_).TopologicalNodeIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTopologicalNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TopologicalNode) {
+        if (_value_ instanceof String) {
+            ((BaseVoltage) _this_).TopologicalNodeIdSet.add((String) _value_);
+        } else if (_value_ instanceof TopologicalNode) {
             ((BaseVoltage) _this_).setTopologicalNode((TopologicalNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TopologicalNode");
@@ -103,6 +123,8 @@ public class BaseVoltage extends IdentifiedObject {
      */
     private Set<TransformerEnd> TransformerEnds = new HashSet<>(); // OneToMany
 
+    private Set<String> TransformerEndsIdSet = new HashSet<>();
+
     public Set<TransformerEnd> getTransformerEnds() {
         return TransformerEnds;
     }
@@ -111,15 +133,23 @@ public class BaseVoltage extends IdentifiedObject {
         if (!TransformerEnds.contains(_object_)) {
             TransformerEnds.add(_object_);
             _object_.setBaseVoltage(this);
+            TransformerEndsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTransformerEnds(BaseClass _this_) {
-        return ((BaseVoltage) _this_).getTransformerEnds();
+        var objs = ((BaseVoltage) _this_).getTransformerEnds();
+        var ids = ((BaseVoltage) _this_).TransformerEndsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTransformerEnds(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TransformerEnd) {
+        if (_value_ instanceof String) {
+            ((BaseVoltage) _this_).TransformerEndsIdSet.add((String) _value_);
+        } else if (_value_ instanceof TransformerEnd) {
             ((BaseVoltage) _this_).setTransformerEnds((TransformerEnd) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TransformerEnd");
@@ -133,6 +163,8 @@ public class BaseVoltage extends IdentifiedObject {
      */
     private Set<VoltageLevel> VoltageLevel = new HashSet<>(); // OneToMany
 
+    private Set<String> VoltageLevelIdSet = new HashSet<>();
+
     public Set<VoltageLevel> getVoltageLevel() {
         return VoltageLevel;
     }
@@ -141,15 +173,23 @@ public class BaseVoltage extends IdentifiedObject {
         if (!VoltageLevel.contains(_object_)) {
             VoltageLevel.add(_object_);
             _object_.setBaseVoltage(this);
+            VoltageLevelIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getVoltageLevel(BaseClass _this_) {
-        return ((BaseVoltage) _this_).getVoltageLevel();
+        var objs = ((BaseVoltage) _this_).getVoltageLevel();
+        var ids = ((BaseVoltage) _this_).VoltageLevelIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setVoltageLevel(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VoltageLevel) {
+        if (_value_ instanceof String) {
+            ((BaseVoltage) _this_).VoltageLevelIdSet.add((String) _value_);
+        } else if (_value_ instanceof VoltageLevel) {
             ((BaseVoltage) _this_).setVoltageLevel((VoltageLevel) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VoltageLevel");

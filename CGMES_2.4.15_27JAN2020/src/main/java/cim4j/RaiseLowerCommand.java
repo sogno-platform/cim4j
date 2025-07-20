@@ -41,6 +41,8 @@ public class RaiseLowerCommand extends AnalogControl {
      */
     private ValueAliasSet ValueAliasSet; // ManyToOne
 
+    private String ValueAliasSetId;
+
     public ValueAliasSet getValueAliasSet() {
         return ValueAliasSet;
     }
@@ -48,16 +50,24 @@ public class RaiseLowerCommand extends AnalogControl {
     public void setValueAliasSet(ValueAliasSet _object_) {
         if (ValueAliasSet != _object_) {
             ValueAliasSet = _object_;
-            ValueAliasSet.setRaiseLowerCommands(this);
+            _object_.setRaiseLowerCommands(this);
+            ValueAliasSetId = _object_.getRdfid();
         }
     }
 
     private static Object getValueAliasSet(BaseClass _this_) {
-        return ((RaiseLowerCommand) _this_).getValueAliasSet();
+        var obj = ((RaiseLowerCommand) _this_).getValueAliasSet();
+        var id = ((RaiseLowerCommand) _this_).ValueAliasSetId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setValueAliasSet(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ValueAliasSet) {
+        if (_value_ instanceof String) {
+            ((RaiseLowerCommand) _this_).ValueAliasSetId = (String) _value_;
+        } else if (_value_ instanceof ValueAliasSet) {
             ((RaiseLowerCommand) _this_).setValueAliasSet((ValueAliasSet) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ValueAliasSet");

@@ -43,6 +43,8 @@ public class LoadArea extends EnergyArea {
      */
     private Set<SubLoadArea> SubLoadAreas = new HashSet<>(); // OneToMany
 
+    private Set<String> SubLoadAreasIdSet = new HashSet<>();
+
     public Set<SubLoadArea> getSubLoadAreas() {
         return SubLoadAreas;
     }
@@ -51,15 +53,23 @@ public class LoadArea extends EnergyArea {
         if (!SubLoadAreas.contains(_object_)) {
             SubLoadAreas.add(_object_);
             _object_.setLoadArea(this);
+            SubLoadAreasIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getSubLoadAreas(BaseClass _this_) {
-        return ((LoadArea) _this_).getSubLoadAreas();
+        var objs = ((LoadArea) _this_).getSubLoadAreas();
+        var ids = ((LoadArea) _this_).SubLoadAreasIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setSubLoadAreas(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SubLoadArea) {
+        if (_value_ instanceof String) {
+            ((LoadArea) _this_).SubLoadAreasIdSet.add((String) _value_);
+        } else if (_value_ instanceof SubLoadArea) {
             ((LoadArea) _this_).setSubLoadAreas((SubLoadArea) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SubLoadArea");

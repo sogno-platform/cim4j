@@ -43,6 +43,8 @@ public class OperationalLimitType extends IdentifiedObject {
      */
     private Set<OperationalLimit> OperationalLimit = new HashSet<>(); // OneToMany
 
+    private Set<String> OperationalLimitIdSet = new HashSet<>();
+
     public Set<OperationalLimit> getOperationalLimit() {
         return OperationalLimit;
     }
@@ -51,15 +53,23 @@ public class OperationalLimitType extends IdentifiedObject {
         if (!OperationalLimit.contains(_object_)) {
             OperationalLimit.add(_object_);
             _object_.setOperationalLimitType(this);
+            OperationalLimitIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getOperationalLimit(BaseClass _this_) {
-        return ((OperationalLimitType) _this_).getOperationalLimit();
+        var objs = ((OperationalLimitType) _this_).getOperationalLimit();
+        var ids = ((OperationalLimitType) _this_).OperationalLimitIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setOperationalLimit(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof OperationalLimit) {
+        if (_value_ instanceof String) {
+            ((OperationalLimitType) _this_).OperationalLimitIdSet.add((String) _value_);
+        } else if (_value_ instanceof OperationalLimit) {
             ((OperationalLimitType) _this_).setOperationalLimit((OperationalLimit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not OperationalLimit");

@@ -43,6 +43,8 @@ public class SolarPowerPlant extends PowerSystemResource {
      */
     private Set<SolarGeneratingUnit> SolarGeneratingUnits = new HashSet<>(); // OneToMany
 
+    private Set<String> SolarGeneratingUnitsIdSet = new HashSet<>();
+
     public Set<SolarGeneratingUnit> getSolarGeneratingUnits() {
         return SolarGeneratingUnits;
     }
@@ -51,15 +53,23 @@ public class SolarPowerPlant extends PowerSystemResource {
         if (!SolarGeneratingUnits.contains(_object_)) {
             SolarGeneratingUnits.add(_object_);
             _object_.setSolarPowerPlant(this);
+            SolarGeneratingUnitsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getSolarGeneratingUnits(BaseClass _this_) {
-        return ((SolarPowerPlant) _this_).getSolarGeneratingUnits();
+        var objs = ((SolarPowerPlant) _this_).getSolarGeneratingUnits();
+        var ids = ((SolarPowerPlant) _this_).SolarGeneratingUnitsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setSolarGeneratingUnits(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SolarGeneratingUnit) {
+        if (_value_ instanceof String) {
+            ((SolarPowerPlant) _this_).SolarGeneratingUnitsIdSet.add((String) _value_);
+        } else if (_value_ instanceof SolarGeneratingUnit) {
             ((SolarPowerPlant) _this_).setSolarGeneratingUnits((SolarGeneratingUnit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SolarGeneratingUnit");

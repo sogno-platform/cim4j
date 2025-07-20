@@ -41,6 +41,8 @@ public class EnergySource extends EnergyConnection {
      */
     private EnergySchedulingType EnergySchedulingType; // ManyToOne
 
+    private String EnergySchedulingTypeId;
+
     public EnergySchedulingType getEnergySchedulingType() {
         return EnergySchedulingType;
     }
@@ -48,16 +50,24 @@ public class EnergySource extends EnergyConnection {
     public void setEnergySchedulingType(EnergySchedulingType _object_) {
         if (EnergySchedulingType != _object_) {
             EnergySchedulingType = _object_;
-            EnergySchedulingType.setEnergySource(this);
+            _object_.setEnergySource(this);
+            EnergySchedulingTypeId = _object_.getRdfid();
         }
     }
 
     private static Object getEnergySchedulingType(BaseClass _this_) {
-        return ((EnergySource) _this_).getEnergySchedulingType();
+        var obj = ((EnergySource) _this_).getEnergySchedulingType();
+        var id = ((EnergySource) _this_).EnergySchedulingTypeId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setEnergySchedulingType(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof EnergySchedulingType) {
+        if (_value_ instanceof String) {
+            ((EnergySource) _this_).EnergySchedulingTypeId = (String) _value_;
+        } else if (_value_ instanceof EnergySchedulingType) {
             ((EnergySource) _this_).setEnergySchedulingType((EnergySchedulingType) _value_);
         } else {
             throw new IllegalArgumentException("Object is not EnergySchedulingType");

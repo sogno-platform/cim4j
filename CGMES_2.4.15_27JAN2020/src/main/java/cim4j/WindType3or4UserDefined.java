@@ -43,6 +43,8 @@ public class WindType3or4UserDefined extends WindTurbineType3or4Dynamics {
      */
     private Set<ProprietaryParameterDynamics> ProprietaryParameterDynamics = new HashSet<>(); // OneToMany
 
+    private Set<String> ProprietaryParameterDynamicsIdSet = new HashSet<>();
+
     public Set<ProprietaryParameterDynamics> getProprietaryParameterDynamics() {
         return ProprietaryParameterDynamics;
     }
@@ -51,15 +53,23 @@ public class WindType3or4UserDefined extends WindTurbineType3or4Dynamics {
         if (!ProprietaryParameterDynamics.contains(_object_)) {
             ProprietaryParameterDynamics.add(_object_);
             _object_.setWindType3or4UserDefined(this);
+            ProprietaryParameterDynamicsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getProprietaryParameterDynamics(BaseClass _this_) {
-        return ((WindType3or4UserDefined) _this_).getProprietaryParameterDynamics();
+        var objs = ((WindType3or4UserDefined) _this_).getProprietaryParameterDynamics();
+        var ids = ((WindType3or4UserDefined) _this_).ProprietaryParameterDynamicsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setProprietaryParameterDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ProprietaryParameterDynamics) {
+        if (_value_ instanceof String) {
+            ((WindType3or4UserDefined) _this_).ProprietaryParameterDynamicsIdSet.add((String) _value_);
+        } else if (_value_ instanceof ProprietaryParameterDynamics) {
             ((WindType3or4UserDefined) _this_).setProprietaryParameterDynamics((ProprietaryParameterDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ProprietaryParameterDynamics");

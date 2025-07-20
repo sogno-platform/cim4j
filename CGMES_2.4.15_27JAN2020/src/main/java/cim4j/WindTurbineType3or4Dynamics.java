@@ -41,6 +41,8 @@ public class WindTurbineType3or4Dynamics extends DynamicsFunctionBlock {
      */
     private EnergySource EnergySource; // OneToOne
 
+    private String EnergySourceId;
+
     public EnergySource getEnergySource() {
         return EnergySource;
     }
@@ -48,16 +50,24 @@ public class WindTurbineType3or4Dynamics extends DynamicsFunctionBlock {
     public void setEnergySource(EnergySource _object_) {
         if (EnergySource != _object_) {
             EnergySource = _object_;
-            EnergySource.setWindTurbineType3or4Dynamics(this);
+            _object_.setWindTurbineType3or4Dynamics(this);
+            EnergySourceId = _object_.getRdfid();
         }
     }
 
     private static Object getEnergySource(BaseClass _this_) {
-        return ((WindTurbineType3or4Dynamics) _this_).getEnergySource();
+        var obj = ((WindTurbineType3or4Dynamics) _this_).getEnergySource();
+        var id = ((WindTurbineType3or4Dynamics) _this_).EnergySourceId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setEnergySource(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof EnergySource) {
+        if (_value_ instanceof String) {
+            ((WindTurbineType3or4Dynamics) _this_).EnergySourceId = (String) _value_;
+        } else if (_value_ instanceof EnergySource) {
             ((WindTurbineType3or4Dynamics) _this_).setEnergySource((EnergySource) _value_);
         } else {
             throw new IllegalArgumentException("Object is not EnergySource");
@@ -69,6 +79,8 @@ public class WindTurbineType3or4Dynamics extends DynamicsFunctionBlock {
      */
     private RemoteInputSignal RemoteInputSignal; // OneToOne
 
+    private String RemoteInputSignalId;
+
     public RemoteInputSignal getRemoteInputSignal() {
         return RemoteInputSignal;
     }
@@ -76,16 +88,24 @@ public class WindTurbineType3or4Dynamics extends DynamicsFunctionBlock {
     public void setRemoteInputSignal(RemoteInputSignal _object_) {
         if (RemoteInputSignal != _object_) {
             RemoteInputSignal = _object_;
-            RemoteInputSignal.setWindTurbineType3or4Dynamics(this);
+            _object_.setWindTurbineType3or4Dynamics(this);
+            RemoteInputSignalId = _object_.getRdfid();
         }
     }
 
     private static Object getRemoteInputSignal(BaseClass _this_) {
-        return ((WindTurbineType3or4Dynamics) _this_).getRemoteInputSignal();
+        var obj = ((WindTurbineType3or4Dynamics) _this_).getRemoteInputSignal();
+        var id = ((WindTurbineType3or4Dynamics) _this_).RemoteInputSignalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setRemoteInputSignal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RemoteInputSignal) {
+        if (_value_ instanceof String) {
+            ((WindTurbineType3or4Dynamics) _this_).RemoteInputSignalId = (String) _value_;
+        } else if (_value_ instanceof RemoteInputSignal) {
             ((WindTurbineType3or4Dynamics) _this_).setRemoteInputSignal((RemoteInputSignal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RemoteInputSignal");
@@ -97,6 +117,8 @@ public class WindTurbineType3or4Dynamics extends DynamicsFunctionBlock {
      */
     private WindPlantDynamics WindPlantDynamics; // ManyToOne
 
+    private String WindPlantDynamicsId;
+
     public WindPlantDynamics getWindPlantDynamics() {
         return WindPlantDynamics;
     }
@@ -104,16 +126,24 @@ public class WindTurbineType3or4Dynamics extends DynamicsFunctionBlock {
     public void setWindPlantDynamics(WindPlantDynamics _object_) {
         if (WindPlantDynamics != _object_) {
             WindPlantDynamics = _object_;
-            WindPlantDynamics.setWindTurbineType3or4Dynamics(this);
+            _object_.setWindTurbineType3or4Dynamics(this);
+            WindPlantDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getWindPlantDynamics(BaseClass _this_) {
-        return ((WindTurbineType3or4Dynamics) _this_).getWindPlantDynamics();
+        var obj = ((WindTurbineType3or4Dynamics) _this_).getWindPlantDynamics();
+        var id = ((WindTurbineType3or4Dynamics) _this_).WindPlantDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindPlantDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindPlantDynamics) {
+        if (_value_ instanceof String) {
+            ((WindTurbineType3or4Dynamics) _this_).WindPlantDynamicsId = (String) _value_;
+        } else if (_value_ instanceof WindPlantDynamics) {
             ((WindTurbineType3or4Dynamics) _this_).setWindPlantDynamics((WindPlantDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindPlantDynamics");

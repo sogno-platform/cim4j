@@ -41,6 +41,8 @@ public class ConductingEquipment extends Equipment {
      */
     private BaseVoltage BaseVoltage; // ManyToOne
 
+    private String BaseVoltageId;
+
     public BaseVoltage getBaseVoltage() {
         return BaseVoltage;
     }
@@ -48,16 +50,24 @@ public class ConductingEquipment extends Equipment {
     public void setBaseVoltage(BaseVoltage _object_) {
         if (BaseVoltage != _object_) {
             BaseVoltage = _object_;
-            BaseVoltage.setConductingEquipment(this);
+            _object_.setConductingEquipment(this);
+            BaseVoltageId = _object_.getRdfid();
         }
     }
 
     private static Object getBaseVoltage(BaseClass _this_) {
-        return ((ConductingEquipment) _this_).getBaseVoltage();
+        var obj = ((ConductingEquipment) _this_).getBaseVoltage();
+        var id = ((ConductingEquipment) _this_).BaseVoltageId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setBaseVoltage(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof BaseVoltage) {
+        if (_value_ instanceof String) {
+            ((ConductingEquipment) _this_).BaseVoltageId = (String) _value_;
+        } else if (_value_ instanceof BaseVoltage) {
             ((ConductingEquipment) _this_).setBaseVoltage((BaseVoltage) _value_);
         } else {
             throw new IllegalArgumentException("Object is not BaseVoltage");
@@ -71,6 +81,8 @@ public class ConductingEquipment extends Equipment {
      */
     private SvStatus SvStatus; // OneToOne
 
+    private String SvStatusId;
+
     public SvStatus getSvStatus() {
         return SvStatus;
     }
@@ -78,16 +90,24 @@ public class ConductingEquipment extends Equipment {
     public void setSvStatus(SvStatus _object_) {
         if (SvStatus != _object_) {
             SvStatus = _object_;
-            SvStatus.setConductingEquipment(this);
+            _object_.setConductingEquipment(this);
+            SvStatusId = _object_.getRdfid();
         }
     }
 
     private static Object getSvStatus(BaseClass _this_) {
-        return ((ConductingEquipment) _this_).getSvStatus();
+        var obj = ((ConductingEquipment) _this_).getSvStatus();
+        var id = ((ConductingEquipment) _this_).SvStatusId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSvStatus(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SvStatus) {
+        if (_value_ instanceof String) {
+            ((ConductingEquipment) _this_).SvStatusId = (String) _value_;
+        } else if (_value_ instanceof SvStatus) {
             ((ConductingEquipment) _this_).setSvStatus((SvStatus) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SvStatus");
@@ -101,6 +121,8 @@ public class ConductingEquipment extends Equipment {
      */
     private Set<Terminal> Terminals = new HashSet<>(); // OneToMany
 
+    private Set<String> TerminalsIdSet = new HashSet<>();
+
     public Set<Terminal> getTerminals() {
         return Terminals;
     }
@@ -109,15 +131,23 @@ public class ConductingEquipment extends Equipment {
         if (!Terminals.contains(_object_)) {
             Terminals.add(_object_);
             _object_.setConductingEquipment(this);
+            TerminalsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTerminals(BaseClass _this_) {
-        return ((ConductingEquipment) _this_).getTerminals();
+        var objs = ((ConductingEquipment) _this_).getTerminals();
+        var ids = ((ConductingEquipment) _this_).TerminalsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTerminals(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Terminal) {
+        if (_value_ instanceof String) {
+            ((ConductingEquipment) _this_).TerminalsIdSet.add((String) _value_);
+        } else if (_value_ instanceof Terminal) {
             ((ConductingEquipment) _this_).setTerminals((Terminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Terminal");

@@ -41,6 +41,8 @@ public class SvTapStep extends BaseClass {
      */
     private TapChanger TapChanger; // OneToOne
 
+    private String TapChangerId;
+
     public TapChanger getTapChanger() {
         return TapChanger;
     }
@@ -48,16 +50,24 @@ public class SvTapStep extends BaseClass {
     public void setTapChanger(TapChanger _object_) {
         if (TapChanger != _object_) {
             TapChanger = _object_;
-            TapChanger.setSvTapStep(this);
+            _object_.setSvTapStep(this);
+            TapChangerId = _object_.getRdfid();
         }
     }
 
     private static Object getTapChanger(BaseClass _this_) {
-        return ((SvTapStep) _this_).getTapChanger();
+        var obj = ((SvTapStep) _this_).getTapChanger();
+        var id = ((SvTapStep) _this_).TapChangerId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTapChanger(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TapChanger) {
+        if (_value_ instanceof String) {
+            ((SvTapStep) _this_).TapChangerId = (String) _value_;
+        } else if (_value_ instanceof TapChanger) {
             ((SvTapStep) _this_).setTapChanger((TapChanger) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TapChanger");

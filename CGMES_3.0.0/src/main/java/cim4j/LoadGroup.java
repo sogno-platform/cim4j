@@ -41,6 +41,8 @@ public class LoadGroup extends IdentifiedObject {
      */
     private SubLoadArea SubLoadArea; // ManyToOne
 
+    private String SubLoadAreaId;
+
     public SubLoadArea getSubLoadArea() {
         return SubLoadArea;
     }
@@ -48,16 +50,24 @@ public class LoadGroup extends IdentifiedObject {
     public void setSubLoadArea(SubLoadArea _object_) {
         if (SubLoadArea != _object_) {
             SubLoadArea = _object_;
-            SubLoadArea.setLoadGroups(this);
+            _object_.setLoadGroups(this);
+            SubLoadAreaId = _object_.getRdfid();
         }
     }
 
     private static Object getSubLoadArea(BaseClass _this_) {
-        return ((LoadGroup) _this_).getSubLoadArea();
+        var obj = ((LoadGroup) _this_).getSubLoadArea();
+        var id = ((LoadGroup) _this_).SubLoadAreaId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSubLoadArea(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SubLoadArea) {
+        if (_value_ instanceof String) {
+            ((LoadGroup) _this_).SubLoadAreaId = (String) _value_;
+        } else if (_value_ instanceof SubLoadArea) {
             ((LoadGroup) _this_).setSubLoadArea((SubLoadArea) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SubLoadArea");

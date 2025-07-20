@@ -43,6 +43,8 @@ public class ACLineSegment extends Conductor {
      */
     private Set<Clamp> Clamp = new HashSet<>(); // OneToMany
 
+    private Set<String> ClampIdSet = new HashSet<>();
+
     public Set<Clamp> getClamp() {
         return Clamp;
     }
@@ -51,15 +53,23 @@ public class ACLineSegment extends Conductor {
         if (!Clamp.contains(_object_)) {
             Clamp.add(_object_);
             _object_.setACLineSegment(this);
+            ClampIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getClamp(BaseClass _this_) {
-        return ((ACLineSegment) _this_).getClamp();
+        var objs = ((ACLineSegment) _this_).getClamp();
+        var ids = ((ACLineSegment) _this_).ClampIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setClamp(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Clamp) {
+        if (_value_ instanceof String) {
+            ((ACLineSegment) _this_).ClampIdSet.add((String) _value_);
+        } else if (_value_ instanceof Clamp) {
             ((ACLineSegment) _this_).setClamp((Clamp) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Clamp");
@@ -73,6 +83,8 @@ public class ACLineSegment extends Conductor {
      */
     private Set<Cut> Cut = new HashSet<>(); // OneToMany
 
+    private Set<String> CutIdSet = new HashSet<>();
+
     public Set<Cut> getCut() {
         return Cut;
     }
@@ -81,15 +93,23 @@ public class ACLineSegment extends Conductor {
         if (!Cut.contains(_object_)) {
             Cut.add(_object_);
             _object_.setACLineSegment(this);
+            CutIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getCut(BaseClass _this_) {
-        return ((ACLineSegment) _this_).getCut();
+        var objs = ((ACLineSegment) _this_).getCut();
+        var ids = ((ACLineSegment) _this_).CutIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setCut(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Cut) {
+        if (_value_ instanceof String) {
+            ((ACLineSegment) _this_).CutIdSet.add((String) _value_);
+        } else if (_value_ instanceof Cut) {
             ((ACLineSegment) _this_).setCut((Cut) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Cut");

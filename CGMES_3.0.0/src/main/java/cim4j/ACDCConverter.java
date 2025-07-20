@@ -43,6 +43,8 @@ public class ACDCConverter extends ConductingEquipment {
      */
     private Set<ACDCConverterDCTerminal> DCTerminals = new HashSet<>(); // OneToMany
 
+    private Set<String> DCTerminalsIdSet = new HashSet<>();
+
     public Set<ACDCConverterDCTerminal> getDCTerminals() {
         return DCTerminals;
     }
@@ -51,15 +53,23 @@ public class ACDCConverter extends ConductingEquipment {
         if (!DCTerminals.contains(_object_)) {
             DCTerminals.add(_object_);
             _object_.setDCConductingEquipment(this);
+            DCTerminalsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDCTerminals(BaseClass _this_) {
-        return ((ACDCConverter) _this_).getDCTerminals();
+        var objs = ((ACDCConverter) _this_).getDCTerminals();
+        var ids = ((ACDCConverter) _this_).DCTerminalsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDCTerminals(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ACDCConverterDCTerminal) {
+        if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).DCTerminalsIdSet.add((String) _value_);
+        } else if (_value_ instanceof ACDCConverterDCTerminal) {
             ((ACDCConverter) _this_).setDCTerminals((ACDCConverterDCTerminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ACDCConverterDCTerminal");
@@ -71,6 +81,8 @@ public class ACDCConverter extends ConductingEquipment {
      */
     private Terminal PccTerminal; // ManyToOne
 
+    private String PccTerminalId;
+
     public Terminal getPccTerminal() {
         return PccTerminal;
     }
@@ -78,16 +90,24 @@ public class ACDCConverter extends ConductingEquipment {
     public void setPccTerminal(Terminal _object_) {
         if (PccTerminal != _object_) {
             PccTerminal = _object_;
-            PccTerminal.setConverterDCSides(this);
+            _object_.setConverterDCSides(this);
+            PccTerminalId = _object_.getRdfid();
         }
     }
 
     private static Object getPccTerminal(BaseClass _this_) {
-        return ((ACDCConverter) _this_).getPccTerminal();
+        var obj = ((ACDCConverter) _this_).getPccTerminal();
+        var id = ((ACDCConverter) _this_).PccTerminalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPccTerminal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Terminal) {
+        if (_value_ instanceof String) {
+            ((ACDCConverter) _this_).PccTerminalId = (String) _value_;
+        } else if (_value_ instanceof Terminal) {
             ((ACDCConverter) _this_).setPccTerminal((Terminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Terminal");

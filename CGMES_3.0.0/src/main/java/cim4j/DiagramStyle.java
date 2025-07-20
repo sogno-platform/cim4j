@@ -43,6 +43,8 @@ public class DiagramStyle extends IdentifiedObject {
      */
     private Set<Diagram> Diagram = new HashSet<>(); // OneToMany
 
+    private Set<String> DiagramIdSet = new HashSet<>();
+
     public Set<Diagram> getDiagram() {
         return Diagram;
     }
@@ -51,15 +53,23 @@ public class DiagramStyle extends IdentifiedObject {
         if (!Diagram.contains(_object_)) {
             Diagram.add(_object_);
             _object_.setDiagramStyle(this);
+            DiagramIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDiagram(BaseClass _this_) {
-        return ((DiagramStyle) _this_).getDiagram();
+        var objs = ((DiagramStyle) _this_).getDiagram();
+        var ids = ((DiagramStyle) _this_).DiagramIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDiagram(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Diagram) {
+        if (_value_ instanceof String) {
+            ((DiagramStyle) _this_).DiagramIdSet.add((String) _value_);
+        } else if (_value_ instanceof Diagram) {
             ((DiagramStyle) _this_).setDiagram((Diagram) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Diagram");

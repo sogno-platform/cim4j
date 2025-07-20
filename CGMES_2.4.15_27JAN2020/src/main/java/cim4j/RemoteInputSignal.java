@@ -41,6 +41,8 @@ public class RemoteInputSignal extends IdentifiedObject {
      */
     private DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics; // OneToOne
 
+    private String DiscontinuousExcitationControlDynamicsId;
+
     public DiscontinuousExcitationControlDynamics getDiscontinuousExcitationControlDynamics() {
         return DiscontinuousExcitationControlDynamics;
     }
@@ -48,16 +50,24 @@ public class RemoteInputSignal extends IdentifiedObject {
     public void setDiscontinuousExcitationControlDynamics(DiscontinuousExcitationControlDynamics _object_) {
         if (DiscontinuousExcitationControlDynamics != _object_) {
             DiscontinuousExcitationControlDynamics = _object_;
-            DiscontinuousExcitationControlDynamics.setRemoteInputSignal(this);
+            _object_.setRemoteInputSignal(this);
+            DiscontinuousExcitationControlDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getDiscontinuousExcitationControlDynamics(BaseClass _this_) {
-        return ((RemoteInputSignal) _this_).getDiscontinuousExcitationControlDynamics();
+        var obj = ((RemoteInputSignal) _this_).getDiscontinuousExcitationControlDynamics();
+        var id = ((RemoteInputSignal) _this_).DiscontinuousExcitationControlDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDiscontinuousExcitationControlDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiscontinuousExcitationControlDynamics) {
+        if (_value_ instanceof String) {
+            ((RemoteInputSignal) _this_).DiscontinuousExcitationControlDynamicsId = (String) _value_;
+        } else if (_value_ instanceof DiscontinuousExcitationControlDynamics) {
             ((RemoteInputSignal) _this_).setDiscontinuousExcitationControlDynamics((DiscontinuousExcitationControlDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiscontinuousExcitationControlDynamics");
@@ -69,6 +79,8 @@ public class RemoteInputSignal extends IdentifiedObject {
      */
     private PFVArControllerType1Dynamics PFVArControllerType1Dynamics; // OneToOne
 
+    private String PFVArControllerType1DynamicsId;
+
     public PFVArControllerType1Dynamics getPFVArControllerType1Dynamics() {
         return PFVArControllerType1Dynamics;
     }
@@ -76,16 +88,24 @@ public class RemoteInputSignal extends IdentifiedObject {
     public void setPFVArControllerType1Dynamics(PFVArControllerType1Dynamics _object_) {
         if (PFVArControllerType1Dynamics != _object_) {
             PFVArControllerType1Dynamics = _object_;
-            PFVArControllerType1Dynamics.setRemoteInputSignal(this);
+            _object_.setRemoteInputSignal(this);
+            PFVArControllerType1DynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getPFVArControllerType1Dynamics(BaseClass _this_) {
-        return ((RemoteInputSignal) _this_).getPFVArControllerType1Dynamics();
+        var obj = ((RemoteInputSignal) _this_).getPFVArControllerType1Dynamics();
+        var id = ((RemoteInputSignal) _this_).PFVArControllerType1DynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPFVArControllerType1Dynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PFVArControllerType1Dynamics) {
+        if (_value_ instanceof String) {
+            ((RemoteInputSignal) _this_).PFVArControllerType1DynamicsId = (String) _value_;
+        } else if (_value_ instanceof PFVArControllerType1Dynamics) {
             ((RemoteInputSignal) _this_).setPFVArControllerType1Dynamics((PFVArControllerType1Dynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PFVArControllerType1Dynamics");
@@ -97,6 +117,8 @@ public class RemoteInputSignal extends IdentifiedObject {
      */
     private PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics; // ManyToOne
 
+    private String PowerSystemStabilizerDynamicsId;
+
     public PowerSystemStabilizerDynamics getPowerSystemStabilizerDynamics() {
         return PowerSystemStabilizerDynamics;
     }
@@ -104,16 +126,24 @@ public class RemoteInputSignal extends IdentifiedObject {
     public void setPowerSystemStabilizerDynamics(PowerSystemStabilizerDynamics _object_) {
         if (PowerSystemStabilizerDynamics != _object_) {
             PowerSystemStabilizerDynamics = _object_;
-            PowerSystemStabilizerDynamics.setRemoteInputSignal(this);
+            _object_.setRemoteInputSignal(this);
+            PowerSystemStabilizerDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getPowerSystemStabilizerDynamics(BaseClass _this_) {
-        return ((RemoteInputSignal) _this_).getPowerSystemStabilizerDynamics();
+        var obj = ((RemoteInputSignal) _this_).getPowerSystemStabilizerDynamics();
+        var id = ((RemoteInputSignal) _this_).PowerSystemStabilizerDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPowerSystemStabilizerDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PowerSystemStabilizerDynamics) {
+        if (_value_ instanceof String) {
+            ((RemoteInputSignal) _this_).PowerSystemStabilizerDynamicsId = (String) _value_;
+        } else if (_value_ instanceof PowerSystemStabilizerDynamics) {
             ((RemoteInputSignal) _this_).setPowerSystemStabilizerDynamics((PowerSystemStabilizerDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PowerSystemStabilizerDynamics");
@@ -125,6 +155,8 @@ public class RemoteInputSignal extends IdentifiedObject {
      */
     private Terminal Terminal; // ManyToOne
 
+    private String TerminalId;
+
     public Terminal getTerminal() {
         return Terminal;
     }
@@ -132,16 +164,24 @@ public class RemoteInputSignal extends IdentifiedObject {
     public void setTerminal(Terminal _object_) {
         if (Terminal != _object_) {
             Terminal = _object_;
-            Terminal.setRemoteInputSignal(this);
+            _object_.setRemoteInputSignal(this);
+            TerminalId = _object_.getRdfid();
         }
     }
 
     private static Object getTerminal(BaseClass _this_) {
-        return ((RemoteInputSignal) _this_).getTerminal();
+        var obj = ((RemoteInputSignal) _this_).getTerminal();
+        var id = ((RemoteInputSignal) _this_).TerminalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTerminal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Terminal) {
+        if (_value_ instanceof String) {
+            ((RemoteInputSignal) _this_).TerminalId = (String) _value_;
+        } else if (_value_ instanceof Terminal) {
             ((RemoteInputSignal) _this_).setTerminal((Terminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Terminal");
@@ -153,6 +193,8 @@ public class RemoteInputSignal extends IdentifiedObject {
      */
     private UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics; // OneToOne
 
+    private String UnderexcitationLimiterDynamicsId;
+
     public UnderexcitationLimiterDynamics getUnderexcitationLimiterDynamics() {
         return UnderexcitationLimiterDynamics;
     }
@@ -160,16 +202,24 @@ public class RemoteInputSignal extends IdentifiedObject {
     public void setUnderexcitationLimiterDynamics(UnderexcitationLimiterDynamics _object_) {
         if (UnderexcitationLimiterDynamics != _object_) {
             UnderexcitationLimiterDynamics = _object_;
-            UnderexcitationLimiterDynamics.setRemoteInputSignal(this);
+            _object_.setRemoteInputSignal(this);
+            UnderexcitationLimiterDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getUnderexcitationLimiterDynamics(BaseClass _this_) {
-        return ((RemoteInputSignal) _this_).getUnderexcitationLimiterDynamics();
+        var obj = ((RemoteInputSignal) _this_).getUnderexcitationLimiterDynamics();
+        var id = ((RemoteInputSignal) _this_).UnderexcitationLimiterDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setUnderexcitationLimiterDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof UnderexcitationLimiterDynamics) {
+        if (_value_ instanceof String) {
+            ((RemoteInputSignal) _this_).UnderexcitationLimiterDynamicsId = (String) _value_;
+        } else if (_value_ instanceof UnderexcitationLimiterDynamics) {
             ((RemoteInputSignal) _this_).setUnderexcitationLimiterDynamics((UnderexcitationLimiterDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not UnderexcitationLimiterDynamics");
@@ -181,6 +231,8 @@ public class RemoteInputSignal extends IdentifiedObject {
      */
     private VoltageCompensatorDynamics VoltageCompensatorDynamics; // OneToOne
 
+    private String VoltageCompensatorDynamicsId;
+
     public VoltageCompensatorDynamics getVoltageCompensatorDynamics() {
         return VoltageCompensatorDynamics;
     }
@@ -188,16 +240,24 @@ public class RemoteInputSignal extends IdentifiedObject {
     public void setVoltageCompensatorDynamics(VoltageCompensatorDynamics _object_) {
         if (VoltageCompensatorDynamics != _object_) {
             VoltageCompensatorDynamics = _object_;
-            VoltageCompensatorDynamics.setRemoteInputSignal(this);
+            _object_.setRemoteInputSignal(this);
+            VoltageCompensatorDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getVoltageCompensatorDynamics(BaseClass _this_) {
-        return ((RemoteInputSignal) _this_).getVoltageCompensatorDynamics();
+        var obj = ((RemoteInputSignal) _this_).getVoltageCompensatorDynamics();
+        var id = ((RemoteInputSignal) _this_).VoltageCompensatorDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setVoltageCompensatorDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VoltageCompensatorDynamics) {
+        if (_value_ instanceof String) {
+            ((RemoteInputSignal) _this_).VoltageCompensatorDynamicsId = (String) _value_;
+        } else if (_value_ instanceof VoltageCompensatorDynamics) {
             ((RemoteInputSignal) _this_).setVoltageCompensatorDynamics((VoltageCompensatorDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VoltageCompensatorDynamics");
@@ -211,6 +271,8 @@ public class RemoteInputSignal extends IdentifiedObject {
      */
     private WindPlantDynamics WindPlantDynamics; // OneToOne
 
+    private String WindPlantDynamicsId;
+
     public WindPlantDynamics getWindPlantDynamics() {
         return WindPlantDynamics;
     }
@@ -218,16 +280,24 @@ public class RemoteInputSignal extends IdentifiedObject {
     public void setWindPlantDynamics(WindPlantDynamics _object_) {
         if (WindPlantDynamics != _object_) {
             WindPlantDynamics = _object_;
-            WindPlantDynamics.setRemoteInputSignal(this);
+            _object_.setRemoteInputSignal(this);
+            WindPlantDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getWindPlantDynamics(BaseClass _this_) {
-        return ((RemoteInputSignal) _this_).getWindPlantDynamics();
+        var obj = ((RemoteInputSignal) _this_).getWindPlantDynamics();
+        var id = ((RemoteInputSignal) _this_).WindPlantDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindPlantDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindPlantDynamics) {
+        if (_value_ instanceof String) {
+            ((RemoteInputSignal) _this_).WindPlantDynamicsId = (String) _value_;
+        } else if (_value_ instanceof WindPlantDynamics) {
             ((RemoteInputSignal) _this_).setWindPlantDynamics((WindPlantDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindPlantDynamics");
@@ -241,6 +311,8 @@ public class RemoteInputSignal extends IdentifiedObject {
      */
     private WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics; // OneToOne
 
+    private String WindTurbineType1or2DynamicsId;
+
     public WindTurbineType1or2Dynamics getWindTurbineType1or2Dynamics() {
         return WindTurbineType1or2Dynamics;
     }
@@ -248,16 +320,24 @@ public class RemoteInputSignal extends IdentifiedObject {
     public void setWindTurbineType1or2Dynamics(WindTurbineType1or2Dynamics _object_) {
         if (WindTurbineType1or2Dynamics != _object_) {
             WindTurbineType1or2Dynamics = _object_;
-            WindTurbineType1or2Dynamics.setRemoteInputSignal(this);
+            _object_.setRemoteInputSignal(this);
+            WindTurbineType1or2DynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getWindTurbineType1or2Dynamics(BaseClass _this_) {
-        return ((RemoteInputSignal) _this_).getWindTurbineType1or2Dynamics();
+        var obj = ((RemoteInputSignal) _this_).getWindTurbineType1or2Dynamics();
+        var id = ((RemoteInputSignal) _this_).WindTurbineType1or2DynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindTurbineType1or2Dynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindTurbineType1or2Dynamics) {
+        if (_value_ instanceof String) {
+            ((RemoteInputSignal) _this_).WindTurbineType1or2DynamicsId = (String) _value_;
+        } else if (_value_ instanceof WindTurbineType1or2Dynamics) {
             ((RemoteInputSignal) _this_).setWindTurbineType1or2Dynamics((WindTurbineType1or2Dynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindTurbineType1or2Dynamics");
@@ -271,6 +351,8 @@ public class RemoteInputSignal extends IdentifiedObject {
      */
     private WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics; // OneToOne
 
+    private String WindTurbineType3or4DynamicsId;
+
     public WindTurbineType3or4Dynamics getWindTurbineType3or4Dynamics() {
         return WindTurbineType3or4Dynamics;
     }
@@ -278,16 +360,24 @@ public class RemoteInputSignal extends IdentifiedObject {
     public void setWindTurbineType3or4Dynamics(WindTurbineType3or4Dynamics _object_) {
         if (WindTurbineType3or4Dynamics != _object_) {
             WindTurbineType3or4Dynamics = _object_;
-            WindTurbineType3or4Dynamics.setRemoteInputSignal(this);
+            _object_.setRemoteInputSignal(this);
+            WindTurbineType3or4DynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getWindTurbineType3or4Dynamics(BaseClass _this_) {
-        return ((RemoteInputSignal) _this_).getWindTurbineType3or4Dynamics();
+        var obj = ((RemoteInputSignal) _this_).getWindTurbineType3or4Dynamics();
+        var id = ((RemoteInputSignal) _this_).WindTurbineType3or4DynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindTurbineType3or4Dynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindTurbineType3or4Dynamics) {
+        if (_value_ instanceof String) {
+            ((RemoteInputSignal) _this_).WindTurbineType3or4DynamicsId = (String) _value_;
+        } else if (_value_ instanceof WindTurbineType3or4Dynamics) {
             ((RemoteInputSignal) _this_).setWindTurbineType3or4Dynamics((WindTurbineType3or4Dynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindTurbineType3or4Dynamics");

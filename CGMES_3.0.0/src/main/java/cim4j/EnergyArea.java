@@ -43,6 +43,8 @@ public class EnergyArea extends IdentifiedObject {
      */
     private ControlArea ControlArea; // OneToOne
 
+    private String ControlAreaId;
+
     public ControlArea getControlArea() {
         return ControlArea;
     }
@@ -50,16 +52,24 @@ public class EnergyArea extends IdentifiedObject {
     public void setControlArea(ControlArea _object_) {
         if (ControlArea != _object_) {
             ControlArea = _object_;
-            ControlArea.setEnergyArea(this);
+            _object_.setEnergyArea(this);
+            ControlAreaId = _object_.getRdfid();
         }
     }
 
     private static Object getControlArea(BaseClass _this_) {
-        return ((EnergyArea) _this_).getControlArea();
+        var obj = ((EnergyArea) _this_).getControlArea();
+        var id = ((EnergyArea) _this_).ControlAreaId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setControlArea(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ControlArea) {
+        if (_value_ instanceof String) {
+            ((EnergyArea) _this_).ControlAreaId = (String) _value_;
+        } else if (_value_ instanceof ControlArea) {
             ((EnergyArea) _this_).setControlArea((ControlArea) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ControlArea");

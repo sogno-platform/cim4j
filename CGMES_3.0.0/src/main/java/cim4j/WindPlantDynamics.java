@@ -41,6 +41,8 @@ public class WindPlantDynamics extends DynamicsFunctionBlock {
      */
     private RemoteInputSignal RemoteInputSignal; // OneToOne
 
+    private String RemoteInputSignalId;
+
     public RemoteInputSignal getRemoteInputSignal() {
         return RemoteInputSignal;
     }
@@ -48,16 +50,24 @@ public class WindPlantDynamics extends DynamicsFunctionBlock {
     public void setRemoteInputSignal(RemoteInputSignal _object_) {
         if (RemoteInputSignal != _object_) {
             RemoteInputSignal = _object_;
-            RemoteInputSignal.setWindPlantDynamics(this);
+            _object_.setWindPlantDynamics(this);
+            RemoteInputSignalId = _object_.getRdfid();
         }
     }
 
     private static Object getRemoteInputSignal(BaseClass _this_) {
-        return ((WindPlantDynamics) _this_).getRemoteInputSignal();
+        var obj = ((WindPlantDynamics) _this_).getRemoteInputSignal();
+        var id = ((WindPlantDynamics) _this_).RemoteInputSignalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setRemoteInputSignal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RemoteInputSignal) {
+        if (_value_ instanceof String) {
+            ((WindPlantDynamics) _this_).RemoteInputSignalId = (String) _value_;
+        } else if (_value_ instanceof RemoteInputSignal) {
             ((WindPlantDynamics) _this_).setRemoteInputSignal((RemoteInputSignal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RemoteInputSignal");
@@ -71,6 +81,8 @@ public class WindPlantDynamics extends DynamicsFunctionBlock {
      */
     private Set<WindTurbineType3or4Dynamics> WindTurbineType3or4Dynamics = new HashSet<>(); // OneToMany
 
+    private Set<String> WindTurbineType3or4DynamicsIdSet = new HashSet<>();
+
     public Set<WindTurbineType3or4Dynamics> getWindTurbineType3or4Dynamics() {
         return WindTurbineType3or4Dynamics;
     }
@@ -79,15 +91,23 @@ public class WindPlantDynamics extends DynamicsFunctionBlock {
         if (!WindTurbineType3or4Dynamics.contains(_object_)) {
             WindTurbineType3or4Dynamics.add(_object_);
             _object_.setWindPlantDynamics(this);
+            WindTurbineType3or4DynamicsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getWindTurbineType3or4Dynamics(BaseClass _this_) {
-        return ((WindPlantDynamics) _this_).getWindTurbineType3or4Dynamics();
+        var objs = ((WindPlantDynamics) _this_).getWindTurbineType3or4Dynamics();
+        var ids = ((WindPlantDynamics) _this_).WindTurbineType3or4DynamicsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setWindTurbineType3or4Dynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindTurbineType3or4Dynamics) {
+        if (_value_ instanceof String) {
+            ((WindPlantDynamics) _this_).WindTurbineType3or4DynamicsIdSet.add((String) _value_);
+        } else if (_value_ instanceof WindTurbineType3or4Dynamics) {
             ((WindPlantDynamics) _this_).setWindTurbineType3or4Dynamics((WindTurbineType3or4Dynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindTurbineType3or4Dynamics");

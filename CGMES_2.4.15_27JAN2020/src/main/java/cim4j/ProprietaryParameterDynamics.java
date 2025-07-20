@@ -41,6 +41,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private AsynchronousMachineUserDefined AsynchronousMachineUserDefined; // ManyToOne
 
+    private String AsynchronousMachineUserDefinedId;
+
     public AsynchronousMachineUserDefined getAsynchronousMachineUserDefined() {
         return AsynchronousMachineUserDefined;
     }
@@ -48,16 +50,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setAsynchronousMachineUserDefined(AsynchronousMachineUserDefined _object_) {
         if (AsynchronousMachineUserDefined != _object_) {
             AsynchronousMachineUserDefined = _object_;
-            AsynchronousMachineUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            AsynchronousMachineUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getAsynchronousMachineUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getAsynchronousMachineUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getAsynchronousMachineUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).AsynchronousMachineUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setAsynchronousMachineUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AsynchronousMachineUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).AsynchronousMachineUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof AsynchronousMachineUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setAsynchronousMachineUserDefined((AsynchronousMachineUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AsynchronousMachineUserDefined");
@@ -69,6 +79,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private DiscontinuousExcitationControlUserDefined DiscontinuousExcitationControlUserDefined; // ManyToOne
 
+    private String DiscontinuousExcitationControlUserDefinedId;
+
     public DiscontinuousExcitationControlUserDefined getDiscontinuousExcitationControlUserDefined() {
         return DiscontinuousExcitationControlUserDefined;
     }
@@ -76,16 +88,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setDiscontinuousExcitationControlUserDefined(DiscontinuousExcitationControlUserDefined _object_) {
         if (DiscontinuousExcitationControlUserDefined != _object_) {
             DiscontinuousExcitationControlUserDefined = _object_;
-            DiscontinuousExcitationControlUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            DiscontinuousExcitationControlUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getDiscontinuousExcitationControlUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getDiscontinuousExcitationControlUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getDiscontinuousExcitationControlUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).DiscontinuousExcitationControlUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDiscontinuousExcitationControlUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiscontinuousExcitationControlUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).DiscontinuousExcitationControlUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof DiscontinuousExcitationControlUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setDiscontinuousExcitationControlUserDefined((DiscontinuousExcitationControlUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiscontinuousExcitationControlUserDefined");
@@ -97,6 +117,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private ExcitationSystemUserDefined ExcitationSystemUserDefined; // ManyToOne
 
+    private String ExcitationSystemUserDefinedId;
+
     public ExcitationSystemUserDefined getExcitationSystemUserDefined() {
         return ExcitationSystemUserDefined;
     }
@@ -104,16 +126,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setExcitationSystemUserDefined(ExcitationSystemUserDefined _object_) {
         if (ExcitationSystemUserDefined != _object_) {
             ExcitationSystemUserDefined = _object_;
-            ExcitationSystemUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            ExcitationSystemUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getExcitationSystemUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getExcitationSystemUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getExcitationSystemUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).ExcitationSystemUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setExcitationSystemUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ExcitationSystemUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).ExcitationSystemUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof ExcitationSystemUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setExcitationSystemUserDefined((ExcitationSystemUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ExcitationSystemUserDefined");
@@ -125,6 +155,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private LoadUserDefined LoadUserDefined; // ManyToOne
 
+    private String LoadUserDefinedId;
+
     public LoadUserDefined getLoadUserDefined() {
         return LoadUserDefined;
     }
@@ -132,16 +164,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setLoadUserDefined(LoadUserDefined _object_) {
         if (LoadUserDefined != _object_) {
             LoadUserDefined = _object_;
-            LoadUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            LoadUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getLoadUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getLoadUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getLoadUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).LoadUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setLoadUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof LoadUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).LoadUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof LoadUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setLoadUserDefined((LoadUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not LoadUserDefined");
@@ -153,6 +193,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private MechanicalLoadUserDefined MechanicalLoadUserDefined; // ManyToOne
 
+    private String MechanicalLoadUserDefinedId;
+
     public MechanicalLoadUserDefined getMechanicalLoadUserDefined() {
         return MechanicalLoadUserDefined;
     }
@@ -160,16 +202,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setMechanicalLoadUserDefined(MechanicalLoadUserDefined _object_) {
         if (MechanicalLoadUserDefined != _object_) {
             MechanicalLoadUserDefined = _object_;
-            MechanicalLoadUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            MechanicalLoadUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getMechanicalLoadUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getMechanicalLoadUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getMechanicalLoadUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).MechanicalLoadUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setMechanicalLoadUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof MechanicalLoadUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).MechanicalLoadUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof MechanicalLoadUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setMechanicalLoadUserDefined((MechanicalLoadUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not MechanicalLoadUserDefined");
@@ -181,6 +231,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private OverexcitationLimiterUserDefined OverexcitationLimiterUserDefined; // ManyToOne
 
+    private String OverexcitationLimiterUserDefinedId;
+
     public OverexcitationLimiterUserDefined getOverexcitationLimiterUserDefined() {
         return OverexcitationLimiterUserDefined;
     }
@@ -188,16 +240,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setOverexcitationLimiterUserDefined(OverexcitationLimiterUserDefined _object_) {
         if (OverexcitationLimiterUserDefined != _object_) {
             OverexcitationLimiterUserDefined = _object_;
-            OverexcitationLimiterUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            OverexcitationLimiterUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getOverexcitationLimiterUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getOverexcitationLimiterUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getOverexcitationLimiterUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).OverexcitationLimiterUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setOverexcitationLimiterUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof OverexcitationLimiterUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).OverexcitationLimiterUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof OverexcitationLimiterUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setOverexcitationLimiterUserDefined((OverexcitationLimiterUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not OverexcitationLimiterUserDefined");
@@ -209,6 +269,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private PFVArControllerType1UserDefined PFVArControllerType1UserDefined; // ManyToOne
 
+    private String PFVArControllerType1UserDefinedId;
+
     public PFVArControllerType1UserDefined getPFVArControllerType1UserDefined() {
         return PFVArControllerType1UserDefined;
     }
@@ -216,16 +278,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setPFVArControllerType1UserDefined(PFVArControllerType1UserDefined _object_) {
         if (PFVArControllerType1UserDefined != _object_) {
             PFVArControllerType1UserDefined = _object_;
-            PFVArControllerType1UserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            PFVArControllerType1UserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getPFVArControllerType1UserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getPFVArControllerType1UserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getPFVArControllerType1UserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).PFVArControllerType1UserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPFVArControllerType1UserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PFVArControllerType1UserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).PFVArControllerType1UserDefinedId = (String) _value_;
+        } else if (_value_ instanceof PFVArControllerType1UserDefined) {
             ((ProprietaryParameterDynamics) _this_).setPFVArControllerType1UserDefined((PFVArControllerType1UserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PFVArControllerType1UserDefined");
@@ -237,6 +307,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private PFVArControllerType2UserDefined PFVArControllerType2UserDefined; // ManyToOne
 
+    private String PFVArControllerType2UserDefinedId;
+
     public PFVArControllerType2UserDefined getPFVArControllerType2UserDefined() {
         return PFVArControllerType2UserDefined;
     }
@@ -244,16 +316,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setPFVArControllerType2UserDefined(PFVArControllerType2UserDefined _object_) {
         if (PFVArControllerType2UserDefined != _object_) {
             PFVArControllerType2UserDefined = _object_;
-            PFVArControllerType2UserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            PFVArControllerType2UserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getPFVArControllerType2UserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getPFVArControllerType2UserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getPFVArControllerType2UserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).PFVArControllerType2UserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPFVArControllerType2UserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PFVArControllerType2UserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).PFVArControllerType2UserDefinedId = (String) _value_;
+        } else if (_value_ instanceof PFVArControllerType2UserDefined) {
             ((ProprietaryParameterDynamics) _this_).setPFVArControllerType2UserDefined((PFVArControllerType2UserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PFVArControllerType2UserDefined");
@@ -265,6 +345,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private PowerSystemStabilizerUserDefined PowerSystemStabilizerUserDefined; // ManyToOne
 
+    private String PowerSystemStabilizerUserDefinedId;
+
     public PowerSystemStabilizerUserDefined getPowerSystemStabilizerUserDefined() {
         return PowerSystemStabilizerUserDefined;
     }
@@ -272,16 +354,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setPowerSystemStabilizerUserDefined(PowerSystemStabilizerUserDefined _object_) {
         if (PowerSystemStabilizerUserDefined != _object_) {
             PowerSystemStabilizerUserDefined = _object_;
-            PowerSystemStabilizerUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            PowerSystemStabilizerUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getPowerSystemStabilizerUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getPowerSystemStabilizerUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getPowerSystemStabilizerUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).PowerSystemStabilizerUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPowerSystemStabilizerUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PowerSystemStabilizerUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).PowerSystemStabilizerUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof PowerSystemStabilizerUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setPowerSystemStabilizerUserDefined((PowerSystemStabilizerUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PowerSystemStabilizerUserDefined");
@@ -293,6 +383,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private SynchronousMachineUserDefined SynchronousMachineUserDefined; // ManyToOne
 
+    private String SynchronousMachineUserDefinedId;
+
     public SynchronousMachineUserDefined getSynchronousMachineUserDefined() {
         return SynchronousMachineUserDefined;
     }
@@ -300,16 +392,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setSynchronousMachineUserDefined(SynchronousMachineUserDefined _object_) {
         if (SynchronousMachineUserDefined != _object_) {
             SynchronousMachineUserDefined = _object_;
-            SynchronousMachineUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            SynchronousMachineUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getSynchronousMachineUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getSynchronousMachineUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getSynchronousMachineUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).SynchronousMachineUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSynchronousMachineUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SynchronousMachineUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).SynchronousMachineUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof SynchronousMachineUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setSynchronousMachineUserDefined((SynchronousMachineUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SynchronousMachineUserDefined");
@@ -321,6 +421,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private TurbineGovernorUserDefined TurbineGovernorUserDefined; // ManyToOne
 
+    private String TurbineGovernorUserDefinedId;
+
     public TurbineGovernorUserDefined getTurbineGovernorUserDefined() {
         return TurbineGovernorUserDefined;
     }
@@ -328,16 +430,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setTurbineGovernorUserDefined(TurbineGovernorUserDefined _object_) {
         if (TurbineGovernorUserDefined != _object_) {
             TurbineGovernorUserDefined = _object_;
-            TurbineGovernorUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            TurbineGovernorUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getTurbineGovernorUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getTurbineGovernorUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getTurbineGovernorUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).TurbineGovernorUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTurbineGovernorUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TurbineGovernorUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).TurbineGovernorUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof TurbineGovernorUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setTurbineGovernorUserDefined((TurbineGovernorUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TurbineGovernorUserDefined");
@@ -349,6 +459,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private TurbineLoadControllerUserDefined TurbineLoadControllerUserDefined; // ManyToOne
 
+    private String TurbineLoadControllerUserDefinedId;
+
     public TurbineLoadControllerUserDefined getTurbineLoadControllerUserDefined() {
         return TurbineLoadControllerUserDefined;
     }
@@ -356,16 +468,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setTurbineLoadControllerUserDefined(TurbineLoadControllerUserDefined _object_) {
         if (TurbineLoadControllerUserDefined != _object_) {
             TurbineLoadControllerUserDefined = _object_;
-            TurbineLoadControllerUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            TurbineLoadControllerUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getTurbineLoadControllerUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getTurbineLoadControllerUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getTurbineLoadControllerUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).TurbineLoadControllerUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTurbineLoadControllerUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TurbineLoadControllerUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).TurbineLoadControllerUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof TurbineLoadControllerUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setTurbineLoadControllerUserDefined((TurbineLoadControllerUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TurbineLoadControllerUserDefined");
@@ -377,6 +497,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private UnderexcitationLimiterUserDefined UnderexcitationLimiterUserDefined; // ManyToOne
 
+    private String UnderexcitationLimiterUserDefinedId;
+
     public UnderexcitationLimiterUserDefined getUnderexcitationLimiterUserDefined() {
         return UnderexcitationLimiterUserDefined;
     }
@@ -384,16 +506,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setUnderexcitationLimiterUserDefined(UnderexcitationLimiterUserDefined _object_) {
         if (UnderexcitationLimiterUserDefined != _object_) {
             UnderexcitationLimiterUserDefined = _object_;
-            UnderexcitationLimiterUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            UnderexcitationLimiterUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getUnderexcitationLimiterUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getUnderexcitationLimiterUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getUnderexcitationLimiterUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).UnderexcitationLimiterUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setUnderexcitationLimiterUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof UnderexcitationLimiterUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).UnderexcitationLimiterUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof UnderexcitationLimiterUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setUnderexcitationLimiterUserDefined((UnderexcitationLimiterUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not UnderexcitationLimiterUserDefined");
@@ -405,6 +535,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private VoltageAdjusterUserDefined VoltageAdjusterUserDefined; // ManyToOne
 
+    private String VoltageAdjusterUserDefinedId;
+
     public VoltageAdjusterUserDefined getVoltageAdjusterUserDefined() {
         return VoltageAdjusterUserDefined;
     }
@@ -412,16 +544,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setVoltageAdjusterUserDefined(VoltageAdjusterUserDefined _object_) {
         if (VoltageAdjusterUserDefined != _object_) {
             VoltageAdjusterUserDefined = _object_;
-            VoltageAdjusterUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            VoltageAdjusterUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getVoltageAdjusterUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getVoltageAdjusterUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getVoltageAdjusterUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).VoltageAdjusterUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setVoltageAdjusterUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VoltageAdjusterUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).VoltageAdjusterUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof VoltageAdjusterUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setVoltageAdjusterUserDefined((VoltageAdjusterUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VoltageAdjusterUserDefined");
@@ -433,6 +573,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private VoltageCompensatorUserDefined VoltageCompensatorUserDefined; // ManyToOne
 
+    private String VoltageCompensatorUserDefinedId;
+
     public VoltageCompensatorUserDefined getVoltageCompensatorUserDefined() {
         return VoltageCompensatorUserDefined;
     }
@@ -440,16 +582,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setVoltageCompensatorUserDefined(VoltageCompensatorUserDefined _object_) {
         if (VoltageCompensatorUserDefined != _object_) {
             VoltageCompensatorUserDefined = _object_;
-            VoltageCompensatorUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            VoltageCompensatorUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getVoltageCompensatorUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getVoltageCompensatorUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getVoltageCompensatorUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).VoltageCompensatorUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setVoltageCompensatorUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VoltageCompensatorUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).VoltageCompensatorUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof VoltageCompensatorUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setVoltageCompensatorUserDefined((VoltageCompensatorUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VoltageCompensatorUserDefined");
@@ -461,6 +611,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private WindPlantUserDefined WindPlantUserDefined; // ManyToOne
 
+    private String WindPlantUserDefinedId;
+
     public WindPlantUserDefined getWindPlantUserDefined() {
         return WindPlantUserDefined;
     }
@@ -468,16 +620,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setWindPlantUserDefined(WindPlantUserDefined _object_) {
         if (WindPlantUserDefined != _object_) {
             WindPlantUserDefined = _object_;
-            WindPlantUserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            WindPlantUserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getWindPlantUserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getWindPlantUserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getWindPlantUserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).WindPlantUserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindPlantUserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindPlantUserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).WindPlantUserDefinedId = (String) _value_;
+        } else if (_value_ instanceof WindPlantUserDefined) {
             ((ProprietaryParameterDynamics) _this_).setWindPlantUserDefined((WindPlantUserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindPlantUserDefined");
@@ -489,6 +649,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private WindType1or2UserDefined WindType1or2UserDefined; // ManyToOne
 
+    private String WindType1or2UserDefinedId;
+
     public WindType1or2UserDefined getWindType1or2UserDefined() {
         return WindType1or2UserDefined;
     }
@@ -496,16 +658,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setWindType1or2UserDefined(WindType1or2UserDefined _object_) {
         if (WindType1or2UserDefined != _object_) {
             WindType1or2UserDefined = _object_;
-            WindType1or2UserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            WindType1or2UserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getWindType1or2UserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getWindType1or2UserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getWindType1or2UserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).WindType1or2UserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindType1or2UserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindType1or2UserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).WindType1or2UserDefinedId = (String) _value_;
+        } else if (_value_ instanceof WindType1or2UserDefined) {
             ((ProprietaryParameterDynamics) _this_).setWindType1or2UserDefined((WindType1or2UserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindType1or2UserDefined");
@@ -517,6 +687,8 @@ public class ProprietaryParameterDynamics extends BaseClass {
      */
     private WindType3or4UserDefined WindType3or4UserDefined; // ManyToOne
 
+    private String WindType3or4UserDefinedId;
+
     public WindType3or4UserDefined getWindType3or4UserDefined() {
         return WindType3or4UserDefined;
     }
@@ -524,16 +696,24 @@ public class ProprietaryParameterDynamics extends BaseClass {
     public void setWindType3or4UserDefined(WindType3or4UserDefined _object_) {
         if (WindType3or4UserDefined != _object_) {
             WindType3or4UserDefined = _object_;
-            WindType3or4UserDefined.setProprietaryParameterDynamics(this);
+            _object_.setProprietaryParameterDynamics(this);
+            WindType3or4UserDefinedId = _object_.getRdfid();
         }
     }
 
     private static Object getWindType3or4UserDefined(BaseClass _this_) {
-        return ((ProprietaryParameterDynamics) _this_).getWindType3or4UserDefined();
+        var obj = ((ProprietaryParameterDynamics) _this_).getWindType3or4UserDefined();
+        var id = ((ProprietaryParameterDynamics) _this_).WindType3or4UserDefinedId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindType3or4UserDefined(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindType3or4UserDefined) {
+        if (_value_ instanceof String) {
+            ((ProprietaryParameterDynamics) _this_).WindType3or4UserDefinedId = (String) _value_;
+        } else if (_value_ instanceof WindType3or4UserDefined) {
             ((ProprietaryParameterDynamics) _this_).setWindType3or4UserDefined((WindType3or4UserDefined) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindType3or4UserDefined");

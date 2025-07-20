@@ -43,6 +43,8 @@ public class PowerSystemResource extends IdentifiedObject {
      */
     private Set<Control> Controls = new HashSet<>(); // OneToMany
 
+    private Set<String> ControlsIdSet = new HashSet<>();
+
     public Set<Control> getControls() {
         return Controls;
     }
@@ -51,15 +53,23 @@ public class PowerSystemResource extends IdentifiedObject {
         if (!Controls.contains(_object_)) {
             Controls.add(_object_);
             _object_.setPowerSystemResource(this);
+            ControlsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getControls(BaseClass _this_) {
-        return ((PowerSystemResource) _this_).getControls();
+        var objs = ((PowerSystemResource) _this_).getControls();
+        var ids = ((PowerSystemResource) _this_).ControlsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setControls(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Control) {
+        if (_value_ instanceof String) {
+            ((PowerSystemResource) _this_).ControlsIdSet.add((String) _value_);
+        } else if (_value_ instanceof Control) {
             ((PowerSystemResource) _this_).setControls((Control) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Control");
@@ -73,6 +83,8 @@ public class PowerSystemResource extends IdentifiedObject {
      */
     private Location Location; // OneToOne
 
+    private String LocationId;
+
     public Location getLocation() {
         return Location;
     }
@@ -80,16 +92,24 @@ public class PowerSystemResource extends IdentifiedObject {
     public void setLocation(Location _object_) {
         if (Location != _object_) {
             Location = _object_;
-            Location.setPowerSystemResources(this);
+            _object_.setPowerSystemResources(this);
+            LocationId = _object_.getRdfid();
         }
     }
 
     private static Object getLocation(BaseClass _this_) {
-        return ((PowerSystemResource) _this_).getLocation();
+        var obj = ((PowerSystemResource) _this_).getLocation();
+        var id = ((PowerSystemResource) _this_).LocationId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setLocation(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Location) {
+        if (_value_ instanceof String) {
+            ((PowerSystemResource) _this_).LocationId = (String) _value_;
+        } else if (_value_ instanceof Location) {
             ((PowerSystemResource) _this_).setLocation((Location) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Location");
@@ -103,6 +123,8 @@ public class PowerSystemResource extends IdentifiedObject {
      */
     private Set<Measurement> Measurements = new HashSet<>(); // OneToMany
 
+    private Set<String> MeasurementsIdSet = new HashSet<>();
+
     public Set<Measurement> getMeasurements() {
         return Measurements;
     }
@@ -111,15 +133,23 @@ public class PowerSystemResource extends IdentifiedObject {
         if (!Measurements.contains(_object_)) {
             Measurements.add(_object_);
             _object_.setPowerSystemResource(this);
+            MeasurementsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getMeasurements(BaseClass _this_) {
-        return ((PowerSystemResource) _this_).getMeasurements();
+        var objs = ((PowerSystemResource) _this_).getMeasurements();
+        var ids = ((PowerSystemResource) _this_).MeasurementsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setMeasurements(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Measurement) {
+        if (_value_ instanceof String) {
+            ((PowerSystemResource) _this_).MeasurementsIdSet.add((String) _value_);
+        } else if (_value_ instanceof Measurement) {
             ((PowerSystemResource) _this_).setMeasurements((Measurement) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Measurement");

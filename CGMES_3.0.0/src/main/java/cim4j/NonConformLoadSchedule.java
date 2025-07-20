@@ -41,6 +41,8 @@ public class NonConformLoadSchedule extends SeasonDayTypeSchedule {
      */
     private NonConformLoadGroup NonConformLoadGroup; // ManyToOne
 
+    private String NonConformLoadGroupId;
+
     public NonConformLoadGroup getNonConformLoadGroup() {
         return NonConformLoadGroup;
     }
@@ -48,16 +50,24 @@ public class NonConformLoadSchedule extends SeasonDayTypeSchedule {
     public void setNonConformLoadGroup(NonConformLoadGroup _object_) {
         if (NonConformLoadGroup != _object_) {
             NonConformLoadGroup = _object_;
-            NonConformLoadGroup.setNonConformLoadSchedules(this);
+            _object_.setNonConformLoadSchedules(this);
+            NonConformLoadGroupId = _object_.getRdfid();
         }
     }
 
     private static Object getNonConformLoadGroup(BaseClass _this_) {
-        return ((NonConformLoadSchedule) _this_).getNonConformLoadGroup();
+        var obj = ((NonConformLoadSchedule) _this_).getNonConformLoadGroup();
+        var id = ((NonConformLoadSchedule) _this_).NonConformLoadGroupId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setNonConformLoadGroup(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof NonConformLoadGroup) {
+        if (_value_ instanceof String) {
+            ((NonConformLoadSchedule) _this_).NonConformLoadGroupId = (String) _value_;
+        } else if (_value_ instanceof NonConformLoadGroup) {
             ((NonConformLoadSchedule) _this_).setNonConformLoadGroup((NonConformLoadGroup) _value_);
         } else {
             throw new IllegalArgumentException("Object is not NonConformLoadGroup");

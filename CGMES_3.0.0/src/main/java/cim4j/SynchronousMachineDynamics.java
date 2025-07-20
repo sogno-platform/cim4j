@@ -43,6 +43,8 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
      */
     private CrossCompoundTurbineGovernorDynamics CrossCompoundTurbineGovernorDyanmics; // OneToOne
 
+    private String CrossCompoundTurbineGovernorDyanmicsId;
+
     public CrossCompoundTurbineGovernorDynamics getCrossCompoundTurbineGovernorDyanmics() {
         return CrossCompoundTurbineGovernorDyanmics;
     }
@@ -50,16 +52,24 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
     public void setCrossCompoundTurbineGovernorDyanmics(CrossCompoundTurbineGovernorDynamics _object_) {
         if (CrossCompoundTurbineGovernorDyanmics != _object_) {
             CrossCompoundTurbineGovernorDyanmics = _object_;
-            CrossCompoundTurbineGovernorDyanmics.setHighPressureSynchronousMachineDynamics(this);
+            _object_.setHighPressureSynchronousMachineDynamics(this);
+            CrossCompoundTurbineGovernorDyanmicsId = _object_.getRdfid();
         }
     }
 
     private static Object getCrossCompoundTurbineGovernorDyanmics(BaseClass _this_) {
-        return ((SynchronousMachineDynamics) _this_).getCrossCompoundTurbineGovernorDyanmics();
+        var obj = ((SynchronousMachineDynamics) _this_).getCrossCompoundTurbineGovernorDyanmics();
+        var id = ((SynchronousMachineDynamics) _this_).CrossCompoundTurbineGovernorDyanmicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setCrossCompoundTurbineGovernorDyanmics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof CrossCompoundTurbineGovernorDynamics) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachineDynamics) _this_).CrossCompoundTurbineGovernorDyanmicsId = (String) _value_;
+        } else if (_value_ instanceof CrossCompoundTurbineGovernorDynamics) {
             ((SynchronousMachineDynamics) _this_).setCrossCompoundTurbineGovernorDyanmics((CrossCompoundTurbineGovernorDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not CrossCompoundTurbineGovernorDynamics");
@@ -73,6 +83,8 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
      */
     private CrossCompoundTurbineGovernorDynamics CrossCompoundTurbineGovernorDynamics; // OneToOne
 
+    private String CrossCompoundTurbineGovernorDynamicsId;
+
     public CrossCompoundTurbineGovernorDynamics getCrossCompoundTurbineGovernorDynamics() {
         return CrossCompoundTurbineGovernorDynamics;
     }
@@ -80,16 +92,24 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
     public void setCrossCompoundTurbineGovernorDynamics(CrossCompoundTurbineGovernorDynamics _object_) {
         if (CrossCompoundTurbineGovernorDynamics != _object_) {
             CrossCompoundTurbineGovernorDynamics = _object_;
-            CrossCompoundTurbineGovernorDynamics.setLowPressureSynchronousMachineDynamics(this);
+            _object_.setLowPressureSynchronousMachineDynamics(this);
+            CrossCompoundTurbineGovernorDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getCrossCompoundTurbineGovernorDynamics(BaseClass _this_) {
-        return ((SynchronousMachineDynamics) _this_).getCrossCompoundTurbineGovernorDynamics();
+        var obj = ((SynchronousMachineDynamics) _this_).getCrossCompoundTurbineGovernorDynamics();
+        var id = ((SynchronousMachineDynamics) _this_).CrossCompoundTurbineGovernorDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setCrossCompoundTurbineGovernorDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof CrossCompoundTurbineGovernorDynamics) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachineDynamics) _this_).CrossCompoundTurbineGovernorDynamicsId = (String) _value_;
+        } else if (_value_ instanceof CrossCompoundTurbineGovernorDynamics) {
             ((SynchronousMachineDynamics) _this_).setCrossCompoundTurbineGovernorDynamics((CrossCompoundTurbineGovernorDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not CrossCompoundTurbineGovernorDynamics");
@@ -103,6 +123,8 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
      */
     private ExcitationSystemDynamics ExcitationSystemDynamics; // OneToOne
 
+    private String ExcitationSystemDynamicsId;
+
     public ExcitationSystemDynamics getExcitationSystemDynamics() {
         return ExcitationSystemDynamics;
     }
@@ -110,16 +132,24 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
     public void setExcitationSystemDynamics(ExcitationSystemDynamics _object_) {
         if (ExcitationSystemDynamics != _object_) {
             ExcitationSystemDynamics = _object_;
-            ExcitationSystemDynamics.setSynchronousMachineDynamics(this);
+            _object_.setSynchronousMachineDynamics(this);
+            ExcitationSystemDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getExcitationSystemDynamics(BaseClass _this_) {
-        return ((SynchronousMachineDynamics) _this_).getExcitationSystemDynamics();
+        var obj = ((SynchronousMachineDynamics) _this_).getExcitationSystemDynamics();
+        var id = ((SynchronousMachineDynamics) _this_).ExcitationSystemDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setExcitationSystemDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ExcitationSystemDynamics) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachineDynamics) _this_).ExcitationSystemDynamicsId = (String) _value_;
+        } else if (_value_ instanceof ExcitationSystemDynamics) {
             ((SynchronousMachineDynamics) _this_).setExcitationSystemDynamics((ExcitationSystemDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ExcitationSystemDynamics");
@@ -133,6 +163,8 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
      */
     private Set<GenICompensationForGenJ> GenICompensationForGenJ = new HashSet<>(); // OneToMany
 
+    private Set<String> GenICompensationForGenJIdSet = new HashSet<>();
+
     public Set<GenICompensationForGenJ> getGenICompensationForGenJ() {
         return GenICompensationForGenJ;
     }
@@ -141,15 +173,23 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
         if (!GenICompensationForGenJ.contains(_object_)) {
             GenICompensationForGenJ.add(_object_);
             _object_.setSynchronousMachineDynamics(this);
+            GenICompensationForGenJIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getGenICompensationForGenJ(BaseClass _this_) {
-        return ((SynchronousMachineDynamics) _this_).getGenICompensationForGenJ();
+        var objs = ((SynchronousMachineDynamics) _this_).getGenICompensationForGenJ();
+        var ids = ((SynchronousMachineDynamics) _this_).GenICompensationForGenJIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setGenICompensationForGenJ(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof GenICompensationForGenJ) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachineDynamics) _this_).GenICompensationForGenJIdSet.add((String) _value_);
+        } else if (_value_ instanceof GenICompensationForGenJ) {
             ((SynchronousMachineDynamics) _this_).setGenICompensationForGenJ((GenICompensationForGenJ) _value_);
         } else {
             throw new IllegalArgumentException("Object is not GenICompensationForGenJ");
@@ -163,6 +203,8 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
      */
     private MechanicalLoadDynamics MechanicalLoadDynamics; // OneToOne
 
+    private String MechanicalLoadDynamicsId;
+
     public MechanicalLoadDynamics getMechanicalLoadDynamics() {
         return MechanicalLoadDynamics;
     }
@@ -170,16 +212,24 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
     public void setMechanicalLoadDynamics(MechanicalLoadDynamics _object_) {
         if (MechanicalLoadDynamics != _object_) {
             MechanicalLoadDynamics = _object_;
-            MechanicalLoadDynamics.setSynchronousMachineDynamics(this);
+            _object_.setSynchronousMachineDynamics(this);
+            MechanicalLoadDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getMechanicalLoadDynamics(BaseClass _this_) {
-        return ((SynchronousMachineDynamics) _this_).getMechanicalLoadDynamics();
+        var obj = ((SynchronousMachineDynamics) _this_).getMechanicalLoadDynamics();
+        var id = ((SynchronousMachineDynamics) _this_).MechanicalLoadDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setMechanicalLoadDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof MechanicalLoadDynamics) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachineDynamics) _this_).MechanicalLoadDynamicsId = (String) _value_;
+        } else if (_value_ instanceof MechanicalLoadDynamics) {
             ((SynchronousMachineDynamics) _this_).setMechanicalLoadDynamics((MechanicalLoadDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not MechanicalLoadDynamics");
@@ -191,6 +241,8 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
      */
     private SynchronousMachine SynchronousMachine; // OneToOne
 
+    private String SynchronousMachineId;
+
     public SynchronousMachine getSynchronousMachine() {
         return SynchronousMachine;
     }
@@ -198,16 +250,24 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
     public void setSynchronousMachine(SynchronousMachine _object_) {
         if (SynchronousMachine != _object_) {
             SynchronousMachine = _object_;
-            SynchronousMachine.setSynchronousMachineDynamics(this);
+            _object_.setSynchronousMachineDynamics(this);
+            SynchronousMachineId = _object_.getRdfid();
         }
     }
 
     private static Object getSynchronousMachine(BaseClass _this_) {
-        return ((SynchronousMachineDynamics) _this_).getSynchronousMachine();
+        var obj = ((SynchronousMachineDynamics) _this_).getSynchronousMachine();
+        var id = ((SynchronousMachineDynamics) _this_).SynchronousMachineId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSynchronousMachine(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SynchronousMachine) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachineDynamics) _this_).SynchronousMachineId = (String) _value_;
+        } else if (_value_ instanceof SynchronousMachine) {
             ((SynchronousMachineDynamics) _this_).setSynchronousMachine((SynchronousMachine) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SynchronousMachine");
@@ -221,6 +281,8 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
      */
     private Set<TurbineGovernorDynamics> TurbineGovernorDynamics = new HashSet<>(); // OneToMany
 
+    private Set<String> TurbineGovernorDynamicsIdSet = new HashSet<>();
+
     public Set<TurbineGovernorDynamics> getTurbineGovernorDynamics() {
         return TurbineGovernorDynamics;
     }
@@ -229,15 +291,23 @@ public class SynchronousMachineDynamics extends RotatingMachineDynamics {
         if (!TurbineGovernorDynamics.contains(_object_)) {
             TurbineGovernorDynamics.add(_object_);
             _object_.setSynchronousMachineDynamics(this);
+            TurbineGovernorDynamicsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTurbineGovernorDynamics(BaseClass _this_) {
-        return ((SynchronousMachineDynamics) _this_).getTurbineGovernorDynamics();
+        var objs = ((SynchronousMachineDynamics) _this_).getTurbineGovernorDynamics();
+        var ids = ((SynchronousMachineDynamics) _this_).TurbineGovernorDynamicsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTurbineGovernorDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TurbineGovernorDynamics) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachineDynamics) _this_).TurbineGovernorDynamicsIdSet.add((String) _value_);
+        } else if (_value_ instanceof TurbineGovernorDynamics) {
             ((SynchronousMachineDynamics) _this_).setTurbineGovernorDynamics((TurbineGovernorDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TurbineGovernorDynamics");

@@ -43,6 +43,8 @@ public class WindPowerPlant extends PowerSystemResource {
      */
     private Set<WindGeneratingUnit> WindGeneratingUnits = new HashSet<>(); // OneToMany
 
+    private Set<String> WindGeneratingUnitsIdSet = new HashSet<>();
+
     public Set<WindGeneratingUnit> getWindGeneratingUnits() {
         return WindGeneratingUnits;
     }
@@ -51,15 +53,23 @@ public class WindPowerPlant extends PowerSystemResource {
         if (!WindGeneratingUnits.contains(_object_)) {
             WindGeneratingUnits.add(_object_);
             _object_.setWindPowerPlant(this);
+            WindGeneratingUnitsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getWindGeneratingUnits(BaseClass _this_) {
-        return ((WindPowerPlant) _this_).getWindGeneratingUnits();
+        var objs = ((WindPowerPlant) _this_).getWindGeneratingUnits();
+        var ids = ((WindPowerPlant) _this_).WindGeneratingUnitsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setWindGeneratingUnits(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindGeneratingUnit) {
+        if (_value_ instanceof String) {
+            ((WindPowerPlant) _this_).WindGeneratingUnitsIdSet.add((String) _value_);
+        } else if (_value_ instanceof WindGeneratingUnit) {
             ((WindPowerPlant) _this_).setWindGeneratingUnits((WindGeneratingUnit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindGeneratingUnit");

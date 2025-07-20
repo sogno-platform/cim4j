@@ -41,6 +41,8 @@ public class RegulatingCondEq extends ConductingEquipment {
      */
     private RegulatingControl RegulatingControl; // ManyToOne
 
+    private String RegulatingControlId;
+
     public RegulatingControl getRegulatingControl() {
         return RegulatingControl;
     }
@@ -48,16 +50,24 @@ public class RegulatingCondEq extends ConductingEquipment {
     public void setRegulatingControl(RegulatingControl _object_) {
         if (RegulatingControl != _object_) {
             RegulatingControl = _object_;
-            RegulatingControl.setRegulatingCondEq(this);
+            _object_.setRegulatingCondEq(this);
+            RegulatingControlId = _object_.getRdfid();
         }
     }
 
     private static Object getRegulatingControl(BaseClass _this_) {
-        return ((RegulatingCondEq) _this_).getRegulatingControl();
+        var obj = ((RegulatingCondEq) _this_).getRegulatingControl();
+        var id = ((RegulatingCondEq) _this_).RegulatingControlId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setRegulatingControl(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RegulatingControl) {
+        if (_value_ instanceof String) {
+            ((RegulatingCondEq) _this_).RegulatingControlId = (String) _value_;
+        } else if (_value_ instanceof RegulatingControl) {
             ((RegulatingCondEq) _this_).setRegulatingControl((RegulatingControl) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RegulatingControl");

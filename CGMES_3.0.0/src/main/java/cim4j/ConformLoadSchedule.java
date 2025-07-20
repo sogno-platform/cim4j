@@ -41,6 +41,8 @@ public class ConformLoadSchedule extends SeasonDayTypeSchedule {
      */
     private ConformLoadGroup ConformLoadGroup; // ManyToOne
 
+    private String ConformLoadGroupId;
+
     public ConformLoadGroup getConformLoadGroup() {
         return ConformLoadGroup;
     }
@@ -48,16 +50,24 @@ public class ConformLoadSchedule extends SeasonDayTypeSchedule {
     public void setConformLoadGroup(ConformLoadGroup _object_) {
         if (ConformLoadGroup != _object_) {
             ConformLoadGroup = _object_;
-            ConformLoadGroup.setConformLoadSchedules(this);
+            _object_.setConformLoadSchedules(this);
+            ConformLoadGroupId = _object_.getRdfid();
         }
     }
 
     private static Object getConformLoadGroup(BaseClass _this_) {
-        return ((ConformLoadSchedule) _this_).getConformLoadGroup();
+        var obj = ((ConformLoadSchedule) _this_).getConformLoadGroup();
+        var id = ((ConformLoadSchedule) _this_).ConformLoadGroupId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setConformLoadGroup(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ConformLoadGroup) {
+        if (_value_ instanceof String) {
+            ((ConformLoadSchedule) _this_).ConformLoadGroupId = (String) _value_;
+        } else if (_value_ instanceof ConformLoadGroup) {
             ((ConformLoadSchedule) _this_).setConformLoadGroup((ConformLoadGroup) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ConformLoadGroup");

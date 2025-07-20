@@ -41,6 +41,8 @@ public class VSCDynamics extends HVDCDynamics {
      */
     private VsConverter VsConverter; // OneToOne
 
+    private String VsConverterId;
+
     public VsConverter getVsConverter() {
         return VsConverter;
     }
@@ -48,16 +50,24 @@ public class VSCDynamics extends HVDCDynamics {
     public void setVsConverter(VsConverter _object_) {
         if (VsConverter != _object_) {
             VsConverter = _object_;
-            VsConverter.setVSCDynamics(this);
+            _object_.setVSCDynamics(this);
+            VsConverterId = _object_.getRdfid();
         }
     }
 
     private static Object getVsConverter(BaseClass _this_) {
-        return ((VSCDynamics) _this_).getVsConverter();
+        var obj = ((VSCDynamics) _this_).getVsConverter();
+        var id = ((VSCDynamics) _this_).VsConverterId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setVsConverter(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VsConverter) {
+        if (_value_ instanceof String) {
+            ((VSCDynamics) _this_).VsConverterId = (String) _value_;
+        } else if (_value_ instanceof VsConverter) {
             ((VSCDynamics) _this_).setVsConverter((VsConverter) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VsConverter");

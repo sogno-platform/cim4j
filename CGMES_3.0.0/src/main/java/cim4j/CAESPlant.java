@@ -43,6 +43,8 @@ public class CAESPlant extends PowerSystemResource {
      */
     private ThermalGeneratingUnit ThermalGeneratingUnit; // OneToOne
 
+    private String ThermalGeneratingUnitId;
+
     public ThermalGeneratingUnit getThermalGeneratingUnit() {
         return ThermalGeneratingUnit;
     }
@@ -50,16 +52,24 @@ public class CAESPlant extends PowerSystemResource {
     public void setThermalGeneratingUnit(ThermalGeneratingUnit _object_) {
         if (ThermalGeneratingUnit != _object_) {
             ThermalGeneratingUnit = _object_;
-            ThermalGeneratingUnit.setCAESPlant(this);
+            _object_.setCAESPlant(this);
+            ThermalGeneratingUnitId = _object_.getRdfid();
         }
     }
 
     private static Object getThermalGeneratingUnit(BaseClass _this_) {
-        return ((CAESPlant) _this_).getThermalGeneratingUnit();
+        var obj = ((CAESPlant) _this_).getThermalGeneratingUnit();
+        var id = ((CAESPlant) _this_).ThermalGeneratingUnitId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setThermalGeneratingUnit(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ThermalGeneratingUnit) {
+        if (_value_ instanceof String) {
+            ((CAESPlant) _this_).ThermalGeneratingUnitId = (String) _value_;
+        } else if (_value_ instanceof ThermalGeneratingUnit) {
             ((CAESPlant) _this_).setThermalGeneratingUnit((ThermalGeneratingUnit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ThermalGeneratingUnit");

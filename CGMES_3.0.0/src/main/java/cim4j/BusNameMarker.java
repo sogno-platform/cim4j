@@ -41,6 +41,8 @@ public class BusNameMarker extends IdentifiedObject {
      */
     private ReportingGroup ReportingGroup; // ManyToOne
 
+    private String ReportingGroupId;
+
     public ReportingGroup getReportingGroup() {
         return ReportingGroup;
     }
@@ -48,16 +50,24 @@ public class BusNameMarker extends IdentifiedObject {
     public void setReportingGroup(ReportingGroup _object_) {
         if (ReportingGroup != _object_) {
             ReportingGroup = _object_;
-            ReportingGroup.setBusNameMarker(this);
+            _object_.setBusNameMarker(this);
+            ReportingGroupId = _object_.getRdfid();
         }
     }
 
     private static Object getReportingGroup(BaseClass _this_) {
-        return ((BusNameMarker) _this_).getReportingGroup();
+        var obj = ((BusNameMarker) _this_).getReportingGroup();
+        var id = ((BusNameMarker) _this_).ReportingGroupId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setReportingGroup(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ReportingGroup) {
+        if (_value_ instanceof String) {
+            ((BusNameMarker) _this_).ReportingGroupId = (String) _value_;
+        } else if (_value_ instanceof ReportingGroup) {
             ((BusNameMarker) _this_).setReportingGroup((ReportingGroup) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ReportingGroup");
@@ -71,6 +81,8 @@ public class BusNameMarker extends IdentifiedObject {
      */
     private Set<ACDCTerminal> Terminal = new HashSet<>(); // OneToMany
 
+    private Set<String> TerminalIdSet = new HashSet<>();
+
     public Set<ACDCTerminal> getTerminal() {
         return Terminal;
     }
@@ -79,15 +91,23 @@ public class BusNameMarker extends IdentifiedObject {
         if (!Terminal.contains(_object_)) {
             Terminal.add(_object_);
             _object_.setBusNameMarker(this);
+            TerminalIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTerminal(BaseClass _this_) {
-        return ((BusNameMarker) _this_).getTerminal();
+        var objs = ((BusNameMarker) _this_).getTerminal();
+        var ids = ((BusNameMarker) _this_).TerminalIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTerminal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ACDCTerminal) {
+        if (_value_ instanceof String) {
+            ((BusNameMarker) _this_).TerminalIdSet.add((String) _value_);
+        } else if (_value_ instanceof ACDCTerminal) {
             ((BusNameMarker) _this_).setTerminal((ACDCTerminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ACDCTerminal");

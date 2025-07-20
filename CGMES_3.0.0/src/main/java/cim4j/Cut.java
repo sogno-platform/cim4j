@@ -41,6 +41,8 @@ public class Cut extends Switch {
      */
     private ACLineSegment ACLineSegment; // ManyToOne
 
+    private String ACLineSegmentId;
+
     public ACLineSegment getACLineSegment() {
         return ACLineSegment;
     }
@@ -48,16 +50,24 @@ public class Cut extends Switch {
     public void setACLineSegment(ACLineSegment _object_) {
         if (ACLineSegment != _object_) {
             ACLineSegment = _object_;
-            ACLineSegment.setCut(this);
+            _object_.setCut(this);
+            ACLineSegmentId = _object_.getRdfid();
         }
     }
 
     private static Object getACLineSegment(BaseClass _this_) {
-        return ((Cut) _this_).getACLineSegment();
+        var obj = ((Cut) _this_).getACLineSegment();
+        var id = ((Cut) _this_).ACLineSegmentId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setACLineSegment(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ACLineSegment) {
+        if (_value_ instanceof String) {
+            ((Cut) _this_).ACLineSegmentId = (String) _value_;
+        } else if (_value_ instanceof ACLineSegment) {
             ((Cut) _this_).setACLineSegment((ACLineSegment) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ACLineSegment");

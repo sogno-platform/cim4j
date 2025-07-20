@@ -41,6 +41,8 @@ public class SeasonDayTypeSchedule extends RegularIntervalSchedule {
      */
     private DayType DayType; // ManyToOne
 
+    private String DayTypeId;
+
     public DayType getDayType() {
         return DayType;
     }
@@ -48,16 +50,24 @@ public class SeasonDayTypeSchedule extends RegularIntervalSchedule {
     public void setDayType(DayType _object_) {
         if (DayType != _object_) {
             DayType = _object_;
-            DayType.setSeasonDayTypeSchedules(this);
+            _object_.setSeasonDayTypeSchedules(this);
+            DayTypeId = _object_.getRdfid();
         }
     }
 
     private static Object getDayType(BaseClass _this_) {
-        return ((SeasonDayTypeSchedule) _this_).getDayType();
+        var obj = ((SeasonDayTypeSchedule) _this_).getDayType();
+        var id = ((SeasonDayTypeSchedule) _this_).DayTypeId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDayType(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DayType) {
+        if (_value_ instanceof String) {
+            ((SeasonDayTypeSchedule) _this_).DayTypeId = (String) _value_;
+        } else if (_value_ instanceof DayType) {
             ((SeasonDayTypeSchedule) _this_).setDayType((DayType) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DayType");
@@ -69,6 +79,8 @@ public class SeasonDayTypeSchedule extends RegularIntervalSchedule {
      */
     private Season Season; // ManyToOne
 
+    private String SeasonId;
+
     public Season getSeason() {
         return Season;
     }
@@ -76,16 +88,24 @@ public class SeasonDayTypeSchedule extends RegularIntervalSchedule {
     public void setSeason(Season _object_) {
         if (Season != _object_) {
             Season = _object_;
-            Season.setSeasonDayTypeSchedules(this);
+            _object_.setSeasonDayTypeSchedules(this);
+            SeasonId = _object_.getRdfid();
         }
     }
 
     private static Object getSeason(BaseClass _this_) {
-        return ((SeasonDayTypeSchedule) _this_).getSeason();
+        var obj = ((SeasonDayTypeSchedule) _this_).getSeason();
+        var id = ((SeasonDayTypeSchedule) _this_).SeasonId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSeason(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Season) {
+        if (_value_ instanceof String) {
+            ((SeasonDayTypeSchedule) _this_).SeasonId = (String) _value_;
+        } else if (_value_ instanceof Season) {
             ((SeasonDayTypeSchedule) _this_).setSeason((Season) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Season");

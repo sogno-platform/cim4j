@@ -41,6 +41,8 @@ public class RegularTimePoint extends BaseClass {
      */
     private RegularIntervalSchedule IntervalSchedule; // ManyToOne
 
+    private String IntervalScheduleId;
+
     public RegularIntervalSchedule getIntervalSchedule() {
         return IntervalSchedule;
     }
@@ -48,16 +50,24 @@ public class RegularTimePoint extends BaseClass {
     public void setIntervalSchedule(RegularIntervalSchedule _object_) {
         if (IntervalSchedule != _object_) {
             IntervalSchedule = _object_;
-            IntervalSchedule.setTimePoints(this);
+            _object_.setTimePoints(this);
+            IntervalScheduleId = _object_.getRdfid();
         }
     }
 
     private static Object getIntervalSchedule(BaseClass _this_) {
-        return ((RegularTimePoint) _this_).getIntervalSchedule();
+        var obj = ((RegularTimePoint) _this_).getIntervalSchedule();
+        var id = ((RegularTimePoint) _this_).IntervalScheduleId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setIntervalSchedule(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RegularIntervalSchedule) {
+        if (_value_ instanceof String) {
+            ((RegularTimePoint) _this_).IntervalScheduleId = (String) _value_;
+        } else if (_value_ instanceof RegularIntervalSchedule) {
             ((RegularTimePoint) _this_).setIntervalSchedule((RegularIntervalSchedule) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RegularIntervalSchedule");

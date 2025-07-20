@@ -41,6 +41,8 @@ public class SvInjection extends BaseClass {
      */
     private TopologicalNode TopologicalNode; // OneToOne
 
+    private String TopologicalNodeId;
+
     public TopologicalNode getTopologicalNode() {
         return TopologicalNode;
     }
@@ -48,16 +50,24 @@ public class SvInjection extends BaseClass {
     public void setTopologicalNode(TopologicalNode _object_) {
         if (TopologicalNode != _object_) {
             TopologicalNode = _object_;
-            TopologicalNode.setSvInjection(this);
+            _object_.setSvInjection(this);
+            TopologicalNodeId = _object_.getRdfid();
         }
     }
 
     private static Object getTopologicalNode(BaseClass _this_) {
-        return ((SvInjection) _this_).getTopologicalNode();
+        var obj = ((SvInjection) _this_).getTopologicalNode();
+        var id = ((SvInjection) _this_).TopologicalNodeId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTopologicalNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TopologicalNode) {
+        if (_value_ instanceof String) {
+            ((SvInjection) _this_).TopologicalNodeId = (String) _value_;
+        } else if (_value_ instanceof TopologicalNode) {
             ((SvInjection) _this_).setTopologicalNode((TopologicalNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TopologicalNode");

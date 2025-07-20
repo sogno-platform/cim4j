@@ -43,6 +43,8 @@ public class NonlinearShuntCompensator extends ShuntCompensator {
      */
     private Set<NonlinearShuntCompensatorPoint> NonlinearShuntCompensatorPoints = new HashSet<>(); // OneToMany
 
+    private Set<String> NonlinearShuntCompensatorPointsIdSet = new HashSet<>();
+
     public Set<NonlinearShuntCompensatorPoint> getNonlinearShuntCompensatorPoints() {
         return NonlinearShuntCompensatorPoints;
     }
@@ -51,15 +53,23 @@ public class NonlinearShuntCompensator extends ShuntCompensator {
         if (!NonlinearShuntCompensatorPoints.contains(_object_)) {
             NonlinearShuntCompensatorPoints.add(_object_);
             _object_.setNonlinearShuntCompensator(this);
+            NonlinearShuntCompensatorPointsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getNonlinearShuntCompensatorPoints(BaseClass _this_) {
-        return ((NonlinearShuntCompensator) _this_).getNonlinearShuntCompensatorPoints();
+        var objs = ((NonlinearShuntCompensator) _this_).getNonlinearShuntCompensatorPoints();
+        var ids = ((NonlinearShuntCompensator) _this_).NonlinearShuntCompensatorPointsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setNonlinearShuntCompensatorPoints(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof NonlinearShuntCompensatorPoint) {
+        if (_value_ instanceof String) {
+            ((NonlinearShuntCompensator) _this_).NonlinearShuntCompensatorPointsIdSet.add((String) _value_);
+        } else if (_value_ instanceof NonlinearShuntCompensatorPoint) {
             ((NonlinearShuntCompensator) _this_).setNonlinearShuntCompensatorPoints((NonlinearShuntCompensatorPoint) _value_);
         } else {
             throw new IllegalArgumentException("Object is not NonlinearShuntCompensatorPoint");

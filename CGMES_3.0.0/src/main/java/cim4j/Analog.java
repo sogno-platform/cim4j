@@ -43,6 +43,8 @@ public class Analog extends Measurement {
      */
     private Set<AnalogValue> AnalogValues = new HashSet<>(); // OneToMany
 
+    private Set<String> AnalogValuesIdSet = new HashSet<>();
+
     public Set<AnalogValue> getAnalogValues() {
         return AnalogValues;
     }
@@ -51,15 +53,23 @@ public class Analog extends Measurement {
         if (!AnalogValues.contains(_object_)) {
             AnalogValues.add(_object_);
             _object_.setAnalog(this);
+            AnalogValuesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getAnalogValues(BaseClass _this_) {
-        return ((Analog) _this_).getAnalogValues();
+        var objs = ((Analog) _this_).getAnalogValues();
+        var ids = ((Analog) _this_).AnalogValuesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setAnalogValues(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AnalogValue) {
+        if (_value_ instanceof String) {
+            ((Analog) _this_).AnalogValuesIdSet.add((String) _value_);
+        } else if (_value_ instanceof AnalogValue) {
             ((Analog) _this_).setAnalogValues((AnalogValue) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AnalogValue");
@@ -73,6 +83,8 @@ public class Analog extends Measurement {
      */
     private Set<AnalogLimitSet> LimitSets = new HashSet<>(); // OneToMany
 
+    private Set<String> LimitSetsIdSet = new HashSet<>();
+
     public Set<AnalogLimitSet> getLimitSets() {
         return LimitSets;
     }
@@ -81,15 +93,23 @@ public class Analog extends Measurement {
         if (!LimitSets.contains(_object_)) {
             LimitSets.add(_object_);
             _object_.setMeasurements(this);
+            LimitSetsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getLimitSets(BaseClass _this_) {
-        return ((Analog) _this_).getLimitSets();
+        var objs = ((Analog) _this_).getLimitSets();
+        var ids = ((Analog) _this_).LimitSetsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setLimitSets(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AnalogLimitSet) {
+        if (_value_ instanceof String) {
+            ((Analog) _this_).LimitSetsIdSet.add((String) _value_);
+        } else if (_value_ instanceof AnalogLimitSet) {
             ((Analog) _this_).setLimitSets((AnalogLimitSet) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AnalogLimitSet");

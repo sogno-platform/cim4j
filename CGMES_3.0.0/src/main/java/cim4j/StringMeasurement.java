@@ -43,6 +43,8 @@ public class StringMeasurement extends Measurement {
      */
     private Set<StringMeasurementValue> StringMeasurementValues = new HashSet<>(); // OneToMany
 
+    private Set<String> StringMeasurementValuesIdSet = new HashSet<>();
+
     public Set<StringMeasurementValue> getStringMeasurementValues() {
         return StringMeasurementValues;
     }
@@ -51,15 +53,23 @@ public class StringMeasurement extends Measurement {
         if (!StringMeasurementValues.contains(_object_)) {
             StringMeasurementValues.add(_object_);
             _object_.setStringMeasurement(this);
+            StringMeasurementValuesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getStringMeasurementValues(BaseClass _this_) {
-        return ((StringMeasurement) _this_).getStringMeasurementValues();
+        var objs = ((StringMeasurement) _this_).getStringMeasurementValues();
+        var ids = ((StringMeasurement) _this_).StringMeasurementValuesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setStringMeasurementValues(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof StringMeasurementValue) {
+        if (_value_ instanceof String) {
+            ((StringMeasurement) _this_).StringMeasurementValuesIdSet.add((String) _value_);
+        } else if (_value_ instanceof StringMeasurementValue) {
             ((StringMeasurement) _this_).setStringMeasurementValues((StringMeasurementValue) _value_);
         } else {
             throw new IllegalArgumentException("Object is not StringMeasurementValue");

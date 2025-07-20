@@ -40,6 +40,8 @@ public class DCTopologicalIsland extends IdentifiedObject {
      */
     private Set<DCTopologicalNode> DCTopologicalNodes = new HashSet<>(); // OneToMany
 
+    private Set<String> DCTopologicalNodesIdSet = new HashSet<>();
+
     public Set<DCTopologicalNode> getDCTopologicalNodes() {
         return DCTopologicalNodes;
     }
@@ -48,15 +50,23 @@ public class DCTopologicalIsland extends IdentifiedObject {
         if (!DCTopologicalNodes.contains(_object_)) {
             DCTopologicalNodes.add(_object_);
             _object_.setDCTopologicalIsland(this);
+            DCTopologicalNodesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDCTopologicalNodes(BaseClass _this_) {
-        return ((DCTopologicalIsland) _this_).getDCTopologicalNodes();
+        var objs = ((DCTopologicalIsland) _this_).getDCTopologicalNodes();
+        var ids = ((DCTopologicalIsland) _this_).DCTopologicalNodesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDCTopologicalNodes(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCTopologicalNode) {
+        if (_value_ instanceof String) {
+            ((DCTopologicalIsland) _this_).DCTopologicalNodesIdSet.add((String) _value_);
+        } else if (_value_ instanceof DCTopologicalNode) {
             ((DCTopologicalIsland) _this_).setDCTopologicalNodes((DCTopologicalNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCTopologicalNode");

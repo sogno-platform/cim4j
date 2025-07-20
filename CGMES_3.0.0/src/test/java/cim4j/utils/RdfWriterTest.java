@@ -185,7 +185,7 @@ class RdfWriterTest {
     @Test
     @Order(160)
     void testWrite004() {
-        // Check reading model header
+        // Check reading model header and primitive attribute with custom namespace
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test004.xml")));
         assertEquals(1, cimData.size());
@@ -215,7 +215,7 @@ class RdfWriterTest {
     @Test
     @Order(170)
     void testWrite005() {
-        // Check custom namespaces
+        // Check object with custom namespace and class attribute with custom namespace
         if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_13")) {
             // There is no class or list attribute in cgmes_v2_4_13 with entsoe namespace
         } else if (CimConstants.CIM_VERSION.equals("cgmes_v2_4_15")) {
@@ -506,10 +506,10 @@ class RdfWriterTest {
 
     @Test
     @Order(240)
-    void testWrite010() {
-        // Check text with non ASCII utf-8 characters
+    void testWrite010_UTF_8() {
+        // Check text with non ASCII characters encoded in UTF-8
         var rdfReader = new RdfReader();
-        var cimData = rdfReader.read(List.of(getPath("rdf/test010.xml")));
+        var cimData = rdfReader.read(List.of(getPath("rdf/test010_UTF-8.xml")));
         assertEquals(1, cimData.size());
 
         assertTrue(cimData.containsKey("BaseVoltage.20"));
@@ -535,7 +535,7 @@ class RdfWriterTest {
     @Test
     @Order(250)
     void testWrite011() {
-        // Check class attributes to Status, StreetAddress, StreetDetail, TownDetail
+        // Check class attributes of Status, StreetAddress, StreetDetail, TownDetail
         // (to make sure they are not primitive string attributes, only for CGMES3)
         if (CimConstants.CIM_VERSION.equals("cgmes_v3_0_0")) {
             var rdfReader = new RdfReader();
@@ -767,8 +767,8 @@ class RdfWriterTest {
     @Test
     @Order(350)
     void testWrite021() {
-        // Check handling links to not existing objects (causing an error log entry)
-        Logging.setEnabled(false);
+        // Check handling links to not existing objects:
+        // the id is used instead of the object
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test021.xml")));
         assertEquals(1, cimData.size());
@@ -784,14 +784,14 @@ class RdfWriterTest {
         String result = stringWriter.toString();
 
         var lines = result.lines().toArray();
-        assertEquals(6, lines.length);
+        assertEquals(7, lines.length);
         assertEquals(XML_HEADER, lines[0]);
         assertEquals(RDF_HEADER, lines[1]);
         assertEquals("  <cim:VoltageLevel rdf:ID=\"VoltageLevel.98\">", lines[2]);
-        assertEquals("    <cim:IdentifiedObject.name>98</cim:IdentifiedObject.name>", lines[3]);
-        assertEquals("  </cim:VoltageLevel>", lines[4]);
-        assertEquals("</rdf:RDF>", lines[5]);
-        Logging.setEnabled(true);
+        assertEquals("    <cim:VoltageLevel.BaseVoltage rdf:resource=\"#BaseVoltage.20\"/>", lines[3]);
+        assertEquals("    <cim:IdentifiedObject.name>98</cim:IdentifiedObject.name>", lines[4]);
+        assertEquals("  </cim:VoltageLevel>", lines[5]);
+        assertEquals("</rdf:RDF>", lines[6]);
     }
 
     @Test
@@ -1242,14 +1242,14 @@ class RdfWriterTest {
     @Test
     @Order(520)
     void testWrite029() {
-        // Check parsing one object with overriding attribute (maybe not CGMES conform)
+        // Check parsing one object with overriding attributes (maybe not CGMES conform)
         testWrite_029_030_031_032("rdf/test029.xml", 6);
     }
 
     @Test
     @Order(530)
     void testWrite030() {
-        // Check parsing one object with overriding attribute (maybe not CGMES conform)
+        // Check parsing one object with overriding attributes (maybe not CGMES conform)
         // and the overriding class attribute links to object, that is defined later
         testWrite_029_030_031_032("rdf/test030.xml", 4);
     }
@@ -1257,7 +1257,7 @@ class RdfWriterTest {
     @Test
     @Order(540)
     void testWrite031() {
-        // Check parsing one object with overriding attribute (maybe not CGMES conform)
+        // Check parsing one object with overriding attributes (maybe not CGMES conform)
         // and both (overridden and overriding) link to objects, that are defined later
         testWrite_029_030_031_032("rdf/test031.xml", 2);
     }
@@ -1265,7 +1265,7 @@ class RdfWriterTest {
     @Test
     @Order(550)
     void testWrite032() {
-        // Check parsing one object with overriding attribute (maybe not CGMES conform)
+        // Check parsing one object with overriding attributes (maybe not CGMES conform)
         // and the overridden class attribute links to object, that is defined later
         testWrite_029_030_031_032("rdf/test032.xml", 4);
     }
@@ -1514,7 +1514,7 @@ class RdfWriterTest {
         String result = stringWriter.toString();
 
         var lines = result.lines().toArray();
-        assertEquals(8, lines.length);
+        assertEquals(9, lines.length);
         assertEquals(XML_HEADER, lines[0]);
         assertEquals(RDF_HEADER, lines[1]);
         assertEquals("  <cim:Equipment rdf:ID=\"_PT\">", lines[2]);
@@ -1522,9 +1522,138 @@ class RdfWriterTest {
                 lines[3]);
         assertEquals("  </cim:Equipment>", lines[4]);
         assertEquals("  <cim:SvStatus rdf:ID=\"_Status\">", lines[5]);
-        assertEquals("  </cim:SvStatus>", lines[6]);
-        assertEquals("</rdf:RDF>", lines[7]);
+        assertEquals("    <cim:SvStatus.ConductingEquipment rdf:resource=\"#_PT\"/>", lines[6]);
+        assertEquals("  </cim:SvStatus>", lines[7]);
+        assertEquals("</rdf:RDF>", lines[8]);
         Logging.setEnabled(true);
+    }
+
+    @Test
+    @Order(620)
+    void testWrite039() {
+        // Check replacing enum attributes
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test039.xml")));
+        assertEquals(1, cimData.size());
+
+        assertTrue(cimData.containsKey("Analog.N0.Voltage"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(8, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:Analog rdf:ID=\"Analog.N0.Voltage\">", lines[2]);
+        assertEquals("    <cim:Measurement.measurementType>Voltage</cim:Measurement.measurementType>", lines[3]);
+        assertEquals("    <cim:Measurement.unitMultiplier rdf:resource=\"" + CIM + "UnitMultiplier.k\"/>", lines[4]);
+        assertEquals("    <cim:Measurement.unitSymbol rdf:resource=\"" + CIM + "UnitSymbol.V\"/>", lines[5]);
+        assertEquals("  </cim:Analog>", lines[6]);
+        assertEquals("</rdf:RDF>", lines[7]);
+    }
+
+    @Test
+    @Order(630)
+    void testWrite040() {
+        // Check handling link lists with links to not existing objects:
+        // the id is used instead of the object
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test040.xml")));
+        assertEquals(1, cimData.size());
+
+        assertTrue(cimData.containsKey("TopologicalIsland.N"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(7, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:TopologicalIsland rdf:ID=\"TopologicalIsland.N\">", lines[2]);
+        assertEquals("    <cim:TopologicalIsland.TopologicalNodes rdf:resource=\"#N0\"/>", lines[3]);
+        assertEquals("    <cim:TopologicalIsland.TopologicalNodes rdf:resource=\"#N1\"/>", lines[4]);
+        assertEquals("  </cim:TopologicalIsland>", lines[5]);
+        assertEquals("</rdf:RDF>", lines[6]);
+    }
+
+    @Test
+    @Order(640)
+    void testWrite041() {
+        // Check handling link lists in which the last link to not existing object:
+        // the id is used instead of the object
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test041.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("TopologicalIsland.N"));
+        assertTrue(cimData.containsKey("N0"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(10, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:TopologicalIsland rdf:ID=\"TopologicalIsland.N\">", lines[2]);
+        assertEquals("    <cim:TopologicalIsland.TopologicalNodes rdf:resource=\"#N0\"/>", lines[3]);
+        assertEquals("    <cim:TopologicalIsland.TopologicalNodes rdf:resource=\"#N1\"/>", lines[4]);
+        assertEquals("  </cim:TopologicalIsland>", lines[5]);
+        assertEquals("  <cim:TopologicalNode rdf:ID=\"N0\">", lines[6]);
+        assertEquals("    <cim:IdentifiedObject.name>N0</cim:IdentifiedObject.name>", lines[7]);
+        assertEquals("  </cim:TopologicalNode>", lines[8]);
+        assertEquals("</rdf:RDF>", lines[9]);
+    }
+
+    @Test
+    @Order(650)
+    void testWrite042() {
+        // Check handling link lists in which the first link to not existing object:
+        // the id is used instead of the object
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test042.xml")));
+        assertEquals(2, cimData.size());
+
+        assertTrue(cimData.containsKey("TopologicalIsland.N"));
+        assertTrue(cimData.containsKey("N1"));
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(10, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:TopologicalIsland rdf:ID=\"TopologicalIsland.N\">", lines[2]);
+        assertEquals("    <cim:TopologicalIsland.TopologicalNodes rdf:resource=\"#N0\"/>", lines[3]);
+        assertEquals("    <cim:TopologicalIsland.TopologicalNodes rdf:resource=\"#N1\"/>", lines[4]);
+        assertEquals("  </cim:TopologicalIsland>", lines[5]);
+        assertEquals("  <cim:TopologicalNode rdf:ID=\"N1\">", lines[6]);
+        assertEquals("    <cim:IdentifiedObject.name>N1</cim:IdentifiedObject.name>", lines[7]);
+        assertEquals("  </cim:TopologicalNode>", lines[8]);
+        assertEquals("</rdf:RDF>", lines[9]);
     }
 
     @Test

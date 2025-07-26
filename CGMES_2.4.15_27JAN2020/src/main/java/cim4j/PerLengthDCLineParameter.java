@@ -40,6 +40,8 @@ public class PerLengthDCLineParameter extends BaseClass {
      */
     private Set<DCLineSegment> DCLineSegments = new HashSet<>(); // OneToMany
 
+    private Set<String> DCLineSegmentsIdSet = new HashSet<>();
+
     public Set<DCLineSegment> getDCLineSegments() {
         return DCLineSegments;
     }
@@ -48,15 +50,23 @@ public class PerLengthDCLineParameter extends BaseClass {
         if (!DCLineSegments.contains(_object_)) {
             DCLineSegments.add(_object_);
             _object_.setPerLengthParameter(this);
+            DCLineSegmentsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDCLineSegments(BaseClass _this_) {
-        return ((PerLengthDCLineParameter) _this_).getDCLineSegments();
+        var objs = ((PerLengthDCLineParameter) _this_).getDCLineSegments();
+        var ids = ((PerLengthDCLineParameter) _this_).DCLineSegmentsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDCLineSegments(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCLineSegment) {
+        if (_value_ instanceof String) {
+            ((PerLengthDCLineParameter) _this_).DCLineSegmentsIdSet.add((String) _value_);
+        } else if (_value_ instanceof DCLineSegment) {
             ((PerLengthDCLineParameter) _this_).setDCLineSegments((DCLineSegment) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCLineSegment");

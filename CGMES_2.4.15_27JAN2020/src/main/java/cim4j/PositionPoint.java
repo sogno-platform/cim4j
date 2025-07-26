@@ -41,6 +41,8 @@ public class PositionPoint extends BaseClass {
      */
     private Location Location; // ManyToOne
 
+    private String LocationId;
+
     public Location getLocation() {
         return Location;
     }
@@ -48,16 +50,24 @@ public class PositionPoint extends BaseClass {
     public void setLocation(Location _object_) {
         if (Location != _object_) {
             Location = _object_;
-            Location.setPositionPoints(this);
+            _object_.setPositionPoints(this);
+            LocationId = _object_.getRdfid();
         }
     }
 
     private static Object getLocation(BaseClass _this_) {
-        return ((PositionPoint) _this_).getLocation();
+        var obj = ((PositionPoint) _this_).getLocation();
+        var id = ((PositionPoint) _this_).LocationId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setLocation(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Location) {
+        if (_value_ instanceof String) {
+            ((PositionPoint) _this_).LocationId = (String) _value_;
+        } else if (_value_ instanceof Location) {
             ((PositionPoint) _this_).setLocation((Location) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Location");

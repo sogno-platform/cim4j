@@ -41,6 +41,8 @@ public class VisibilityLayer extends IdentifiedObject {
      */
     private Set<DiagramObject> VisibleObjects = new HashSet<>(); // OneToMany
 
+    private Set<String> VisibleObjectsIdSet = new HashSet<>();
+
     public Set<DiagramObject> getVisibleObjects() {
         return VisibleObjects;
     }
@@ -49,15 +51,23 @@ public class VisibilityLayer extends IdentifiedObject {
         if (!VisibleObjects.contains(_object_)) {
             VisibleObjects.add(_object_);
             _object_.setVisibilityLayers(this);
+            VisibleObjectsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getVisibleObjects(BaseClass _this_) {
-        return ((VisibilityLayer) _this_).getVisibleObjects();
+        var objs = ((VisibilityLayer) _this_).getVisibleObjects();
+        var ids = ((VisibilityLayer) _this_).VisibleObjectsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setVisibleObjects(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiagramObject) {
+        if (_value_ instanceof String) {
+            ((VisibilityLayer) _this_).VisibleObjectsIdSet.add((String) _value_);
+        } else if (_value_ instanceof DiagramObject) {
             ((VisibilityLayer) _this_).setVisibleObjects((DiagramObject) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiagramObject");

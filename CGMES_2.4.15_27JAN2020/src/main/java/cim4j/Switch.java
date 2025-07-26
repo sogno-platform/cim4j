@@ -43,6 +43,8 @@ public class Switch extends ConductingEquipment {
      */
     private Set<SwitchSchedule> SwitchSchedules = new HashSet<>(); // OneToMany
 
+    private Set<String> SwitchSchedulesIdSet = new HashSet<>();
+
     public Set<SwitchSchedule> getSwitchSchedules() {
         return SwitchSchedules;
     }
@@ -51,15 +53,23 @@ public class Switch extends ConductingEquipment {
         if (!SwitchSchedules.contains(_object_)) {
             SwitchSchedules.add(_object_);
             _object_.setSwitch(this);
+            SwitchSchedulesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getSwitchSchedules(BaseClass _this_) {
-        return ((Switch) _this_).getSwitchSchedules();
+        var objs = ((Switch) _this_).getSwitchSchedules();
+        var ids = ((Switch) _this_).SwitchSchedulesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setSwitchSchedules(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SwitchSchedule) {
+        if (_value_ instanceof String) {
+            ((Switch) _this_).SwitchSchedulesIdSet.add((String) _value_);
+        } else if (_value_ instanceof SwitchSchedule) {
             ((Switch) _this_).setSwitchSchedules((SwitchSchedule) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SwitchSchedule");

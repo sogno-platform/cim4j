@@ -43,6 +43,8 @@ public class ControlArea extends PowerSystemResource {
      */
     private Set<ControlAreaGeneratingUnit> ControlAreaGeneratingUnit = new HashSet<>(); // OneToMany
 
+    private Set<String> ControlAreaGeneratingUnitIdSet = new HashSet<>();
+
     public Set<ControlAreaGeneratingUnit> getControlAreaGeneratingUnit() {
         return ControlAreaGeneratingUnit;
     }
@@ -51,15 +53,23 @@ public class ControlArea extends PowerSystemResource {
         if (!ControlAreaGeneratingUnit.contains(_object_)) {
             ControlAreaGeneratingUnit.add(_object_);
             _object_.setControlArea(this);
+            ControlAreaGeneratingUnitIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getControlAreaGeneratingUnit(BaseClass _this_) {
-        return ((ControlArea) _this_).getControlAreaGeneratingUnit();
+        var objs = ((ControlArea) _this_).getControlAreaGeneratingUnit();
+        var ids = ((ControlArea) _this_).ControlAreaGeneratingUnitIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setControlAreaGeneratingUnit(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ControlAreaGeneratingUnit) {
+        if (_value_ instanceof String) {
+            ((ControlArea) _this_).ControlAreaGeneratingUnitIdSet.add((String) _value_);
+        } else if (_value_ instanceof ControlAreaGeneratingUnit) {
             ((ControlArea) _this_).setControlAreaGeneratingUnit((ControlAreaGeneratingUnit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ControlAreaGeneratingUnit");
@@ -71,6 +81,8 @@ public class ControlArea extends PowerSystemResource {
      */
     private EnergyArea EnergyArea; // OneToOne
 
+    private String EnergyAreaId;
+
     public EnergyArea getEnergyArea() {
         return EnergyArea;
     }
@@ -78,16 +90,24 @@ public class ControlArea extends PowerSystemResource {
     public void setEnergyArea(EnergyArea _object_) {
         if (EnergyArea != _object_) {
             EnergyArea = _object_;
-            EnergyArea.setControlArea(this);
+            _object_.setControlArea(this);
+            EnergyAreaId = _object_.getRdfid();
         }
     }
 
     private static Object getEnergyArea(BaseClass _this_) {
-        return ((ControlArea) _this_).getEnergyArea();
+        var obj = ((ControlArea) _this_).getEnergyArea();
+        var id = ((ControlArea) _this_).EnergyAreaId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setEnergyArea(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof EnergyArea) {
+        if (_value_ instanceof String) {
+            ((ControlArea) _this_).EnergyAreaId = (String) _value_;
+        } else if (_value_ instanceof EnergyArea) {
             ((ControlArea) _this_).setEnergyArea((EnergyArea) _value_);
         } else {
             throw new IllegalArgumentException("Object is not EnergyArea");
@@ -101,6 +121,8 @@ public class ControlArea extends PowerSystemResource {
      */
     private Set<TieFlow> TieFlow = new HashSet<>(); // OneToMany
 
+    private Set<String> TieFlowIdSet = new HashSet<>();
+
     public Set<TieFlow> getTieFlow() {
         return TieFlow;
     }
@@ -109,15 +131,23 @@ public class ControlArea extends PowerSystemResource {
         if (!TieFlow.contains(_object_)) {
             TieFlow.add(_object_);
             _object_.setControlArea(this);
+            TieFlowIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTieFlow(BaseClass _this_) {
-        return ((ControlArea) _this_).getTieFlow();
+        var objs = ((ControlArea) _this_).getTieFlow();
+        var ids = ((ControlArea) _this_).TieFlowIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTieFlow(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TieFlow) {
+        if (_value_ instanceof String) {
+            ((ControlArea) _this_).TieFlowIdSet.add((String) _value_);
+        } else if (_value_ instanceof TieFlow) {
             ((ControlArea) _this_).setTieFlow((TieFlow) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TieFlow");

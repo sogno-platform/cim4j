@@ -43,6 +43,8 @@ public class PowerTransformer extends ConductingEquipment {
      */
     private Set<PowerTransformerEnd> PowerTransformerEnd = new HashSet<>(); // OneToMany
 
+    private Set<String> PowerTransformerEndIdSet = new HashSet<>();
+
     public Set<PowerTransformerEnd> getPowerTransformerEnd() {
         return PowerTransformerEnd;
     }
@@ -51,15 +53,23 @@ public class PowerTransformer extends ConductingEquipment {
         if (!PowerTransformerEnd.contains(_object_)) {
             PowerTransformerEnd.add(_object_);
             _object_.setPowerTransformer(this);
+            PowerTransformerEndIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getPowerTransformerEnd(BaseClass _this_) {
-        return ((PowerTransformer) _this_).getPowerTransformerEnd();
+        var objs = ((PowerTransformer) _this_).getPowerTransformerEnd();
+        var ids = ((PowerTransformer) _this_).PowerTransformerEndIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setPowerTransformerEnd(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PowerTransformerEnd) {
+        if (_value_ instanceof String) {
+            ((PowerTransformer) _this_).PowerTransformerEndIdSet.add((String) _value_);
+        } else if (_value_ instanceof PowerTransformerEnd) {
             ((PowerTransformer) _this_).setPowerTransformerEnd((PowerTransformerEnd) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PowerTransformerEnd");

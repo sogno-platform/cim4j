@@ -41,6 +41,8 @@ public class StaticVarCompensatorDynamics extends DynamicsFunctionBlock {
      */
     private StaticVarCompensator StaticVarCompensator; // OneToOne
 
+    private String StaticVarCompensatorId;
+
     public StaticVarCompensator getStaticVarCompensator() {
         return StaticVarCompensator;
     }
@@ -48,16 +50,24 @@ public class StaticVarCompensatorDynamics extends DynamicsFunctionBlock {
     public void setStaticVarCompensator(StaticVarCompensator _object_) {
         if (StaticVarCompensator != _object_) {
             StaticVarCompensator = _object_;
-            StaticVarCompensator.setStaticVarCompensatorDynamics(this);
+            _object_.setStaticVarCompensatorDynamics(this);
+            StaticVarCompensatorId = _object_.getRdfid();
         }
     }
 
     private static Object getStaticVarCompensator(BaseClass _this_) {
-        return ((StaticVarCompensatorDynamics) _this_).getStaticVarCompensator();
+        var obj = ((StaticVarCompensatorDynamics) _this_).getStaticVarCompensator();
+        var id = ((StaticVarCompensatorDynamics) _this_).StaticVarCompensatorId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setStaticVarCompensator(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof StaticVarCompensator) {
+        if (_value_ instanceof String) {
+            ((StaticVarCompensatorDynamics) _this_).StaticVarCompensatorId = (String) _value_;
+        } else if (_value_ instanceof StaticVarCompensator) {
             ((StaticVarCompensatorDynamics) _this_).setStaticVarCompensator((StaticVarCompensator) _value_);
         } else {
             throw new IllegalArgumentException("Object is not StaticVarCompensator");

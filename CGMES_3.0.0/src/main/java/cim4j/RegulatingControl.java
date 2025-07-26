@@ -43,6 +43,8 @@ public class RegulatingControl extends PowerSystemResource {
      */
     private Set<RegulatingCondEq> RegulatingCondEq = new HashSet<>(); // OneToMany
 
+    private Set<String> RegulatingCondEqIdSet = new HashSet<>();
+
     public Set<RegulatingCondEq> getRegulatingCondEq() {
         return RegulatingCondEq;
     }
@@ -51,15 +53,23 @@ public class RegulatingControl extends PowerSystemResource {
         if (!RegulatingCondEq.contains(_object_)) {
             RegulatingCondEq.add(_object_);
             _object_.setRegulatingControl(this);
+            RegulatingCondEqIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getRegulatingCondEq(BaseClass _this_) {
-        return ((RegulatingControl) _this_).getRegulatingCondEq();
+        var objs = ((RegulatingControl) _this_).getRegulatingCondEq();
+        var ids = ((RegulatingControl) _this_).RegulatingCondEqIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setRegulatingCondEq(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RegulatingCondEq) {
+        if (_value_ instanceof String) {
+            ((RegulatingControl) _this_).RegulatingCondEqIdSet.add((String) _value_);
+        } else if (_value_ instanceof RegulatingCondEq) {
             ((RegulatingControl) _this_).setRegulatingCondEq((RegulatingCondEq) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RegulatingCondEq");
@@ -73,6 +83,8 @@ public class RegulatingControl extends PowerSystemResource {
      */
     private Set<RegulationSchedule> RegulationSchedule = new HashSet<>(); // OneToMany
 
+    private Set<String> RegulationScheduleIdSet = new HashSet<>();
+
     public Set<RegulationSchedule> getRegulationSchedule() {
         return RegulationSchedule;
     }
@@ -81,15 +93,23 @@ public class RegulatingControl extends PowerSystemResource {
         if (!RegulationSchedule.contains(_object_)) {
             RegulationSchedule.add(_object_);
             _object_.setRegulatingControl(this);
+            RegulationScheduleIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getRegulationSchedule(BaseClass _this_) {
-        return ((RegulatingControl) _this_).getRegulationSchedule();
+        var objs = ((RegulatingControl) _this_).getRegulationSchedule();
+        var ids = ((RegulatingControl) _this_).RegulationScheduleIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setRegulationSchedule(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RegulationSchedule) {
+        if (_value_ instanceof String) {
+            ((RegulatingControl) _this_).RegulationScheduleIdSet.add((String) _value_);
+        } else if (_value_ instanceof RegulationSchedule) {
             ((RegulatingControl) _this_).setRegulationSchedule((RegulationSchedule) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RegulationSchedule");
@@ -101,6 +121,8 @@ public class RegulatingControl extends PowerSystemResource {
      */
     private Terminal Terminal; // ManyToOne
 
+    private String TerminalId;
+
     public Terminal getTerminal() {
         return Terminal;
     }
@@ -108,16 +130,24 @@ public class RegulatingControl extends PowerSystemResource {
     public void setTerminal(Terminal _object_) {
         if (Terminal != _object_) {
             Terminal = _object_;
-            Terminal.setRegulatingControl(this);
+            _object_.setRegulatingControl(this);
+            TerminalId = _object_.getRdfid();
         }
     }
 
     private static Object getTerminal(BaseClass _this_) {
-        return ((RegulatingControl) _this_).getTerminal();
+        var obj = ((RegulatingControl) _this_).getTerminal();
+        var id = ((RegulatingControl) _this_).TerminalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTerminal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Terminal) {
+        if (_value_ instanceof String) {
+            ((RegulatingControl) _this_).TerminalId = (String) _value_;
+        } else if (_value_ instanceof Terminal) {
             ((RegulatingControl) _this_).setTerminal((Terminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Terminal");

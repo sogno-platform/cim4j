@@ -43,6 +43,8 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
      */
     private Set<FossilFuel> FossilFuels = new HashSet<>(); // OneToMany
 
+    private Set<String> FossilFuelsIdSet = new HashSet<>();
+
     public Set<FossilFuel> getFossilFuels() {
         return FossilFuels;
     }
@@ -51,15 +53,23 @@ public class ThermalGeneratingUnit extends GeneratingUnit {
         if (!FossilFuels.contains(_object_)) {
             FossilFuels.add(_object_);
             _object_.setThermalGeneratingUnit(this);
+            FossilFuelsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getFossilFuels(BaseClass _this_) {
-        return ((ThermalGeneratingUnit) _this_).getFossilFuels();
+        var objs = ((ThermalGeneratingUnit) _this_).getFossilFuels();
+        var ids = ((ThermalGeneratingUnit) _this_).FossilFuelsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setFossilFuels(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof FossilFuel) {
+        if (_value_ instanceof String) {
+            ((ThermalGeneratingUnit) _this_).FossilFuelsIdSet.add((String) _value_);
+        } else if (_value_ instanceof FossilFuel) {
             ((ThermalGeneratingUnit) _this_).setFossilFuels((FossilFuel) _value_);
         } else {
             throw new IllegalArgumentException("Object is not FossilFuel");

@@ -41,6 +41,8 @@ public class DCConverterUnit extends DCEquipmentContainer {
      */
     private Substation Substation; // ManyToOne
 
+    private String SubstationId;
+
     public Substation getSubstation() {
         return Substation;
     }
@@ -48,16 +50,24 @@ public class DCConverterUnit extends DCEquipmentContainer {
     public void setSubstation(Substation _object_) {
         if (Substation != _object_) {
             Substation = _object_;
-            Substation.setDCConverterUnit(this);
+            _object_.setDCConverterUnit(this);
+            SubstationId = _object_.getRdfid();
         }
     }
 
     private static Object getSubstation(BaseClass _this_) {
-        return ((DCConverterUnit) _this_).getSubstation();
+        var obj = ((DCConverterUnit) _this_).getSubstation();
+        var id = ((DCConverterUnit) _this_).SubstationId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSubstation(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Substation) {
+        if (_value_ instanceof String) {
+            ((DCConverterUnit) _this_).SubstationId = (String) _value_;
+        } else if (_value_ instanceof Substation) {
             ((DCConverterUnit) _this_).setSubstation((Substation) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Substation");

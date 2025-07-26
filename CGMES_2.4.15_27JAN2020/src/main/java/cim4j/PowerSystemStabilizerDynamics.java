@@ -41,6 +41,8 @@ public class PowerSystemStabilizerDynamics extends DynamicsFunctionBlock {
      */
     private ExcitationSystemDynamics ExcitationSystemDynamics; // OneToOne
 
+    private String ExcitationSystemDynamicsId;
+
     public ExcitationSystemDynamics getExcitationSystemDynamics() {
         return ExcitationSystemDynamics;
     }
@@ -48,16 +50,24 @@ public class PowerSystemStabilizerDynamics extends DynamicsFunctionBlock {
     public void setExcitationSystemDynamics(ExcitationSystemDynamics _object_) {
         if (ExcitationSystemDynamics != _object_) {
             ExcitationSystemDynamics = _object_;
-            ExcitationSystemDynamics.setPowerSystemStabilizerDynamics(this);
+            _object_.setPowerSystemStabilizerDynamics(this);
+            ExcitationSystemDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getExcitationSystemDynamics(BaseClass _this_) {
-        return ((PowerSystemStabilizerDynamics) _this_).getExcitationSystemDynamics();
+        var obj = ((PowerSystemStabilizerDynamics) _this_).getExcitationSystemDynamics();
+        var id = ((PowerSystemStabilizerDynamics) _this_).ExcitationSystemDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setExcitationSystemDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ExcitationSystemDynamics) {
+        if (_value_ instanceof String) {
+            ((PowerSystemStabilizerDynamics) _this_).ExcitationSystemDynamicsId = (String) _value_;
+        } else if (_value_ instanceof ExcitationSystemDynamics) {
             ((PowerSystemStabilizerDynamics) _this_).setExcitationSystemDynamics((ExcitationSystemDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ExcitationSystemDynamics");
@@ -71,6 +81,8 @@ public class PowerSystemStabilizerDynamics extends DynamicsFunctionBlock {
      */
     private Set<RemoteInputSignal> RemoteInputSignal = new HashSet<>(); // OneToMany
 
+    private Set<String> RemoteInputSignalIdSet = new HashSet<>();
+
     public Set<RemoteInputSignal> getRemoteInputSignal() {
         return RemoteInputSignal;
     }
@@ -79,15 +91,23 @@ public class PowerSystemStabilizerDynamics extends DynamicsFunctionBlock {
         if (!RemoteInputSignal.contains(_object_)) {
             RemoteInputSignal.add(_object_);
             _object_.setPowerSystemStabilizerDynamics(this);
+            RemoteInputSignalIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getRemoteInputSignal(BaseClass _this_) {
-        return ((PowerSystemStabilizerDynamics) _this_).getRemoteInputSignal();
+        var objs = ((PowerSystemStabilizerDynamics) _this_).getRemoteInputSignal();
+        var ids = ((PowerSystemStabilizerDynamics) _this_).RemoteInputSignalIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setRemoteInputSignal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RemoteInputSignal) {
+        if (_value_ instanceof String) {
+            ((PowerSystemStabilizerDynamics) _this_).RemoteInputSignalIdSet.add((String) _value_);
+        } else if (_value_ instanceof RemoteInputSignal) {
             ((PowerSystemStabilizerDynamics) _this_).setRemoteInputSignal((RemoteInputSignal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RemoteInputSignal");

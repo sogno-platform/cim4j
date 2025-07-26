@@ -41,6 +41,8 @@ public class MutualCoupling extends IdentifiedObject {
      */
     private Terminal First_Terminal; // ManyToOne
 
+    private String First_TerminalId;
+
     public Terminal getFirst_Terminal() {
         return First_Terminal;
     }
@@ -48,16 +50,24 @@ public class MutualCoupling extends IdentifiedObject {
     public void setFirst_Terminal(Terminal _object_) {
         if (First_Terminal != _object_) {
             First_Terminal = _object_;
-            First_Terminal.setHasFirstMutualCoupling(this);
+            _object_.setHasFirstMutualCoupling(this);
+            First_TerminalId = _object_.getRdfid();
         }
     }
 
     private static Object getFirst_Terminal(BaseClass _this_) {
-        return ((MutualCoupling) _this_).getFirst_Terminal();
+        var obj = ((MutualCoupling) _this_).getFirst_Terminal();
+        var id = ((MutualCoupling) _this_).First_TerminalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setFirst_Terminal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Terminal) {
+        if (_value_ instanceof String) {
+            ((MutualCoupling) _this_).First_TerminalId = (String) _value_;
+        } else if (_value_ instanceof Terminal) {
             ((MutualCoupling) _this_).setFirst_Terminal((Terminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Terminal");
@@ -69,6 +79,8 @@ public class MutualCoupling extends IdentifiedObject {
      */
     private Terminal Second_Terminal; // ManyToOne
 
+    private String Second_TerminalId;
+
     public Terminal getSecond_Terminal() {
         return Second_Terminal;
     }
@@ -76,16 +88,24 @@ public class MutualCoupling extends IdentifiedObject {
     public void setSecond_Terminal(Terminal _object_) {
         if (Second_Terminal != _object_) {
             Second_Terminal = _object_;
-            Second_Terminal.setHasSecondMutualCoupling(this);
+            _object_.setHasSecondMutualCoupling(this);
+            Second_TerminalId = _object_.getRdfid();
         }
     }
 
     private static Object getSecond_Terminal(BaseClass _this_) {
-        return ((MutualCoupling) _this_).getSecond_Terminal();
+        var obj = ((MutualCoupling) _this_).getSecond_Terminal();
+        var id = ((MutualCoupling) _this_).Second_TerminalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSecond_Terminal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Terminal) {
+        if (_value_ instanceof String) {
+            ((MutualCoupling) _this_).Second_TerminalId = (String) _value_;
+        } else if (_value_ instanceof Terminal) {
             ((MutualCoupling) _this_).setSecond_Terminal((Terminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Terminal");

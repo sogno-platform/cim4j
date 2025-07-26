@@ -41,6 +41,8 @@ public class ControlAreaGeneratingUnit extends IdentifiedObject {
      */
     private ControlArea ControlArea; // ManyToOne
 
+    private String ControlAreaId;
+
     public ControlArea getControlArea() {
         return ControlArea;
     }
@@ -48,16 +50,24 @@ public class ControlAreaGeneratingUnit extends IdentifiedObject {
     public void setControlArea(ControlArea _object_) {
         if (ControlArea != _object_) {
             ControlArea = _object_;
-            ControlArea.setControlAreaGeneratingUnit(this);
+            _object_.setControlAreaGeneratingUnit(this);
+            ControlAreaId = _object_.getRdfid();
         }
     }
 
     private static Object getControlArea(BaseClass _this_) {
-        return ((ControlAreaGeneratingUnit) _this_).getControlArea();
+        var obj = ((ControlAreaGeneratingUnit) _this_).getControlArea();
+        var id = ((ControlAreaGeneratingUnit) _this_).ControlAreaId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setControlArea(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ControlArea) {
+        if (_value_ instanceof String) {
+            ((ControlAreaGeneratingUnit) _this_).ControlAreaId = (String) _value_;
+        } else if (_value_ instanceof ControlArea) {
             ((ControlAreaGeneratingUnit) _this_).setControlArea((ControlArea) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ControlArea");
@@ -69,6 +79,8 @@ public class ControlAreaGeneratingUnit extends IdentifiedObject {
      */
     private GeneratingUnit GeneratingUnit; // ManyToOne
 
+    private String GeneratingUnitId;
+
     public GeneratingUnit getGeneratingUnit() {
         return GeneratingUnit;
     }
@@ -76,16 +88,24 @@ public class ControlAreaGeneratingUnit extends IdentifiedObject {
     public void setGeneratingUnit(GeneratingUnit _object_) {
         if (GeneratingUnit != _object_) {
             GeneratingUnit = _object_;
-            GeneratingUnit.setControlAreaGeneratingUnit(this);
+            _object_.setControlAreaGeneratingUnit(this);
+            GeneratingUnitId = _object_.getRdfid();
         }
     }
 
     private static Object getGeneratingUnit(BaseClass _this_) {
-        return ((ControlAreaGeneratingUnit) _this_).getGeneratingUnit();
+        var obj = ((ControlAreaGeneratingUnit) _this_).getGeneratingUnit();
+        var id = ((ControlAreaGeneratingUnit) _this_).GeneratingUnitId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setGeneratingUnit(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof GeneratingUnit) {
+        if (_value_ instanceof String) {
+            ((ControlAreaGeneratingUnit) _this_).GeneratingUnitId = (String) _value_;
+        } else if (_value_ instanceof GeneratingUnit) {
             ((ControlAreaGeneratingUnit) _this_).setGeneratingUnit((GeneratingUnit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not GeneratingUnit");

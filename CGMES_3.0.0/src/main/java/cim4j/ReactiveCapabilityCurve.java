@@ -43,6 +43,8 @@ public class ReactiveCapabilityCurve extends Curve {
      */
     private Set<EquivalentInjection> EquivalentInjection = new HashSet<>(); // OneToMany
 
+    private Set<String> EquivalentInjectionIdSet = new HashSet<>();
+
     public Set<EquivalentInjection> getEquivalentInjection() {
         return EquivalentInjection;
     }
@@ -51,15 +53,23 @@ public class ReactiveCapabilityCurve extends Curve {
         if (!EquivalentInjection.contains(_object_)) {
             EquivalentInjection.add(_object_);
             _object_.setReactiveCapabilityCurve(this);
+            EquivalentInjectionIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getEquivalentInjection(BaseClass _this_) {
-        return ((ReactiveCapabilityCurve) _this_).getEquivalentInjection();
+        var objs = ((ReactiveCapabilityCurve) _this_).getEquivalentInjection();
+        var ids = ((ReactiveCapabilityCurve) _this_).EquivalentInjectionIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setEquivalentInjection(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof EquivalentInjection) {
+        if (_value_ instanceof String) {
+            ((ReactiveCapabilityCurve) _this_).EquivalentInjectionIdSet.add((String) _value_);
+        } else if (_value_ instanceof EquivalentInjection) {
             ((ReactiveCapabilityCurve) _this_).setEquivalentInjection((EquivalentInjection) _value_);
         } else {
             throw new IllegalArgumentException("Object is not EquivalentInjection");
@@ -73,6 +83,8 @@ public class ReactiveCapabilityCurve extends Curve {
      */
     private Set<SynchronousMachine> InitiallyUsedBySynchronousMachines = new HashSet<>(); // OneToMany
 
+    private Set<String> InitiallyUsedBySynchronousMachinesIdSet = new HashSet<>();
+
     public Set<SynchronousMachine> getInitiallyUsedBySynchronousMachines() {
         return InitiallyUsedBySynchronousMachines;
     }
@@ -81,15 +93,23 @@ public class ReactiveCapabilityCurve extends Curve {
         if (!InitiallyUsedBySynchronousMachines.contains(_object_)) {
             InitiallyUsedBySynchronousMachines.add(_object_);
             _object_.setInitialReactiveCapabilityCurve(this);
+            InitiallyUsedBySynchronousMachinesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getInitiallyUsedBySynchronousMachines(BaseClass _this_) {
-        return ((ReactiveCapabilityCurve) _this_).getInitiallyUsedBySynchronousMachines();
+        var objs = ((ReactiveCapabilityCurve) _this_).getInitiallyUsedBySynchronousMachines();
+        var ids = ((ReactiveCapabilityCurve) _this_).InitiallyUsedBySynchronousMachinesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setInitiallyUsedBySynchronousMachines(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SynchronousMachine) {
+        if (_value_ instanceof String) {
+            ((ReactiveCapabilityCurve) _this_).InitiallyUsedBySynchronousMachinesIdSet.add((String) _value_);
+        } else if (_value_ instanceof SynchronousMachine) {
             ((ReactiveCapabilityCurve) _this_).setInitiallyUsedBySynchronousMachines((SynchronousMachine) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SynchronousMachine");

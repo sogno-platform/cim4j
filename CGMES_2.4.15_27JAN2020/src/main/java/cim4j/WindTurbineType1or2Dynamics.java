@@ -41,6 +41,8 @@ public class WindTurbineType1or2Dynamics extends DynamicsFunctionBlock {
      */
     private AsynchronousMachineDynamics AsynchronousMachineDynamics; // OneToOne
 
+    private String AsynchronousMachineDynamicsId;
+
     public AsynchronousMachineDynamics getAsynchronousMachineDynamics() {
         return AsynchronousMachineDynamics;
     }
@@ -48,16 +50,24 @@ public class WindTurbineType1or2Dynamics extends DynamicsFunctionBlock {
     public void setAsynchronousMachineDynamics(AsynchronousMachineDynamics _object_) {
         if (AsynchronousMachineDynamics != _object_) {
             AsynchronousMachineDynamics = _object_;
-            AsynchronousMachineDynamics.setWindTurbineType1or2Dynamics(this);
+            _object_.setWindTurbineType1or2Dynamics(this);
+            AsynchronousMachineDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getAsynchronousMachineDynamics(BaseClass _this_) {
-        return ((WindTurbineType1or2Dynamics) _this_).getAsynchronousMachineDynamics();
+        var obj = ((WindTurbineType1or2Dynamics) _this_).getAsynchronousMachineDynamics();
+        var id = ((WindTurbineType1or2Dynamics) _this_).AsynchronousMachineDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setAsynchronousMachineDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AsynchronousMachineDynamics) {
+        if (_value_ instanceof String) {
+            ((WindTurbineType1or2Dynamics) _this_).AsynchronousMachineDynamicsId = (String) _value_;
+        } else if (_value_ instanceof AsynchronousMachineDynamics) {
             ((WindTurbineType1or2Dynamics) _this_).setAsynchronousMachineDynamics((AsynchronousMachineDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AsynchronousMachineDynamics");
@@ -69,6 +79,8 @@ public class WindTurbineType1or2Dynamics extends DynamicsFunctionBlock {
      */
     private RemoteInputSignal RemoteInputSignal; // OneToOne
 
+    private String RemoteInputSignalId;
+
     public RemoteInputSignal getRemoteInputSignal() {
         return RemoteInputSignal;
     }
@@ -76,16 +88,24 @@ public class WindTurbineType1or2Dynamics extends DynamicsFunctionBlock {
     public void setRemoteInputSignal(RemoteInputSignal _object_) {
         if (RemoteInputSignal != _object_) {
             RemoteInputSignal = _object_;
-            RemoteInputSignal.setWindTurbineType1or2Dynamics(this);
+            _object_.setWindTurbineType1or2Dynamics(this);
+            RemoteInputSignalId = _object_.getRdfid();
         }
     }
 
     private static Object getRemoteInputSignal(BaseClass _this_) {
-        return ((WindTurbineType1or2Dynamics) _this_).getRemoteInputSignal();
+        var obj = ((WindTurbineType1or2Dynamics) _this_).getRemoteInputSignal();
+        var id = ((WindTurbineType1or2Dynamics) _this_).RemoteInputSignalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setRemoteInputSignal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RemoteInputSignal) {
+        if (_value_ instanceof String) {
+            ((WindTurbineType1or2Dynamics) _this_).RemoteInputSignalId = (String) _value_;
+        } else if (_value_ instanceof RemoteInputSignal) {
             ((WindTurbineType1or2Dynamics) _this_).setRemoteInputSignal((RemoteInputSignal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RemoteInputSignal");

@@ -41,6 +41,8 @@ public class Command extends Control {
      */
     private DiscreteValue DiscreteValue; // OneToOne
 
+    private String DiscreteValueId;
+
     public DiscreteValue getDiscreteValue() {
         return DiscreteValue;
     }
@@ -48,16 +50,24 @@ public class Command extends Control {
     public void setDiscreteValue(DiscreteValue _object_) {
         if (DiscreteValue != _object_) {
             DiscreteValue = _object_;
-            DiscreteValue.setCommand(this);
+            _object_.setCommand(this);
+            DiscreteValueId = _object_.getRdfid();
         }
     }
 
     private static Object getDiscreteValue(BaseClass _this_) {
-        return ((Command) _this_).getDiscreteValue();
+        var obj = ((Command) _this_).getDiscreteValue();
+        var id = ((Command) _this_).DiscreteValueId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDiscreteValue(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiscreteValue) {
+        if (_value_ instanceof String) {
+            ((Command) _this_).DiscreteValueId = (String) _value_;
+        } else if (_value_ instanceof DiscreteValue) {
             ((Command) _this_).setDiscreteValue((DiscreteValue) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiscreteValue");
@@ -69,6 +79,8 @@ public class Command extends Control {
      */
     private ValueAliasSet ValueAliasSet; // ManyToOne
 
+    private String ValueAliasSetId;
+
     public ValueAliasSet getValueAliasSet() {
         return ValueAliasSet;
     }
@@ -76,16 +88,24 @@ public class Command extends Control {
     public void setValueAliasSet(ValueAliasSet _object_) {
         if (ValueAliasSet != _object_) {
             ValueAliasSet = _object_;
-            ValueAliasSet.setCommands(this);
+            _object_.setCommands(this);
+            ValueAliasSetId = _object_.getRdfid();
         }
     }
 
     private static Object getValueAliasSet(BaseClass _this_) {
-        return ((Command) _this_).getValueAliasSet();
+        var obj = ((Command) _this_).getValueAliasSet();
+        var id = ((Command) _this_).ValueAliasSetId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setValueAliasSet(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ValueAliasSet) {
+        if (_value_ instanceof String) {
+            ((Command) _this_).ValueAliasSetId = (String) _value_;
+        } else if (_value_ instanceof ValueAliasSet) {
             ((Command) _this_).setValueAliasSet((ValueAliasSet) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ValueAliasSet");

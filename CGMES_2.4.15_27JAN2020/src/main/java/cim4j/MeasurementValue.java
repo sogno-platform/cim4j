@@ -43,6 +43,8 @@ public class MeasurementValue extends IdentifiedObject {
      */
     private MeasurementValueQuality MeasurementValueQuality; // OneToOne
 
+    private String MeasurementValueQualityId;
+
     public MeasurementValueQuality getMeasurementValueQuality() {
         return MeasurementValueQuality;
     }
@@ -50,16 +52,24 @@ public class MeasurementValue extends IdentifiedObject {
     public void setMeasurementValueQuality(MeasurementValueQuality _object_) {
         if (MeasurementValueQuality != _object_) {
             MeasurementValueQuality = _object_;
-            MeasurementValueQuality.setMeasurementValue(this);
+            _object_.setMeasurementValue(this);
+            MeasurementValueQualityId = _object_.getRdfid();
         }
     }
 
     private static Object getMeasurementValueQuality(BaseClass _this_) {
-        return ((MeasurementValue) _this_).getMeasurementValueQuality();
+        var obj = ((MeasurementValue) _this_).getMeasurementValueQuality();
+        var id = ((MeasurementValue) _this_).MeasurementValueQualityId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setMeasurementValueQuality(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof MeasurementValueQuality) {
+        if (_value_ instanceof String) {
+            ((MeasurementValue) _this_).MeasurementValueQualityId = (String) _value_;
+        } else if (_value_ instanceof MeasurementValueQuality) {
             ((MeasurementValue) _this_).setMeasurementValueQuality((MeasurementValueQuality) _value_);
         } else {
             throw new IllegalArgumentException("Object is not MeasurementValueQuality");
@@ -71,6 +81,8 @@ public class MeasurementValue extends IdentifiedObject {
      */
     private MeasurementValueSource MeasurementValueSource; // ManyToOne
 
+    private String MeasurementValueSourceId;
+
     public MeasurementValueSource getMeasurementValueSource() {
         return MeasurementValueSource;
     }
@@ -78,16 +90,24 @@ public class MeasurementValue extends IdentifiedObject {
     public void setMeasurementValueSource(MeasurementValueSource _object_) {
         if (MeasurementValueSource != _object_) {
             MeasurementValueSource = _object_;
-            MeasurementValueSource.setMeasurementValues(this);
+            _object_.setMeasurementValues(this);
+            MeasurementValueSourceId = _object_.getRdfid();
         }
     }
 
     private static Object getMeasurementValueSource(BaseClass _this_) {
-        return ((MeasurementValue) _this_).getMeasurementValueSource();
+        var obj = ((MeasurementValue) _this_).getMeasurementValueSource();
+        var id = ((MeasurementValue) _this_).MeasurementValueSourceId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setMeasurementValueSource(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof MeasurementValueSource) {
+        if (_value_ instanceof String) {
+            ((MeasurementValue) _this_).MeasurementValueSourceId = (String) _value_;
+        } else if (_value_ instanceof MeasurementValueSource) {
             ((MeasurementValue) _this_).setMeasurementValueSource((MeasurementValueSource) _value_);
         } else {
             throw new IllegalArgumentException("Object is not MeasurementValueSource");

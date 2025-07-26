@@ -41,6 +41,8 @@ public class GrossToNetActivePowerCurve extends Curve {
      */
     private GeneratingUnit GeneratingUnit; // ManyToOne
 
+    private String GeneratingUnitId;
+
     public GeneratingUnit getGeneratingUnit() {
         return GeneratingUnit;
     }
@@ -48,16 +50,24 @@ public class GrossToNetActivePowerCurve extends Curve {
     public void setGeneratingUnit(GeneratingUnit _object_) {
         if (GeneratingUnit != _object_) {
             GeneratingUnit = _object_;
-            GeneratingUnit.setGrossToNetActivePowerCurves(this);
+            _object_.setGrossToNetActivePowerCurves(this);
+            GeneratingUnitId = _object_.getRdfid();
         }
     }
 
     private static Object getGeneratingUnit(BaseClass _this_) {
-        return ((GrossToNetActivePowerCurve) _this_).getGeneratingUnit();
+        var obj = ((GrossToNetActivePowerCurve) _this_).getGeneratingUnit();
+        var id = ((GrossToNetActivePowerCurve) _this_).GeneratingUnitId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setGeneratingUnit(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof GeneratingUnit) {
+        if (_value_ instanceof String) {
+            ((GrossToNetActivePowerCurve) _this_).GeneratingUnitId = (String) _value_;
+        } else if (_value_ instanceof GeneratingUnit) {
             ((GrossToNetActivePowerCurve) _this_).setGeneratingUnit((GeneratingUnit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not GeneratingUnit");

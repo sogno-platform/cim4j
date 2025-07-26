@@ -41,6 +41,8 @@ public class AnalogValue extends MeasurementValue {
      */
     private Analog Analog; // ManyToOne
 
+    private String AnalogId;
+
     public Analog getAnalog() {
         return Analog;
     }
@@ -48,16 +50,24 @@ public class AnalogValue extends MeasurementValue {
     public void setAnalog(Analog _object_) {
         if (Analog != _object_) {
             Analog = _object_;
-            Analog.setAnalogValues(this);
+            _object_.setAnalogValues(this);
+            AnalogId = _object_.getRdfid();
         }
     }
 
     private static Object getAnalog(BaseClass _this_) {
-        return ((AnalogValue) _this_).getAnalog();
+        var obj = ((AnalogValue) _this_).getAnalog();
+        var id = ((AnalogValue) _this_).AnalogId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setAnalog(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Analog) {
+        if (_value_ instanceof String) {
+            ((AnalogValue) _this_).AnalogId = (String) _value_;
+        } else if (_value_ instanceof Analog) {
             ((AnalogValue) _this_).setAnalog((Analog) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Analog");
@@ -71,6 +81,8 @@ public class AnalogValue extends MeasurementValue {
      */
     private AnalogControl AnalogControl; // OneToOne
 
+    private String AnalogControlId;
+
     public AnalogControl getAnalogControl() {
         return AnalogControl;
     }
@@ -78,16 +90,24 @@ public class AnalogValue extends MeasurementValue {
     public void setAnalogControl(AnalogControl _object_) {
         if (AnalogControl != _object_) {
             AnalogControl = _object_;
-            AnalogControl.setAnalogValue(this);
+            _object_.setAnalogValue(this);
+            AnalogControlId = _object_.getRdfid();
         }
     }
 
     private static Object getAnalogControl(BaseClass _this_) {
-        return ((AnalogValue) _this_).getAnalogControl();
+        var obj = ((AnalogValue) _this_).getAnalogControl();
+        var id = ((AnalogValue) _this_).AnalogControlId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setAnalogControl(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AnalogControl) {
+        if (_value_ instanceof String) {
+            ((AnalogValue) _this_).AnalogControlId = (String) _value_;
+        } else if (_value_ instanceof AnalogControl) {
             ((AnalogValue) _this_).setAnalogControl((AnalogControl) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AnalogControl");

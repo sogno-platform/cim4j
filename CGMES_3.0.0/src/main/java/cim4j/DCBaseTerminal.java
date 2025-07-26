@@ -41,6 +41,8 @@ public class DCBaseTerminal extends ACDCTerminal {
      */
     private DCNode DCNode; // ManyToOne
 
+    private String DCNodeId;
+
     public DCNode getDCNode() {
         return DCNode;
     }
@@ -48,16 +50,24 @@ public class DCBaseTerminal extends ACDCTerminal {
     public void setDCNode(DCNode _object_) {
         if (DCNode != _object_) {
             DCNode = _object_;
-            DCNode.setDCTerminals(this);
+            _object_.setDCTerminals(this);
+            DCNodeId = _object_.getRdfid();
         }
     }
 
     private static Object getDCNode(BaseClass _this_) {
-        return ((DCBaseTerminal) _this_).getDCNode();
+        var obj = ((DCBaseTerminal) _this_).getDCNode();
+        var id = ((DCBaseTerminal) _this_).DCNodeId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDCNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCNode) {
+        if (_value_ instanceof String) {
+            ((DCBaseTerminal) _this_).DCNodeId = (String) _value_;
+        } else if (_value_ instanceof DCNode) {
             ((DCBaseTerminal) _this_).setDCNode((DCNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCNode");
@@ -69,6 +79,8 @@ public class DCBaseTerminal extends ACDCTerminal {
      */
     private DCTopologicalNode DCTopologicalNode; // ManyToOne
 
+    private String DCTopologicalNodeId;
+
     public DCTopologicalNode getDCTopologicalNode() {
         return DCTopologicalNode;
     }
@@ -76,16 +88,24 @@ public class DCBaseTerminal extends ACDCTerminal {
     public void setDCTopologicalNode(DCTopologicalNode _object_) {
         if (DCTopologicalNode != _object_) {
             DCTopologicalNode = _object_;
-            DCTopologicalNode.setDCTerminals(this);
+            _object_.setDCTerminals(this);
+            DCTopologicalNodeId = _object_.getRdfid();
         }
     }
 
     private static Object getDCTopologicalNode(BaseClass _this_) {
-        return ((DCBaseTerminal) _this_).getDCTopologicalNode();
+        var obj = ((DCBaseTerminal) _this_).getDCTopologicalNode();
+        var id = ((DCBaseTerminal) _this_).DCTopologicalNodeId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDCTopologicalNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCTopologicalNode) {
+        if (_value_ instanceof String) {
+            ((DCBaseTerminal) _this_).DCTopologicalNodeId = (String) _value_;
+        } else if (_value_ instanceof DCTopologicalNode) {
             ((DCBaseTerminal) _this_).setDCTopologicalNode((DCTopologicalNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCTopologicalNode");

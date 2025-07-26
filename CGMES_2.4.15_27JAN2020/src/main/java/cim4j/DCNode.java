@@ -40,6 +40,8 @@ public class DCNode extends IdentifiedObject {
      */
     private DCEquipmentContainer DCEquipmentContainer; // ManyToOne
 
+    private String DCEquipmentContainerId;
+
     public DCEquipmentContainer getDCEquipmentContainer() {
         return DCEquipmentContainer;
     }
@@ -47,16 +49,24 @@ public class DCNode extends IdentifiedObject {
     public void setDCEquipmentContainer(DCEquipmentContainer _object_) {
         if (DCEquipmentContainer != _object_) {
             DCEquipmentContainer = _object_;
-            DCEquipmentContainer.setDCNodes(this);
+            _object_.setDCNodes(this);
+            DCEquipmentContainerId = _object_.getRdfid();
         }
     }
 
     private static Object getDCEquipmentContainer(BaseClass _this_) {
-        return ((DCNode) _this_).getDCEquipmentContainer();
+        var obj = ((DCNode) _this_).getDCEquipmentContainer();
+        var id = ((DCNode) _this_).DCEquipmentContainerId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDCEquipmentContainer(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCEquipmentContainer) {
+        if (_value_ instanceof String) {
+            ((DCNode) _this_).DCEquipmentContainerId = (String) _value_;
+        } else if (_value_ instanceof DCEquipmentContainer) {
             ((DCNode) _this_).setDCEquipmentContainer((DCEquipmentContainer) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCEquipmentContainer");
@@ -69,6 +79,8 @@ public class DCNode extends IdentifiedObject {
      */
     private Set<DCBaseTerminal> DCTerminals = new HashSet<>(); // OneToMany
 
+    private Set<String> DCTerminalsIdSet = new HashSet<>();
+
     public Set<DCBaseTerminal> getDCTerminals() {
         return DCTerminals;
     }
@@ -77,15 +89,23 @@ public class DCNode extends IdentifiedObject {
         if (!DCTerminals.contains(_object_)) {
             DCTerminals.add(_object_);
             _object_.setDCNode(this);
+            DCTerminalsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDCTerminals(BaseClass _this_) {
-        return ((DCNode) _this_).getDCTerminals();
+        var objs = ((DCNode) _this_).getDCTerminals();
+        var ids = ((DCNode) _this_).DCTerminalsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDCTerminals(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCBaseTerminal) {
+        if (_value_ instanceof String) {
+            ((DCNode) _this_).DCTerminalsIdSet.add((String) _value_);
+        } else if (_value_ instanceof DCBaseTerminal) {
             ((DCNode) _this_).setDCTerminals((DCBaseTerminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCBaseTerminal");
@@ -97,6 +117,8 @@ public class DCNode extends IdentifiedObject {
      */
     private DCTopologicalNode DCTopologicalNode; // ManyToOne
 
+    private String DCTopologicalNodeId;
+
     public DCTopologicalNode getDCTopologicalNode() {
         return DCTopologicalNode;
     }
@@ -104,16 +126,24 @@ public class DCNode extends IdentifiedObject {
     public void setDCTopologicalNode(DCTopologicalNode _object_) {
         if (DCTopologicalNode != _object_) {
             DCTopologicalNode = _object_;
-            DCTopologicalNode.setDCNodes(this);
+            _object_.setDCNodes(this);
+            DCTopologicalNodeId = _object_.getRdfid();
         }
     }
 
     private static Object getDCTopologicalNode(BaseClass _this_) {
-        return ((DCNode) _this_).getDCTopologicalNode();
+        var obj = ((DCNode) _this_).getDCTopologicalNode();
+        var id = ((DCNode) _this_).DCTopologicalNodeId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDCTopologicalNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCTopologicalNode) {
+        if (_value_ instanceof String) {
+            ((DCNode) _this_).DCTopologicalNodeId = (String) _value_;
+        } else if (_value_ instanceof DCTopologicalNode) {
             ((DCNode) _this_).setDCTopologicalNode((DCTopologicalNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCTopologicalNode");

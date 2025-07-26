@@ -41,6 +41,8 @@ public class RatioTapChangerTablePoint extends TapChangerTablePoint {
      */
     private RatioTapChangerTable RatioTapChangerTable; // ManyToOne
 
+    private String RatioTapChangerTableId;
+
     public RatioTapChangerTable getRatioTapChangerTable() {
         return RatioTapChangerTable;
     }
@@ -48,16 +50,24 @@ public class RatioTapChangerTablePoint extends TapChangerTablePoint {
     public void setRatioTapChangerTable(RatioTapChangerTable _object_) {
         if (RatioTapChangerTable != _object_) {
             RatioTapChangerTable = _object_;
-            RatioTapChangerTable.setRatioTapChangerTablePoint(this);
+            _object_.setRatioTapChangerTablePoint(this);
+            RatioTapChangerTableId = _object_.getRdfid();
         }
     }
 
     private static Object getRatioTapChangerTable(BaseClass _this_) {
-        return ((RatioTapChangerTablePoint) _this_).getRatioTapChangerTable();
+        var obj = ((RatioTapChangerTablePoint) _this_).getRatioTapChangerTable();
+        var id = ((RatioTapChangerTablePoint) _this_).RatioTapChangerTableId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setRatioTapChangerTable(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RatioTapChangerTable) {
+        if (_value_ instanceof String) {
+            ((RatioTapChangerTablePoint) _this_).RatioTapChangerTableId = (String) _value_;
+        } else if (_value_ instanceof RatioTapChangerTable) {
             ((RatioTapChangerTablePoint) _this_).setRatioTapChangerTable((RatioTapChangerTable) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RatioTapChangerTable");

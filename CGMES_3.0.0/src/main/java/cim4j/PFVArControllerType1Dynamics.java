@@ -41,6 +41,8 @@ public class PFVArControllerType1Dynamics extends DynamicsFunctionBlock {
      */
     private ExcitationSystemDynamics ExcitationSystemDynamics; // OneToOne
 
+    private String ExcitationSystemDynamicsId;
+
     public ExcitationSystemDynamics getExcitationSystemDynamics() {
         return ExcitationSystemDynamics;
     }
@@ -48,16 +50,24 @@ public class PFVArControllerType1Dynamics extends DynamicsFunctionBlock {
     public void setExcitationSystemDynamics(ExcitationSystemDynamics _object_) {
         if (ExcitationSystemDynamics != _object_) {
             ExcitationSystemDynamics = _object_;
-            ExcitationSystemDynamics.setPFVArControllerType1Dynamics(this);
+            _object_.setPFVArControllerType1Dynamics(this);
+            ExcitationSystemDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getExcitationSystemDynamics(BaseClass _this_) {
-        return ((PFVArControllerType1Dynamics) _this_).getExcitationSystemDynamics();
+        var obj = ((PFVArControllerType1Dynamics) _this_).getExcitationSystemDynamics();
+        var id = ((PFVArControllerType1Dynamics) _this_).ExcitationSystemDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setExcitationSystemDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ExcitationSystemDynamics) {
+        if (_value_ instanceof String) {
+            ((PFVArControllerType1Dynamics) _this_).ExcitationSystemDynamicsId = (String) _value_;
+        } else if (_value_ instanceof ExcitationSystemDynamics) {
             ((PFVArControllerType1Dynamics) _this_).setExcitationSystemDynamics((ExcitationSystemDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ExcitationSystemDynamics");
@@ -71,6 +81,8 @@ public class PFVArControllerType1Dynamics extends DynamicsFunctionBlock {
      */
     private RemoteInputSignal RemoteInputSignal; // OneToOne
 
+    private String RemoteInputSignalId;
+
     public RemoteInputSignal getRemoteInputSignal() {
         return RemoteInputSignal;
     }
@@ -78,16 +90,24 @@ public class PFVArControllerType1Dynamics extends DynamicsFunctionBlock {
     public void setRemoteInputSignal(RemoteInputSignal _object_) {
         if (RemoteInputSignal != _object_) {
             RemoteInputSignal = _object_;
-            RemoteInputSignal.setPFVArControllerType1Dynamics(this);
+            _object_.setPFVArControllerType1Dynamics(this);
+            RemoteInputSignalId = _object_.getRdfid();
         }
     }
 
     private static Object getRemoteInputSignal(BaseClass _this_) {
-        return ((PFVArControllerType1Dynamics) _this_).getRemoteInputSignal();
+        var obj = ((PFVArControllerType1Dynamics) _this_).getRemoteInputSignal();
+        var id = ((PFVArControllerType1Dynamics) _this_).RemoteInputSignalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setRemoteInputSignal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RemoteInputSignal) {
+        if (_value_ instanceof String) {
+            ((PFVArControllerType1Dynamics) _this_).RemoteInputSignalId = (String) _value_;
+        } else if (_value_ instanceof RemoteInputSignal) {
             ((PFVArControllerType1Dynamics) _this_).setRemoteInputSignal((RemoteInputSignal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RemoteInputSignal");
@@ -101,6 +121,8 @@ public class PFVArControllerType1Dynamics extends DynamicsFunctionBlock {
      */
     private VoltageAdjusterDynamics VoltageAdjusterDynamics; // OneToOne
 
+    private String VoltageAdjusterDynamicsId;
+
     public VoltageAdjusterDynamics getVoltageAdjusterDynamics() {
         return VoltageAdjusterDynamics;
     }
@@ -108,16 +130,24 @@ public class PFVArControllerType1Dynamics extends DynamicsFunctionBlock {
     public void setVoltageAdjusterDynamics(VoltageAdjusterDynamics _object_) {
         if (VoltageAdjusterDynamics != _object_) {
             VoltageAdjusterDynamics = _object_;
-            VoltageAdjusterDynamics.setPFVArControllerType1Dynamics(this);
+            _object_.setPFVArControllerType1Dynamics(this);
+            VoltageAdjusterDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getVoltageAdjusterDynamics(BaseClass _this_) {
-        return ((PFVArControllerType1Dynamics) _this_).getVoltageAdjusterDynamics();
+        var obj = ((PFVArControllerType1Dynamics) _this_).getVoltageAdjusterDynamics();
+        var id = ((PFVArControllerType1Dynamics) _this_).VoltageAdjusterDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setVoltageAdjusterDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VoltageAdjusterDynamics) {
+        if (_value_ instanceof String) {
+            ((PFVArControllerType1Dynamics) _this_).VoltageAdjusterDynamicsId = (String) _value_;
+        } else if (_value_ instanceof VoltageAdjusterDynamics) {
             ((PFVArControllerType1Dynamics) _this_).setVoltageAdjusterDynamics((VoltageAdjusterDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VoltageAdjusterDynamics");

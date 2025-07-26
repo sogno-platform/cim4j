@@ -41,6 +41,8 @@ public class Control extends IOPoint {
      */
     private PowerSystemResource PowerSystemResource; // ManyToOne
 
+    private String PowerSystemResourceId;
+
     public PowerSystemResource getPowerSystemResource() {
         return PowerSystemResource;
     }
@@ -48,16 +50,24 @@ public class Control extends IOPoint {
     public void setPowerSystemResource(PowerSystemResource _object_) {
         if (PowerSystemResource != _object_) {
             PowerSystemResource = _object_;
-            PowerSystemResource.setControls(this);
+            _object_.setControls(this);
+            PowerSystemResourceId = _object_.getRdfid();
         }
     }
 
     private static Object getPowerSystemResource(BaseClass _this_) {
-        return ((Control) _this_).getPowerSystemResource();
+        var obj = ((Control) _this_).getPowerSystemResource();
+        var id = ((Control) _this_).PowerSystemResourceId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPowerSystemResource(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PowerSystemResource) {
+        if (_value_ instanceof String) {
+            ((Control) _this_).PowerSystemResourceId = (String) _value_;
+        } else if (_value_ instanceof PowerSystemResource) {
             ((Control) _this_).setPowerSystemResource((PowerSystemResource) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PowerSystemResource");

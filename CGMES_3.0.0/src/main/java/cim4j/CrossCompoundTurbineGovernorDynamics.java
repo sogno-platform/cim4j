@@ -41,6 +41,8 @@ public class CrossCompoundTurbineGovernorDynamics extends DynamicsFunctionBlock 
      */
     private SynchronousMachineDynamics HighPressureSynchronousMachineDynamics; // OneToOne
 
+    private String HighPressureSynchronousMachineDynamicsId;
+
     public SynchronousMachineDynamics getHighPressureSynchronousMachineDynamics() {
         return HighPressureSynchronousMachineDynamics;
     }
@@ -48,16 +50,24 @@ public class CrossCompoundTurbineGovernorDynamics extends DynamicsFunctionBlock 
     public void setHighPressureSynchronousMachineDynamics(SynchronousMachineDynamics _object_) {
         if (HighPressureSynchronousMachineDynamics != _object_) {
             HighPressureSynchronousMachineDynamics = _object_;
-            HighPressureSynchronousMachineDynamics.setCrossCompoundTurbineGovernorDyanmics(this);
+            _object_.setCrossCompoundTurbineGovernorDyanmics(this);
+            HighPressureSynchronousMachineDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getHighPressureSynchronousMachineDynamics(BaseClass _this_) {
-        return ((CrossCompoundTurbineGovernorDynamics) _this_).getHighPressureSynchronousMachineDynamics();
+        var obj = ((CrossCompoundTurbineGovernorDynamics) _this_).getHighPressureSynchronousMachineDynamics();
+        var id = ((CrossCompoundTurbineGovernorDynamics) _this_).HighPressureSynchronousMachineDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setHighPressureSynchronousMachineDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SynchronousMachineDynamics) {
+        if (_value_ instanceof String) {
+            ((CrossCompoundTurbineGovernorDynamics) _this_).HighPressureSynchronousMachineDynamicsId = (String) _value_;
+        } else if (_value_ instanceof SynchronousMachineDynamics) {
             ((CrossCompoundTurbineGovernorDynamics) _this_).setHighPressureSynchronousMachineDynamics((SynchronousMachineDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SynchronousMachineDynamics");
@@ -69,6 +79,8 @@ public class CrossCompoundTurbineGovernorDynamics extends DynamicsFunctionBlock 
      */
     private SynchronousMachineDynamics LowPressureSynchronousMachineDynamics; // OneToOne
 
+    private String LowPressureSynchronousMachineDynamicsId;
+
     public SynchronousMachineDynamics getLowPressureSynchronousMachineDynamics() {
         return LowPressureSynchronousMachineDynamics;
     }
@@ -76,16 +88,24 @@ public class CrossCompoundTurbineGovernorDynamics extends DynamicsFunctionBlock 
     public void setLowPressureSynchronousMachineDynamics(SynchronousMachineDynamics _object_) {
         if (LowPressureSynchronousMachineDynamics != _object_) {
             LowPressureSynchronousMachineDynamics = _object_;
-            LowPressureSynchronousMachineDynamics.setCrossCompoundTurbineGovernorDynamics(this);
+            _object_.setCrossCompoundTurbineGovernorDynamics(this);
+            LowPressureSynchronousMachineDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getLowPressureSynchronousMachineDynamics(BaseClass _this_) {
-        return ((CrossCompoundTurbineGovernorDynamics) _this_).getLowPressureSynchronousMachineDynamics();
+        var obj = ((CrossCompoundTurbineGovernorDynamics) _this_).getLowPressureSynchronousMachineDynamics();
+        var id = ((CrossCompoundTurbineGovernorDynamics) _this_).LowPressureSynchronousMachineDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setLowPressureSynchronousMachineDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SynchronousMachineDynamics) {
+        if (_value_ instanceof String) {
+            ((CrossCompoundTurbineGovernorDynamics) _this_).LowPressureSynchronousMachineDynamicsId = (String) _value_;
+        } else if (_value_ instanceof SynchronousMachineDynamics) {
             ((CrossCompoundTurbineGovernorDynamics) _this_).setLowPressureSynchronousMachineDynamics((SynchronousMachineDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SynchronousMachineDynamics");

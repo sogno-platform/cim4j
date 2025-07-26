@@ -43,6 +43,8 @@ public class Terminal extends ACDCTerminal {
      */
     private Set<AuxiliaryEquipment> AuxiliaryEquipment = new HashSet<>(); // OneToMany
 
+    private Set<String> AuxiliaryEquipmentIdSet = new HashSet<>();
+
     public Set<AuxiliaryEquipment> getAuxiliaryEquipment() {
         return AuxiliaryEquipment;
     }
@@ -51,15 +53,23 @@ public class Terminal extends ACDCTerminal {
         if (!AuxiliaryEquipment.contains(_object_)) {
             AuxiliaryEquipment.add(_object_);
             _object_.setTerminal(this);
+            AuxiliaryEquipmentIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getAuxiliaryEquipment(BaseClass _this_) {
-        return ((Terminal) _this_).getAuxiliaryEquipment();
+        var objs = ((Terminal) _this_).getAuxiliaryEquipment();
+        var ids = ((Terminal) _this_).AuxiliaryEquipmentIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setAuxiliaryEquipment(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AuxiliaryEquipment) {
+        if (_value_ instanceof String) {
+            ((Terminal) _this_).AuxiliaryEquipmentIdSet.add((String) _value_);
+        } else if (_value_ instanceof AuxiliaryEquipment) {
             ((Terminal) _this_).setAuxiliaryEquipment((AuxiliaryEquipment) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AuxiliaryEquipment");
@@ -71,6 +81,8 @@ public class Terminal extends ACDCTerminal {
      */
     private ConductingEquipment ConductingEquipment; // ManyToOne
 
+    private String ConductingEquipmentId;
+
     public ConductingEquipment getConductingEquipment() {
         return ConductingEquipment;
     }
@@ -78,16 +90,24 @@ public class Terminal extends ACDCTerminal {
     public void setConductingEquipment(ConductingEquipment _object_) {
         if (ConductingEquipment != _object_) {
             ConductingEquipment = _object_;
-            ConductingEquipment.setTerminals(this);
+            _object_.setTerminals(this);
+            ConductingEquipmentId = _object_.getRdfid();
         }
     }
 
     private static Object getConductingEquipment(BaseClass _this_) {
-        return ((Terminal) _this_).getConductingEquipment();
+        var obj = ((Terminal) _this_).getConductingEquipment();
+        var id = ((Terminal) _this_).ConductingEquipmentId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setConductingEquipment(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ConductingEquipment) {
+        if (_value_ instanceof String) {
+            ((Terminal) _this_).ConductingEquipmentId = (String) _value_;
+        } else if (_value_ instanceof ConductingEquipment) {
             ((Terminal) _this_).setConductingEquipment((ConductingEquipment) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ConductingEquipment");
@@ -99,6 +119,8 @@ public class Terminal extends ACDCTerminal {
      */
     private ConnectivityNode ConnectivityNode; // ManyToOne
 
+    private String ConnectivityNodeId;
+
     public ConnectivityNode getConnectivityNode() {
         return ConnectivityNode;
     }
@@ -106,16 +128,24 @@ public class Terminal extends ACDCTerminal {
     public void setConnectivityNode(ConnectivityNode _object_) {
         if (ConnectivityNode != _object_) {
             ConnectivityNode = _object_;
-            ConnectivityNode.setTerminals(this);
+            _object_.setTerminals(this);
+            ConnectivityNodeId = _object_.getRdfid();
         }
     }
 
     private static Object getConnectivityNode(BaseClass _this_) {
-        return ((Terminal) _this_).getConnectivityNode();
+        var obj = ((Terminal) _this_).getConnectivityNode();
+        var id = ((Terminal) _this_).ConnectivityNodeId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setConnectivityNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ConnectivityNode) {
+        if (_value_ instanceof String) {
+            ((Terminal) _this_).ConnectivityNodeId = (String) _value_;
+        } else if (_value_ instanceof ConnectivityNode) {
             ((Terminal) _this_).setConnectivityNode((ConnectivityNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ConnectivityNode");
@@ -129,6 +159,8 @@ public class Terminal extends ACDCTerminal {
      */
     private Set<ACDCConverter> ConverterDCSides = new HashSet<>(); // OneToMany
 
+    private Set<String> ConverterDCSidesIdSet = new HashSet<>();
+
     public Set<ACDCConverter> getConverterDCSides() {
         return ConverterDCSides;
     }
@@ -137,15 +169,23 @@ public class Terminal extends ACDCTerminal {
         if (!ConverterDCSides.contains(_object_)) {
             ConverterDCSides.add(_object_);
             _object_.setPccTerminal(this);
+            ConverterDCSidesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getConverterDCSides(BaseClass _this_) {
-        return ((Terminal) _this_).getConverterDCSides();
+        var objs = ((Terminal) _this_).getConverterDCSides();
+        var ids = ((Terminal) _this_).ConverterDCSidesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setConverterDCSides(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ACDCConverter) {
+        if (_value_ instanceof String) {
+            ((Terminal) _this_).ConverterDCSidesIdSet.add((String) _value_);
+        } else if (_value_ instanceof ACDCConverter) {
             ((Terminal) _this_).setConverterDCSides((ACDCConverter) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ACDCConverter");
@@ -159,6 +199,8 @@ public class Terminal extends ACDCTerminal {
      */
     private Set<MutualCoupling> HasFirstMutualCoupling = new HashSet<>(); // OneToMany
 
+    private Set<String> HasFirstMutualCouplingIdSet = new HashSet<>();
+
     public Set<MutualCoupling> getHasFirstMutualCoupling() {
         return HasFirstMutualCoupling;
     }
@@ -167,15 +209,23 @@ public class Terminal extends ACDCTerminal {
         if (!HasFirstMutualCoupling.contains(_object_)) {
             HasFirstMutualCoupling.add(_object_);
             _object_.setFirst_Terminal(this);
+            HasFirstMutualCouplingIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getHasFirstMutualCoupling(BaseClass _this_) {
-        return ((Terminal) _this_).getHasFirstMutualCoupling();
+        var objs = ((Terminal) _this_).getHasFirstMutualCoupling();
+        var ids = ((Terminal) _this_).HasFirstMutualCouplingIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setHasFirstMutualCoupling(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof MutualCoupling) {
+        if (_value_ instanceof String) {
+            ((Terminal) _this_).HasFirstMutualCouplingIdSet.add((String) _value_);
+        } else if (_value_ instanceof MutualCoupling) {
             ((Terminal) _this_).setHasFirstMutualCoupling((MutualCoupling) _value_);
         } else {
             throw new IllegalArgumentException("Object is not MutualCoupling");
@@ -189,6 +239,8 @@ public class Terminal extends ACDCTerminal {
      */
     private Set<MutualCoupling> HasSecondMutualCoupling = new HashSet<>(); // OneToMany
 
+    private Set<String> HasSecondMutualCouplingIdSet = new HashSet<>();
+
     public Set<MutualCoupling> getHasSecondMutualCoupling() {
         return HasSecondMutualCoupling;
     }
@@ -197,15 +249,23 @@ public class Terminal extends ACDCTerminal {
         if (!HasSecondMutualCoupling.contains(_object_)) {
             HasSecondMutualCoupling.add(_object_);
             _object_.setSecond_Terminal(this);
+            HasSecondMutualCouplingIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getHasSecondMutualCoupling(BaseClass _this_) {
-        return ((Terminal) _this_).getHasSecondMutualCoupling();
+        var objs = ((Terminal) _this_).getHasSecondMutualCoupling();
+        var ids = ((Terminal) _this_).HasSecondMutualCouplingIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setHasSecondMutualCoupling(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof MutualCoupling) {
+        if (_value_ instanceof String) {
+            ((Terminal) _this_).HasSecondMutualCouplingIdSet.add((String) _value_);
+        } else if (_value_ instanceof MutualCoupling) {
             ((Terminal) _this_).setHasSecondMutualCoupling((MutualCoupling) _value_);
         } else {
             throw new IllegalArgumentException("Object is not MutualCoupling");
@@ -219,6 +279,8 @@ public class Terminal extends ACDCTerminal {
      */
     private Set<RegulatingControl> RegulatingControl = new HashSet<>(); // OneToMany
 
+    private Set<String> RegulatingControlIdSet = new HashSet<>();
+
     public Set<RegulatingControl> getRegulatingControl() {
         return RegulatingControl;
     }
@@ -227,15 +289,23 @@ public class Terminal extends ACDCTerminal {
         if (!RegulatingControl.contains(_object_)) {
             RegulatingControl.add(_object_);
             _object_.setTerminal(this);
+            RegulatingControlIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getRegulatingControl(BaseClass _this_) {
-        return ((Terminal) _this_).getRegulatingControl();
+        var objs = ((Terminal) _this_).getRegulatingControl();
+        var ids = ((Terminal) _this_).RegulatingControlIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setRegulatingControl(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RegulatingControl) {
+        if (_value_ instanceof String) {
+            ((Terminal) _this_).RegulatingControlIdSet.add((String) _value_);
+        } else if (_value_ instanceof RegulatingControl) {
             ((Terminal) _this_).setRegulatingControl((RegulatingControl) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RegulatingControl");
@@ -249,6 +319,8 @@ public class Terminal extends ACDCTerminal {
      */
     private Set<RemoteInputSignal> RemoteInputSignal = new HashSet<>(); // OneToMany
 
+    private Set<String> RemoteInputSignalIdSet = new HashSet<>();
+
     public Set<RemoteInputSignal> getRemoteInputSignal() {
         return RemoteInputSignal;
     }
@@ -257,15 +329,23 @@ public class Terminal extends ACDCTerminal {
         if (!RemoteInputSignal.contains(_object_)) {
             RemoteInputSignal.add(_object_);
             _object_.setTerminal(this);
+            RemoteInputSignalIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getRemoteInputSignal(BaseClass _this_) {
-        return ((Terminal) _this_).getRemoteInputSignal();
+        var objs = ((Terminal) _this_).getRemoteInputSignal();
+        var ids = ((Terminal) _this_).RemoteInputSignalIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setRemoteInputSignal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RemoteInputSignal) {
+        if (_value_ instanceof String) {
+            ((Terminal) _this_).RemoteInputSignalIdSet.add((String) _value_);
+        } else if (_value_ instanceof RemoteInputSignal) {
             ((Terminal) _this_).setRemoteInputSignal((RemoteInputSignal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RemoteInputSignal");
@@ -279,6 +359,8 @@ public class Terminal extends ACDCTerminal {
      */
     private SvPowerFlow SvPowerFlow; // OneToOne
 
+    private String SvPowerFlowId;
+
     public SvPowerFlow getSvPowerFlow() {
         return SvPowerFlow;
     }
@@ -286,16 +368,24 @@ public class Terminal extends ACDCTerminal {
     public void setSvPowerFlow(SvPowerFlow _object_) {
         if (SvPowerFlow != _object_) {
             SvPowerFlow = _object_;
-            SvPowerFlow.setTerminal(this);
+            _object_.setTerminal(this);
+            SvPowerFlowId = _object_.getRdfid();
         }
     }
 
     private static Object getSvPowerFlow(BaseClass _this_) {
-        return ((Terminal) _this_).getSvPowerFlow();
+        var obj = ((Terminal) _this_).getSvPowerFlow();
+        var id = ((Terminal) _this_).SvPowerFlowId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSvPowerFlow(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SvPowerFlow) {
+        if (_value_ instanceof String) {
+            ((Terminal) _this_).SvPowerFlowId = (String) _value_;
+        } else if (_value_ instanceof SvPowerFlow) {
             ((Terminal) _this_).setSvPowerFlow((SvPowerFlow) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SvPowerFlow");
@@ -309,6 +399,8 @@ public class Terminal extends ACDCTerminal {
      */
     private Set<TieFlow> TieFlow = new HashSet<>(); // OneToMany
 
+    private Set<String> TieFlowIdSet = new HashSet<>();
+
     public Set<TieFlow> getTieFlow() {
         return TieFlow;
     }
@@ -317,15 +409,23 @@ public class Terminal extends ACDCTerminal {
         if (!TieFlow.contains(_object_)) {
             TieFlow.add(_object_);
             _object_.setTerminal(this);
+            TieFlowIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTieFlow(BaseClass _this_) {
-        return ((Terminal) _this_).getTieFlow();
+        var objs = ((Terminal) _this_).getTieFlow();
+        var ids = ((Terminal) _this_).TieFlowIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTieFlow(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TieFlow) {
+        if (_value_ instanceof String) {
+            ((Terminal) _this_).TieFlowIdSet.add((String) _value_);
+        } else if (_value_ instanceof TieFlow) {
             ((Terminal) _this_).setTieFlow((TieFlow) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TieFlow");
@@ -337,6 +437,8 @@ public class Terminal extends ACDCTerminal {
      */
     private TopologicalNode TopologicalNode; // ManyToOne
 
+    private String TopologicalNodeId;
+
     public TopologicalNode getTopologicalNode() {
         return TopologicalNode;
     }
@@ -344,16 +446,24 @@ public class Terminal extends ACDCTerminal {
     public void setTopologicalNode(TopologicalNode _object_) {
         if (TopologicalNode != _object_) {
             TopologicalNode = _object_;
-            TopologicalNode.setTerminal(this);
+            _object_.setTerminal(this);
+            TopologicalNodeId = _object_.getRdfid();
         }
     }
 
     private static Object getTopologicalNode(BaseClass _this_) {
-        return ((Terminal) _this_).getTopologicalNode();
+        var obj = ((Terminal) _this_).getTopologicalNode();
+        var id = ((Terminal) _this_).TopologicalNodeId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTopologicalNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TopologicalNode) {
+        if (_value_ instanceof String) {
+            ((Terminal) _this_).TopologicalNodeId = (String) _value_;
+        } else if (_value_ instanceof TopologicalNode) {
             ((Terminal) _this_).setTopologicalNode((TopologicalNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TopologicalNode");
@@ -367,6 +477,8 @@ public class Terminal extends ACDCTerminal {
      */
     private Set<TransformerEnd> TransformerEnd = new HashSet<>(); // OneToMany
 
+    private Set<String> TransformerEndIdSet = new HashSet<>();
+
     public Set<TransformerEnd> getTransformerEnd() {
         return TransformerEnd;
     }
@@ -375,15 +487,23 @@ public class Terminal extends ACDCTerminal {
         if (!TransformerEnd.contains(_object_)) {
             TransformerEnd.add(_object_);
             _object_.setTerminal(this);
+            TransformerEndIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTransformerEnd(BaseClass _this_) {
-        return ((Terminal) _this_).getTransformerEnd();
+        var objs = ((Terminal) _this_).getTransformerEnd();
+        var ids = ((Terminal) _this_).TransformerEndIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTransformerEnd(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TransformerEnd) {
+        if (_value_ instanceof String) {
+            ((Terminal) _this_).TransformerEndIdSet.add((String) _value_);
+        } else if (_value_ instanceof TransformerEnd) {
             ((Terminal) _this_).setTransformerEnd((TransformerEnd) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TransformerEnd");

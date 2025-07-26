@@ -41,6 +41,8 @@ public class SubLoadArea extends EnergyArea {
      */
     private LoadArea LoadArea; // ManyToOne
 
+    private String LoadAreaId;
+
     public LoadArea getLoadArea() {
         return LoadArea;
     }
@@ -48,16 +50,24 @@ public class SubLoadArea extends EnergyArea {
     public void setLoadArea(LoadArea _object_) {
         if (LoadArea != _object_) {
             LoadArea = _object_;
-            LoadArea.setSubLoadAreas(this);
+            _object_.setSubLoadAreas(this);
+            LoadAreaId = _object_.getRdfid();
         }
     }
 
     private static Object getLoadArea(BaseClass _this_) {
-        return ((SubLoadArea) _this_).getLoadArea();
+        var obj = ((SubLoadArea) _this_).getLoadArea();
+        var id = ((SubLoadArea) _this_).LoadAreaId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setLoadArea(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof LoadArea) {
+        if (_value_ instanceof String) {
+            ((SubLoadArea) _this_).LoadAreaId = (String) _value_;
+        } else if (_value_ instanceof LoadArea) {
             ((SubLoadArea) _this_).setLoadArea((LoadArea) _value_);
         } else {
             throw new IllegalArgumentException("Object is not LoadArea");
@@ -71,6 +81,8 @@ public class SubLoadArea extends EnergyArea {
      */
     private Set<LoadGroup> LoadGroups = new HashSet<>(); // OneToMany
 
+    private Set<String> LoadGroupsIdSet = new HashSet<>();
+
     public Set<LoadGroup> getLoadGroups() {
         return LoadGroups;
     }
@@ -79,15 +91,23 @@ public class SubLoadArea extends EnergyArea {
         if (!LoadGroups.contains(_object_)) {
             LoadGroups.add(_object_);
             _object_.setSubLoadArea(this);
+            LoadGroupsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getLoadGroups(BaseClass _this_) {
-        return ((SubLoadArea) _this_).getLoadGroups();
+        var objs = ((SubLoadArea) _this_).getLoadGroups();
+        var ids = ((SubLoadArea) _this_).LoadGroupsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setLoadGroups(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof LoadGroup) {
+        if (_value_ instanceof String) {
+            ((SubLoadArea) _this_).LoadGroupsIdSet.add((String) _value_);
+        } else if (_value_ instanceof LoadGroup) {
             ((SubLoadArea) _this_).setLoadGroups((LoadGroup) _value_);
         } else {
             throw new IllegalArgumentException("Object is not LoadGroup");

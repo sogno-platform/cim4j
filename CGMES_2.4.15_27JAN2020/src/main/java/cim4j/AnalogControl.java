@@ -41,6 +41,8 @@ public class AnalogControl extends Control {
      */
     private AnalogValue AnalogValue; // OneToOne
 
+    private String AnalogValueId;
+
     public AnalogValue getAnalogValue() {
         return AnalogValue;
     }
@@ -48,16 +50,24 @@ public class AnalogControl extends Control {
     public void setAnalogValue(AnalogValue _object_) {
         if (AnalogValue != _object_) {
             AnalogValue = _object_;
-            AnalogValue.setAnalogControl(this);
+            _object_.setAnalogControl(this);
+            AnalogValueId = _object_.getRdfid();
         }
     }
 
     private static Object getAnalogValue(BaseClass _this_) {
-        return ((AnalogControl) _this_).getAnalogValue();
+        var obj = ((AnalogControl) _this_).getAnalogValue();
+        var id = ((AnalogControl) _this_).AnalogValueId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setAnalogValue(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AnalogValue) {
+        if (_value_ instanceof String) {
+            ((AnalogControl) _this_).AnalogValueId = (String) _value_;
+        } else if (_value_ instanceof AnalogValue) {
             ((AnalogControl) _this_).setAnalogValue((AnalogValue) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AnalogValue");

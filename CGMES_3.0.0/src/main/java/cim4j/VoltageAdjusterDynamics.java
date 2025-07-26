@@ -41,6 +41,8 @@ public class VoltageAdjusterDynamics extends DynamicsFunctionBlock {
      */
     private PFVArControllerType1Dynamics PFVArControllerType1Dynamics; // OneToOne
 
+    private String PFVArControllerType1DynamicsId;
+
     public PFVArControllerType1Dynamics getPFVArControllerType1Dynamics() {
         return PFVArControllerType1Dynamics;
     }
@@ -48,16 +50,24 @@ public class VoltageAdjusterDynamics extends DynamicsFunctionBlock {
     public void setPFVArControllerType1Dynamics(PFVArControllerType1Dynamics _object_) {
         if (PFVArControllerType1Dynamics != _object_) {
             PFVArControllerType1Dynamics = _object_;
-            PFVArControllerType1Dynamics.setVoltageAdjusterDynamics(this);
+            _object_.setVoltageAdjusterDynamics(this);
+            PFVArControllerType1DynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getPFVArControllerType1Dynamics(BaseClass _this_) {
-        return ((VoltageAdjusterDynamics) _this_).getPFVArControllerType1Dynamics();
+        var obj = ((VoltageAdjusterDynamics) _this_).getPFVArControllerType1Dynamics();
+        var id = ((VoltageAdjusterDynamics) _this_).PFVArControllerType1DynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setPFVArControllerType1Dynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof PFVArControllerType1Dynamics) {
+        if (_value_ instanceof String) {
+            ((VoltageAdjusterDynamics) _this_).PFVArControllerType1DynamicsId = (String) _value_;
+        } else if (_value_ instanceof PFVArControllerType1Dynamics) {
             ((VoltageAdjusterDynamics) _this_).setPFVArControllerType1Dynamics((PFVArControllerType1Dynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not PFVArControllerType1Dynamics");

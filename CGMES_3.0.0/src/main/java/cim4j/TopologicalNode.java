@@ -43,6 +43,8 @@ public class TopologicalNode extends IdentifiedObject {
      */
     private TopologicalIsland AngleRefTopologicalIsland; // OneToOne
 
+    private String AngleRefTopologicalIslandId;
+
     public TopologicalIsland getAngleRefTopologicalIsland() {
         return AngleRefTopologicalIsland;
     }
@@ -50,16 +52,24 @@ public class TopologicalNode extends IdentifiedObject {
     public void setAngleRefTopologicalIsland(TopologicalIsland _object_) {
         if (AngleRefTopologicalIsland != _object_) {
             AngleRefTopologicalIsland = _object_;
-            AngleRefTopologicalIsland.setAngleRefTopologicalNode(this);
+            _object_.setAngleRefTopologicalNode(this);
+            AngleRefTopologicalIslandId = _object_.getRdfid();
         }
     }
 
     private static Object getAngleRefTopologicalIsland(BaseClass _this_) {
-        return ((TopologicalNode) _this_).getAngleRefTopologicalIsland();
+        var obj = ((TopologicalNode) _this_).getAngleRefTopologicalIsland();
+        var id = ((TopologicalNode) _this_).AngleRefTopologicalIslandId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setAngleRefTopologicalIsland(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TopologicalIsland) {
+        if (_value_ instanceof String) {
+            ((TopologicalNode) _this_).AngleRefTopologicalIslandId = (String) _value_;
+        } else if (_value_ instanceof TopologicalIsland) {
             ((TopologicalNode) _this_).setAngleRefTopologicalIsland((TopologicalIsland) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TopologicalIsland");
@@ -71,6 +81,8 @@ public class TopologicalNode extends IdentifiedObject {
      */
     private BaseVoltage BaseVoltage; // ManyToOne
 
+    private String BaseVoltageId;
+
     public BaseVoltage getBaseVoltage() {
         return BaseVoltage;
     }
@@ -78,16 +90,24 @@ public class TopologicalNode extends IdentifiedObject {
     public void setBaseVoltage(BaseVoltage _object_) {
         if (BaseVoltage != _object_) {
             BaseVoltage = _object_;
-            BaseVoltage.setTopologicalNode(this);
+            _object_.setTopologicalNode(this);
+            BaseVoltageId = _object_.getRdfid();
         }
     }
 
     private static Object getBaseVoltage(BaseClass _this_) {
-        return ((TopologicalNode) _this_).getBaseVoltage();
+        var obj = ((TopologicalNode) _this_).getBaseVoltage();
+        var id = ((TopologicalNode) _this_).BaseVoltageId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setBaseVoltage(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof BaseVoltage) {
+        if (_value_ instanceof String) {
+            ((TopologicalNode) _this_).BaseVoltageId = (String) _value_;
+        } else if (_value_ instanceof BaseVoltage) {
             ((TopologicalNode) _this_).setBaseVoltage((BaseVoltage) _value_);
         } else {
             throw new IllegalArgumentException("Object is not BaseVoltage");
@@ -99,6 +119,8 @@ public class TopologicalNode extends IdentifiedObject {
      */
     private ConnectivityNodeContainer ConnectivityNodeContainer; // ManyToOne
 
+    private String ConnectivityNodeContainerId;
+
     public ConnectivityNodeContainer getConnectivityNodeContainer() {
         return ConnectivityNodeContainer;
     }
@@ -106,16 +128,24 @@ public class TopologicalNode extends IdentifiedObject {
     public void setConnectivityNodeContainer(ConnectivityNodeContainer _object_) {
         if (ConnectivityNodeContainer != _object_) {
             ConnectivityNodeContainer = _object_;
-            ConnectivityNodeContainer.setTopologicalNode(this);
+            _object_.setTopologicalNode(this);
+            ConnectivityNodeContainerId = _object_.getRdfid();
         }
     }
 
     private static Object getConnectivityNodeContainer(BaseClass _this_) {
-        return ((TopologicalNode) _this_).getConnectivityNodeContainer();
+        var obj = ((TopologicalNode) _this_).getConnectivityNodeContainer();
+        var id = ((TopologicalNode) _this_).ConnectivityNodeContainerId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setConnectivityNodeContainer(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ConnectivityNodeContainer) {
+        if (_value_ instanceof String) {
+            ((TopologicalNode) _this_).ConnectivityNodeContainerId = (String) _value_;
+        } else if (_value_ instanceof ConnectivityNodeContainer) {
             ((TopologicalNode) _this_).setConnectivityNodeContainer((ConnectivityNodeContainer) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ConnectivityNodeContainer");
@@ -129,6 +159,8 @@ public class TopologicalNode extends IdentifiedObject {
      */
     private Set<ConnectivityNode> ConnectivityNodes = new HashSet<>(); // OneToMany
 
+    private Set<String> ConnectivityNodesIdSet = new HashSet<>();
+
     public Set<ConnectivityNode> getConnectivityNodes() {
         return ConnectivityNodes;
     }
@@ -137,15 +169,23 @@ public class TopologicalNode extends IdentifiedObject {
         if (!ConnectivityNodes.contains(_object_)) {
             ConnectivityNodes.add(_object_);
             _object_.setTopologicalNode(this);
+            ConnectivityNodesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getConnectivityNodes(BaseClass _this_) {
-        return ((TopologicalNode) _this_).getConnectivityNodes();
+        var objs = ((TopologicalNode) _this_).getConnectivityNodes();
+        var ids = ((TopologicalNode) _this_).ConnectivityNodesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setConnectivityNodes(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ConnectivityNode) {
+        if (_value_ instanceof String) {
+            ((TopologicalNode) _this_).ConnectivityNodesIdSet.add((String) _value_);
+        } else if (_value_ instanceof ConnectivityNode) {
             ((TopologicalNode) _this_).setConnectivityNodes((ConnectivityNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ConnectivityNode");
@@ -157,6 +197,8 @@ public class TopologicalNode extends IdentifiedObject {
      */
     private ReportingGroup ReportingGroup; // ManyToOne
 
+    private String ReportingGroupId;
+
     public ReportingGroup getReportingGroup() {
         return ReportingGroup;
     }
@@ -164,16 +206,24 @@ public class TopologicalNode extends IdentifiedObject {
     public void setReportingGroup(ReportingGroup _object_) {
         if (ReportingGroup != _object_) {
             ReportingGroup = _object_;
-            ReportingGroup.setTopologicalNode(this);
+            _object_.setTopologicalNode(this);
+            ReportingGroupId = _object_.getRdfid();
         }
     }
 
     private static Object getReportingGroup(BaseClass _this_) {
-        return ((TopologicalNode) _this_).getReportingGroup();
+        var obj = ((TopologicalNode) _this_).getReportingGroup();
+        var id = ((TopologicalNode) _this_).ReportingGroupId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setReportingGroup(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ReportingGroup) {
+        if (_value_ instanceof String) {
+            ((TopologicalNode) _this_).ReportingGroupId = (String) _value_;
+        } else if (_value_ instanceof ReportingGroup) {
             ((TopologicalNode) _this_).setReportingGroup((ReportingGroup) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ReportingGroup");
@@ -187,6 +237,8 @@ public class TopologicalNode extends IdentifiedObject {
      */
     private SvInjection SvInjection; // OneToOne
 
+    private String SvInjectionId;
+
     public SvInjection getSvInjection() {
         return SvInjection;
     }
@@ -194,16 +246,24 @@ public class TopologicalNode extends IdentifiedObject {
     public void setSvInjection(SvInjection _object_) {
         if (SvInjection != _object_) {
             SvInjection = _object_;
-            SvInjection.setTopologicalNode(this);
+            _object_.setTopologicalNode(this);
+            SvInjectionId = _object_.getRdfid();
         }
     }
 
     private static Object getSvInjection(BaseClass _this_) {
-        return ((TopologicalNode) _this_).getSvInjection();
+        var obj = ((TopologicalNode) _this_).getSvInjection();
+        var id = ((TopologicalNode) _this_).SvInjectionId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSvInjection(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SvInjection) {
+        if (_value_ instanceof String) {
+            ((TopologicalNode) _this_).SvInjectionId = (String) _value_;
+        } else if (_value_ instanceof SvInjection) {
             ((TopologicalNode) _this_).setSvInjection((SvInjection) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SvInjection");
@@ -217,6 +277,8 @@ public class TopologicalNode extends IdentifiedObject {
      */
     private SvVoltage SvVoltage; // OneToOne
 
+    private String SvVoltageId;
+
     public SvVoltage getSvVoltage() {
         return SvVoltage;
     }
@@ -224,16 +286,24 @@ public class TopologicalNode extends IdentifiedObject {
     public void setSvVoltage(SvVoltage _object_) {
         if (SvVoltage != _object_) {
             SvVoltage = _object_;
-            SvVoltage.setTopologicalNode(this);
+            _object_.setTopologicalNode(this);
+            SvVoltageId = _object_.getRdfid();
         }
     }
 
     private static Object getSvVoltage(BaseClass _this_) {
-        return ((TopologicalNode) _this_).getSvVoltage();
+        var obj = ((TopologicalNode) _this_).getSvVoltage();
+        var id = ((TopologicalNode) _this_).SvVoltageId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSvVoltage(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SvVoltage) {
+        if (_value_ instanceof String) {
+            ((TopologicalNode) _this_).SvVoltageId = (String) _value_;
+        } else if (_value_ instanceof SvVoltage) {
             ((TopologicalNode) _this_).setSvVoltage((SvVoltage) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SvVoltage");
@@ -247,6 +317,8 @@ public class TopologicalNode extends IdentifiedObject {
      */
     private Set<Terminal> Terminal = new HashSet<>(); // OneToMany
 
+    private Set<String> TerminalIdSet = new HashSet<>();
+
     public Set<Terminal> getTerminal() {
         return Terminal;
     }
@@ -255,15 +327,23 @@ public class TopologicalNode extends IdentifiedObject {
         if (!Terminal.contains(_object_)) {
             Terminal.add(_object_);
             _object_.setTopologicalNode(this);
+            TerminalIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTerminal(BaseClass _this_) {
-        return ((TopologicalNode) _this_).getTerminal();
+        var objs = ((TopologicalNode) _this_).getTerminal();
+        var ids = ((TopologicalNode) _this_).TerminalIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTerminal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Terminal) {
+        if (_value_ instanceof String) {
+            ((TopologicalNode) _this_).TerminalIdSet.add((String) _value_);
+        } else if (_value_ instanceof Terminal) {
             ((TopologicalNode) _this_).setTerminal((Terminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Terminal");
@@ -277,6 +357,8 @@ public class TopologicalNode extends IdentifiedObject {
      */
     private TopologicalIsland TopologicalIsland; // ManyToOne
 
+    private String TopologicalIslandId;
+
     public TopologicalIsland getTopologicalIsland() {
         return TopologicalIsland;
     }
@@ -284,16 +366,24 @@ public class TopologicalNode extends IdentifiedObject {
     public void setTopologicalIsland(TopologicalIsland _object_) {
         if (TopologicalIsland != _object_) {
             TopologicalIsland = _object_;
-            TopologicalIsland.setTopologicalNodes(this);
+            _object_.setTopologicalNodes(this);
+            TopologicalIslandId = _object_.getRdfid();
         }
     }
 
     private static Object getTopologicalIsland(BaseClass _this_) {
-        return ((TopologicalNode) _this_).getTopologicalIsland();
+        var obj = ((TopologicalNode) _this_).getTopologicalIsland();
+        var id = ((TopologicalNode) _this_).TopologicalIslandId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTopologicalIsland(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TopologicalIsland) {
+        if (_value_ instanceof String) {
+            ((TopologicalNode) _this_).TopologicalIslandId = (String) _value_;
+        } else if (_value_ instanceof TopologicalIsland) {
             ((TopologicalNode) _this_).setTopologicalIsland((TopologicalIsland) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TopologicalIsland");

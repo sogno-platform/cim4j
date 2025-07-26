@@ -41,6 +41,8 @@ public class WindGeneratingUnit extends GeneratingUnit {
      */
     private WindPowerPlant WindPowerPlant; // ManyToOne
 
+    private String WindPowerPlantId;
+
     public WindPowerPlant getWindPowerPlant() {
         return WindPowerPlant;
     }
@@ -48,16 +50,24 @@ public class WindGeneratingUnit extends GeneratingUnit {
     public void setWindPowerPlant(WindPowerPlant _object_) {
         if (WindPowerPlant != _object_) {
             WindPowerPlant = _object_;
-            WindPowerPlant.setWindGeneratingUnits(this);
+            _object_.setWindGeneratingUnits(this);
+            WindPowerPlantId = _object_.getRdfid();
         }
     }
 
     private static Object getWindPowerPlant(BaseClass _this_) {
-        return ((WindGeneratingUnit) _this_).getWindPowerPlant();
+        var obj = ((WindGeneratingUnit) _this_).getWindPowerPlant();
+        var id = ((WindGeneratingUnit) _this_).WindPowerPlantId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindPowerPlant(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindPowerPlant) {
+        if (_value_ instanceof String) {
+            ((WindGeneratingUnit) _this_).WindPowerPlantId = (String) _value_;
+        } else if (_value_ instanceof WindPowerPlant) {
             ((WindGeneratingUnit) _this_).setWindPowerPlant((WindPowerPlant) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindPowerPlant");

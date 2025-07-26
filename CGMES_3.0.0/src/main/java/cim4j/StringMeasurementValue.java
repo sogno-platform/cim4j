@@ -41,6 +41,8 @@ public class StringMeasurementValue extends MeasurementValue {
      */
     private StringMeasurement StringMeasurement; // ManyToOne
 
+    private String StringMeasurementId;
+
     public StringMeasurement getStringMeasurement() {
         return StringMeasurement;
     }
@@ -48,16 +50,24 @@ public class StringMeasurementValue extends MeasurementValue {
     public void setStringMeasurement(StringMeasurement _object_) {
         if (StringMeasurement != _object_) {
             StringMeasurement = _object_;
-            StringMeasurement.setStringMeasurementValues(this);
+            _object_.setStringMeasurementValues(this);
+            StringMeasurementId = _object_.getRdfid();
         }
     }
 
     private static Object getStringMeasurement(BaseClass _this_) {
-        return ((StringMeasurementValue) _this_).getStringMeasurement();
+        var obj = ((StringMeasurementValue) _this_).getStringMeasurement();
+        var id = ((StringMeasurementValue) _this_).StringMeasurementId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setStringMeasurement(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof StringMeasurement) {
+        if (_value_ instanceof String) {
+            ((StringMeasurementValue) _this_).StringMeasurementId = (String) _value_;
+        } else if (_value_ instanceof StringMeasurement) {
             ((StringMeasurementValue) _this_).setStringMeasurement((StringMeasurement) _value_);
         } else {
             throw new IllegalArgumentException("Object is not StringMeasurement");

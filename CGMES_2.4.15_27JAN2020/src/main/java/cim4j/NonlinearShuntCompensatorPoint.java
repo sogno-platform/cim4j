@@ -41,6 +41,8 @@ public class NonlinearShuntCompensatorPoint extends BaseClass {
      */
     private NonlinearShuntCompensator NonlinearShuntCompensator; // ManyToOne
 
+    private String NonlinearShuntCompensatorId;
+
     public NonlinearShuntCompensator getNonlinearShuntCompensator() {
         return NonlinearShuntCompensator;
     }
@@ -48,16 +50,24 @@ public class NonlinearShuntCompensatorPoint extends BaseClass {
     public void setNonlinearShuntCompensator(NonlinearShuntCompensator _object_) {
         if (NonlinearShuntCompensator != _object_) {
             NonlinearShuntCompensator = _object_;
-            NonlinearShuntCompensator.setNonlinearShuntCompensatorPoints(this);
+            _object_.setNonlinearShuntCompensatorPoints(this);
+            NonlinearShuntCompensatorId = _object_.getRdfid();
         }
     }
 
     private static Object getNonlinearShuntCompensator(BaseClass _this_) {
-        return ((NonlinearShuntCompensatorPoint) _this_).getNonlinearShuntCompensator();
+        var obj = ((NonlinearShuntCompensatorPoint) _this_).getNonlinearShuntCompensator();
+        var id = ((NonlinearShuntCompensatorPoint) _this_).NonlinearShuntCompensatorId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setNonlinearShuntCompensator(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof NonlinearShuntCompensator) {
+        if (_value_ instanceof String) {
+            ((NonlinearShuntCompensatorPoint) _this_).NonlinearShuntCompensatorId = (String) _value_;
+        } else if (_value_ instanceof NonlinearShuntCompensator) {
             ((NonlinearShuntCompensatorPoint) _this_).setNonlinearShuntCompensator((NonlinearShuntCompensator) _value_);
         } else {
             throw new IllegalArgumentException("Object is not NonlinearShuntCompensator");

@@ -41,6 +41,8 @@ public class AccumulatorLimit extends Limit {
      */
     private AccumulatorLimitSet LimitSet; // ManyToOne
 
+    private String LimitSetId;
+
     public AccumulatorLimitSet getLimitSet() {
         return LimitSet;
     }
@@ -48,16 +50,24 @@ public class AccumulatorLimit extends Limit {
     public void setLimitSet(AccumulatorLimitSet _object_) {
         if (LimitSet != _object_) {
             LimitSet = _object_;
-            LimitSet.setLimits(this);
+            _object_.setLimits(this);
+            LimitSetId = _object_.getRdfid();
         }
     }
 
     private static Object getLimitSet(BaseClass _this_) {
-        return ((AccumulatorLimit) _this_).getLimitSet();
+        var obj = ((AccumulatorLimit) _this_).getLimitSet();
+        var id = ((AccumulatorLimit) _this_).LimitSetId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setLimitSet(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof AccumulatorLimitSet) {
+        if (_value_ instanceof String) {
+            ((AccumulatorLimit) _this_).LimitSetId = (String) _value_;
+        } else if (_value_ instanceof AccumulatorLimitSet) {
             ((AccumulatorLimit) _this_).setLimitSet((AccumulatorLimitSet) _value_);
         } else {
             throw new IllegalArgumentException("Object is not AccumulatorLimitSet");

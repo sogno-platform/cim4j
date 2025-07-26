@@ -41,6 +41,8 @@ public class PhaseTapChanger extends TapChanger {
      */
     private TransformerEnd TransformerEnd; // OneToOne
 
+    private String TransformerEndId;
+
     public TransformerEnd getTransformerEnd() {
         return TransformerEnd;
     }
@@ -48,16 +50,24 @@ public class PhaseTapChanger extends TapChanger {
     public void setTransformerEnd(TransformerEnd _object_) {
         if (TransformerEnd != _object_) {
             TransformerEnd = _object_;
-            TransformerEnd.setPhaseTapChanger(this);
+            _object_.setPhaseTapChanger(this);
+            TransformerEndId = _object_.getRdfid();
         }
     }
 
     private static Object getTransformerEnd(BaseClass _this_) {
-        return ((PhaseTapChanger) _this_).getTransformerEnd();
+        var obj = ((PhaseTapChanger) _this_).getTransformerEnd();
+        var id = ((PhaseTapChanger) _this_).TransformerEndId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTransformerEnd(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TransformerEnd) {
+        if (_value_ instanceof String) {
+            ((PhaseTapChanger) _this_).TransformerEndId = (String) _value_;
+        } else if (_value_ instanceof TransformerEnd) {
             ((PhaseTapChanger) _this_).setTransformerEnd((TransformerEnd) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TransformerEnd");

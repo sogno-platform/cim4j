@@ -116,6 +116,8 @@ public class StreetAddress extends BaseClass {
      */
     private Status status; // OneToOne
 
+    private String statusId;
+
     public Status getStatus() {
         return status;
     }
@@ -123,15 +125,23 @@ public class StreetAddress extends BaseClass {
     public void setStatus(Status _object_) {
         if (status != _object_) {
             status = _object_;
+            statusId = _object_.getRdfid();
         }
     }
 
     private static Object getStatus(BaseClass _this_) {
-        return ((StreetAddress) _this_).getStatus();
+        var obj = ((StreetAddress) _this_).getStatus();
+        var id = ((StreetAddress) _this_).statusId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setStatus(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Status) {
+        if (_value_ instanceof String) {
+            ((StreetAddress) _this_).statusId = (String) _value_;
+        } else if (_value_ instanceof Status) {
             ((StreetAddress) _this_).setStatus((Status) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Status");
@@ -143,6 +153,8 @@ public class StreetAddress extends BaseClass {
      */
     private StreetDetail streetDetail; // OneToOne
 
+    private String streetDetailId;
+
     public StreetDetail getStreetDetail() {
         return streetDetail;
     }
@@ -150,15 +162,23 @@ public class StreetAddress extends BaseClass {
     public void setStreetDetail(StreetDetail _object_) {
         if (streetDetail != _object_) {
             streetDetail = _object_;
+            streetDetailId = _object_.getRdfid();
         }
     }
 
     private static Object getStreetDetail(BaseClass _this_) {
-        return ((StreetAddress) _this_).getStreetDetail();
+        var obj = ((StreetAddress) _this_).getStreetDetail();
+        var id = ((StreetAddress) _this_).streetDetailId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setStreetDetail(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof StreetDetail) {
+        if (_value_ instanceof String) {
+            ((StreetAddress) _this_).streetDetailId = (String) _value_;
+        } else if (_value_ instanceof StreetDetail) {
             ((StreetAddress) _this_).setStreetDetail((StreetDetail) _value_);
         } else {
             throw new IllegalArgumentException("Object is not StreetDetail");
@@ -170,6 +190,8 @@ public class StreetAddress extends BaseClass {
      */
     private TownDetail townDetail; // OneToOne
 
+    private String townDetailId;
+
     public TownDetail getTownDetail() {
         return townDetail;
     }
@@ -177,15 +199,23 @@ public class StreetAddress extends BaseClass {
     public void setTownDetail(TownDetail _object_) {
         if (townDetail != _object_) {
             townDetail = _object_;
+            townDetailId = _object_.getRdfid();
         }
     }
 
     private static Object getTownDetail(BaseClass _this_) {
-        return ((StreetAddress) _this_).getTownDetail();
+        var obj = ((StreetAddress) _this_).getTownDetail();
+        var id = ((StreetAddress) _this_).townDetailId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTownDetail(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TownDetail) {
+        if (_value_ instanceof String) {
+            ((StreetAddress) _this_).townDetailId = (String) _value_;
+        } else if (_value_ instanceof TownDetail) {
             ((StreetAddress) _this_).setTownDetail((TownDetail) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TownDetail");

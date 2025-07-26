@@ -43,6 +43,8 @@ public class ConnectivityNode extends IdentifiedObject {
      */
     private BoundaryPoint BoundaryPoint; // OneToOne
 
+    private String BoundaryPointId;
+
     public BoundaryPoint getBoundaryPoint() {
         return BoundaryPoint;
     }
@@ -50,16 +52,24 @@ public class ConnectivityNode extends IdentifiedObject {
     public void setBoundaryPoint(BoundaryPoint _object_) {
         if (BoundaryPoint != _object_) {
             BoundaryPoint = _object_;
-            BoundaryPoint.setConnectivityNode(this);
+            _object_.setConnectivityNode(this);
+            BoundaryPointId = _object_.getRdfid();
         }
     }
 
     private static Object getBoundaryPoint(BaseClass _this_) {
-        return ((ConnectivityNode) _this_).getBoundaryPoint();
+        var obj = ((ConnectivityNode) _this_).getBoundaryPoint();
+        var id = ((ConnectivityNode) _this_).BoundaryPointId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setBoundaryPoint(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof BoundaryPoint) {
+        if (_value_ instanceof String) {
+            ((ConnectivityNode) _this_).BoundaryPointId = (String) _value_;
+        } else if (_value_ instanceof BoundaryPoint) {
             ((ConnectivityNode) _this_).setBoundaryPoint((BoundaryPoint) _value_);
         } else {
             throw new IllegalArgumentException("Object is not BoundaryPoint");
@@ -71,6 +81,8 @@ public class ConnectivityNode extends IdentifiedObject {
      */
     private ConnectivityNodeContainer ConnectivityNodeContainer; // ManyToOne
 
+    private String ConnectivityNodeContainerId;
+
     public ConnectivityNodeContainer getConnectivityNodeContainer() {
         return ConnectivityNodeContainer;
     }
@@ -78,16 +90,24 @@ public class ConnectivityNode extends IdentifiedObject {
     public void setConnectivityNodeContainer(ConnectivityNodeContainer _object_) {
         if (ConnectivityNodeContainer != _object_) {
             ConnectivityNodeContainer = _object_;
-            ConnectivityNodeContainer.setConnectivityNodes(this);
+            _object_.setConnectivityNodes(this);
+            ConnectivityNodeContainerId = _object_.getRdfid();
         }
     }
 
     private static Object getConnectivityNodeContainer(BaseClass _this_) {
-        return ((ConnectivityNode) _this_).getConnectivityNodeContainer();
+        var obj = ((ConnectivityNode) _this_).getConnectivityNodeContainer();
+        var id = ((ConnectivityNode) _this_).ConnectivityNodeContainerId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setConnectivityNodeContainer(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ConnectivityNodeContainer) {
+        if (_value_ instanceof String) {
+            ((ConnectivityNode) _this_).ConnectivityNodeContainerId = (String) _value_;
+        } else if (_value_ instanceof ConnectivityNodeContainer) {
             ((ConnectivityNode) _this_).setConnectivityNodeContainer((ConnectivityNodeContainer) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ConnectivityNodeContainer");
@@ -101,6 +121,8 @@ public class ConnectivityNode extends IdentifiedObject {
      */
     private Set<Terminal> Terminals = new HashSet<>(); // OneToMany
 
+    private Set<String> TerminalsIdSet = new HashSet<>();
+
     public Set<Terminal> getTerminals() {
         return Terminals;
     }
@@ -109,15 +131,23 @@ public class ConnectivityNode extends IdentifiedObject {
         if (!Terminals.contains(_object_)) {
             Terminals.add(_object_);
             _object_.setConnectivityNode(this);
+            TerminalsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTerminals(BaseClass _this_) {
-        return ((ConnectivityNode) _this_).getTerminals();
+        var objs = ((ConnectivityNode) _this_).getTerminals();
+        var ids = ((ConnectivityNode) _this_).TerminalsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTerminals(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Terminal) {
+        if (_value_ instanceof String) {
+            ((ConnectivityNode) _this_).TerminalsIdSet.add((String) _value_);
+        } else if (_value_ instanceof Terminal) {
             ((ConnectivityNode) _this_).setTerminals((Terminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Terminal");
@@ -129,6 +159,8 @@ public class ConnectivityNode extends IdentifiedObject {
      */
     private TopologicalNode TopologicalNode; // ManyToOne
 
+    private String TopologicalNodeId;
+
     public TopologicalNode getTopologicalNode() {
         return TopologicalNode;
     }
@@ -136,16 +168,24 @@ public class ConnectivityNode extends IdentifiedObject {
     public void setTopologicalNode(TopologicalNode _object_) {
         if (TopologicalNode != _object_) {
             TopologicalNode = _object_;
-            TopologicalNode.setConnectivityNodes(this);
+            _object_.setConnectivityNodes(this);
+            TopologicalNodeId = _object_.getRdfid();
         }
     }
 
     private static Object getTopologicalNode(BaseClass _this_) {
-        return ((ConnectivityNode) _this_).getTopologicalNode();
+        var obj = ((ConnectivityNode) _this_).getTopologicalNode();
+        var id = ((ConnectivityNode) _this_).TopologicalNodeId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTopologicalNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TopologicalNode) {
+        if (_value_ instanceof String) {
+            ((ConnectivityNode) _this_).TopologicalNodeId = (String) _value_;
+        } else if (_value_ instanceof TopologicalNode) {
             ((ConnectivityNode) _this_).setTopologicalNode((TopologicalNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TopologicalNode");

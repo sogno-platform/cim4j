@@ -41,6 +41,8 @@ public class VsConverter extends ACDCConverter {
      */
     private VsCapabilityCurve CapabilityCurve; // ManyToOne
 
+    private String CapabilityCurveId;
+
     public VsCapabilityCurve getCapabilityCurve() {
         return CapabilityCurve;
     }
@@ -48,16 +50,24 @@ public class VsConverter extends ACDCConverter {
     public void setCapabilityCurve(VsCapabilityCurve _object_) {
         if (CapabilityCurve != _object_) {
             CapabilityCurve = _object_;
-            CapabilityCurve.setVsConverterDCSides(this);
+            _object_.setVsConverterDCSides(this);
+            CapabilityCurveId = _object_.getRdfid();
         }
     }
 
     private static Object getCapabilityCurve(BaseClass _this_) {
-        return ((VsConverter) _this_).getCapabilityCurve();
+        var obj = ((VsConverter) _this_).getCapabilityCurve();
+        var id = ((VsConverter) _this_).CapabilityCurveId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setCapabilityCurve(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VsCapabilityCurve) {
+        if (_value_ instanceof String) {
+            ((VsConverter) _this_).CapabilityCurveId = (String) _value_;
+        } else if (_value_ instanceof VsCapabilityCurve) {
             ((VsConverter) _this_).setCapabilityCurve((VsCapabilityCurve) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VsCapabilityCurve");

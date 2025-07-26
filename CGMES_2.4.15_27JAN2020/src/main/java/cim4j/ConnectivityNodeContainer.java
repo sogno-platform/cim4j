@@ -43,6 +43,8 @@ public class ConnectivityNodeContainer extends PowerSystemResource {
      */
     private Set<ConnectivityNode> ConnectivityNodes = new HashSet<>(); // OneToMany
 
+    private Set<String> ConnectivityNodesIdSet = new HashSet<>();
+
     public Set<ConnectivityNode> getConnectivityNodes() {
         return ConnectivityNodes;
     }
@@ -51,15 +53,23 @@ public class ConnectivityNodeContainer extends PowerSystemResource {
         if (!ConnectivityNodes.contains(_object_)) {
             ConnectivityNodes.add(_object_);
             _object_.setConnectivityNodeContainer(this);
+            ConnectivityNodesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getConnectivityNodes(BaseClass _this_) {
-        return ((ConnectivityNodeContainer) _this_).getConnectivityNodes();
+        var objs = ((ConnectivityNodeContainer) _this_).getConnectivityNodes();
+        var ids = ((ConnectivityNodeContainer) _this_).ConnectivityNodesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setConnectivityNodes(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ConnectivityNode) {
+        if (_value_ instanceof String) {
+            ((ConnectivityNodeContainer) _this_).ConnectivityNodesIdSet.add((String) _value_);
+        } else if (_value_ instanceof ConnectivityNode) {
             ((ConnectivityNodeContainer) _this_).setConnectivityNodes((ConnectivityNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ConnectivityNode");
@@ -73,6 +83,8 @@ public class ConnectivityNodeContainer extends PowerSystemResource {
      */
     private Set<TopologicalNode> TopologicalNode = new HashSet<>(); // OneToMany
 
+    private Set<String> TopologicalNodeIdSet = new HashSet<>();
+
     public Set<TopologicalNode> getTopologicalNode() {
         return TopologicalNode;
     }
@@ -81,15 +93,23 @@ public class ConnectivityNodeContainer extends PowerSystemResource {
         if (!TopologicalNode.contains(_object_)) {
             TopologicalNode.add(_object_);
             _object_.setConnectivityNodeContainer(this);
+            TopologicalNodeIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTopologicalNode(BaseClass _this_) {
-        return ((ConnectivityNodeContainer) _this_).getTopologicalNode();
+        var objs = ((ConnectivityNodeContainer) _this_).getTopologicalNode();
+        var ids = ((ConnectivityNodeContainer) _this_).TopologicalNodeIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTopologicalNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TopologicalNode) {
+        if (_value_ instanceof String) {
+            ((ConnectivityNodeContainer) _this_).TopologicalNodeIdSet.add((String) _value_);
+        } else if (_value_ instanceof TopologicalNode) {
             ((ConnectivityNodeContainer) _this_).setTopologicalNode((TopologicalNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TopologicalNode");

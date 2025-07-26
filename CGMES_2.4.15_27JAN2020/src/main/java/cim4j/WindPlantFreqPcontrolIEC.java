@@ -43,6 +43,8 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
      */
     private Set<WindDynamicsLookupTable> WindDynamicsLookupTable = new HashSet<>(); // OneToMany
 
+    private Set<String> WindDynamicsLookupTableIdSet = new HashSet<>();
+
     public Set<WindDynamicsLookupTable> getWindDynamicsLookupTable() {
         return WindDynamicsLookupTable;
     }
@@ -51,15 +53,23 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
         if (!WindDynamicsLookupTable.contains(_object_)) {
             WindDynamicsLookupTable.add(_object_);
             _object_.setWindPlantFreqPcontrolIEC(this);
+            WindDynamicsLookupTableIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getWindDynamicsLookupTable(BaseClass _this_) {
-        return ((WindPlantFreqPcontrolIEC) _this_).getWindDynamicsLookupTable();
+        var objs = ((WindPlantFreqPcontrolIEC) _this_).getWindDynamicsLookupTable();
+        var ids = ((WindPlantFreqPcontrolIEC) _this_).WindDynamicsLookupTableIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setWindDynamicsLookupTable(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindDynamicsLookupTable) {
+        if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).WindDynamicsLookupTableIdSet.add((String) _value_);
+        } else if (_value_ instanceof WindDynamicsLookupTable) {
             ((WindPlantFreqPcontrolIEC) _this_).setWindDynamicsLookupTable((WindDynamicsLookupTable) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindDynamicsLookupTable");
@@ -73,6 +83,8 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
      */
     private WindPlantIEC WindPlantIEC; // OneToOne
 
+    private String WindPlantIECId;
+
     public WindPlantIEC getWindPlantIEC() {
         return WindPlantIEC;
     }
@@ -80,16 +92,24 @@ public class WindPlantFreqPcontrolIEC extends IdentifiedObject {
     public void setWindPlantIEC(WindPlantIEC _object_) {
         if (WindPlantIEC != _object_) {
             WindPlantIEC = _object_;
-            WindPlantIEC.setWindPlantFreqPcontrolIEC(this);
+            _object_.setWindPlantFreqPcontrolIEC(this);
+            WindPlantIECId = _object_.getRdfid();
         }
     }
 
     private static Object getWindPlantIEC(BaseClass _this_) {
-        return ((WindPlantFreqPcontrolIEC) _this_).getWindPlantIEC();
+        var obj = ((WindPlantFreqPcontrolIEC) _this_).getWindPlantIEC();
+        var id = ((WindPlantFreqPcontrolIEC) _this_).WindPlantIECId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindPlantIEC(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindPlantIEC) {
+        if (_value_ instanceof String) {
+            ((WindPlantFreqPcontrolIEC) _this_).WindPlantIECId = (String) _value_;
+        } else if (_value_ instanceof WindPlantIEC) {
             ((WindPlantFreqPcontrolIEC) _this_).setWindPlantIEC((WindPlantIEC) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindPlantIEC");

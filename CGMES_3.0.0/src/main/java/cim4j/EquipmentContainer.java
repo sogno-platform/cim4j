@@ -43,6 +43,8 @@ public class EquipmentContainer extends ConnectivityNodeContainer {
      */
     private Set<Equipment> Equipments = new HashSet<>(); // OneToMany
 
+    private Set<String> EquipmentsIdSet = new HashSet<>();
+
     public Set<Equipment> getEquipments() {
         return Equipments;
     }
@@ -51,15 +53,23 @@ public class EquipmentContainer extends ConnectivityNodeContainer {
         if (!Equipments.contains(_object_)) {
             Equipments.add(_object_);
             _object_.setEquipmentContainer(this);
+            EquipmentsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getEquipments(BaseClass _this_) {
-        return ((EquipmentContainer) _this_).getEquipments();
+        var objs = ((EquipmentContainer) _this_).getEquipments();
+        var ids = ((EquipmentContainer) _this_).EquipmentsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setEquipments(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Equipment) {
+        if (_value_ instanceof String) {
+            ((EquipmentContainer) _this_).EquipmentsIdSet.add((String) _value_);
+        } else if (_value_ instanceof Equipment) {
             ((EquipmentContainer) _this_).setEquipments((Equipment) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Equipment");

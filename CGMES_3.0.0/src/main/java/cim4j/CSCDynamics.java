@@ -41,6 +41,8 @@ public class CSCDynamics extends HVDCDynamics {
      */
     private CsConverter CSConverter; // OneToOne
 
+    private String CSConverterId;
+
     public CsConverter getCSConverter() {
         return CSConverter;
     }
@@ -48,16 +50,24 @@ public class CSCDynamics extends HVDCDynamics {
     public void setCSConverter(CsConverter _object_) {
         if (CSConverter != _object_) {
             CSConverter = _object_;
-            CSConverter.setCSCDynamics(this);
+            _object_.setCSCDynamics(this);
+            CSConverterId = _object_.getRdfid();
         }
     }
 
     private static Object getCSConverter(BaseClass _this_) {
-        return ((CSCDynamics) _this_).getCSConverter();
+        var obj = ((CSCDynamics) _this_).getCSConverter();
+        var id = ((CSCDynamics) _this_).CSConverterId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setCSConverter(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof CsConverter) {
+        if (_value_ instanceof String) {
+            ((CSCDynamics) _this_).CSConverterId = (String) _value_;
+        } else if (_value_ instanceof CsConverter) {
             ((CSCDynamics) _this_).setCSConverter((CsConverter) _value_);
         } else {
             throw new IllegalArgumentException("Object is not CsConverter");

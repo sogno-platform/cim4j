@@ -43,6 +43,8 @@ public class EquivalentNetwork extends ConnectivityNodeContainer {
      */
     private Set<EquivalentEquipment> EquivalentEquipments = new HashSet<>(); // OneToMany
 
+    private Set<String> EquivalentEquipmentsIdSet = new HashSet<>();
+
     public Set<EquivalentEquipment> getEquivalentEquipments() {
         return EquivalentEquipments;
     }
@@ -51,15 +53,23 @@ public class EquivalentNetwork extends ConnectivityNodeContainer {
         if (!EquivalentEquipments.contains(_object_)) {
             EquivalentEquipments.add(_object_);
             _object_.setEquivalentNetwork(this);
+            EquivalentEquipmentsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getEquivalentEquipments(BaseClass _this_) {
-        return ((EquivalentNetwork) _this_).getEquivalentEquipments();
+        var objs = ((EquivalentNetwork) _this_).getEquivalentEquipments();
+        var ids = ((EquivalentNetwork) _this_).EquivalentEquipmentsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setEquivalentEquipments(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof EquivalentEquipment) {
+        if (_value_ instanceof String) {
+            ((EquivalentNetwork) _this_).EquivalentEquipmentsIdSet.add((String) _value_);
+        } else if (_value_ instanceof EquivalentEquipment) {
             ((EquivalentNetwork) _this_).setEquivalentEquipments((EquivalentEquipment) _value_);
         } else {
             throw new IllegalArgumentException("Object is not EquivalentEquipment");

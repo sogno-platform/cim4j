@@ -41,6 +41,8 @@ public class TopologicalIsland extends IdentifiedObject {
      */
     private TopologicalNode AngleRefTopologicalNode; // OneToOne
 
+    private String AngleRefTopologicalNodeId;
+
     public TopologicalNode getAngleRefTopologicalNode() {
         return AngleRefTopologicalNode;
     }
@@ -48,16 +50,24 @@ public class TopologicalIsland extends IdentifiedObject {
     public void setAngleRefTopologicalNode(TopologicalNode _object_) {
         if (AngleRefTopologicalNode != _object_) {
             AngleRefTopologicalNode = _object_;
-            AngleRefTopologicalNode.setAngleRefTopologicalIsland(this);
+            _object_.setAngleRefTopologicalIsland(this);
+            AngleRefTopologicalNodeId = _object_.getRdfid();
         }
     }
 
     private static Object getAngleRefTopologicalNode(BaseClass _this_) {
-        return ((TopologicalIsland) _this_).getAngleRefTopologicalNode();
+        var obj = ((TopologicalIsland) _this_).getAngleRefTopologicalNode();
+        var id = ((TopologicalIsland) _this_).AngleRefTopologicalNodeId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setAngleRefTopologicalNode(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TopologicalNode) {
+        if (_value_ instanceof String) {
+            ((TopologicalIsland) _this_).AngleRefTopologicalNodeId = (String) _value_;
+        } else if (_value_ instanceof TopologicalNode) {
             ((TopologicalIsland) _this_).setAngleRefTopologicalNode((TopologicalNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TopologicalNode");
@@ -69,6 +79,8 @@ public class TopologicalIsland extends IdentifiedObject {
      */
     private Set<TopologicalNode> TopologicalNodes = new HashSet<>(); // OneToMany
 
+    private Set<String> TopologicalNodesIdSet = new HashSet<>();
+
     public Set<TopologicalNode> getTopologicalNodes() {
         return TopologicalNodes;
     }
@@ -77,15 +89,23 @@ public class TopologicalIsland extends IdentifiedObject {
         if (!TopologicalNodes.contains(_object_)) {
             TopologicalNodes.add(_object_);
             _object_.setTopologicalIsland(this);
+            TopologicalNodesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTopologicalNodes(BaseClass _this_) {
-        return ((TopologicalIsland) _this_).getTopologicalNodes();
+        var objs = ((TopologicalIsland) _this_).getTopologicalNodes();
+        var ids = ((TopologicalIsland) _this_).TopologicalNodesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTopologicalNodes(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TopologicalNode) {
+        if (_value_ instanceof String) {
+            ((TopologicalIsland) _this_).TopologicalNodesIdSet.add((String) _value_);
+        } else if (_value_ instanceof TopologicalNode) {
             ((TopologicalIsland) _this_).setTopologicalNodes((TopologicalNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TopologicalNode");

@@ -43,6 +43,8 @@ public class ValueAliasSet extends IdentifiedObject {
      */
     private Set<Command> Commands = new HashSet<>(); // OneToMany
 
+    private Set<String> CommandsIdSet = new HashSet<>();
+
     public Set<Command> getCommands() {
         return Commands;
     }
@@ -51,15 +53,23 @@ public class ValueAliasSet extends IdentifiedObject {
         if (!Commands.contains(_object_)) {
             Commands.add(_object_);
             _object_.setValueAliasSet(this);
+            CommandsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getCommands(BaseClass _this_) {
-        return ((ValueAliasSet) _this_).getCommands();
+        var objs = ((ValueAliasSet) _this_).getCommands();
+        var ids = ((ValueAliasSet) _this_).CommandsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setCommands(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Command) {
+        if (_value_ instanceof String) {
+            ((ValueAliasSet) _this_).CommandsIdSet.add((String) _value_);
+        } else if (_value_ instanceof Command) {
             ((ValueAliasSet) _this_).setCommands((Command) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Command");
@@ -73,6 +83,8 @@ public class ValueAliasSet extends IdentifiedObject {
      */
     private Set<Discrete> Discretes = new HashSet<>(); // OneToMany
 
+    private Set<String> DiscretesIdSet = new HashSet<>();
+
     public Set<Discrete> getDiscretes() {
         return Discretes;
     }
@@ -81,15 +93,23 @@ public class ValueAliasSet extends IdentifiedObject {
         if (!Discretes.contains(_object_)) {
             Discretes.add(_object_);
             _object_.setValueAliasSet(this);
+            DiscretesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDiscretes(BaseClass _this_) {
-        return ((ValueAliasSet) _this_).getDiscretes();
+        var objs = ((ValueAliasSet) _this_).getDiscretes();
+        var ids = ((ValueAliasSet) _this_).DiscretesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDiscretes(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Discrete) {
+        if (_value_ instanceof String) {
+            ((ValueAliasSet) _this_).DiscretesIdSet.add((String) _value_);
+        } else if (_value_ instanceof Discrete) {
             ((ValueAliasSet) _this_).setDiscretes((Discrete) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Discrete");
@@ -103,6 +123,8 @@ public class ValueAliasSet extends IdentifiedObject {
      */
     private Set<RaiseLowerCommand> RaiseLowerCommands = new HashSet<>(); // OneToMany
 
+    private Set<String> RaiseLowerCommandsIdSet = new HashSet<>();
+
     public Set<RaiseLowerCommand> getRaiseLowerCommands() {
         return RaiseLowerCommands;
     }
@@ -111,15 +133,23 @@ public class ValueAliasSet extends IdentifiedObject {
         if (!RaiseLowerCommands.contains(_object_)) {
             RaiseLowerCommands.add(_object_);
             _object_.setValueAliasSet(this);
+            RaiseLowerCommandsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getRaiseLowerCommands(BaseClass _this_) {
-        return ((ValueAliasSet) _this_).getRaiseLowerCommands();
+        var objs = ((ValueAliasSet) _this_).getRaiseLowerCommands();
+        var ids = ((ValueAliasSet) _this_).RaiseLowerCommandsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setRaiseLowerCommands(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RaiseLowerCommand) {
+        if (_value_ instanceof String) {
+            ((ValueAliasSet) _this_).RaiseLowerCommandsIdSet.add((String) _value_);
+        } else if (_value_ instanceof RaiseLowerCommand) {
             ((ValueAliasSet) _this_).setRaiseLowerCommands((RaiseLowerCommand) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RaiseLowerCommand");
@@ -133,6 +163,8 @@ public class ValueAliasSet extends IdentifiedObject {
      */
     private Set<ValueToAlias> Values = new HashSet<>(); // OneToMany
 
+    private Set<String> ValuesIdSet = new HashSet<>();
+
     public Set<ValueToAlias> getValues() {
         return Values;
     }
@@ -141,15 +173,23 @@ public class ValueAliasSet extends IdentifiedObject {
         if (!Values.contains(_object_)) {
             Values.add(_object_);
             _object_.setValueAliasSet(this);
+            ValuesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getValues(BaseClass _this_) {
-        return ((ValueAliasSet) _this_).getValues();
+        var objs = ((ValueAliasSet) _this_).getValues();
+        var ids = ((ValueAliasSet) _this_).ValuesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setValues(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ValueToAlias) {
+        if (_value_ instanceof String) {
+            ((ValueAliasSet) _this_).ValuesIdSet.add((String) _value_);
+        } else if (_value_ instanceof ValueToAlias) {
             ((ValueAliasSet) _this_).setValues((ValueToAlias) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ValueToAlias");

@@ -43,6 +43,8 @@ public class StaticVarCompensator extends RegulatingCondEq {
      */
     private StaticVarCompensatorDynamics StaticVarCompensatorDynamics; // OneToOne
 
+    private String StaticVarCompensatorDynamicsId;
+
     public StaticVarCompensatorDynamics getStaticVarCompensatorDynamics() {
         return StaticVarCompensatorDynamics;
     }
@@ -50,16 +52,24 @@ public class StaticVarCompensator extends RegulatingCondEq {
     public void setStaticVarCompensatorDynamics(StaticVarCompensatorDynamics _object_) {
         if (StaticVarCompensatorDynamics != _object_) {
             StaticVarCompensatorDynamics = _object_;
-            StaticVarCompensatorDynamics.setStaticVarCompensator(this);
+            _object_.setStaticVarCompensator(this);
+            StaticVarCompensatorDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getStaticVarCompensatorDynamics(BaseClass _this_) {
-        return ((StaticVarCompensator) _this_).getStaticVarCompensatorDynamics();
+        var obj = ((StaticVarCompensator) _this_).getStaticVarCompensatorDynamics();
+        var id = ((StaticVarCompensator) _this_).StaticVarCompensatorDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setStaticVarCompensatorDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof StaticVarCompensatorDynamics) {
+        if (_value_ instanceof String) {
+            ((StaticVarCompensator) _this_).StaticVarCompensatorDynamicsId = (String) _value_;
+        } else if (_value_ instanceof StaticVarCompensatorDynamics) {
             ((StaticVarCompensator) _this_).setStaticVarCompensatorDynamics((StaticVarCompensatorDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not StaticVarCompensatorDynamics");

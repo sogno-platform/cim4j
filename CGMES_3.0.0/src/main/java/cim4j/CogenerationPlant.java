@@ -43,6 +43,8 @@ public class CogenerationPlant extends PowerSystemResource {
      */
     private Set<ThermalGeneratingUnit> ThermalGeneratingUnits = new HashSet<>(); // OneToMany
 
+    private Set<String> ThermalGeneratingUnitsIdSet = new HashSet<>();
+
     public Set<ThermalGeneratingUnit> getThermalGeneratingUnits() {
         return ThermalGeneratingUnits;
     }
@@ -51,15 +53,23 @@ public class CogenerationPlant extends PowerSystemResource {
         if (!ThermalGeneratingUnits.contains(_object_)) {
             ThermalGeneratingUnits.add(_object_);
             _object_.setCogenerationPlant(this);
+            ThermalGeneratingUnitsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getThermalGeneratingUnits(BaseClass _this_) {
-        return ((CogenerationPlant) _this_).getThermalGeneratingUnits();
+        var objs = ((CogenerationPlant) _this_).getThermalGeneratingUnits();
+        var ids = ((CogenerationPlant) _this_).ThermalGeneratingUnitsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setThermalGeneratingUnits(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ThermalGeneratingUnit) {
+        if (_value_ instanceof String) {
+            ((CogenerationPlant) _this_).ThermalGeneratingUnitsIdSet.add((String) _value_);
+        } else if (_value_ instanceof ThermalGeneratingUnit) {
             ((CogenerationPlant) _this_).setThermalGeneratingUnits((ThermalGeneratingUnit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ThermalGeneratingUnit");

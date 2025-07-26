@@ -41,6 +41,8 @@ public class EquivalentInjection extends EquivalentEquipment {
      */
     private ReactiveCapabilityCurve ReactiveCapabilityCurve; // ManyToOne
 
+    private String ReactiveCapabilityCurveId;
+
     public ReactiveCapabilityCurve getReactiveCapabilityCurve() {
         return ReactiveCapabilityCurve;
     }
@@ -48,16 +50,24 @@ public class EquivalentInjection extends EquivalentEquipment {
     public void setReactiveCapabilityCurve(ReactiveCapabilityCurve _object_) {
         if (ReactiveCapabilityCurve != _object_) {
             ReactiveCapabilityCurve = _object_;
-            ReactiveCapabilityCurve.setEquivalentInjection(this);
+            _object_.setEquivalentInjection(this);
+            ReactiveCapabilityCurveId = _object_.getRdfid();
         }
     }
 
     private static Object getReactiveCapabilityCurve(BaseClass _this_) {
-        return ((EquivalentInjection) _this_).getReactiveCapabilityCurve();
+        var obj = ((EquivalentInjection) _this_).getReactiveCapabilityCurve();
+        var id = ((EquivalentInjection) _this_).ReactiveCapabilityCurveId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setReactiveCapabilityCurve(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ReactiveCapabilityCurve) {
+        if (_value_ instanceof String) {
+            ((EquivalentInjection) _this_).ReactiveCapabilityCurveId = (String) _value_;
+        } else if (_value_ instanceof ReactiveCapabilityCurve) {
             ((EquivalentInjection) _this_).setReactiveCapabilityCurve((ReactiveCapabilityCurve) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ReactiveCapabilityCurve");

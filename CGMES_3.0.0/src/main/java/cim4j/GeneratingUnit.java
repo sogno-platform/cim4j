@@ -43,6 +43,8 @@ public class GeneratingUnit extends Equipment {
      */
     private Set<ControlAreaGeneratingUnit> ControlAreaGeneratingUnit = new HashSet<>(); // OneToMany
 
+    private Set<String> ControlAreaGeneratingUnitIdSet = new HashSet<>();
+
     public Set<ControlAreaGeneratingUnit> getControlAreaGeneratingUnit() {
         return ControlAreaGeneratingUnit;
     }
@@ -51,15 +53,23 @@ public class GeneratingUnit extends Equipment {
         if (!ControlAreaGeneratingUnit.contains(_object_)) {
             ControlAreaGeneratingUnit.add(_object_);
             _object_.setGeneratingUnit(this);
+            ControlAreaGeneratingUnitIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getControlAreaGeneratingUnit(BaseClass _this_) {
-        return ((GeneratingUnit) _this_).getControlAreaGeneratingUnit();
+        var objs = ((GeneratingUnit) _this_).getControlAreaGeneratingUnit();
+        var ids = ((GeneratingUnit) _this_).ControlAreaGeneratingUnitIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setControlAreaGeneratingUnit(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ControlAreaGeneratingUnit) {
+        if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).ControlAreaGeneratingUnitIdSet.add((String) _value_);
+        } else if (_value_ instanceof ControlAreaGeneratingUnit) {
             ((GeneratingUnit) _this_).setControlAreaGeneratingUnit((ControlAreaGeneratingUnit) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ControlAreaGeneratingUnit");
@@ -73,6 +83,8 @@ public class GeneratingUnit extends Equipment {
      */
     private Set<GrossToNetActivePowerCurve> GrossToNetActivePowerCurves = new HashSet<>(); // OneToMany
 
+    private Set<String> GrossToNetActivePowerCurvesIdSet = new HashSet<>();
+
     public Set<GrossToNetActivePowerCurve> getGrossToNetActivePowerCurves() {
         return GrossToNetActivePowerCurves;
     }
@@ -81,15 +93,23 @@ public class GeneratingUnit extends Equipment {
         if (!GrossToNetActivePowerCurves.contains(_object_)) {
             GrossToNetActivePowerCurves.add(_object_);
             _object_.setGeneratingUnit(this);
+            GrossToNetActivePowerCurvesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getGrossToNetActivePowerCurves(BaseClass _this_) {
-        return ((GeneratingUnit) _this_).getGrossToNetActivePowerCurves();
+        var objs = ((GeneratingUnit) _this_).getGrossToNetActivePowerCurves();
+        var ids = ((GeneratingUnit) _this_).GrossToNetActivePowerCurvesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setGrossToNetActivePowerCurves(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof GrossToNetActivePowerCurve) {
+        if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).GrossToNetActivePowerCurvesIdSet.add((String) _value_);
+        } else if (_value_ instanceof GrossToNetActivePowerCurve) {
             ((GeneratingUnit) _this_).setGrossToNetActivePowerCurves((GrossToNetActivePowerCurve) _value_);
         } else {
             throw new IllegalArgumentException("Object is not GrossToNetActivePowerCurve");
@@ -103,6 +123,8 @@ public class GeneratingUnit extends Equipment {
      */
     private Set<RotatingMachine> RotatingMachine = new HashSet<>(); // OneToMany
 
+    private Set<String> RotatingMachineIdSet = new HashSet<>();
+
     public Set<RotatingMachine> getRotatingMachine() {
         return RotatingMachine;
     }
@@ -111,15 +133,23 @@ public class GeneratingUnit extends Equipment {
         if (!RotatingMachine.contains(_object_)) {
             RotatingMachine.add(_object_);
             _object_.setGeneratingUnit(this);
+            RotatingMachineIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getRotatingMachine(BaseClass _this_) {
-        return ((GeneratingUnit) _this_).getRotatingMachine();
+        var objs = ((GeneratingUnit) _this_).getRotatingMachine();
+        var ids = ((GeneratingUnit) _this_).RotatingMachineIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setRotatingMachine(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RotatingMachine) {
+        if (_value_ instanceof String) {
+            ((GeneratingUnit) _this_).RotatingMachineIdSet.add((String) _value_);
+        } else if (_value_ instanceof RotatingMachine) {
             ((GeneratingUnit) _this_).setRotatingMachine((RotatingMachine) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RotatingMachine");

@@ -43,6 +43,8 @@ public class EnergySchedulingType extends IdentifiedObject {
      */
     private Set<EnergySource> EnergySource = new HashSet<>(); // OneToMany
 
+    private Set<String> EnergySourceIdSet = new HashSet<>();
+
     public Set<EnergySource> getEnergySource() {
         return EnergySource;
     }
@@ -51,15 +53,23 @@ public class EnergySchedulingType extends IdentifiedObject {
         if (!EnergySource.contains(_object_)) {
             EnergySource.add(_object_);
             _object_.setEnergySchedulingType(this);
+            EnergySourceIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getEnergySource(BaseClass _this_) {
-        return ((EnergySchedulingType) _this_).getEnergySource();
+        var objs = ((EnergySchedulingType) _this_).getEnergySource();
+        var ids = ((EnergySchedulingType) _this_).EnergySourceIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setEnergySource(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof EnergySource) {
+        if (_value_ instanceof String) {
+            ((EnergySchedulingType) _this_).EnergySourceIdSet.add((String) _value_);
+        } else if (_value_ instanceof EnergySource) {
             ((EnergySchedulingType) _this_).setEnergySource((EnergySource) _value_);
         } else {
             throw new IllegalArgumentException("Object is not EnergySource");

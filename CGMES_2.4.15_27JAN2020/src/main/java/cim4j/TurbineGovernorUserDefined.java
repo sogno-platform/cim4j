@@ -43,6 +43,8 @@ public class TurbineGovernorUserDefined extends TurbineGovernorDynamics {
      */
     private Set<ProprietaryParameterDynamics> ProprietaryParameterDynamics = new HashSet<>(); // OneToMany
 
+    private Set<String> ProprietaryParameterDynamicsIdSet = new HashSet<>();
+
     public Set<ProprietaryParameterDynamics> getProprietaryParameterDynamics() {
         return ProprietaryParameterDynamics;
     }
@@ -51,15 +53,23 @@ public class TurbineGovernorUserDefined extends TurbineGovernorDynamics {
         if (!ProprietaryParameterDynamics.contains(_object_)) {
             ProprietaryParameterDynamics.add(_object_);
             _object_.setTurbineGovernorUserDefined(this);
+            ProprietaryParameterDynamicsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getProprietaryParameterDynamics(BaseClass _this_) {
-        return ((TurbineGovernorUserDefined) _this_).getProprietaryParameterDynamics();
+        var objs = ((TurbineGovernorUserDefined) _this_).getProprietaryParameterDynamics();
+        var ids = ((TurbineGovernorUserDefined) _this_).ProprietaryParameterDynamicsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setProprietaryParameterDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ProprietaryParameterDynamics) {
+        if (_value_ instanceof String) {
+            ((TurbineGovernorUserDefined) _this_).ProprietaryParameterDynamicsIdSet.add((String) _value_);
+        } else if (_value_ instanceof ProprietaryParameterDynamics) {
             ((TurbineGovernorUserDefined) _this_).setProprietaryParameterDynamics((ProprietaryParameterDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ProprietaryParameterDynamics");

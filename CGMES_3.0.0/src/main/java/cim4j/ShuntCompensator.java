@@ -43,6 +43,8 @@ public class ShuntCompensator extends RegulatingCondEq {
      */
     private SvShuntCompensatorSections SvShuntCompensatorSections; // OneToOne
 
+    private String SvShuntCompensatorSectionsId;
+
     public SvShuntCompensatorSections getSvShuntCompensatorSections() {
         return SvShuntCompensatorSections;
     }
@@ -50,16 +52,24 @@ public class ShuntCompensator extends RegulatingCondEq {
     public void setSvShuntCompensatorSections(SvShuntCompensatorSections _object_) {
         if (SvShuntCompensatorSections != _object_) {
             SvShuntCompensatorSections = _object_;
-            SvShuntCompensatorSections.setShuntCompensator(this);
+            _object_.setShuntCompensator(this);
+            SvShuntCompensatorSectionsId = _object_.getRdfid();
         }
     }
 
     private static Object getSvShuntCompensatorSections(BaseClass _this_) {
-        return ((ShuntCompensator) _this_).getSvShuntCompensatorSections();
+        var obj = ((ShuntCompensator) _this_).getSvShuntCompensatorSections();
+        var id = ((ShuntCompensator) _this_).SvShuntCompensatorSectionsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSvShuntCompensatorSections(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SvShuntCompensatorSections) {
+        if (_value_ instanceof String) {
+            ((ShuntCompensator) _this_).SvShuntCompensatorSectionsId = (String) _value_;
+        } else if (_value_ instanceof SvShuntCompensatorSections) {
             ((ShuntCompensator) _this_).setSvShuntCompensatorSections((SvShuntCompensatorSections) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SvShuntCompensatorSections");

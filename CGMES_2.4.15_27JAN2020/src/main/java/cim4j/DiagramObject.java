@@ -41,6 +41,8 @@ public class DiagramObject extends IdentifiedObject {
      */
     private Diagram Diagram; // ManyToOne
 
+    private String DiagramId;
+
     public Diagram getDiagram() {
         return Diagram;
     }
@@ -48,16 +50,24 @@ public class DiagramObject extends IdentifiedObject {
     public void setDiagram(Diagram _object_) {
         if (Diagram != _object_) {
             Diagram = _object_;
-            Diagram.setDiagramElements(this);
+            _object_.setDiagramElements(this);
+            DiagramId = _object_.getRdfid();
         }
     }
 
     private static Object getDiagram(BaseClass _this_) {
-        return ((DiagramObject) _this_).getDiagram();
+        var obj = ((DiagramObject) _this_).getDiagram();
+        var id = ((DiagramObject) _this_).DiagramId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDiagram(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Diagram) {
+        if (_value_ instanceof String) {
+            ((DiagramObject) _this_).DiagramId = (String) _value_;
+        } else if (_value_ instanceof Diagram) {
             ((DiagramObject) _this_).setDiagram((Diagram) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Diagram");
@@ -71,6 +81,8 @@ public class DiagramObject extends IdentifiedObject {
      */
     private Set<DiagramObjectPoint> DiagramObjectPoints = new HashSet<>(); // OneToMany
 
+    private Set<String> DiagramObjectPointsIdSet = new HashSet<>();
+
     public Set<DiagramObjectPoint> getDiagramObjectPoints() {
         return DiagramObjectPoints;
     }
@@ -79,15 +91,23 @@ public class DiagramObject extends IdentifiedObject {
         if (!DiagramObjectPoints.contains(_object_)) {
             DiagramObjectPoints.add(_object_);
             _object_.setDiagramObject(this);
+            DiagramObjectPointsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDiagramObjectPoints(BaseClass _this_) {
-        return ((DiagramObject) _this_).getDiagramObjectPoints();
+        var objs = ((DiagramObject) _this_).getDiagramObjectPoints();
+        var ids = ((DiagramObject) _this_).DiagramObjectPointsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDiagramObjectPoints(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiagramObjectPoint) {
+        if (_value_ instanceof String) {
+            ((DiagramObject) _this_).DiagramObjectPointsIdSet.add((String) _value_);
+        } else if (_value_ instanceof DiagramObjectPoint) {
             ((DiagramObject) _this_).setDiagramObjectPoints((DiagramObjectPoint) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiagramObjectPoint");
@@ -99,6 +119,8 @@ public class DiagramObject extends IdentifiedObject {
      */
     private DiagramObjectStyle DiagramObjectStyle; // ManyToOne
 
+    private String DiagramObjectStyleId;
+
     public DiagramObjectStyle getDiagramObjectStyle() {
         return DiagramObjectStyle;
     }
@@ -106,16 +128,24 @@ public class DiagramObject extends IdentifiedObject {
     public void setDiagramObjectStyle(DiagramObjectStyle _object_) {
         if (DiagramObjectStyle != _object_) {
             DiagramObjectStyle = _object_;
-            DiagramObjectStyle.setStyledObjects(this);
+            _object_.setStyledObjects(this);
+            DiagramObjectStyleId = _object_.getRdfid();
         }
     }
 
     private static Object getDiagramObjectStyle(BaseClass _this_) {
-        return ((DiagramObject) _this_).getDiagramObjectStyle();
+        var obj = ((DiagramObject) _this_).getDiagramObjectStyle();
+        var id = ((DiagramObject) _this_).DiagramObjectStyleId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDiagramObjectStyle(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiagramObjectStyle) {
+        if (_value_ instanceof String) {
+            ((DiagramObject) _this_).DiagramObjectStyleId = (String) _value_;
+        } else if (_value_ instanceof DiagramObjectStyle) {
             ((DiagramObject) _this_).setDiagramObjectStyle((DiagramObjectStyle) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiagramObjectStyle");
@@ -127,6 +157,8 @@ public class DiagramObject extends IdentifiedObject {
      */
     private IdentifiedObject IdentifiedObject; // ManyToOne
 
+    private String IdentifiedObjectId;
+
     public IdentifiedObject getIdentifiedObject() {
         return IdentifiedObject;
     }
@@ -134,16 +166,24 @@ public class DiagramObject extends IdentifiedObject {
     public void setIdentifiedObject(IdentifiedObject _object_) {
         if (IdentifiedObject != _object_) {
             IdentifiedObject = _object_;
-            IdentifiedObject.setDiagramObjects(this);
+            _object_.setDiagramObjects(this);
+            IdentifiedObjectId = _object_.getRdfid();
         }
     }
 
     private static Object getIdentifiedObject(BaseClass _this_) {
-        return ((DiagramObject) _this_).getIdentifiedObject();
+        var obj = ((DiagramObject) _this_).getIdentifiedObject();
+        var id = ((DiagramObject) _this_).IdentifiedObjectId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setIdentifiedObject(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof IdentifiedObject) {
+        if (_value_ instanceof String) {
+            ((DiagramObject) _this_).IdentifiedObjectId = (String) _value_;
+        } else if (_value_ instanceof IdentifiedObject) {
             ((DiagramObject) _this_).setIdentifiedObject((IdentifiedObject) _value_);
         } else {
             throw new IllegalArgumentException("Object is not IdentifiedObject");
@@ -157,6 +197,8 @@ public class DiagramObject extends IdentifiedObject {
      */
     private Set<VisibilityLayer> VisibilityLayers = new HashSet<>(); // OneToMany
 
+    private Set<String> VisibilityLayersIdSet = new HashSet<>();
+
     public Set<VisibilityLayer> getVisibilityLayers() {
         return VisibilityLayers;
     }
@@ -165,15 +207,23 @@ public class DiagramObject extends IdentifiedObject {
         if (!VisibilityLayers.contains(_object_)) {
             VisibilityLayers.add(_object_);
             _object_.setVisibleObjects(this);
+            VisibilityLayersIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getVisibilityLayers(BaseClass _this_) {
-        return ((DiagramObject) _this_).getVisibilityLayers();
+        var objs = ((DiagramObject) _this_).getVisibilityLayers();
+        var ids = ((DiagramObject) _this_).VisibilityLayersIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setVisibilityLayers(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VisibilityLayer) {
+        if (_value_ instanceof String) {
+            ((DiagramObject) _this_).VisibilityLayersIdSet.add((String) _value_);
+        } else if (_value_ instanceof VisibilityLayer) {
             ((DiagramObject) _this_).setVisibilityLayers((VisibilityLayer) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VisibilityLayer");

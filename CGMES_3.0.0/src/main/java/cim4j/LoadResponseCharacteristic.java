@@ -43,6 +43,8 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
      */
     private Set<EnergyConsumer> EnergyConsumer = new HashSet<>(); // OneToMany
 
+    private Set<String> EnergyConsumerIdSet = new HashSet<>();
+
     public Set<EnergyConsumer> getEnergyConsumer() {
         return EnergyConsumer;
     }
@@ -51,15 +53,23 @@ public class LoadResponseCharacteristic extends IdentifiedObject {
         if (!EnergyConsumer.contains(_object_)) {
             EnergyConsumer.add(_object_);
             _object_.setLoadResponse(this);
+            EnergyConsumerIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getEnergyConsumer(BaseClass _this_) {
-        return ((LoadResponseCharacteristic) _this_).getEnergyConsumer();
+        var objs = ((LoadResponseCharacteristic) _this_).getEnergyConsumer();
+        var ids = ((LoadResponseCharacteristic) _this_).EnergyConsumerIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setEnergyConsumer(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof EnergyConsumer) {
+        if (_value_ instanceof String) {
+            ((LoadResponseCharacteristic) _this_).EnergyConsumerIdSet.add((String) _value_);
+        } else if (_value_ instanceof EnergyConsumer) {
             ((LoadResponseCharacteristic) _this_).setEnergyConsumer((EnergyConsumer) _value_);
         } else {
             throw new IllegalArgumentException("Object is not EnergyConsumer");

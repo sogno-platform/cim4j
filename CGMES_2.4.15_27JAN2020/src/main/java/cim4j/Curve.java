@@ -43,6 +43,8 @@ public class Curve extends IdentifiedObject {
      */
     private Set<CurveData> CurveDatas = new HashSet<>(); // OneToMany
 
+    private Set<String> CurveDatasIdSet = new HashSet<>();
+
     public Set<CurveData> getCurveDatas() {
         return CurveDatas;
     }
@@ -51,15 +53,23 @@ public class Curve extends IdentifiedObject {
         if (!CurveDatas.contains(_object_)) {
             CurveDatas.add(_object_);
             _object_.setCurve(this);
+            CurveDatasIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getCurveDatas(BaseClass _this_) {
-        return ((Curve) _this_).getCurveDatas();
+        var objs = ((Curve) _this_).getCurveDatas();
+        var ids = ((Curve) _this_).CurveDatasIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setCurveDatas(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof CurveData) {
+        if (_value_ instanceof String) {
+            ((Curve) _this_).CurveDatasIdSet.add((String) _value_);
+        } else if (_value_ instanceof CurveData) {
             ((Curve) _this_).setCurveDatas((CurveData) _value_);
         } else {
             throw new IllegalArgumentException("Object is not CurveData");

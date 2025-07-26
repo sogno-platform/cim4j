@@ -43,6 +43,8 @@ public class WindMechIEC extends IdentifiedObject {
      */
     private WindTurbineType1or2IEC WindTurbineType1or2IEC; // OneToOne
 
+    private String WindTurbineType1or2IECId;
+
     public WindTurbineType1or2IEC getWindTurbineType1or2IEC() {
         return WindTurbineType1or2IEC;
     }
@@ -50,16 +52,24 @@ public class WindMechIEC extends IdentifiedObject {
     public void setWindTurbineType1or2IEC(WindTurbineType1or2IEC _object_) {
         if (WindTurbineType1or2IEC != _object_) {
             WindTurbineType1or2IEC = _object_;
-            WindTurbineType1or2IEC.setWindMechIEC(this);
+            _object_.setWindMechIEC(this);
+            WindTurbineType1or2IECId = _object_.getRdfid();
         }
     }
 
     private static Object getWindTurbineType1or2IEC(BaseClass _this_) {
-        return ((WindMechIEC) _this_).getWindTurbineType1or2IEC();
+        var obj = ((WindMechIEC) _this_).getWindTurbineType1or2IEC();
+        var id = ((WindMechIEC) _this_).WindTurbineType1or2IECId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindTurbineType1or2IEC(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindTurbineType1or2IEC) {
+        if (_value_ instanceof String) {
+            ((WindMechIEC) _this_).WindTurbineType1or2IECId = (String) _value_;
+        } else if (_value_ instanceof WindTurbineType1or2IEC) {
             ((WindMechIEC) _this_).setWindTurbineType1or2IEC((WindTurbineType1or2IEC) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindTurbineType1or2IEC");
@@ -73,6 +83,8 @@ public class WindMechIEC extends IdentifiedObject {
      */
     private WindTurbineType3IEC WindTurbineType3IEC; // OneToOne
 
+    private String WindTurbineType3IECId;
+
     public WindTurbineType3IEC getWindTurbineType3IEC() {
         return WindTurbineType3IEC;
     }
@@ -80,16 +92,24 @@ public class WindMechIEC extends IdentifiedObject {
     public void setWindTurbineType3IEC(WindTurbineType3IEC _object_) {
         if (WindTurbineType3IEC != _object_) {
             WindTurbineType3IEC = _object_;
-            WindTurbineType3IEC.setWindMechIEC(this);
+            _object_.setWindMechIEC(this);
+            WindTurbineType3IECId = _object_.getRdfid();
         }
     }
 
     private static Object getWindTurbineType3IEC(BaseClass _this_) {
-        return ((WindMechIEC) _this_).getWindTurbineType3IEC();
+        var obj = ((WindMechIEC) _this_).getWindTurbineType3IEC();
+        var id = ((WindMechIEC) _this_).WindTurbineType3IECId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindTurbineType3IEC(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindTurbineType3IEC) {
+        if (_value_ instanceof String) {
+            ((WindMechIEC) _this_).WindTurbineType3IECId = (String) _value_;
+        } else if (_value_ instanceof WindTurbineType3IEC) {
             ((WindMechIEC) _this_).setWindTurbineType3IEC((WindTurbineType3IEC) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindTurbineType3IEC");
@@ -103,6 +123,8 @@ public class WindMechIEC extends IdentifiedObject {
      */
     private WindTurbineType4bIEC WindTurbineType4bIEC; // OneToOne
 
+    private String WindTurbineType4bIECId;
+
     public WindTurbineType4bIEC getWindTurbineType4bIEC() {
         return WindTurbineType4bIEC;
     }
@@ -110,16 +132,24 @@ public class WindMechIEC extends IdentifiedObject {
     public void setWindTurbineType4bIEC(WindTurbineType4bIEC _object_) {
         if (WindTurbineType4bIEC != _object_) {
             WindTurbineType4bIEC = _object_;
-            WindTurbineType4bIEC.setWindMechIEC(this);
+            _object_.setWindMechIEC(this);
+            WindTurbineType4bIECId = _object_.getRdfid();
         }
     }
 
     private static Object getWindTurbineType4bIEC(BaseClass _this_) {
-        return ((WindMechIEC) _this_).getWindTurbineType4bIEC();
+        var obj = ((WindMechIEC) _this_).getWindTurbineType4bIEC();
+        var id = ((WindMechIEC) _this_).WindTurbineType4bIECId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindTurbineType4bIEC(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindTurbineType4bIEC) {
+        if (_value_ instanceof String) {
+            ((WindMechIEC) _this_).WindTurbineType4bIECId = (String) _value_;
+        } else if (_value_ instanceof WindTurbineType4bIEC) {
             ((WindMechIEC) _this_).setWindTurbineType4bIEC((WindTurbineType4bIEC) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindTurbineType4bIEC");

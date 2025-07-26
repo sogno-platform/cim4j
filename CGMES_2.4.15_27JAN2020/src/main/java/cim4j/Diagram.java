@@ -43,6 +43,8 @@ public class Diagram extends IdentifiedObject {
      */
     private Set<DiagramObject> DiagramElements = new HashSet<>(); // OneToMany
 
+    private Set<String> DiagramElementsIdSet = new HashSet<>();
+
     public Set<DiagramObject> getDiagramElements() {
         return DiagramElements;
     }
@@ -51,15 +53,23 @@ public class Diagram extends IdentifiedObject {
         if (!DiagramElements.contains(_object_)) {
             DiagramElements.add(_object_);
             _object_.setDiagram(this);
+            DiagramElementsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDiagramElements(BaseClass _this_) {
-        return ((Diagram) _this_).getDiagramElements();
+        var objs = ((Diagram) _this_).getDiagramElements();
+        var ids = ((Diagram) _this_).DiagramElementsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDiagramElements(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiagramObject) {
+        if (_value_ instanceof String) {
+            ((Diagram) _this_).DiagramElementsIdSet.add((String) _value_);
+        } else if (_value_ instanceof DiagramObject) {
             ((Diagram) _this_).setDiagramElements((DiagramObject) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiagramObject");
@@ -71,6 +81,8 @@ public class Diagram extends IdentifiedObject {
      */
     private DiagramStyle DiagramStyle; // ManyToOne
 
+    private String DiagramStyleId;
+
     public DiagramStyle getDiagramStyle() {
         return DiagramStyle;
     }
@@ -78,16 +90,24 @@ public class Diagram extends IdentifiedObject {
     public void setDiagramStyle(DiagramStyle _object_) {
         if (DiagramStyle != _object_) {
             DiagramStyle = _object_;
-            DiagramStyle.setDiagram(this);
+            _object_.setDiagram(this);
+            DiagramStyleId = _object_.getRdfid();
         }
     }
 
     private static Object getDiagramStyle(BaseClass _this_) {
-        return ((Diagram) _this_).getDiagramStyle();
+        var obj = ((Diagram) _this_).getDiagramStyle();
+        var id = ((Diagram) _this_).DiagramStyleId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDiagramStyle(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DiagramStyle) {
+        if (_value_ instanceof String) {
+            ((Diagram) _this_).DiagramStyleId = (String) _value_;
+        } else if (_value_ instanceof DiagramStyle) {
             ((Diagram) _this_).setDiagramStyle((DiagramStyle) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DiagramStyle");

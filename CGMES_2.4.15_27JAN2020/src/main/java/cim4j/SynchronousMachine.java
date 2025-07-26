@@ -41,6 +41,8 @@ public class SynchronousMachine extends RotatingMachine {
      */
     private ReactiveCapabilityCurve InitialReactiveCapabilityCurve; // ManyToOne
 
+    private String InitialReactiveCapabilityCurveId;
+
     public ReactiveCapabilityCurve getInitialReactiveCapabilityCurve() {
         return InitialReactiveCapabilityCurve;
     }
@@ -48,16 +50,24 @@ public class SynchronousMachine extends RotatingMachine {
     public void setInitialReactiveCapabilityCurve(ReactiveCapabilityCurve _object_) {
         if (InitialReactiveCapabilityCurve != _object_) {
             InitialReactiveCapabilityCurve = _object_;
-            InitialReactiveCapabilityCurve.setInitiallyUsedBySynchronousMachines(this);
+            _object_.setInitiallyUsedBySynchronousMachines(this);
+            InitialReactiveCapabilityCurveId = _object_.getRdfid();
         }
     }
 
     private static Object getInitialReactiveCapabilityCurve(BaseClass _this_) {
-        return ((SynchronousMachine) _this_).getInitialReactiveCapabilityCurve();
+        var obj = ((SynchronousMachine) _this_).getInitialReactiveCapabilityCurve();
+        var id = ((SynchronousMachine) _this_).InitialReactiveCapabilityCurveId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setInitialReactiveCapabilityCurve(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ReactiveCapabilityCurve) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).InitialReactiveCapabilityCurveId = (String) _value_;
+        } else if (_value_ instanceof ReactiveCapabilityCurve) {
             ((SynchronousMachine) _this_).setInitialReactiveCapabilityCurve((ReactiveCapabilityCurve) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ReactiveCapabilityCurve");
@@ -71,6 +81,8 @@ public class SynchronousMachine extends RotatingMachine {
      */
     private SynchronousMachineDynamics SynchronousMachineDynamics; // OneToOne
 
+    private String SynchronousMachineDynamicsId;
+
     public SynchronousMachineDynamics getSynchronousMachineDynamics() {
         return SynchronousMachineDynamics;
     }
@@ -78,16 +90,24 @@ public class SynchronousMachine extends RotatingMachine {
     public void setSynchronousMachineDynamics(SynchronousMachineDynamics _object_) {
         if (SynchronousMachineDynamics != _object_) {
             SynchronousMachineDynamics = _object_;
-            SynchronousMachineDynamics.setSynchronousMachine(this);
+            _object_.setSynchronousMachine(this);
+            SynchronousMachineDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getSynchronousMachineDynamics(BaseClass _this_) {
-        return ((SynchronousMachine) _this_).getSynchronousMachineDynamics();
+        var obj = ((SynchronousMachine) _this_).getSynchronousMachineDynamics();
+        var id = ((SynchronousMachine) _this_).SynchronousMachineDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSynchronousMachineDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SynchronousMachineDynamics) {
+        if (_value_ instanceof String) {
+            ((SynchronousMachine) _this_).SynchronousMachineDynamicsId = (String) _value_;
+        } else if (_value_ instanceof SynchronousMachineDynamics) {
             ((SynchronousMachine) _this_).setSynchronousMachineDynamics((SynchronousMachineDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SynchronousMachineDynamics");

@@ -43,6 +43,8 @@ public class DCConductingEquipment extends Equipment {
      */
     private Set<DCTerminal> DCTerminals = new HashSet<>(); // OneToMany
 
+    private Set<String> DCTerminalsIdSet = new HashSet<>();
+
     public Set<DCTerminal> getDCTerminals() {
         return DCTerminals;
     }
@@ -51,15 +53,23 @@ public class DCConductingEquipment extends Equipment {
         if (!DCTerminals.contains(_object_)) {
             DCTerminals.add(_object_);
             _object_.setDCConductingEquipment(this);
+            DCTerminalsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDCTerminals(BaseClass _this_) {
-        return ((DCConductingEquipment) _this_).getDCTerminals();
+        var objs = ((DCConductingEquipment) _this_).getDCTerminals();
+        var ids = ((DCConductingEquipment) _this_).DCTerminalsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDCTerminals(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCTerminal) {
+        if (_value_ instanceof String) {
+            ((DCConductingEquipment) _this_).DCTerminalsIdSet.add((String) _value_);
+        } else if (_value_ instanceof DCTerminal) {
             ((DCConductingEquipment) _this_).setDCTerminals((DCTerminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCTerminal");

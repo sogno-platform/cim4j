@@ -41,6 +41,8 @@ public class DCTopologicalNode extends IdentifiedObject {
      */
     private DCEquipmentContainer DCEquipmentContainer; // ManyToOne
 
+    private String DCEquipmentContainerId;
+
     public DCEquipmentContainer getDCEquipmentContainer() {
         return DCEquipmentContainer;
     }
@@ -48,16 +50,24 @@ public class DCTopologicalNode extends IdentifiedObject {
     public void setDCEquipmentContainer(DCEquipmentContainer _object_) {
         if (DCEquipmentContainer != _object_) {
             DCEquipmentContainer = _object_;
-            DCEquipmentContainer.setDCTopologicalNode(this);
+            _object_.setDCTopologicalNode(this);
+            DCEquipmentContainerId = _object_.getRdfid();
         }
     }
 
     private static Object getDCEquipmentContainer(BaseClass _this_) {
-        return ((DCTopologicalNode) _this_).getDCEquipmentContainer();
+        var obj = ((DCTopologicalNode) _this_).getDCEquipmentContainer();
+        var id = ((DCTopologicalNode) _this_).DCEquipmentContainerId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDCEquipmentContainer(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCEquipmentContainer) {
+        if (_value_ instanceof String) {
+            ((DCTopologicalNode) _this_).DCEquipmentContainerId = (String) _value_;
+        } else if (_value_ instanceof DCEquipmentContainer) {
             ((DCTopologicalNode) _this_).setDCEquipmentContainer((DCEquipmentContainer) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCEquipmentContainer");
@@ -71,6 +81,8 @@ public class DCTopologicalNode extends IdentifiedObject {
      */
     private Set<DCNode> DCNodes = new HashSet<>(); // OneToMany
 
+    private Set<String> DCNodesIdSet = new HashSet<>();
+
     public Set<DCNode> getDCNodes() {
         return DCNodes;
     }
@@ -79,15 +91,23 @@ public class DCTopologicalNode extends IdentifiedObject {
         if (!DCNodes.contains(_object_)) {
             DCNodes.add(_object_);
             _object_.setDCTopologicalNode(this);
+            DCNodesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDCNodes(BaseClass _this_) {
-        return ((DCTopologicalNode) _this_).getDCNodes();
+        var objs = ((DCTopologicalNode) _this_).getDCNodes();
+        var ids = ((DCTopologicalNode) _this_).DCNodesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDCNodes(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCNode) {
+        if (_value_ instanceof String) {
+            ((DCTopologicalNode) _this_).DCNodesIdSet.add((String) _value_);
+        } else if (_value_ instanceof DCNode) {
             ((DCTopologicalNode) _this_).setDCNodes((DCNode) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCNode");
@@ -101,6 +121,8 @@ public class DCTopologicalNode extends IdentifiedObject {
      */
     private Set<DCBaseTerminal> DCTerminals = new HashSet<>(); // OneToMany
 
+    private Set<String> DCTerminalsIdSet = new HashSet<>();
+
     public Set<DCBaseTerminal> getDCTerminals() {
         return DCTerminals;
     }
@@ -109,15 +131,23 @@ public class DCTopologicalNode extends IdentifiedObject {
         if (!DCTerminals.contains(_object_)) {
             DCTerminals.add(_object_);
             _object_.setDCTopologicalNode(this);
+            DCTerminalsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDCTerminals(BaseClass _this_) {
-        return ((DCTopologicalNode) _this_).getDCTerminals();
+        var objs = ((DCTopologicalNode) _this_).getDCTerminals();
+        var ids = ((DCTopologicalNode) _this_).DCTerminalsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDCTerminals(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCBaseTerminal) {
+        if (_value_ instanceof String) {
+            ((DCTopologicalNode) _this_).DCTerminalsIdSet.add((String) _value_);
+        } else if (_value_ instanceof DCBaseTerminal) {
             ((DCTopologicalNode) _this_).setDCTerminals((DCBaseTerminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCBaseTerminal");
@@ -131,6 +161,8 @@ public class DCTopologicalNode extends IdentifiedObject {
      */
     private DCTopologicalIsland DCTopologicalIsland; // ManyToOne
 
+    private String DCTopologicalIslandId;
+
     public DCTopologicalIsland getDCTopologicalIsland() {
         return DCTopologicalIsland;
     }
@@ -138,16 +170,24 @@ public class DCTopologicalNode extends IdentifiedObject {
     public void setDCTopologicalIsland(DCTopologicalIsland _object_) {
         if (DCTopologicalIsland != _object_) {
             DCTopologicalIsland = _object_;
-            DCTopologicalIsland.setDCTopologicalNodes(this);
+            _object_.setDCTopologicalNodes(this);
+            DCTopologicalIslandId = _object_.getRdfid();
         }
     }
 
     private static Object getDCTopologicalIsland(BaseClass _this_) {
-        return ((DCTopologicalNode) _this_).getDCTopologicalIsland();
+        var obj = ((DCTopologicalNode) _this_).getDCTopologicalIsland();
+        var id = ((DCTopologicalNode) _this_).DCTopologicalIslandId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDCTopologicalIsland(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCTopologicalIsland) {
+        if (_value_ instanceof String) {
+            ((DCTopologicalNode) _this_).DCTopologicalIslandId = (String) _value_;
+        } else if (_value_ instanceof DCTopologicalIsland) {
             ((DCTopologicalNode) _this_).setDCTopologicalIsland((DCTopologicalIsland) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCTopologicalIsland");

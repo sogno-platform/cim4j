@@ -41,6 +41,8 @@ public class GenICompensationForGenJ extends IdentifiedObject {
      */
     private SynchronousMachineDynamics SynchronousMachineDynamics; // ManyToOne
 
+    private String SynchronousMachineDynamicsId;
+
     public SynchronousMachineDynamics getSynchronousMachineDynamics() {
         return SynchronousMachineDynamics;
     }
@@ -48,16 +50,24 @@ public class GenICompensationForGenJ extends IdentifiedObject {
     public void setSynchronousMachineDynamics(SynchronousMachineDynamics _object_) {
         if (SynchronousMachineDynamics != _object_) {
             SynchronousMachineDynamics = _object_;
-            SynchronousMachineDynamics.setGenICompensationForGenJ(this);
+            _object_.setGenICompensationForGenJ(this);
+            SynchronousMachineDynamicsId = _object_.getRdfid();
         }
     }
 
     private static Object getSynchronousMachineDynamics(BaseClass _this_) {
-        return ((GenICompensationForGenJ) _this_).getSynchronousMachineDynamics();
+        var obj = ((GenICompensationForGenJ) _this_).getSynchronousMachineDynamics();
+        var id = ((GenICompensationForGenJ) _this_).SynchronousMachineDynamicsId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSynchronousMachineDynamics(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SynchronousMachineDynamics) {
+        if (_value_ instanceof String) {
+            ((GenICompensationForGenJ) _this_).SynchronousMachineDynamicsId = (String) _value_;
+        } else if (_value_ instanceof SynchronousMachineDynamics) {
             ((GenICompensationForGenJ) _this_).setSynchronousMachineDynamics((SynchronousMachineDynamics) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SynchronousMachineDynamics");
@@ -69,6 +79,8 @@ public class GenICompensationForGenJ extends IdentifiedObject {
      */
     private VCompIEEEType2 VcompIEEEType2; // ManyToOne
 
+    private String VcompIEEEType2Id;
+
     public VCompIEEEType2 getVcompIEEEType2() {
         return VcompIEEEType2;
     }
@@ -76,16 +88,24 @@ public class GenICompensationForGenJ extends IdentifiedObject {
     public void setVcompIEEEType2(VCompIEEEType2 _object_) {
         if (VcompIEEEType2 != _object_) {
             VcompIEEEType2 = _object_;
-            VcompIEEEType2.setGenICompensationForGenJ(this);
+            _object_.setGenICompensationForGenJ(this);
+            VcompIEEEType2Id = _object_.getRdfid();
         }
     }
 
     private static Object getVcompIEEEType2(BaseClass _this_) {
-        return ((GenICompensationForGenJ) _this_).getVcompIEEEType2();
+        var obj = ((GenICompensationForGenJ) _this_).getVcompIEEEType2();
+        var id = ((GenICompensationForGenJ) _this_).VcompIEEEType2Id;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setVcompIEEEType2(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof VCompIEEEType2) {
+        if (_value_ instanceof String) {
+            ((GenICompensationForGenJ) _this_).VcompIEEEType2Id = (String) _value_;
+        } else if (_value_ instanceof VCompIEEEType2) {
             ((GenICompensationForGenJ) _this_).setVcompIEEEType2((VCompIEEEType2) _value_);
         } else {
             throw new IllegalArgumentException("Object is not VCompIEEEType2");

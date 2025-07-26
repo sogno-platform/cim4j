@@ -41,6 +41,8 @@ public class RatioTapChanger extends TapChanger {
      */
     private RatioTapChangerTable RatioTapChangerTable; // ManyToOne
 
+    private String RatioTapChangerTableId;
+
     public RatioTapChangerTable getRatioTapChangerTable() {
         return RatioTapChangerTable;
     }
@@ -48,16 +50,24 @@ public class RatioTapChanger extends TapChanger {
     public void setRatioTapChangerTable(RatioTapChangerTable _object_) {
         if (RatioTapChangerTable != _object_) {
             RatioTapChangerTable = _object_;
-            RatioTapChangerTable.setRatioTapChanger(this);
+            _object_.setRatioTapChanger(this);
+            RatioTapChangerTableId = _object_.getRdfid();
         }
     }
 
     private static Object getRatioTapChangerTable(BaseClass _this_) {
-        return ((RatioTapChanger) _this_).getRatioTapChangerTable();
+        var obj = ((RatioTapChanger) _this_).getRatioTapChangerTable();
+        var id = ((RatioTapChanger) _this_).RatioTapChangerTableId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setRatioTapChangerTable(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RatioTapChangerTable) {
+        if (_value_ instanceof String) {
+            ((RatioTapChanger) _this_).RatioTapChangerTableId = (String) _value_;
+        } else if (_value_ instanceof RatioTapChangerTable) {
             ((RatioTapChanger) _this_).setRatioTapChangerTable((RatioTapChangerTable) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RatioTapChangerTable");
@@ -69,6 +79,8 @@ public class RatioTapChanger extends TapChanger {
      */
     private TransformerEnd TransformerEnd; // OneToOne
 
+    private String TransformerEndId;
+
     public TransformerEnd getTransformerEnd() {
         return TransformerEnd;
     }
@@ -76,16 +88,24 @@ public class RatioTapChanger extends TapChanger {
     public void setTransformerEnd(TransformerEnd _object_) {
         if (TransformerEnd != _object_) {
             TransformerEnd = _object_;
-            TransformerEnd.setRatioTapChanger(this);
+            _object_.setRatioTapChanger(this);
+            TransformerEndId = _object_.getRdfid();
         }
     }
 
     private static Object getTransformerEnd(BaseClass _this_) {
-        return ((RatioTapChanger) _this_).getTransformerEnd();
+        var obj = ((RatioTapChanger) _this_).getTransformerEnd();
+        var id = ((RatioTapChanger) _this_).TransformerEndId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTransformerEnd(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof TransformerEnd) {
+        if (_value_ instanceof String) {
+            ((RatioTapChanger) _this_).TransformerEndId = (String) _value_;
+        } else if (_value_ instanceof TransformerEnd) {
             ((RatioTapChanger) _this_).setTransformerEnd((TransformerEnd) _value_);
         } else {
             throw new IllegalArgumentException("Object is not TransformerEnd");

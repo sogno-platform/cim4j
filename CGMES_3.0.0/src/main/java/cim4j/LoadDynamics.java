@@ -43,6 +43,8 @@ public class LoadDynamics extends IdentifiedObject {
      */
     private Set<EnergyConsumer> EnergyConsumer = new HashSet<>(); // OneToMany
 
+    private Set<String> EnergyConsumerIdSet = new HashSet<>();
+
     public Set<EnergyConsumer> getEnergyConsumer() {
         return EnergyConsumer;
     }
@@ -51,15 +53,23 @@ public class LoadDynamics extends IdentifiedObject {
         if (!EnergyConsumer.contains(_object_)) {
             EnergyConsumer.add(_object_);
             _object_.setLoadDynamics(this);
+            EnergyConsumerIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getEnergyConsumer(BaseClass _this_) {
-        return ((LoadDynamics) _this_).getEnergyConsumer();
+        var objs = ((LoadDynamics) _this_).getEnergyConsumer();
+        var ids = ((LoadDynamics) _this_).EnergyConsumerIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setEnergyConsumer(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof EnergyConsumer) {
+        if (_value_ instanceof String) {
+            ((LoadDynamics) _this_).EnergyConsumerIdSet.add((String) _value_);
+        } else if (_value_ instanceof EnergyConsumer) {
             ((LoadDynamics) _this_).setEnergyConsumer((EnergyConsumer) _value_);
         } else {
             throw new IllegalArgumentException("Object is not EnergyConsumer");

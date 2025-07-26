@@ -41,6 +41,8 @@ public class SolarGeneratingUnit extends GeneratingUnit {
      */
     private SolarPowerPlant SolarPowerPlant; // ManyToOne
 
+    private String SolarPowerPlantId;
+
     public SolarPowerPlant getSolarPowerPlant() {
         return SolarPowerPlant;
     }
@@ -48,16 +50,24 @@ public class SolarGeneratingUnit extends GeneratingUnit {
     public void setSolarPowerPlant(SolarPowerPlant _object_) {
         if (SolarPowerPlant != _object_) {
             SolarPowerPlant = _object_;
-            SolarPowerPlant.setSolarGeneratingUnits(this);
+            _object_.setSolarGeneratingUnits(this);
+            SolarPowerPlantId = _object_.getRdfid();
         }
     }
 
     private static Object getSolarPowerPlant(BaseClass _this_) {
-        return ((SolarGeneratingUnit) _this_).getSolarPowerPlant();
+        var obj = ((SolarGeneratingUnit) _this_).getSolarPowerPlant();
+        var id = ((SolarGeneratingUnit) _this_).SolarPowerPlantId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setSolarPowerPlant(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof SolarPowerPlant) {
+        if (_value_ instanceof String) {
+            ((SolarGeneratingUnit) _this_).SolarPowerPlantId = (String) _value_;
+        } else if (_value_ instanceof SolarPowerPlant) {
             ((SolarGeneratingUnit) _this_).setSolarPowerPlant((SolarPowerPlant) _value_);
         } else {
             throw new IllegalArgumentException("Object is not SolarPowerPlant");

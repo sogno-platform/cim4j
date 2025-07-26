@@ -40,6 +40,8 @@ public class ACDCConverterDCTerminal extends DCBaseTerminal {
      */
     private ACDCConverter DCConductingEquipment; // ManyToOne
 
+    private String DCConductingEquipmentId;
+
     public ACDCConverter getDCConductingEquipment() {
         return DCConductingEquipment;
     }
@@ -47,16 +49,24 @@ public class ACDCConverterDCTerminal extends DCBaseTerminal {
     public void setDCConductingEquipment(ACDCConverter _object_) {
         if (DCConductingEquipment != _object_) {
             DCConductingEquipment = _object_;
-            DCConductingEquipment.setDCTerminals(this);
+            _object_.setDCTerminals(this);
+            DCConductingEquipmentId = _object_.getRdfid();
         }
     }
 
     private static Object getDCConductingEquipment(BaseClass _this_) {
-        return ((ACDCConverterDCTerminal) _this_).getDCConductingEquipment();
+        var obj = ((ACDCConverterDCTerminal) _this_).getDCConductingEquipment();
+        var id = ((ACDCConverterDCTerminal) _this_).DCConductingEquipmentId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDCConductingEquipment(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof ACDCConverter) {
+        if (_value_ instanceof String) {
+            ((ACDCConverterDCTerminal) _this_).DCConductingEquipmentId = (String) _value_;
+        } else if (_value_ instanceof ACDCConverter) {
             ((ACDCConverterDCTerminal) _this_).setDCConductingEquipment((ACDCConverter) _value_);
         } else {
             throw new IllegalArgumentException("Object is not ACDCConverter");

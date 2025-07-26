@@ -41,6 +41,8 @@ public class SvPowerFlow extends BaseClass {
      */
     private Terminal Terminal; // OneToOne
 
+    private String TerminalId;
+
     public Terminal getTerminal() {
         return Terminal;
     }
@@ -48,16 +50,24 @@ public class SvPowerFlow extends BaseClass {
     public void setTerminal(Terminal _object_) {
         if (Terminal != _object_) {
             Terminal = _object_;
-            Terminal.setSvPowerFlow(this);
+            _object_.setSvPowerFlow(this);
+            TerminalId = _object_.getRdfid();
         }
     }
 
     private static Object getTerminal(BaseClass _this_) {
-        return ((SvPowerFlow) _this_).getTerminal();
+        var obj = ((SvPowerFlow) _this_).getTerminal();
+        var id = ((SvPowerFlow) _this_).TerminalId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setTerminal(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Terminal) {
+        if (_value_ instanceof String) {
+            ((SvPowerFlow) _this_).TerminalId = (String) _value_;
+        } else if (_value_ instanceof Terminal) {
             ((SvPowerFlow) _this_).setTerminal((Terminal) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Terminal");

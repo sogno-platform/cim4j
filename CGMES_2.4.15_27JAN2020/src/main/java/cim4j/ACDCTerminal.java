@@ -41,6 +41,8 @@ public class ACDCTerminal extends IdentifiedObject {
      */
     private BusNameMarker BusNameMarker; // ManyToOne
 
+    private String BusNameMarkerId;
+
     public BusNameMarker getBusNameMarker() {
         return BusNameMarker;
     }
@@ -48,16 +50,24 @@ public class ACDCTerminal extends IdentifiedObject {
     public void setBusNameMarker(BusNameMarker _object_) {
         if (BusNameMarker != _object_) {
             BusNameMarker = _object_;
-            BusNameMarker.setTerminal(this);
+            _object_.setTerminal(this);
+            BusNameMarkerId = _object_.getRdfid();
         }
     }
 
     private static Object getBusNameMarker(BaseClass _this_) {
-        return ((ACDCTerminal) _this_).getBusNameMarker();
+        var obj = ((ACDCTerminal) _this_).getBusNameMarker();
+        var id = ((ACDCTerminal) _this_).BusNameMarkerId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setBusNameMarker(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof BusNameMarker) {
+        if (_value_ instanceof String) {
+            ((ACDCTerminal) _this_).BusNameMarkerId = (String) _value_;
+        } else if (_value_ instanceof BusNameMarker) {
             ((ACDCTerminal) _this_).setBusNameMarker((BusNameMarker) _value_);
         } else {
             throw new IllegalArgumentException("Object is not BusNameMarker");
@@ -71,6 +81,8 @@ public class ACDCTerminal extends IdentifiedObject {
      */
     private Set<Measurement> Measurements = new HashSet<>(); // OneToMany
 
+    private Set<String> MeasurementsIdSet = new HashSet<>();
+
     public Set<Measurement> getMeasurements() {
         return Measurements;
     }
@@ -79,15 +91,23 @@ public class ACDCTerminal extends IdentifiedObject {
         if (!Measurements.contains(_object_)) {
             Measurements.add(_object_);
             _object_.setTerminal(this);
+            MeasurementsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getMeasurements(BaseClass _this_) {
-        return ((ACDCTerminal) _this_).getMeasurements();
+        var objs = ((ACDCTerminal) _this_).getMeasurements();
+        var ids = ((ACDCTerminal) _this_).MeasurementsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setMeasurements(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Measurement) {
+        if (_value_ instanceof String) {
+            ((ACDCTerminal) _this_).MeasurementsIdSet.add((String) _value_);
+        } else if (_value_ instanceof Measurement) {
             ((ACDCTerminal) _this_).setMeasurements((Measurement) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Measurement");
@@ -100,6 +120,8 @@ public class ACDCTerminal extends IdentifiedObject {
      */
     private Set<OperationalLimitSet> OperationalLimitSet = new HashSet<>(); // OneToMany
 
+    private Set<String> OperationalLimitSetIdSet = new HashSet<>();
+
     public Set<OperationalLimitSet> getOperationalLimitSet() {
         return OperationalLimitSet;
     }
@@ -108,15 +130,23 @@ public class ACDCTerminal extends IdentifiedObject {
         if (!OperationalLimitSet.contains(_object_)) {
             OperationalLimitSet.add(_object_);
             _object_.setTerminal(this);
+            OperationalLimitSetIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getOperationalLimitSet(BaseClass _this_) {
-        return ((ACDCTerminal) _this_).getOperationalLimitSet();
+        var objs = ((ACDCTerminal) _this_).getOperationalLimitSet();
+        var ids = ((ACDCTerminal) _this_).OperationalLimitSetIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setOperationalLimitSet(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof OperationalLimitSet) {
+        if (_value_ instanceof String) {
+            ((ACDCTerminal) _this_).OperationalLimitSetIdSet.add((String) _value_);
+        } else if (_value_ instanceof OperationalLimitSet) {
             ((ACDCTerminal) _this_).setOperationalLimitSet((OperationalLimitSet) _value_);
         } else {
             throw new IllegalArgumentException("Object is not OperationalLimitSet");

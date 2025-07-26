@@ -43,6 +43,8 @@ public class NonConformLoadGroup extends LoadGroup {
      */
     private Set<NonConformLoad> EnergyConsumers = new HashSet<>(); // OneToMany
 
+    private Set<String> EnergyConsumersIdSet = new HashSet<>();
+
     public Set<NonConformLoad> getEnergyConsumers() {
         return EnergyConsumers;
     }
@@ -51,15 +53,23 @@ public class NonConformLoadGroup extends LoadGroup {
         if (!EnergyConsumers.contains(_object_)) {
             EnergyConsumers.add(_object_);
             _object_.setLoadGroup(this);
+            EnergyConsumersIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getEnergyConsumers(BaseClass _this_) {
-        return ((NonConformLoadGroup) _this_).getEnergyConsumers();
+        var objs = ((NonConformLoadGroup) _this_).getEnergyConsumers();
+        var ids = ((NonConformLoadGroup) _this_).EnergyConsumersIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setEnergyConsumers(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof NonConformLoad) {
+        if (_value_ instanceof String) {
+            ((NonConformLoadGroup) _this_).EnergyConsumersIdSet.add((String) _value_);
+        } else if (_value_ instanceof NonConformLoad) {
             ((NonConformLoadGroup) _this_).setEnergyConsumers((NonConformLoad) _value_);
         } else {
             throw new IllegalArgumentException("Object is not NonConformLoad");
@@ -73,6 +83,8 @@ public class NonConformLoadGroup extends LoadGroup {
      */
     private Set<NonConformLoadSchedule> NonConformLoadSchedules = new HashSet<>(); // OneToMany
 
+    private Set<String> NonConformLoadSchedulesIdSet = new HashSet<>();
+
     public Set<NonConformLoadSchedule> getNonConformLoadSchedules() {
         return NonConformLoadSchedules;
     }
@@ -81,15 +93,23 @@ public class NonConformLoadGroup extends LoadGroup {
         if (!NonConformLoadSchedules.contains(_object_)) {
             NonConformLoadSchedules.add(_object_);
             _object_.setNonConformLoadGroup(this);
+            NonConformLoadSchedulesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getNonConformLoadSchedules(BaseClass _this_) {
-        return ((NonConformLoadGroup) _this_).getNonConformLoadSchedules();
+        var objs = ((NonConformLoadGroup) _this_).getNonConformLoadSchedules();
+        var ids = ((NonConformLoadGroup) _this_).NonConformLoadSchedulesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setNonConformLoadSchedules(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof NonConformLoadSchedule) {
+        if (_value_ instanceof String) {
+            ((NonConformLoadGroup) _this_).NonConformLoadSchedulesIdSet.add((String) _value_);
+        } else if (_value_ instanceof NonConformLoadSchedule) {
             ((NonConformLoadGroup) _this_).setNonConformLoadSchedules((NonConformLoadSchedule) _value_);
         } else {
             throw new IllegalArgumentException("Object is not NonConformLoadSchedule");

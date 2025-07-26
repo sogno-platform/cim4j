@@ -43,6 +43,8 @@ public class DiscreteValue extends MeasurementValue {
      */
     private Command Command; // OneToOne
 
+    private String CommandId;
+
     public Command getCommand() {
         return Command;
     }
@@ -50,16 +52,24 @@ public class DiscreteValue extends MeasurementValue {
     public void setCommand(Command _object_) {
         if (Command != _object_) {
             Command = _object_;
-            Command.setDiscreteValue(this);
+            _object_.setDiscreteValue(this);
+            CommandId = _object_.getRdfid();
         }
     }
 
     private static Object getCommand(BaseClass _this_) {
-        return ((DiscreteValue) _this_).getCommand();
+        var obj = ((DiscreteValue) _this_).getCommand();
+        var id = ((DiscreteValue) _this_).CommandId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setCommand(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Command) {
+        if (_value_ instanceof String) {
+            ((DiscreteValue) _this_).CommandId = (String) _value_;
+        } else if (_value_ instanceof Command) {
             ((DiscreteValue) _this_).setCommand((Command) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Command");
@@ -71,6 +81,8 @@ public class DiscreteValue extends MeasurementValue {
      */
     private Discrete Discrete; // ManyToOne
 
+    private String DiscreteId;
+
     public Discrete getDiscrete() {
         return Discrete;
     }
@@ -78,16 +90,24 @@ public class DiscreteValue extends MeasurementValue {
     public void setDiscrete(Discrete _object_) {
         if (Discrete != _object_) {
             Discrete = _object_;
-            Discrete.setDiscreteValues(this);
+            _object_.setDiscreteValues(this);
+            DiscreteId = _object_.getRdfid();
         }
     }
 
     private static Object getDiscrete(BaseClass _this_) {
-        return ((DiscreteValue) _this_).getDiscrete();
+        var obj = ((DiscreteValue) _this_).getDiscrete();
+        var id = ((DiscreteValue) _this_).DiscreteId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setDiscrete(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Discrete) {
+        if (_value_ instanceof String) {
+            ((DiscreteValue) _this_).DiscreteId = (String) _value_;
+        } else if (_value_ instanceof Discrete) {
             ((DiscreteValue) _this_).setDiscrete((Discrete) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Discrete");

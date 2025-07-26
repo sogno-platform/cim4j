@@ -42,6 +42,8 @@ public class SubGeographicalRegion extends IdentifiedObject {
      */
     private Set<DCLine> DCLines = new HashSet<>(); // OneToMany
 
+    private Set<String> DCLinesIdSet = new HashSet<>();
+
     public Set<DCLine> getDCLines() {
         return DCLines;
     }
@@ -50,15 +52,23 @@ public class SubGeographicalRegion extends IdentifiedObject {
         if (!DCLines.contains(_object_)) {
             DCLines.add(_object_);
             _object_.setRegion(this);
+            DCLinesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getDCLines(BaseClass _this_) {
-        return ((SubGeographicalRegion) _this_).getDCLines();
+        var objs = ((SubGeographicalRegion) _this_).getDCLines();
+        var ids = ((SubGeographicalRegion) _this_).DCLinesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setDCLines(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof DCLine) {
+        if (_value_ instanceof String) {
+            ((SubGeographicalRegion) _this_).DCLinesIdSet.add((String) _value_);
+        } else if (_value_ instanceof DCLine) {
             ((SubGeographicalRegion) _this_).setDCLines((DCLine) _value_);
         } else {
             throw new IllegalArgumentException("Object is not DCLine");
@@ -72,6 +82,8 @@ public class SubGeographicalRegion extends IdentifiedObject {
      */
     private Set<Line> Lines = new HashSet<>(); // OneToMany
 
+    private Set<String> LinesIdSet = new HashSet<>();
+
     public Set<Line> getLines() {
         return Lines;
     }
@@ -80,15 +92,23 @@ public class SubGeographicalRegion extends IdentifiedObject {
         if (!Lines.contains(_object_)) {
             Lines.add(_object_);
             _object_.setRegion(this);
+            LinesIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getLines(BaseClass _this_) {
-        return ((SubGeographicalRegion) _this_).getLines();
+        var objs = ((SubGeographicalRegion) _this_).getLines();
+        var ids = ((SubGeographicalRegion) _this_).LinesIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setLines(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Line) {
+        if (_value_ instanceof String) {
+            ((SubGeographicalRegion) _this_).LinesIdSet.add((String) _value_);
+        } else if (_value_ instanceof Line) {
             ((SubGeographicalRegion) _this_).setLines((Line) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Line");
@@ -100,6 +120,8 @@ public class SubGeographicalRegion extends IdentifiedObject {
      */
     private GeographicalRegion Region; // ManyToOne
 
+    private String RegionId;
+
     public GeographicalRegion getRegion() {
         return Region;
     }
@@ -107,16 +129,24 @@ public class SubGeographicalRegion extends IdentifiedObject {
     public void setRegion(GeographicalRegion _object_) {
         if (Region != _object_) {
             Region = _object_;
-            Region.setRegions(this);
+            _object_.setRegions(this);
+            RegionId = _object_.getRdfid();
         }
     }
 
     private static Object getRegion(BaseClass _this_) {
-        return ((SubGeographicalRegion) _this_).getRegion();
+        var obj = ((SubGeographicalRegion) _this_).getRegion();
+        var id = ((SubGeographicalRegion) _this_).RegionId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setRegion(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof GeographicalRegion) {
+        if (_value_ instanceof String) {
+            ((SubGeographicalRegion) _this_).RegionId = (String) _value_;
+        } else if (_value_ instanceof GeographicalRegion) {
             ((SubGeographicalRegion) _this_).setRegion((GeographicalRegion) _value_);
         } else {
             throw new IllegalArgumentException("Object is not GeographicalRegion");
@@ -130,6 +160,8 @@ public class SubGeographicalRegion extends IdentifiedObject {
      */
     private Set<Substation> Substations = new HashSet<>(); // OneToMany
 
+    private Set<String> SubstationsIdSet = new HashSet<>();
+
     public Set<Substation> getSubstations() {
         return Substations;
     }
@@ -138,15 +170,23 @@ public class SubGeographicalRegion extends IdentifiedObject {
         if (!Substations.contains(_object_)) {
             Substations.add(_object_);
             _object_.setRegion(this);
+            SubstationsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getSubstations(BaseClass _this_) {
-        return ((SubGeographicalRegion) _this_).getSubstations();
+        var objs = ((SubGeographicalRegion) _this_).getSubstations();
+        var ids = ((SubGeographicalRegion) _this_).SubstationsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setSubstations(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof Substation) {
+        if (_value_ instanceof String) {
+            ((SubGeographicalRegion) _this_).SubstationsIdSet.add((String) _value_);
+        } else if (_value_ instanceof Substation) {
             ((SubGeographicalRegion) _this_).setSubstations((Substation) _value_);
         } else {
             throw new IllegalArgumentException("Object is not Substation");

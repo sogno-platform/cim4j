@@ -43,6 +43,8 @@ public class WindContPitchAngleIEC extends IdentifiedObject {
      */
     private WindTurbineType3IEC WindTurbineType3IEC; // OneToOne
 
+    private String WindTurbineType3IECId;
+
     public WindTurbineType3IEC getWindTurbineType3IEC() {
         return WindTurbineType3IEC;
     }
@@ -50,16 +52,24 @@ public class WindContPitchAngleIEC extends IdentifiedObject {
     public void setWindTurbineType3IEC(WindTurbineType3IEC _object_) {
         if (WindTurbineType3IEC != _object_) {
             WindTurbineType3IEC = _object_;
-            WindTurbineType3IEC.setWindContPitchAngleIEC(this);
+            _object_.setWindContPitchAngleIEC(this);
+            WindTurbineType3IECId = _object_.getRdfid();
         }
     }
 
     private static Object getWindTurbineType3IEC(BaseClass _this_) {
-        return ((WindContPitchAngleIEC) _this_).getWindTurbineType3IEC();
+        var obj = ((WindContPitchAngleIEC) _this_).getWindTurbineType3IEC();
+        var id = ((WindContPitchAngleIEC) _this_).WindTurbineType3IECId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setWindTurbineType3IEC(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof WindTurbineType3IEC) {
+        if (_value_ instanceof String) {
+            ((WindContPitchAngleIEC) _this_).WindTurbineType3IECId = (String) _value_;
+        } else if (_value_ instanceof WindTurbineType3IEC) {
             ((WindContPitchAngleIEC) _this_).setWindTurbineType3IEC((WindTurbineType3IEC) _value_);
         } else {
             throw new IllegalArgumentException("Object is not WindTurbineType3IEC");

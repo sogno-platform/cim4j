@@ -43,6 +43,8 @@ public class RegularIntervalSchedule extends BasicIntervalSchedule {
      */
     private Set<RegularTimePoint> TimePoints = new HashSet<>(); // OneToMany
 
+    private Set<String> TimePointsIdSet = new HashSet<>();
+
     public Set<RegularTimePoint> getTimePoints() {
         return TimePoints;
     }
@@ -51,15 +53,23 @@ public class RegularIntervalSchedule extends BasicIntervalSchedule {
         if (!TimePoints.contains(_object_)) {
             TimePoints.add(_object_);
             _object_.setIntervalSchedule(this);
+            TimePointsIdSet.add(_object_.getRdfid());
         }
     }
 
     private static Object getTimePoints(BaseClass _this_) {
-        return ((RegularIntervalSchedule) _this_).getTimePoints();
+        var objs = ((RegularIntervalSchedule) _this_).getTimePoints();
+        var ids = ((RegularIntervalSchedule) _this_).TimePointsIdSet;
+        if (objs.size() < ids.size()) {
+            return ids;
+        }
+        return objs;
     }
 
     private static void setTimePoints(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof RegularTimePoint) {
+        if (_value_ instanceof String) {
+            ((RegularIntervalSchedule) _this_).TimePointsIdSet.add((String) _value_);
+        } else if (_value_ instanceof RegularTimePoint) {
             ((RegularIntervalSchedule) _this_).setTimePoints((RegularTimePoint) _value_);
         } else {
             throw new IllegalArgumentException("Object is not RegularTimePoint");

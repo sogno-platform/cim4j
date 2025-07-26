@@ -43,6 +43,8 @@ public class LoadAggregate extends LoadDynamics {
      */
     private LoadMotor LoadMotor; // OneToOne
 
+    private String LoadMotorId;
+
     public LoadMotor getLoadMotor() {
         return LoadMotor;
     }
@@ -50,16 +52,24 @@ public class LoadAggregate extends LoadDynamics {
     public void setLoadMotor(LoadMotor _object_) {
         if (LoadMotor != _object_) {
             LoadMotor = _object_;
-            LoadMotor.setLoadAggregate(this);
+            _object_.setLoadAggregate(this);
+            LoadMotorId = _object_.getRdfid();
         }
     }
 
     private static Object getLoadMotor(BaseClass _this_) {
-        return ((LoadAggregate) _this_).getLoadMotor();
+        var obj = ((LoadAggregate) _this_).getLoadMotor();
+        var id = ((LoadAggregate) _this_).LoadMotorId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setLoadMotor(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof LoadMotor) {
+        if (_value_ instanceof String) {
+            ((LoadAggregate) _this_).LoadMotorId = (String) _value_;
+        } else if (_value_ instanceof LoadMotor) {
             ((LoadAggregate) _this_).setLoadMotor((LoadMotor) _value_);
         } else {
             throw new IllegalArgumentException("Object is not LoadMotor");
@@ -73,6 +83,8 @@ public class LoadAggregate extends LoadDynamics {
      */
     private LoadStatic LoadStatic; // OneToOne
 
+    private String LoadStaticId;
+
     public LoadStatic getLoadStatic() {
         return LoadStatic;
     }
@@ -80,16 +92,24 @@ public class LoadAggregate extends LoadDynamics {
     public void setLoadStatic(LoadStatic _object_) {
         if (LoadStatic != _object_) {
             LoadStatic = _object_;
-            LoadStatic.setLoadAggregate(this);
+            _object_.setLoadAggregate(this);
+            LoadStaticId = _object_.getRdfid();
         }
     }
 
     private static Object getLoadStatic(BaseClass _this_) {
-        return ((LoadAggregate) _this_).getLoadStatic();
+        var obj = ((LoadAggregate) _this_).getLoadStatic();
+        var id = ((LoadAggregate) _this_).LoadStaticId;
+        if (obj == null && id != null) {
+            return id;
+        }
+        return obj;
     }
 
     private static void setLoadStatic(BaseClass _this_, Object _value_) {
-        if (_value_ instanceof LoadStatic) {
+        if (_value_ instanceof String) {
+            ((LoadAggregate) _this_).LoadStaticId = (String) _value_;
+        } else if (_value_ instanceof LoadStatic) {
             ((LoadAggregate) _this_).setLoadStatic((LoadStatic) _value_);
         } else {
             throw new IllegalArgumentException("Object is not LoadStatic");

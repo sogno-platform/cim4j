@@ -181,7 +181,7 @@ public class RdfReader {
                                         attrObj), ex);
                             }
                         } else {
-                            LOG.warn(String.format("Cannot find object with rdf:ID: %s", attr));
+                            LOG.debug(String.format("Cannot find object with rdf:ID: %s", attr));
                         }
                     } else if (attr instanceof Set<?>) {
                         for (var attrItem : ((Set<?>) attr)) {
@@ -195,7 +195,7 @@ public class RdfReader {
                                                 attrName, attrObj), ex);
                                     }
                                 } else {
-                                    LOG.warn(String.format("Cannot find object with rdf:ID: %s", attrItem));
+                                    LOG.debug(String.format("Cannot find object with rdf:ID: %s", attrItem));
                                 }
                             }
                         }

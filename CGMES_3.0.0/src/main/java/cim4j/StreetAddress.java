@@ -114,7 +114,7 @@ public class StreetAddress extends BaseClass {
     /**
      * Status of this address.
      */
-    private Status status; // OneToOne
+    private Status status;
 
     private String statusId;
 
@@ -151,7 +151,7 @@ public class StreetAddress extends BaseClass {
     /**
      * Street detail.
      */
-    private StreetDetail streetDetail; // OneToOne
+    private StreetDetail streetDetail;
 
     private String streetDetailId;
 
@@ -188,7 +188,7 @@ public class StreetAddress extends BaseClass {
     /**
      * Town detail.
      */
-    private TownDetail townDetail; // OneToOne
+    private TownDetail townDetail;
 
     private String townDetailId;
 

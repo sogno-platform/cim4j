@@ -1570,7 +1570,8 @@ class RdfWriterTest {
     @Test
     @Order(620)
     void testWrite039() {
-        // Check replacing enum attributes
+        // Check parsing one object with changing type (maybe not CGMES conform)
+        // Measurement object with enum attributes has to be changed to Analog
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test039.xml")));
         assertEquals(1, cimData.size());
@@ -1630,7 +1631,7 @@ class RdfWriterTest {
     @Test
     @Order(640)
     void testWrite041() {
-        // Check handling link lists in which the last link to not existing object:
+        // Check handling link lists in which the last links to not existing object:
         // the id is used instead of the object
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test041.xml")));
@@ -1664,7 +1665,7 @@ class RdfWriterTest {
     @Test
     @Order(650)
     void testWrite042() {
-        // Check handling link lists in which the first link to not existing object:
+        // Check handling link lists in which the first links to not existing object:
         // the id is used instead of the object
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test042.xml")));
@@ -1808,6 +1809,65 @@ class RdfWriterTest {
         assertEquals("    <cim:IdentifiedObject.name>VL3</cim:IdentifiedObject.name>", lines[24]);
         assertEquals("  </cim:VisibilityLayer>", lines[25]);
         assertEquals("</rdf:RDF>", lines[26]);
+    }
+
+    @Test
+    @Order(710)
+    void testWrite048() {
+        // Check handling of not finite values (NaN, infinity, negative infinity)
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test048.xml")));
+        assertEquals(4, cimData.size());
+
+        assertTrue(cimData.containsKey("_BV1"));
+        assertTrue(cimData.containsKey("_BV2"));
+        assertTrue(cimData.containsKey("_BV3"));
+        assertTrue(cimData.containsKey("_BV4"));
+
+        var baseVoltage = (BaseVoltage) cimData.get("_BV1");
+        assertNull(baseVoltage.getNominalVoltage());
+        baseVoltage.setNominalVoltage(Double.NEGATIVE_INFINITY);
+        assertNotNull(baseVoltage.getNominalVoltage());
+        assertFalse(Double.isFinite(baseVoltage.getNominalVoltage()));
+
+        baseVoltage = (BaseVoltage) cimData.get("_BV2");
+        assertNull(baseVoltage.getNominalVoltage());
+        baseVoltage.setNominalVoltage(Double.POSITIVE_INFINITY);
+        assertNotNull(baseVoltage.getNominalVoltage());
+        assertFalse(Double.isFinite(baseVoltage.getNominalVoltage()));
+
+        baseVoltage = (BaseVoltage) cimData.get("_BV3");
+        assertNull(baseVoltage.getNominalVoltage());
+        baseVoltage.setNominalVoltage(Double.NaN);
+        assertNotNull(baseVoltage.getNominalVoltage());
+        assertFalse(Double.isFinite(baseVoltage.getNominalVoltage()));
+
+        baseVoltage = (BaseVoltage) cimData.get("_BV4");
+        assertNull(baseVoltage.getNominalVoltage());
+        baseVoltage.setNominalVoltage(null);
+        assertNull(baseVoltage.getNominalVoltage());
+
+        var rdfWriter = new RdfWriter();
+        rdfWriter.addCimData(cimData);
+        rdfWriter.write("target/test.xml");
+
+        var stringWriter = new StringWriter();
+        rdfWriter.write(stringWriter);
+        String result = stringWriter.toString();
+
+        var lines = result.lines().toArray();
+        assertEquals(11, lines.length);
+        assertEquals(XML_HEADER, lines[0]);
+        assertEquals(RDF_HEADER, lines[1]);
+        assertEquals("  <cim:BaseVoltage rdf:ID=\"_BV1\">", lines[2]);
+        assertEquals("  </cim:BaseVoltage>", lines[3]);
+        assertEquals("  <cim:BaseVoltage rdf:ID=\"_BV2\">", lines[4]);
+        assertEquals("  </cim:BaseVoltage>", lines[5]);
+        assertEquals("  <cim:BaseVoltage rdf:ID=\"_BV3\">", lines[6]);
+        assertEquals("  </cim:BaseVoltage>", lines[7]);
+        assertEquals("  <cim:BaseVoltage rdf:ID=\"_BV4\">", lines[8]);
+        assertEquals("  </cim:BaseVoltage>", lines[9]);
+        assertEquals("</rdf:RDF>", lines[10]);
     }
 
     @Test

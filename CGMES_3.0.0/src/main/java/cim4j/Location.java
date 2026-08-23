@@ -155,7 +155,7 @@ public class Location extends IdentifiedObject {
     /**
      * Main address of the location.
      */
-    private StreetAddress mainAddress; // OneToOne
+    private StreetAddress mainAddress;
 
     private String mainAddressId;
 

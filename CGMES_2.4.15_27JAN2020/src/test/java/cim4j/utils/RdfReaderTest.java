@@ -64,6 +64,15 @@ class RdfReaderTest {
     }
 
     @Test
+    @Order(105)
+    void testReadFromEmptyStringList() {
+        // Check reading from empty string list causing no exception
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.readFromStrings(List.of());
+        assertEquals(0, cimData.size());
+    }
+
+    @Test
     @Order(110)
     void testRead001() {
         // Check CIM objects with primitive, datatype and class attribute (ManyToOne)
@@ -1287,7 +1296,8 @@ class RdfReaderTest {
     @Test
     @Order(520)
     void testRead039() {
-        // Check replacing enum attributes
+        // Check parsing one object with changing type (maybe not CGMES conform)
+        // Measurement object with enum attributes has to be changed to Analog
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test039.xml")));
         assertEquals(1, cimData.size());
@@ -1353,7 +1363,7 @@ class RdfReaderTest {
     @Test
     @Order(540)
     void testRead041() {
-        // Check handling link lists in which the last link to not existing object:
+        // Check handling link lists in which the last links to not existing object:
         // the id is used instead of the object
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test041.xml")));
@@ -1396,7 +1406,7 @@ class RdfReaderTest {
     @Test
     @Order(550)
     void testRead042() {
-        // Check handling link lists in which the first link to not existing object:
+        // Check handling link lists in which the first links to not existing object:
         // the id is used instead of the object
         var rdfReader = new RdfReader();
         var cimData = rdfReader.read(List.of(getPath("rdf/test042.xml")));
@@ -1601,6 +1611,56 @@ class RdfReaderTest {
         assertEquals(2, visibleObjects.size());
         assertTrue(visibleObjects.contains(diagramObject1));
         assertTrue(visibleObjects.contains(diagramObject3));
+    }
+
+    @Test
+    @Order(610)
+    void testRead048() {
+        // Check handling of not finite values (NaN, infinity, negative infinity)
+        var rdfReader = new RdfReader();
+        var cimData = rdfReader.read(List.of(getPath("rdf/test048.xml")));
+        assertEquals(4, cimData.size());
+
+        assertTrue(cimData.containsKey("_BV1"));
+        assertTrue(cimData.containsKey("_BV2"));
+        assertTrue(cimData.containsKey("_BV3"));
+        assertTrue(cimData.containsKey("_BV4"));
+
+        var obj = cimData.get("_BV1");
+        assertNotNull(obj);
+        assertTrue(obj instanceof BaseVoltage);
+        var baseVoltage = (BaseVoltage) obj;
+        assertEquals(BaseVoltage.class, baseVoltage.getClass());
+        assertEquals("BaseVoltage", baseVoltage.getCimType());
+        assertEquals("_BV1", baseVoltage.getRdfid());
+        assertNull(baseVoltage.getNominalVoltage());
+
+        obj = cimData.get("_BV2");
+        assertNotNull(obj);
+        assertTrue(obj instanceof BaseVoltage);
+        baseVoltage = (BaseVoltage) obj;
+        assertEquals(BaseVoltage.class, baseVoltage.getClass());
+        assertEquals("BaseVoltage", baseVoltage.getCimType());
+        assertEquals("_BV2", baseVoltage.getRdfid());
+        assertNull(baseVoltage.getNominalVoltage());
+
+        obj = cimData.get("_BV3");
+        assertNotNull(obj);
+        assertTrue(obj instanceof BaseVoltage);
+        baseVoltage = (BaseVoltage) obj;
+        assertEquals(BaseVoltage.class, baseVoltage.getClass());
+        assertEquals("BaseVoltage", baseVoltage.getCimType());
+        assertEquals("_BV3", baseVoltage.getRdfid());
+        assertNull(baseVoltage.getNominalVoltage());
+
+        obj = cimData.get("_BV4");
+        assertNotNull(obj);
+        assertTrue(obj instanceof BaseVoltage);
+        baseVoltage = (BaseVoltage) obj;
+        assertEquals(BaseVoltage.class, baseVoltage.getClass());
+        assertEquals("BaseVoltage", baseVoltage.getCimType());
+        assertEquals("_BV4", baseVoltage.getRdfid());
+        assertNull(baseVoltage.getNominalVoltage());
     }
 
     private String getPath(String aResource) {

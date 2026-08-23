@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#">
+  <cim:BaseVoltage rdf:ID="_BV1">
+    <cim:BaseVoltage.nominalVoltage>-inf</cim:BaseVoltage.nominalVoltage>
+  </cim:BaseVoltage>
+  <cim:BaseVoltage rdf:ID="_BV2">
+    <cim:BaseVoltage.nominalVoltage>Infinity</cim:BaseVoltage.nominalVoltage>
+  </cim:BaseVoltage>
+  <cim:BaseVoltage rdf:ID="_BV3">
+    <cim:BaseVoltage.nominalVoltage>NaN</cim:BaseVoltage.nominalVoltage>
+  </cim:BaseVoltage>
+  <cim:BaseVoltage rdf:ID="_BV4">
+    <cim:BaseVoltage.nominalVoltage>dummy</cim:BaseVoltage.nominalVoltage>
+  </cim:BaseVoltage>
+</rdf:RDF>

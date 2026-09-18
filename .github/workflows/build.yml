@@ -1,23 +1,44 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
-name: Build
+name: Build & Test
 
 on: [push, pull_request]
 
+permissions:
+  checks: write
+  contents: read
+  issues: read
+  pull-requests: write
+
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         distribution: ['temurin']
         java: ['11', '17', '23']
-    name: Java ${{matrix.java}} (${{matrix.distribution}}) build & test
+    name: Build & Test Java ${{matrix.java}} (${{matrix.distribution}})
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+
+      - name: Setup Java
+        uses: actions/setup-java@v6
         with:
           distribution: ${{matrix.distribution}}
           java-version: ${{matrix.java}}
+          cache: maven
+
       - name: Build with Maven
         run: mvn --batch-mode verify
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: ${{ !cancelled() }}
+        with:
+          check_name: "Test Results Java ${{matrix.java}} (${{matrix.distribution}})"
+          files: |
+            **/target/surefire-reports/*.xml
+            **/target/failsafe-reports/*.xml

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2021 SOGNO
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # cim4j
 
 Java classes for CIM / CGMES

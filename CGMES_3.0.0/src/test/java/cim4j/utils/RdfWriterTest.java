@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 SOGNO
+//
+// SPDX-License-Identifier: Apache-2.0
+
 package cim4j.utils;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

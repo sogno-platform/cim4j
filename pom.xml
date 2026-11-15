@@ -16,6 +16,7 @@ SPDX-License-Identifier: Apache-2.0
     <packaging>pom</packaging>
 
     <name>Java classes for CIM / CGMES</name>
+    <description>Java package to import and export CGMES / CIM IEC-61970 files in the XML/RDF format</description>
     <url>https://github.com/sogno-platform/cim4j</url>
 
     <licenses>

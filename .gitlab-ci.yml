@@ -1,0 +1,101 @@
+# SPDX-FileCopyrightText: 2026 SOGNO
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# Generic GitLab CI/CD pipeline designed to work across any GitLab instance
+# (GitLab.com, self-hosted CE/EE) using standard un-tagged Docker/K8s runners.
+
+# Define pipeline stages
+stages:
+  - build
+  - test
+  - deploy
+
+# workflow.rules prevents duplicate pipelines for merge requests
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+
+# Default image and caching for all jobs
+default:
+  # Official base image so no tools need to be pre-installed on the runner
+  image: maven:3.9-eclipse-temurin-11
+  cache:
+    key: "${CI_COMMIT_REF_SLUG}"
+    paths:
+      - .m2/repository/
+  before_script:
+    # Dynamically configure Maven settings if an internal mirror is provided via CI/CD variables
+    - |
+      if [ -n "$MAVEN_SETTINGS_XML" ]; then
+        mkdir -p ~/.m2 && echo "$MAVEN_SETTINGS_XML" > ~/.m2/settings.xml
+      elif [ -f "$MAVEN_SETTINGS_FILE" ]; then
+        mkdir -p ~/.m2 && cp "$MAVEN_SETTINGS_FILE" ~/.m2/settings.xml
+      elif [ -n "$MAVEN_MIRROR_URL" ]; then
+        mkdir -p ~/.m2
+        cat <<EOF > ~/.m2/settings.xml
+      <settings>
+        <mirrors>
+          <mirror>
+            <id>central-mirror</id>
+            <mirrorOf>central</mirrorOf>
+            <url>${MAVEN_MIRROR_URL}</url>
+          </mirror>
+        </mirrors>
+      EOF
+        if [ -n "$MAVEN_MIRROR_USER" ]; then
+          cat <<EOF >> ~/.m2/settings.xml
+        <servers>
+          <server>
+            <id>central-mirror</id>
+            <username>${MAVEN_MIRROR_USER}</username>
+            <password>${MAVEN_MIRROR_PASSWORD}</password>
+          </server>
+        </servers>
+      EOF
+        fi
+        echo "</settings>" >> ~/.m2/settings.xml
+      fi
+
+# Set environment variables
+variables:
+  # Redirect the Maven repository into the workspace so it can be cached
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
+# --- Jobs ---
+
+build:
+  stage: build
+  script:
+    - mvn clean compile
+  artifacts:
+    paths:
+      - "**/target/classes/"
+    expire_in: 1 day
+
+test:
+  stage: test
+  script:
+    - mvn test
+  artifacts:
+    when: always
+    reports:
+      # JUnit test reports work out of the box across all GitLab editions
+      junit:
+        - "**/target/surefire-reports/TEST-*.xml"
+        - "**/target/failsafe-reports/TEST-*.xml"
+
+deploy:
+  stage: deploy
+  # Runs only on the default branch and ONLY if target repository credentials are configured in GitLab CI/CD variables
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $MAVEN_DEPLOY_REPO_URL != null'
+  script:
+    - >
+      mvn deploy -DskipTests
+      -DaltDeploymentRepository=remote-repo::default::${MAVEN_DEPLOY_REPO_URL}
+      -Dmaven.repo.username="${MAVEN_DEPLOY_USER}"
+      -Dmaven.repo.password="${MAVEN_DEPLOY_PASSWORD}"

@@ -4,11 +4,10 @@
 
 version = 1
 SPDX-PackageName = "cim4j"
-SPDX-PackageSupplier = "sogno-tsc@lists.lfenergy.org"
+SPDX-PackageSupplier = "Organization: LF Energy (https://lfenergy.org)"
 SPDX-PackageDownloadLocation = "https://github.com/sogno-platform/cim4j"
 
 [[annotations]]
 path = ["*/src/test/resources/rdf/*.xml"]
-precedence = "aggregate"
 SPDX-FileCopyrightText = "2025 SOGNO"
 SPDX-License-Identifier = "Apache-2.0"
